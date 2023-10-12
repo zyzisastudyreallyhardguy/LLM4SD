@@ -1,5 +1,5 @@
 # LLM4SD
-LLM4SD is an open-source initiative that aims to leverage large language models for scientific discovery. (Code will be released soon)
+LLM4SD is an open-source initiative that aims to leverage large language models for scientific discovery. **(Code will be released soon)**
 
 Below are some demo screenshots of a web-based application developed based on LLM4SD:
 Here is some demo usage of a web-based application developed based on LLM4SD.
