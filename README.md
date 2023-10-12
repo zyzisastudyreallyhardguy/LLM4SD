@@ -1,8 +1,10 @@
 # LLM4SD
 LLM4SD is an open-source initiative that aims to leverage large language models for scientific discovery. **(Code will be released soon)**
 
-Below are some demo screenshots of a web-based application developed based on LLM4SD:
-Here is some demo usage of a web-based application developed based on LLM4SD.
+Below are some demo screenshots of a web-based application **(will be released soon as well)** developed based on LLM4SD:
+Here is some demo usage of a web-based application developed based on LLM4SD. 
+
+**Comments are welcome to help us improve the web-based application**
 
 ## Knowledge Synthesis (Derive Knowledge from Scientific Literature) ##
 <img width="773" alt="image" src="https://github.com/zyzisastudyreallyhardguy/LLM4SD/assets/75228223/7fc62293-eb98-4ce5-a958-cc7af825a90f">
