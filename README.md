@@ -1,4 +1,4 @@
-# LLM4SD
+# Large Language Model for Scientific Discovery (LLM4SD)
 LLM4SD is an open-source initiative that aims to leverage large language models for scientific discovery. We have **released the demo code** for a task **predicting the blood-brain barrier permeability** of molecules :satisfied:. **(Subsequent code will be released soon.)**
 
 ## Demo Description
@@ -31,7 +31,7 @@ Ps: To obtain an explanation, you can use the information provided by the traine
 
 </div>
 
-## Web-based application developed based on LLM4SD (Will be release soon)
+## Web-based application developed based on LLM4SD (Will be released soon)
 
 ### **Comments are welcome to help us improve the web-based application:exclamation::exclamation::exclamation:**
 
