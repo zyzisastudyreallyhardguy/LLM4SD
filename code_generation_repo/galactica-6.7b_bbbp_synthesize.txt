@@ -1,0 +1,126 @@
+from rdkit import Chem
+from rdkit.Chem import Crippen
+from rdkit.Chem import Descriptors, Lipinski
+
+#-----------------------------PK part----------------------------#
+
+def calculate_logP(mol):
+    """
+    Calculate the logP value of the given molecule.
+
+    Parameters:
+    - mol (rdkit.Chem.rdchem.Mol): The molecule object.
+
+    Returns:
+    - float: The logP value.
+    """
+    return Crippen.MolLogP(mol)
+
+def count_polar_groups(mol):
+    """
+    Count the number of polar functional groups in the molecule.
+
+    Parameters:
+    - mol (rdkit.Chem.rdchem.Mol): The molecule object.
+
+    Returns:
+    - int: The count of polar functional groups (hydroxyl, amino, carboxylic acid).
+    """
+    # SMARTS patterns for the groups
+    hydroxyl_smarts = "[OH]"
+    amino_smarts = "[NH2]"
+    carboxylic_acid_smarts = "C(=O)[OH]"
+
+    # Get matches
+    hydroxyl_matches = len(mol.GetSubstructMatches(Chem.MolFromSmarts(hydroxyl_smarts)))
+    amino_matches = len(mol.GetSubstructMatches(Chem.MolFromSmarts(amino_smarts)))
+    carboxylic_acid_matches = len(mol.GetSubstructMatches(Chem.MolFromSmarts(carboxylic_acid_smarts)))
+
+    return hydroxyl_matches + amino_matches + carboxylic_acid_matches
+
+def hydrogen_bond_donors(mol):
+    """
+    Count the number of hydrogen bond donors and acceptors in the molecule.
+
+    Parameters:
+    - mol (rdkit.Chem.rdchem.Mol): The molecule object.
+
+    Returns:
+    - tuple: (number of H-bond donors, number of H-bond acceptors).
+    """
+    h_donors = Descriptors.NumHDonors(mol)
+    
+    
+    return h_donors
+
+
+def hydrogen_bond_acceptors(mol):
+    h_acceptors = Descriptors.NumHAcceptors(mol)
+
+    return h_acceptors
+
+def count_aromatic_rings(mol):
+    return Lipinski.NumAromaticRings(mol)
+
+def calculate_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def count_rotatable_bonds(mol):
+    return Lipinski.NumRotatableBonds(mol)
+
+def count_carbonyl_groups(mol):
+    # Carbonyl group is represented by the SMARTS pattern: [C]=[O]
+    carbonyl_pattern = Chem.MolFromSmarts('[C]=[O]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def count_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def has_tertiary_nitrogen(mol):
+    # Tertiary nitrogen has 3 bonds and no hydrogen
+    tertiary_nitrogens = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and atom.GetDegree() == 3 and atom.GetTotalNumHs() == 0)
+    return tertiary_nitrogens
+
+def count_oxygen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')
+
+def count_sulfoxide_groups(mol):
+    sulfoxide_pattern = Chem.MolFromSmarts('S(=O)[C,c]')
+    return len(mol.GetSubstructMatches(sulfoxide_pattern))
+
+def count_sulfur_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def count_sulfone_groups(mol):
+    sulfone_pattern = Chem.MolFromSmarts('S(=O)(=O)[C,c]')
+    return len(mol.GetSubstructMatches(sulfone_pattern))
+
+def count_chlorine_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def count_bromine_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Br')
+
+# 16. Calculate the number of fluorine atoms in the molecule.
+def count_fluorine_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == "F")
+
+# 17. Check for the presence of a hydroxyl group.
+def count_hydroxyl_groups(mol):
+    hydroxyl_pattern = Chem.MolFromSmarts("[OH]")
+    return len(mol.GetSubstructMatches(hydroxyl_pattern))
+
+# 18. Calculate the number of nitrogen-oxygen bonds in the molecule.
+def count_NO_bonds(mol):
+    NO_pattern = Chem.MolFromSmarts("[N,O]")
+    return sum(1 for bond in mol.GetBonds() if bond.GetBeginAtom().GetSymbol() in ["N", "O"] and bond.GetEndAtom().GetSymbol() in ["N", "O"])
+
+# 19. Check for the presence of a nitro group.
+def count_nitro_groups(mol):
+    nitro_pattern = Chem.MolFromSmarts("[N+](=O)[O-]")
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+# 20. Calculate the number of carbon-nitrogen bonds in the molecule.
+def count_CN_bonds(mol):
+    CN_pattern = Chem.MolFromSmarts("[C,N]")
+    return sum(1 for bond in mol.GetBonds() if bond.GetBeginAtom().GetSymbol() in ["C", "N"] and bond.GetEndAtom().GetSymbol() in ["C", "N"])
