@@ -1,0 +1,173 @@
+def rule1_carbonyl_thiocarbonyl(mol):
+    smarts = ['[C]=[O]', '[C]=[S]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule2_sulfonyl_nitro(mol):
+    smarts = ['[S](=O)(=O)[#6]', '[N+](=O)[O-]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule3_carbonyl_alkene(mol):
+    smarts = ['[C]=[O].[C]=[C]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule4_chlorine(mol):
+    return Descriptors.NumHeteroatoms(mol) - Descriptors.NumHeteroatoms(Chem.DeleteSubstructs(mol, Chem.MolFromSmiles('Cl')))
+
+def rule5_cyano(mol):
+    smarts = ['[C-]#[N+]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule6_chlorine_aromatic(mol):
+    aromatic_atoms = mol.GetAromaticAtoms()
+    for atom in aromatic_atoms:
+        if atom.GetSymbol() == 'Cl':
+            return 1
+    return 0
+
+def rule7_halogen_toxic(mol):
+    halogens = ['Cl', 'Br']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule8_nitro_toxic(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N':
+            if len(atom.GetNeighbors()) == 2:
+                if all(neighbor.GetSymbol() == 'O' for neighbor in atom.GetNeighbors()):
+                    return 1
+    return 0
+
+def rule9_cyano_nitro_toxic(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N':
+            if len(atom.GetNeighbors()) == 2:
+                if all(neighbor.GetSymbol() == 'O' for neighbor in atom.GetNeighbors()):
+                    return 1
+            elif len(atom.GetNeighbors()) == 1:
+                if atom.GetNeighbors()[0].GetSymbol() == 'C':
+                    return 1
+    return 0
+
+def rule10_sulfonyl_group(mol):
+    sulfonyl_smarts = '[#16](=[#8])(=[#8])-[#6]'
+    sulfonyl_pattern = Chem.MolFromSmarts(sulfonyl_smarts)
+    return len(mol.GetSubstructMatches(sulfonyl_pattern))
+
+def rule11_halogen_atoms(mol):
+    halogen_smarts = '[#9,#17,#35,#53]'
+    halogen_pattern = Chem.MolFromSmarts(halogen_smarts)
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule12_sulfonyl_phosphate_group(mol):
+    sulfonyl_smarts = '[#16](=[#8])(=[#8])-[#6]'
+    phosphate_smarts = '[#15](=[#8])(-[#8])-[#8]'
+    sulfonyl_pattern = Chem.MolFromSmarts(sulfonyl_smarts)
+    phosphate_pattern = Chem.MolFromSmarts(phosphate_smarts)
+    return len(mol.GetSubstructMatches(sulfonyl_pattern)) + len(mol.GetSubstructMatches(phosphate_pattern))
+
+def rule13_cyano_group(mol):
+    cyano_smarts = '[#6]#[#7]'
+    cyano_pattern = Chem.MolFromSmarts(cyano_smarts)
+    return len(mol.GetSubstructMatches(cyano_pattern))
+
+def rule14_benzene_ring(mol):
+    benzene_smarts = 'c1ccccc1'
+    benzene_pattern = Chem.MolFromSmarts(benzene_smarts)
+
+def rule15_halogen_toxicity(mol):
+    halogens = ['Cl', 'Br']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule16_chlorine_toxicity(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'Cl':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C' and (neighbor.GetIdx() == 1 or neighbor.GetIdx() == 4):
+                    return 0
+    return 1
+
+def rule17_carbonyl_toxicity(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'O' and neighbor.GetDoubleBondedAtoms():
+                    if atom.GetIdx() in [1, 2, 3]:
+                        return 1
+    return 0
+
+def rule18_cyano_thiocarbonyl_toxicity(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'N' and atom.GetIsAromatic():
+                    return 1
+                if neighbor.GetSymbol() == 'S' and atom.GetIsAromatic():
+                    return 1
+    return 0
+
+def rule19_bromine_or_cyano(mol):
+    pattern1 = Chem.MolFromSmarts('[Br]')
+    pattern2 = Chem.MolFromSmarts('[#6]#[#7]')
+    return mol.GetSubstructMatches(pattern1) + mol.GetSubstructMatches(pattern2)
+
+def rule20_sulfonamide(mol):
+    pattern = Chem.MolFromSmarts('[#16](=[#8])(=[#8])-[#7]')
+    return mol.GetSubstructMatches(pattern)
+
+def rule21_phosphorus(mol):
+    pattern = Chem.MolFromSmarts('[#15](-[#6])(-[#6])(-[#6])(-[#6])(-[#6])(-[#6])-[#6]-[#6]')
+    return mol.GetSubstructMatches(pattern)
+
+def rule22_carbonyl(mol):
+    pattern = Chem.MolFromSmarts('[#6](=[#8])-[#6]=[#6]')
+    return mol.GetSubstructMatches(pattern)
+
+def rule23_bromine_double_bond(mol):
+    pattern = Chem.MolFromSmarts('[Br]-[#6]=[#6]')
+    return mol.GetSubstructMatches(pattern)
+
+def rule24_toxic_effects(mol):
+    cyano = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[#7]'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]'))
+    sulfonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[#16](=[#8])(=[#8])-[#6]'))
+    return len(cyano) + len(carbonyl) + len(sulfonyl)
+
+def rule25_toxic_effects(mol):
+    chlorine = mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]'))
+    return len(chlorine)
+
+def rule1_toxic_effects(mol):
+    phosphorus = mol.GetSubstructMatches(Chem.MolFromSmarts('[#15](-[#6])(-[#6])(-[#6])(-[#6])(-[#6])(-[#6])'))
+    return len(phosphorus)
+
+def rule2_toxic_effects(mol):
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]-[#6]=[#6]'))
+    return len(carbonyl)
+
+def rule3_toxic_effects(mol):
+    bromine = mol.GetSubstructMatches(Chem.MolFromSmarts('[#35]-[#6]=[#6]'))
+
+def rule4_phosphate_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'P')
+
+def rule5_metal_ion(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Fe')
+
+def rule6_bromine_atom(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Br')
+
+def rule7_bromine_or_nitro(mol):
+    bromine_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Br')
+    nitro_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    return bromine_count + nitro_count
+
+
+def rule10_cyano_or_thiocarbonyl(mol):
+    cyano_count = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+    thiocarbonyl_count = mol.GetSubstructMatches(Chem.MolFromSmarts('C=S'))
+    return cyano_count + thiocarbonyl_count

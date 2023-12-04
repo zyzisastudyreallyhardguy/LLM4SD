@@ -1,0 +1,112 @@
+def rule1_bond_count(mol):
+    return mol.GetNumBonds()
+
+def rule2_bond_type(mol):
+    bond_types = [bond.GetBondType() for bond in mol.GetBonds()]
+    return len(set(bond_types))
+
+def rule3_double_triple_bonds(mol):
+    bond_types = [bond.GetBondType() for bond in mol.GetBonds()]
+    return bond_types.count(rdchem.BondType.DOUBLE) + bond_types.count(rdchem.BondType.TRIPLE)
+
+def rule4_functional_groups(mol):
+    patt = Chem.MolFromSmarts('([#6;X2])')
+    if patt is not None:
+        return len(mol.GetSubstructMatches(patt))
+    else:
+        return 0
+
+
+def rule5_molecule_size(mol):
+    return mol.GetNumAtoms()
+
+def rule7_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule8_lone_pairs(mol):
+    return sum([atom.GetTotalNumHs() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 or atom.GetAtomicNum() == 8 or atom.GetAtomicNum() == 16])
+
+def rule9_electronegativity(mol):
+    return sum([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+
+def rule10_metals(mol):
+    return sum([atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in range(21, 31)])
+
+def rule16_enthalpy_formation(mol):
+    return Descriptors.ExactMolWt(mol)
+
+def rule17_enthalpy_solvation(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule18_temperature(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule19_pressure(mol):
+    return Descriptors.NumSaturatedRings(mol)
+
+def rule20_concentration(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule21_solvent(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def rule22_ph(mol):
+    return Descriptors.NumHAcceptors(mol)
+
+def rule23_ionic_strength(mol):
+    return Descriptors.NumHDonors(mol)
+
+def rule24_wavelength(mol):
+    return Descriptors.MolWt(mol)
+
+def rule25_polarity(mol):
+    return Descriptors.MolLogP(mol)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def rule35_intermolecular_forces_entropy(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule36_wavelength_light_entropy(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule37_solvent_polarity_entropy(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule38_solute_concentration_free_energy(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule39_temperature_free_energy(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule40_pressure_free_energy(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule41_other_molecules_free_energy(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule42_intermolecular_forces_free_energy(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule44_polarity_solvent(mol):
+    return Descriptors.TPSA(mol)
+
+def rule45_concentration_solute(mol):
+    return Descriptors.MolWt(mol)
+
+def rule49_intermolecular_forces(mol):
+    return Descriptors.NumValenceElectrons(mol)

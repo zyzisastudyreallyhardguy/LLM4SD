@@ -1,0 +1,58 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_reactive_groups(mol):
+    return rdmolops.GetSSSR(mol)
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_aromatic_rings(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return aromatic_atoms.count(True)
+
+def rule4_aromatic_rings(mol):
+    aromatic_subgraphs = [ring for ring in Chem.GetSymmSSSR(mol) if all(atom.GetIsAromatic() for atom in ring)]
+    return len(aromatic_subgraphs)
+
+
+def rule5_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule5_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule7_num_rings(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRings(mol)
+
+def rule8_polar_groups(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule11_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2])
+
+def rule13_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+
+def rule15_calc_num_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule16_check_func_groups_protein_binding(mol):
+    aldehyde = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(aldehyde))
+
+def rule17_calc_num_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule18_check_func_groups_metabolic_activation(mol):
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+    return len(mol.GetSubstructMatches(nitro))
+
+def rule19_calc_num_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule20_check_func_groups_immune_stimulation(mol):
+    carboxyl = Chem.MolFromSmarts('C(=O)O')

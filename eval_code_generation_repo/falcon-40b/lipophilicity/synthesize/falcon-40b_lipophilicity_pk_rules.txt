@@ -1,0 +1,67 @@
+
+def rule7_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule11_hydrogen_bonding_capacity(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule12_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule14_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_stereogenic_centers(mol):
+    return Chem.FindMolChiralCenters(mol, includeUnassigned=True)
+
+def rule17_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule18_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE])
+
+def rule19_halogens(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]])
+
+def rule20_nitrogen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7])
+
+def rule21_oxygen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8])
+
+def rule22_sulfur_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16])
+
+def rule23_carbon_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6])
+
+def rule25_longest_chain_carbons(mol):
+    chains = Chem.GetMolFrags(mol, asMols=True)
+    longest_chain = max(chains, key=lambda x: x.GetNumHeavyAtoms())
+    return sum(1 for atom in longest_chain.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule26_shortest_chain_carbons(mol):
+    chains = Chem.GetMolFrags(mol, asMols=True)
+    shortest_chain = min(chains, key=lambda x: x.GetNumHeavyAtoms())
+    return sum(1 for atom in shortest_chain.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule27_middle_chain_carbons(mol):
+    chains = sorted(Chem.GetMolFrags(mol, asMols=True), key=lambda x: x.GetNumHeavyAtoms())
+    middle_chain = chains[len(chains) // 2]
+    return sum(1 for atom in middle_chain.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule28_side_chain_carbons(mol):
+    chains = list(Chem.GetMolFrags(mol, asMols=True))
+    main_chain = max(chains, key=lambda x: x.GetNumHeavyAtoms())
+    chains.remove(main_chain)
+    return sum(1 for chain in chains for atom in chain.GetAtoms() if atom.GetSymbol() == 'C')
+
+
+def rule29_ring_system_carbons(mol):
+    ring_info = mol.GetRingInfo()
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and ring_info.NumAtomRings(atom.GetIdx()) > 0)
+
+

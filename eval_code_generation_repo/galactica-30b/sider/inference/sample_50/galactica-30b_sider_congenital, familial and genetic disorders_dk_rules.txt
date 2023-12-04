@@ -1,0 +1,193 @@
+def rule1_contains_functional_groups(mol):
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    phosphate = Chem.MolFromSmarts('O=P([O-])([O-])O')
+    return mol.HasSubstructMatch(nitro) + mol.HasSubstructMatch(phosphate)
+
+def rule2_molecular_weight_hydrophobicity(mol):
+    return Descriptors.MolWt(mol), Descriptors.MolLogP(mol)
+
+
+
+def rule4_carbonyl_carboxylic_acid(mol):
+    carbonyl = Chem.MolFromSmarts('C=O')
+    carboxylic_acid = Chem.MolFromSmarts('C(=O)O')
+    return mol.HasSubstructMatch(carbonyl) + mol.HasSubstructMatch(carboxylic_acid)
+
+def rule5_high_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule7_fluorine_nitro_groups(mol):
+    fluorine_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F]')))
+    nitro_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    return fluorine_atoms + nitro_groups
+
+def rule8_heterocyclic_rings(mol):
+    return rdMolDescriptors.CalcNumHeterocycles(mol)
+
+def rule9_carbonyl_alkyl_groups(mol):
+    carbonyl_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C]=[O]')))
+    alkyl_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C][C]')))
+    return carbonyl_groups + alkyl_groups
+
+def rule10_metal_ions(mol):
+    chloride_ions = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]')))
+    sodium_ions = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Na]')))
+    return chloride_ions + sodium_ions
+
+def rule11_phosphorus_sulfonamide_nitro_groups(mol):
+    phosphorus_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[P](=O)(O)(O)(O)')))
+    sulfonamide_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1S(=O)(=O)N')))
+    nitro_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1[N+](=O)[O-]')))
+
+def rule12_substructure(mol):
+    pattern1 = Chem.MolFromSmarts('C#N')
+    pattern2 = Chem.MolFromSmarts('Cc1ccccc1')
+    pattern3 = Chem.MolFromSmarts('C(=O)O')
+    return mol.HasSubstructMatch(pattern1) or mol.HasSubstructMatch(pattern2) or mol.HasSubstructMatch(pattern3)
+
+def rule13_bromine_fluorine(mol):
+    pattern1 = Chem.MolFromSmarts('[Br]')
+    pattern2 = Chem.MolFromSmarts('[F]')
+    pattern3 = Chem.MolFromSmarts('C#N')
+    return mol.HasSubstructMatch(pattern1) or mol.HasSubstructMatch(pattern2) or mol.HasSubstructMatch(pattern3)
+
+def rule14_smiles_string(mol):
+    pattern1 = Chem.MolFromSmarts('CC#N')
+    pattern2 = Chem.MolFromSmarts('Cc1ccccc1')
+    return mol.HasSubstructMatch(pattern1) or mol.HasSubstructMatch(pattern2)
+
+def rule15_functional_groups(mol):
+    pattern1 = Chem.MolFromSmarts('S(=O)(=O)')
+    pattern2 = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return mol.HasSubstructMatch(pattern1) or mol.HasSubstructMatch(pattern2)
+
+def rule16_benzene_halogen(mol):
+    pattern1 = Chem.MolFromSmarts('c1ccccc1')
+    pattern2 = Chem.MolFromSmarts('C[Cl,Br,F,I]')
+    return mol.HasSubstructMatch(pattern1) or mol.HasSubstructMatch(pattern2)
+
+def rule17_adverse_effects(mol):
+    aromatic_atoms = [atom for atom in mol.GetAtoms() if atom.GetIsAromatic()]
+    metal_ions = [atom for atom in mol.GetAtoms() if atom.GetAtomicNum() > 20 and atom.GetAtomicNum() < 31]
+    fluorine_atoms = [atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 9]
+    return len(aromatic_atoms) + len(metal_ions) + len(fluorine_atoms)
+
+
+def rule18_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('C=O')
+    carbonyl_group_count = len(mol.GetSubstructMatches(carbonyl_group))
+    return carbonyl_group_count
+
+def rule1_sulfonyl_group(mol):
+    sulfonyl_group = Chem.MolFromSmarts('S(=O)(=O)')
+    sulfonyl_group_count = len(mol.GetSubstructMatches(sulfonyl_group))
+    return sulfonyl_group_count
+
+def rule2_guanidine_group(mol):
+    guanidine_group = Chem.MolFromSmarts('NC(N)=N')
+    if guanidine_group is not None:
+        guanidine_group_count = len(mol.GetSubstructMatches(guanidine_group))
+        return guanidine_group_count
+    else:
+        return 0
+
+
+def rule3_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('N(=O)=O')
+    nitro_group_count = len(mol.GetSubstructMatches(nitro_group))
+    return nitro_group_count
+
+def rule4_sulfhydryl_group(mol):
+    sulfhydryl_group = Chem.MolFromSmarts('S')
+    sulfhydryl_group_count = len(mol.GetSubstructMatches(sulfhydryl_group))
+    return sulfhydryl_group_count
+
+def rule5_halogen_atom(mol):
+    halogen_atom = Chem.MolFromSmarts('[#9,#17,#35,#53]')
+    halogen_atom_count = len(mol.GetSubstructMatches(halogen_atom))
+
+def rule6_sodium_indium(mol):
+    sodium_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Na]')))
+    indium_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[In]')))
+    return sodium_count + indium_count
+
+
+def rule7_benzene_PAH(mol):
+    aromatic_rings = rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+def rule8_carboxylate_carbonate(mol):
+    carboxylate_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C](=O)[O-]')))
+    carbonate_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C](=O)([O-])[O-]')))
+    return carboxylate_count + carbonate_count
+
+def rule9_chlorine_carbon(mol):
+    chlorine_carbon_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C][Cl]')))
+    return chlorine_carbon_count
+
+def rule10_cyano_fluoro(mol):
+    cyano_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C]#N')))
+    fluoro_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F]')))
+    return cyano_count + fluoro_count
+
+
+def rule11_cc_chch(mol):
+    cc_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C][C]')))
+    chch_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CH]=[CH]')))
+    return cc_count + chch_count
+
+def rule12_sulfonamide(mol):
+    sulfonamide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[S](=O)(=O)[NH]')))
+    return sulfonamide_count
+
+def rule13_quinazoline_coumarin(mol):
+    quinazoline_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ncnc2ccccc12')))
+    coumarin_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccc2c(c1)ccc(=O)o2')))
+    return quinazoline_count + coumarin_count
+
+def rule14_ccl_scn(mol):
+    ccl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C][Cl]')))
+    scn_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[S][C][N]')))
+
+def rule15_isocyanate_halogen(mol):
+    isocyanate = Chem.MolFromSmarts('N=C=O')
+    halogen = Chem.MolFromSmarts('[#9,#17,#35,#53]')
+    return mol.GetSubstructMatches(isocyanate) + mol.GetSubstructMatches(halogen)
+
+def rule16_size_shape_charge(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol), rdMolDescriptors.CalcTPSA(mol), Chem.rdmolops.GetFormalCharge(mol)
+
+def rule17_sulfonamide_quinolone(mol):
+    sulfonamide = Chem.MolFromSmarts('S(=O)(=O)N')
+    quinolone = Chem.MolFromSmarts('c1cc2c(cc1)C(=O)NC2=O')
+    return mol.GetSubstructMatches(sulfonamide) and mol.GetSubstructMatches(quinolone)
+
+
+
+def rule19_chlorine_carbon(mol):
+    chlorine_carbon = Chem.MolFromSmarts('CC(Cl)C')
+    return mol.GetSubstructMatches(chlorine_carbon)
+
+def rule20_nitro_sulfonate_sulfate(mol):
+    nitro = Chem.MolFromSmarts('C[N+](=O)[O-]')
+    sulfonate = Chem.MolFromSmarts('c1ccccc1S(=O)(=O)[O-]')
+    sulfate = Chem.MolFromSmarts('c1ccccc1O[S+2]([O-])([O-])')
+    return mol.GetSubstructMatches(nitro) + mol.GetSubstructMatches(sulfonate) + mol.GetSubstructMatches(sulfate)
+
+def rule1_sulfonyl_carbonyl(mol):
+    sulfonyl = Chem.MolFromSmarts('S(=O)(=O)')
+    carbonyl = Chem.MolFromSmarts('C=O')
+    return mol.GetSubstructMatches(sulfonyl) + mol.GetSubstructMatches(carbonyl)
+
+def rule2_CCOO_CCON(mol):
+    CCOO = Chem.MolFromSmarts('CCOO')
+    CCON = Chem.MolFromSmarts('CCON')
+    return mol.GetSubstructMatches(CCOO) + mol.GetSubstructMatches(CCON)
+
+def rule3_aromatic_rings(mol):
+    ring1 = Chem.MolFromSmarts('CC1=NN=C(C=C1)C')
+    ring2 = Chem.MolFromSmarts('CC1=NN=C(CS1)C')
+    return mol.GetSubstructMatches(ring1) + mol.GetSubstructMatches(ring2)
+
+def rule4_multiple_halogen(mol):
+    halogen = Chem.MolFromSmarts('[#9,#17,#35,#53]')

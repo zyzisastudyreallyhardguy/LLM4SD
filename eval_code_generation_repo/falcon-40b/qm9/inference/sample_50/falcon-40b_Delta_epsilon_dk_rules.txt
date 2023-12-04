@@ -1,0 +1,278 @@
+def rule41_halogen_presence(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    atoms = mol.GetAtoms()
+    count = 0
+    for atom in atoms:
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule42_alkene_presence(mol):
+    alkene_pattern = Chem.MolFromSmarts('[*]=[*]')
+    matches = mol.GetSubstructMatches(alkene_pattern)
+    return len(matches)
+
+def rule43_alkyne_presence(mol):
+    alkyne_pattern = Chem.MolFromSmarts('[*]#[*]')
+    matches = mol.GetSubstructMatches(alkyne_pattern)
+    return len(matches)
+
+def rule44_conjugation_degree(mol):
+    conjugated_pattern = Chem.MolFromSmarts('[*]:[*]')
+    matches = mol.GetSubstructMatches(conjugated_pattern)
+    return len(matches)
+
+def rule45_electron_withdrawing_groups(mol):
+    from rdkit import Chem
+    electron_withdrawing_groups = ['[N+](=O)[O-]', 'C#N', 'C(=O)O', 'S(=O)(=O)O', 'P(=O)(O)O', 'O', 'N']
+    count = 0
+    for group in electron_withdrawing_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmiles(group)))
+    return count
+
+
+def rule46_electron_donating_groups(mol):
+    electron_donating_groups = ['[NH2]', '[OH]', '[O-]', '[NH][C]=O', 'NC(=O)C', 'OC', 'C', 'c1ccccc1']
+    count = 0
+    for group in electron_donating_groups:
+        query = Chem.MolFromSmiles(group)
+        if query is not None:
+            count += len(mol.GetSubstructMatches(query))
+    return count
+
+
+def rule47_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule48_multiple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE])
+
+def rule50_chiral_center(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule4_alkyl_group(mol):
+    alkyl_groups = ['C(C)(C)C', 'CC(C)C', 'CCC(C)C', 'CCCC(C)C']
+    alkyl_count = 0
+    for alkyl in alkyl_groups:
+        alkyl_count += len(mol.GetSubstructMatches(Chem.MolFromSmiles(alkyl)))
+    return alkyl_count
+
+def rule5_pi_bond(mol):
+    pi_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType().name == 'DOUBLE' or bond.GetBondType().name == 'TRIPLE':
+            pi_bonds += 1
+    return pi_bonds
+
+def rule6_hydroxyl_group(mol):
+    hydroxyl_group = 'O'
+    hydroxyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles(hydroxyl_group)))
+    return hydroxyl_count
+
+def rule7_cyclic_molecule(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule8_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule9_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule10_saturated_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[C]')))
+
+def rule11_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for halogen in halogens:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmiles(halogen)))
+    return count
+
+def rule12_cyclic_structures(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule13_delocalized_electrons(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule14_molecular_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule15_molecule_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule17_linear_structure(mol):
+    # Check if the molecule has at least one conformer
+    if mol.GetNumConformers() > 0:
+        # Here, we can use the eccentricity descriptor from RDKit, which measures the deviation from a linear structure.
+        # A lower eccentricity value indicates a more linear structure.
+        # We will return the inverse of the eccentricity, so that a higher value indicates a more linear structure.
+        eccentricity = rdMolDescriptors.CalcEccentricity(mol)
+        return 1 / eccentricity if eccentricity != 0 else 0
+    else:
+        # If the molecule does not have any conformers, return a default value
+        return 0
+
+
+def rule18_double_triple_bonds(mol):
+    # We can count the number of double and triple bonds in the molecule.
+    # We will return the negative of this count, so that a higher value indicates a lower HOMO-LUMO gap.
+    double_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=C')))
+    triple_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C#C')))
+    return -(double_bonds + triple_bonds)
+
+
+def rule19_positive_charges(mol):
+    # We can count the number of positive charges in the molecule.
+    positive_charges = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+    return positive_charges
+
+def rule20_negative_charges(mol):
+    # We can count the number of negative charges in the molecule.
+    # We will return the negative of this count, so that a higher value indicates a lower HOMO-LUMO gap.
+    negative_charges = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0)
+    return -negative_charges
+
+def rule21_s_orbitals(mol):
+    # We can count the number of s orbitals in the molecule.
+    # We will assume that atoms of type H, He, Li, Be, B, C, N, O, F, Ne have one s orbital,
+    # and atoms of type Na, Mg, Al, Si, P, S, Cl, Ar have two s orbitals.
+    s_orbitals = sum(1 if atom.GetSymbol() in ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne'] else 2
+                     for atom in mol.GetAtoms())
+    return s_orbitals
+
+def rule22_p_orbitals(mol):
+    p_orbitals = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2 or atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3:
+            p_orbitals += 1
+    return p_orbitals
+
+def rule23_sp_orbitals(mol):
+    sp_orbitals = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP:
+            sp_orbitals += 1
+    return sp_orbitals
+
+def rule24_sp2_sp3_orbitals(mol):
+    sp2_sp3_orbitals = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2 or atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3:
+            sp2_sp3_orbitals += 1
+    return sp2_sp3_orbitals
+
+def rule26_steric_hindrance(mol):
+    # Here, we can use the number of rotatable bonds as a proxy for steric hindrance
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule27_electron_withdrawing_groups(mol):
+    # Here, we can use the number of nitro groups as a proxy for electron withdrawing groups
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule28_electron_donating_groups(mol):
+    # Here, we can use the number of amino groups as a proxy for electron donating groups
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+
+def rule29_high_ionization_energy(mol):
+    # Here, we can use the number of positively charged atoms as a proxy for high ionization energy
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[+]')))
+
+def rule30_low_electron_affinity(mol):
+    # Here, we can use the number of negatively charged atoms as a proxy for low electron affinity
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[-]')))
+
+def rule31_ionic_bonds(mol):
+    # This is a placeholder function. You will need to replace this with your own code to calculate ionic bonds.
+    num_ionic_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.IONIC:
+            num_ionic_bonds += 1
+    return num_ionic_bonds
+
+
+def rule32_amide_groups(mol):
+    return rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule33_dipole_moment(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule34_branched_structures(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule35_alcohols(mol):
+    pattern = Chem.MolFromSmarts('O[H]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+
+
+
+def rule37_homo_lumo_gap_lipophilic(mol):
+    num_heteroatoms = rdMolDescriptors.CalcNumHeteroatoms(mol)
+    num_lipinski_hba = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    return num_lipinski_hba - num_heteroatoms
+
+
+
+
+def rule39_homo_lumo_gap_metal(mol):
+    try:
+        mol_surf = MolSurf.pyTPSA(mol)
+        return mol_surf
+    except:
+        return 0
+
+
+def rule40_homo_lumo_gap_rigidity(mol):
+    # Add hydrogen atoms to the molecule
+    mol = Chem.AddHs(mol)
+    # Calculate molecular weight
+    mol_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    return mol_weight
+
+
+
+
+def rule42_conjugation(mol):
+    # Here, we can use the number of aromatic rings as a proxy for the
+    # presence of conjugation, under the assumption that aromatic systems
+    # are conjugated.
+    num_aromatic_rings = rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+    # We can then use this value to estimate the effect on the HOMO-LUMO gap,
+    # under the assumption that more conjugation leads to smaller gaps.
+    return num_aromatic_rings
+
+
+def rule43_symmetry(mol):
+    # Here, we can use the number of rotatable bonds as a descriptor for the symmetry of the molecule.
+    symmetry_value = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    # We can then use this value to estimate the HOMO-LUMO gap, under the
+    # assumption that more symmetrical molecules have larger gaps.
+    return symmetry_value
+
+
+def rule44_hb_groups(mol):
+    # Here, we can use the number of hydrogen bond donors and acceptors as a
+    # proxy for the presence of functional groups that can form hydrogen bonds.
+    num_hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    num_hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    # We can then use these values to estimate the effect on the HOMO-LUMO gap,
+    # under the assumption that more hydrogen bonding leads to larger gaps.
+    return num_hb_donors + num_hb_acceptors
+
+def rule45_unshared_electrons(mol):
+    num_radical_electrons = sum(atom.GetNumRadicalElectrons() for atom in mol.GetAtoms())
+    return num_radical_electrons
+
+
+def rule46_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule47_large_molecular_networks(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule48_high_molar_mass(mol):
+    return Descriptors.MolWt(mol)
+
+def rule49_symmetry(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)

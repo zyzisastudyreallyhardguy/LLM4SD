@@ -1,0 +1,72 @@
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) >= 2
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) >= 3
+
+def rule3_logD_high(mol):
+    logD = Descriptors.MolLogP(mol)
+    return logD > 0.4
+
+def rule4_logD_low(mol):
+    logD = Descriptors.MolLogP(mol)
+    return logD < -0.4
+
+def rule5_logD_zero(mol):
+    logD = Descriptors.MolLogP(mol)
+    return logD == 0
+
+def rule6_logD_negative(mol):
+    logD = Descriptors.MolLogP(mol)
+
+def rule5_CO_bonds(mol):
+    CO_bonds = 0
+    for bond in mol.GetBonds():
+        if (bond.GetBeginAtom().GetSymbol() == 'C' and bond.GetEndAtom().GetSymbol() == 'O') or (bond.GetBeginAtom().GetSymbol() == 'O' and bond.GetEndAtom().GetSymbol() == 'C'):
+            CO_bonds += 1
+    return CO_bonds
+
+def rule6_O_atoms(mol):
+    O_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'O':
+            O_atoms += 1
+    return O_atoms
+
+def rule7_logD(mol):
+    logD = Descriptors.MolLogP(mol)
+    return logD
+
+def rule8_logD(mol):
+    logD = Descriptors.MolLogP(mol)
+    return logD
+
+def rule9_logD(mol):
+    logP = Crippen.MolLogP(mol)
+    # Adjust logP to get an approximate logD value
+    logD = logP - 0.63
+    return logD
+
+def rule10_logD(mol):
+    logP = Crippen.MolLogP(mol)
+    # Adjust logP to get an approximate logD value
+    logD = logP - 0.63
+    return logD
+
+def rule11_logD(mol):
+    logP = Crippen.MolLogP(mol)
+    # Adjust logP to get an approximate logD value
+    logD = logP - 0.63
+    return logD
+
+def rule12_logD(mol):
+    logP = Crippen.MolLogP(mol)
+    # Adjust logP to get an approximate logD value
+    logD = logP - 0.63
+    return logD
+
+def rule13_logD(mol):
+    logP = Crippen.MolLogP(mol)
+    # Adjust logP to get an approximate logD value
+    logD = logP - 0.63
+    return logD

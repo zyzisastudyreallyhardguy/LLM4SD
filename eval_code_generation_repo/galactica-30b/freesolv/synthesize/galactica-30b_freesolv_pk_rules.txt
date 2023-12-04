@@ -1,0 +1,57 @@
+def rule1_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule2_mol_size_shape(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule3_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule4_charged_groups(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_hydrophobicity(mol):
+    logp, _ = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule7_ionic_strength(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule8_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule9_hydrophobic_interactions(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_steric_hindrance(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+def rule11_entropy_changes(mol):
+    return Descriptors.MolMR(mol)
+
+def rule12_dielectric_constant(mol):
+    return Descriptors.MolLogP(mol) - Descriptors.MolMR(mol)
+
+def rule13_electron_substituents(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule15_metal_ion_influence(mol):
+    metal_ions = ['Li', 'Na', 'K', 'Rb', 'Cs', 'Fr', 'Be', 'Mg', 'Ca', 'Sr', 'Ba', 'Ra', 'Sc', 'Y', 'La', 'Ac', 'Ti', 'Zr', 'Hf', 'Rf', 'V', 'Nb', 'Ta', 'Db', 'Cr', 'Mo', 'W', 'Sg', 'Mn', 'Tc', 'Re', 'Bh', 'Fe', 'Ru', 'Os', 'Hs', 'Co', 'Rh', 'Ir', 'Mt', 'Ni', 'Pd', 'Pt', 'Ds', 'Cu', 'Ag', 'Au', 'Rg', 'Zn', 'Cd', 'Hg', 'Cn', 'B', 'Al', 'Ga', 'In', 'Tl', 'Nh', 'C', 'Si', 'Ge', 'Sn', 'Pb', 'Fl', 'P', 'As', 'Sb', 'Bi', 'Mc', 'O', 'S', 'Se', 'Te', 'Po', 'Lv', 'F', 'Cl', 'Br', 'I', 'At', 'Ts', 'He', 'Ne', 'Ar', 'Kr', 'Xe', 'Rn', 'Og']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in metal_ions:
+            count += 1
+    return count
+
+def rule16_hydrogen_bond_potential(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule17_solvation_degree(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule18_vdw_contribution(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule19_surface_area_relation(mol):
+    return rdMolDescriptors.CalcTPSA(mol)

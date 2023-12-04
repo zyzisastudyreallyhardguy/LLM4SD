@@ -1,0 +1,68 @@
+def rule1_nitrogen_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule2_chlorine_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def rule3_sulfur_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule4_carboxylic_acid_presence(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule5_halogen_presence(mol):
+    pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule6_carboxylic_acid_skin_disorders(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule7_sulfonamide_skin_disorders(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule8_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule9_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule10_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule12_polar_atoms(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)
+
+def rule13_halogen_atoms(mol):
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule15_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule16_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule17_metal_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() > 20)
+
+def rule18_carbonyl_groups(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule19_long_carbon_chains(mol):
+    carbon_chain_pattern = Chem.MolFromSmarts('[#6]-[#6]-[#6]-[#6]-[#6]')
+    return len(mol.GetSubstructMatches(carbon_chain_pattern))
+
+def rule20_carboxylic_acid_groups(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule21_nitrogen_carbonyl(mol):
+    nitrogen_carbonyl_pattern = Chem.MolFromSmarts('[#7]-[#6]=[#8]')

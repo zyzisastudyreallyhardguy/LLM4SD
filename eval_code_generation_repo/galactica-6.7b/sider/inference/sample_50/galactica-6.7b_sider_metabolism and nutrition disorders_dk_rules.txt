@@ -1,0 +1,134 @@
+def rule1_substructure(mol):
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    benzene = Chem.MolFromSmarts('c1ccccc1')
+    return mol.GetSubstructMatches(nitro) + mol.GetSubstructMatches(benzene)
+
+def rule2_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule3_chiral_center(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule4_carbonyl_group(mol):
+    carbonyl = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl))
+
+def rule5_halogenated_aromatic_ring(mol):
+    halogenated_aromatic = Chem.MolFromSmarts('[cH0:1][c:2]([cH0:3][c:4]([cH0:5][c:6]1.[F,Cl,Br,I:7]))')
+    if halogenated_aromatic is not None:
+        return len(mol.GetSubstructMatches(halogenated_aromatic))
+    else:
+        return 0
+
+
+def rule6_trifluoromethyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(F)(F)F')))
+
+
+
+def rule8_PAH(mol):
+    ssr = Chem.GetSymmSSSR(mol)
+    PAH_count = 0
+    for ring in ssr:
+        if len(ring) >= 6:
+            aromatic = True
+            for atomidx in ring:
+                if not mol.GetAtomWithIdx(atomidx).GetIsAromatic():
+                    aromatic = False
+                    break
+            if aromatic:
+                PAH_count += 1
+    return PAH_count
+
+def rule9_metal_ion(mol):
+    platinum = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#78]')))
+    zinc = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#30]')))
+    return platinum + zinc
+
+def rule11_adverse_effects(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]'))
+    hydroxyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]-[#1]'))
+    return len(nitro) + len(carbonyl) + len(hydroxyl)
+
+
+def rule12_halogen_presence(mol):
+    fluorine = mol.GetSubstructMatches(Chem.MolFromSmarts('[F]'))
+    chlorine = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]'))
+    bromine = mol.GetSubstructMatches(Chem.MolFromSmarts('[Br]'))
+    return len(fluorine) + len(chlorine) + len(bromine)
+
+def rule13_unsaturation_degree(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule14_adverse_effects(mol):
+    nitrogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[N]'))
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))
+    metal = mol.GetSubstructMatches(Chem.MolFromSmarts('[Gd,Ag]'))
+
+def rule15_phosphate_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#15](=[#8])(-[#8])-[#8]')))
+
+def rule1_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule2_halogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule3_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule4_functional_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[#6]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3][CX3](=[OX1])[#6]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]')))
+
+def rule5_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule10_carbonyl_hydroxyl_groups(mol):
+    carbonyl_group = Chem.MolFromSmarts('[#6]=[#8]')
+    hydroxyl_group = Chem.MolFromSmarts('[#8]-[#1]')
+    if carbonyl_group is not None and hydroxyl_group is not None:
+        return len(mol.GetSubstructMatches(carbonyl_group)) + len(mol.GetSubstructMatches(hydroxyl_group))
+    else:
+        return 0
+
+
+def rule11_mol_weight_complex_structure(mol):
+    return Descriptors.MolWt(mol), Descriptors.NumRotatableBonds(mol)
+
+def rule12_toxic_functional_groups(mol):
+    toxic_groups = [Chem.MolFromSmarts('N(=O)(O)'), Chem.MolFromSmarts('C(=O)O'), Chem.MolFromSmarts('C(=O)Cl')]
+    return sum(len(mol.GetSubstructMatches(group)) for group in toxic_groups)
+
+def rule1_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule2_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('N(=O)(O)')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule3_mol_weight_lipophilicity(mol):
+    return Descriptors.MolWt(mol), Descriptors.MolLogP(mol)
+
+def rule4_hydroxyl_group(mol):
+    hydroxyl_group = Chem.MolFromSmarts('O-H')
+    if hydroxyl_group is not None:
+        return len(mol.GetSubstructMatches(hydroxyl_group))
+    else:
+        return 0
+
+
+def rule5_stereochemistry(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule6_metal_presence(mol):
+    calcium = Chem.MolFromSmarts('[Ca+2]')
+    gadolinium = Chem.MolFromSmarts('[Gd+3]')
+    return len(mol.GetSubstructMatches(calcium)) + len(mol.GetSubstructMatches(gadolinium))
+
+def rule7_lactone_group(mol):
+    lactone_group = Chem.MolFromSmarts('C(=O)O')

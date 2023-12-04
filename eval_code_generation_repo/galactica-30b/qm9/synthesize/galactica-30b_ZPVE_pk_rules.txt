@@ -1,0 +1,164 @@
+def rule1_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule2_mass_atoms(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_bond_type(mol):
+    bond_types = [bond.GetBondType() for bond in mol.GetBonds()]
+    return len(set(bond_types))
+
+
+
+def rule5_polarity(mol):
+    return Descriptors.MolLogP(mol)
+
+
+def rule7_homo_energy(mol):
+    # This function should return the energy of the highest occupied molecular orbital (HOMO)
+    # As this is a complex calculation, it is not directly available in RDKit
+    # You would need to use a quantum chemistry package like Psi4 or Gaussian to calculate this
+    pass
+
+def rule8_lumo_energy(mol):
+    # This function should return the energy of the lowest unoccupied molecular orbital (LUMO)
+    # As this is a complex calculation, it is not directly available in RDKit
+    # You would need to use a quantum chemistry package like Psi4 or Gaussian to calculate this
+    pass
+
+def rule9_enthalpy_formation(mol):
+    # This function should return the enthalpy of formation of a molecule
+    # As this is a complex calculation, it is not directly available in RDKit
+    # You would need to use a thermochemistry package or database to calculate or look up this
+    pass
+
+def rule10_entropy(mol):
+    # This function should return the entropy of a molecule
+    # As this is a complex calculation, it is not directly available in RDKit
+    # You would need to use a thermochemistry package or database to calculate or look up this
+    pass
+
+def rule11_boiling_point(mol):
+    # This function should return the boiling point of a molecule
+    # As this is a complex calculation, it is not directly available in RDKit
+    # You would need to use a thermochemistry package or database to calculate or look up this
+    pass
+
+def rule12_melting_point(mol):
+    # This function should return the melting point of a molecule
+    # As this is a complex calculation, it is not directly available in RDKit
+    # You would need to use a thermochemistry package or database to calculate or look up this
+    pass
+
+def rule13_ionization_energy(mol):
+    # This function should return the ionization energy of a molecule
+    # As this is a complex calculation, it is not directly available in RDKit
+    # You would need to use a quantum chemistry package like Psi4 or Gaussian to calculate this
+    pass
+
+def rule14_electron_affinity(mol):
+    # This function should return the electron affinity of a molecule
+    # As this is a complex calculation, it is not directly available in RDKit
+    # You would need to use a quantum chemistry package like Psi4 or Gaussian to calculate this
+    pass
+
+
+
+
+
+
+
+def rule18_vibrational_frequency(mol):
+    return 0
+
+def rule19_rotational_constant(mol):
+    return 0
+
+
+
+def rule21_dipole_moment(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule22_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule23_hardness(mol):
+    return 0
+
+def rule24_softness(mol):
+    return 0
+
+
+
+def get_acidity(mol_id, data=None):
+    if data is None:
+        return 0
+    else:
+        return data.loc[mol_id, 'acidity']
+
+
+
+
+
+
+def get_solubility(mol_id, data=None):
+    if data is None:
+        return 0
+    return data.loc[mol_id, 'solubility']
+
+
+
+
+
+
+
+
+
+
+def rule35_mol_stability(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule36_mol_reactivity(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule37_mol_chirality(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule38_mol_tautomerism(mol):
+    return rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule39_mol_solvatochromism(mol):
+    return Descriptors.MolMR(mol)
+
+def rule40_mol_aggregation(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule41_mol_intermolecular(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule42_mol_intramolecular(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def rule43_mol_intermolecular_forces(mol):
+    return Descriptors.NumAromaticCarbocycles(mol)
+
+def rule44_intra_forces(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule45_inter_vibrations(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule46_intra_vibrations(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule47_inter_rotations(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule48_intra_rotations(mol):
+    return rdMolDescriptors.CalcNumSaturatedRings(mol)
+
+def rule49_inter_translations(mol):
+    return rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule50_intra_translations(mol):
+    return rdMolDescriptors.CalcNumSpiroAtoms(mol)

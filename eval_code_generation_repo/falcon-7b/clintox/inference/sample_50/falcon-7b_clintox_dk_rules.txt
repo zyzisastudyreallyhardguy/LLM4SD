@@ -1,0 +1,37 @@
+def rule1_fda_approved(mol):
+    if hasattr(mol, 'fda_approved') and hasattr(mol, 'safety') and hasattr(mol, 'effectiveness'):
+        if mol.fda_approved == 'Yes' and mol.safety == 'Safe' and mol.effectiveness == 'Effective':
+            return 1
+    return 0
+
+
+def rule2_fda_not_approved(mol):
+    if hasattr(mol, 'FDA_Approved'):
+        if mol.FDA_Approved == 'No' or mol.Safety != 'Safe' or mol.Effectiveness != 'Effective':
+            return 1
+    elif hasattr(mol, 'Safety') and hasattr(mol, 'Effectiveness'):
+        if mol.Safety != 'Safe' or mol.Effectiveness != 'Effective':
+            return 1
+    return 0
+
+
+def rule3_fda_label(mol):
+    if hasattr(mol, 'Label') and mol.Label == 'approved by FDA':
+        return 1
+    else:
+        return 0
+
+
+
+
+
+
+def rule8_count_specific_atoms(mol, atom_type=None):
+    if atom_type is None:
+        return 0
+    count = len(mol.GetSubstructMatches(Chem.MolFromSmiles(atom_type)))
+    if 1 <= count <= 50:
+        return count
+    else:
+        return 0
+

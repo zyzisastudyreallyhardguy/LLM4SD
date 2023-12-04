@@ -1,0 +1,43 @@
+def rule1_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule2_sulfur(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule3_chlorine(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def rule4_carbonyl(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetTotalNumHs() == 1)
+
+def rule5_sulfonamide(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and atom.GetTotalNumHs() == 2)
+
+def rule6_carbon_chain(mol):
+    return Descriptors.HeavyAtomCount(mol) - sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() != 'C')
+
+def rule7_metal_ion(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['Li', 'Na', 'K', 'Rb', 'Cs', 'Fr', 'Be', 'Mg', 'Ca', 'Sr', 'Ba', 'Ra', 'Sc', 'Y', 'La', 'Ac', 'Ti', 'Zr', 'Hf', 'Rf', 'V', 'Nb', 'Ta', 'Db', 'Cr', 'Mo', 'W', 'Sg', 'Mn', 'Tc', 'Re', 'Bh', 'Fe', 'Ru', 'Os', 'Hs', 'Co', 'Rh', 'Ir', 'Mt', 'Ni', 'Pd', 'Pt', 'Ds', 'Cu', 'Ag', 'Au', 'Rg', 'Zn', 'Cd', 'Hg', 'Cn', 'B', 'Al', 'Ga', 'In', 'Tl', 'Nh', 'C', 'Si', 'Ge', 'Sn', 'Pb', 'Fl', 'P', 'As', 'Sb', 'Bi', 'Mc', 'O', 'S', 'Se', 'Te', 'Lv', 'F', 'Cl', 'Br', 'I', 'At', 'Ts'])
+
+def rule8_carboxylic_acid(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule9_halogen_atoms(mol):
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule10_functional_groups(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    amine_pattern = Chem.MolFromSmarts('[NX3;H2,H1;!$(NC=O)]')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern)) + len(mol.GetSubstructMatches(amine_pattern))
+
+def rule11_molecular_properties(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol) + rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule12_benzene_ring(mol):
+    benzene_ring_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(benzene_ring_pattern))
+
+def rule13_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))

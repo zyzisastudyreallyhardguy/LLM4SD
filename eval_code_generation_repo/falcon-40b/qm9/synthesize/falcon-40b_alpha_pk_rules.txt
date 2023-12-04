@@ -1,0 +1,129 @@
+
+def rule6_halogen_atoms(mol):
+    halogens = [5, 9, 17, 35, 53]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in halogens)
+
+def rule7_alkali_metal_atoms(mol):
+    alkali_metals = [3, 11, 19, 37, 55, 87]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in alkali_metals)
+
+def rule8_alkaline_earth_metal_atoms(mol):
+    alkaline_earth_metals = [4, 12, 20, 38, 56, 88]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in alkaline_earth_metals)
+
+def rule9_transition_metal_atoms(mol):
+    transition_metals = list(range(21, 31)) + list(range(39, 49)) + list(range(72, 81))
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in transition_metals)
+
+def rule10_lanthanide_atoms(mol):
+    lanthanides = list(range(57, 72))
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in lanthanides)
+
+def rule11_actinide_atoms(mol):
+    actinides = list(range(89, 104))
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in actinides)
+
+def rule12_chalcogen_atoms(mol):
+    chalcogens = [8, 16, 34, 52, 84]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in chalcogens)
+
+def rule13_metalloid_atoms(mol):
+    metalloids = [5, 14, 32, 33, 51, 52, 84]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in metalloids)
+
+def rule14_non_metal_atoms(mol):
+    non_metals = [1, 6, 7, 8, 15, 16, 34]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in non_metals)
+
+def rule16_aliphatic_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[$([#6&H0&X3]),$([#6&H1&X4]),$([#6&H2&X4])](~[!#6])~[!#6]')))
+
+def rule17_cyclic_atoms(mol):
+    return sum(atom.IsInRing() for atom in mol.GetAtoms())
+
+def rule18_linear_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[!$(*~*~*)]')))
+
+def rule19_branched_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[D3,D4]')))
+
+def rule25_aliphatic_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]~[#6]")))
+
+def rule26_cyclic_bonds(mol):
+    return mol.GetRingInfo().NumRings()
+
+def rule27_linear_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]-[#6]-[#6]")))
+
+def rule28_branched_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6](-[#6])(-[#6])-[#6]")))
+
+def rule29_saturated_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]-[#6]")))
+
+def rule30_unsaturated_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]:[#6]")))
+
+def rule31_double_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]=[#6]")))
+
+def rule32_triple_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]#[#6]")))
+
+def rule33_aromatic_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]:[#6]")))
+
+def rule35_cyclic_bonds(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule36_linear_bonds(mol):
+    return mol.GetNumBonds() - rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule37_branched_bonds(mol):
+    return mol.GetNumBonds() - rdMolDescriptors.CalcNumAliphaticRings(mol) - (mol.GetNumBonds() - rdMolDescriptors.CalcNumAliphaticRings(mol))
+
+def rule38_saturated_bonds(mol):
+    total_bonds = mol.GetNumBonds()
+    single_bonds = len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 1])
+    unsaturated_bonds = total_bonds - single_bonds
+    return unsaturated_bonds
+
+
+def rule39_unsaturated_bonds(mol):
+    total_bonds = mol.GetNumBonds()
+    single_bonds = len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 1])
+    return total_bonds - single_bonds
+
+
+def rule40_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule41_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE])
+
+def rule42_aromatic_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetIsAromatic()])
+
+def rule44_cyclic_bonds(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule45_linear_bonds(mol):
+    total_bonds = mol.GetNumBonds()
+    cyclic_bonds = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    return total_bonds - cyclic_bonds
+
+def rule46_branched_bonds(mol):
+    total_bonds = mol.GetNumBonds()
+    cyclic_bonds = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    linear_bonds = total_bonds - cyclic_bonds
+    return total_bonds - (linear_bonds + cyclic_bonds)
+
+def rule47_saturated_bonds(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule48_unsaturated_bonds(mol):
+    return rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+
+def rule49_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])

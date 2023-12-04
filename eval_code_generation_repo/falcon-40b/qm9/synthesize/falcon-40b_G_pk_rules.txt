@@ -1,0 +1,168 @@
+
+def rule6_halogen_atoms(mol):
+    halogens = [5, 9, 17, 35, 53, 85, 117]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in halogens)
+
+def rule7_alkali_metal_atoms(mol):
+    alkali_metals = [3, 11, 19, 37, 55, 87]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in alkali_metals)
+
+def rule8_alkaline_earth_metal_atoms(mol):
+    alkaline_earth_metals = [4, 12, 20, 38, 56, 88]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in alkaline_earth_metals)
+
+def rule9_transition_metal_atoms(mol):
+    transition_metals = list(range(21, 31)) + list(range(39, 49)) + list(range(72, 81)) + list(range(104, 113))
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in transition_metals)
+
+def rule10_rare_earth_metal_atoms(mol):
+    rare_earth_metals = list(range(57, 72)) + list(range(89, 104))
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in rare_earth_metals)
+
+def rule11_lanthanide_atoms(mol):
+    lanthanides = list(range(57, 72))
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in lanthanides)
+
+def rule12_actinide_atoms(mol):
+    actinides = list(range(89, 104))
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in actinides)
+
+def rule13_chalcogen_atoms(mol):
+    chalcogens = [8, 16, 34, 52, 84, 116]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in chalcogens)
+
+def rule14_metalloid_atoms(mol):
+    metalloids = [5, 14, 32, 33, 51, 52, 84]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in metalloids)
+
+def rule15_non_metal_atoms(mol):
+    non_metals = [1, 6, 7, 8, 9, 15, 16, 17, 34, 35, 53]
+
+def rule16_aromatic_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('a')))
+
+def rule17_aliphatic_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('A')))
+
+def rule18_cyclic_atoms(mol):
+    return sum(atom.IsInRing() for atom in mol.GetAtoms())
+
+def rule19_linear_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP)
+
+def rule20_branched_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetDegree() > 2)
+
+def rule21_saturated_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetIsAromatic() == False and atom.GetTotalDegree() == atom.GetTotalNumHs())
+
+def rule22_unsaturated_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetIsAromatic() == False and atom.GetTotalDegree() > atom.GetTotalNumHs())
+
+def rule23_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule25_quadruple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 4])
+
+def rule26_pi_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2])
+
+def rule27_sigma_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 1])
+
+def rule28_lone_pairs(mol):
+    return sum([atom.GetNumExplicitHs() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 or atom.GetAtomicNum() == 8 or atom.GetAtomicNum() == 16])
+
+def rule29_conjugated_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetIsConjugated() and bond.GetBondTypeAsDouble() == 2])
+
+def rule30_conjugated_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetIsConjugated() and bond.GetBondTypeAsDouble() == 3])
+
+def rule31_conjugated_quadruple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetIsConjugated() and bond.GetBondTypeAsDouble() == 4])
+
+def rule32_conjugated_pi_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetIsConjugated() and bond.GetBondTypeAsDouble() == 2])
+
+def rule33_conjugated_sigma_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetIsConjugated() and bond.GetBondTypeAsDouble() == 1])
+
+def rule35_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule36_aliphatic_rings(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule37_cyclic_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule38_linear_rings(mol):
+    total_rings = rdMolDescriptors.CalcNumRings(mol)
+    branched_rings = rdMolDescriptors.CalcNumSpiroAtoms(mol)
+    return total_rings - branched_rings
+
+def rule39_branched_rings(mol):
+    return rdMolDescriptors.CalcNumSpiroAtoms(mol)
+
+def rule40_saturated_rings(mol):
+    return rdMolDescriptors.CalcNumSaturatedRings(mol)
+
+def rule41_unsaturated_rings(mol):
+    total_rings = rdMolDescriptors.CalcNumRings(mol)
+    saturated_rings = rdMolDescriptors.CalcNumSaturatedRings(mol)
+    return total_rings - saturated_rings
+
+def rule42_double_bonds_in_rings(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and bond.IsInRing()])
+
+def rule44_quadruple_bonds_in_rings(mol):
+    quadruple_bonds = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        for i in ring:
+            if mol.GetAtomWithIdx(i).GetExplicitValence() == 4:
+                quadruple_bonds += 1
+    return quadruple_bonds
+
+def rule45_pi_bonds_in_rings(mol):
+    pi_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdkit.Chem.rdchem.BondType.DOUBLE and bond.IsInRing():
+            pi_bonds += 1
+    return pi_bonds
+
+def rule46_sigma_bonds_in_rings(mol):
+    sigma_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdkit.Chem.rdchem.BondType.SINGLE and bond.IsInRing():
+            sigma_bonds += 1
+    return sigma_bonds
+
+def rule47_lone_pairs_in_rings(mol):
+    lone_pairs = 0
+    for atom in mol.GetAtoms():
+        if atom.GetNumExplicitHs() == 0 and atom.IsInRing():
+            lone_pairs += atom.GetNumRadicalElectrons()
+    return lone_pairs
+
+def rule48_conjugated_double_bonds_in_rings(mol):
+    conjugated_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdkit.Chem.rdchem.BondType.DOUBLE and bond.GetIsConjugated() and bond.IsInRing():
+            conjugated_double_bonds += 1
+    return conjugated_double_bonds
+
+def rule49_conjugated_triple_bonds_in_rings(mol):
+    conjugated_triple_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdkit.Chem.rdchem.BondType.TRIPLE and bond.GetIsConjugated() and bond.IsInRing():
+            conjugated_triple_bonds += 1
+    return conjugated_triple_bonds
+
+def rule50_conjugated_quadruple_bonds_in_rings(mol):
+    conjugated_quadruple_bonds = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        for i in ring:
+            if mol.GetAtomWithIdx(i).GetExplicitValence() == 4 and mol.GetBondWithIdx(i).GetIsConjugated():
+                conjugated_quadruple_bonds += 1

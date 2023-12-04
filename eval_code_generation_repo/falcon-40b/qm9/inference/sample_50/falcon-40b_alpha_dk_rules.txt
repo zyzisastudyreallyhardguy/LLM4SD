@@ -1,0 +1,12 @@
+def rule1_nitrogen_alpha_increase(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+
+def rule2_oxygen_alpha_decrease(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule2_oxygen_alpha_decrease(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'O'])
+

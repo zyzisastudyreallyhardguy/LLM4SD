@@ -1,0 +1,49 @@
+
+def rule6_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule7_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule8_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE])
+
+def rule9_halogens(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]])
+
+def rule10_nitrogen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7])
+
+def rule11_sulfur_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16])
+
+def rule12_oxygen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8])
+
+def rule13_carbon_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6])
+
+def rule14_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule15_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule16_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule17_hydrogen_bonding_capacity(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule18_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule19_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule20_volume_of_distribution(mol):
+    mw = Descriptors.MolWt(mol)
+    logP = Descriptors.MolLogP(mol)
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+    hba = rdMolDescriptors.CalcNumHBA(mol)
+    return mw + logP + hbd + hba

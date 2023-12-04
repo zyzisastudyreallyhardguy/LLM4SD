@@ -1,0 +1,50 @@
+def rule1_func_groups(mol):
+    amines = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    amides = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N'))
+    sulfonamides = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(amines) + len(amides) + len(sulfonamides) + len(carbonyl)
+
+def rule2_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule3_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_hydrophobicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_polar_func_groups(mol):
+    hydroxyl = mol.GetSubstructMatches(Chem.MolFromSmarts('O'))
+    amino = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    carboxyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    return len(hydroxyl) + len(amino) + len(carboxyl)
+
+def rule5_func_groups(mol):
+    sulfonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)'))
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(sulfonyl) + len(nitro) + len(halogen) + len(carbonyl)
+
+def rule6_complex_structures(mol):
+    carbon_chains = mol.GetSubstructMatches(Chem.MolFromSmarts('C-C'))
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    rings = rdMolDescriptors.CalcNumRings(mol)
+    return len(carbon_chains) + aromatic_rings + rings
+
+def rule7_chemical_elements(mol):
+    gold = mol.GetSubstructMatches(Chem.MolFromSmarts('[Au]'))
+    sulfur = mol.GetSubstructMatches(Chem.MolFromSmarts('[S]'))
+    selenium = mol.GetSubstructMatches(Chem.MolFromSmarts('[Se]'))
+    return len(gold) + len(sulfur) + len(selenium)
+
+def rule8_negatively_charged_atoms(mol):
+    oxygen = mol.GetSubstructMatches(Chem.MolFromSmarts('[O-]'))
+    sulfur = mol.GetSubstructMatches(Chem.MolFromSmarts('[S-]'))
+    return len(oxygen) + len(sulfur)
+
+def rule9_symmetry_planarity(mol):
+    symmetry = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    planarity = rdMolDescriptors.CalcNumAmideBonds(mol)
+    return symmetry + planarity

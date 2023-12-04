@@ -1,0 +1,83 @@
+def sider_ear_logP(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def sider_ear_PSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def sider_ear_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def sider_ear_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def sider_ear_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def sider_ear_rot_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+
+def rule9_logD(mol):
+    return Crippen.MolLogP(mol)
+
+
+
+
+
+
+
+
+
+
+def rule14_csf_concentration(mol):
+    try:
+        molecule = Chem.MolFromSmiles(mol)
+        if molecule is None:
+            return 0
+        return Descriptors.MolWt(molecule)
+    except:
+        return 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def rule25_concentration_in_corti(my_list):
+    if isinstance(my_list, list):  # check if the argument is a list
+        if len(my_list) > 0:  # check if the list is not empty
+            return my_list[0]  # return the first element
+    return 0  # return 0 if the argument is not a list or if the list is empty
+
+
+
+
+
+
+
+
+
+
+

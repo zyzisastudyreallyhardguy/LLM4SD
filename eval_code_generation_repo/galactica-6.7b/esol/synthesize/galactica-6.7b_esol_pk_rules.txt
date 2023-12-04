@@ -1,0 +1,104 @@
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule4_mol_shape(mol):
+    if mol.GetNumConformers() >= 1:
+        return rdMolDescriptors.CalcEccentricity(mol)
+    else:
+        return 0
+
+def rule5_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_polar_atoms(mol):
+    polar_atoms = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [8, 7, 16]]
+    return len(polar_atoms)
+
+def rule8_hydrophobic_groups(mol):
+    hydrophobic_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('C'))
+    return len(hydrophobic_groups)
+
+def rule9_ionic_groups(mol):
+    ionic_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#16,#9]'))
+    return len(ionic_groups)
+
+def rule10_hydrogen_bonding_groups(mol):
+    hb_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#16]~[#1]'))
+    return len(hb_groups)
+
+
+
+def rule17_calculate_salts(solution):
+    try:
+        return len(solution.get_salts()) # if 'salts' is a method
+    except AttributeError:
+        try:
+            return len(solution.other_object.salts) # if 'salts' is an attribute of another object
+        except AttributeError:
+            return 0 # return 0 or any other number if 'salts' doesn't exist
+
+
+def rule18_calculate_other_solutes(solution):
+    if hasattr(solution, 'other_solutes'):
+        return len(solution.other_solutes)
+    else:
+        return 0
+
+
+def rule19_calculate_enzymes(solution):
+    if hasattr(solution, 'enzymes'):
+        return len(solution.enzymes)
+    else:
+        return 0
+
+
+def rule20_calculate_other_substances(solution):
+    if hasattr(solution, 'other_substances'):
+        return len(solution.other_substances)
+    else:
+        return 0
+
+
+
+
+
+
+
+
+def rule24_calculate_concentration(input):
+    if isinstance(input, list):  # Check if the input is a list
+        if len(input) > 0:  # Check if the list is not empty
+            return input[0]  # Return the first element of the list
+        else:
+            return 0  # Return 0 if the list is empty
+    else:
+        return 0  # Return 0 if the input is not a list
+
+
+def rule25_polarity_effect(mol):
+    return Descriptors.TPSA(mol)
+
+def rule26_hbond_effect(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule27_shape_effect(mol):
+    if mol.GetNumConformers() >= 1:
+        return rdMolDescriptors.CalcAsphericity(mol)
+    else:
+        return 0
+
+
+def rule28_size_effect(mol):
+    return Descriptors.MolWt(mol)
+
+def rule29_reactivity_effect(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule30_physical_state_effect(mol):
+    return Descriptors.MolLogP(mol)

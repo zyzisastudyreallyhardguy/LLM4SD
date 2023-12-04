@@ -1,0 +1,109 @@
+def calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def calculate_hb_donors(mol):
+    return Lipinski.NumHDonors(mol)
+
+def calculate_hb_acceptors(mol):
+    return Lipinski.NumHAcceptors(mol)
+
+def calculate_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def calculate_reactive_groups(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def calculate_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule8_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_XLogP3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_nitro_groups(mol):
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro))
+
+def rule11_number_of_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule12_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_aldehydes_ketones(mol):
+    aldehydes_ketones = Chem.MolFromSmarts('[CX3](=O)[#6]')
+    return len(mol.GetSubstructMatches(aldehydes_ketones))
+
+def rule14_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule15_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+def rule16_check_ester(mol):
+    ester_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(ester_pattern))
+
+def rule17_check_alcohol(mol):
+    alcohol_pattern = Chem.MolFromSmarts('O[H]')
+    return len(mol.GetSubstructMatches(alcohol_pattern))
+
+def rule18_calc_xlogp(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule19_check_carboxylic_acid(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O[H]')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule20_check_amine(mol):
+    amine_pattern = Chem.MolFromSmarts('N')
+    return len(mol.GetSubstructMatches(amine_pattern))
+
+def rule21_calc_xlogp3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule22_check_amide(mol):
+    amide_pattern = Chem.MolFromSmarts('C(=O)N')
+    return len(mol.GetSubstructMatches(amide_pattern))
+
+def rule23_check_aldehyde(mol):
+    aldehyde_pattern = Chem.MolFromSmarts('C(=O)[H]')
+    return len(mol.GetSubstructMatches(aldehyde_pattern))
+
+def rule24_calc_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule25_alkenes(mol):
+    pattern = Chem.MolFromSmarts('[*]=[*]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule26_alkynes(mol):
+    pattern = Chem.MolFromSmarts('[*]#[*]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule27_xlogp(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule28_aldehydes_ketones(mol):
+    pattern1 = Chem.MolFromSmarts('[CX3H1](=O)[#6]')
+    pattern2 = Chem.MolFromSmarts('[CX3](=O)[#6]')
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches1) + len(matches2)
+
+def rule29_num_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule30_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)

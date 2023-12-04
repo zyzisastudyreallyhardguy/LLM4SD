@@ -1,0 +1,42 @@
+
+def rule6_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule7_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule8_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule9_stereogenic_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol))
+
+def rule10_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule11_halogen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]])
+
+def rule12_nitrogen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7])
+
+def rule13_sulfur_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16])
+
+def rule15_num_carbon_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule16_num_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule17_num_hydrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'H')
+
+def rule18_num_aliphatic_carbons(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetIsAromatic() == False)
+
+def rule19_num_aromatic_carbons(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetIsAromatic() == True)
+
+def rule20_num_sp3_carbons(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3)

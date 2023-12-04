@@ -1,0 +1,68 @@
+def rule3_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_PSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+
+def rule6_tertiary_amine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H0;!$(NC=O)]')))
+
+def rule3_positively_charged_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0)
+
+def rule4_secondary_alcohol(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and atom.GetDegree() == 2 and any(neighbor.GetAtomicNum() == 6 for neighbor in atom.GetNeighbors()))
+
+def rule5_benzimidazole(mol):
+    return sum(1 for ring in mol.GetRingInfo().AtomRings() if len(ring) == 5 and all(mol.GetAtomWithIdx(idx).GetAtomicNum() in [6, 7] for idx in ring))
+
+def rule6_biphenyl(mol):
+    return sum(1 for ring in mol.GetRingInfo().AtomRings() if len(ring) == 6 and all(mol.GetAtomWithIdx(idx).GetAtomicNum() == 6 for idx in ring)) // 2
+
+def rule7_sulfonamide(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16 and any(neighbor.GetAtomicNum() == 7 for neighbor in atom.GetNeighbors()))
+
+def rule8_carboxylic_acid(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and atom.GetDegree() == 1 and any(neighbor.GetAtomicNum() == 6 for neighbor in atom.GetNeighbors()))
+
+def rule3_triazole_ring_system(mol):
+    triazole_smarts = '[nH]1nncn1'
+    triazole = Chem.MolFromSmarts(triazole_smarts)
+    return len(mol.GetSubstructMatches(triazole))
+
+def rule4_piperazine_ring_system(mol):
+    piperazine_smarts = 'C1CNCCN1'
+    piperazine = Chem.MolFromSmarts(piperazine_smarts)
+    return len(mol.GetSubstructMatches(piperazine))
+
+def rule5_quinoline_ring_system(mol):
+    quinoline_smarts = 'c1ccc2c(c1)nc1ccccc1[nH]2'
+    quinoline = Chem.MolFromSmarts(quinoline_smarts)
+    return len(mol.GetSubstructMatches(quinoline))
+
+def rule6_thiazole_ring_system(mol):
+    thiazole_smarts = 'c1nccs1'
+    thiazole = Chem.MolFromSmarts(thiazole_smarts)
+    return len(mol.GetSubstructMatches(thiazole))
+
+def rule7_pyrazole_ring_system(mol):
+    pyrazole_smarts = 'c1n[nH]cn1'
+    pyrazole = Chem.MolFromSmarts(pyrazole_smarts)
+    return len(mol.GetSubstructMatches(pyrazole))
+
+def rule8_pyridine_ring_system(mol):
+    pyridine_smarts = 'c1ccncc1'
+    pyridine = Chem.MolFromSmarts(pyridine_smarts)
+    return len(mol.GetSubstructMatches(pyridine))
+
+def rule9_coumarin_ring_system(mol):
+    coumarin_smarts = 'c1cc2c(cc1)oc(=O)cc2'
+    coumarin = Chem.MolFromSmarts(coumarin_smarts)
+    return len(mol.GetSubstructMatches(coumarin))
+
+def rule10_carbamate_group(mol):
+    carbamate_smarts = 'C(=O)ON'
+    carbamate = Chem.MolFromSmarts(carbamate_smarts)

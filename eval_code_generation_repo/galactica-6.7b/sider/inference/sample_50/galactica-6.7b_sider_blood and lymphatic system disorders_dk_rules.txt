@@ -1,0 +1,105 @@
+def rule1_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule2_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule3_halogen_atom(mol):
+    halogen_atom = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_atom))
+
+def rule4_carboxylic_acid_group(mol):
+    carboxylic_acid_group = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_group))
+
+def rule5_halogenated_aromatic_ring(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    aromatic_atoms = mol.GetAromaticAtoms()
+    count = 0
+    for atom in aromatic_atoms:
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule6_amide_carboxylic_acid(mol):
+    amide_pattern = Chem.MolFromSmarts('C(=O)N')
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    amide_count = len(mol.GetSubstructMatches(amide_pattern))
+    carboxylic_acid_count = len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+    return amide_count + carboxylic_acid_count
+
+def rule7_functional_group(mol):
+    functional_groups = ['S', 'P', 'N', 'F', 'Br', 'I', 'Pt']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in functional_groups:
+            count += 1
+    return count
+
+def rule8_benzene_ring(mol):
+    benzene_pattern = Chem.MolFromSmarts('c1ccccc1')
+    benzene_count = len(mol.GetSubstructMatches(benzene_pattern))
+    return benzene_count
+
+def rule9_adverse_effects(mol):
+    try:
+        carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]'))
+        carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]'))
+        halogenated_aromatic_ring = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1[X]'))
+        return len(carboxylic_acid) + len(carbonyl_group) + len(halogenated_aromatic_ring)
+    except:
+        return 0
+
+
+def rule10_adverse_effects(mol):
+    try:
+        adverse_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3,NX4+][CX3](=[OX1])[OX2,OX1-]'))
+        return len(adverse_group)
+    except:
+        return 0
+
+
+def rule11_adverse_effects(mol):
+    amide_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N'))
+    imide_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)NC(=O)'))
+    urea_group = mol.GetSubstructMatches(Chem.MolFromSmarts('NC(=O)N'))
+    return len(amide_group) + len(imide_group) + len(urea_group)
+
+def rule12_adverse_effects(mol):
+    sulfonamide_group = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    return len(sulfonamide_group)
+
+def rule1_adverse_effects(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+
+def rule2_chlorine_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule3_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule4_benzene_ring(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('c1ccccc1')))
+
+def rule5_functional_group(mol):
+    functional_groups = ['C(=O)O', 'O', 'C(=O)N', 'S(=O)(=O)N', 'O=C(O)N']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(fg))) for fg in functional_groups)
+
+def rule6_halogenated_aromatic_ring_or_halogen_atom(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(h))) for h in halogens)
+
+def rule7_chiral_center(mol):
+    return len(Chem.FindMolChiralCenters(mol))
+
+def rule8_phenyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('c1ccccc1')))
+
+def rule9_guanidinium_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('CN(C)CC(C1=CC=C(C=C1)O)C2(CCCCC2)O')))
+
+def rule10_adverse_effects(mol):
+    functional_groups = ['c1cc2c(cc1)CC(=O)N2', 'c1ccc2c(c1)ncn2', 'S(=O)(=O)N']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(fg))) for fg in functional_groups)

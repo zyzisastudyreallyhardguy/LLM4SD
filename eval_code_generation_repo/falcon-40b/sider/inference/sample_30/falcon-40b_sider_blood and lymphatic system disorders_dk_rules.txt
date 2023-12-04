@@ -1,0 +1,71 @@
+def rule1_carboxylic_acid(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule2_nitrogen_atom(mol):
+    nitrogen_pattern = Chem.MolFromSmarts('[#7]')
+    return len(mol.GetSubstructMatches(nitrogen_pattern))
+
+def rule3_metal_ion(mol):
+    metal_pattern = Chem.MolFromSmarts('[#30,#19]')
+    return len(mol.GetSubstructMatches(metal_pattern))
+
+def rule4_chlorine_atom(mol):
+    chlorine_pattern = Chem.MolFromSmarts('[#17]')
+    return len(mol.GetSubstructMatches(chlorine_pattern))
+
+def rule5_sulfur_atom(mol):
+    sulfur_pattern = Chem.MolFromSmarts('[#16]')
+    sulfur_nitrogen_pattern = Chem.MolFromSmarts('[#16][#7]')
+    return len(mol.GetSubstructMatches(sulfur_pattern)) - len(mol.GetSubstructMatches(sulfur_nitrogen_pattern))
+
+def rule6_nitrogen_bonded(mol):
+    nitrogen_carbonyl_pattern = Chem.MolFromSmarts('[#7][C]=[O]')
+    nitrogen_carboxylic_pattern = Chem.MolFromSmarts('[#7][C](=[O])[O;h1]')
+    return len(mol.GetSubstructMatches(nitrogen_carbonyl_pattern)) + len(mol.GetSubstructMatches(nitrogen_carboxylic_pattern))
+
+def rule7_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule8_carbon_chain(mol):
+    carbon_chain_pattern = Chem.MolFromSmarts('[#6]-[#6]-[#6]-[#6]-[#6]')
+    return len(mol.GetSubstructMatches(carbon_chain_pattern))
+
+def rule9_carbonyl_group(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[C]=[O]')
+
+def rule10_halogen_atoms(mol):
+    halogen_atoms = ['Cl', 'F']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogen_atoms)
+
+def rule11_metal_ions(mol):
+    metal_ions = ['Zn', 'Ba', 'Na']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in metal_ions)
+
+def rule12_functional_groups(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    nitrogen = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    return len(carboxylic_acid) + len(sulfonamide) + len(nitrogen)
+
+def rule13_high_num_atoms(mol):
+    atoms = ['Cl', 'F', 'N', 'O']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in atoms)
+
+def rule14_nitrogen_configurations(mol):
+    nitrogen_configs = ['N=N', 'N-N=N', 'N+N=N']
+    try:
+        return sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(config))) for config in nitrogen_configs if Chem.MolFromSmarts(config) is not None)
+    except:
+        return 0
+
+
+def rule15_hydrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'H')
+
+def rule16_sodium_ion(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Na')
+
+def rule18_functional_groups(mol):
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))

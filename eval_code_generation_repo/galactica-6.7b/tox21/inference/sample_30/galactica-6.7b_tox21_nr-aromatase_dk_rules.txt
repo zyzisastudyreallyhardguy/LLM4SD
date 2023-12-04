@@ -1,0 +1,57 @@
+def rule1_contains_halogen(mol):
+    halogens = ['Cl', 'Br', 'I']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule2_contains_carbonyl(mol):
+    patt = Chem.MolFromSmarts('[#6]=[#8]')
+    if mol.HasSubstructMatch(patt):
+        return 1
+    return 0
+
+def rule3_contains_nitro(mol):
+    patt = Chem.MolFromSmarts('[N+](=O)[O-]')
+    if mol.HasSubstructMatch(patt):
+        return 1
+    return 0
+
+def rule5_contains_chlorine(mol):
+    if mol.HasSubstructMatch(Chem.MolFromSmarts('[Cl]')):
+        return 1
+    return 0
+
+def rule7_contains_benzene(mol):
+    if mol.HasSubstructMatch(Chem.MolFromSmarts('c1ccccc1')):
+        return 1
+    return 0
+
+def rule8_contains_sulfonyl(mol):
+    patt = Chem.MolFromSmarts('[#16](=[#8])(=[#8])')
+    if mol.HasSubstructMatch(patt):
+        return 1
+
+def rule9_aromatic_ring(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_polar_functional_group(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule1_halogen_atom(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53])
+
+def rule2_carbonyl_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['C=O', 'CO'])
+
+def rule3_nitro_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['NO2', 'NO3'])
+
+def rule4_benzene_ring(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_chlorine_atom(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 17)
+
+def rule6_aryl_hydrocarbon_receptor_binding_motif(mol):
+    return 0

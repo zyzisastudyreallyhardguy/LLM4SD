@@ -1,0 +1,69 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_PSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def calculate_homo_energy(mol):
+    # This is a dummy function. Replace it with the actual implementation.
+    return 0
+
+def rule7_ionization_potential(mol):
+    # Here, we can use the quantum mechanical concept of Highest Occupied Molecular Orbital (HOMO) energy as a proxy for ionization potential.
+    # However, rdkit does not provide a direct function to calculate HOMO energy. So, we need to use other libraries like openbabel or pyscf.
+    # For the sake of this example, let's assume we have a function `calculate_homo_energy(mol)` that returns the HOMO energy of a molecule.
+    return calculate_homo_energy(mol)
+
+
+def calculate_lumo_energy(mol):
+    # This is a dummy function. Replace it with the actual implementation.
+    return 1.0
+
+def rule8_electron_affinity(mol):
+    return calculate_lumo_energy(mol)
+
+
+def rule11_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+
+
+
+
+def rule25_bioactivity_score(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+
+def rule27_synthetic_accessibility_score(mol):
+    # Calculate the fragment contribution
+    fc = Descriptors.FractionCSP3(mol)
+    return fc
+
+
+def rule28_toxicity_score(mol):
+    try:
+        descriptor = RDKitDescriptors()
+        features = descriptor.featurize([mol])
+        toxicity_score = features[0][28]  # Assuming the 28th feature is the toxicity score
+        return toxicity_score
+    except:
+        return 0
+
+
+
+
+

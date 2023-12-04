@@ -1,0 +1,178 @@
+def rule1_toxic_elements(mol):
+    toxic_elements = ['Cl', 'Br', 'S']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in toxic_elements)
+
+def rule2_toxic_charges(mol):
+    return sum(1 for atom in mol.GetAtoms() if (atom.GetSymbol() == 'N' and atom.GetFormalCharge() > 0) or (atom.GetSymbol() == 'S' and atom.GetFormalCharge() < 0))
+
+def rule3_toxic_chlorine(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl' and atom.GetFormalCharge() > 0)
+
+def rule4_toxic_bond(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and 'Cl' in [bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()])
+
+def rule5_toxic_elements(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Si' and 'Cl' in [neighbor.GetSymbol() for neighbor in atom.GetNeighbors()])
+
+def rule6_toxic_elements(mol):
+    toxic_elements = ['N', 'S']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in toxic_elements)
+
+def rule7_toxic_chlorine(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def rule8_toxic_sulfur(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and atom.GetFormalCharge() > 0)
+
+def rule9_nitrogen_negative_charge(mol):
+    charge = rdkit.Chem.rdmolops.GetFormalCharge(mol)
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[n-]')))
+    if nitrogen_count > 0 and charge < 0:
+        return 1
+    else:
+        return 0
+
+def rule10_chlorine_presence(mol):
+    chlorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]')))
+    return chlorine_count
+
+def rule11_nitrogen_presence(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N]')))
+    return nitrogen_count
+
+def rule12_carbonyl_presence(mol):
+    carbonyl = Chem.MolFromSmarts('[C=O]')
+    if carbonyl is not None:
+        carbonyl_count = len(mol.GetSubstructMatches(carbonyl))
+        return carbonyl_count
+    else:
+        return 0
+
+
+def rule13_chlorine_negative_charge(mol):
+    charge = rdkit.Chem.rdmolops.GetFormalCharge(mol)
+    chlorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl-]')))
+    if chlorine_count > 0 and charge < 0:
+        return 1
+    else:
+        return 0
+
+def rule14_sulfur_positive_charge(mol):
+    charge = rdkit.Chem.rdmolops.GetFormalCharge(mol)
+    sulfur_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[S+]')))
+    if sulfur_count > 0 and charge > 0:
+        return 1
+    else:
+        return 0
+
+def rule15_high_toxicity(mol):
+    aromatic_rings = rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+    heteroatoms = rdkit.Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
+    carbonyl_groups = len(mol.GetSubstructMatches(rdkit.Chem.MolFromSmiles('C=O')))
+    amines = len(mol.GetSubstructMatches(rdkit.Chem.MolFromSmiles('N')))
+    halogens = len(mol.GetSubstructMatches(rdkit.Chem.MolFromSmiles('F')) + mol.GetSubstructMatches(rdkit.Chem.MolFromSmiles('Cl')) + mol.GetSubstructMatches(rdkit.Chem.MolFromSmiles('Br')) + mol.GetSubstructMatches(rdkit.Chem.MolFromSmiles('I')))
+    sulfur_atoms = len(mol.GetSubstructMatches(rdkit.Chem.MolFromSmiles('S')))
+    return aromatic_rings + heteroatoms + carbonyl_groups + amines + halogens + sulfur_atoms
+
+
+def rule16_long_carbon_chain(mol):
+    carbon_chain = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C]')))
+
+def rule17_chlorine_phenyl(mol):
+    smarts = '[cH1:1]1[cH1:2][cH1:3][c:4]([Cl:5])[cH1:6][cH1:7]1'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule18_nitrogen_phenyl(mol):
+    smarts = '[cH1:1]1[cH1:2][cH1:3][c:4]([N:5])[cH1:6][cH1:7]1'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule19_sulfur_phenyl(mol):
+    smarts = '[cH1:1]1[cH1:2][cH1:3][c:4]([S:5])[cH1:6][cH1:7]1'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule20_carboxylic_sulfonamide(mol):
+    smarts_carboxylic = 'C(=O)O'
+    smarts_sulfonamide = 'S(=O)(=O)N'
+    pattern_carboxylic = Chem.MolFromSmarts(smarts_carboxylic)
+    pattern_sulfonamide = Chem.MolFromSmarts(smarts_sulfonamide)
+    return len(mol.GetSubstructMatches(pattern_carboxylic)) + len(mol.GetSubstructMatches(pattern_sulfonamide))
+
+def rule21_long_carbon_chain(mol):
+    smarts = 'C-C-C-C-C-C-C-C-C-C'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule22_toxicity_androgen_receptor(mol):
+    smarts_cl = '[Cl]'
+    smarts_ccc = 'CC(C)C'
+    pattern_cl = Chem.MolFromSmarts(smarts_cl)
+    pattern_ccc = Chem.MolFromSmarts(smarts_ccc)
+    return len(mol.GetSubstructMatches(pattern_cl)) + len(mol.GetSubstructMatches(pattern_ccc))
+
+def rule23_toxicity_androgen_receptor(mol):
+    smarts = 'COC'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule24_toxicity(mol):
+    smarts = 'CN1C(=O)CC(c2ccccc2)C1=O'
+    pattern = Chem.MolFromSmarts(smarts)
+
+def rule25_toxicity_activity(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    aliphatic_chains = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    nitrogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    oxygen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    return hb_donors + hb_acceptors + aromatic_rings - aliphatic_chains - nitrogen_atoms - oxygen_atoms
+
+
+def rule26_adverse_effects(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    heteroatoms = rdMolDescriptors.CalcNumHeteroatoms(mol)
+    polar_groups = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    charged_atoms = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return hb_donors + hb_acceptors + aromatic_rings + heteroatoms + polar_groups + charged_atoms
+
+def rule27_adverse_effects(mol):
+    carbonyl_pattern = '[#6][#8]'
+    carbonyl_group = len(mol.GetSubstructMatches(Chem.MolFromSmarts(carbonyl_pattern)))
+    negative_charge = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0)
+    return carbonyl_group + negative_charge
+
+
+def rule28_toxicity(mol):
+    se_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Se')
+    return se_atoms
+
+
+def rule29_adverse_effects(mol):
+    nitrogen_atoms = mol.GetNumAtoms()-mol.GetNumHeavyAtoms()
+    positive_label = sum(atom.GetFormalCharge() for atom in mol.GetAtoms())
+    return nitrogen_atoms + positive_label
+
+
+def rule30_unlikely_adverse_effects(mol):
+    carbonyl_group = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+    negative_label = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[-]')))
+    return carbonyl_group + negative_label
+
+
+def rule31_unlikely_adverse_effects(mol):
+    from rdkit import Chem
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    if mol is None:
+        return 0
+    sulfur_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+    negative_charges = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0)
+    return sulfur_atoms + negative_charges
+
+
+

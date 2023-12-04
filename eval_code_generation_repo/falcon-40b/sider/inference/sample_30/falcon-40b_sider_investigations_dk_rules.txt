@@ -1,0 +1,80 @@
+def rule1_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule2_chlorine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]')))
+
+def rule3_sulfur(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule4_nitrogen_positive(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7+]')))
+
+def rule5_carbonyl_negative(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C-]=[O+]')))
+
+def rule6_halogen_positive(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53+]')))
+
+def rule7_carboxylic_acid(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule8_carbon_hydrogen(mol):
+    num_carbon = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+    num_hydrogen = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#1]')))
+    return num_carbon - num_hydrogen
+
+def rule9_adverse_effects(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['H-', 'CN', 'CO'])
+
+def rule10_adverse_effects(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() != 0) + rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_adverse_effects(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['COOH', 'SO3H'])
+
+def rule12_adverse_effects(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+
+def rule13_adverse_effects(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and (atom.GetIsAromatic() or any(neighbor.GetSymbol() == 'C=O' for neighbor in atom.GetNeighbors())))
+
+def rule14_adverse_effects(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and (atom.GetIsAromatic() or any(neighbor.GetSymbol() == 'C=O' for neighbor in atom.GetNeighbors())))
+
+def rule15_adverse_effects(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'C=O', 'F', 'Cl', 'Br', 'I'] and atom.GetFormalCharge() > 0)
+
+def rule17_adverse_effects(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    aromatic_rings = rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+    nitrogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    return hb_donors, hb_acceptors, aromatic_rings, nitrogen_atoms
+
+def rule18_sulfur_positive_charge(mol):
+    sulfur_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+    positive_charge = rdkit.Chem.rdmolops.GetFormalCharge(mol)
+    return sulfur_atoms, positive_charge
+
+
+
+def rule20_sulfur_nitrogen(mol):
+    sulfur_nitrogen = len(mol.GetSubstructMatches(Chem.MolFromSmiles('S-N')))
+    return sulfur_nitrogen
+
+def rule21_nitrogen_carbonyl(mol):
+    nitrogen_carbonyl = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N-C=O')))
+    return nitrogen_carbonyl
+
+def rule22_negative_chlorine(mol):
+    negative_charge = -rdkit.Chem.rdmolops.GetFormalCharge(mol)
+    chlorine_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+    return negative_charge, chlorine_atoms
+
+def rule23_carbonyl_group(mol):
+    carbonyl_groups = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+    return carbonyl_groups
+
+def rule24_nitrogen_chlorine(mol):
+    nitrogen_chlorine = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N-Cl')))

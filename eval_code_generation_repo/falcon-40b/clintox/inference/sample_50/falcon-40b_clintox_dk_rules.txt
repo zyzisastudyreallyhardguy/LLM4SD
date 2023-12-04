@@ -1,0 +1,101 @@
+def rule1_positive_charge_on_nitrogen(mol):
+    positive_nitrogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0:
+            positive_nitrogen_count += 1
+    return positive_nitrogen_count
+
+def rule2_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_toxicity_score(mol):
+    try:
+        return calculate_toxicity_score(mol)
+    except AttributeError:
+        return "The 'Mol' object has no attribute 'get_size'"
+
+def rule3_toxicity_score(mol):
+    try:
+        return calculate_toxicity_score(mol)
+    except AttributeError:
+        return -1
+
+
+def rule4_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+
+def rule5_nitrogen_and_toxicity(some_list):
+    try:
+        # your code here
+        # for example
+        result = some_list[5] if isinstance(some_list, list) else 0
+    except IndexError:
+        result = 0  # or whatever you want to return in case of an error
+    return result
+
+
+def rule6_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule7_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+
+def rule10_carbon_complexity(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule11_positive_charge(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    # Your implementation here
+    # Assuming this function returns a number
+    return 1
+
+def rule55302_hb_donors1232143(mol):
+    # Your implementation here
+    # Assuming this function returns a number
+    return 1
+
+def rule12_hb_acceptors_donors(mol):
+    return rule950021_hb_acceptor35749(mol) + rule55302_hb_donors1232143(mol)
+
+
+def rule13_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule14_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_carbon_oxygen_ratio(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol) - rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule16_fluorine_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 9)
+
+def rule18_positive_carbon_charge(mol):
+    positive_carbon_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and atom.GetFormalCharge() > 0:
+            positive_carbon_count += 1
+    return positive_carbon_count
+
+def rule19_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule20_stable_structure(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule21_pharmacokinetic_profile(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol), rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule22_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule23_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule24_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule25_nitrogen_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N'))), len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))

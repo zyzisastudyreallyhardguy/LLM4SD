@@ -1,0 +1,46 @@
+
+def rule6_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule7_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule8_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule9_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE])
+
+def rule10_sp3_carbons(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule11_sp2_carbons(mol):
+    return rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+
+def rule12_sp_carbons(mol):
+    total_carbons = rule7_carbon_atoms(mol)
+    sp2_carbons = rule11_sp2_carbons(mol)
+    sp3_carbons = rule10_sp3_carbons(mol)
+    return total_carbons - sp2_carbons - sp3_carbons
+
+def rule15_lone_pairs(mol):
+    # TODO: Implement the function to calculate the number of lone pairs
+    pass
+
+def rule16_steric_hindrance(mol):
+    # TODO: Implement the function to calculate the number of steric hindrance points
+    pass
+
+def rule17_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule18_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+
+def rule19_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule20_toxicity_activity(mol):
+    # TODO: Implement the function to calculate the toxicity activity
+    pass

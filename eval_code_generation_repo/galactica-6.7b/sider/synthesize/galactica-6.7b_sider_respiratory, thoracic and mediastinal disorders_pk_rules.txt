@@ -1,0 +1,44 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_nitrogen_atoms(molecule):
+    try:
+        nitrogen_atoms = molecule.GetAtomCount(7)
+        return nitrogen_atoms
+    except AttributeError:
+        return 0
+
+
+def rule5_oxygen_atoms(mol):
+    return mol.GetNumAtoms(8)
+
+
+def rule6_sulfur_atoms(mol):
+    sulfur_atom = Chem.MolFromSmiles('S')
+    return len(mol.GetSubstructMatches(sulfur_atom))
+
+
+def rule9_electronegativity(mol):
+    total_electronegativity = 0
+    for atom in mol.GetAtoms():
+        total_electronegativity += atom.GetAtomicNum()
+    return total_electronegativity
+
+def rule15_electronegativity_difference(mol):
+    electronegativities = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return max(electronegativities) - min(electronegativities)
+
+def rule18_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)

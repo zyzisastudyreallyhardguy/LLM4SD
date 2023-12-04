@@ -1,0 +1,84 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_reactive_groups(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule6_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_pos_charged_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+
+def rule9_neg_charged_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0)
+
+def rule10_xlogp3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule11_neg_charged_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0)
+
+def rule12_pos_charged_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+
+def rule13_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule14_unsaturated_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetIsAromatic())
+
+def rule16_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule17_halogen_atoms(mol):
+    halogens = [5, 9, 17, 35, 53] # atomic numbers of halogens
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in halogens)
+
+def rule18_oxygen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8)
+
+def rule19_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7)
+
+def rule20_sulfur_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16)
+
+def rule21_aliphatic_carbons(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and not atom.GetIsAromatic())
+
+def rule22_aromatic_carbons(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetIsAromatic())
+
+def rule23_hydroxyl_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and atom.GetTotalNumHs() == 1)
+
+def rule25_cc_triple_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[#6]')))
+
+def rule26_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+
+def rule27_co_single_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#8]')))
+
+def rule28_cn_single_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#7]')))
+
+def rule29_amino_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N;H2,H1]')))
+
+def rule30_cs_single_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#16]')))

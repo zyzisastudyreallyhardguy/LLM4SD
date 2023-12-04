@@ -1,0 +1,85 @@
+def rule1_phosphorus_bonded_to_oxygen_and_carbon(mol):
+    phosphorus_pattern = Chem.MolFromSmarts('[#15](-[#8])(-[#8])-[#6]')
+    benzene_cyclopentane_pattern = Chem.MolFromSmarts('c1ccccc1-C(=O)-C1CCCC1')
+    return mol.GetSubstructMatches(phosphorus_pattern) + mol.GetSubstructMatches(benzene_cyclopentane_pattern)
+
+def rule2_nitrogen_bonded_to_carbon_in_ring(mol):
+    nitrogen_pattern = Chem.MolFromSmarts('[#7R]~[#6R]')
+    if nitrogen_pattern is not None:
+        return len(mol.GetSubstructMatches(nitrogen_pattern))
+    else:
+        return 0
+
+
+def rule3_sulfonyl_or_cyano_adjacent_to_carbonyl(mol):
+    sulfonyl_pattern = Chem.MolFromSmarts('S(=O)(=O)-[#6]')
+    cyano_carbonyl_pattern = Chem.MolFromSmarts('C#N-C(=O)-[#6]')
+    return len(mol.GetSubstructMatches(sulfonyl_pattern)) + len(mol.GetSubstructMatches(cyano_carbonyl_pattern))
+
+
+def rule4_sulfonamide_or_nitro_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)-N')
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return mol.GetSubstructMatches(sulfonamide_pattern) + mol.GetSubstructMatches(nitro_pattern)
+
+def rule5_functional_groups(mol):
+    functional_groups_pattern = Chem.MolFromSmarts('[CX3H1](=O)[#6],[CX3](=O)[#6H0],[CX3](=O)O[C,H1],[CX3](=O)C(=O)O[C,H1],[CX3](=O)N[C,H1],[NX3;H2,H1;!$(NC=O)],[nX3]')
+    if functional_groups_pattern is not None:
+        return len(mol.GetSubstructMatches(functional_groups_pattern))
+    else:
+        return 0
+
+
+def rule6_chlorine_bonded_to_carbon_or_nitrogen_ring_or_sulfonyl(mol):
+    chlorine_pattern = Chem.MolFromSmarts('[#6]-[#17]')
+    nitrogen_ring_pattern_6 = Chem.MolFromSmarts('n1ccccc1')
+    nitrogen_ring_pattern_5 = Chem.MolFromSmarts('n1ccnc1')
+    sulfonyl_pattern = Chem.MolFromSmarts('S(=O)(=O)-[#6]')
+    return len(mol.GetSubstructMatches(chlorine_pattern)) + len(mol.GetSubstructMatches(nitrogen_ring_pattern_6)) + len(mol.GetSubstructMatches(nitrogen_ring_pattern_5)) + len(mol.GetSubstructMatches(sulfonyl_pattern))
+
+
+def rule7_nitro_or_fluorine_bonded_to_carbon_or_carbonyl_bonded_to_nitrogen(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    fluorine_pattern = Chem.MolFromSmarts('[#6]-[#9]')
+    carbonyl_pattern = Chem.MolFromSmarts('C(=O)-N')
+    return mol.GetSubstructMatches(nitro_pattern) + mol.GetSubstructMatches(fluorine_pattern) + mol.GetSubstructMatches(carbonyl_pattern)
+
+def rule8_sulfonyl_or_carbonyl_group(mol):
+    sulfonyl_pattern = Chem.MolFromSmarts('S(=O)(=O)-R')
+    carbonyl_pattern = Chem.MolFromSmarts('C(=O)')
+
+def rule9_adverse_effects(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    sulfonamide_group = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    conjugated_double_bond = mol.GetSubstructMatches(Chem.MolFromSmarts('C=C-C=C'))
+    return len(nitro_group) + len(sulfonamide_group) + len(carbonyl_group) + len(conjugated_double_bond)
+
+def rule10_adverse_effects(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    fluorine_atom = mol.GetSubstructMatches(Chem.MolFromSmarts('C-F'))
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(nitro_group) + len(fluorine_atom) + len(carbonyl_group)
+
+def rule1_harmful_effects(mol):
+    halogens = mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]'))
+    return len(halogens)
+
+def rule2_hearing_damage(mol):
+    sulfonamide_group = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    return len(sulfonamide_group)
+
+def rule3_auditory_damage(mol):
+    aromatic_rings = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(aromatic_rings)
+
+def rule4_ear_disorders(mol):
+    phosphorus_group = mol.GetSubstructMatches(Chem.MolFromSmarts('P(=O)(O)C'))
+    return len(phosphorus_group)
+
+def rule5_no_side_effects(mol):
+    nitrogen_group = mol.GetSubstructMatches(Chem.MolFromSmarts('N1(C)C(C)C1'))
+    return len(nitrogen_group)
+
+def rule6_ear_side_effects(mol):
+    benzene_cyclopentane = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1-C(=O)-C1CCCC1'))

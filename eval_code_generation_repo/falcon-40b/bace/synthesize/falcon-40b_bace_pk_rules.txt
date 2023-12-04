@@ -1,0 +1,85 @@
+def rule123_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule456_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule789_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule101112_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule131415_chiral_centers(mol):
+    chiral_centers = 0
+    for atom in mol.GetAtoms():
+        if atom.HasProp('_ChiralityPossible'):
+            chiral_centers += 1
+    return chiral_centers
+
+
+def rule161718_stereogenic_centers(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule192021_charged_groups(mol):
+    total_charge = 0
+    for atom in mol.GetAtoms():
+        total_charge += atom.GetFormalCharge()
+    return abs(total_charge)
+
+
+def rule_non_polar_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() in [6, 1, 18, 36, 54]])
+
+def rule_hetero_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule_sp3_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3])
+
+def rule_sp2_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2])
+
+def rule_sp_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetHybridization() == Chem.rdchem.HybridizationType.SP])
+
+def rule_aromatic_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetIsAromatic()])
+
+def rule_aliphatic_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and not atom.GetIsAromatic()])
+
+def rule_saturated_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetTotalDegree() == atom.GetTotalNumHs() + atom.GetTotalValence()])
+
+def rule_unsaturated_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetTotalDegree() != atom.GetTotalNumHs() + atom.GetTotalValence()])
+
+def rule12345_shortest_chain_carbons(mol):
+    shortest_chain = min([x.GetNumAtoms() for x in Chem.GetMolFrags(mol, asMols=True)])
+    return shortest_chain
+
+def rule67890_ring_count(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule111213_fused_ring_count(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+def rule141516_conjugated_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2 and bond.IsInRing()])
+
+def rule171819_conjugated_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 3 and bond.IsInRing()])
+
+def rule202122_heterocyclic_rings(mol):
+    return rdMolDescriptors.CalcNumHeterocycles(mol)
+
+def rule232425_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule262728_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule293031_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))

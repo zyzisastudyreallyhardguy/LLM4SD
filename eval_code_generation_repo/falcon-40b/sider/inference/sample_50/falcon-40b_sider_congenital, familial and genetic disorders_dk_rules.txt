@@ -1,0 +1,68 @@
+def rule1_contains_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule2_contains_halogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+
+def rule3_contains_sulfur(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+
+
+
+
+def rule6_complexity(mol):
+    return Descriptors.MolWt(mol), Descriptors.NumValenceElectrons(mol)
+
+def rule7_adverse_effects(mol):
+    return Lipinski.NumHDonors(mol), Lipinski.NumHAcceptors(mol), rdMolDescriptors.CalcNumAromaticRings(mol), rdMolDescriptors.CalcNumHeterocycles(mol)
+
+def rule8_metal_ion_complex(mol):
+    metals = ['Li', 'Be', 'Na', 'Mg', 'Al', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']
+    return sum(atom.GetSymbol() in metals for atom in mol.GetAtoms())
+
+def rule9_multiple_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_complex_structure(mol):
+    return sum(atom.GetAtomicNum() == 6 for atom in mol.GetAtoms())
+
+def rule11_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12_nitrogen_attached(mol):
+    return sum(atom.GetAtomicNum() == 7 for atom in mol.GetAtoms())
+
+def rule13_platinum_halogen(mol):
+    platinum_group = ['Ru', 'Rh', 'Pd', 'Os', 'Ir', 'Pt']
+    halogens = ['F', 'Cl', 'Br', 'I', 'At']
+    return sum(atom.GetSymbol() in platinum_group or atom.GetSymbol() in halogens for atom in mol.GetAtoms())
+
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+
+def rule2_nitrogen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule3_sulfur_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule4_long_carbon_chain(mol):
+    fragments = [len(x) for x in Chem.GetMolFrags(Chem.DeleteSubstructs(mol, Chem.MolFromSmiles('C')),asMols=True)]
+    if not fragments:
+        return 0
+    else:
+        return max(fragments)
+
+
+def rule5_chlorine_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule6_nitrogen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule7_sulfur_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule8_carbon_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))

@@ -1,0 +1,42 @@
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_aliphatic_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule8_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule9_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule10_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol))
+
+def rule11_conjugated_double_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=C-C=C')))
+
+def rule12_halogens(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule13_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N]')))
+
+def rule15_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule16_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule17_amine_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+
+def rule18_carboxylic_acid_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule19_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('O')))
+
+def rule20_sulfhydryl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S')))

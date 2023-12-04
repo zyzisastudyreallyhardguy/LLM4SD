@@ -1,0 +1,61 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_reactive_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule3_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_polar_groups(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule5_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule5_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule7_boiling_point(mol):
+    return rdMolDescriptors.CalcMolFormula(mol)
+
+def rule8_nitrogen_groups(mol):
+    num_oxygen_atoms = len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8])
+    return Chem.rdMolDescriptors.CalcNumHeteroatoms(mol) - num_oxygen_atoms
+
+
+def rule9_hydroxyl_groups(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+
+def rule10_sulfur_groups(mol):
+    return mol.GetNumAtoms(16)  # 16 is the atomic number of sulfur
+
+
+def rule11_chlorine_atoms(mol):
+    chlorine = Chem.MolFromSmiles('Cl')
+    return len(mol.GetSubstructMatches(chlorine))
+
+
+def rule12_metal_ions(mol):
+    return sum(atom.GetAtomicNum() in range(21, 31) or atom.GetAtomicNum() in range(39, 49) or atom.GetAtomicNum() in range(72, 81) for atom in mol.GetAtoms())
+
+
+def rule13_nitrogen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7])
+
+
+def rule15_oxygen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule16_sulfur_group_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule17_bromine_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule18_metal_ion_count(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in range(21, 31))
+
+def rule19_fluorine_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))

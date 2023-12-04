@@ -1,0 +1,79 @@
+def rule12345_max_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule67890_hydrophilic(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule111213_negatively_charged_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule141516_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_lipophilic_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule8_hydrogen_bonding_groups(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule9_ionizable_groups(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule10_metal_chelating_groups(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule11_cyclodextrin_binding_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule12_sugar_moieties(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule13_amino_acid_side_chains(mol):
+    return rdMolDescriptors.CalcNumAromaticHeterocycles(mol)
+
+def rule15_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule17_lipophilic_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule18_hydrogen_bonding_groups(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule19_ionizable_groups(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule20_metal_chelating_groups(mol):
+    metal_atoms = [atom for atom in mol.GetAtoms() if atom.GetAtomicNum() > 20 and atom.GetAtomicNum() < 31]
+    return len(metal_atoms)
+
+
+def rule21_cyclodextrin_binding_groups(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule22_sugar_moieties(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule24_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule25_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule26_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule27_lipophilic_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule28_hydrogen_bonding_groups(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule29_ionizable_groups(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)

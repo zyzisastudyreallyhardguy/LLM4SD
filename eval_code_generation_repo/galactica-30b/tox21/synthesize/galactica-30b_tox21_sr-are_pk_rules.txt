@@ -1,0 +1,99 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_reactive_groups(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule6_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule7_XLogP3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_metal_binding_groups(mol):
+    pattern = Chem.MolFromSmarts('[!#6;!#7;!#8;!#16;!F;!Cl;!Br;!I]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule9_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_XLogP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule11_charged_groups(mol):
+    pattern = Chem.MolFromSmarts('[+,-]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule12_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule13_lipinski_violations(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+
+
+
+
+
+
+def rule18_lead_violations(mol):
+    num_hba = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    num_hbd = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    return num_hba + num_hbd
+
+
+def rule19_brenk_violations(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+
+
+
+
+
+def rule22_brenk_violations(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+
+
+
+def rule24_lead_violations(mol):
+    return Lipinski.NumHAcceptors(mol) + Lipinski.NumHDonors(mol)
+
+
+
+
+
+
+def rule27_lead_violations(mol):
+    hbd = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    hba = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    return hbd + hba
+
+
+
+
+
+
+def rule30_lead_violations(mol):
+    try:
+        mol = Chem.MolFromSmiles(mol)
+        mw = rdMolDescriptors.CalcExactMolWt(mol)
+        rot_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+        lead_violations = 0
+        if mw > 500:
+            lead_violations += 1
+        if rot_bonds > 5:
+            lead_violations += 1
+        return lead_violations
+    except:
+        return 0
+

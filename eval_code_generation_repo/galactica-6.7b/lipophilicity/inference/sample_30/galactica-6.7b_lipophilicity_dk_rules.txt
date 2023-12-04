@@ -1,0 +1,114 @@
+def rule12345_logD(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule67890_carbon_atoms(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol) + rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+
+def rule67890_double_bonds(mol):
+    return rdMolDescriptors.CalcNumAliphaticDoubleBonds(mol) + rdMolDescriptors.CalcNumAromaticDoubleBonds(mol)
+
+def rule67890_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule2_positive_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[n+;H]')))
+
+def rule3_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule1_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule2_carbonyl_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule1_logD(mol):
+    from rdkit.Chem import Crippen
+    logD = Crippen.MolLogP(mol)
+    return logD
+
+def rule2_logD(mol):
+    from rdkit.Chem import Descriptors
+    logD = Descriptors.MolLogP(mol)
+    return logD
+
+def rule3_logD(mol):
+    from rdkit.Chem import QED
+    logD = QED.properties(mol).MolLogP
+
+def rule1_hydrophobic_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule2_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule2_carboxylic_acids(mol):
+    return rdMolDescriptors.CalcNumCarboxylicAcids(mol)
+
+def rule2_aldehydes(mol):
+    return rdMolDescriptors.CalcNumAldehydes(mol)
+
+def rule3_partition_coefficient(mol):
+    return Crippen.MolLogP(mol)
+
+def rule1_logD(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_func_groups(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    alcohols = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    aldehydes = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')) 
+    ketones = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6][CX3](=O)[#6]'))
+    return aromatic_rings + alcohols + len(aldehydes) + len(ketones)
+
+def rule3_mol_size_shape(mol):
+    size = rdMolDescriptors.CalcExactMolWt(mol)
+    shape = rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule1_logD(mol):
+    from rdkit.Chem import Crippen
+    logD = Crippen.CalcCrippenDescriptors(mol)[0]
+    return logD
+
+def rule2_ionization_state(mol):
+    from rdkit.Chem import rdMolDescriptors
+    ionization_state = rdMolDescriptors.CalcNumHBD(mol) - rdMolDescriptors.CalcNumHBA(mol)
+    return ionization_state
+
+def rule3_logP(mol):
+    from rdkit.Chem import Crippen
+    logP = Crippen.CalcCrippenDescriptors(mol)[1]
+
+def rule1_logD(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_tertiary_nitrogen(mol):
+    pattern = Chem.MolFromSmarts('[NX3;H0;!$(NC=O)]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule1_logD(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_num_carbon(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule12345_logD(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule67890_func_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule111213_mol_weight(mol):
+    return Descriptors.MolWt(mol)

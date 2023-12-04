@@ -1,0 +1,165 @@
+def rule4_oxygen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule6_mu_chloride_correlation(mol):
+    num_chloride = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+    mu_value = rdMolDescriptors.CalcExactMolWt(mol)
+    return -num_chloride * mu_value
+
+def rule7_mu_bromine_correlation(mol):
+    num_bromine = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+    mu_value = rdMolDescriptors.CalcExactMolWt(mol)
+    return num_bromine * mu_value
+
+def rule8_mu_fluorine_correlation(mol):
+    num_fluorine = len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+    mu_value = rdMolDescriptors.CalcExactMolWt(mol)
+    return -num_fluorine * mu_value
+
+def rule9_mu_iodine_correlation(mol):
+    num_iodine = len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+    mu_value = rdMolDescriptors.CalcExactMolWt(mol)
+    return num_iodine * mu_value
+
+
+
+def rule11_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule12_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule13_electronegativity(mol):
+    return Descriptors.MolWt(mol) / Descriptors.NumValenceElectrons(mol)
+
+def rule14_organic_compound(mol):
+    organic_elements = [6, 7, 8, 15, 16, 34, 52, 84]
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() not in organic_elements:
+            return 0
+    return 1
+
+def rule15_inorganic_compound(mol):
+    organic_elements = [6, 7, 8, 15, 16, 34, 52, 84]
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in organic_elements:
+            return 0
+
+def rule16_mu_polymer(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule17_mu_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule18_mu_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+
+def rule19_mu_planar(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule21_mu_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == rdchem.BondType.DOUBLE])
+
+
+def rule22_mu_single_bonds(mol):
+    total_bonds = sum(1 for bond in mol.GetBonds() if bond.GetIsAromatic() == False)
+    double_bonds = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    return total_bonds - double_bonds
+
+
+def rule23_mu_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule24_mu_chiral_centers(mol):
+    return -len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule26_mu_asymmetry(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule31_mu_increase_hbond(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    hb_capacity = hb_donors + hb_acceptors
+    mu_value = rdMolDescriptors.CalcExactMolWt(mol) * hb_capacity
+    return mu_value
+
+
+def rule32_mu_decrease_hbond(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    hb_capacity = hb_donors + hb_acceptors
+    if hb_capacity == 0:
+        return 0
+    else:
+        mu_value = rdMolDescriptors.CalcExactMolWt(mol) / hb_capacity
+        return mu_value
+
+
+def rule33_mu_positive_zero_oxidation(mol):
+    # Calculate the number of radical electrons
+    oxidation_state = sum(atom.GetNumRadicalElectrons() for atom in mol.GetAtoms())
+    return oxidation_state
+
+
+def rule34_mu_negative_positive_oxidation(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    oxidation_state = sum([atom.GetNumRadicalElectrons() for atom in mol.GetAtoms()])
+    if oxidation_state > 0:
+        mu_value = -abs(Chem.rdMolDescriptors.CalcExactMolWt(mol))
+    else:
+        mu_value = 0
+    return mu_value
+
+
+def rule35_mu_positive_negative_oxidation(mol):
+    mol = Chem.MolFromSmiles(str(mol))
+    if mol is None:
+        return 0
+    oxidation_state = sum([atom.GetNumRadicalElectrons() for atom in mol.GetAtoms()])
+    if oxidation_state < 0:
+        mu_value = abs(Chem.rdMolDescriptors.CalcExactMolWt(mol))
+    else:
+        mu_value = 0
+    return mu_value
+
+
+def rule36_mu_complexity_increase(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule37_mu_complexity_decrease(mol):
+    return -rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule38_mu_steric_hindrance_high(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule39_mu_steric_hindrance_low(mol):
+    return -rdMolDescriptors.CalcTPSA(mol)
+
+def rule41_vdw_radius(mol):
+    return Descriptors.VSA_EState9(mol)
+
+def rule42_high_polarizability(mol):
+    return Descriptors.PEOE_VSA6(mol)
+
+def rule43_low_polarizability(mol):
+    return Descriptors.PEOE_VSA1(mol)
+
+def rule44_high_electron_donating(mol):
+    return Descriptors.PEOE_VSA10(mol)
+
+def rule46_mu_value_high_electron_withdrawing(mol):
+    return Descriptors.MolLogP(mol) - Descriptors.MolMR(mol)
+
+def rule47_mu_value_low_electron_withdrawing(mol):
+    return Descriptors.MolLogP(mol) + Descriptors.MolMR(mol)
+
+def rule48_mu_value_high_degree_unsaturation(mol):
+    return Descriptors.MolLogP(mol) + Descriptors.NumAromaticRings(mol)
+
+def rule49_mu_value_low_degree_unsaturation(mol):
+    return Descriptors.MolLogP(mol) - Descriptors.NumAromaticRings(mol)
+
+def rule50_mu_value_increasing_conjugation(mol):
+    return Descriptors.MolLogP(mol) + Descriptors.NumAromaticCarbocycles(mol)

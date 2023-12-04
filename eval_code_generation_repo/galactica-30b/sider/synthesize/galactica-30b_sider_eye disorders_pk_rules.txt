@@ -1,0 +1,25 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule4_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule5_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule14_dipole_moment(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+def rule25_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)

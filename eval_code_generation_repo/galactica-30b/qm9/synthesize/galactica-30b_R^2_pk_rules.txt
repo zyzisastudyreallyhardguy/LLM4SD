@@ -1,0 +1,158 @@
+def rule1_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule2_multiple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() > 1])
+
+def rule3_electronegativity(mol):
+    return sum([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+
+def rule4_shape(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule5_lone_pairs(mol):
+    return sum([atom.GetTotalNumHs() for atom in mol.GetAtoms()])
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_functional_groups(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule9_metal_ions(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() > 20 and atom.GetAtomicNum() < 31])
+
+def rule16_conjugated_systems(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule17_hyperconjugation(mol):
+    return 0
+
+def rule18_steric_hindrance(mol):
+    return 0
+
+def rule19_intramolecular_hb(mol):
+    return 0
+
+def rule20_intermolecular_hb(mol):
+    return 0
+
+def rule21_ionic_bonds(mol):
+    return 0
+
+def rule22_covalent_bonds(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule23_metallic_bonds(mol):
+    return 0
+
+def rule24_van_der_waals(mol):
+    return 0
+
+def rule26_sigma_pi_interactions(mol):
+    pi_electrons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2 or atom.GetHybridization() == Chem.rdchem.HybridizationType.SP:
+            pi_electrons += 1
+    return pi_electrons
+
+def rule27_dipole_dipole_interactions(mol):
+    return Descriptors.MolWt(mol)
+
+def rule28_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule29_charge_transfer_interactions(mol):
+    return Chem.rdmolops.GetFormalCharge(mol)
+
+
+
+def rule31_conjugation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule32_hyperconjugation(mol):
+    sp3_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3:
+            sp3_atoms += 1
+    return sp3_atoms
+
+def rule33_steric_hindrance(mol):
+    return Descriptors.MolWt(mol)
+
+def rule35_intermolecular_hbonds(mol):
+    num_hbd = rdMolDescriptors.CalcNumHBD(mol)
+    num_hba = rdMolDescriptors.CalcNumHBA(mol)
+    return num_hbd + num_hba
+
+
+def rule36_ionic_bonds(mol):
+    num_ionic_bonds = 0
+    for bond in mol.GetBonds():
+        atom1 = bond.GetBeginAtom()
+        atom2 = bond.GetEndAtom()
+        electroneg_diff = abs(atom1.GetAtomicNum() - atom2.GetAtomicNum())
+        if electroneg_diff > 1.7:  # This is a common threshold for ionic bonds
+            num_ionic_bonds += 1
+    return num_ionic_bonds
+
+
+def rule37_covalent_bonds(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return sum(atom.GetDegree() for atom in mol.GetAtoms())
+
+
+def rule38_metallic_bonds(mol):
+    num_metallic_bonds = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() < 20:
+            num_metallic_bonds += 1
+    return num_metallic_bonds
+
+
+
+
+def rule40_pipi_interactions(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+
+def rule41_sigmapi_interactions(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+def rule42_dipoledipole_interactions(mol):
+    # TODO: Implement your own function to calculate the number of dipole-dipole interactions
+    return 0
+
+
+def rule43_hydrogen_bonds(mol):
+    num_H_donors = rdMolDescriptors.CalcNumHBD(mol)
+    num_H_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return num_H_donors + num_H_acceptors
+
+
+def rule45_delocalization(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetIsAromatic()])
+
+
+def rule47_hyperconjugation(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule48_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule55302_hb_donors1232143(mol):
+    # Your code here
+    # Assuming the function returns a number
+    return 1
+
+def rule950021_hb_acceptor35749(mol):
+    # Your code here
+    # Assuming the function returns a number
+    return 1
+
+def rule49_intra_hbonds(mol):
+    return rule55302_hb_donors1232143(mol) + rule950021_hb_acceptor35749(mol)
+

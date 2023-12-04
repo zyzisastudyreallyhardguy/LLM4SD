@@ -1,0 +1,123 @@
+def rule1_sulfonamide_nitro(mol):
+    smarts = ['[S](=O)(=O)N', 'N(=O)=O']
+    return any(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule2_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule3_halogen_aromatic(mol):
+    smarts = ['[F,Cl,Br,I]c']
+    return any(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule4_cyano_carbonyl(mol):
+    smarts = ['C#N.C=O']
+    return any(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule5_nitrogen_ring(mol):
+    smarts = ['n1ccccc1', 'n1cncc1']
+    return any(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule6_sulfonamide_nitro(mol):
+    return rule1_sulfonamide_nitro(mol)
+
+def rule7_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule8_atoms_bonds(mol):
+    return mol.GetNumAtoms(), mol.GetNumBonds()
+
+def rule9_cooh_oh(mol):
+    smarts = ['C(=O)O', 'O']
+    return any(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule10_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule11_heterocyclic_ring(mol):
+    hetero_pattern = Chem.MolFromSmarts('[r5,r6,r7]@[!#6]')
+    return len(mol.GetSubstructMatches(hetero_pattern))
+
+def rule12_aromatic_system(mol):
+    aromatic_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(aromatic_pattern))
+
+def rule13_functional_groups(mol):
+    sulfonyl_pattern = Chem.MolFromSmarts('S(=O)(=O)')
+    carbonyl_pattern = Chem.MolFromSmarts('C=O')
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(sulfonyl_pattern)) + len(mol.GetSubstructMatches(carbonyl_pattern)) + len(mol.GetSubstructMatches(nitro_pattern)) + len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule14_ring_systems(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule15_complexity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_functional_groups(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(nitro_pattern)) + len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule17_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule18_complex_structures(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule19_functional_groups(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+
+def rule20_multiple_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule21_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule21_hydrophobicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule22_halogen_groups(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_ring_count(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule5_molecular_complexity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_stereochemistry(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule7_sulfonamide_nitro_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern)) + len(mol.GetSubstructMatches(nitro_pattern))
+
+
+def rule8_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule9_halogen_aromatic_ring(mol):
+    halogen_pattern = Chem.MolFromSmarts('[$([F,Cl,Br,I]),D2,D3,D4]~*~*')
+    return mol.GetSubstructMatches(halogen_pattern)
+
+def rule10_functional_groups(mol):
+    from rdkit import Chem
+    cooh_pattern = Chem.MolFromSmarts('C(=O)O')
+    oh_pattern = Chem.MolFromSmarts('O')
+    return len(mol.GetSubstructMatches(cooh_pattern)) + len(mol.GetSubstructMatches(oh_pattern))
+
+
+def rule11_ring_systems(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule12_charged_atoms(mol):
+    sodium_pattern = Chem.MolFromSmarts('[Na]')
+    strontium_pattern = Chem.MolFromSmarts('[Sr]')

@@ -1,0 +1,54 @@
+def rule1_halogen_toxicity(mol):
+    halogens = ['Cl', 'Br', 'I']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule2_nitro_toxicity(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return mol.HasSubstructMatch(nitro_pattern)
+
+def rule3_carbonyl_toxicity(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('C=O')
+    return mol.HasSubstructMatch(carbonyl_pattern)
+
+def rule7_sulfonyl_toxicity(mol):
+    sulfonyl_pattern = Chem.MolFromSmarts('S(=O)(=O)')
+    return mol.HasSubstructMatch(sulfonyl_pattern)
+
+def rule8_cyanide_toxicity(mol):
+    cyanide_pattern = Chem.MolFromSmarts('C#N')
+    return mol.HasSubstructMatch(cyanide_pattern)
+
+def rule9_complex_toxicity(mol):
+    complex_pattern = Chem.MolFromSmarts('O=C(O)CN(CCN(CC(=O)O)CC(=O)O)CC(=O)O')
+
+def rule1_toxic_functional_groups(mol):
+    toxic_functional_groups = ['[C]=[O]', '[Cl,Br,I,F]', '[N+](=O)[O-]']
+    count = 0
+    for group in toxic_functional_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+
+def rule2_toxic_functional_groups(mol):
+    toxic_functional_groups = ['[C]=[O][N]', 'c1ccccc1']
+    count = 0
+    for group in toxic_functional_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule3_toxic_structures(mol):
+    toxic_structures = ['c1ccccc1']
+    count = 0
+    for structure in toxic_structures:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(structure)))
+    return count
+
+def rule5_toxic_functional_groups(mol):
+    toxic_functional_groups = ['[C]=[O]', '[C](=O)[O-]']
+    count = 0
+    for group in toxic_functional_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count

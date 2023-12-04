@@ -1,0 +1,63 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_num_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule5_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule8_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule9_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule10_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]')))
+
+def rule11_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9]')))
+
+def rule12_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#35]')))
+
+def rule13_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#53]')))
+
+
+
+def rule16_chlorine_atoms(mol):
+    chlorine = Chem.MolFromSmiles('Cl')
+    return len(mol.GetSubstructMatches(chlorine))
+
+
+def rule17_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+
+def rule18_bromine_atoms(mol):
+    # Calculate the total number of bromine atoms
+    total_bromine_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+    return total_bromine_atoms
+
+
+def rule19_iodine_atoms(mol):
+    iodine_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 53:
+            iodine_count += 1
+    return iodine_count
+

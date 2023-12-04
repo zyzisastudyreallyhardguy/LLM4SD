@@ -1,0 +1,67 @@
+
+def rule6_hydrophobic_atoms(mol):
+    hydrophobic_atoms = [atom.GetSymbol() for atom in mol.GetAtoms() if atom.GetSymbol() in ['C', 'S', 'P', 'F', 'Cl', 'Br', 'I']]
+    return len(hydrophobic_atoms)
+
+def rule7_charged_atoms(mol):
+    charged_atoms = [atom.GetFormalCharge() for atom in mol.GetAtoms() if atom.GetFormalCharge() != 0]
+    return len(charged_atoms)
+
+def rule8_chiral_centers(mol):
+    chiral_centers = Chem.FindMolChiralCenters(mol, includeUnassigned=True)
+    return len(chiral_centers)
+
+def rule9_stereocenters(mol):
+    stereocenters = Chem.FindMolChiralCenters(mol)
+    return len(stereocenters)
+
+def rule10_sp3_carbons(mol):
+    sp3_carbons = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3 and atom.GetSymbol() == 'C']
+    return len(sp3_carbons)
+
+def rule11_sp2_carbons(mol):
+    sp2_carbons = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2 and atom.GetSymbol() == 'C']
+    return len(sp2_carbons)
+
+def rule12_sp_carbons(mol):
+    sp_carbons = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP and atom.GetSymbol() == 'C']
+    return len(sp_carbons)
+
+def rule13_double_bonds(mol):
+    double_bonds = [bond.GetIdx() for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE]
+    return len(double_bonds)
+
+def rule14_triple_bonds(mol):
+    triple_bonds = [bond.GetIdx() for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE]
+
+def rule15_tetrahedral_angles(mol):
+    tetrahedral_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3:
+            tetrahedral_count += 1
+    return tetrahedral_count
+
+def rule16_octahedral_angles(mol):
+    octahedral_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3D2:
+            octahedral_count += 1
+    return octahedral_count
+
+def rule17_planar_structures(mol):
+    planar_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2:
+            planar_count += 1
+    return planar_count
+
+def rule18_non_planar_structures(mol):
+    total_atoms = mol.GetNumAtoms()
+    planar_count = rule17_planar_structures(mol)
+    return total_atoms - planar_count
+
+def rule19_conformations(mol):
+    return mol.GetNumConformers()
+
+def rule20_rotamers(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

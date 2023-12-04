@@ -1,0 +1,111 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_aliphatic_rings(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule8_hydroxyl_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticHeterocycles(mol)
+
+def rule9_carbonyl_groups(mol):
+    pattern = '[#6][#6](=[O])'
+    carbonyl = Chem.MolFromSmarts(pattern)
+    return len(mol.GetSubstructMatches(carbonyl))
+
+
+def rule10_nitrogen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7])
+
+
+def rule11_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+
+def rule12_chlorine_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 17])
+
+
+def rule13_fluorine_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 9])
+
+
+def rule14_bromine_atoms(mol):
+    bromine = Chem.MolFromSmiles('Br')
+    return len(mol.GetSubstructMatches(bromine))
+
+
+def rule15_iodine_atoms(mol):
+    iodine_pattern = Chem.MolFromSmiles('I')
+    return len(mol.GetSubstructMatches(iodine_pattern))
+
+
+def rule16_conjugated_double_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=CC=C')))
+
+def rule17_non_conjugated_double_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=C')))-rule16_conjugated_double_bonds(mol)
+
+def rule18_tertiary_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C;D3]')))
+
+def rule19_quaternary_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C;D4]')))
+
+def rule20_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule21_rigid_rings(mol):
+    return len(Chem.GetSymmSSSR(mol))
+
+def rule22_flexible_rings(mol):
+    return len(Chem.GetSymmSSSR(mol))-rule21_rigid_rings(mol)
+
+def rule23_acyclic_chains(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C-C')))
+
+def rule24_terminal_double_bond(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=C-C')))
+
+def rule25_terminal_triple_bond(mol):
+    triple_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[#6]'))
+    terminal_triple_bonds = [bond for bond in triple_bonds if mol.GetAtomWithIdx(bond[0]).GetDegree() == 1 or mol.GetAtomWithIdx(bond[1]).GetDegree() == 1]
+    return len(terminal_triple_bonds)
+
+def rule26_terminal_hydroxyl(mol):
+    hydroxyl_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]'))
+    terminal_hydroxyl_groups = [group for group in hydroxyl_groups if mol.GetAtomWithIdx(group[0]).GetDegree() == 1]
+    return len(terminal_hydroxyl_groups)
+
+def rule27_terminal_carbonyl(mol):
+    carbonyl_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[C]=[O]'))
+    terminal_carbonyl_groups = [group for group in carbonyl_groups if mol.GetAtomWithIdx(group[0]).GetDegree() == 1 or mol.GetAtomWithIdx(group[1]).GetDegree() == 1]
+    return len(terminal_carbonyl_groups)
+
+def rule28_terminal_nitrogen(mol):
+    nitrogen_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[N]'))
+    terminal_nitrogen_atoms = [atom for atom in nitrogen_atoms if mol.GetAtomWithIdx(atom[0]).GetDegree() == 1]
+    return len(terminal_nitrogen_atoms)
+
+def rule29_terminal_sulfur(mol):
+    sulfur_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[S]'))
+    terminal_sulfur_atoms = [atom for atom in sulfur_atoms if mol.GetAtomWithIdx(atom[0]).GetDegree() == 1]
+    return len(terminal_sulfur_atoms)
+
+def rule30_terminal_chlorine(mol):
+    chlorine_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]'))
+    terminal_chlorine_atoms = [atom for atom in chlorine_atoms if mol.GetAtomWithIdx(atom[0]).GetDegree() == 1]

@@ -1,0 +1,47 @@
+def rule1_halogen_atoms(mol):
+    halogens = ['Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule2_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule3_carbonyl_group(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule4_functional_group(mol):
+    functional_group_patterns = [Chem.MolFromSmarts('C=O'), Chem.MolFromSmarts('O')]
+    return sum(len(mol.GetSubstructMatches(pattern)) for pattern in functional_group_patterns)
+
+def rule5_halogen_atoms(mol):
+    halogens = ['Cl', 'F']
+
+def rule6_pah_structure(mol):
+    pah_smarts = '[cR1]1[cR1][cR1][cR1][cR1][cR1]1'
+    pah_pattern = Chem.MolFromSmarts(pah_smarts)
+    return len(mol.GetSubstructMatches(pah_pattern))
+
+def rule7_halogen_atoms(mol):
+    halogen_smarts = '[#9,#17,#35,#53]'
+    halogen_pattern = Chem.MolFromSmarts(halogen_smarts)
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule8_carbonyl_group(mol):
+    carbonyl_smarts = '[#6]=[#8]'
+    carbonyl_pattern = Chem.MolFromSmarts(carbonyl_smarts)
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule9_nitro_group(mol):
+    nitro_smarts = '[N+](=O)[O-]'
+    nitro_pattern = Chem.MolFromSmarts(nitro_smarts)
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule10_halogen_atoms(mol):
+    return rule7_halogen_atoms(mol)
+
+def rule11_halogen_atoms(mol):
+    return rule7_halogen_atoms(mol)
+
+def rule12_halogen_atoms(mol):
+    return rule7_halogen_atoms(mol)

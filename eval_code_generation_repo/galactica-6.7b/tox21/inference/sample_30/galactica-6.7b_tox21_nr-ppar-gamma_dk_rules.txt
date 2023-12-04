@@ -1,0 +1,55 @@
+def rule1_bromine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule2_chlorine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule3_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule4_nitro(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule5_halogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule6_benzene(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+
+def rule7_nitro_NR(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule8_halogen_NR(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl,Br,I]')))
+
+def rule9_double_bond_carbon(mol):
+    double_bond_carbon = mol.GetSubstructMatches(Chem.MolFromSmarts('C=C'))
+    return len(double_bond_carbon)
+
+def rule10_nitrogen_lone_pair(mol):
+    nitrogen_lone_pair = mol.GetSubstructMatches(Chem.MolFromSmarts('[nD2]'))
+    return len(nitrogen_lone_pair)
+
+def rule1_nitro_group(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    return len(nitro_group)
+
+def rule2_carbonyl_group(mol):
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(carbonyl_group)
+
+def rule3_halogen_atom(mol):
+    halogen_atom = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl,Br,I]'))
+    return len(halogen_atom)
+
+def rule4_aromatic_ring(mol):
+    aromatic_ring = mol.GetSubstructMatches(Chem.MolFromSmarts('a'))
+    return len(aromatic_ring)
+
+def rule6_no_halogen_no_nitro(mol):
+    halogen_atom = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl,Br,I]'))
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    if len(halogen_atom) == 0 and len(nitro_group) == 0:
+        return 1
+    else:
+        return 0

@@ -1,0 +1,138 @@
+def rule1_toxicity_label(mol):
+    if hasattr(mol, '_MolFileComments'):
+        return mol.GetProp('_MolFileComments') == 'toxic'
+    else:
+        return 0
+
+
+def rule2_contains_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N'))) > 0
+
+def rule3_contains_chlorine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl'))) > 0
+
+def rule4_contains_sulfur(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S'))) > 0
+
+def rule5_contains_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O'))) > 0
+
+def rule6_contains_iron(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Fe]'))) > 0
+
+
+def rule7_contains_fluorine18(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[18F]'))) > 0
+
+def rule8_contains_complex_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('COCCOC(=O)NCCCC[C@@H](C(=O)NCCCCCCCOP(=O)(C)O)NC(=O)OCCOC'))) > 0
+
+def rule9_contains_functional_groups(mol):
+    carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C(=O)O')))
+    esters = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C(=O)OC')))
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    heteroatoms = rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule10_oxygen_nitrogen_atoms(mol):
+    oxygen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    return oxygen_count + nitrogen_count
+
+def rule11_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule12_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule13_carboxylic_acid_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule14_nitrogen_in_heterocyclic_ring(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.IsInRing() and atom.GetSymbol() == 'N')
+
+def rule16_sulfonamide_benzene_ring(mol):
+    sulfonamide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    benzene_ring_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+    return sulfonamide_count + benzene_ring_count
+
+def rule17_branching_double_bonds(mol):
+    branching_count = len([atom for atom in mol.GetAtoms() if atom.GetDegree() > 2])
+    double_bond_count = len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+    return branching_count + double_bond_count
+
+def rule19_cc_double_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=C')))
+
+def rule20_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule21_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9]')))
+
+def rule22_carboxylic_acid_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule23_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule24_sulfonamide_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+
+def rule25_carboxylic_acid_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule26_positive_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+]')))
+
+def rule28_positive_charge(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule29_sulfonamide_benzene(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    benzene_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return mol.GetSubstructMatches(sulfonamide_pattern) + mol.GetSubstructMatches(benzene_pattern)
+
+def rule30_atoms_bonds(mol):
+    return mol.GetNumAtoms(), mol.GetNumBonds()
+
+def rule31_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule32_halogen_atoms(mol):
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule33_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule34_cc_double_bonds(mol):
+    cc_double_bond_pattern = Chem.MolFromSmarts('C=C')
+    return len(mol.GetSubstructMatches(cc_double_bond_pattern))
+
+def rule35_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule36_sulfonamide_benzene(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    benzene_pattern = Chem.MolFromSmarts('c1ccccc1')
+
+def rule37_atoms_bonds(mol):
+    return mol.GetNumAtoms(), mol.GetNumBonds()
+
+def rule2_positive_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0)
+
+def rule3_sulfur_carbonyl(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16 and any(neighbor.GetAtomicNum() == 6 and neighbor.GetTotalNumHs() == 1 for neighbor in atom.GetNeighbors()))
+
+def rule4_bromine(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 35)
+
+def rule5_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7)
+
+def rule6_chlorine(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 17)
+
+def rule7_sulfur(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16)

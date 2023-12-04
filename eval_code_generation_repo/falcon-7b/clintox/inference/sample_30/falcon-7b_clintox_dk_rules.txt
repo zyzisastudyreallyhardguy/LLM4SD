@@ -1,0 +1,57 @@
+def rule1_no_toxicity(mol):
+    if mol.HasProp('toxicity'):
+        return mol.GetProp('toxicity') == '0'
+    else:
+        return 0
+
+def rule1_no_toxicity(mol):
+    if mol.HasProp('toxicity'):
+        return int(mol.GetProp('toxicity')) == 0
+    else:
+        return 0
+
+
+def rule2_safe_effective(mol):
+    if 'safety' in mol.GetPropsAsDict() and 'effectiveness' in mol.GetPropsAsDict():
+        return mol.GetProp('safety') == 1 and mol.GetProp('effectiveness') == 1
+    else:
+        return 0
+
+
+def rule3_label(mol):
+    if mol.HasProp('label'):
+        return mol.GetProp('label')
+    else:
+        return 0
+
+
+def rule4_animal_approval(mol):
+    if hasattr(mol, 'label'):
+        return mol.label == 2
+    else:
+        return 0
+
+
+def rule5_risk_based_classification(mol):
+    if mol.HasProp('risk_based_classification'):
+        return mol.GetProp('risk_based_classification')
+    else:
+        return 0
+
+
+def rule6_not_approved(mol):
+    if 'FDA_approval' in mol.GetPropsAsDict():
+        return mol.GetProp('FDA_approval') == 0
+    else:
+        return 0
+
+
+def rule7_molecule_properties(mol):
+    return mol.GetNumAtoms()
+
+def rule8_approval_likelihood(mol):
+    if mol.HasProp('label'):
+        return mol.GetProp('label') == 1
+    else:
+        return 0
+

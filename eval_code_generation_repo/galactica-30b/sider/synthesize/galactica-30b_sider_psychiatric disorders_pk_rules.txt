@@ -1,0 +1,84 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_metal_ions(mol):
+    return sum(atom.GetAtomicNum() in range(21, 31) for atom in mol.GetAtoms())
+
+def rule9_halogen_atoms(mol):
+    return sum(atom.GetAtomicNum() in [9, 17, 35, 53] for atom in mol.GetAtoms())
+
+def rule10_XLogP3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule11_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule12_aliphatic_rings(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule13_unsaturated_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetIsAromatic())
+
+def rule14_charged_groups(mol):
+    return sum(atom.GetFormalCharge() != 0 for atom in mol.GetAtoms())
+
+def rule16_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule17_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule18_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O[H]')))
+
+def rule19_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule20_conjugated_systems(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=C')))
+
+def rule21_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule22_hydrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[H]')))
+
+def rule23_alkyl_chains(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C-C')))
+
+def rule25_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule26_nitro_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)(O)')))
+
+def rule27_phosphorus_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('P')))
+
+def rule28_silicon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Si]')))
+
+
+def rule29_boron_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('B')))>0
+
+def rule30_boron_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('B')))

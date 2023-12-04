@@ -1,0 +1,219 @@
+def rule1_pi_bonds(mol):
+    pi_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE or bond.GetBondType() == Chem.rdchem.BondType.TRIPLE:
+            pi_bonds += 1
+    return pi_bonds
+
+
+def rule2_electronegative_atoms(mol):
+    electronegative_atoms = ['O', 'N', 'F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in electronegative_atoms:
+            count += 1
+    return count
+
+def rule3_carbon_chain_length(mol):
+    carbon_atoms = [atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'C']
+    return len(carbon_atoms)
+
+def rule4_functional_groups(mol):
+    functional_groups = ['[OH]', '[NH2]', '[COOH]', '[SH]', '[PO4]', '[SO3]']
+    count = 0
+    for group in functional_groups:
+        patt = Chem.MolFromSmarts(group)
+        if patt is not None:
+            matches = mol.GetSubstructMatches(patt)
+            count += len(matches)
+    return count
+
+
+def rule5_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_lone_pairs(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        count += atom.GetNumExplicitHs()
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_metal_atoms(mol):
+    return sum(atom.GetAtomicNum() in range(21, 31) for atom in mol.GetAtoms())
+
+def rule9_halogen_atoms(mol):
+    return sum(atom.GetAtomicNum() in [9, 17, 35, 53] for atom in mol.GetAtoms())
+
+def rule10_carbonyl_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and any(neighbor.GetSymbol() == 'O' for neighbor in atom.GetNeighbors()))
+
+def rule11_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == rdkit.Chem.rdchem.BondType.DOUBLE)
+
+def rule12_triple_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == rdkit.Chem.rdchem.BondType.TRIPLE)
+
+def rule13_alkyl_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetDegree() == 4)
+
+def rule14_alkoxy_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and any(neighbor.GetSymbol() == 'C' for neighbor in atom.GetNeighbors()))
+
+def rule16_nitro_groups(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule17_hydroxyl_groups(mol):
+    hydroxyl_pattern = Chem.MolFromSmarts('[OH]')
+    return len(mol.GetSubstructMatches(hydroxyl_pattern))
+
+def rule18_carboxylic_acid_groups(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule19_ester_groups(mol):
+    ester_pattern = Chem.MolFromSmarts('C(=O)OC')
+    return len(mol.GetSubstructMatches(ester_pattern))
+
+def rule20_aldehyde_groups(mol):
+    aldehyde_pattern = Chem.MolFromSmarts('[CX3H1](=O)[#6]')
+    if aldehyde_pattern is not None:
+        return len(mol.GetSubstructMatches(aldehyde_pattern))
+    else:
+        return 0
+
+
+def rule21_ketone_groups(mol):
+    ketone_pattern = Chem.MolFromSmarts('C(=O)C')
+    return len(mol.GetSubstructMatches(ketone_pattern))
+
+def rule22_imine_groups(mol):
+    imine_pattern = Chem.MolFromSmarts('C=N')
+    return len(mol.GetSubstructMatches(imine_pattern))
+
+def rule23_sulfoxide_groups(mol):
+    sulfoxide_pattern = Chem.MolFromSmarts('S(=O)')
+    return len(mol.GetSubstructMatches(sulfoxide_pattern))
+
+def rule24_sulfone_groups(mol):
+    sulfone_pattern = Chem.MolFromSmarts('S(=O)(=O)')
+    return len(mol.GetSubstructMatches(sulfone_pattern))
+
+def rule25_amine_groups(mol):
+    amine_pattern = Chem.MolFromSmarts('N')
+
+def rule26_amide_groups(mol):
+    amide_pattern = Chem.MolFromSmarts('C(=O)N')
+    return len(mol.GetSubstructMatches(amide_pattern))
+
+def rule27_carboxylic_acid_groups(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule28_anhydride_groups(mol):
+    anhydride_pattern = Chem.MolFromSmarts('C(=O)OC(=O)')
+    return len(mol.GetSubstructMatches(anhydride_pattern))
+
+def rule29_lactone_groups(mol):
+    lactone_pattern = Chem.MolFromSmarts('C1OC(=O)CC1')
+    return len(mol.GetSubstructMatches(lactone_pattern))
+
+def rule30_ether_groups(mol):
+    ether_pattern = Chem.MolFromSmarts('COC')
+    return len(mol.GetSubstructMatches(ether_pattern))
+
+def rule31_thioether_groups(mol):
+    thioether_pattern = Chem.MolFromSmarts('CSC')
+    return len(mol.GetSubstructMatches(thioether_pattern))
+
+def rule32_thiophene_groups(mol):
+    thiophene_pattern = Chem.MolFromSmarts('c1ccsc1')
+    return len(mol.GetSubstructMatches(thiophene_pattern))
+
+def rule33_furan_groups(mol):
+    furan_pattern = Chem.MolFromSmarts('c1ccoc1')
+    return len(mol.GetSubstructMatches(furan_pattern))
+
+def rule34_phenol_groups(mol):
+    phenol_pattern = Chem.MolFromSmarts('c1ccc(O)cc1')
+
+def rule35_aniline_lumo(mol):
+    aniline_pattern = Chem.MolFromSmarts('c1ccccc1N')
+    return len(mol.GetSubstructMatches(aniline_pattern))
+
+def rule36_quinoline_lumo(mol):
+    quinoline_pattern = Chem.MolFromSmarts('c1ccc2c(c1)ccnc2')
+    return len(mol.GetSubstructMatches(quinoline_pattern))
+
+def rule37_indole_lumo(mol):
+    indole_pattern = Chem.MolFromSmarts('c1ccc2c(c1)c[nH]c2')
+    return len(mol.GetSubstructMatches(indole_pattern))
+
+def rule38_carbazole_lumo(mol):
+    carbazole_pattern = Chem.MolFromSmarts('c1ccc2c(c1)ccc3c2cccc3')
+    return len(mol.GetSubstructMatches(carbazole_pattern))
+
+def rule39_porphyrin_lumo(mol):
+    porphyrin_pattern = Chem.MolFromSmarts('c1ccc2c(c1)ccc3c2cccc3')
+    return len(mol.GetSubstructMatches(porphyrin_pattern))
+
+def rule40_ferrocene_lumo(mol):
+    ferrocene_pattern = Chem.MolFromSmarts('c1ccc2c(c1)cccc2')
+    return len(mol.GetSubstructMatches(ferrocene_pattern))
+
+def rule41_chalcone_lumo(mol):
+    chalcone_pattern = Chem.MolFromSmarts('c1ccc(cc1)C(=O)CC')
+    return len(mol.GetSubstructMatches(chalcone_pattern))
+
+def rule42_stilbene_lumo(mol):
+    stilbene_pattern = Chem.MolFromSmarts('c1ccc(cc1)C=CC')
+    return len(mol.GetSubstructMatches(stilbene_pattern))
+
+def rule43_azobenzene_lumo(mol):
+    azobenzene_pattern = Chem.MolFromSmarts('c1ccc(cc1)N=Nc2ccccc2')
+
+def rule44_diphenylmethane(mol):
+    diphenylmethane_smiles = 'c1ccccc1C(c2ccccc2)C'
+    diphenylmethane = Chem.MolFromSmiles(diphenylmethane_smiles)
+    return mol.GetSubstructMatches(diphenylmethane)
+
+def rule45_diphenylether(mol):
+    diphenylether_smiles = 'c1ccccc1Oc2ccccc2'
+    diphenylether = Chem.MolFromSmiles(diphenylether_smiles)
+    return mol.GetSubstructMatches(diphenylether)
+
+def rule46_diphenylsulfide(mol):
+    diphenylsulfide_smiles = 'c1ccccc1Sc2ccccc2'
+    diphenylsulfide = Chem.MolFromSmiles(diphenylsulfide_smiles)
+    return mol.GetSubstructMatches(diphenylsulfide)
+
+def rule47_dibenzofuran(mol):
+    dibenzofuran_smiles = 'c1ccc2c(c1)ccc3c2ccc(o3)c4ccccc4'
+    dibenzofuran = Chem.MolFromSmiles(dibenzofuran_smiles)
+    if dibenzofuran is not None:
+        return len(mol.GetSubstructMatches(dibenzofuran))
+    else:
+        return 0
+
+
+def rule48_dibenzothiophene(mol):
+    dibenzothiophene_smiles = 'c1ccc2c(c1)sc3c2cccc3'
+    dibenzothiophene = Chem.MolFromSmiles(dibenzothiophene_smiles)
+    return len(mol.GetSubstructMatches(dibenzothiophene))
+
+
+def rule49_xanthene(mol):
+    xanthene_smiles = 'c1ccc2c(c1)Oc3ccccc3O2'
+    xanthene = Chem.MolFromSmiles(xanthene_smiles)
+    return mol.GetSubstructMatches(xanthene)
+
+def rule50_pyrene(mol):
+    pyrene_smiles = 'c1ccc2c(c1)ccc3c2ccc4c3cccc4'
+    pyrene = Chem.MolFromSmiles(pyrene_smiles)
+    if pyrene is not None:
+        return len(mol.GetSubstructMatches(pyrene))
+    else:
+        return 0
+

@@ -1,0 +1,56 @@
+def rule1_nitrogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_carbonyl_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule3_halogen_presence(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum([len(mol.GetSubstructMatches(Chem.MolFromSmiles(x))) for x in halogens])
+
+def rule4_carboxylic_acid_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C(=O)O')))
+
+def rule5_long_carbon_chain(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C'*6)))
+
+def rule6_sulfur_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule7_nitro_sulfonyl_presence(mol):
+    nitro = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[N+](=O)[O-]')))
+    sulfonyl = len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)')))
+    return nitro + sulfonyl
+
+
+def rule8_multiple_functional_groups(mol):
+    functional_groups = ['C(=O)O', 'N', 'C(=O)']
+    count = 0
+    for group in functional_groups:
+        patt = Chem.MolFromSmarts(group)
+        matches = mol.GetSubstructMatches(patt)
+        count += len(matches)
+    return count
+
+def rule9_positive_charge(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule10_platinum_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Pt]')))
+
+def rule11_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12_sulfur_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule13_nitrogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule14_hazardous_elements(mol):
+    hazardous_elements = ['N', 'Cl', 'S']
+    count = 0
+    for element in hazardous_elements:
+        patt = Chem.MolFromSmiles(element)
+        matches = mol.GetSubstructMatches(patt)
+        count += len(matches)

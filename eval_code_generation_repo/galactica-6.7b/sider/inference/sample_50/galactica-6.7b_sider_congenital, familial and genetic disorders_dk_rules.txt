@@ -1,0 +1,109 @@
+def rule1_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule2_halogen_atom(mol):
+    halogen_atoms = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_atoms))
+
+def rule3_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('[#6]=[#8]')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule4_functional_group(mol):
+    nitro_group = rule1_nitro_group(mol)
+    halogen_atom = rule2_halogen_atom(mol)
+    carbonyl_group = rule3_carbonyl_group(mol)
+
+    if nitro_group is None:
+        nitro_group = 0
+    if halogen_atom is None:
+        halogen_atom = 0
+    if carbonyl_group is None:
+        carbonyl_group = 0
+
+    return nitro_group + halogen_atom + carbonyl_group
+
+
+def rule5_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_polarity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule7_benzene_ring(mol):
+    benzene_ring = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(benzene_ring))
+
+def rule8_PAH_structure(mol):
+    PAH_structure = Chem.MolFromSmarts('c1cccc2c1cccc2')
+    return len(mol.GetSubstructMatches(PAH_structure))
+
+def rule9_sulfonamide_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule10_polar_functional_group(mol):
+    amino_pattern = Chem.MolFromSmarts('N')
+    hydroxyl_pattern = Chem.MolFromSmarts('O')
+    return len(mol.GetSubstructMatches(amino_pattern)) + len(mol.GetSubstructMatches(hydroxyl_pattern))
+
+def rule11_fe_o_fe_group(mol):
+    fe_o_fe_pattern = Chem.MolFromSmarts('[Fe]=O.O=[Fe]')
+    return len(mol.GetSubstructMatches(fe_o_fe_pattern))
+
+def rule12_carboxylic_acid_group(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule13_halogenated_aromatic_ring(mol):
+    halogenated_aromatic_pattern = Chem.MolFromSmarts('c1ccccc1[X]')
+    return len(mol.GetSubstructMatches(halogenated_aromatic_pattern))
+
+
+def rule14_polycyclic_structure(mol):
+    return rdMolDescriptors.CalcNumRings(mol) > 1
+
+def rule15_high_lipophilicity(mol):
+    return Descriptors.MolLogP(mol) > 5
+
+def rule1_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('N(=O)=O')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule2_halogen_atom(mol):
+    halogen_pattern = Chem.MolFromSmarts('[Cl,Br,I]')
+
+def rule3_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule4_adverse_effects(mol):
+    sulfonamide = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    benzene_ring = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+    carboxylic_acid = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    phenyl_group = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]1(-[#6])=[#6]-[#6]=[#6]-[#6]=1')))
+    hydroxyl_group = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+    return sulfonamide + benzene_ring + carboxylic_acid + phenyl_group + hydroxyl_group
+
+def rule5_chlorine_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]')))
+
+def rule6_benzene_ring(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+
+def rule7_multiple_adverse_effects(mol):
+    sulfonamide = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    nitro_group = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    return sulfonamide + nitro_group
+
+def rule1_adverse_effects(mol):
+    sulfonamide = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    nitro_group = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    halogen_group = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+    return sulfonamide + nitro_group + halogen_group
+
+def rule2_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule3_halogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))

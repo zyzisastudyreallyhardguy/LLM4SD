@@ -1,0 +1,115 @@
+def rule1_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_logP(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule5_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule6_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+
+def rule8_aldehyde_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')))
+
+def rule9_carboxylic_acid_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule10_nitro_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule11_amine_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2,H1;!$(NC=O)]')))
+
+def rule12_ketone_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=O)[#6]')))
+
+def rule13_ester_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule14_sulfoxide_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(-*)-*')))
+
+def rule15_sulfone_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)(-*)-*')))
+
+def rule16_furan_rings(mol):
+    furan_smiles = 'c1ccoc1'
+    furan = Chem.MolFromSmiles(furan_smiles)
+    return len(mol.GetSubstructMatches(furan))
+
+def rule17_thiophene_rings(mol):
+    thiophene_smiles = 'c1ccsc1'
+    thiophene = Chem.MolFromSmiles(thiophene_smiles)
+    return len(mol.GetSubstructMatches(thiophene))
+
+def rule18_pyridine_rings(mol):
+    pyridine_smiles = 'c1ccncc1'
+    pyridine = Chem.MolFromSmiles(pyridine_smiles)
+    return len(mol.GetSubstructMatches(pyridine))
+
+def rule19_imidazole_rings(mol):
+    imidazole_smiles = 'n1ccnc1'
+    imidazole = Chem.MolFromSmiles(imidazole_smiles)
+    if imidazole is not None:
+        return len(mol.GetSubstructMatches(imidazole))
+    else:
+        return 0
+
+
+def rule20_piperazine_rings(mol):
+    piperazine_smiles = 'C1CNCCN1'
+    piperazine = Chem.MolFromSmiles(piperazine_smiles)
+    return len(mol.GetSubstructMatches(piperazine))
+
+def rule21_morpholine_rings(mol):
+    morpholine_smiles = 'C1COCCN1'
+    morpholine = Chem.MolFromSmiles(morpholine_smiles)
+    return len(mol.GetSubstructMatches(morpholine))
+
+def rule22_pyrrolidine_rings(mol):
+    pyrrolidine_smiles = 'C1CCNC1'
+    pyrrolidine = Chem.MolFromSmiles(pyrrolidine_smiles)
+    return len(mol.GetSubstructMatches(pyrrolidine))
+
+def rule23_piperidine_rings(mol):
+    piperidine_smiles = 'C1CCCCN1'
+    piperidine = Chem.MolFromSmiles(piperidine_smiles)
+    return len(mol.GetSubstructMatches(piperidine))
+
+def rule24_indole_rings(mol):
+    indole_smiles = 'c1ccc2c(c1)c(c[nH]2)C'
+    indole = Chem.MolFromSmiles(indole_smiles)
+
+def rule25_carbazole_rings(mol):
+    carbazole = Chem.MolFromSmarts('c1ccc2c(c1)ccc3c2cccc4c3cccc4')
+    return len(mol.GetSubstructMatches(carbazole))
+
+def rule26_benzimidazole_rings(mol):
+    benzimidazole = Chem.MolFromSmarts('c1ccc2c(c1)nccn2')
+    return len(mol.GetSubstructMatches(benzimidazole))
+
+def rule27_benzoxazole_rings(mol):
+    benzoxazole = Chem.MolFromSmarts('c1ccc2c(c1)ocn2')
+    return len(mol.GetSubstructMatches(benzoxazole))
+
+def rule28_benzothiazole_rings(mol):
+    benzothiazole = Chem.MolFromSmarts('c1ccc2c(c1)scn2')
+    return len(mol.GetSubstructMatches(benzothiazole))
+
+def rule30_quinoline_rings(mol):
+    quinoline = Chem.MolFromSmarts('c1ccc2c(c1)ccnc2')
+    return len(mol.GetSubstructMatches(quinoline))

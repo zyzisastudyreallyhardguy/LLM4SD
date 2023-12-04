@@ -1,0 +1,66 @@
+def rule1_closed_shell(mol):
+    total_electrons = sum([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+    total_valence_electrons = sum([atom.GetTotalValence() for atom in mol.GetAtoms()])
+    unpaired_electrons = total_electrons - total_valence_electrons
+    return unpaired_electrons
+
+
+def rule2_dipole_moment(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule3_permanent_dipole(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule4_electric_dipole(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule16_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule17_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule18_num_bonds(mol):
+    return mol.GetNumBonds()
+
+
+
+def rule30_electric_dipole_moment(mol):
+    if mol.GetNumConformers() > 0:
+        conf = mol.GetConformer()
+        dipole_moment = AllChem.ComputeMolPolynomial(mol, conf.GetId())
+    else:
+        dipole_moment = 0  # or any other default value
+    return dipole_moment
+
+def rule30_electric_dipole_moment(mol):
+    if mol.GetNumConformers() > 0:
+        AllChem.ComputeGasteigerCharges(mol)
+        dipole_moment = Chem.rdMolDescriptors.CalcMolFormula(mol)
+    else:
+        dipole_moment = 0  # or any other default value
+    return dipole_moment
+
+
+
+
+def rule44_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule45_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule46_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule47_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule48_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule49_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule50_num_atoms(mol):
+    return mol.GetNumAtoms()

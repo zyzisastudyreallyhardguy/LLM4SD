@@ -1,0 +1,103 @@
+def rule1_hydrogen_bonds_and_low_toxicity(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) - rdMolDescriptors.CalcNumHBA(mol)
+
+def rule2_positive_charge_and_oxygen_atoms(mol):
+    num_positive_charges = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+    num_oxygen_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8)
+    return num_positive_charges + num_oxygen_atoms - rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+
+def rule3_nitrogen_atoms_and_carbonyl_groups(mol):
+    nitrogen_pattern = Chem.MolFromSmiles('N')
+    carbonyl_pattern = Chem.MolFromSmiles('C=O')
+    num_nitrogen_atoms = len(mol.GetSubstructMatches(nitrogen_pattern))
+    num_carbonyl_groups = len(mol.GetSubstructMatches(carbonyl_pattern))
+    return num_nitrogen_atoms - num_carbonyl_groups
+
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+
+def rule6_chlorine_fluorine_ratio(mol):
+    chlorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+    fluorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+    return chlorine_count - fluorine_count
+
+def rule7_positive_oxygen(mol):
+    positive_oxygen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'O' and atom.GetFormalCharge() > 0:
+            positive_oxygen_count += 1
+    return positive_oxygen_count
+
+def rule8_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule9_toxicity_score(mol):
+    try:
+        return calculate_toxicity(mol)
+    except AttributeError:
+        return "The 'Mol' object has no attribute 'size'"
+
+def rule9_toxicity_score(mol):
+    try:
+        return calculate_toxicity(mol)
+    except AttributeError:
+        return 0  # or any other number
+
+
+def rule11_pharmacokinetic_score(mol):
+    logP = Descriptors.MolLogP(mol)
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    mol_wt = Descriptors.MolWt(mol)
+    score = logP + tpsa + mol_wt
+    return score
+
+def rule12_unfavourable_atoms(mol):
+    positive_charge = rdkit.Chem.rdmolops.GetFormalCharge(mol)
+    nitrogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+    sulfur_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+    return positive_charge + nitrogen_atoms + sulfur_atoms
+
+def rule13_oxygen_and_unfavourable_groups(mol):
+    oxygen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]')))
+    carbonyl_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+    halogen_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+    return oxygen_atoms - carbonyl_groups - halogen_groups
+
+def rule14_complexity_and_branching(mol):
+    complexity = Descriptors.FpDensityMorgan1(mol)
+    branching = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return complexity + branching
+
+def rule15_sulfur_and_fluorine_atoms(mol):
+    sulfur_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+    fluorine_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9]')))
+
+def rule16_hb_acceptor_donors_and_mw(mol):
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    mw = rdMolDescriptors.CalcExactMolWt(mol)
+    return hb_acceptors, hb_donors, mw
+
+def rule17_positive_charge_on_carbon(mol):
+    positive_charge_on_carbon = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and atom.GetFormalCharge() > 0:
+            positive_charge_on_carbon += 1
+    return positive_charge_on_carbon
+
+
+
+def rule19_rotatable_bonds_and_aromatic_rings(mol):
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return rotatable_bonds, aromatic_rings
+
+def rule20_oxygen_and_nitrogen_atoms(mol):
+    oxygen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    nitrogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))

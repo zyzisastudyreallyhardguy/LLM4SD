@@ -1,0 +1,51 @@
+def rule1_contains_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule2_contains_chlorine(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def rule3_contains_metal(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['Fe', 'Ga'])
+
+def rule4_contains_nitro_nitroso(mol):
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    nitroso = Chem.MolFromSmarts('N=O')
+    return mol.GetSubstructMatches(nitro) + mol.GetSubstructMatches(nitroso)
+
+def rule5_contains_halogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+
+def rule6_contains_long_carbon_chain(mol):
+    carbon_chain = Chem.MolFromSmarts('[#6]-[#6]-[#6]-[#6]-[#6]')
+    return len(mol.GetSubstructMatches(carbon_chain))
+
+def rule7_contains_sulfur(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule8_contains_carboxylic_acid(mol):
+    carboxylic_acid = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid))
+
+def rule9_positive_charge(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule10_negative_charge(mol):
+    return -rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule11_polar_group(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcTPSA(mol)
+
+def rule12_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule13_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule14_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule15_magnesium_ion(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Mg+]')))
+
+def rule16_copper_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cu]')))

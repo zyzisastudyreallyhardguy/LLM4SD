@@ -1,0 +1,82 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_reactive_groups(mol):
+    return rdkit.Chem.rdmolops.GetSSSR(mol)
+
+def rule6_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule7_XLogP3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_toxicophore(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule9_ionization_state(mol):
+    ionizable_pattern = Chem.MolFromSmarts('[!#1!#6]')
+    return len(mol.GetSubstructMatches(ionizable_pattern))
+
+def rule10_XLogP4(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule11_metal_binding(mol):
+    carboxylate_pattern = Chem.MolFromSmarts('C(=O)[O-]')
+    return len(mol.GetSubstructMatches(carboxylate_pattern))
+
+def rule12_XLogP5(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule13_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule14_charged_groups(mol):
+    carboxylate_pattern = Chem.MolFromSmarts('C(=O)[O-]')
+    return len(mol.GetSubstructMatches(carboxylate_pattern))
+
+def rule16_aliphatic_rings(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule17_halogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53])
+
+def rule19_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule20_conjugated_systems(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetIsConjugated())
+
+def rule22_unsaturated_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE)
+
+def rule23_nitro_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule25_aliphatic_chains(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C-C')))
+
+def rule26_amide_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N')))
+
+def rule27_XLogP10(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule28_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+
+
+def rule29_sulfoxide_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)')))
+
+def rule30_XLogP11(mol):
+    return Descriptors.MolLogP(mol)

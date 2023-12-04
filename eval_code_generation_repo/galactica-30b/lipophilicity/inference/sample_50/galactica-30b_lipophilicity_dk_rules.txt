@@ -1,0 +1,241 @@
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule4_hydrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[H]')))
+
+def rule5_polar_groups(mol):
+    polar_groups = ['[N+]', '[O-]', '[N-]', '[P+]', '[S+]', '[S-]', '[Se]', '[Te]']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(group))) for group in polar_groups)
+
+def rule6_electronegative_elements(mol):
+    electronegative_elements = ['F', 'Cl', 'Br', 'I']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(element))) for element in electronegative_elements)
+
+def rule7_charged_molecules(mol):
+    charged_molecules = ['[N+]', '[O-]', '[N-]', '[P+]', '[S+]', '[S-]']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(molecule))) for molecule in charged_molecules)
+
+def rule8_polar_groups(mol):
+    polar_groups = ['[N+]', '[O-]', '[N-]', '[P+]', '[S+]', '[S-]', '[Se]', '[Te]']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(group))) for group in polar_groups)
+
+def rule9_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule11_nonpolar_groups(mol):
+    nonpolar_groups = ['[C]', '[H]', '[Si]', '[Ge]', '[Sn]', '[Pb]']
+
+def rule9_polar_nonpolar_groups(mol):
+    polar_groups = rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+    nonpolar_groups = rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+    return polar_groups - nonpolar_groups
+
+def rule10_polar_nonpolar_contribution(mol):
+    polar_groups = rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+    nonpolar_groups = rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+    if polar_groups + nonpolar_groups == 0:
+        return 0
+    else:
+        return polar_groups / (polar_groups + nonpolar_groups)
+
+
+def rule11_long_carbon_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule12_polar_nonpolar_interaction(mol):
+    polar_groups = rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+    nonpolar_groups = rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+    if nonpolar_groups == 0:
+        return 0
+    else:
+        return polar_groups / nonpolar_groups
+
+
+def rule13_polar_groups(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule14_nonpolar_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_conjugated_double_bonds(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule16_charged_atoms(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule17_polar_nonpolar_ratio(mol):
+    polar_groups = rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+    nonpolar_groups = rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule18_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#9,#17,#35,#53]")))
+
+def rule19_complexity(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule20_charged_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[S+2,O-2,P+2]")))
+
+def rule21_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule22_polar_nonpolar_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) - rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule23_polar_groups(mol):
+    carbonyl = Chem.MolFromSmarts("[#6]=[#8]")
+    sulfonyl = Chem.MolFromSmarts("[#16](=[#8])(=[#8])")
+    nitro = Chem.MolFromSmarts("[#7](=[#8])-[#8]")
+    return len(mol.GetSubstructMatches(carbonyl)) + len(mol.GetSubstructMatches(sulfonyl)) + len(mol.GetSubstructMatches(nitro))
+
+
+def rule24_charged_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[C-1,O+1,N+1]")))
+
+def rule25_halogen_substituents(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#9,#17,#35,#53]")))
+
+def rule1_carbon_halogen_polar(mol):
+    carbon_count = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]'))
+    halogen_count = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))
+    polar_count = rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)
+    return len(carbon_count) + len(halogen_count) + polar_count
+
+def rule2_cyclic_structure(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule3_charged_functional_group(mol):
+    carboxylate_count = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O-]'))
+    sulfonate_count = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)[O-]'))
+    return len(carboxylate_count) + len(sulfonate_count)
+
+def rule4_polar_functional_group(mol):
+    carboxylic_acid_count = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    amine_count = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    return len(carboxylic_acid_count) + len(amine_count)
+
+def rule5_nonpolar_functional_group(mol):
+    phenyl_ring_count = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    alkyl_chain_count = mol.GetSubstructMatches(Chem.MolFromSmarts('C'))
+    return len(phenyl_ring_count) + len(alkyl_chain_count)
+
+def rule6_halogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule7_molecular_weight_complexity(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule8_nonpolar_functional_group(mol):
+    return rule5_nonpolar_functional_group(mol)
+
+def rule10_nitrogen_heterocycles(mol):
+    nitrogen_heterocycles = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]1[#6][#6][#6][#6][#6]1'))
+    return len(nitrogen_heterocycles)
+
+def rule11_carbon_chain_length(mol):
+    carbon_chain = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]'))
+    return len(carbon_chain)
+
+def rule12_polar_functional_groups(mol):
+    polar_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[N,O,S]'))
+    return len(polar_groups)
+
+def rule13_positively_charged_nitrogen(mol):
+    positive_nitrogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+]'))
+    return len(positive_nitrogen)
+
+def rule14_lipophilicity_balance(mol):
+    polar_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[N,O,S]'))
+    non_polar_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[C,H]'))
+    return len(polar_groups) - len(non_polar_groups)
+
+def rule1_polar_functional_groups(mol):
+    polar_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[N,O,S]'))
+    return len(polar_groups)
+
+def rule2_nonpolar_functional_groups(mol):
+    non_polar_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[C,H]'))
+    return len(non_polar_groups)
+
+def rule3_halogen_atoms(mol):
+    halogen_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl,F]'))
+
+def rule4_polar_func_group(mol):
+    polar_groups = ['[OH]', '[NH2]', '[COOH]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in polar_groups)
+
+def rule5_nonpolar_groups(mol):
+    nonpolar_groups = ['[CH3]', '[CH2]', '[CH]', '[C]', '[c1ccccc1]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in nonpolar_groups)
+
+def rule6_charged_group(mol):
+    charged_groups = ['[S+3]([O-])([O-])[O-]', '[P+5]([O-])([O-])([O-])[O-][O-]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in charged_groups)
+
+def rule7_polar_func_group2(mol):
+    polar_groups = ['[C=O]', '[S+6]([O-])(=O)(=O)(=O)[O-]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in polar_groups if Chem.MolFromSmarts(group) is not None)
+
+
+def rule8_nonpolar_func_groups(mol):
+    nonpolar_groups = ['[c1ccccc1]', '[C1CCCCC1]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in nonpolar_groups)
+
+def rule9_alkyl_chain(mol):
+    alkyl_chains = ['[CH2]', '[CF2]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(chain)) for chain in alkyl_chains)
+
+def rule11_charged_func_groups(mol):
+    charged_groups = ['[O-]S(=O)(=O)[O-]', '[O-]P(=O)(O)[O-]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in charged_groups)
+
+def rule12_nonpolar_func_groups(mol):
+    nonpolar_groups = ['[CH3]', '[CH2]', '[CH]', '[C]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in nonpolar_groups)
+
+def rule13_positively_charged_nitrogen(mol):
+    return mol.HasSubstructMatch(Chem.MolFromSmarts('[NH+,NH2+,NH3+,N+](~[C])'))
+
+def rule14_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_hydrophobic_groups(mol):
+    hydrophobic_groups = ['[CH3]', '[CH2]', '[CH]', '[C]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in hydrophobic_groups)
+
+def rule15_hydrophilic_groups(mol):
+    hydrophilic_groups = ['[OH]', '[NH2]', '[NH]', '[N]', '[O]', '[S]', '[P]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in hydrophilic_groups)
+
+def rule16_carbon_chain_length(mol):
+    max_length = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            chain_length = 1
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C':
+                    bond = mol.GetBondBetweenAtoms(atom.GetIdx(), neighbor.GetIdx())
+                    if bond.GetBondType() == rdchem.BondType.SINGLE:
+                        chain_length += 1
+            max_length = max(max_length, chain_length)
+    return max_length
+
+
+def rule17_electronegative_atoms(mol):
+    return mol.HasSubstructMatch(Chem.MolFromSmarts('[F]'))
+
+def rule18_electronegative_atoms(mol):
+    return mol.HasSubstructMatch(Chem.MolFromSmarts('[F,Cl]'))
+
+def rule19_charged_func_groups(mol):
+    charged_groups = ['[N+](~[C])(~[C])(~[C])(~[C])', '[O-]C(=O)[O-]']

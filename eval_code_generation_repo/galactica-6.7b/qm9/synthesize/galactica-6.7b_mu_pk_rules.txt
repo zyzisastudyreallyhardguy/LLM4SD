@@ -1,0 +1,52 @@
+def rule1_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule2_electronegativity_diff(mol):
+    max_en = max([Chem.GetPeriodicTable().GetAtomicNumber(atom.GetSymbol()) for atom in mol.GetAtoms()])
+    min_en = min([Chem.GetPeriodicTable().GetAtomicNumber(atom.GetSymbol()) for atom in mol.GetAtoms()])
+    return max_en - min_en
+
+def rule3_mol_length(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule6_hydrogen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles("[H]")))
+
+def rule7_carbon_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles("[C]")))
+
+def rule8_oxygen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles("[O]")))
+
+def rule9_nitrogen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles("[N]")))
+
+def rule10_fluorine_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles("[F]")))
+
+def rule11_sulfur_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles("[S]")))
+
+def rule12_phosphorus_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles("[P]")))
+
+def rule13_bromine_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles("[Br]")))
+
+def rule15_aluminum_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Al]')))
+
+def rule16_silicon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Si]')))
+
+def rule17_magnesium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Mg]')))
+
+def rule18_calcium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Ca]')))
+
+def rule19_titanium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Ti]')))
+
+def rule20_zinc_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Zn]')))

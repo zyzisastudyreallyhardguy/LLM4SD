@@ -1,0 +1,62 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_electronegativity_difference(mol):
+    electronegativities = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return max(electronegativities) - min(electronegativities)
+
+def rule7_dipole_moment(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+def rule9_electron_affinity(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule10_hardness(mol):
+    # Placeholder value because hardness cannot be calculated directly using RDKit
+    return 0
+
+
+def rule11_softness(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule12_electronegativity(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule13_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule14_molecular_volume(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule15_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+
+def rule16_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C]=[O]')))
+
+def rule17_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule18_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule19_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]')))

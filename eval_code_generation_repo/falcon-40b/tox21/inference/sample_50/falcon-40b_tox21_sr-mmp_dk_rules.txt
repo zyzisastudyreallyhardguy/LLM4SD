@@ -1,0 +1,118 @@
+def rule1_positive_charge(mol):
+    return Descriptors.NumHDonors(mol)
+
+def rule1_positive_charge(mol):
+    return Descriptors.NumHAcceptors(mol)
+
+
+def rule2_negative_charge(mol):
+    return Descriptors.NumHAcceptors(mol)
+
+
+def rule3_polar_functional_group(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule4_carboxylic_amine(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    num_carboxylic_acids = len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+    num_aromatic_nitrogens = rdMolDescriptors.CalcNumAromaticHeterocycles(mol) - rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+    return num_carboxylic_acids + num_aromatic_nitrogens
+
+
+def rule5_toxic_groups(mol):
+    carboxylic_acid = Chem.MolFromSmarts('C(=O)[O;h1]')
+    sulfonamide = Chem.MolFromSmarts('S(=O)(=O)N')
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+
+    num_carboxylic_acid = len(mol.GetSubstructMatches(carboxylic_acid))
+    num_sulfonamide = len(mol.GetSubstructMatches(sulfonamide))
+    num_nitro_group = len(mol.GetSubstructMatches(nitro_group))
+
+    return num_carboxylic_acid + num_sulfonamide + num_nitro_group
+
+
+def rule6_toxic_atoms(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule7_sulfonamide(mol):
+    sulfonamide_pattern = '[#16](=[O])(-[#7])'
+    pattern = Chem.MolFromSmarts(sulfonamide_pattern)
+    return len(mol.GetSubstructMatches(pattern))
+
+
+def rule8_toxicity(mol):
+    chlorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+    positive_charge = Chem.rdmolops.GetFormalCharge(mol)
+    carbonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+    negative_charge = -Chem.rdmolops.GetFormalCharge(mol)
+    return chlorine_count * positive_charge + carbonyl_count * negative_charge
+
+def rule9_toxicity(mol):
+    bromine_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+    return bromine_count
+
+def rule10_toxicity(mol):
+    halogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+    return halogen_count
+
+def rule11_toxicity(mol):
+    carbon_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+    return carbon_count
+
+def rule12_toxicity(mol):
+    sodium_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Na+]')))
+    return sodium_count
+
+def rule13_toxicity(mol):
+    chlorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+    positive_charge = Chem.rdmolops.GetFormalCharge(mol)
+    carbonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+    return chlorine_count * positive_charge + carbonyl_count
+
+def rule14_toxicity(mol):
+    carbon_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+    oxygen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule15_toxicity(mol):
+    amines = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    sulfides = mol.GetSubstructMatches(Chem.MolFromSmarts('S'))
+    nitriles = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+    return len(amines) + len(sulfides) + len(nitriles)
+
+def rule16_toxicity(mol):
+    positive_nitrogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[nH+]'))
+    return len(positive_nitrogen)
+
+def rule17_adverse_effects(mol):
+    nitrogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[N](C)(C)=O'))
+    sulfur = mol.GetSubstructMatches(Chem.MolFromSmarts('[S](C)(C)=O'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[N]'))
+    return len(nitrogen) + len(sulfur) + len(carbonyl)
+
+def rule18_adverse_effects(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    heteroatoms = rdMolDescriptors.CalcNumHeteroatoms(mol)
+    return hb_donors + hb_acceptors + aromatic_rings + heteroatoms
+
+def rule19_toxicity(mol):
+    nitrogen_positive = mol.GetSubstructMatches(Chem.MolFromSmarts('[nH+]'))
+    carbonyl_negative = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O-]'))
+    chlorine = mol.GetSubstructMatches(Chem.MolFromSmarts('Cl'))
+    return len(nitrogen_positive) + len(carbonyl_negative) + len(chlorine)
+
+def rule20_toxicity(mol):
+    try:
+        chlorine_end = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]'))
+        nitrogen_carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[C](=[O])[N]'))
+        sulfur_carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[C](=[O])[S]'))
+        return len(chlorine_end) + len(nitrogen_carbonyl) + len(sulfur_carbonyl)
+    except:
+        return 0
+
+
+def rule21_toxicity(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O]'))
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))

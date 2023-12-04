@@ -1,0 +1,53 @@
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule8_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule9_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule10_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule11_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule12_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol))
+
+def rule13_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule15_quaternary_carbon(mol):
+    quaternary_carbon = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetDegree() == 4]
+    return len(quaternary_carbon)
+
+def rule16_amine_groups(mol):
+    amine_pattern = Chem.MolFromSmarts('N')
+    matches = mol.GetSubstructMatches(amine_pattern)
+    return len(matches)
+
+def rule17_carboxylic_acid_groups(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(carboxylic_acid_pattern)
+    return len(matches)
+
+def rule18_sulfonic_acid_groups(mol):
+    sulfonic_acid_pattern = Chem.MolFromSmarts('S(=O)(=O)O')
+    matches = mol.GetSubstructMatches(sulfonic_acid_pattern)
+    return len(matches)
+
+def rule19_phosphoric_acid_groups(mol):
+    phosphoric_acid_pattern = Chem.MolFromSmarts('P(=O)(O)(O)O')
+    matches = mol.GetSubstructMatches(phosphoric_acid_pattern)
+    return len(matches)
+
+def rule20_sulfonamide_groups(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    matches = mol.GetSubstructMatches(sulfonamide_pattern)
+    return len(matches)

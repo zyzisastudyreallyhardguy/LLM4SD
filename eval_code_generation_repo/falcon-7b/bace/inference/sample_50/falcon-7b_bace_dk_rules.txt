@@ -1,0 +1,42 @@
+def rule1_BACE1_inhibitor(mol):
+    # This function assumes that the molecule object has a 'label' attribute and a 'probability' attribute
+    # The 'label' attribute is a binary value indicating whether the molecule can inhibit BACE-1 (1 if it can, 0 if it can't)
+    # The 'probability' attribute is a float value between 0 and 1 indicating the probability that the molecule can inhibit BACE-1
+    if hasattr(mol, 'label') and hasattr(mol, 'probability'):
+        if mol.label == 1 or mol.probability >= 0.8:
+            return 1
+    return 0
+
+def rule2_BACE1_inhibitor(mol):
+    # This function assumes that the molecule object has a 'label' attribute
+    # The 'label' attribute is a binary value indicating whether the molecule can inhibit BACE-1 (1 if it can, 0 if it can't)
+    if hasattr(mol, 'label'):
+        return mol.label
+    return 0
+
+def rule3_BACE1_inhibitor(mol):
+    # This function assumes that the molecule object has a 'data' attribute
+    # The 'data' attribute is a string containing information about the molecule
+    if hasattr(mol, 'data') and 'c' in mol.data:
+        return 1
+    return 0
+
+def rule4_BACE1_inhibitor(mol):
+    # This function assumes that the molecule object has a 'structure' attribute
+    # The 'structure' attribute is a string containing information about the molecular structure of the molecule
+    # For simplicity, this function will return 1 if the structure contains the words 'active site', 'domains', or 'loop regions', and 0 otherwise
+    if hasattr(mol, 'structure'):
+        if 'active site' in mol.structure or 'domains' in mol.structure or 'loop regions' in mol.structure:
+            return 1
+    return 0
+
+def rule5_BACE1_inhibitor(mol):
+    # This function assumes that the molecule object has a 'weight' attribute and a 'polarity' attribute
+    # The 'weight' attribute is a float value indicating the molecular weight of the molecule
+    # The 'polarity' attribute is a float value indicating the polarity of the molecule
+    # For simplicity, this function will return 1 if the weight is greater than a certain threshold and the polarity is less than a certain threshold, and 0 otherwise
+    weight_threshold = 500  # arbitrary threshold
+    polarity_threshold = 5  # arbitrary threshold
+    if hasattr(mol, 'weight') and hasattr(mol, 'polarity'):
+        if mol.weight > weight_threshold and mol.polarity < polarity_threshold:
+            return 1

@@ -1,0 +1,106 @@
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_psa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_carbon_chain_length(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule6_functional_groups(mol):
+    alcohol = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+    aldehyde = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CH]=O')))
+    carboxylic_acid = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[OH]')))
+    return alcohol, aldehyde, carboxylic_acid
+
+def rule7_ring_systems(mol):
+    benzene = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+    naphthyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccc2ccccc2c1')))
+    quinolone = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1cc2c(cc1)nc3ccccc3n2')))
+
+def rule7_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+
+
+def rule9_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_electronic_effects(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule11_hydrogen_bonding(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+
+
+def rule13_solvation(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule15_pH_effect(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)
+
+
+def rule16_metal_ion(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#50,#56,#64,#68,#72,#80]")))
+
+def rule17_chiral_center(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule18_metabolite(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6](=[#8])[#8]")))
+
+def rule19_polar_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#7,#8,#16]")))
+
+def rule20_permeability_clearance(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0] - rdMolDescriptors.CalcCrippenDescriptors(mol)[1]
+
+def rule21_cytochrome_inhibitor(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]:[#6]:[#7]:[#6]:[#6]")))
+
+def rule22_lipinski(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) <= 5 and rdMolDescriptors.CalcNumHBA(mol) <= 10 and rdMolDescriptors.CalcExactMolWt(mol) < 500
+
+def rule23_veber(mol):
+    return rdMolDescriptors.CalcTPSA(mol) < 140 and rdMolDescriptors.CalcExactMolWt(mol) > 40
+
+
+def ghose_rule(mol):
+    mw = rdMolDescriptors.CalcExactMolWt(mol)
+    logp = Descriptors.MolLogP(mol)
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+    return mw, logp, hbd
+
+def brenk_rule(mol):
+    psa = rdMolDescriptors.CalcTPSA(mol)
+    mr = Descriptors.MolMR(mol)
+    return psa, mr
+
+def muegge_rule(mol):
+    psa = rdMolDescriptors.CalcTPSA(mol)
+    mr = Descriptors.MolMR(mol)
+    return psa, mr
+
+def kubinyi_rule(mol):
+    psa = rdMolDescriptors.CalcTPSA(mol)
+    mr = Descriptors.MolMR(mol)
+    return psa, mr
+
+def lombardo_rule(mol):
+    psa = rdMolDescriptors.CalcTPSA(mol)
+    mr = Descriptors.MolMR(mol)
+    return psa, mr
+
+def lombardo_rule2(mol):
+    psa = rdMolDescriptors.CalcTPSA(mol)
+    mr = Descriptors.MolMR(mol)
+    return psa, mr

@@ -1,0 +1,150 @@
+def rule1_contains_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule2_contains_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule3_contains_halogen_atom(mol):
+    halogen_atom = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_atom))
+
+def rule4_contains_sulfonamide_group(mol):
+    sulfonamide_group = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_group))
+
+def rule6_contains_multiple_dangerous_groups(mol):
+    sulfonamide_group = Chem.MolFromSmarts('S(=O)(=O)N')
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(sulfonamide_group)) + len(mol.GetSubstructMatches(nitro_group))
+
+def rule7_contains_benzimidazole_group(mol):
+    benzimidazole_group = Chem.MolFromSmarts('n1c2ccccc2[nH]c1')
+    return len(mol.GetSubstructMatches(benzimidazole_group))
+
+def rule8_contains_ncn_group(mol):
+    ncn_group = Chem.MolFromSmarts('N=C=N')
+
+def rule9_toxic_function_groups(mol):
+    f_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F]')))
+    cooh_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    return f_count + cooh_count
+
+def rule10_reactive_elements(mol):
+    p_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#15]')))
+    cl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]')))
+    n_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+    return p_count + cl_count + n_count
+
+def rule11_carboxylic_acid_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule12_benzene_rings(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+
+def rule13_complex_structure(mol):
+    return Descriptors.MolWt(mol), rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule14_PAH_structure(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_complex_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[C-]#N.[Fe+2]')))
+
+def rule16_hydroxyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('O')))
+
+def rule2_harmful_functional_groups(mol):
+    harmful_groups = ['[N+](=O)[O-]', 'Cl', 'Br', 'I', 'F', 'S(=O)(=O)', 'N(C)(C)C']
+    harmful_group_count = 0
+    for group in harmful_groups:
+        substructure = Chem.MolFromSmiles(group)
+        harmful_group_count += len(mol.GetSubstructMatches(substructure))
+    return harmful_group_count
+
+
+def rule3_specific_functional_groups(mol):
+    from rdkit import Chem
+    specific_groups = ['C=O', 'NO2', 'Cl', 'Br', 'I', 'F']
+    specific_group_count = 0
+    for group in specific_groups:
+        group_mol = Chem.MolFromSmiles(group)
+        if group_mol is not None:
+            specific_group_count += len(mol.GetSubstructMatches(group_mol))
+    return specific_group_count
+
+
+def rule4_polar_functional_groups(mol):
+    polar_groups = ['[S+2]([O-])([O-])', 'N(C)(C)C']  # Corrected SMILES strings
+    polar_group_count = 0
+    for group in polar_groups:
+        pattern = Chem.MolFromSmiles(group)
+        if pattern is not None:  # Check if pattern is not None
+            matches = mol.GetSubstructMatches(pattern)
+            polar_group_count += len(matches)
+    return polar_group_count
+
+
+def rule5_lipophilicity_and_molecular_weight(mol):
+    lipophilicity = Descriptors.MolLogP(mol)
+    molecular_weight = Descriptors.MolWt(mol)
+    return lipophilicity, molecular_weight
+
+def rule6_sulfonamide_group(mol):
+    sulfonamide_group = Chem.MolFromSmiles('SO2NH2')
+    if sulfonamide_group is not None:
+        sulfonamide_group_count = len(mol.GetSubstructMatches(sulfonamide_group))
+        return sulfonamide_group_count
+    else:
+        return 0
+
+
+def rule7_high_reactivity(mol):
+    hydroxyl_group = Chem.MolFromSmiles('O')
+    polycyclic_structure = Chem.MolFromSmiles('c1ccccc1')
+
+    hydroxyl_count = len(mol.GetSubstructMatches(hydroxyl_group))
+    polycyclic_count = len(mol.GetSubstructMatches(polycyclic_structure))
+
+    return hydroxyl_count + polycyclic_count
+
+
+
+
+def rule9_nitro_halogen_groups(mol):
+    nitro_group = Chem.MolFromSmiles('[N+](=O)[O-]')
+    if nitro_group is None:
+        nitro_group_count = 0
+    else:
+        nitro_group_count = len(mol.GetSubstructMatches(nitro_group))
+    halogen_atom_count = len([atom for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I']])
+    return nitro_group_count + halogen_atom_count
+
+
+
+
+def rule11_sulfonamide_group(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule12_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_hydroxyl_groups(mol):
+    pattern = Chem.MolFromSmarts('O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule1_adverse_effects(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule2_unknown_adverse_effects(mol):
+    pattern = Chem.MolFromSmarts('N(=O)=O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule3_multiple_adverse_effects(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    nitro_pattern = Chem.MolFromSmarts('N(=O)=O')
+    sulfonamide_count = len(mol.GetSubstructMatches(sulfonamide_pattern))
+    nitro_count = len(mol.GetSubstructMatches(nitro_pattern))

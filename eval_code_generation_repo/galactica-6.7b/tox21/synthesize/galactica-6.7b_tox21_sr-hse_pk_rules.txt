@@ -1,0 +1,66 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_num_hydrogen_atoms(mol):
+    return Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+
+def rule3_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_num_nitrogen_atoms(molecule):
+    return len([atom for atom in molecule.GetAtoms() if atom.GetSymbol() == 'N'])
+
+
+def rule7_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule8_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule9_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule10_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule11_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule12_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2 and bond.GetIsAromatic() == False])
+
+
+def rule13_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE])
+
+
+def rule14_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule15_amino_groups(mol):
+    amino_pattern = Chem.MolFromSmarts('N')
+    return len(mol.GetSubstructMatches(amino_pattern))
+
+def rule16_carboxylic_acid_groups(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule17_carbonyl_groups(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule18_ether_groups(mol):
+    ether_pattern = Chem.MolFromSmarts('O')
+    return len(mol.GetSubstructMatches(ether_pattern))
+
+def rule19_sulfide_groups(mol):
+    sulfide_pattern = Chem.MolFromSmarts('S')
+    return len(mol.GetSubstructMatches(sulfide_pattern))
+
+def rule20_sulfoxide_groups(mol):
+    sulfoxide_pattern = Chem.MolFromSmarts('S(=O)')
+    return len(mol.GetSubstructMatches(sulfoxide_pattern))

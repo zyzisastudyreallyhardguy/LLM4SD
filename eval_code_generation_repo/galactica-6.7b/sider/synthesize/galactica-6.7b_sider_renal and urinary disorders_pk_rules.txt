@@ -1,0 +1,74 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_nephrotoxic_groups(mol):
+    aldehyde = Chem.MolFromSmarts('C=O')
+    ketone = Chem.MolFromSmarts('CC(=O)C')
+    return mol.GetSubstructMatches(aldehyde) + mol.GetSubstructMatches(ketone)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_reactive_groups(mol):
+    carboxylic_acid = Chem.MolFromSmarts('C(=O)O')
+    ester = Chem.MolFromSmarts('C(=O)OC')
+    return mol.GetSubstructMatches(carboxylic_acid) + mol.GetSubstructMatches(ester)
+
+def rule7_electronegativity(mol):
+    total_electronegativity = 0
+    for atom in mol.GetAtoms():
+        total_electronegativity += atom.GetAtomicNum()
+    return total_electronegativity
+
+def rule8_polar_groups(mol):
+    polar_groups = ['[OH]', '[NH2]', '[COOH]', '[SO3H]', '[PO3H2]', '[CO]', '[CN]', '[SO2]', '[NO2]', '[PO3]']
+    for group in polar_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+
+def rule9_solubility(mol):
+    return rule8_polar_groups(mol)
+
+def rule10_acid_base_groups(mol):
+    acidic_groups = ['C(=O)O', 'S(=O)(=O)O', 'P(=O)(O)O']
+    basic_groups = ['N', '[NH]', '[NH2]']
+    for group in acidic_groups + basic_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+
+def rule11_boiling_point(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule12_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule13_melting_point(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule14_nitrogen_oxygen_atoms(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in ['N', 'O']:
+            return 1
+
+def rule15_heat_of_combustion(mol):
+    return 0
+
+def rule16_check_sulfur_phosphorus(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['S', 'P'])
+
+def rule17_density(mol):
+    return 0
+
+def rule18_check_metal_ions(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in range(21, 31))
+
+def rule19_reactivity(mol):
+    return 0

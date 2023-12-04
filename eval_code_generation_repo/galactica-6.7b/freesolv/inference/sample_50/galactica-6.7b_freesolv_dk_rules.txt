@@ -1,0 +1,71 @@
+def rule1_hydration_free_energy(mol):
+    polarity = rdMolDescriptors.CalcTPSA(mol)
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return polarity + hb_donors + hb_acceptors
+
+def rule2_hydration_free_energy(mol):
+    carbon_chain_length = mol.GetNumHeavyAtoms()
+    return carbon_chain_length
+
+
+
+def rule4_hydration_free_energy(mol):
+    electronegative_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [7, 8]:  # Nitrogen and Oxygen atomic numbers
+            electronegative_atoms += 1
+
+def rule5_functional_groups(mol):
+    from rdkit import Chem
+    functional_groups = ['[OH]', '[C=O]', '[COOH]', '[C(O)R]']
+    count = 0
+    for group in functional_groups:
+        patt = Chem.MolFromSmarts(group)
+        if patt is not None:
+            matches = mol.GetSubstructMatches(patt)
+            count += len(matches)
+    return count
+
+
+def rule6_polar_nonpolar(mol):
+    polar = Chem.MolFromSmarts('[#7,#8,#9,#15,#16,#17,#35,#53]')
+    nonpolar = Chem.MolFromSmarts('[#6,#14]')
+    polar_count = len(mol.GetSubstructMatches(polar))
+    nonpolar_count = len(mol.GetSubstructMatches(nonpolar))
+    return polar_count, nonpolar_count
+
+def rule7_electronic_structure(mol):
+    electronegativity = Descriptors.MolWt(mol)
+    electron_density = Descriptors.NumValenceElectrons(mol)
+    lone_pairs = Chem.MolFromSmarts('[R0]')
+    lone_pairs_count = len(mol.GetSubstructMatches(lone_pairs))
+    return electronegativity, electron_density, lone_pairs_count
+
+def rule8_hydrophobicity(mol):
+    hydrophobicity = Descriptors.MolLogP(mol)
+    return hydrophobicity
+
+def rule9_complexity(mol):
+    if type(mol) == str:
+        mol = Chem.MolFromSmiles(mol)
+    complexity = Descriptors.HeavyAtomCount(mol) + mol.GetNumBonds()
+    return complexity
+
+
+def rule10_dipole_moment(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule1_hydration_free_energy(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule2_hydration_free_energy(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule4_carbon_chain_length(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule5_func_groups(mol):
+    func_groups = ['[O;H1,-1]', '[C](=O)[O;H1,-1]']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(fg))) for fg in func_groups)
+

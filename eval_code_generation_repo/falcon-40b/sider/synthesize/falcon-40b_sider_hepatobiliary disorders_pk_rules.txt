@@ -1,0 +1,55 @@
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule8_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule9_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule10_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(x))) for x in halogens)
+
+def rule11_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule12_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol))
+
+def rule13_double_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('*=*')))
+
+
+def rule15_quaternary_carbon(mol):
+    quaternary_carbon = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetDegree() == 4]
+    return len(quaternary_carbon)
+
+def rule16_amine_groups(mol):
+    amine_smarts = '[NX3;H2,H1;!$(NC=O)]'
+    amine = mol.GetSubstructMatches(Chem.MolFromSmarts(amine_smarts))
+    return len(amine)
+
+def rule17_carboxylic_acid_groups(mol):
+    carboxylic_acid_smarts = 'C(=O)O'
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts(carboxylic_acid_smarts))
+    return len(carboxylic_acid)
+
+def rule18_hydroxyl_groups(mol):
+    hydroxyl_smarts = '[OH]'
+    hydroxyl = mol.GetSubstructMatches(Chem.MolFromSmarts(hydroxyl_smarts))
+    return len(hydroxyl)
+
+def rule19_sulfhydryl_groups(mol):
+    sulfhydryl_smarts = '[SH]'
+    sulfhydryl = mol.GetSubstructMatches(Chem.MolFromSmarts(sulfhydryl_smarts))
+    return len(sulfhydryl)
+
+def rule20_aldehyde_groups(mol):
+    aldehyde_smarts = 'C=O'
+    aldehyde = mol.GetSubstructMatches(Chem.MolFromSmarts(aldehyde_smarts))
+    return len(aldehyde)

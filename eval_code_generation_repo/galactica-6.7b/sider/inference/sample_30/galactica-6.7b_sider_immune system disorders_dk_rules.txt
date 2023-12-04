@@ -1,0 +1,144 @@
+def rule1_adverse_effects(mol):
+    sulfonamide_smarts = '[S](=O)(=O)[N]'
+    piperazine_smarts = 'C1CNCCN1'
+    quinolone_smarts = 'c1c2c(c(=O)c3c1cccc3)cc(=O)[nH]c2=O'
+
+def rule2_immune_disorders(mol):
+    carboxylic_acid_smarts = 'C(=O)[O;h1]'
+    nitro_smarts = '[N+](=O)[O-]'
+    halogenated_aromatic_smarts = 'c1ccccc1X'
+
+def rule3_adverse_effects(mol):
+    nitro_smarts = '[N+](=O)[O-]'
+    chlorine_smarts = '[Cl]'
+    carbonyl_smarts = 'C=O'
+
+def rule4_adverse_effects(mol):
+    aromatic_ring_smarts = 'c1ccccc1'
+    polar_functional_group_smarts = '[#7,#8,#16]'
+    molecular_weight = rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule5_immune_disorders(mol):
+    benzene_ring_smarts = 'c1ccccc1'
+
+def rule6_adverse_effects(mol):
+    sulfonamide_smarts = '[S](=O)(=O)[N]'
+    quinolone_smarts = 'c1c2c(c(=O)c3c1cccc3)cc(=O)[nH]c2=O'
+    benzimidazole_smarts = 'n1c2c(nc1)cccc2'
+
+def rule7_immune_effects(mol):
+    carboxylic_acid_smarts = 'C(=O)[O;h1]'
+    nitro_smarts = '[N+](=O)[O-]'
+    halogen_smarts = '[F,Cl,Br,I]'
+
+def rule8_immune_disorders(mol):
+    sulfonamide_smarts = '[S](=O)(=O)[N]'
+    carbamate_smarts = 'O=C(O)N'
+    phenol_smarts = 'c1ccccc1O'
+
+def rule9_high_mol_weight_polar_aromatic(mol):
+    mw = Descriptors.MolWt(mol)
+    num_polar = rdMolDescriptors.CalcNumHBA(mol)
+    num_aromatic = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return mw, num_polar, num_aromatic
+
+
+
+
+
+def rule12_immune_disorders(mol):
+    num_halogen_aromatic = rdMolDescriptors.CalcNumAromaticHeterocycles(mol)
+    num_amide = rdMolDescriptors.CalcNumAmideBonds(mol)
+    num_carboxylic = rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+    return num_halogen_aromatic, num_amide, num_carboxylic
+
+
+
+def rule15_high_mol_weight_aromatic_polar(mol):
+    mw = Descriptors.MolWt(mol)
+    num_aromatic = rdMolDescriptors.CalcNumAromaticRings(mol)
+    num_polar = rdMolDescriptors.CalcNumHBA(mol)
+    return mw, num_aromatic, num_polar
+
+def rule16_immune_disorders(mol):
+    num_carboxylic = rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+    nitro_pattern = '[N+](=O)[O-]'
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts(nitro_pattern))
+    num_nitro = len(nitro)
+    num_halogen_aromatic = rdMolDescriptors.CalcNumAromaticHeterocycles(mol)
+    return num_carboxylic + num_nitro + num_halogen_aromatic
+
+
+def rule1_aromatic_ring(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule2_polar_functional_group(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_charged_groups(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule4_sulfonamide_group(mol):
+    sulfonamide_pattern = '[#16](=[O])(-[#7])'
+    pattern = Chem.MolFromSmarts(sulfonamide_pattern)
+    return len(mol.GetSubstructMatches(pattern))
+
+
+def rule5_metal_ion(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() > 20])
+
+
+def rule6_carbamate_group(mol):
+    carbamate_pattern = '[#6](=[#8])-[#7](-[#1])-[#6](-[#8])-[#1]'
+    carbamate = Chem.MolFromSmarts(carbamate_pattern)
+    return len(mol.GetSubstructMatches(carbamate))
+
+
+def rule7_piperazine_group(mol):
+    piperazine = Chem.MolFromSmiles('C1CNCCN1')
+    return len(mol.GetSubstructMatches(piperazine))
+
+
+def rule8_benzimidazole_group(mol):
+    benzimidazole_pattern = Chem.MolFromSmarts('c1[nH]c2c(n1)cccc2')
+    return len(mol.GetSubstructMatches(benzimidazole_pattern))
+
+
+def rule9_chlorobenzene(mol):
+    chlorobenzene_smarts = '[cH]1[cH][cH][cH][cH][cH]1[Cl]'
+    chlorobenzene = Chem.MolFromSmarts(chlorobenzene_smarts)
+    return len(mol.GetSubstructMatches(chlorobenzene))
+
+def rule10_nitro_group(mol):
+    nitro_smarts = '[N+](=O)[O-]'
+    nitro = Chem.MolFromSmarts(nitro_smarts)
+    return len(mol.GetSubstructMatches(nitro))
+
+def rule11_carbonyl_group(mol):
+    carbonyl_smarts = 'C=O'
+    carbonyl = Chem.MolFromSmarts(carbonyl_smarts)
+    return len(mol.GetSubstructMatches(carbonyl))
+
+def rule12_halogen_atom(mol):
+    halogen_smarts = '[F,Cl,Br,I]'
+    halogen = Chem.MolFromSmarts(halogen_smarts)
+    return len(mol.GetSubstructMatches(halogen))
+
+def rule13_estrogenic_group(mol):
+    estrogenic_smarts = 'c1cc2c(cc1O)C3CCC4CC(O)CCC4(C)C3CCC2O'
+    estrogenic = Chem.MolFromSmarts(estrogenic_smarts)
+    return len(mol.GetSubstructMatches(estrogenic))
+
+def rule14_benzothiazole(mol):
+    benzothiazole_smarts = 'c1ccc2c(c1)c(ncs2)'
+    benzothiazole = Chem.MolFromSmarts(benzothiazole_smarts)
+    return len(mol.GetSubstructMatches(benzothiazole))
+
+def rule15_quinolone(mol):
+    quinolone_smarts = 'c1cc2c(cc1O)C(=O)CCN2'
+    quinolone = Chem.MolFromSmarts(quinolone_smarts)
+    return len(mol.GetSubstructMatches(quinolone))
+
+def rule16_nitro_group(mol):
+    nitro_smarts = '[N+](=O)[O-]'
+    nitro = Chem.MolFromSmarts(nitro_smarts)

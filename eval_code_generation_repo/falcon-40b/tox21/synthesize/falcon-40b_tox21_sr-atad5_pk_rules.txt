@@ -1,0 +1,40 @@
+
+def rule6_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule7_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(x))) for x in halogens)
+
+def rule8_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule9_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule10_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule11_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_hydrogen_bonding_capacity(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule15_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule16_hb_acceptor_donors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)
+
+def rule17_hb_acceptor_donors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)
+
+def rule18_hb_acceptor_donors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)
+
+def rule19_hb_acceptor_donors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)

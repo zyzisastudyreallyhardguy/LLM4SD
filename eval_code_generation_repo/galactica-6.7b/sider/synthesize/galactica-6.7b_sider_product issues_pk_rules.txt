@@ -1,0 +1,69 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_num_hydrogen(mol):
+    return mol.GetNumAtoms() - mol.GetNumHeavyAtoms()
+
+
+def rule3_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_num_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+
+def rule7_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule8_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule9_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule10_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule11_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule12_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule13_double_bonds(mol):
+    double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdchem.BondType.DOUBLE:
+            double_bonds += 1
+    return double_bonds
+
+
+def rule15_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+
+def rule16_amino_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NH2]')))
+
+def rule17_carboxylic_acid_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[OH]')))
+
+def rule18_ester_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule19_ether_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C-O-C')))
+
+def rule20_other_functional_groups(mol):
+    hydroxyl = rule15_hydroxyl_groups(mol)
+    amino = rule16_amino_groups(mol)
+    carboxylic_acid = rule17_carboxylic_acid_groups(mol)
+    ester = rule18_ester_groups(mol)
+    ether = rule19_ether_groups(mol)
+    # Assuming that these are all the functional groups in your molecule
+    total_groups = hydroxyl + amino + carboxylic_acid + ester + ether
+    other_groups = total_groups - hydroxyl - amino - carboxylic_acid - ester - ether
+    return other_groups
+

@@ -1,0 +1,63 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+def rule3_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_num_nitrogen_atoms(molecule):
+    count = 0
+    for atom in molecule.GetAtoms():
+        if atom.GetSymbol() == 'N':
+            count += 1
+    return count
+
+
+def rule7_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule8_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule9_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule10_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule11_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule12_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule13_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2 and bond.GetIsAromatic() == False])
+
+def rule13_double_bonds(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2 and bond.GetIsAromatic() == False])
+
+
+def rule15_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+
+def rule16_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+
+def rule17_ether_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#8]-[#6]')))
+
+def rule18_alcohol_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]-[#1]')))
+
+def rule19_amino_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N;H2,H1]')))
+
+def rule20_carboxylic_acid_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]')))

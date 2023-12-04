@@ -1,0 +1,102 @@
+def rule1_logD_carbon_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule2_logD_hydrogen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#1]')))
+
+def rule3_logD_polar_group_weight(mol):
+    polar_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#9,#15,#16,#17,#35,#53]'))
+    return sum([mol.GetAtomWithIdx(atom_idx).GetMass() for group in polar_groups for atom_idx in group])
+
+def rule4_logD_hydrophobic_groups(mol):
+    hydrophobic_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1'))
+    return len(hydrophobic_groups)
+
+def rule5_logD_molecular_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule6_logD_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule7_logD_electronic_properties(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8]')))
+
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+
+
+def rule3_molecular_properties(mol):
+    size = mol.GetNumHeavyAtoms()
+    shape = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    electronic_structure = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return size, shape, electronic_structure
+
+def rule4_lipophilicity(mol):
+    return Descriptors.MolLogP(mol) - Descriptors.MolMR(mol) 
+
+def rule5_logD_conformational_flexibility(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_logD_carbon_atoms(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule7_logD_hb_donors_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+
+
+def rule10_logD_polar_groups(mol):
+    polar_groups = ['[OH]', '[O-]', '[NH2]', '[NH-]', '[N+H]', '[N+]', '[C=O]', '[C-O]', '[C-N]']
+    polar_group_count = 0
+    for group in polar_groups:
+        query = Chem.MolFromSmarts(group)
+        if query is not None:
+            polar_group_count += mol.HasSubstructMatch(query)
+    polar_group_hydrogen_count = sum(atom.GetTotalNumHs() for atom in mol.GetAtoms() if atom.GetSymbol() in ['O', 'N'])
+    polar_group_mw = Descriptors.MolWt(mol) - Descriptors.HeavyAtomMolWt(mol)
+    return polar_group_mw - polar_group_hydrogen_count
+
+
+def rule11_logD_hydrophobic_groups(mol):
+    hydrophobic_groups = ['[CH3]', '[CH2]', '[CH]', '[C]', '[c]']
+    polar_groups = ['[OH]', '[O-]', '[NH2]', '[NH]', '[N+]', '[C=O]', '[C-O]', '[C-N]']
+    hydrophobic_group_count = 0
+    polar_group_count = 0
+    for group in hydrophobic_groups:
+        try:
+            hydrophobic_group_count += mol.HasSubstructMatch(Chem.MolFromSmarts(group))
+        except:
+            continue
+    for group in polar_groups:
+        try:
+            polar_group_count += mol.HasSubstructMatch(Chem.MolFromSmarts(group))
+        except:
+            continue
+    return hydrophobic_group_count + polar_group_count
+
+
+def rule12_logD_polar_func_group(mol):
+    polar_groups = ['[OH]', '[O-]', '[NH2]', '[NH-]', '[N+H]', '[N+]', '[C=O]', '[C-O]', '[C-N]']
+    polar_group_count = 0
+    for group in polar_groups:
+        group_mol = Chem.MolFromSmarts(group)
+        if group_mol is not None:
+            polar_group_count += mol.HasSubstructMatch(group_mol)
+    polar_group_hydrogen_count = sum(atom.GetTotalNumHs() for atom in mol.GetAtoms() if atom.GetSymbol() in ['O', 'N'])
+    polar_group_mw = Descriptors.MolWt(mol) - Descriptors.HeavyAtomMolWt(mol)
+    return polar_group_mw - polar_group_hydrogen_count
+
+
+def rule13_logD_polar_func_group(mol):
+    polar_groups = ['[OH]', '[O-]', '[NH2]', '[NH-]', '[N+H]', '[N+]', '[C=O]', '[C-O]', '[C-N]']
+    polar_group_count = 0
+    for group in polar_groups:
+        try:
+            mol_group = Chem.MolFromSmarts(group)
+            if mol_group is not None:
+                polar_group_count += mol.HasSubstructMatch(mol_group)
+        except:
+            continue
+    return polar_group_count
+

@@ -1,0 +1,85 @@
+def rule1_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule2_atomic_mass(mol):
+    total_mass = 0
+    for atom in mol.GetAtoms():
+        total_mass += atom.GetMass()
+    return total_mass
+
+def rule3_electronegativity_diff(mol):
+    max_diff = 0
+    for bond in mol.GetBonds():
+        atom1 = bond.GetBeginAtom()
+        atom2 = bond.GetEndAtom()
+        diff = abs(atom1.GetAtomicNum() - atom2.GetAtomicNum())
+        if diff > max_diff:
+            max_diff = diff
+    return max_diff
+
+def rule4_bond_angle(mol):
+    return 0
+
+def rule5_bond_length(mol):
+    max_length = 0
+    if mol.GetNumConformers() > 0:  # Check if the molecule has a conformer
+        conf = mol.GetConformer()
+        for bond in mol.GetBonds():
+            atom1 = bond.GetBeginAtomIdx()
+            atom2 = bond.GetEndAtomIdx()
+            length = conf.GetDistance(atom1, atom2)
+            if length > max_length:
+                max_length = length
+    return max_length
+
+
+def rule6_double_bonds(mol):
+    pattern = Chem.MolFromSmarts('=')
+    if pattern is not None:
+        return len(mol.GetSubstructMatches(pattern))
+    else:
+        return 0
+
+
+def rule7_triple_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('Triple bond SMARTS pattern')))
+
+def rule7_triple_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('*#*')))
+
+
+def rule8_polar_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() > 1)
+
+def rule9_lone_pairs(mol):
+    return sum(atom.GetTotalNumHs() for atom in mol.GetAtoms())
+
+def rule10_hydrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'H')
+
+def rule11_carbon_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule12_oxygen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')
+
+def rule13_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule15_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule16_phosphorus_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('P')))
+
+def rule17_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule18_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule19_aluminum_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Al]')))
+
+def rule20_silicon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Si]')))

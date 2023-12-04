@@ -1,0 +1,265 @@
+def rule4_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule5_branching_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule6_sp_hybridized_atoms(mol):
+    return rdMolDescriptors.CalcNumAliphaticHeterocycles(mol)
+
+def rule7_carboxylic_acid_groups(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule8_halogens(mol):
+    halogens_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogens_pattern))
+
+def rule9_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule10_cc_single_bonds(mol):
+    cc_single_bonds_pattern = Chem.MolFromSmarts('CC')
+    return len(mol.GetSubstructMatches(cc_single_bonds_pattern))
+
+def rule11_molecular_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule13_alkynes(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C-]#[C+]')))
+
+def rule14_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule15_sulfonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)')))
+
+def rule16_intramolecular_forces(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+
+
+def rule18_steric_clashes(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+
+
+def rule20_substituents(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule21_pi_electrons(mol):
+    pi_electrons = 0
+    for atom in mol.GetAtoms():
+        pi_electrons += atom.GetTotalNumHs()
+    return pi_electrons
+
+
+def rule23_alkene_alkyne(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[#6]')))
+
+def rule24_saturated(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#6]')))
+
+def rule25_tertiary_carbon(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](~[#6])(~[#6])(~[#6])')))
+
+def rule26_sulfide_linkages(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]-[#16]')))
+
+def rule28_acyl_chloride(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[#8])-[#17]')))
+
+def rule29_hydrogen_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[#8])-[#8]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]-[#1]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7](-[#1])-[#1]')))
+
+def rule30_large_ring(mol):
+    return sum([1 for ring in mol.GetRingInfo().AtomRings() if len(ring) > 6])
+
+def rule31_amide_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[#8])-[#7]')))
+
+def rule33_polar_bonds(mol):
+    polar_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#8,#6]-[#1,#6]'))
+    return len(polar_bonds)
+
+def rule34_non_bonding_electrons(mol):
+    non_bonding_electrons = 0
+    for atom in mol.GetAtoms():
+        non_bonding_electrons += atom.GetNumRadicalElectrons()
+    return non_bonding_electrons
+
+def rule35_strained_cyclic_structures(mol):
+    strained_rings = mol.GetSubstructMatches(Chem.MolFromSmarts('[R3]'))
+    return len(strained_rings)
+
+def rule36_azide_groups(mol):
+    azide_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[N-]=[N+]=[N-]'))
+    return len(azide_groups)
+
+def rule37_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule38_nitroso_groups(mol):
+    nitroso_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[N]=[O]'))
+    return len(nitroso_groups)
+
+def rule39_alkyl_groups(mol):
+    alkyl_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[C;X4]([C;X4])=[C;X3]'))
+    return len(alkyl_groups)
+
+def rule40_electron_donating_groups(mol):
+    edg = mol.GetSubstructMatches(Chem.MolFromSmarts('[#8,#7]-[#6]'))
+    return len(edg)
+
+def rule41_thio_ether_groups(mol):
+    thio_ether_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]-[#6]'))
+    return len(thio_ether_groups)
+
+def rule42_methylene_groups(mol):
+    methylene_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[CH2]'))
+
+def rule43_keto_enol(mol):
+    pattern = Chem.MolFromSmarts('C=C-C-O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule44_aldehyde(mol):
+    pattern = Chem.MolFromSmarts('C=O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule45_phosphonium(mol):
+    pattern = Chem.MolFromSmarts('[P+](C)(C)(C)C')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule4_heteroatoms(mol):
+    pattern = Chem.MolFromSmarts('[#15,#16]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule5_carbon_chain(mol):
+    pattern = Chem.MolFromSmarts('CCCC')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_charged_atoms(mol):
+    pattern = Chem.MolFromSmarts('[+,-]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule7_halogens(mol):
+    pattern = Chem.MolFromSmarts('[F,Cl]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule8_steric_factors(mol):
+    pattern = Chem.MolFromSmarts('C(C)(C)C')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule9_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_free_radicals(mol):
+    pattern = Chem.MolFromSmarts('[*]')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule11_pi_bonds(mol):
+    pi_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType().name == 'DOUBLE' or bond.GetBondType().name == 'TRIPLE':
+            pi_bonds += 1
+    return pi_bonds
+
+
+def rule12_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule16_unsaturation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+def rule17_valence_electrons(mol):
+    return sum(atom.GetTotalValence() for atom in mol.GetAtoms())
+
+
+def rule18_branching(mol):
+    num_aliphatic_branches = 0
+    for atom in mol.GetAtoms():
+        if atom.GetIsAromatic() == False and atom.GetDegree() > 2:
+            num_aliphatic_branches += 1
+    return num_aliphatic_branches
+
+
+def rule19_chiral_centers(mol):
+    return rdMolDescriptors.CalcNumChiralCenters(mol)
+
+def rule23_degree_of_substitution(mol):
+    tertiary_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C' and atom.GetDegree() == 3:
+            tertiary_carbons += 1
+    return tertiary_carbons
+
+def rule24_dipole_moment(mol):
+    return Chem.rdMolDescriptors.CalcTPSA(mol)
+
+def rule25_polar_bonds(mol):
+    polar_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondTypeAsDouble() > 1.0:
+            polar_bonds += 1
+    return polar_bonds
+
+def rule27_polarity(mol):
+    return Chem.rdMolDescriptors.CalcTPSA(mol)
+
+def rule28_molar_mass(mol):
+    return Descriptors.MolWt(mol)
+
+def rule29_hydrogen_bonding(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule31_spatial_orientation(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule32_isotopes(mol):
+    isotopes = [atom.GetIsotope() for atom in mol.GetAtoms() if atom.GetIsotope() != 0]
+    return len(isotopes)
+
+
+
+
+def rule34_metal_content(mol):
+    metal_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() > 20:
+            metal_count += 1
+    return metal_count
+
+
+def rule35_ring_info(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol), rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule36_conjugation(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule39_rotational_freedom(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule41_atomic_size(mol):
+    return sum([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+
+def rule43_charge_separation(mol):
+    return sum([abs(atom.GetFormalCharge()) for atom in mol.GetAtoms()])
+
+def rule44_delocalized_electrons(mol):
+    return sum([atom.GetTotalDegree() for atom in mol.GetAtoms() if atom.GetIsAromatic()])
+
+def rule46_lone_pairs(mol):
+    return sum([atom.GetNumExplicitHs() for atom in mol.GetAtoms()])
+
+def rule48_polarizable_atoms(mol):
+    return sum([atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [15, 16, 33, 34, 51, 52]])

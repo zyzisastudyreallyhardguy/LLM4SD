@@ -1,0 +1,50 @@
+
+def rule6_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule7_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule8_nitrogen_oxygen_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]-[#8]')))
+
+def rule9_oxygen_oxygen_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]-[#8]')))
+
+def rule10_hydrogen_oxygen_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#1]-[#8]')))
+
+def rule11_carbon_oxygen_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#8]')))
+
+def rule12_nitrogen_carbon_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]-[#6]')))
+
+def rule13_oxygen_nitrogen_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]-[#7]')))
+
+def rule14_carbon_nitrogen_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#7]')))
+
+def rule15_NO2_bonds(mol):
+    NO2_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]-[#8]-[#7]'))
+    return len(NO2_bonds)
+
+def rule16_O2N_bonds(mol):
+    O2N_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]-[#8]-[#7]'))
+    return len(O2N_bonds)
+
+def rule17_NO3_bonds(mol):
+    NO3_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]-[#8]-[#7]-[#7]'))
+    return len(NO3_bonds)
+
+def rule18_CON2_bonds(mol):
+    CON2_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#8]-[#7]-[#7]'))
+    return len(CON2_bonds)
+
+def rule19_NO3_bonds(mol):
+    NO3_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]-[#8]-[#7]-[#7]'))
+    return len(NO3_bonds)
+
+def rule20_O2N2_bonds(mol):
+    O2N2_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]-[#8]-[#7]-[#7]'))

@@ -1,0 +1,142 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_aliphatic_rings(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule8_hydroxyl_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticHeterocycles(mol)
+
+def rule9_carbonyl_groups(mol):
+    carbonyl_pattern = '[#6][#6](=[O])'
+    carbonyl = Chem.MolFromSmarts(carbonyl_pattern)
+    return len(mol.GetSubstructMatches(carbonyl))
+
+
+def rule10_nitrogen_atoms(mol):
+    nitrogen_atoms = mol.GetSubstructMatches(Chem.MolFromSmiles('N'))
+    return len(nitrogen_atoms)
+
+
+def rule11_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+
+def rule12_chlorine_atoms(mol):
+    chlorine = Chem.MolFromSmiles('Cl')
+    matches = mol.GetSubstructMatches(chlorine)
+    return len(matches)
+
+
+def rule13_fluorine_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 9])
+
+
+def rule14_bromine_atoms(mol):
+    bromine = Chem.MolFromSmiles('Br')
+    return len(mol.GetSubstructMatches(bromine))
+
+
+def rule15_iodine_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 53])
+
+
+def rule16_conjugated_double_bonds(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    conjugated_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetIsConjugated() and bond.GetBondTypeAsDouble() == 2.0:
+            conjugated_double_bonds += 1
+    return conjugated_double_bonds
+
+
+
+
+def rule18_tertiary_carbon_atoms(mol):
+    tertiary_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C' and atom.GetDegree() == 3:
+            if all(neighbor.GetSymbol() == 'C' for neighbor in atom.GetNeighbors()):
+                tertiary_carbons += 1
+    return tertiary_carbons
+
+
+def rule19_quaternary_carbon_atoms(mol):
+    quaternary_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and atom.GetDegree() == 4:
+            quaternary_carbons += 1
+    return quaternary_carbons
+
+
+def rule20_chiral_centers(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule21_rigid_rings(mol):
+    return mol.GetRingInfo().NumRings()
+
+
+def rule22_flexible_rings(mol):
+    ri = mol.GetRingInfo()
+    return len([x for x in ri.AtomRings() if not mol.GetAtomWithIdx(x[0]).GetIsAromatic()])
+
+
+def rule23_acyclic_chains(mol):
+    acyclic_chains = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdchem.BondType.SINGLE:
+            acyclic_chains += 1
+    return acyclic_chains
+
+
+def rule24_terminal_double_bond_chains(mol):
+    num_terminal_double_bond_chains = 0
+    # Your code to calculate the number of terminal double bond chains goes here
+    return num_terminal_double_bond_chains
+
+
+def rule25_terminal_triple_bond(mol):
+    triple_bond_smarts = '[#6]#[#6]'
+    triple_bond_pattern = Chem.MolFromSmarts(triple_bond_smarts)
+    return len(mol.GetSubstructMatches(triple_bond_pattern))
+
+def rule26_terminal_hydroxyl(mol):
+    hydroxyl_smarts = '[OH1]'
+    hydroxyl_pattern = Chem.MolFromSmarts(hydroxyl_smarts)
+    return len(mol.GetSubstructMatches(hydroxyl_pattern))
+
+def rule27_terminal_carbonyl(mol):
+    carbonyl_smarts = '[#6]=[O]'
+    carbonyl_pattern = Chem.MolFromSmarts(carbonyl_smarts)
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule28_terminal_nitrogen(mol):
+    nitrogen_smarts = '[#7]'
+    nitrogen_pattern = Chem.MolFromSmarts(nitrogen_smarts)
+    return len(mol.GetSubstructMatches(nitrogen_pattern))
+
+def rule29_terminal_sulfur(mol):
+    sulfur_smarts = '[#16]'
+    sulfur_pattern = Chem.MolFromSmarts(sulfur_smarts)
+    return len(mol.GetSubstructMatches(sulfur_pattern))
+
+def rule30_terminal_chlorine(mol):
+    chlorine_smarts = '[#17]'
+    chlorine_pattern = Chem.MolFromSmarts(chlorine_smarts)

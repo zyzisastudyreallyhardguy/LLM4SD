@@ -1,0 +1,72 @@
+def rule1_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule2_chlorine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]')))
+
+def rule3_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule4_sulfur(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule5_carboxylic_acid_or_derivatives(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule6_halogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+
+def rule7_carboxylic_acid(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule8_nitrogen_in_heterocyclic_ring(mol):
+    nitrogen_in_ring = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.IsInRing():
+            nitrogen_in_ring += 1
+    return nitrogen_in_ring
+
+def rule9_halogen_in_molecule(mol):
+    halogens = ['Cl', 'Br', 'I']
+    halogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            halogen_count += 1
+    return halogen_count
+
+def rule10_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_bromine_in_molecule(mol):
+    bromine_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'Br':
+            bromine_count += 1
+    return bromine_count
+
+def rule12_platinum_in_molecule(mol):
+    platinum_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'Pt':
+            platinum_count += 1
+    return platinum_count
+
+def rule13_fe_in_molecule(mol):
+    fe_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'Fe':
+            fe_count += 1
+    return fe_count
+
+def rule14_k_in_molecule(mol):
+    k_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'K':
+            k_count += 1
+    return k_count
+
+def rule15_p_in_molecule(mol):
+    p_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'P':
+            p_count += 1

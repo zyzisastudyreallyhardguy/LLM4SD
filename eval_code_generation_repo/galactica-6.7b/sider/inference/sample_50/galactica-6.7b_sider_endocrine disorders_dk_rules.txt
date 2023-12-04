@@ -1,0 +1,146 @@
+def rule1_endocrine_disorder(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return aromatic_atoms.count(True)
+
+def rule2_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_halogen_presence(mol):
+    halogens = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogens)
+
+def rule5_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('[#6]=[#8]')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule6_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('[#7](=[#8])(-[#8])')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule7_endocrine_disruptor(mol):
+    return rule1_endocrine_disorder(mol)
+
+def rule8_halogenated_aromatic_ring(mol):
+    halogenated_aromatic_ring = Chem.MolFromSmarts('c1ccccc1[#9,#17,#35,#53]')
+    if halogenated_aromatic_ring is not None:
+        return len(mol.GetSubstructMatches(halogenated_aromatic_ring))
+    else:
+        return 0
+
+
+def rule9_polar_functional_group(mol):
+    polar_functional_group = Chem.MolFromSmarts('[#8]H')
+
+def rule10_ring_structure(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule11_adverse_effects(mol):
+    # Placeholder - replace with actual implementation
+    return 0
+
+def rule12_metal_ion(mol):
+    # Placeholder - replace with actual implementation
+    return 0
+
+def rule13_carboxylic_acid(mol):
+    # Placeholder - replace with actual implementation
+    return 0
+
+def rule14_covalent_hydrogen_bonds(mol):
+    # Placeholder - replace with actual implementation
+    return 0
+
+def rule15_amino_hydroxyl_groups(mol):
+    # Placeholder - replace with actual implementation
+    return 0
+
+def rule16_amide_sulfonamide_groups(mol):
+    # Placeholder - replace with actual implementation
+    return 0
+
+def rule17_endocrine_disruptor(mol):
+    # Placeholder - replace with actual implementation
+    return 0
+
+def rule1_chlorine_carbonyl_nitro(mol):
+    # Placeholder - replace with actual implementation
+    return 0
+
+def rule2_carbonyl_nitro_halogen(mol):
+    # Placeholder - replace with actual implementation
+    return 0
+
+def rule3_contains_functional_group(mol):
+    functional_groups = ['[NX3;H2,H1;!$(NC=O)]', '[#7]~[#6](~[#8])~[#7]', '[#6](~[#7])(~[#7])~[#8]', '[#9,#17,#35,#53]', 'c1ccccc1']
+    for fg in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(fg)):
+            return 1
+    return 0
+
+def rule4_contains_functional_group_or_ring(mol):
+    functional_groups = ['[NX3;H2,H1;!$(NC=O)]', '[#7]~[#6](~[#8])~[#7]', '[#6](~[#7])(~[#7])~[#8]', '[#9,#17,#35,#53]', 'c1ccccc1']
+    for fg in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(fg)):
+            return 1
+    if mol.GetRingInfo().NumRings() > 0:
+        return 1
+    return 0
+
+def rule5_contains_functional_group(mol):
+    functional_groups = ['C=O', '[N+](=O)[O-]', '[#9,#17,#35,#53]']
+    for fg in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(fg)):
+            return 1
+    return 0
+
+def rule6_contains_functional_group(mol):
+    functional_groups = ['C=O', '[N+](=O)[O-]', '[#9,#17,#35,#53]', 'c1ccccc1']
+    for fg in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(fg)):
+            return 1
+    return 0
+
+def rule7_contains_functional_group(mol):
+    functional_groups = ['[NX3;H2,H1;!$(NC=O)]', '[#7]~[#6](~[#8])~[#7]', '[#6](~[#7])(~[#7])~[#8]']
+    for fg in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(fg)):
+            return 1
+    return 0
+
+def rule8_contains_functional_group(mol):
+    functional_groups = ['[N+](=O)[O-]', '[#9,#17,#35,#53]', 'C=O']
+    for fg in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(fg)):
+            return 1
+    return 0
+
+def rule9_contains_functional_group(mol):
+    functional_groups = ['C(=O)O', '[N+](=O)[O-]']
+    for fg in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(fg)):
+            return 1
+    return 0
+
+def rule10_contains_functional_group(mol):
+    functional_groups = ['[NX3;H2,H1;!$(NC=O)]', 'S(=O)(=O)(N)', '[N+](=O)[O-]']
+    for fg in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(fg)):
+            return 1
+    return 0
+
+def rule11_lipophilicity_psa_mw(mol):
+    lipophilicity = Descriptors.MolLogP(mol)
+    psa = rdMolDescriptors.CalcTPSA(mol)
+    mw = Descriptors.MolWt(mol)
+    if lipophilicity > 5 or psa > 140 or mw > 500:
+        return 1
+    return 0
+
+def rule12_contains_functional_group(mol):
+    functional_groups = ['[#17]', '[#7]', 'C=O']
+    for fg in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(fg)):
+            return 1

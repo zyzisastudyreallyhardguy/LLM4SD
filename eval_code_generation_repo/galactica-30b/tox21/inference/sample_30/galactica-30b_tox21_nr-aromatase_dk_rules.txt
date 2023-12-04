@@ -1,0 +1,169 @@
+def rule1_bromine_carbonyl(mol):
+    bromine = '[Br]'
+    carbonyl = '[#6](=[O])'
+    if mol.HasSubstructMatch(Chem.MolFromSmarts(bromine)) and mol.HasSubstructMatch(Chem.MolFromSmarts(carbonyl)):
+        return 1
+    else:
+        return 0
+
+def rule2_nitro_halogen_aromatic(mol):
+    nitro = '[N+](=O)[O-]'
+    halogen = '[F,Cl,Br,I]'
+    aromatic = '[a]'
+    if (mol.HasSubstructMatch(Chem.MolFromSmarts(nitro)) or mol.HasSubstructMatch(Chem.MolFromSmarts(halogen))) and mol.HasSubstructMatch(Chem.MolFromSmarts(aromatic)):
+        return 1
+    else:
+        return 0
+
+def rule3_carbonyl_conjugated(mol):
+    carbonyl = '[#6](=[O])'
+    alkene = '[#6]=[#6]'
+    sulfonyl = '[S](=[O])(=[O])'
+    if mol.HasSubstructMatch(Chem.MolFromSmarts(carbonyl)) and (mol.HasSubstructMatch(Chem.MolFromSmarts(alkene)) or mol.HasSubstructMatch(Chem.MolFromSmarts(sulfonyl))):
+        return 1
+    else:
+        return 0
+
+def rule4_bromine_sodium(mol):
+    bromine = '[Br]'
+    sodium = '[Na]'
+    if mol.HasSubstructMatch(Chem.MolFromSmarts(bromine)) and mol.HasSubstructMatch(Chem.MolFromSmarts(sodium)):
+        return 1
+    else:
+        return 0
+
+def rule5_cyano_nitro(mol):
+    cyano = '[C-]#[N+]'
+    nitro = '[N+](=O)[O-]'
+    if mol.HasSubstructMatch(Chem.MolFromSmarts(cyano)) or mol.HasSubstructMatch(Chem.MolFromSmarts(nitro)):
+        return 0
+    else:
+        return 1
+
+def rule6_toxic_activity(mol):
+    bromine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Br]')))
+    cyclopentane_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[r5]')))
+    carbonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+    double_bond_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]')))
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7X4]')))
+    return bromine_count + cyclopentane_count + carbonyl_count + double_bond_count + nitrogen_count
+
+def rule7_toxic_activity(mol):
+    chlorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]')))
+    return chlorine_count
+
+def rule8_toxic_activity(mol):
+    sulfonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16](=[O])(=[O])')))
+    return sulfonyl_count
+
+def rule9_toxic_activity(mol):
+    cyano_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[N]')))
+    sulfonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16](=[O])(=[O])')))
+    bromine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Br]')))
+    iodine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[I]')))
+
+def rule10_phosphate_group(mol):
+    pattern = Chem.MolFromSmarts('[#15](=[#8])([#8])([#8])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule11_benzene_ring(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule11_halogen_atoms(mol):
+    pattern = Chem.MolFromSmarts('[#9,#17,#35,#53]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule11_nitro_group(mol):
+    pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule12_sulfonyl_group(mol):
+    pattern = Chem.MolFromSmarts('[#16](=[#8])(=[#8])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule12_phosphate_group(mol):
+    pattern = Chem.MolFromSmarts('[#15](=[#8])([#8])([#8])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule13_sulfonyl_group(mol):
+    pattern = Chem.MolFromSmarts('[#16](=[#8])(=[#8])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule13_nitro_group(mol):
+    pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule13_halogen_attached_to_carbon(mol):
+    pattern = Chem.MolFromSmarts('[#6][#9,#17,#35,#53]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule13_nitrogen_containing_rings(mol):
+    pattern = Chem.MolFromSmarts('n1ccccc1')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule14_bromine_atom(mol):
+    pattern = Chem.MolFromSmarts('[#35]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule14_carbonyl_groups(mol):
+    pattern = Chem.MolFromSmarts('[#6](=[#8])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule14_sulfonyl_group(mol):
+    pattern = Chem.MolFromSmarts('[#16](=[#8])(=[#8])')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule1_phosphorus_oxygen_bond(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'P':
+            oxygen_count = 0
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'O':
+                    oxygen_count += 1
+            if oxygen_count >= 2:
+                count += 1
+    return count
+
+def rule2_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#6](=[O])')))
+
+def rule3_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule4_sulfonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16](=[O])(=[O])')))
+
+def rule5_cyano_carbonyl_double_bond(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[N]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]-[#6](=[O])')))
+
+def rule6_silicon_oxygen_bond(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'Si':
+            oxygen_count = 0
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'O':
+                    oxygen_count += 1
+            if oxygen_count == 4:
+                count += 1
+    return count
+
+def rule7_bromine_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Br]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[O])')))
+
+def rule8_chlorine_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))

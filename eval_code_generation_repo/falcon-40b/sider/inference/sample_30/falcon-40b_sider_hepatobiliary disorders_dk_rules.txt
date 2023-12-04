@@ -1,0 +1,79 @@
+def rule1_carboxylic_acid(mol):
+    carboxylic_acid_smarts = '[CX3](=O)[OX2H1]'
+    carboxylic_acid_pattern = Chem.MolFromSmarts(carboxylic_acid_smarts)
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule2_nitrogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+
+def rule3_halogen_atom(mol):
+    num_heteroatoms = rdMolDescriptors.CalcNumHeteroatoms(mol)
+    num_nitrogens = len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7])
+    num_oxygens = len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8])
+    return num_heteroatoms - num_nitrogens - num_oxygens
+
+
+def rule4_sulfur_atom(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16])
+
+
+def rule5_sulfonamide_group(mol):
+    sulfonamide_smarts = '[#16](=[OX1])(-[NX3H2])'
+    sulfonamide_pattern = Chem.MolFromSmarts(sulfonamide_smarts)
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule6_carbon_hydrogen_ratio(mol):
+    num_carbon = rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+    num_hydrogen = rdMolDescriptors.CalcNumAliphaticHeterocycles(mol)
+    if num_hydrogen == 0:
+        return num_carbon
+    else:
+        return num_carbon / num_hydrogen
+
+def rule7_long_side_chain(mol):
+    return Descriptors.NumAliphaticCarbocycles(mol)
+
+def rule8_nitrogen_hepatotoxicity(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule9_chlorine_hepatotoxicity(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule10_sulfur_hepatotoxicity(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule11_carbonyl_hepatobiliary(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule12_nitrogen_hepatobiliary(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule13_hb_adverse_effects(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule15_polar_atoms(mol):
+    polar_atoms = [atom for atom in mol.GetAtoms() if atom.GetAtomicNum() in [7, 8, 16]]
+    return len(polar_atoms)
+
+def rule16_hb_acceptors_donors(mol):
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    return hb_acceptors + hb_donors
+
+def rule17_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule19_aliphatic_chain_carboxylic_acid(mol):
+    aliphatic_chain = len([atom for atom in mol.GetAtoms() if atom.GetIsAromatic() == False])
+    carboxylic_acid = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    return aliphatic_chain + carboxylic_acid
+
+def rule20_carbon_chain(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6])
+
+def rule21_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O')))

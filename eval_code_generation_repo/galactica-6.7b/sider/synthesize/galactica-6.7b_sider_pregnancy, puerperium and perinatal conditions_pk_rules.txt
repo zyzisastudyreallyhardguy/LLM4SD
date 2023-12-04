@@ -1,0 +1,61 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_psa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule4_ri(mol):
+    return 0
+
+def rule5_dhf(mol):
+    return 0
+
+def rule6_ip(mol):
+    return 0
+
+def rule7_electronegativity(mol):
+    return Descriptors.MolWt(mol)
+
+def rule7_dipole_moment(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_fmo(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule9_mr(mol):
+    return Descriptors.MolMR(mol)
+
+def rule9_psa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule15_FMOs(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+
+def rule17_heat_of_formation(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule18_BP_VP(lst):
+    if isinstance(lst, list):  # check if the input is a list
+        if len(lst) > 0:  # check if the list is not empty
+            return lst[0]  # return the first element
+    return 0  # return 0 if the input is not a list or if the list is empty
+
+
+def rule19_CRI(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+

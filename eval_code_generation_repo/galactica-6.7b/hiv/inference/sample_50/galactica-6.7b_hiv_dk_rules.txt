@@ -1,0 +1,71 @@
+def rule1_nitrogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_halogen_presence(mol):
+    halogens = ['Cl', 'Br']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(x))) for x in halogens)
+
+def rule3_carbon_chain(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule4_hydrophobic_group(mol):
+    hydrophobic_groups = ['C', 'F', 'Cl', 'Br', 'I']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(x))) for x in hydrophobic_groups)
+
+def rule5_molecular_properties(mol):
+    return Descriptors.MolWt(mol), Descriptors.TPSA(mol)
+
+def rule6_functional_group(mol):
+    functional_groups = ['N=C(N)N', 'S(=O)(=O)']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(x))) for x in functional_groups)
+
+def rule7_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+
+
+def rule9_hydrophobic_hydrophilic(mol):
+    hydrophobic_tail = ['C', 'F', 'Cl', 'Br', 'I']
+    hydrophilic_head = ['O', 'N', 'S']
+
+
+
+def rule12_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule17_polar_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+
+
+def rule20_carbonyl_group(mol):
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]'))
+    return len(carbonyl_group)
+
+def rule21_hydrophobic_group(mol):
+    hydrophobic_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]'))
+    return len(hydrophobic_group)
+
+def rule22_polar_group(mol):
+    polar_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#9,#15,#16,#17,#35,#53]'))
+    return len(polar_group)
+
+def rule23_hydrophobic_tail(mol):
+    hydrophobic_tail = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]'))
+    return len(hydrophobic_tail)
+
+def rule24_polar_functional_group(mol):
+    polar_functional_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[OH,COOH]'))
+    return len(polar_functional_group)
+
+def rule25_carbon_chain(mol):
+    carbon_chain = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]'))
+    return len(carbon_chain)
+
+def rule26_polar_region(mol):
+    polar_region = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#9,#15,#16,#17,#35,#53]'))
+    return len(polar_region)
+
+def rule27_size_shape(mol):
+    size = mol.GetNumAtoms()
+    shape = rdMolDescriptors.CalcNumRings(mol)

@@ -1,0 +1,76 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule3_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule4_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule5_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule6_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule8_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule9_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule10_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule11_polar_func_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule12_ring_systems(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+def rule13_stereocenters(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+def rule14_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule17_ring_systems(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRings(mol)
+
+def rule18_stereocenters(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+def rule19_aromatic_rings(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+
+def rule21_polar_func_groups(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule22_ring_systems(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRings(mol)
+
+def rule23_stereocenters(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+def rule24_aromatic_rings(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule26_polar_func_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule27_ring_systems(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRings(mol)
+
+def rule28_stereocenters(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+def rule29_aromatic_rings(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)

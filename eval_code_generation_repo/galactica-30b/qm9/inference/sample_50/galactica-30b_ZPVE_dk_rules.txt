@@ -1,0 +1,339 @@
+def rule4_sp_hybridized_carbons(mol):
+    sp_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and atom.GetHybridization() == Chem.rdchem.HybridizationType.SP:
+            sp_carbons += 1
+    return sp_carbons
+
+def rule5_heterocyclic_rings(mol):
+    return rdMolDescriptors.CalcNumHeterocycles(mol)
+
+def rule6_conformational_freedom(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_polar_functional_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule8_extended_conjugation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule9_cyclic_structures(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule10_heavier_atoms(mol):
+    heavier_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() > 20:
+            heavier_atoms += 1
+    return heavier_atoms
+
+def rule11_substitution_degree(mol):
+    tertiary_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and atom.GetDegree() == 3:
+            tertiary_carbons += 1
+    return tertiary_carbons
+
+def rule13_hydrogen_bonding_network(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule14_chelate_structures(mol):
+    return len(Chem.MolFromSmiles('C(=O)O').GetSubstructMatches(mol)) + len(Chem.MolFromSmiles('C(=O)N').GetSubstructMatches(mol))
+
+def rule15_bulky_side_groups(mol):
+    return len(Chem.MolFromSmiles('C(C)(C)C').GetSubstructMatches(mol))
+
+def rule16_unsaturation(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule17_rotational_freedom(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_negatively_charged_atoms(mol):
+    return sum([1 for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0])
+
+def rule19_molecular_symmetry(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+def rule20_branches(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule22_substituents_effect(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule23_lone_pairs_effect(mol):
+    total_lone_pairs = 0
+    for atom in mol.GetAtoms():
+        total_valence = atom.GetTotalValence()
+        unpaired_electrons = atom.GetNumRadicalElectrons()
+        total_bonds = atom.GetDegree()
+        total_lone_pairs += (total_valence - total_bonds * 2 - unpaired_electrons) // 2
+    return total_lone_pairs
+
+
+def rule24_aliphatic_chains_effect(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule25_d_orbital_effect(mol):
+    transition_metals = ["Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", 
+                         "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", 
+                         "La", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg"]
+    num_transition_metal_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in transition_metals:
+            num_transition_metal_atoms += 1
+    return num_transition_metal_atoms
+
+
+def rule26_atoms_effect(mol):
+    return rdMolDescriptors.CalcNumSaturatedHeterocycles(mol)
+
+def rule27_electrostatic_interactions_effect(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule28_molecular_complexity_effect(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule29_sp3_carbons_effect(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule30_single_bonds_effect(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule32_molecular_density(mol):
+    num_rotatable_bonds = Descriptors.NumRotatableBonds(mol)
+    if num_rotatable_bonds == 0:
+        return 0
+    else:
+        return num_rotatable_bonds
+
+
+def rule33_intramolecular_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule34_bulky_groups(mol):
+    return Descriptors.NumAliphaticRings(mol)
+
+def rule35_resonance_energy(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def rule36_stereogenic_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule37_valence_electrons(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule38_halogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule39_chain_length(mol):
+    return Descriptors.HeavyAtomCount(mol)
+
+def rule41_heteroaromatic_ZPVE(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule42_electron_withdrawing_ZPVE(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule43_conjugated_system_ZPVE(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule44_isotopes_ZPVE(mol):
+    num_isotopes = 0
+    for atom in mol.GetAtoms():
+        if atom.GetMass() != rdMolDescriptors.CalcExactMolWt(Chem.MolFromSmiles(atom.GetSymbol())):
+            num_isotopes += 1
+    return num_isotopes
+
+
+def rule45_tautomerism_ZPVE(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule46_hybridized_carbon_ZPVE(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule47_charged_atoms_ZPVE(mol):
+    return rdMolDescriptors.CalcNumHeterocycles(mol)
+
+def rule48_chiral_centers_ZPVE(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule49_rotational_symmetry_ZPVE(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule4_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_charge(mol):
+    return Chem.rdmolops.GetFormalCharge(mol)
+
+def rule6_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_single_bonds(mol):
+    return mol.GetNumBonds()
+
+
+def rule9_conjugated_systems(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule10_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule11_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule13_degrees_of_freedom(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule14_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule15_single_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_tautomers(mol):
+    return len(Chem.MolToSmiles(mol, isomericSmiles=True))
+
+def rule17_chiral_centres(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule18_branched_structures(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule19_intramolecular_hb(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule20_aliphatic_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule22_unsaturation_degree(mol):
+    unsaturated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE or bond.GetBondType() == Chem.rdchem.BondType.TRIPLE:
+            unsaturated_bonds += 1
+    return unsaturated_bonds
+
+
+def rule23_heavy_isotopes(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule24_linear_molecules(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule25_hydrogen_bonding(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule26_ring_systems(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule27_flexible_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule28_hybridization(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule29_pi_electrons(mol):
+    pi_electrons = 0
+    for atom in mol.GetAtoms():
+        pi_electrons += atom.GetTotalNumHs()
+    return pi_electrons
+
+
+def rule30_carbon_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule32_rotational_freedom(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule33_halogens(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule34_metals(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+        if mol is not None:
+            return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() > 20])
+    return 0
+
+
+def rule36_ring_systems(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule37_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule39_molecular_mass(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+def rule42_bond_order(mol):
+    bond_order = 0
+    for bond in mol.GetBonds():
+        bond_order += bond.GetBondTypeAsDouble()
+    return bond_order
+
+
+def rule43_resonance_stabilization(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule44_methyl_groups(mol):
+    # Convert the molecule to a SMILES string
+    smiles = Chem.MolToSmiles(mol)
+    # Count the number of methyl groups in the SMILES string
+    num_methyl_groups = smiles.count('C')
+    return num_methyl_groups
+
+
+def rule45_electron_density(smiles):
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+        if mol is not None:
+            return rdMolDescriptors.CalcExactMolWt(mol)
+        else:
+            return 0
+    except:
+        return 0
+
+
+def rule46_molecule_configuration(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule47_bond_polarity(mol):
+    polarity = 0
+    for bond in mol.GetBonds():
+        atom1 = bond.GetBeginAtom()
+        atom2 = bond.GetEndAtom()
+        polarity += abs(atom1.GetAtomicNum() - atom2.GetAtomicNum())
+    return polarity
+
+
+
+
+def rule49_lone_pairs(mol):
+    total_lone_pairs = 0
+    for atom in mol.GetAtoms():
+        total_valence_electrons = atom.GetAtomicNum() - atom.GetFormalCharge()
+        total_bonding_electrons = sum([bond.GetBondTypeAsDouble() for bond in atom.GetBonds()])
+        total_unpaired_electrons = atom.GetNumRadicalElectrons()
+        total_lone_pairs += (total_valence_electrons - total_bonding_electrons - total_unpaired_electrons) // 2
+    return total_lone_pairs
+
+
+def rule50_sterically_hindered_groups(mol):
+    # Convert the molecule to an RDKit molecule object if it isn't already
+    if not isinstance(mol, Chem.rdchem.Mol):
+        mol = Chem.MolFromSmiles(mol)
+
+    # Define a sterically hindered group as an atom with more than 3 bonds
+    num_hindered_groups = sum(1 for atom in mol.GetAtoms() if atom.GetDegree() > 3)
+
+    return num_hindered_groups
+

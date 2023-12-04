@@ -1,0 +1,66 @@
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule2_sulfonamide(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule3_halogen(mol):
+    pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule4_nitrogen(mol):
+    pattern = Chem.MolFromSmarts('[N]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule5_chlorine(mol):
+    pattern = Chem.MolFromSmarts('[Cl]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule6_sulfur(mol):
+    pattern = Chem.MolFromSmarts('[S]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule7_positive_charge(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+
+def rule8_negative_charge(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0)
+
+def rule9_hydrogen_bonds(mol):
+    return Descriptors.NumHDonors(mol) + Descriptors.NumHAcceptors(mol)
+
+def rule10_amine_sulfonate(mol):
+    amine_pattern = Chem.MolFromSmarts('N')
+    sulfonate_pattern = Chem.MolFromSmarts('S(=O)(=O)[O-]')
+    return mol.GetSubstructMatches(amine_pattern) + mol.GetSubstructMatches(sulfonate_pattern)
+
+def rule11_carboxylic_acid(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    return mol.GetSubstructMatches(carboxylic_acid_pattern)
+
+
+
+def rule13_sulfonate_phosphate(mol):
+    sulfonate_pattern = Chem.MolFromSmarts('S(=O)(=O)[O-]')
+    phosphate_pattern = Chem.MolFromSmarts('P(=O)(O)(O)[O-]')
+    return mol.GetSubstructMatches(sulfonate_pattern) + mol.GetSubstructMatches(phosphate_pattern)
+
+def rule14_platinum(mol):
+    platinum_pattern = Chem.MolFromSmarts('[Pt]')
+    return mol.GetSubstructMatches(platinum_pattern)
+
+def rule15_long_carbon_chain(mol):
+    carbon_chain_pattern = Chem.MolFromSmarts('CCCCC')
+    return mol.GetSubstructMatches(carbon_chain_pattern)
+
+def rule16_benzene_ring(mol):
+    benzene_ring_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return mol.GetSubstructMatches(benzene_ring_pattern)
+
+def rule17_negative_charge(mol):
+    negative_charge_pattern = Chem.MolFromSmarts('[-]')
+    return mol.GetSubstructMatches(negative_charge_pattern)
+
+

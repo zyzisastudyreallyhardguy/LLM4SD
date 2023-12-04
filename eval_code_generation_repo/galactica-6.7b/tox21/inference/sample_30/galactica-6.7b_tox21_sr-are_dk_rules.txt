@@ -1,0 +1,56 @@
+def rule1_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule2_chlorine_atom(mol):
+    chlorine_atom = Chem.MolFromSmarts('[Cl]')
+    return len(mol.GetSubstructMatches(chlorine_atom))
+
+def rule3_bromine_atom(mol):
+    bromine_atom = Chem.MolFromSmarts('[Br]')
+    return len(mol.GetSubstructMatches(bromine_atom))
+
+def rule4_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('[#6]=[#8]')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule5_halogen_atom(mol):
+    halogen_atom = Chem.MolFromSmarts('[#9,#17,#35,#53]')
+    return len(mol.GetSubstructMatches(halogen_atom))
+
+def rule6_benzene_ring(mol):
+    benzene_ring = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(benzene_ring))
+
+def rule7_adverse_effects(mol):
+    halogen_atom = Chem.MolFromSmarts('[#9,#17,#35,#53]')
+    carbonyl_group = Chem.MolFromSmarts('[#6]=[#8]')
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(halogen_atom)) + len(mol.GetSubstructMatches(carbonyl_group)) + len(mol.GetSubstructMatches(nitro_group))
+
+def rule1_nitro_group_toxicity(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+
+def rule2_chlorine_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule3_carbonyl_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule4_halogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35]')))
+
+def rule5_benzene_ring_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('c1ccccc1')))
+
+def rule6_benzene_ring_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('c1ccccc1')))
+
+def rule7_halogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17,#35,#53]')))
+
+def rule8_carbonyl_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule9_nitro_group_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))

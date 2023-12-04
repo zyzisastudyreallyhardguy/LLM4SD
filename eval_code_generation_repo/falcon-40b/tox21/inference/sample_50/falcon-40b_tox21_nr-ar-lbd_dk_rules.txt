@@ -1,0 +1,45 @@
+def rule1_halogen_presence(mol):
+    halogens = ['Cl', 'Br', 'I', 'F']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule2_nitrogen_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule3_carbonyl_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and any(neighbor.GetSymbol() == 'O' for neighbor in atom.GetNeighbors()))
+
+def rule4_benzene_ring_presence(mol):
+    return sum(1 for ring in mol.GetRingInfo().AtomRings() if len(ring) == 6 and all(mol.GetAtomWithIdx(idx).GetSymbol() == 'C' for idx in ring))
+
+def rule5_sulfur_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule6_molecule_size(mol):
+    return Descriptors.MolWt(mol)
+
+def rule7_sulfonamide_benzothiazole(mol):
+    sulfonamide = Chem.MolFromSmarts('S(=O)(=O)N')
+    benzothiazole = Chem.MolFromSmarts('c1ccc2c(c1)[nH]c(s2)N')
+    return mol.GetSubstructMatches(sulfonamide) + mol.GetSubstructMatches(benzothiazole)
+
+def rule8_hb_donors_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule9_specific_atoms(mol):
+    nitrogen = Chem.MolFromSmarts('[n+]')
+    chlorine = Chem.MolFromSmarts('[Cl-]')
+    sulfur = Chem.MolFromSmarts('[s+]')
+    return mol.GetSubstructMatches(nitrogen) + mol.GetSubstructMatches(chlorine) + mol.GetSubstructMatches(sulfur)
+
+def rule10_specific_groups(mol):
+    carboxylic_acid = Chem.MolFromSmarts('C(=O)O')
+    amine = Chem.MolFromSmarts('N')
+    sulfonamide = Chem.MolFromSmarts('S(=O)(=O)N')
+    sulfonate = Chem.MolFromSmarts('S(=O)(=O)[O-]')
+    aldehyde = Chem.MolFromSmarts('C=O')
+    ketone = Chem.MolFromSmarts('C(=O)C')
+    return mol.GetSubstructMatches(carboxylic_acid) + mol.GetSubstructMatches(amine) + mol.GetSubstructMatches(sulfonamide) + mol.GetSubstructMatches(sulfonate) + mol.GetSubstructMatches(aldehyde) + mol.GetSubstructMatches(ketone)
+
+def rule12_gold_bromine(mol):
+    gold = Chem.MolFromSmarts('[Au]')
+    bromine = Chem.MolFromSmarts('[Br]')

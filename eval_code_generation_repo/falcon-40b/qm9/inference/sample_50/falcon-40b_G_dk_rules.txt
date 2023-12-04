@@ -1,0 +1,27 @@
+def rule44_phosphate_group(mol):
+    phosphate_pattern = Chem.MolFromSmarts('OP(=O)(O)O')
+    matches = mol.GetSubstructMatches(phosphate_pattern)
+    return len(matches)
+
+def rule45_halogen_atom(mol):
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    matches = mol.GetSubstructMatches(halogen_pattern)
+    return len(matches)
+
+def rule46_hydroxyl_group(mol):
+    hydroxyl_pattern = Chem.MolFromSmarts('O[H]')
+    matches = mol.GetSubstructMatches(hydroxyl_pattern)
+
+def rule47_alkene_group(mol):
+    alkene_pattern = Chem.MolFromSmarts('[*]=[*]')
+    return len(mol.GetSubstructMatches(alkene_pattern))
+
+def rule48_cyano_group(mol):
+    cyano_pattern = Chem.MolFromSmarts('[C-]#[N+]')
+
+def rule49_alkyne_group(mol):
+    alkyne_pattern = Chem.MolFromSmarts('[#6]#[#6]')
+    return len(mol.GetSubstructMatches(alkyne_pattern))
+
+def rule50_hydrogen_bonding(mol):
+    hb_pattern = Chem.MolFromSmarts('[#7,#8,#9;+0;!$(*~[#7,#8,#9;+0])]')

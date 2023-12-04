@@ -1,0 +1,90 @@
+def rule1_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule2_bond_dissociation_energy(mol):
+    total_energy = 0
+    for bond in mol.GetBonds():
+        start_atom = bond.GetBeginAtom()
+        end_atom = bond.GetEndAtom()
+        total_energy += start_atom.GetAtomicNum() + end_atom.GetAtomicNum()  # This is a simplification
+    return 1 / total_energy if total_energy != 0 else 0
+
+def rule3_bond_angle(mol):
+    total_angle = 0
+    for atom in mol.GetAtoms():
+        neighbors = atom.GetNeighbors()
+        if len(neighbors) > 1:
+            angle = rdMolTransforms.GetAngleDeg(mol.GetConformer(), neighbors[0].GetIdx(), atom.GetIdx(), neighbors[1].GetIdx())
+            total_angle += angle
+    return total_angle
+
+
+
+def rule5_electronegativity_difference(mol):
+    total_difference = 0
+    for bond in mol.GetBonds():
+        start_atom = bond.GetBeginAtom()
+        end_atom = bond.GetEndAtom()
+        difference = abs(start_atom.GetAtomicNum() - end_atom.GetAtomicNum())  # This is a simplification
+        total_difference += difference
+
+
+
+def rule7_molecular_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+def rule8_lone_pairs(mol):
+    total_lone_pairs = 0
+    for atom in mol.GetAtoms():
+        total_valence = atom.GetExplicitValence()
+        total_bonds = atom.GetDegree()
+        total_unpaired = atom.GetNumRadicalElectrons()
+        total_lone_pairs += (total_valence - total_bonds * 2 - total_unpaired) // 2
+    return total_lone_pairs
+
+
+def rule9_hydrogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol) - rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule10_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2 and bond.GetIsAromatic() == False])
+
+def rule10_double_bonds(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2 and bond.GetIsAromatic() == False])
+
+
+def rule11_triple_bonds(mol):
+    num_aliphatic_triple_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE and bond.GetIsAromatic() == False:
+            num_aliphatic_triple_bonds += 1
+    return num_aliphatic_triple_bonds
+
+
+def rule12_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule13_hydroxyl_groups(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+
+def rule15_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#9,#17,#35,#53]")))
+
+def rule16_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#16]")))
+
+def rule17_phosphorus_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#15]")))
+
+def rule18_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#7]")))
+
+def rule19_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#8]")))
+
+def rule20_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#9]")))

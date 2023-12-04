@@ -1,0 +1,95 @@
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_sulfonamide(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_halogen(mol):
+    pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule4_nitrogen(mol):
+    carbon_pattern = Chem.MolFromSmiles('C')
+    num_carbon_types = len(mol.GetSubstructMatches(carbon_pattern))
+    return Descriptors.HeavyAtomCount(mol) - num_carbon_types
+
+
+def rule5_chlorine(mol):
+    pattern = Chem.MolFromSmarts('[Cl]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_sulfur(mol):
+    pattern = Chem.MolFromSmarts('[S]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule7_positive_charge(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+
+def rule8_negative_charge(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule9_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule10_functional_groups(mol):
+    amines = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    sulfonates = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)[O-]'))
+    return len(amines) + len(sulfonates)
+
+def rule11_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('F')))
+
+
+
+def rule13_long_carbon_chain(mol):
+    return max([len(chain) for chain in mol.GetSubstructMatches(Chem.MolFromSmarts('C-C'))])
+
+def rule14_benzene_ring(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+
+def rule16_nitro_nitroso(mol):
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    nitroso = Chem.MolFromSmarts('N=O')
+    return mol.GetSubstructMatches(nitro) + mol.GetSubstructMatches(nitroso)
+
+def rule17_metal_ion(mol):
+    metal = Chem.MolFromSmarts('[#30,#26,#29]')
+    return mol.GetSubstructMatches(metal)
+
+def rule18_charge(mol):
+    positive = Chem.MolFromSmarts('[+]')
+    negative = Chem.MolFromSmarts('[-]')
+    return mol.GetSubstructMatches(positive) + mol.GetSubstructMatches(negative)
+
+def rule19_heavy_metal(mol):
+    heavy_metal = Chem.MolFromSmarts('[#47,#78]')
+    return mol.GetSubstructMatches(heavy_metal)
+
+def rule20_carbonyl_negative(mol):
+    carbonyl = Chem.MolFromSmarts('C=O')
+    negative = Chem.MolFromSmarts('[-]')
+    return mol.GetSubstructMatches(carbonyl) + mol.GetSubstructMatches(negative)
+
+def rule21_sulfur_positive(mol):
+    sulfur = Chem.MolFromSmarts('[S]')
+    positive = Chem.MolFromSmarts('[+]')
+    return mol.GetSubstructMatches(sulfur) + mol.GetSubstructMatches(positive)
+
+def rule22_functional_groups(mol):
+    amines = Chem.MolFromSmarts('N')
+    sulfonamides = Chem.MolFromSmarts('S(=O)(=O)N')
+    quinones = Chem.MolFromSmarts('O=C1C=CC(=O)C=C1')
+    return mol.GetSubstructMatches(amines) + mol.GetSubstructMatches(sulfonamides) + mol.GetSubstructMatches(quinones)
+
+def rule23_complexity(mol):
+    functional_groups = Chem.MolFromSmarts('[$([CX3](=O)[OX2H1]),$([CX3](=O)[OX1-]),$([CX3](=O)[OX2]C),$([CX3](=O)[OX2H0]),$([CX3H0](=O)[OX2H1]),$([CX3H0](=O)[OX1-]),$([CX3H0](=O)[OX2]C),$([CX3H0](=O)[OX2H0])]')
+    halogens = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    nitrogen_heterocycles = Chem.MolFromSmarts('[n]')

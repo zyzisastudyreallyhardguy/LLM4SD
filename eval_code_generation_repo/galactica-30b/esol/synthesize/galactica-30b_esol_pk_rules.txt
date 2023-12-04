@@ -1,0 +1,33 @@
+def rule1_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule4_ionizable_groups(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule7_functional_groups(mol):
+    from rdkit import Chem
+    functional_groups = ['[OH]', '[C=O]', '[C-O]', '[C(=O)O]']
+    count = 0
+    for group in functional_groups:
+        patt = Chem.MolFromSmarts(group)
+        if patt is not None:
+            matches = mol.GetSubstructMatches(patt)
+            count += len(matches)
+    return count
+
+
+
+
+

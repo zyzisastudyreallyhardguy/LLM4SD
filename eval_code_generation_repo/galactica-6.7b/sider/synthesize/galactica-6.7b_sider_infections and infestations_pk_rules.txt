@@ -1,0 +1,48 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule6_psa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_electron_affinity(mol):
+    return 0
+
+def rule8_electronegativity_difference(mol):
+    return 0
+
+def rule9_heat_of_formation(mol):
+    return 0
+
+def rule10_dipole_moment(mol):
+    return Chem.rdMolDescriptors.CalcTPSA(mol)
+
+def rule11_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+
+def rule12_hardness(mol):
+    return 0
+
+def rule13_softness(mol):
+    return 0
+
+def rule15_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule16_heavy_atoms(mol):
+    return Descriptors.HeavyAtomCount(mol)
+
+def rule_additional_valence_electrons(mol):
+    return Descriptors.NumValenceElectrons(mol)

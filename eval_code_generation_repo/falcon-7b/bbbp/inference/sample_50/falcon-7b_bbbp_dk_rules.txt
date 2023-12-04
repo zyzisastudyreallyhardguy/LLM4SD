@@ -1,0 +1,58 @@
+def rule1_carbon_atoms_odd(mol):
+    carbon_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+    return carbon_count % 2
+
+def rule2_carbon_atoms_even(mol):
+    carbon_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+    return not (carbon_count % 2)
+
+def rule3_oxygen_atoms_odd(mol):
+    oxygen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    return oxygen_count % 2
+
+def rule4_oxygen_atoms_even(mol):
+    oxygen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    return not (oxygen_count % 2)
+
+def rule5_nitrogen_atoms_ge1(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    return nitrogen_count >= 1
+
+def rule6_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule7_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule8_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule10_hydrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'H')
+
+def rule1_carbon_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule2_oxygen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')
+
+def rule3_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule4_carbon_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C') % 2
+
+def rule5_oxygen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O') % 2
+
+def rule6_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N') % 2
+
+def rule7_hydrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'H') % 2

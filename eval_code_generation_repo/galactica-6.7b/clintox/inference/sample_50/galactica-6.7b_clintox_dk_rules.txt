@@ -1,0 +1,98 @@
+def rule1_polar_functional_groups(mol):
+    polar_groups = ['[NX3;H2,H1;!$(NC=O)]', '[$([OH1,SH1])]', '[#7+]', '[OX2H]', '[#6](-[#8])=O']
+    count = 0
+    for group in polar_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule2_hydrophobic_groups(mol):
+    hydrophobic_groups = ['[CH2;X4]', '[cH1]', '[cH0]', '[a]', '[C;D3,D2](-[CH3])-[CH3]', '[R1]']
+    count = 0
+    for group in hydrophobic_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule3_ring_systems(mol):
+    ring_systems = ['[r3]', '[r4]', '[r5]', '[r6]', '[r7]', '[r8]', '[r9]', '[r10]', '[r11]', '[r12]']
+    count = 0
+    for system in ring_systems:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(system)))
+    return count
+
+def rule4_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule55302_hb_donors1232143(mol):
+    from rdkit.Chem import rdMolDescriptors
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    from rdkit.Chem import rdMolDescriptors
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule6_carbonyl_count(mol):
+    from rdkit import Chem
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[O]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+
+def rule6_carboxylic_acid_count(mol):
+    from rdkit import Chem
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+
+def rule1_polar_functional_group_count(mol):
+    from rdkit import Chem
+    polar_atoms = [atom for atom in mol.GetAtoms() if atom.GetSymbol() not in ['C', 'H']]
+    return len(polar_atoms)
+
+
+def rule2_hydrophobic_regions_count(mol):
+    from rdkit import Chem
+    from rdkit.Chem import Descriptors
+
+    hydrophobicity = Descriptors.MolLogP(mol)
+    return hydrophobicity
+
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_reactive_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+
+
+def rule8_carboxylic_acid_group(mol):
+    pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule10_lipinski_ro5(mol):
+    mw = Descriptors.MolWt(mol)
+    logp = Descriptors.MolLogP(mol)
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+    hba = rdMolDescriptors.CalcNumHBA(mol)
+    return (mw <= 500) and (logp <= 5) and (hbd <= 5) and (hba <= 10)
+
+def rule11_no_toxic_groups(mol):
+    epoxide_pattern = Chem.MolFromSmarts('O1CO1')
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    epoxide_matches = mol.GetSubstructMatches(epoxide_pattern)
+    halogen_matches = mol.GetSubstructMatches(halogen_pattern)
+
+def rule12_no_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule13_simple_structure(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule14_flexibility(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule15_ring_presence(mol):
+    return rdMolDescriptors.CalcNumRings(mol)

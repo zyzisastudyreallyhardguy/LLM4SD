@@ -1,0 +1,43 @@
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule8_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule9_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule10_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(x))) for x in halogens)
+
+def rule11_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule12_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule13_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol))
+
+def rule15_carboxylic_acid_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule16_aldehyde_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')))
+
+def rule17_ketone_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6][CX3](=O)[#6]')))
+
+def rule18_alcohol_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('O[H]')))
+
+def rule19_ether_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('O[#6]')))
+
+def rule20_sulfoxide_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16X3](=O)[#6]')))

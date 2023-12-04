@@ -1,0 +1,54 @@
+def calculate_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def calculate_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol) + rdMolDescriptors.CalcNumHeterocycles(mol)
+
+def calculate_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def calculate_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) >= 2
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) >= 3
+
+def rule5_carbon_chain(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule1_polar_func_groups(mol):
+    num_oxygen = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    num_nitrogen = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    return num_oxygen + num_nitrogen
+
+
+def rule2_alkyl_substituents(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule3_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_carbonyl_nitro_groups(mol):
+    carbonyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+    nitro = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    return carbonyl + nitro
+
+def rule6_carbon_chain_length(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule7_halogen_nitro_groups(mol):
+    halogen = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+    nitro = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    return halogen + nitro
+
+def rule8_molecular_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule9_functional_groups(mol):
+    alcohol = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+    aldehyde = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CH1](=O)')))
+    carboxylic_acid = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    return alcohol + aldehyde + carboxylic_acid

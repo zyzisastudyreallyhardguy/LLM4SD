@@ -1,0 +1,82 @@
+def rule1_nitrogen_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule2_sulfur_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule3_chlorine_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def rule4_specific_groups_presence(mol):
+    carbonyl_smarts = '[#6]=[#8]'
+    sulfonamide_smarts = '[#16](=[#8])(-[#7])-[#7]'
+    carbonyl_pattern = Chem.MolFromSmarts(carbonyl_smarts)
+    sulfonamide_pattern = Chem.MolFromSmarts(sulfonamide_smarts)
+    return mol.GetSubstructMatches(carbonyl_pattern) + mol.GetSubstructMatches(sulfonamide_pattern)
+
+def rule5_long_carbon_chain(mol):
+    max_chain_length = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            chain_length = 1
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C':
+                    chain_length += 1
+            if chain_length > max_chain_length:
+                max_chain_length = chain_length
+    return max_chain_length
+
+def rule6_metal_ion_presence(mol):
+    metal_ions = ['Li', 'Na', 'K', 'Rb', 'Cs', 'Fr', 'Be', 'Mg', 'Ca', 'Sr', 'Ba', 'Ra', 'Sc', 'Y', 'La', 'Ac', 'Ti', 'Zr', 'Hf', 'Rf', 'V', 'Nb', 'Ta', 'Db', 'Cr', 'Mo', 'W', 'Sg', 'Mn', 'Tc', 'Re', 'Bh', 'Fe', 'Ru', 'Os', 'Hs', 'Co', 'Rh', 'Ir', 'Mt', 'Ni', 'Pd', 'Pt', 'Ds', 'Cu', 'Ag', 'Au', 'Rg', 'Zn', 'Cd', 'Hg', 'Cn', 'Al', 'Ga', 'In', 'Tl', 'Nh', 'Si', 'Ge', 'Sn', 'Pb', 'Fl', 'P', 'As', 'Sb', 'Bi', 'Mc', 'S', 'Se', 'Te', 'Po', 'Lv', 'Cl', 'Br', 'I', 'At', 'Ts', 'K', 'Rb', 'Cs', 'Fr']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in metal_ions:
+            return 1
+    return 0
+
+def rule7_carboxylic_acid_group(mol):
+    carboxylic_acid_smarts = '[CX3](=O)[OX2H1]'
+    carboxylic_acid_pattern = Chem.MolFromSmarts(carboxylic_acid_smarts)
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule8_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I', 'At']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule9_nitrogen_atoms(mol):
+    nitrogen_smarts = '[#7R]'
+    nitrogen_pattern = Chem.MolFromSmarts(nitrogen_smarts)
+
+
+
+
+
+def rule12_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule14_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_metal_ions(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['Fe'])
+
+def rule16_carbon_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule17_charge(mol):
+    return sum(abs(atom.GetFormalCharge()) for atom in mol.GetAtoms())
+
+def rule18_structural_features(mol):
+    functional_groups = ['N', 'S(=O)(=O)', 'C(=O)O']
+    ring_systems = ['c1ccccc1', 'c1ncccc1']
+    count = 0
+    for group in functional_groups:
+        patt = Chem.MolFromSmarts(group)
+        count += len(mol.GetSubstructMatches(patt))
+    for ring in ring_systems:
+        patt = Chem.MolFromSmarts(ring)
+        count += len(mol.GetSubstructMatches(patt))
+    return count

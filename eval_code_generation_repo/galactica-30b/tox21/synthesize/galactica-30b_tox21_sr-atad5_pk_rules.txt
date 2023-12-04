@@ -1,0 +1,57 @@
+def rule_tox21_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule_tox21_PSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule_tox21_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule_tox21_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule_tox21_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule_tox21_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+
+
+def rule9_logD(mol):
+    return Descriptors.MolLogP(mol)
+
+
+def rule10_logS(mol):
+    return Crippen.MolLogP(mol)
+
+
+def rule11_volume(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule12_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+
+
+def rule14_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule16_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule18_rotatable_bonds(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+def calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def calculate_num_aromatic_rings(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def calculate_num_rotatable_bonds(mol):
+    return Descriptors.NumRotatableBonds(mol)

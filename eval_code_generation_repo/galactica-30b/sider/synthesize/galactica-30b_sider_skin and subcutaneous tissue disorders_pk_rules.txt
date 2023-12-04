@@ -1,0 +1,133 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_reactive_groups(mol):
+    query = Chem.MolFromSmarts('[#6+,#7+,#8+,#16+]')
+    return len(mol.GetSubstructMatches(query))
+
+
+def rule6_pka(mol):
+    return 7.0  # placeholder value, real pKa calculation is complex and not available in rdkit
+
+def rule7_aromatic_rings(mol):
+    aromatic_list = [ring.IsAromatic() for ring in mol.GetRingInfo().AtomRings()]
+    return int(any(aromatic_list))
+
+def rule8_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_halogen_atoms(mol):
+    halogens = [5, 9, 17, 35, 53]  # atomic numbers of halogens
+    return int(any(atom.GetAtomicNum() in halogens for atom in mol.GetAtoms()))
+
+def rule10_xlogp3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule11_unsaturated_bonds(mol):
+    return int(any(bond.GetIsAromatic() for bond in mol.GetBonds()))
+
+def rule12_number_of_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule13_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule14_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+def rule16_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule17_metal_ions(mol):
+    return sum([atom.GetAtomicNum() in range(21,31) or atom.GetAtomicNum() in range(39,49) or atom.GetAtomicNum() in range(72,81) for atom in mol.GetAtoms()])
+
+def rule18_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule19_conjugated_systems(mol):
+    return sum([bond.GetIsConjugated() for bond in mol.GetBonds()])
+
+def rule21_aliphatic_chains(mol):
+    return sum([atom.GetIsAromatic() == False for atom in mol.GetAtoms()])
+
+def rule22_rigid_bonds(mol):
+    from rdkit import Chem
+    return sum([1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.SINGLE])
+
+def rule22_rigid_bonds(mol):
+    from rdkit import Chem
+    return sum([1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE])
+
+
+def rule23_sulfur_atoms(mol):
+    return sum([atom.GetAtomicNum() == 16 for atom in mol.GetAtoms()])
+
+def rule24_rule_of_five_violations(mol):
+    violations = 0
+    if rdMolDescriptors.CalcNumHBD(mol) > 5:
+        violations += 1
+    if rdMolDescriptors.CalcNumHBA(mol) > 10:
+        violations += 1
+    if Descriptors.MolLogP(mol) > 5:
+        violations += 1
+    if rdMolDescriptors.CalcTPSA(mol) > 140:
+        violations += 1
+
+def rule25_nitrogen_presence(mol):
+    nitrogen_atoms = [atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7]
+    return len(nitrogen_atoms)
+
+def rule26_rule_of_three_violations(mol):
+    molecular_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    num_hbd = rdMolDescriptors.CalcNumHBD(mol)
+    num_hba = rdMolDescriptors.CalcNumHBA(mol)
+    violations = 0
+    if molecular_weight > 300:
+        violations += 1
+    if num_hbd > 3:
+        violations += 1
+    if num_hba > 3:
+        violations += 1
+    return violations
+
+def rule27_oxygen_presence(mol):
+    oxygen_atoms = [atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8]
+    return len(oxygen_atoms)
+
+def rule28_veber_rule_violations(mol):
+    num_rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    polar_surface_area = rdMolDescriptors.CalcTPSA(mol)
+    violations = 0
+    if num_rotatable_bonds > 10:
+        violations += 1
+    if polar_surface_area > 140:
+        violations += 1
+    return violations
+
+def rule29_nitrogen_heterocycles(mol):
+    nitrogen_heterocycles = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if any(mol.GetAtomWithIdx(atom_idx).GetAtomicNum() == 7 for atom_idx in ring):
+            nitrogen_heterocycles += 1
+    return nitrogen_heterocycles
+
+def rule30_pfizer_rule_violations(mol):
+    molecular_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    num_rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    violations = 0
+    if molecular_weight > 500:
+        violations += 1
+    if num_rotatable_bonds > 5:
+        violations += 1

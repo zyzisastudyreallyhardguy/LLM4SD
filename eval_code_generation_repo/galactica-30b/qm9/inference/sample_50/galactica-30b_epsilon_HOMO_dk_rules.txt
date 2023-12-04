@@ -1,0 +1,250 @@
+def rule4_alkyl_chains(mol):
+    alkyl_chains = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX4]'))
+    return len(alkyl_chains)
+
+def rule5_halogen_atoms(mol):
+    halogens = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))
+    return len(halogens)
+
+def rule6_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule7_heteroatoms_in_ring(mol):
+    heteroatoms_in_ring = mol.GetSubstructMatches(Chem.MolFromSmarts('[!#6;r]'))
+    return len(heteroatoms_in_ring)
+
+def rule8_steric_hinderance(mol):
+    steric_hinderance = mol.GetSubstructMatches(Chem.MolFromSmarts('[*;!H0]'))
+    return len(steric_hinderance)
+
+def rule9_polar_functional_groups(mol):
+    polar_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[OH,COOH,NH2]'))
+    return len(polar_groups)
+
+
+
+def rule11_metal_atoms(mol):
+    metal_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[#3,#11,#19,#37,#55,#87,#4,#12,#20,#38,#56,#88,#13,#31,#49,#81,#113,#5,#14,#32,#50,#82,#114,#6,#15,#33,#51,#83,#115,#7,#16,#34,#52,#84,#116,#8,#17,#35,#53,#85,#117,#9,#18,#36,#54,#86,#118]'))
+
+def rule12_compact_structure(mol):
+    if mol.GetNumConformers() >= 1:
+        return rdMolDescriptors.CalcRadiusOfGyration(mol)
+    else:
+        return 0
+
+
+def rule13_lone_pairs(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetNumExplicitHs() > 0)
+
+def rule14_sp_hybridized_carbons(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP)
+
+def rule15_charged_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() != 0)
+
+def rule16_saturation_degree(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.SINGLE)
+
+def rule18_ring_size(mol):
+    return min(len(ring) for ring in Chem.GetSSSR(mol)) if Chem.GetSSSR(mol) else 0
+
+def rule19_pi_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE or bond.GetBondType() == Chem.rdchem.BondType.TRIPLE)
+
+def rule20_branching(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetDegree() > 2)
+
+def rule22_polar_solvent_influence(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule23_chiral_centres(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule24_conformational_isomers(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule25_molecular_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule26_sp3_to_sp2_transformation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule27_branching_structures(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule28_heavier_elements_substitution(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule29_resonant_structures(mol):
+    return rdMolDescriptors.CalcNumAromaticHeterocycles(mol)
+
+def rule30_intramolecular_forces(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule32_orbitals_energy_levels(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule33_symmetrical_compounds(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule34_rotational_freedom(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+
+
+def rule36_atom_hybridization(mol):
+    return Descriptors.NumAliphaticCarbocycles(mol)
+
+def rule37_conjugation(mol):
+    return sum(bond.GetIsAromatic() for bond in mol.GetBonds())
+
+
+def rule38_negative_charge(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule39_molecule_size(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+
+def rule40_molecular_rigidity(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+
+def rule41_empty_orbitals(mol):
+    # Get the total number of P orbitals
+    total_p_orbitals = Descriptors.NumValenceElectrons(mol) // 2
+    # Get the total number of filled P orbitals
+    filled_p_orbitals = Descriptors.NumRadicalElectrons(mol)
+    # Calculate the number of unfilled P orbitals
+    unfilled_p_orbitals = total_p_orbitals - filled_p_orbitals
+    return unfilled_p_orbitals
+
+
+def rule42_negative_hyper_conjugation(mol):
+    # This rule is difficult to quantify directly from a molecule's structure. 
+    # It would require a detailed quantum mechanical calculation to determine the presence of negative hyperconjugation.
+    # Therefore, this function is a placeholder and does not return a meaningful value.
+    return 0
+
+def rule43_excited_state(mol):
+    # This rule is also difficult to quantify directly from a molecule's structure. 
+    # It would require knowledge of the molecule's state (ground or excited), which is not typically available in cheminformatics.
+    # Therefore, this function is a placeholder and does not return a meaningful value.
+    return 0
+
+def rule44_organometallic(mol):
+    # This function checks for the presence of transition metals in the molecule, which are often found in organometallic compounds.
+    # The presence of a transition metal is used as a proxy for the potential of the molecule to form d-orbital delocalization.
+    return sum(atom.GetAtomicNum() in range(21, 31) for atom in mol.GetAtoms())
+
+def rule45_acyclic(mol):
+    # This function checks if the molecule is acyclic (i.e., does not contain any rings).
+    return int(rdMolDescriptors.CalcNumRings(mol) == 0)
+
+def rule46_high_oxidation_state(mol):
+    # This rule is difficult to quantify directly from a molecule's structure. 
+    # It would require knowledge of the oxidation state of each atom, which is not typically available in cheminformatics.
+    # Therefore, this function is a placeholder and does not return a meaningful value.
+    return 0
+
+def rule47_boron_compounds(mol):
+    # This function checks for the presence of boron in the molecule.
+    return sum(atom.GetAtomicNum() == 5 for atom in mol.GetAtoms())
+
+def rule48_high_ionization_energy(mol):
+    # This rule is difficult to quantify directly from a molecule's structure. 
+    # It would require knowledge of the ionization energy of each atom, which is not typically available in cheminformatics.
+    # Therefore, this function is a placeholder and does not return a meaningful value.
+    return 0
+
+def rule49_ch_bonds(mol):
+    # This function counts the number of C-H bonds in the molecule.
+    return sum(1 for bond in mol.GetBonds() if set((bond.GetBeginAtom().GetAtomicNum(), bond.GetEndAtom().GetAtomicNum())) == {1, 6})
+
+def rule50_strong_bonds(mol):
+    # This rule is difficult to quantify directly from a molecule's structure. 
+    # It would require knowledge of the strength of each bond, which is not typically available in cheminformatics.
+    # Therefore, this function is a placeholder and does not return a meaningful value.
+    return 0
+
+def rule1_symmetry(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule2_oxygen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule1_electron_withdrawing_groups(mol):
+    carbonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+    cyano_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[#7]')))
+    return carbonyl_count + cyano_count
+
+def rule2_electron_donating_groups(mol):
+    alkyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](-[#6])4')))
+    alkoxy_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#8]-[#6]')))
+    return alkyl_count + alkoxy_count
+
+def rule3_conjugated_system(mol):
+    conjugated_system_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]-[#6]=[#6]')))
+    return conjugated_system_count
+
+
+def rule1_unsaturation(mol):
+    unsaturation_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[#6]')))
+    return unsaturation_count
+
+def rule2_electronegative_atoms(mol):
+    electronegative_atoms_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]')))
+    return electronegative_atoms_count
+
+def rule1_electron_withdrawing_groups(mol):
+    carbonyl_count = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    cyano_count = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+    return len(carbonyl_count) + len(cyano_count)
+
+def rule2_electron_donating_groups(mol):
+    alkyl_count = mol.GetSubstructMatches(Chem.MolFromSmarts('C-C'))
+    alkoxy_count = mol.GetSubstructMatches(Chem.MolFromSmarts('C-O'))
+    return len(alkyl_count) + len(alkoxy_count)
+
+def rule3_conjugated_system(mol):
+    conjugated_system_count = mol.GetSubstructMatches(Chem.MolFromSmarts('C=C-C=C'))
+    return len(conjugated_system_count)
+
+
+def rule3_conjugated_system(mol):
+    return rdMolDescriptors.CalcNumAliphaticDoubleBonds(mol)
+
+def rule4_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule5_carbonyl_group(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule6_cyclic_structure(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule7_electronegative_atoms(mol):
+    oxygen_pattern = Chem.MolFromSmarts('[#8]')
+    nitrogen_pattern = Chem.MolFromSmarts('[#7]')
+    return len(mol.GetSubstructMatches(oxygen_pattern)) + len(mol.GetSubstructMatches(nitrogen_pattern))
+
+def rule8_conjugated_double_bonds(mol):
+    return Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+def rule9_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_electron_density(mol):
+    heteroatom_pattern = Chem.MolFromSmarts('[!#6;!#1]')
+    return len(mol.GetSubstructMatches(heteroatom_pattern))
+
+def rule11_conjugated_pi_system(mol):
+    num_aliphatic_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and bond.GetIsAromatic() == False:
+            num_aliphatic_double_bonds += 1
+    return num_aliphatic_double_bonds
+

@@ -1,0 +1,76 @@
+def rule1_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule2_type_atoms(mol):
+    atom_types = set([atom.GetSymbol() for atom in mol.GetAtoms()])
+    return len(atom_types)
+
+def rule3_bond_strength(mol):
+    bond_strength = sum([bond.GetBondTypeAsDouble() for bond in mol.GetBonds()])
+    return bond_strength
+
+def rule4_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule5_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule15_hydrogen_bonds(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def rule35_double_bonds(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType().name == 'DOUBLE' and bond.GetIsAromatic() == False])
+
+
+def rule36_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule37_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule38_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule39_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule40_ring_systems(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule41_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule42_double_bonds(mol):
+    return rule35_double_bonds(mol)
+
+def rule43_rotatable_bonds(mol):
+    return rule36_rotatable_bonds(mol)
+
+def rule44_elimination(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX4;!R][HX]')))

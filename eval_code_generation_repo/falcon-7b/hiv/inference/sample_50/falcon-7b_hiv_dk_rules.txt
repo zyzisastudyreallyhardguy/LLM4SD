@@ -1,0 +1,36 @@
+def rule1_HIV_inhibition(mol):
+    # Here, we assume that the functional group that can interact with the viral protein is a hydroxyl group (-OH)
+    # We use SMARTS pattern to find the hydroxyl group
+    hydroxyl_pattern = Chem.MolFromSmarts('[OX2H]')
+    return len(mol.GetSubstructMatches(hydroxyl_pattern))
+
+def rule2_HIV_inhibition(mol):
+    # Here, we assume that the functional group that can interact with the active site of the enzyme reverse transcriptase is a carboxyl group (-COOH)
+    # We use SMARTS pattern to find the carboxyl group
+    carboxyl_pattern = Chem.MolFromSmarts('[CX3](=O)[OX1H0-,OX2H1]')
+    return len(mol.GetSubstructMatches(carboxyl_pattern))
+
+def rule3_HIV_inhibition(mol):
+    # Here, we assume that the specific functional groups are carbonyl group and amine group
+    # We use SMARTS pattern to find these groups
+    carbonyl_pattern = Chem.MolFromSmarts('[CX3]=[OX1]')
+    amine_pattern = Chem.MolFromSmarts('[NX3;H2,H1;!$(NC=O)]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern)) + len(mol.GetSubstructMatches(amine_pattern))
+
+def rule4_HIV_inhibition(mol):
+    # Here, we assume that the specific functional group is a carbonyl group
+    # We use SMARTS pattern to find the carbonyl group
+    carbonyl_pattern = Chem.MolFromSmarts('[CX3]=[OX1]')
+
+def rule5_hiv_inhibitor(mol):
+    nitrogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    return nitrogen_atoms
+
+def rule8_hiv_inhibition(label):
+    if label == 1:
+        return 1
+    else:
+        return 0
+
+def rule9_long_carbon_chain(mol):
+    carbon_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))

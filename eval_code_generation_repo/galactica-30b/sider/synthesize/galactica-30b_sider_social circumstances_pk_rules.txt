@@ -1,0 +1,109 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_toxicophores(mol):
+    toxicophores = ['[nH]', 'O=[N+](O)O', 'C(=O)O[C,H1].C(=O)O[C,H1].C(=O)O[C,H1]']
+    toxicophore_count = 0
+    for toxicophore in toxicophores:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(toxicophore)):
+            toxicophore_count += 1
+    return toxicophore_count
+
+def rule9_XLogP3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule11_lipinski_violations(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule12_PAINS_alerts(mol):
+    pains = ['[O,N]S(=O)(=O)c1ccc([C,F,Cl,Br,I])cc1', 'N#CC[CH2]', 'O=C1C=CC(=O)C=C1']
+    pains_count = 0
+    for pain in pains:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(pain)):
+            pains_count += 1
+    return pains_count
+
+def rule13_drug_likeness(mol):
+    return Descriptors.MolLogP(mol) - rdMolDescriptors.CalcNumHBA(mol) - rdMolDescriptors.CalcNumHBD(mol)
+
+def rule15_lead_like_fragments(mol):
+    lead_like_fragments = ['c1ccccc1', 'C1CCCCC1', 'c1ccncc1']
+    lead_like_fragments_count = 0
+    for fragment in lead_like_fragments:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(fragment)):
+            lead_like_fragments_count += 1
+
+
+
+
+def calculate_egan_violations(mol):
+    # This is just a placeholder. Replace this with the actual calculation.
+    num_egan_violations = 0
+    # Add your code here to calculate the number of Egan violations for the molecule
+    return num_egan_violations
+
+def rule26_Egan_violations(mol):
+    num_egan_violations = calculate_egan_violations(mol)
+    return num_egan_violations
+
+
+
+
+def rule28_Muegge_violations(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+
+def rule29_Leadlike_fragments(mol):
+    mw = Descriptors.MolWt(mol)
+    if mw <= 500 and mw >= 350:
+        return 1
+    else:
+        return 0
+
+
+def rule1(mol):
+    # Replace with the actual rule
+    return True
+
+def rule2(mol):
+    # Replace with the actual rule
+    return True
+
+def rule30_Ghose_violations(mol):
+    # Convert the molecule to a RDKit Mol object if it's not already
+    if not isinstance(mol, Chem.rdchem.Mol):
+        mol = Chem.MolFromSmiles(mol)
+
+    # Initialize the count of Ghose filter violations
+    violations = 0
+
+    # Apply the Ghose filter rules and increment the violations count as necessary
+    if not rule1(mol):
+        violations += 1
+    if not rule2(mol):
+        violations += 1
+    # ... continue for all rules ...
+
+    return violations
+

@@ -1,0 +1,26 @@
+def rule1_mol_size(mol):
+    return mol.GetNumAtoms()
+
+def rule2_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule3_hydrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 1)
+
+def rule4_boiling_point(mol):
+    return 0
+
+def rule5_electronegativity(mol):
+    return sum(atom.GetAtomicNum() for atom in mol.GetAtoms())
+
+def rule6_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule7_hydration_free_energy(mol):
+    return 0
+
+def rule8_oxygen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8)
+
+def rule9_polar_func_groups(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)

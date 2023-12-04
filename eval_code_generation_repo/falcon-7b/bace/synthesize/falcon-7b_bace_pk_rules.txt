@@ -1,0 +1,26 @@
+def rule_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule12345_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule67890_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule111213_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule141516_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule171819_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)

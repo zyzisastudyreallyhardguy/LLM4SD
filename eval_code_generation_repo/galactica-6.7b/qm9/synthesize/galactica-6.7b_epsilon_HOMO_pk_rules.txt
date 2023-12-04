@@ -1,0 +1,50 @@
+def rule1_num_electrons(mol):
+    return len(mol.GetBonds()) * 2
+
+def rule2_avg_mol_wt(mol):
+    return Descriptors.MolWt(mol) / mol.GetNumAtoms()
+
+def rule3_num_valence_electrons(mol):
+    return sum([atom.GetTotalValence() for atom in mol.GetAtoms()])
+
+def rule4_num_aromatic_atoms(mol):
+    return len(mol.GetAromaticAtoms())
+
+def rule5_num_single_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.SINGLE])
+
+def rule9_molecular_volume(mol):
+    return Descriptors.ExactMolWt(mol)
+
+def rule11_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule15_homo_energy_hardness(mol):
+    homo_energy = Descriptors.MolWt(mol)
+    chemical_hardness = Descriptors.NumValenceElectrons(mol) / Descriptors.MolWt(mol)
+    return homo_energy * chemical_hardness
+
+def rule16_homo_energy_softness(mol):
+    homo_energy = Descriptors.MolWt(mol)
+    chemical_softness = 1 / (Descriptors.NumValenceElectrons(mol) / Descriptors.MolWt(mol))
+    return homo_energy * chemical_softness
+
+def rule17_homo_energy_electronegativity_diff(mol):
+    homo_energy = Descriptors.MolWt(mol)
+    electronegativity_diff = np.ptp([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+    return homo_energy * electronegativity_diff
+
+def rule18_homo_energy_dipole_moment(mol):
+    homo_energy = Descriptors.MolWt(mol)
+    dipole_moment = rdMolDescriptors.CalcExactMolWt(mol)
+    return homo_energy * dipole_moment
+
+def rule19_homo_energy_quadrupole_moment(mol):
+    homo_energy = Descriptors.MolWt(mol)
+    quadrupole_moment = rdMolDescriptors.CalcExactMolWt(mol) * 2
+    return homo_energy * quadrupole_moment
+
+def rule20_homo_energy_octupole_moment(mol):
+    homo_energy = Descriptors.MolWt(mol)
+    octupole_moment = rdMolDescriptors.CalcExactMolWt(mol) * 3
+    return homo_energy * octupole_moment

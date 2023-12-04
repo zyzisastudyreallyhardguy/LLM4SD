@@ -1,0 +1,111 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_reactive_groups(mol):
+    # Here we will use the SMARTS pattern to identify the reactive groups
+    # For example, let's consider Aldehydes and Ketones as reactive groups
+    aldehyde_ketone_smarts = '[#6](=[#8])-[#1]'
+    pattern = Chem.MolFromSmarts(aldehyde_ketone_smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_ionizable_groups(mol):
+    # Here we will use the SMARTS pattern to identify the ionizable groups
+    # For example, let's consider Carboxylic Acids and Amines as ionizable groups
+    carboxylic_acid_smarts = '[#6](=[#8])-[#8]-[#1]'
+    amine_smarts = '[#7]([#1])-[#1]'
+
+    carboxylic_acid = Chem.MolFromSmarts(carboxylic_acid_smarts)
+    amine = Chem.MolFromSmarts(amine_smarts)
+
+    num_carboxylic_acid = len(mol.GetSubstructMatches(carboxylic_acid))
+    num_amine = len(mol.GetSubstructMatches(amine))
+
+    return num_carboxylic_acid + num_amine
+
+
+def rule7_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule8_polar_func_groups(mol):
+    from rdkit import Chem
+    polar_groups = ['OH', 'NH2', 'COOH', 'SO3H', 'PO3H2', 'OPO3H2', 'OSO3H', 'NO2', 'CO', 'CN', 'SO2']
+    return sum(1 for group in polar_groups if Chem.MolFromSmiles(group) is not None and mol.HasSubstructMatch(Chem.MolFromSmiles(group)))
+
+
+def rule9_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule10_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for halogen in halogens if mol.HasSubstructMatch(Chem.MolFromSmiles(halogen)))
+
+def rule11_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule12_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule13_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule15_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_skin_irritation(mol):
+    skin_irritation_groups = ['COOH', 'SO3H', 'PO3H2', 'CN']
+    count = 0
+    for group in skin_irritation_groups:
+        group_mol = Chem.MolFromSmiles(group)
+        if group_mol is not None and mol.HasSubstructMatch(group_mol):
+            count += 1
+    return count
+
+
+def rule17_eye_irritation(mol):
+    eye_irritation_groups = ['C(=O)O', 'S(=O)(=O)O', 'P(=O)(O)O', 'C#N']
+    count = 0
+    for group in eye_irritation_groups:
+        group_mol = Chem.MolFromSmiles(group)
+        if group_mol is not None and mol.HasSubstructMatch(group_mol):
+            count += 1
+    return count
+
+
+def rule18_respiratory_irritation(mol):
+    respiratory_irritation_groups = ['COOH', 'SO3H', 'PO3H2', 'CN']
+    count = 0
+    for group in respiratory_irritation_groups:
+        group_mol = Chem.MolFromSmiles(group)
+        if group_mol is not None and mol.HasSubstructMatch(group_mol):
+            count += 1
+    return count
+
+
+def rule19_genotoxicity(mol):
+    genotoxicity_groups = ['C(=O)O', 'S(=O)(=O)O', 'P(=O)(O)O', 'C#N']
+    count = 0
+    for group in genotoxicity_groups:
+        group_mol = Chem.MolFromSmiles(group)
+        if group_mol is not None and mol.HasSubstructMatch(group_mol):
+            count += 1
+    return count
+
+
+def rule20_carcinogenicity(mol):
+    carcinogenicity_groups = ['C(=O)O', 'S(=O)(=O)O', 'P(=O)(O)O', 'C#N']
+    count = 0
+    for group in carcinogenicity_groups:
+        group_mol = Chem.MolFromSmiles(group)
+        if group_mol is not None and mol.HasSubstructMatch(group_mol):
+            count += 1
+    return count
+

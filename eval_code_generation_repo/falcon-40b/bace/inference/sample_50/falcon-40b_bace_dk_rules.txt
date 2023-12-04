@@ -1,0 +1,58 @@
+def rule1_nitrogen_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule2_carbonyl_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetTotalNumHs() == 1 and atom.GetFormalCharge() == 0)
+
+def rule3_fluorine_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'F')
+
+def rule4_sulfonamide_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and atom.GetTotalNumHs() == 2)
+
+def rule5_fluorine_R1(mol):
+    return 1 if mol.GetAtomWithIdx(0).GetSymbol() == 'F' else 0
+
+def rule6_chlorine_R1(mol):
+    return 1 if mol.GetAtomWithIdx(0).GetSymbol() == 'Cl' else 0
+
+def rule7_carboxylic_acid_presence(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetTotalNumHs() == 1 and atom.GetFormalCharge() == -1)
+
+def rule8_nitrogen_hydrogen_R(mol):
+    return 1 if mol.GetAtomWithIdx(mol.GetNumAtoms()-1).GetSymbol() in ['N', 'H'] else 0
+
+def rule1_nitrogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule2_carboxylic_acid_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule3_fluorine_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9]')))
+
+def rule4_chlorine_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]')))
+
+def rule6_sulfonamide_presence(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule7_sulfur_in_phenyl(mol):
+    sulfur_in_phenyl_pattern = Chem.MolFromSmarts('c1ccc(SC)cc1')
+    return len(mol.GetSubstructMatches(sulfur_in_phenyl_pattern))
+
+def rule8_chlorine_in_phenyl(mol):
+    chlorine_in_phenyl_pattern = Chem.MolFromSmarts('c1ccc(Cl)cc1')
+    return len(mol.GetSubstructMatches(chlorine_in_phenyl_pattern))
+
+def rule9_sulfonamide_presence(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule10_nitrogen_presence(mol):
+    nitrogen_pattern = Chem.MolFromSmarts('[N]')
+    return len(mol.GetSubstructMatches(nitrogen_pattern))
+
+def rule10_nitrogen_at_end(mol):
+    nitrogen_at_end_pattern = Chem.MolFromSmarts('[N]$')

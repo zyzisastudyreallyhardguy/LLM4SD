@@ -1,0 +1,108 @@
+def rule1_func_groups(mol):
+    carbonyl = Chem.MolFromSmarts('[#6]=[#8]')
+    carboxylic_acid = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carbonyl)) + len(mol.GetSubstructMatches(carboxylic_acid))
+
+def rule2_ring_structures(mol):
+    thiophene_ring = Chem.MolFromSmarts('c1ccsc1')
+    cyclopentanone_ring = Chem.MolFromSmarts('C1CCC(=O)C1')
+    return len(mol.GetSubstructMatches(thiophene_ring)) + len(mol.GetSubstructMatches(cyclopentanone_ring))
+
+def rule3_charge_ionic(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule4_chlorine_atom(mol):
+    chlorine = Chem.MolFromSmarts('[#17]')
+    return len(mol.GetSubstructMatches(chlorine))
+
+def rule5_nitro_group(mol):
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro))
+
+def rule6_sulfonyl_group(mol):
+    sulfonyl = Chem.MolFromSmarts('S(=O)(=O)')
+    return len(mol.GetSubstructMatches(sulfonyl))
+
+def rule7_func_groups(mol):
+    aldehyde = Chem.MolFromSmarts('[CX3H1](=O)[#6]')
+    ketone = Chem.MolFromSmarts('[#6](=O)[#6]')
+
+def rule8_nitrogen_atoms(mol):
+    nitrogen_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3,NX4+]'))
+    return len(nitrogen_atoms)
+
+def rule9_carbon_chain(mol):
+    carbon_chain = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]'))
+    return len(carbon_chain)
+
+def rule10_nitro_sulfonyl_group(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    sulfonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[S](=O)(=O)'))
+    return len(nitro_group) + len(sulfonyl_group)
+
+def rule11_carboxylic_acid_group(mol):
+    carboxylic_acid_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]'))
+    return len(carboxylic_acid_group)
+
+def rule12_benzene_rings(mol):
+    benzene_rings = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(benzene_rings)
+
+def rule1_sulfonyl_nitro_group(mol):
+    return rule10_nitro_sulfonyl_group(mol)
+
+def rule2_sodium_ion(mol):
+    sodium_ion = mol.GetSubstructMatches(Chem.MolFromSmarts('[Na+]'))
+    return len(sodium_ion)
+
+def rule3_nitrogen_bonded_atoms(mol):
+    nitrogen_bonded_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[NX4]'))
+
+def rule4_neg_oxygen_bonded_to_two_carbons(mol):
+    pattern = Chem.MolFromSmarts('[O-]([C])([C])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule5_chlorine_double_bonded_to_carbons(mol):
+    pattern = Chem.MolFromSmarts('[Cl]([C]=[C])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_nitrogen_bonded_to_carbonyl(mol):
+    pattern = Chem.MolFromSmarts('[N]([C])[C]=[O]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule7_chlorine_bonded_to_benzene(mol):
+    pattern = Chem.MolFromSmarts('[Cl]([c])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule8_fluorine_bonded_to_naphthalene(mol):
+    pattern = Chem.MolFromSmarts('F:c1ccccc1-c2ccccc2')
+    if pattern is not None:
+        matches = mol.GetSubstructMatches(pattern)
+        return len(matches)
+    else:
+        return 0
+
+
+def rule9_carbonyl_and_nitro_groups(mol):
+    pattern1 = Chem.MolFromSmarts('[C]=[O]')
+    pattern2 = Chem.MolFromSmarts('[N+](=O)[O-]')
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches1) + len(matches2)
+
+def rule10_large_complex_molecules(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule11_toxic_elements_and_bonds(mol):
+    pattern1 = Chem.MolFromSmarts('[Se]')
+    pattern2 = Chem.MolFromSmarts('[Hg]')
+    pattern3 = Chem.MolFromSmarts('[C]=[C]')
+    pattern4 = Chem.MolFromSmarts('[S]=[S]')
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    matches3 = mol.GetSubstructMatches(pattern3)
+    matches4 = mol.GetSubstructMatches(pattern4)

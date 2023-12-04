@@ -1,0 +1,61 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_num_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule6_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule8_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule9_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule10_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule11_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule12_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE])
+
+def rule13_polar_bonds(mol):
+    polar_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() in [Chem.rdchem.BondType.SINGLE, Chem.rdchem.BondType.AROMATIC]:
+            atom1 = bond.GetBeginAtom()
+            atom2 = bond.GetEndAtom()
+            if atom1.GetAtomicNum() != atom2.GetAtomicNum():  # This checks if the bond is between two different atoms
+                polar_bonds += 1
+    return polar_bonds
+
+
+def rule15_hydrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[H]')))
+
+def rule16_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[F]')))
+
+def rule17_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Cl]')))
+
+def rule18_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Br]')))
+
+def rule19_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[I]')))

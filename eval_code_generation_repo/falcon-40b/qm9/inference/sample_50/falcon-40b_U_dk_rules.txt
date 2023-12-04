@@ -1,0 +1,8 @@
+def rule4_hydroxyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+
+def rule5_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule5_molecular_weight(mol):
+    return Descriptors.MolWt(mol)

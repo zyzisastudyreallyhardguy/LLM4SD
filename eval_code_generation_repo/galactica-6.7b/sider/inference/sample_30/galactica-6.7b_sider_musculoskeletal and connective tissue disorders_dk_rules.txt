@@ -1,0 +1,84 @@
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_nitro_group(mol):
+    pattern = Chem.MolFromSmarts('N(=O)=O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_halogen_atom(mol):
+    pattern = Chem.MolFromSmarts('[Cl,Br,I]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule4_sulfonamide_group(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule5_piperazine_ring(mol):
+    pattern = Chem.MolFromSmarts('C1CNCCN1')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_halogenated_aromatic_ring(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1[#9,#17,#35,#53]')
+    if pattern is not None:
+        matches = mol.GetSubstructMatches(pattern)
+        return len(matches)
+    else:
+        return 0
+
+
+def rule7_benzene_ring(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule8_functional_group(mol):
+    patterns = ['C(=O)O', 'N(=O)=O', 'S(=O)(=O)N']
+    total_matches = 0
+    for p in patterns:
+        pattern = Chem.MolFromSmarts(p)
+        matches = mol.GetSubstructMatches(pattern)
+        total_matches += len(matches)
+    return total_matches
+
+def rule9_contains_chlorine(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def rule10_contains_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule11_contains_carbonyl(mol):
+    pattern = '[#6][#8]'
+    patt = Chem.MolFromSmarts(pattern)
+    matches = mol.GetSubstructMatches(patt)
+    return len(matches)
+
+
+def rule12_contains_tertiary_amine(mol):
+    tertiary_amine_pattern = '[NX3;H0;!$(NC=O)]'
+    tertiary_amine = Chem.MolFromSmarts(tertiary_amine_pattern)
+    return len(mol.GetSubstructMatches(tertiary_amine))
+
+
+def rule1_contains_carboxylic_acid(mol):
+    pattern = '[CX3](=O)[OX2H1]'
+    carboxylic_acid = Chem.MolFromSmarts(pattern)
+    return len(mol.GetSubstructMatches(carboxylic_acid))
+
+
+def rule2_contains_nitro_group(mol):
+    nitro_pattern = '[N+](=O)[O-]'
+    nitro_group = Chem.MolFromSmarts(nitro_pattern)
+    return len(mol.GetSubstructMatches(nitro_group))
+
+
+def rule3_contains_halogenated_aromatic_ring(mol):
+    aromatic_atoms = [atom for atom in mol.GetAtoms() if atom.GetIsAromatic()]
+    halogenated_aromatic_atoms = [atom for atom in aromatic_atoms if atom.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogenated_aromatic_atoms)
+

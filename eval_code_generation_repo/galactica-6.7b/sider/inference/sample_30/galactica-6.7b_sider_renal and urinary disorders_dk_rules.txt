@@ -1,0 +1,69 @@
+def rule1(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['C', 'N', 'O', 'S'] and atom.GetTotalNumHs() > 0)
+
+def rule2(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'Cl'])
+
+def rule3(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['Cl', 'Br', 'I'])
+
+def rule4(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetTotalNumHs() == 0)
+
+def rule5(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['Cl', 'Br', 'I'] and atom.GetIsAromatic())
+
+def rule6(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['C', 'N', 'O', 'S'] and atom.GetIsAromatic())
+
+def rule7(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and atom.GetTotalNumHs() > 0)
+
+def rule8(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetIsAromatic())
+
+def rule9(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'P' and atom.GetTotalNumHs() == 0)
+
+def rule10_carboxylic_sulfonic_acid(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    sulfonic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)O'))
+    return len(carboxylic_acid) + len(sulfonic_acid)
+
+def rule11_neurological_disorders(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]'))
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3](=O)=O'))
+    halogenated_aromatic_ring = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccc([X])cc1'))
+    return len(carboxylic_acid) + len(nitro_group) + len(halogenated_aromatic_ring)
+
+
+def rule12_tertiary_amine(mol):
+    tertiary_amine = mol.GetSubstructMatches(Chem.MolFromSmarts('N(-C)(-C)-C'))
+    return len(tertiary_amine)
+
+def rule13_cyanide_group(mol):
+    cyanide_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+    return len(cyanide_group)
+
+def rule14_carboxylic_acid(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    return len(carboxylic_acid)
+
+def rule15_thiocyanate_group(mol):
+    thiocyanate_group = mol.GetSubstructMatches(Chem.MolFromSmarts('S-C#N'))
+    return len(thiocyanate_group)
+
+def rule16_metal_ion(mol):
+    metal_ion = mol.GetSubstructMatches(Chem.MolFromSmarts('[#29]')) # Copper
+    return len(metal_ion)
+
+def rule17_sulfonamide_group(mol):
+    sulfonamide_group = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    return len(sulfonamide_group)
+
+def rule18_benzodiazepine_group(mol):
+    benzodiazepine_group = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccc2c(c1)CC(=NCCN2)'))
+    return len(benzodiazepine_group)
+
+def rule19_quinolone_group(mol):
+    quinolone_group = mol.GetSubstructMatches(Chem.MolFromSmarts('c1cc2c(cc1)CC(=O)N2'))

@@ -1,0 +1,113 @@
+def rule1_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_carbon_chain(mol):
+    return max([x.GetNumAtoms() for x in Chem.GetMolFrags(mol, asMols=True, sanitizeFrags=False)])
+
+
+def rule3_nitrogen_carboxylic(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N'))) - len(mol.GetSubstructMatches(Chem.MolFromSmiles('C(=O)O')))
+
+def rule4_sulfur(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule5_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule6_nitro_nitroso(mol):
+    nitro = Chem.MolFromSmiles('[N+](=O)[O-]')
+    nitroso = Chem.MolFromSmiles('N=O')
+    if nitro is not None and nitroso is not None:
+        return len(mol.GetSubstructMatches(nitro)) + len(mol.GetSubstructMatches(nitroso))
+    else:
+        return 0
+
+
+def rule7_halogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule8_chlorine(mol):
+    return -len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule9_metal_containing(mol):
+    metals = ['Fe', 'Ga']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in metals:
+            return 1
+    return 0
+
+def rule10_positive_charge(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetFormalCharge() > 0:
+            return 1
+    return 0
+
+def rule11_negative_charge(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetFormalCharge() < 0:
+            return 1
+    return 0
+
+def rule12_carbon_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'C'])
+
+def rule13_polar_group(mol):
+    polar_groups = ['[OH]', '[NH2]', '[COOH]', '[SO3H]', '[PO3H2]']
+    for group in polar_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+
+def rule14_charge(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetFormalCharge() != 0:
+            return 1
+    return 0
+
+def rule15_metal_ions(mol):
+    metals = ['Li', 'Na', 'K', 'Rb', 'Cs', 'Fr', 'Be', 'Mg', 'Ca', 'Sr', 'Ba', 'Ra', 'Sc', 'Y', 'La', 'Ac', 'Ti', 'Zr', 'Hf', 'Rf', 'V', 'Nb', 'Ta', 'Db', 'Cr', 'Mo', 'W', 'Sg', 'Mn', 'Tc', 'Re', 'Bh', 'Fe', 'Ru', 'Os', 'Hs', 'Co', 'Rh', 'Ir', 'Mt', 'Ni', 'Pd', 'Pt', 'Ds', 'Cu', 'Ag', 'Au', 'Rg', 'Zn', 'Cd', 'Hg', 'Cn', 'Al', 'Ga', 'In', 'Tl', 'Nh', 'Si', 'Ge', 'Sn', 'Pb', 'Fl', 'P', 'As', 'Sb', 'Bi', 'Mc', 'S', 'Se', 'Te', 'Po', 'Lv']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in metals:
+            return 1
+    return 0
+
+def rule16_nitro_group(mol):
+    if mol.HasSubstructMatch(Chem.MolFromSmarts('N(=O)=O')):
+        return 1
+
+def rule17_toxic_molecule(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O;h1]'))
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))
+    metal = mol.GetSubstructMatches(Chem.MolFromSmarts('[#3,#11,#19,#37,#55,#4,#12,#20,#38,#56,#88,#13,#31,#49,#81,#113,#5,#14,#32,#50,#82,#114,#6,#15,#33,#51,#83,#115,#7,#16,#34,#52,#84,#116,#8,#9,#17,#35,#53,#85,#117]'))
+    return len(carboxylic_acid) + len(halogen) + len(metal)
+
+def rule18_adverse_effects(mol):
+    magnesium = mol.GetSubstructMatches(Chem.MolFromSmarts('[Mg]'))
+    copper = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cu]'))
+    platinum = mol.GetSubstructMatches(Chem.MolFromSmarts('[Pt]'))
+    return len(magnesium) + len(copper) + len(platinum)
+
+def rule1_carboxylic_acid(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O;h1]'))
+    return len(carboxylic_acid)
+
+def rule2_nitrogen_atom(mol):
+    nitrogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[N]'))
+    return len(nitrogen)
+
+def rule3_chlorine_atom(mol):
+    chlorine = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]'))
+    return len(chlorine)
+
+def rule4_nitrogen_atom(mol):
+    nitrogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[N]'))
+    return len(nitrogen)
+
+def rule5_chlorine_atom(mol):
+    chlorine = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]'))
+    return len(chlorine)
+
+def rule6_sulfur_atom(mol):
+    sulfur = mol.GetSubstructMatches(Chem.MolFromSmarts('[S]'))
+    return len(sulfur)

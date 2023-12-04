@@ -1,0 +1,68 @@
+def sider_immune_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def sider_immune_num_hydrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'H')
+
+def sider_immune_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def sider_immune_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def sider_immune_num_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule7_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule8_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule9_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule10_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule11_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule12_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule13_double_bonds(mol):
+    num_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdchem.BondType.DOUBLE:
+            num_double_bonds += 1
+    return num_double_bonds
+
+
+def rule15_hydroxyl_groups(mol):
+    hydroxyl_pattern = Chem.MolFromSmarts('O[H]')
+    return len(mol.GetSubstructMatches(hydroxyl_pattern))
+
+def rule16_amino_groups(mol):
+    amino_pattern = Chem.MolFromSmarts('N[H]')
+    return len(mol.GetSubstructMatches(amino_pattern))
+
+def rule17_carboxylic_acid_groups(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule18_ester_groups(mol):
+    ester_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(ester_pattern))
+
+def rule19_ether_groups(mol):
+    ether_pattern = Chem.MolFromSmarts('C-O-C')
+    return len(mol.GetSubstructMatches(ether_pattern))
+
+def rule20_other_functional_groups(mol):
+    functional_groups = ['C=O', 'C#N', 'C=C', 'C#C', 'C=N', 'C=N', 'C-N', 'C-S', 'C-Cl', 'C-Br', 'C-I', 'C-F']
+    total = 0
+    for group in functional_groups:
+        pattern = Chem.MolFromSmarts(group)
+        total += len(mol.GetSubstructMatches(pattern))
+    return total

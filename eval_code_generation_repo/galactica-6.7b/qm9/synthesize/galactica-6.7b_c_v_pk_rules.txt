@@ -1,0 +1,112 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule3_branching(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule4_double_bonds(mol):
+    double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdchem.BondType.DOUBLE:
+            double_bonds += 1
+    return double_bonds
+
+
+def rule6_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule7_lone_pairs(mol):
+    lone_pairs = 0
+    for atom in mol.GetAtoms():
+        lone_pairs += (atom.GetTotalValence() - atom.GetTotalDegree()) // 2
+    return lone_pairs
+
+
+def rule8_hydrogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule9_electronegative_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule10_hydrogen_bonded_electronegative_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule11_hydrogen_bonded_hydrogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule12_hydrogen_bonded_carbon_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule13_carbon_atoms(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule14_carbon_bonded_hydrogen_atoms(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule15_Cv_carbon_bonded_to_carbon(mol):
+    carbon_bonded_to_carbon = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C':
+                    carbon_bonded_to_carbon += 1
+    return carbon_bonded_to_carbon
+
+def rule16_Cv_hydrogen_bonded_to_carbon_bonded_to_hydrogen(mol):
+    hydrogen_bonded_to_carbon_bonded_to_hydrogen = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'H':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C':
+                    for neighbor2 in neighbor.GetNeighbors():
+                        if neighbor2.GetSymbol() == 'H':
+                            hydrogen_bonded_to_carbon_bonded_to_hydrogen += 1
+    return hydrogen_bonded_to_carbon_bonded_to_hydrogen
+
+def rule17_Cv_carbon_bonded_to_carbon_bonded_to_hydrogen(mol):
+    carbon_bonded_to_carbon_bonded_to_hydrogen = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C':
+                    for neighbor2 in neighbor.GetNeighbors():
+                        if neighbor2.GetSymbol() == 'H':
+                            carbon_bonded_to_carbon_bonded_to_hydrogen += 1
+    return carbon_bonded_to_carbon_bonded_to_hydrogen
+
+def rule18_Cv_hydrogen_bonded_to_carbon_bonded_to_carbon(mol):
+    hydrogen_bonded_to_carbon_bonded_to_carbon = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'H':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C':
+                    for neighbor2 in neighbor.GetNeighbors():
+                        if neighbor2.GetSymbol() == 'C':
+                            hydrogen_bonded_to_carbon_bonded_to_carbon += 1
+    return hydrogen_bonded_to_carbon_bonded_to_carbon
+
+def rule19_Cv_carbon_bonded_to_carbon_bonded_to_carbon(mol):
+    carbon_bonded_to_carbon_bonded_to_carbon = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C':
+                    for neighbor2 in neighbor.GetNeighbors():
+                        if neighbor2.GetSymbol() == 'C':
+                            carbon_bonded_to_carbon_bonded_to_carbon += 1
+    return carbon_bonded_to_carbon_bonded_to_carbon
+
+def rule20_Cv_hydrogen_bonded_to_carbon_bonded_to_carbon_bonded_to_hydrogen(mol):
+    hydrogen_bonded_to_carbon_bonded_to_carbon_bonded_to_hydrogen = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'H':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C':
+                    for neighbor2 in neighbor.GetNeighbors():
+                        if neighbor2.GetSymbol() == 'C':
+                            for neighbor3 in neighbor2.GetNeighbors():
+                                if neighbor3.GetSymbol() == 'H':
+                                    hydrogen_bonded_to_carbon_bonded_to_carbon_bonded_to_hydrogen += 1

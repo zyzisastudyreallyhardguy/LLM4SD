@@ -1,0 +1,70 @@
+def rule1_adverse_effects_nitrogen_positive_charge(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[n+]')))
+    return nitrogen_count
+
+def rule2_adverse_effects_chlorine_negative_charge(mol):
+    chlorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl-]')))
+    return chlorine_count
+
+def rule3_adverse_effects_sulfur_negative_charge(mol):
+    sulfur_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[S-]')))
+    return sulfur_count
+
+def rule4_adverse_effects_carboxylic_acid(mol):
+    carboxylic_acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    return carboxylic_acid_count
+
+def rule5_decrease_adverse_effects_nitrogen(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[n]')))
+    return nitrogen_count
+
+def rule6_adverse_effects_halogen(mol):
+    halogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+    return halogen_count
+
+def rule7_decrease_adverse_effects_sulfonamide(mol):
+    sulfonamide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    return sulfonamide_count
+
+def rule8_adverse_effects_functional_groups(mol):
+    amine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    sulfonamide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    carboxylic_acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    return amine_count + sulfonamide_count + carboxylic_acid_count
+
+
+
+def rule10_adverse_effects_poor_adme(mol):
+    from rdkit.Chem import rdMolDescriptors
+    logP = rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+    return logP
+
+
+def rule11_long_carbon_chain(mol):
+    paths = [len(path) for path in Chem.FindAllPathsOfLengthN(mol, 4, useBonds=True)]
+    return max(paths) if paths else 0
+
+
+def rule12_carbon_hydrogen_ratio(mol):
+    return mol.GetNumAtoms(onlyExplicit=False, onlyHeavy=True) / mol.GetNumAtoms(onlyExplicit=True, onlyHeavy=False)
+
+def rule13_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule14_nitrogen_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7].[#6]=[#8]')))
+
+def rule15_halogen_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53].[#6]=[#8]')))
+
+def rule16_fluorine_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9]')))
+
+def rule17_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule18_sulfur_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule19_positive_charge(mol):
+    return sum([1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0])

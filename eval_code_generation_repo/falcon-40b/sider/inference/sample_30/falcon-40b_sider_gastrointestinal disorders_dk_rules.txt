@@ -1,0 +1,106 @@
+def rule1_nitrogen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_chlorine_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule3_sulfur_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule4_carbonyl_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule5_sulfonamide_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)N')))
+
+def rule6_long_carbon_chain(mol):
+    max_chain_length = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            chain_length = atom.GetDegree()
+            if chain_length > max_chain_length:
+                max_chain_length = chain_length
+    return max_chain_length
+
+def rule7_chlorine_and_long_carbon_chain(mol):
+    has_chlorine = any(atom.GetSymbol() == 'Cl' for atom in mol.GetAtoms())
+    max_chain_length = rule6_long_carbon_chain(mol)
+    return has_chlorine and max_chain_length
+
+def rule8_carboxylic_acid_group(mol):
+    carboxylic_acid_smarts = '[CX3](=O)[OX2H1]'
+    carboxylic_acid_pattern = Chem.MolFromSmarts(carboxylic_acid_smarts)
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule9_sulfur_and_nitrogen(mol):
+    has_sulfur = any(atom.GetSymbol() == 'S' for atom in mol.GetAtoms())
+    has_nitrogen = any(atom.GetSymbol() == 'N' for atom in mol.GetAtoms())
+    return has_sulfur and has_nitrogen
+
+def rule10_nitrogen_positive_charge(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[n+]')))
+    return nitrogen_count
+
+def rule11_chlorine_negative_charge(mol):
+    chlorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl-]')))
+    return chlorine_count
+
+def rule12_sulfur_negative_charge(mol):
+    sulfur_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[S-]')))
+    return sulfur_count
+
+def rule13_metal_ion(mol):
+    metal_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#3,#11,#19,#37,#55,#87,#4,#12,#20,#38,#56,#88,#5,#13,#31,#49,#81,#113,#6,#14,#32,#50,#82,#114,#7,#15,#33,#51,#83,#115,#8,#16,#34,#52,#84,#116,#9,#17,#35,#53,#85,#117]')))
+    return metal_count
+
+def rule14_nitrogen_long_carbon_chain(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[n]')))
+    carbon_chain_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C]')))
+
+def rule15_gastrointestinal_disorders(mol):
+    nitrogen_mol = Chem.MolFromSmiles('N')
+    carbon_mol = Chem.MolFromSmiles('C')
+    hydrogen_mol = Chem.MolFromSmiles('H')
+
+    if nitrogen_mol is None or carbon_mol is None or hydrogen_mol is None:
+        return 0
+
+    nitrogen_count = len(mol.GetSubstructMatches(nitrogen_mol))
+    carbon_count = len(mol.GetSubstructMatches(carbon_mol))
+    hydrogen_count = len(mol.GetSubstructMatches(hydrogen_mol))
+
+    if nitrogen_count > 0 and carbon_count > hydrogen_count:
+        return 1
+    else:
+        return 0
+
+
+def rule16_gastrointestinal_disorders(mol):
+    sodium_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Na+]')))
+    magnesium_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Mg+]')))
+    if sodium_count > 0 or magnesium_count > 0:
+        return 1
+    else:
+        return 0
+
+def rule17_adverse_effects(mol):
+    fluorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+    if fluorine_count > 0:
+        return 1
+    else:
+        return 0
+
+def rule18_gastrointestinal_disorders(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    carbon_chain = mol.GetSubstructMatches(Chem.MolFromSmarts('C-C-C-C-C-C-C-C-C-C'))
+    if nitrogen_count > 0 and len(carbon_chain) > 0:
+        return 1
+    else:
+        return 0
+
+def rule19_gastrointestinal_disorders(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    if len(nitro_group) > 0:
+        return 1
+    else:
+        return 0

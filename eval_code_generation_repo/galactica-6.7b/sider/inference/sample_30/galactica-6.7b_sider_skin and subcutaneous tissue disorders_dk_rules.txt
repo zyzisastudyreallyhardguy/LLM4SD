@@ -1,0 +1,126 @@
+def rule1_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule2_halogen_atom(mol):
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule3_carbonyl_group(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[O]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule4_phenyl_group(mol):
+    phenyl_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(phenyl_pattern))
+
+def rule7_chlorine_atom(mol):
+    chlorine_pattern = Chem.MolFromSmarts('[Cl]')
+    return len(mol.GetSubstructMatches(chlorine_pattern))
+
+def rule8_hydroxyl_group(mol):
+    hydroxyl_pattern = Chem.MolFromSmarts('[OH]')
+    return len(mol.GetSubstructMatches(hydroxyl_pattern))
+
+def rule9_sulfonamide_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule10_quinolone_group(mol):
+    quinolone_smarts = 'c1c2c(ccc1)ncn2C(=O)'
+    quinolone = Chem.MolFromSmarts(quinolone_smarts)
+    return len(mol.GetSubstructMatches(quinolone))
+
+def rule11_multiple_func_groups(mol):
+    func_groups_smarts = ['[CX3](=O)[OX2H1]', '[CX3](=O)[OX1H0-,OX2H1]', '[CX3H1](=O)[OX2H1]', '[CX3](=O)[OX2H0]']
+    func_groups = [Chem.MolFromSmarts(smarts) for smarts in func_groups_smarts]
+    return sum(len(mol.GetSubstructMatches(func_group)) for func_group in func_groups)
+
+def rule12_func_group(mol):
+    func_groups_smarts = ['[NX3][CX3](=[OX1])[NX3H2,NX4H3,NX3H1+]', '[NX3][CX3](=[OX1])[NX3H2,NX4H3,NX3H1+]', '[NX3,NX4+][CX3](=[OX1])[NX3,NX4]']
+    func_groups = [Chem.MolFromSmarts(smarts) for smarts in func_groups_smarts]
+    return sum(len(mol.GetSubstructMatches(func_group)) for func_group in func_groups)
+
+def rule13_halogenated_aromatic_ring(mol):
+    halogenated_aromatic_smarts = 'c1ccccc1[X]'
+    halogenated_aromatic = Chem.MolFromSmarts(halogenated_aromatic_smarts)
+    return len(mol.GetSubstructMatches(halogenated_aromatic))
+
+def rule14_polar_func_group_or_ring(mol):
+    polar_func_group_smarts = ['[NX3;H2,H1;!$(NC=O)]', '[OX2H]', '[#7;+]', '[#8;+]', '[#16;+]', '[F,Cl,Br,I]']
+    polar_func_group = [Chem.MolFromSmarts(smarts) for smarts in polar_func_group_smarts]
+    ring_info = mol.GetRingInfo()
+    return sum(len(mol.GetSubstructMatches(func_group)) for func_group in polar_func_group) + len(ring_info.AtomRings())
+
+def rule15_PAH_structure(mol):
+    PAH_smarts = 'c1cccc2c1cccc2'
+    PAH = Chem.MolFromSmarts(PAH_smarts)
+    return len(mol.GetSubstructMatches(PAH))
+
+def rule16_func_groups(mol):
+    func_groups_smarts = ['[CX3](=O)[OX2H1]', '[CX3](=O)[OX1H0-,OX2H1]', '[CX3H1](=O)[OX2H1]', '[CX3](=O)[OX2H0]']
+    func_groups = [Chem.MolFromSmarts(smarts) for smarts in func_groups_smarts]
+    return sum(len(mol.GetSubstructMatches(func_group)) for func_group in func_groups)
+
+def rule17_benzene_ring(mol):
+    benzene_smarts = 'c1ccccc1'
+    benzene = Chem.MolFromSmarts(benzene_smarts)
+    return len(mol.GetSubstructMatches(benzene))
+
+def rule18_lipophilicity_mol_weight(mol):
+    lipophilicity = Descriptors.MolLogP(mol)
+    mol_weight = Descriptors.MolWt(mol)
+    return lipophilicity, mol_weight
+
+def rule19_carboxylic_acid_group(mol):
+    carboxylic_acid_smarts = 'C(=O)O'
+    carboxylic_acid = Chem.MolFromSmarts(carboxylic_acid_smarts)
+
+def rule20_lipophilic_molecules(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule1_skin_disorder(mol):
+    skin_disorder_groups = ['C(=O)O', 'C(=O)N', 'C(=O)C', 'C(=O)[O-]', 'C(=O)Cl', 'C(=O)Br', 'C(=O)I', 'C(=O)F']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmiles(x)) for x in skin_disorder_groups)
+
+def rule2_ring_structures(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule3_polar_functional_groups(mol):
+    polar_functional_groups = ['[OH]', '[NH2]', '[SH]', 'C(=O)', 'C#N', 'C=N', 'C#C', 'C=C', 'N=O']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmiles(x)) for x in polar_functional_groups)
+
+def rule4_chlorine_atom(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule5_no_skin_disorder(mol):
+    skin_disorder_groups = ['C(=O)O', 'C(=O)N', 'C(=O)C', 'C(=O)[O-]', 'C(=O)Cl', 'C(=O)Br', 'C(=O)I', 'C(=O)F']
+
+def rule6_carbonyl_group(mol):
+    carbonyl_smarts = '[#6]=[#8]'
+    carbonyl_pattern = Chem.MolFromSmarts(carbonyl_smarts)
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule7_hydroxyl_group(mol):
+    hydroxyl_smarts = '[OH]'
+    hydroxyl_pattern = Chem.MolFromSmarts(hydroxyl_smarts)
+    if hydroxyl_pattern is not None:
+        return len(mol.GetSubstructMatches(hydroxyl_pattern))
+    else:
+        return 0
+
+
+def rule8_nitrogen_atom(mol):
+    nitrogen_smarts = '[#7]'
+    nitrogen_pattern = Chem.MolFromSmarts(nitrogen_smarts)
+    return len(mol.GetSubstructMatches(nitrogen_pattern))
+
+def rule9_nitro_group(mol):
+    nitro_smarts = '[N+](=O)[O-]'
+    nitro_pattern = Chem.MolFromSmarts(nitro_smarts)
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule10_halogen_atom(mol):
+    halogen_smarts = '[F,Cl,Br,I]'
+    halogen_pattern = Chem.MolFromSmarts(halogen_smarts)

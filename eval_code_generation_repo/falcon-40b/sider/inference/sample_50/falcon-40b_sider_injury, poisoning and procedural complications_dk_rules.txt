@@ -1,0 +1,35 @@
+def rule1_nitrogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule2_carbonyl_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule3_carboxylic_acid_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O;h1]')))
+
+def rule4_halogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule5_platinum_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#78]')))
+
+def rule6_sulfur_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule7_functional_groups_presence(mol):
+    amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    sulfonamides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O;h1]')))
+    return amines + sulfonamides + carboxylic_acids
+
+def rule8_charge(mol):
+    return rdmolops.GetFormalCharge(mol)
+
+
+def rule9_complexity(mol):
+    return Descriptors.HeavyAtomCount(mol) + rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_metal_ion_presence(mol):
+    sodium = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#11]')))
+    iodine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#53]')))
+    return sodium + iodine

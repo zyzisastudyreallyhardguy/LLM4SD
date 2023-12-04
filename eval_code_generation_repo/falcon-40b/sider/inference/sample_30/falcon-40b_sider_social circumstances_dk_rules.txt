@@ -1,0 +1,64 @@
+def rule1_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_chlorine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule3_sulfur(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule4_nitrogen_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N=C=O')))
+
+def rule5_nitrogen_carboxylic(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N-C(=O)O')))
+
+def rule6_nitrogen_sulfonamide(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N-S(=O)(=O)')))
+
+def rule7_long_carbon_chain(mol):
+    # Convert each fragment to a list of atoms
+    chains = [rdmolops.GetMolFrags(chain, asMols=True, sanitizeFrags=False) for chain in Chem.GetMolFrags(mol, asMols=True)]
+    # Get the length of each chain
+    chain_lengths = [len(chain) for chain in chains]
+    # Return the maximum length
+    return max(chain_lengths)
+
+
+def rule8_specific_func_groups(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]'))
+    nitrogen_heterocyclic = mol.GetSubstructMatches(Chem.MolFromSmarts('[nR]'))
+    return len(carboxylic_acid) + len(halogen) + len(nitrogen_heterocyclic)
+
+def rule9_halogen_atoms(mol):
+    try:
+        halogen_heterocyclic = mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]'))
+        nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+        return len(halogen_heterocyclic) + len(nitro_group)
+    except:
+        return 0
+
+
+def rule10_func_groups(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    amines = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    sulfonamides = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    return len(carboxylic_acid) + len(amines) + len(sulfonamides)
+
+def rule11_heavy_metal_ros(mol):
+    heavy_metal = mol.GetSubstructMatches(Chem.MolFromSmarts('[#64]'))
+    ros = mol.GetSubstructMatches(Chem.MolFromSmarts('[O]'))
+    return len(heavy_metal) + len(ros)
+
+def rule12_nitrogen_heterocyclic(mol):
+    nitrogen_heterocyclic = mol.GetSubstructMatches(Chem.MolFromSmarts('[nR]'))
+    return len(nitrogen_heterocyclic)
+
+def rule13_halogen_atoms(mol):
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]'))
+    return len(halogen)
+
+def rule14_sulfur_nitrogen(mol):
+    sulfur = mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]'))
+    nitrogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]'))

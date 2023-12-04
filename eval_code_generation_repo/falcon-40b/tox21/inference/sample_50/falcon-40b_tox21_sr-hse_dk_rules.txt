@@ -1,0 +1,69 @@
+def rule1(mol):
+    if mol.GetNumAtoms() == 0:
+        return 0
+    else:
+        return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and atom.GetFormalCharge() > 0)
+
+def rule2(mol):
+    if mol.GetNumAtoms() == 0:
+        return 0
+    else:
+        return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and atom.GetFormalCharge() < 0)
+
+def rule3(mol):
+    if mol.GetNumAtoms() == 0:
+        return 0
+    else:
+        return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl' and atom.GetFormalCharge() > 0)
+
+def rule4(mol):
+    if mol.GetNumAtoms() == 0:
+        return 0
+    else:
+        return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'S', 'Cl'])
+
+def rule5(mol):
+    if mol.GetNumAtoms() == 0:
+        return 0
+    else:
+        return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['Cl', 'Br', 'S'])
+
+def rule6(mol):
+    if mol.GetNumAtoms() == 0:
+        return 0
+    else:
+        return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetFormalCharge() < 0 and atom.GetTotalNumHs() == 1)
+
+def rule7(mol):
+    if mol.GetNumAtoms() == 0:
+        return 0
+    else:
+        return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'Cl', 'C'] and atom.GetTotalNumHs() == 1)
+
+def rule8(mol):
+    if mol.GetNumAtoms() == 0:
+        return 0
+    else:
+        return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['Br', 'Cl', 'N', 'C'] and atom.GetTotalNumHs() == 1)
+
+
+
+def rule10_adverse_effects(mol):
+    num_carbon_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+    num_hydrogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[H]')))
+    num_oxygen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    num_nitrogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    num_chlorine_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+    num_fluorine_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+    return num_carbon_atoms, num_hydrogen_atoms, num_oxygen_atoms, num_nitrogen_atoms, num_chlorine_atoms, num_fluorine_atoms
+
+
+
+
+
+
+
+def rule17_toxicity(mol):
+    num_carboxylic_acid_groups = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C(=O)O')))
+    num_sulfonamide_groups = len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)N')))
+    num_nitro_groups = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[N+](=O)[O-]')))

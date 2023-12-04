@@ -1,0 +1,60 @@
+
+def rule6_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_aliphatic_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule9_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule10_stereocenters(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+def rule11_chiral_centers(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule12_double_bonds(mol):
+    double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            double_bonds += 1
+    return double_bonds
+
+
+def rule13_triple_bonds(mol):
+    triple_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE:
+            triple_bonds += 1
+    return triple_bonds
+
+
+def rule15_calc_num_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule16_calc_num_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule17_calc_num_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule18_calc_num_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule19_calc_num_hydrogen_atoms(mol):
+    num_hydrogen_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 1:
+            num_hydrogen_atoms += 1
+    return num_hydrogen_atoms
+
+
+def rule20_calc_num_metal_atoms(mol):
+    metals = [3, 4, 11, 12, 19, 20, 37, 38, 55, 56, 87, 88, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 49, 50, 51, 52, 53, 81, 82, 83, 84, 85, 113, 114, 115, 116, 117, 118]
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in metals)
+

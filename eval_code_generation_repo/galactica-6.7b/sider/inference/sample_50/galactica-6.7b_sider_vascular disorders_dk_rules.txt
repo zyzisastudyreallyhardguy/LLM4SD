@@ -1,0 +1,79 @@
+def rule1_contains_nitro(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule2_contains_chlorine(mol):
+    chlorine_pattern = Chem.MolFromSmarts('[Cl]')
+    return len(mol.GetSubstructMatches(chlorine_pattern))
+
+def rule3_contains_benzene(mol):
+    benzene_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(benzene_pattern))
+
+def rule4_contains_carbonyl(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[CX3]=[OX1]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule5_contains_halogen(mol):
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule6_contains_carboxylic_acid(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule7_contains_tertiary_amine(mol):
+    tertiary_amine_pattern = Chem.MolFromSmarts('[NX3](C)(C)C')
+    return len(mol.GetSubstructMatches(tertiary_amine_pattern))
+
+def rule8_sulfur_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule9_phenyl_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('c1ccccc1')))
+
+def rule10_sulfonyl_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)')))
+
+def rule11_hydroxyl_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule12_sulfonamide_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)N')))
+
+def rule13_phosphate_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('P(=O)(O)O')))
+
+def rule1_carbonyl_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule3_contains_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule4_contains_sulfur(mol):
+    sulfur_pattern = Chem.MolFromSmarts('[#16]')
+    return len(mol.GetSubstructMatches(sulfur_pattern))
+
+def rule5_contains_halogen(mol):
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule6_contains_carboxylic_acid(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule7_contains_phenyl_group(mol):
+    phenyl_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(phenyl_pattern))
+
+def rule8_contains_benzene_ring(mol):
+    benzene_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(benzene_pattern))
+
+def rule9_contains_carbonyl_group(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule10_contains_halogen(mol):
+    halogen_pattern = Chem.MolFromSmarts('[Cl,Br,I]')

@@ -1,0 +1,24 @@
+def rule1_pi_electrons(mol):
+    pi_electrons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2 or atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3D:
+            pi_electrons += 1
+    return pi_electrons
+
+def rule2_molecular_volume(mol):
+    return Descriptors.MolMR(mol)
+
+def rule3_ionization_potential(mol):
+    # This is a placeholder function as rdkit does not support direct calculation of ionization potential
+    # You would need quantum chemistry software like Gaussian, ORCA etc. to calculate ionization potential
+    return 0
+
+
+
+def rule15_20_pi_electrons(mol):
+    pi_electrons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2 or \
+           atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3D:
+            pi_electrons += 1
+    return pi_electrons

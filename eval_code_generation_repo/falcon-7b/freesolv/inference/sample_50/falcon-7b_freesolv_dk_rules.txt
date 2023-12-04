@@ -1,0 +1,50 @@
+def rule1_hydration_free_energy(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hydration_free_energy(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_hydration_free_energy(mol):
+    n = rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+    R = 8.13
+    T = 298.15
+    Hf = -R * T * (1/2) * (n*(n+3)/3)
+    return Hf
+
+def rule4_hydration_free_energy(mol):
+    n = rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+    size = rdkit.Chem.rdMolDescriptors.CalcExactMolWt(mol)
+    polarity = rdkit.Chem.rdMolDescriptors.CalcTPSA(mol)
+    G = n * size * polarity
+
+def rule5_hydration_energy(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_hf_value(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule7_hydration_ability(mol):
+    return Descriptors.TPSA(mol)
+
+def rule55302_hb_donors1232143(mol):
+    from rdkit.Chem import rdMolDescriptors
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    from rdkit.Chem import rdMolDescriptors
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+
+
+
+
+def rule1_hydration_free_energy(mol):
+    from rdkit.Chem import Descriptors
+    return Descriptors.MolWt(mol)
+
+def rule2_polar_molecules(mol):
+    from rdkit.Chem import rdMolDescriptors
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule3_electronegativity(mol):
+    from rdkit.Chem import Descriptors

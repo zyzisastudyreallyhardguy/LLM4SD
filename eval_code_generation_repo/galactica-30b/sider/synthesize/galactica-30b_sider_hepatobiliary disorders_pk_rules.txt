@@ -1,0 +1,119 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule8_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule9_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_aliphatic_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule11_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule12_halogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53])
+
+def rule13_unsaturated_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetIsAromatic())
+
+def rule14_conjugated_systems(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule16_hydrophilic_groups(mol):
+    pattern = Chem.MolFromSmarts('[OH]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule17_hydrophobic_groups(mol):
+    pattern = Chem.MolFromSmarts('[C]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule18_amphiphilic_groups(mol):
+    pattern1 = Chem.MolFromSmarts('[OH]')
+    pattern2 = Chem.MolFromSmarts('[C]')
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return min(len(matches1), len(matches2))
+
+def rule19_flexible_rings(mol):
+    return Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule20_sterically_hindered_groups(mol):
+    pattern = Chem.MolFromSmarts('[*]~(*)~[*]')
+    if pattern is not None:
+        matches = mol.GetSubstructMatches(pattern)
+        return len(matches)
+    else:
+        return 0
+
+
+def rule21_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule22_charged_groups(mol):
+    pattern = Chem.MolFromSmarts('[+,-]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule23_rigid_rings(mol):
+    return Chem.rdMolDescriptors.CalcNumRings(mol)
+
+def rule24_hydrophilic_groups(mol):
+    pattern = Chem.MolFromSmarts('[OH]')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule25_hydrophobic_groups(mol):
+    hydrophobic_groups = ['C', 'CC', 'CCC', 'CCCC', 'CCCCC', 'CCCCCC', 'CCCCCCC', 'CCCCCCCC', 'CCCCCCCCC', 'CCCCCCCCCC']
+    hydrophobic_count = 0
+    for group in hydrophobic_groups:
+        hydrophobic_count += len(mol.GetSubstructMatches(Chem.MolFromSmiles(group)))
+    return hydrophobic_count
+
+def rule26_amphiphilic_groups(mol):
+    amphiphilic_groups = ['CO', 'OC', 'CN', 'NC', 'CS', 'SC', 'CP', 'PC', 'PO', 'OP']
+    for group in amphiphilic_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmiles(group)):
+            return 1
+    return 0
+
+def rule27_flexible_rings(mol):
+    ri = mol.GetRingInfo()
+    return len(ri.AtomRings())
+
+def rule28_sterically_hindered_groups(mol):
+    sterically_hindered_groups = ['C(C)(C)(C)', 'C(C)(C)(C)C', 'C(C)(C)(C)CC', 'C(C)(C)(C)CCC', 'C(C)(C)(C)CCCC']
+    for group in sterically_hindered_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmiles(group)):
+            return 1
+    return 0
+
+def rule29_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule30_charged_groups(mol):
+    charged_groups = ['[NH4+]', '[OH-]', '[O-]', '[N+]', '[NH3+]', '[NH2-]', '[NH-]', '[N-]', '[O+]', '[OH2+]', '[OH1-]', '[O2-]']
+    for group in charged_groups:
+        group_mol = Chem.MolFromSmiles(group)
+        if group_mol is not None and mol.HasSubstructMatch(group_mol):
+            return 1
+    return 0
+

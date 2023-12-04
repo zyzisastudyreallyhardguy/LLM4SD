@@ -1,0 +1,137 @@
+
+
+def rule123456_cyclic_peptide_disulfide(mol):
+    cyclic_peptide = rdMolDescriptors.CalcNumRings(mol)
+    disulfide_bond = rdMolDescriptors.CalcNumSssSR(mol)
+    return cyclic_peptide and disulfide_bond
+
+def rule789012_linear_peptide_no_disulfide(mol):
+    linear_peptide = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    disulfide_bond = rdMolDescriptors.CalcNumSssSR(mol)
+    return linear_peptide and not disulfide_bond
+
+def rule345678_cyclic_peptide_disulfide_toxicity(mol, toxicity):
+    cyclic_peptide = rdMolDescriptors.CalcNumRings(mol)
+    disulfide_bond = rdMolDescriptors.CalcNumSssSR(mol)
+    return cyclic_peptide and disulfide_bond and toxicity
+
+def rule1_contains_C_C_and_Cl(mol):
+    return int(mol.HasSubstructMatch(Chem.MolFromSmarts('C=C')) and mol.HasSubstructMatch(Chem.MolFromSmarts('Cl')))
+
+def rule2_no_toxic_groups(mol):
+    return int(not mol.HasSubstructMatch(Chem.MolFromSmarts('C#N')) and not mol.HasSubstructMatch(Chem.MolFromSmarts('N(=O)=O')))
+
+def rule3_no_reactive_groups(mol):
+    return int(not mol.HasSubstructMatch(Chem.MolFromSmarts('O')) and not mol.HasSubstructMatch(Chem.MolFromSmarts('N')))
+
+def rule1_amino_group(mol):
+    amino_group = Chem.MolFromSmarts('N')
+    other_polar_groups = Chem.MolFromSmarts('[OH,COOH]')
+    return mol.GetSubstructMatches(amino_group) and not mol.GetSubstructMatches(other_polar_groups)
+
+def rule2_no_reactive_groups(mol):
+    reactive_groups = Chem.MolFromSmarts('[C=O,N=]')
+    return not mol.GetSubstructMatches(reactive_groups)
+
+def rule1_conjugated_system(mol):
+    # Check for conjugated system of double bonds
+    double_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]'))
+    if len(double_bonds) < 1:
+        return 0
+
+    # Check for polar group at one end
+    polar_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#9,#16,#17,#35]'))
+    if len(polar_group) < 1:
+        return 0
+
+    # Check for nonpolar group at the other end
+    nonpolar_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6,#14,#32,#33,#34,#50,#51,#52]'))
+    if len(nonpolar_group) < 1:
+        return 0
+
+    return 1
+
+def rule2_polar_nitrogen_carbonyl_carbon(mol):
+    # Check for polar group attached to a nitrogen atom
+    polar_nitrogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7](-[#8,#9,#16,#17,#35])'))
+    if len(polar_nitrogen) < 1:
+        return 0
+
+    # Check for carbonyl group attached to a carbon atom
+    carbonyl_carbon = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[O])'))
+    if len(carbonyl_carbon) < 1:
+        return 0
+
+    return 1
+
+def rule3_polar_nitrogen_polar_carbon(mol):
+    # Check for polar group attached to a nitrogen atom
+    polar_nitrogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7](-[#8,#9,#16,#17,#35])'))
+    if len(polar_nitrogen) < 1:
+        return 0
+
+    # Check for polar group attached to a carbon atom
+    polar_carbon = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](-[#8,#9,#16,#17,#35])'))
+    if len(polar_carbon) < 1:
+        return 0
+
+def rule1_polar_nitro_pos_charge(mol):
+    nitro_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    positive_charge = Chem.rdmolops.GetFormalCharge(mol) > 0
+    return len(nitro_groups) > 0 and positive_charge
+
+def rule2_polar_amino_neg_charge(mol):
+    amino_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    negative_charge = Chem.rdmolops.GetFormalCharge(mol) < 0
+    return len(amino_groups) > 0 and negative_charge
+
+def rule3_cyclic_imine_uncharged(mol):
+    cyclic_imine_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[nH]1cccc1'))
+    uncharged = Chem.rdmolops.GetFormalCharge(mol) == 0
+    return len(cyclic_imine_groups) > 0 and uncharged
+
+def rule1_carboxylic_acid_and_not_P450_substrate(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    P450_substrate_pattern = Chem.MolFromSmarts('[#6]~[#6]~[#7,#8,#16]')
+    return mol.HasSubstructMatch(carboxylic_acid_pattern) and not mol.HasSubstructMatch(P450_substrate_pattern)
+
+def rule2_quaternary_ammonium(mol):
+    quaternary_ammonium_pattern = Chem.MolFromSmarts('[N+](~[C])(~[C])(~[C])~[C]')
+    return mol.HasSubstructMatch(quaternary_ammonium_pattern)
+
+def rule3_reactive_carbonyl(mol):
+    reactive_carbonyl_pattern = Chem.MolFromSmarts('C=O')
+
+def rule1_chlorine_in_conjugated_system(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'Cl' and atom.InRing():
+            return 1
+    return 0
+
+def rule2_contains_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return mol.HasSubstructMatch(nitro_pattern)
+
+def rule3_contains_carbonyl_group(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('C=O')
+
+def rule1_non_polar_carbon_atoms(mol):
+    non_polar_carbon_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and atom.GetTotalDegree() == atom.GetTotalNumHs():
+            non_polar_carbon_atoms += 1
+    return non_polar_carbon_atoms
+
+def rule2_no_charged_atoms(mol):
+    charged_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetFormalCharge() != 0:
+            charged_atoms += 1
+    return charged_atoms
+
+def rule3_no_polar_functional_groups(mol):
+    polar_functional_groups = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [7, 8, 16] and atom.GetTotalNumHs() > 0:
+            polar_functional_groups += 1
+    return polar_functional_groups

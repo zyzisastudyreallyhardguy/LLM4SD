@@ -1,0 +1,92 @@
+def rule1_benzene_toxicity(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return aromatic_atoms.count(True)
+
+def rule2_chlorine_toxicity(mol):
+    chlorine_atoms = [atom.GetSymbol() for atom in mol.GetAtoms()]
+    return chlorine_atoms.count('Cl')
+
+def rule3_nitrogen_toxicity(mol):
+    nitrogen_atoms = [atom.GetSymbol() for atom in mol.GetAtoms()]
+    return nitrogen_atoms.count('N')
+
+def rule4_halogen_toxicity(mol):
+    halogen_atoms = [atom.GetSymbol() for atom in mol.GetAtoms()]
+    return halogen_atoms.count('Cl') + halogen_atoms.count('F')
+
+def rule6_positive_charge_toxicity(mol):
+    positive_charges = [atom.GetFormalCharge() for atom in mol.GetAtoms()]
+    return positive_charges.count(1)
+
+def rule7_negative_charge_toxicity(mol):
+    negative_charges = [atom.GetFormalCharge() for atom in mol.GetAtoms()]
+    return negative_charges.count(-1)
+
+def rule8_aromatic_ring_toxicity(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def rule9_carbon_chain_toxicity(mol):
+    carbon_atoms = [atom.GetSymbol() for atom in mol.GetAtoms()]
+    return carbon_atoms.count('C')
+
+def rule10_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule11_reactive_oxygen_species(mol):
+    reactive_oxygen_species = Chem.MolFromSmarts('[#8]')
+    return len(mol.GetSubstructMatches(reactive_oxygen_species))
+
+def rule13_sulfur_atom(mol):
+    sulfur_atom = Chem.MolFromSmarts('[#16]')
+    return len(mol.GetSubstructMatches(sulfur_atom))
+
+def rule14_reactive_oxygen_species_groups(mol):
+    phenols = Chem.MolFromSmarts('c1ccccc1O')
+    quinones = Chem.MolFromSmarts('O=C1C=CC(=O)C=C1')
+    nitrogen_compounds = Chem.MolFromSmarts('[#7]')
+    return len(mol.GetSubstructMatches(phenols)) + len(mol.GetSubstructMatches(quinones)) + len(mol.GetSubstructMatches(nitrogen_compounds))
+
+def rule16_carbonyl_group_nitrogen(mol):
+    carbonyl_group_nitrogen = Chem.MolFromSmarts('C=O[N]')
+    return len(mol.GetSubstructMatches(carbonyl_group_nitrogen))
+
+def rule17_chlorine_carbon(mol):
+    chlorine_carbon = Chem.MolFromSmarts('C-Cl')
+    return len(mol.GetSubstructMatches(chlorine_carbon))
+
+def rule18_chlorine_positive_charge(mol):
+    chlorine_positive_charge = Chem.MolFromSmarts('[Cl+]')
+    return len(mol.GetSubstructMatches(chlorine_positive_charge))
+
+def rule19_nitrogen_negative_charge(mol):
+    nitrogen_negative_charge = Chem.MolFromSmarts('[N-]')
+
+def rule1_benzene_ring(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return aromatic_atoms.count(True)
+
+def rule2_halogen_atom(mol):
+    halogen_atoms = ['F', 'Cl', 'Br', 'I']
+    return len([atom for atom in mol.GetAtoms() if atom.GetSymbol() in halogen_atoms])
+
+def rule3_nitrogen_atom(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'N'])
+
+def rule7_chlorine_hbonds(mol):
+    num_chlorine_atoms = len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl'])
+    num_hbonds = rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+    return num_chlorine_atoms * num_hbonds
+
+def rule8_nitrogen_aromatic_rings(mol):
+    num_nitrogen_atoms = len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'N'])
+    num_aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return num_nitrogen_atoms * num_aromatic_rings
+
+def rule9_carbonyl_hbonds(mol):
+    num_carbonyl_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+    num_hbonds = rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+    return num_carbonyl_groups * num_hbonds
+
+def rule20_sulfur_atom(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'S'])

@@ -1,0 +1,104 @@
+def rule1_func_group(mol):
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    chlorine = mol.GetSubstructMatches(Chem.MolFromSmarts('Cl'))
+    return len(carbonyl) + len(nitro) + len(chlorine)
+
+def rule3_func_group(mol):
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    return len(sulfonamide) + len(nitro)
+
+def rule4_halogen_atoms(mol):
+    halogens = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))
+    return len(halogens)
+
+def rule5_func_group(mol):
+    amides = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N'))
+    esters = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    aldehydes = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(amides) + len(esters) + len(aldehydes)
+
+def rule6_lipophilicity_polarity(mol):
+    lipophilicity = Descriptors.MolLogP(mol)
+    polarity = Descriptors.TPSA(mol)
+    return lipophilicity, polarity
+
+def rule7_func_group(mol):
+    amide_smarts = Chem.MolFromSmarts('C(=O)N')
+    imide_smarts = Chem.MolFromSmarts('C(=O)NC(=O)')
+    urea_smarts = Chem.MolFromSmarts('NC(=O)N')
+    halogenated_aromatic_smarts = Chem.MolFromSmarts('c1ccccc1X')
+    PAH_smarts = Chem.MolFromSmarts('c1cccc2c1cccc2')
+
+    if any(x is None for x in [amide_smarts, imide_smarts, urea_smarts, halogenated_aromatic_smarts, PAH_smarts]):
+        return 0
+
+    amide = mol.GetSubstructMatches(amide_smarts)
+    imide = mol.GetSubstructMatches(imide_smarts)
+    urea = mol.GetSubstructMatches(urea_smarts)
+    halogenated_aromatic = mol.GetSubstructMatches(halogenated_aromatic_smarts)
+    PAH = mol.GetSubstructMatches(PAH_smarts)
+
+    return len(amide) + len(imide) + len(urea) + len(halogenated_aromatic) + len(PAH)
+
+
+def rule9_mol_weight_lipophilicity(mol):
+    mol_weight = Descriptors.MolWt(mol)
+    lipophilicity = Descriptors.MolLogP(mol)
+    return mol_weight, lipophilicity
+
+def rule10_polar_func_group_ring(mol):
+    polar_func_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,F,Cl,Br,I]'))
+    ring = mol.GetRingInfo().NumRings()
+
+def rule1_contains_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule2_contains_fluorine_atom(mol):
+    fluorine_pattern = Chem.MolFromSmarts('[F]')
+    return len(mol.GetSubstructMatches(fluorine_pattern))
+
+def rule3_contains_carbonyl_group(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[O]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule7_contains_halogen_atom(mol):
+    halogen_pattern = Chem.MolFromSmarts('[Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule8_contains_sulfonamide_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule10_contains_benzene_ring(mol):
+    benzene_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(benzene_pattern))
+
+def rule11_adverse_effects(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol) + rdMolDescriptors.CalcNumAromaticCarbocycles(mol) + rdMolDescriptors.CalcNumAliphaticHeterocycles(mol) + rdMolDescriptors.CalcNumAromaticHeterocycles(mol)
+
+def rule12_magnesium_ion(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Mg+2]')))
+
+def rule13_chlorine_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Cl]')))
+
+def rule14_adverse_effects(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol) + rdMolDescriptors.CalcNumAromaticCarbocycles(mol) + rdMolDescriptors.CalcNumAliphaticHeterocycles(mol) + rdMolDescriptors.CalcNumAromaticHeterocycles(mol)
+
+def rule15_multiple_adverse_effects(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol) + rdMolDescriptors.CalcNumAromaticCarbocycles(mol) + rdMolDescriptors.CalcNumAliphaticHeterocycles(mol) + rdMolDescriptors.CalcNumAromaticHeterocycles(mol)
+
+def rule16_high_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule17_carboxylic_acid_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule18_nitrogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[N]')))
+
+def rule19_sulfonamide_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))

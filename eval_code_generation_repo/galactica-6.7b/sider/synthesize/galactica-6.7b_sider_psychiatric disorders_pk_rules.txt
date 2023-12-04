@@ -1,0 +1,66 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule3_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule4_hydroxyl_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetDegree() == 1)
+
+def rule5_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule8_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule9_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule10_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule11_hydrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[H]')))
+
+def rule12_nitro_groups(mol):
+    nitro_group = Chem.MolFromSmiles('N(=O)=O')
+    if nitro_group is not None:
+        return len(mol.GetSubstructMatches(nitro_group))
+    else:
+        return 0
+
+
+def rule13_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule15_calc_num_sulfur_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16])
+
+
+def rule16_check_phosphorus_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 15])
+
+
+def rule17_calc_num_fluorine_atoms(mol):
+    fluorine = Chem.MolFromSmiles('F')
+    num_fluorine_atoms = len(mol.GetSubstructMatches(fluorine))
+    return num_fluorine_atoms
+
+
+def rule18_check_chlorine_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl'])
+
+
+def rule19_calc_num_bromine_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule19_calc_num_bromine_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'Br'])
+

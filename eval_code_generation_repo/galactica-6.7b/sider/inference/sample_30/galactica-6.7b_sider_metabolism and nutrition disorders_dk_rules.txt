@@ -1,0 +1,116 @@
+def rule1_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule2_hydroxyl_group(mol):
+    hydroxyl_group = Chem.MolFromSmarts('[OH]')
+    return len(mol.GetSubstructMatches(hydroxyl_group))
+
+def rule3_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('[C]=[O]')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule4_carboxyl_group(mol):
+    carboxyl_group = Chem.MolFromSmarts('[C](=O)[O;h1]')
+
+def rule5_drug_interaction(mol):
+    carboxylic_acid = Chem.MolFromSmarts('C(=O)[O;h1]')
+    ester = Chem.MolFromSmarts('C(=O)O')
+    amide = Chem.MolFromSmarts('C(=O)[N;H1,H2]')
+
+def rule6_genotoxicity(mol):
+    nitro_group = Chem.MolFromSmarts('N(=O)[O;H0]')
+    aromatic_amine = Chem.MolFromSmarts('c[nH]')
+
+def rule7_complexity(mol):
+    return Descriptors.MolWt(mol), Descriptors.RingCount(mol)
+
+def rule8_PAH(mol):
+    PAH = Chem.MolFromSmarts('c1cccc2c1cccc2')
+
+def rule9_functional_groups(mol):
+    carbonyl_group = Chem.MolFromSmarts('C=O')
+    hydroxyl_group = Chem.MolFromSmarts('O[H]')
+
+def rule10_ring_structure(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule11_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule12_polar_functional_group(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' or atom.GetSymbol() == 'O':
+            if atom.GetTotalNumHs() >= 1:
+                count += 1
+    return count
+
+def rule13_reactive_functional_group(mol):
+    reactive_groups = ['C(=O)O', 'N', 'O', 'S']
+    count = 0
+    for group in reactive_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            count += 1
+    return count
+
+
+def rule14_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule15_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule16_benzene_ring(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule17_chiral_centers(mol):
+    chiral_centers = Chem.FindMolChiralCenters(mol, includeUnassigned=True)
+    return len(chiral_centers)
+
+def rule1_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_phosphate_group(mol):
+    pattern = Chem.MolFromSmarts('[#15](=[#8])(-[#8])-[#8]')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule3_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule4_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule5_benzene_rings(mol):
+    aromatic_rings = len([x for x in mol.GetRingInfo().AtomRings() if len(x) == 6 and all(mol.GetAtomWithIdx(y).GetIsAromatic() for y in x)])
+    return aromatic_rings
+
+
+def rule6_halogenated_aromatic_rings(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    halogenated_aromatic_rings = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if any(atom.GetSymbol() in halogens for atom in ring) and all(atom.GetIsAromatic() for atom in ring):
+            halogenated_aromatic_rings += 1
+    return halogenated_aromatic_rings
+
+def rule7_nitro_groups(mol):
+    nitro_groups = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N':
+            if len(atom.GetNeighbors()) == 2:
+                oxygens = [neighbor for neighbor in atom.GetNeighbors() if neighbor.GetSymbol() == 'O']
+                if len(oxygens) == 2:
+                    nitro_groups += 1

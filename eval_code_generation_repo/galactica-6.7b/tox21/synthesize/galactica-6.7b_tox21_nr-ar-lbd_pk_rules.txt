@@ -1,0 +1,71 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule6_nitrogen_atoms(mol):
+    nitrogen_pattern = Chem.MolFromSmiles('N')
+    return len(mol.GetSubstructMatches(nitrogen_pattern))
+
+
+def rule7_sulfur_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16])
+
+
+def rule8_chlorine_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 17])
+
+
+def rule9_fluorine_atoms(mol):
+    fluorine_pattern = Chem.MolFromSmiles('F')
+    num_fluorine_atoms = len(mol.GetSubstructMatches(fluorine_pattern))
+    return num_fluorine_atoms
+
+
+def rule10_bromine_atoms(mol):
+    bromine_pattern = Chem.MolFromSmiles('Br')
+    num_bromine_atoms = len(mol.GetSubstructMatches(bromine_pattern))
+    return num_bromine_atoms
+
+
+def rule11_iodine_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 53])
+
+
+def rule12_carbon_atoms(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule13_double_bonds(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2 and bond.GetIsAromatic() == False])
+
+
+def rule15_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+
+def rule16_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+
+def rule17_ether_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#8]-[#6]')))
+
+def rule18_alcohol_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]-[#1]')))
+
+def rule19_amino_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N;H2,H1]')))
+
+def rule20_carboxylic_acid_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]')))

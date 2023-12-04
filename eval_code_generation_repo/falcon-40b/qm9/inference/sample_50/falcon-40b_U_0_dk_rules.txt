@@ -1,0 +1,118 @@
+def rule4_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_bond_types(mol):
+    return mol.GetNumBonds()
+
+def rule7_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+
+
+def rule9_alkenes(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=C')))
+
+def rule9_alkynes(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C#C')))
+
+def rule10_polar_groups(mol):
+    polar_groups = 0
+    polar_groups += len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+    polar_groups += len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NH2]')))
+    return polar_groups
+
+
+def rule4_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule5_aldehyde_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')))
+
+def rule6_aromatic_ring(mol):
+    aromatic_rings = [ring for ring in mol.GetRingInfo().AtomRings() if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring)]
+    return len(aromatic_rings)
+
+
+def rule7_alkene_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3]=[CX3]')))
+
+def rule8_alkane_presence(mol):
+    alkane_pattern = Chem.MolFromSmarts('[#6](-[#1])(-[#1])-[#6](-[#1])-[#1]')
+    return len(mol.GetSubstructMatches(alkane_pattern))
+
+def rule9_nitrile_presence(mol):
+    nitrile_pattern = Chem.MolFromSmarts('[#6]#[#7]')
+    return len(mol.GetSubstructMatches(nitrile_pattern))
+
+def rule10_oxygen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]')))
+
+def rule11_ether_presence(mol):
+    ether_pattern = Chem.MolFromSmarts('[#6]-[#8]-[#6]')
+    return len(mol.GetSubstructMatches(ether_pattern))
+
+def rule12_halogen_presence(mol):
+    halogen_pattern = Chem.MolFromSmarts('[#9,#17,#35,#53]')
+
+def rule13_mol_weight_increase(mol):
+    return Descriptors.MolWt(mol)
+
+def rule14_ketone_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')))
+
+def rule15_alcohol_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+
+
+def rule17_sulfonyl_group(mol):
+    sulfonyl_smarts = '[#16](=[O])(-[#6])-[#6]'
+    sulfonyl = Chem.MolFromSmarts(sulfonyl_smarts)
+    return len(mol.GetSubstructMatches(sulfonyl))
+
+def rule18_sulfate_group(mol):
+    sulfate_smarts = '[#16](=[O])(=[O])(-[O])-[O]'
+    sulfate = Chem.MolFromSmarts(sulfate_smarts)
+    return len(mol.GetSubstructMatches(sulfate))
+
+def rule19_phosphate_group(mol):
+    phosphate_smarts = '[#15](=[O])(-[O])-[O]'
+    phosphate = Chem.MolFromSmarts(phosphate_smarts)
+    return len(mol.GetSubstructMatches(phosphate))
+
+def rule20_degree_of_unsaturation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol) + rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule21_nitro_group(mol):
+    nitro_smarts = '[N+](=O)[O-]'
+    nitro = Chem.MolFromSmarts(nitro_smarts)
+
+def rule22_sulfur_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule23_sulfide_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16H2]')))
+
+def rule24_thiocarbonyl_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16][C]=[O]')))
+
+def rule25_thiol_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16H]')))
+
+def rule26_ether_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[O;R][C;R]')))
+
+def rule27_ester_group(mol):
+    ester_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(ester_pattern))
+
+def rule28_amide_group(mol):
+    amide_pattern = Chem.MolFromSmarts('C(=O)N')
+    return len(mol.GetSubstructMatches(amide_pattern))
+
+def rule29_imine_group(mol):
+    imine_pattern = Chem.MolFromSmarts('C=N')
+    return len(mol.GetSubstructMatches(imine_pattern))
+
+def rule30_nitrile_group(mol):
+    nitrile_pattern = Chem.MolFromSmarts('C#N')
+    return len(mol.GetSubstructMatches(nitrile_pattern))

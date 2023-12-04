@@ -1,0 +1,39 @@
+
+def rule6_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule7_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule8_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule9_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE])
+
+def rule10_sp3_carbons(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+def rule11_sp2_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2])
+
+def rule12_sp_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP])
+
+def rule15_lone_pairs(mol):
+    return rdkit.Chem.Lipinski.NHOHCount(mol)
+
+def rule16_steric_hindrance(mol):
+    return rdkit.Chem.Lipinski.NumRotatableBonds(mol)
+
+def rule17_polar_surface_area(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcTPSA(mol)
+
+def rule18_lipophilicity(mol):
+    return rdkit.Chem.Crippen.MolLogP(mol)
+
+def rule19_molecular_weight(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule20_toxicity_activity(mol):
+    return 0

@@ -1,0 +1,170 @@
+def rule1_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule2_phenyl_group(mol):
+    phenyl_group = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(phenyl_group))
+
+def rule3_chlorine_atom(mol):
+    chlorine_atom = Chem.MolFromSmarts('[Cl]')
+    return len(mol.GetSubstructMatches(chlorine_atom))
+
+def rule4_benzene_ring(mol):
+    benzene_ring = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(benzene_ring))
+
+def rule5_chlorine_atom(mol):
+    chlorine_atom = Chem.MolFromSmarts('[Cl]')
+    return len(mol.GetSubstructMatches(chlorine_atom))
+
+def rule6_carboxylic_acid_group(mol):
+    carboxylic_acid_group = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_group))
+
+def rule7_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule8_halogen_atom(mol):
+    halogen_atom = Chem.MolFromSmarts('[Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_atom))
+
+def rule9_adverse_effects(mol):
+    functional_groups = ['[OH]', '[COOH]', '[NH2]']
+    for group in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+def rule10_adverse_effects(mol):
+    functional_groups = ['[S](=O)(=O)[NH2]', 'Clc1ccccc1', 'CC(=O)Nc1ccc(O)cc1']
+    for group in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+def rule11_chlorine_effects(mol):
+    if mol.HasSubstructMatch(Chem.MolFromSmarts('[Cl]')):
+        return 1
+    return 0
+
+def rule12_benzene_effects(mol):
+    if mol.HasSubstructMatch(Chem.MolFromSmarts('c1ccccc1')):
+        return 1
+    return 0
+
+def rule13_multiple_groups(mol):
+    functional_groups = ['[OH]', '[COOH]', '[NH2]']
+    count = 0
+    for group in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            count += 1
+    if count > 1:
+        return 1
+    return 0
+
+def rule14_adverse_effects(mol):
+    functional_groups = ['[N+](=O)[O-]', '[C]=O', '[F,Cl,Br,I]']
+    for group in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+def rule15_benzene_effects(mol):
+    if mol.HasSubstructMatch(Chem.MolFromSmarts('c1ccccc1')):
+        return 1
+    return 0
+
+def rule16_ring_structure(mol):
+    if mol.GetRingInfo().NumRings() > 0:
+        return 0
+
+def rule17_carbonyl_nitro(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(nitro) > 0 and len(carbonyl) > 0
+
+def rule18_halogen_nitro(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))
+    return len(nitro) > 0 and len(halogen) > 0
+
+def rule19_functional_group(mol):
+    fg = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]'))  # Assuming you want to find carbon atoms
+    return len(fg) > 0
+
+
+def rule1_nitro_group(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    return len(nitro) > 0
+
+def rule2_chlorine_atom(mol):
+    chlorine = mol.GetSubstructMatches(Chem.MolFromSmarts('Cl'))
+    return len(chlorine) > 0
+
+def rule3_nitro_chlorine(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    chlorine = mol.GetSubstructMatches(Chem.MolFromSmarts('Cl'))
+    return len(nitro) > 0 and len(chlorine) > 0
+
+def rule4_carbonyl_group(mol):
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(carbonyl) > 0
+
+def rule5_benzene_ring(mol):
+    benzene = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(benzene) > 0
+
+def rule6_halogen_presence(mol):
+    halogens = ['F', 'Cl', 'Br']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in halogens)
+    return count
+
+def rule7_metal_ion_presence(mol):
+    metals = ['Pt', 'Gd']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in metals)
+    return count
+
+def rule8_group_presence(mol):
+    groups = ['SO2NH2', 'C4H8N2', 'C6H5']
+    count = 0
+    for group in groups:
+        group_mol = Chem.MolFromSmiles(group)
+        if group_mol is not None:
+            if mol.HasSubstructMatch(group_mol):
+                count += 1
+    return count
+
+
+def rule10_group_presence(mol):
+    groups = ['NC(=O)', 'c1ccccc1']  # 'X' replaced with valid element or removed
+    count = 0
+    for group in groups:
+        mol_group = Chem.MolFromSmiles(group)
+        if mol_group is not None:  # Check if the SMILES string is valid
+            count += mol.HasSubstructMatch(mol_group)
+    return count
+
+
+def rule11_atom_presence(mol):
+    atoms = ['S', 'F', 'Au', 'N', 'P']
+    count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in atoms)
+    return count
+
+def rule12_group_presence(mol):
+    group = 'O'
+    count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == group)
+    return count
+
+def rule13_group_presence(mol):
+    groups = ['C=O', '[#6]', '[N+](=O)[O-]']  # Corrected the SMILES string for nitro group
+    count = sum(1 for group in groups if mol.HasSubstructMatch(Chem.MolFromSmiles(group)))
+    return count
+
+
+def rule14_sulfur_presence(mol):
+    atom = 'S'
+    count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == atom)

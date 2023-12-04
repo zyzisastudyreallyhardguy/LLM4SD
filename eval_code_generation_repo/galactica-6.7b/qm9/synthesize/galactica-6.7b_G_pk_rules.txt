@@ -1,0 +1,51 @@
+def rule1_bond_count(mol):
+    return mol.GetNumBonds()
+
+def rule2_electronegativity_diff(mol):
+    electronegativity = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return max(electronegativity) - min(electronegativity)
+
+def rule3_molecular_mass(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule4_ring_count(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule6_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_lone_pairs(mol):
+    return sum([atom.GetTotalNumHs() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 or atom.GetAtomicNum() == 8 or atom.GetAtomicNum() == 16])
+
+def rule8_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule9_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2])
+
+def rule10_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule11_hydrogen_atoms(mol):
+    return sum([atom.GetTotalNumHs() for atom in mol.GetAtoms()])
+
+def rule12_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule13_lone_pairs(mol):
+    return sum([atom.GetTotalNumHs() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 or atom.GetAtomicNum() == 8 or atom.GetAtomicNum() == 16])
+
+def rule15_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule16_hydrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 1)
+
+def rule17_polar_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() > 1)
+
+def rule18_lone_pairs(mol):
+    return sum(atom.GetNumExplicitHs() for atom in mol.GetAtoms())
+
+def rule19_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == rdkit.Chem.rdchem.BondType.DOUBLE)

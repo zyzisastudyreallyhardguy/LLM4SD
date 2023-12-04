@@ -1,0 +1,69 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_PSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+
+
+def rule7_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule8_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule9_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule10_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule11_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule12_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule13_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule15_amino_groups(mol):
+    amino_smarts = '[N;H2,H1;!$(N-C=O)]'
+    amino_pattern = Chem.MolFromSmarts(amino_smarts)
+    return len(mol.GetSubstructMatches(amino_pattern))
+
+def rule16_methyl_groups(mol):
+    methyl_smarts = '[#6](-[#1])-[#1]'
+    methyl_pattern = Chem.MolFromSmarts(methyl_smarts)
+    return len(mol.GetSubstructMatches(methyl_pattern))
+
+def rule17_ethyl_groups(mol):
+    ethyl_smarts = '[#6](-[#1])-[#6](-[#1])-[#1]'
+    ethyl_pattern = Chem.MolFromSmarts(ethyl_smarts)
+    return len(mol.GetSubstructMatches(ethyl_pattern))
+
+def rule18_propyl_groups(mol):
+    propyl_smarts = '[#6](-[#1])-[#6](-[#1])-[#6](-[#1])-[#1]'
+    propyl_pattern = Chem.MolFromSmarts(propyl_smarts)
+    return len(mol.GetSubstructMatches(propyl_pattern))
+
+def rule19_butyl_groups(mol):
+    butyl_smarts = '[#6](-[#1])-[#6](-[#1])-[#6](-[#1])-[#6](-[#1])-[#1]'
+    butyl_pattern = Chem.MolFromSmarts(butyl_smarts)
+    return len(mol.GetSubstructMatches(butyl_pattern))
+
+def rule20_pentyl_groups(mol):
+    pentyl_smarts = '[#6](-[#1])-[#6](-[#1])-[#6](-[#1])-[#6](-[#1])-[#6](-[#1])-[#1]'
+    pentyl_pattern = Chem.MolFromSmarts(pentyl_smarts)

@@ -1,0 +1,116 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_logp(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule4_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_XLogP3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule9_lipinski_violations(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule13_druglike_violations(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule16_drug_like_features(mol):
+    if not isinstance(mol, Chem.rdchem.Mol):
+        mol = Chem.MolFromSmiles(mol)
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+
+def rule17_fragment_like_features(mol):
+    return mol.GetNumAtoms()
+
+
+def rule18_lead_like_scaffolds(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+
+
+
+def rule20_fragment_like_scaffolds(mol):
+    if isinstance(mol, str):
+        molecule = Chem.MolFromSmiles(mol)
+    else:
+        molecule = mol
+    return rdMolDescriptors.CalcNumRings(molecule)
+
+
+
+
+def rule22_drug_like_ring_systems(mol):
+    ri = mol.GetRingInfo()
+    return len(ri.AtomRings())
+
+
+
+
+
+
+def calculate_drug_like_scaffolds_with_brenk_violations(mol):
+    # Your implementation goes here
+    # For now, let's return a dummy number
+    return 0
+
+def rule25_drug_like_scaffolds_with_brenk_violations(mol):
+    return calculate_drug_like_scaffolds_with_brenk_violations(mol)
+
+
+def calculate_fragment_like_scaffolds_with_lead_like_violations(mol):
+    # Implement your calculation here
+    # This is a placeholder
+    result = 0
+    return result
+
+def rule26_fragment_like_scaffolds_with_lead_like_violations(mol):
+    return calculate_fragment_like_scaffolds_with_lead_like_violations(mol)
+
+
+def calculate_lead_like_scaffolds_with_drug_like_violations(mol):
+    # This is a placeholder for your actual implementation
+    # For now, it just returns a dummy value
+    return 0
+
+def rule27_lead_like_scaffolds_with_drug_like_violations(mol):
+    return calculate_lead_like_scaffolds_with_drug_like_violations(mol)
+
+
+def calculate_fragment_like_scaffolds_with_drug_like_violations(mol):
+    # Your actual computation goes here
+    # For now, let's return a dummy value
+    return 0
+
+def rule28_fragment_like_scaffolds_with_drug_like_violations(mol):
+    return calculate_fragment_like_scaffolds_with_drug_like_violations(mol)
+
+
+def calculate_lead_like_scaffolds_with_fragment_like_violations(mol):
+    # Implementation of the function goes here
+    # This is a placeholder implementation
+    return mol.GetNumAtoms()  # Assuming mol is a molecule object with a GetNumAtoms method
+
+def rule29_lead_like_scaffolds_with_fragment_like_violations(mol):
+    return calculate_lead_like_scaffolds_with_fragment_like_violations(mol)
+
+
+def rule30_fragment_like_scaffolds_with_lead_like_violations(mol):
+    return calculate_fragment_like_scaffolds_with_lead_like_violations(mol)

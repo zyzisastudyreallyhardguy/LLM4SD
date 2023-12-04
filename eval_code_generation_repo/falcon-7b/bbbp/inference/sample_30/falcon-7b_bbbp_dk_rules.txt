@@ -1,0 +1,51 @@
+def rule1_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule2_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule3_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule4_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule5_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule6_hydrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'H')
+
+
+def rule7_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C'))) >= 4
+
+def rule8_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O'))) >= 2
+
+def rule10_hydrogen_count(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'H')
+
+def rule11_chlorine_count(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def rule12_fluorine_count(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'F')
+
+def rule13_benzene_ring(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule14_carbon_count_odd(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C') % 2
+
+def rule15_carbon_count_even(mol):
+    return 1 - rule14_carbon_count_odd(mol)
+
+def rule16_oxygen_count_odd(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O') % 2
+
+def rule17_oxygen_count_even(mol):
+    return 1 - rule16_oxygen_count_odd(mol)
+
+def rule18_carbon_nitrogen_bond(mol):
+    return sum(1 for bond in mol.GetBonds() if set((bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol())) == set(('C', 'N')))

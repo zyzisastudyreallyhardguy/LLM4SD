@@ -1,0 +1,176 @@
+def rule1_sulfonamide(mol):
+    pattern = Chem.MolFromSmarts('[#16](=[O])(=[O])-[N]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_benzenesulfonamide(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1-S(=O)(=O)-N-c2ccccc2-C=O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_carbamate_urea(mol):
+    pattern1 = Chem.MolFromSmarts('O=C(O)-N')
+    pattern2 = Chem.MolFromSmarts('N-C(=O)-N')
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches1) + len(matches2)
+
+def rule4_sulfonyl(mol):
+    pattern = Chem.MolFromSmarts('[#16](=[O])(=[O])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule5_benzimidazole(mol):
+    pattern = Chem.MolFromSmarts('c1ccc2c(c1)ncn2')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule6_trifluoromethyl_phenyl(mol):
+    smarts = '[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1-[#6](-[#9])(-[#9])-[#9]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule7_sulfonamide(mol):
+    smarts = '[#16](=[#8])(-[#7])-[#7]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule8_carbonyl(mol):
+    smarts = '[#6]=[#8]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule9_fluorine_aromatic(mol):
+    smarts = '[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1-[#9]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule10_amino_positive(mol):
+    smarts = '[#7H3+]'
+    pattern = Chem.MolFromSmarts(smarts)
+
+def rule11_carbonyl_five_membered_ring(mol):
+    pattern = Chem.MolFromSmarts('[#6]=[#8]1~*~*~*~*1')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule12_fluorine_double_triple_bond(mol):
+    pattern = Chem.MolFromSmarts('[#6](-[#9])=[#6]')
+    matches = mol.GetSubstructMatches(pattern)
+    pattern2 = Chem.MolFromSmarts('[#6](-[#9])#[#6]')
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches) + len(matches2)
+
+def rule13_beta_secretase_inhibitor(mol):
+    pattern1 = Chem.MolFromSmiles('-C1CC1C=1N=C(N)N(C)C(=O)C=1')
+    pattern2 = Chem.MolFromSmiles('-C1NNC(=O)C1')
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches1) + len(matches2)
+
+def rule14_sulfonamide(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule15_functional_group(mol):
+    pattern1 = Chem.MolFromSmarts('C(=O)O')
+    pattern2 = Chem.MolFromSmarts('C(=O)N')
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+
+def rule16_positively_charged_nitrogen(mol):
+    pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule17_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('[#6]-[#6](=[#8])-[#7]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule18_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('[#6](=[#8])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule19_sulfonamide_group(mol):
+    pattern = Chem.MolFromSmarts('[#16](=[#8])(=[#8])-[#6]')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule20_carbamate_group(mol):
+    pattern = Chem.MolFromSmarts('[#7]-[#6](=[#8])-[#8]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule21_positively_charged(mol):
+    pattern1 = Chem.MolFromSmarts('[#7+]([#1])')
+    pattern2 = Chem.MolFromSmarts('[#7]([#6](=[#7+]=[#7])=[#7])')
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches1) + len(matches2)
+
+def rule22_carbonyl_aromatic(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1C(=O)')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule23_sulfonamide_group(mol):
+    pattern = Chem.MolFromSmarts('[#16](=[#8])(=[#8])-[#7]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule24_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('[#6](=[#8])')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule25_positively_charged_nitrogen(mol):
+    positively_charged_nitrogen = [atom.GetFormalCharge() for atom in mol.GetAtoms() if atom.GetSymbol() == 'N']
+    return sum(1 for charge in positively_charged_nitrogen if charge > 0)
+
+def rule26_fluorine_bonded_to_carbon(mol):
+    fluorine_bonded_to_carbon = [bond for bond in mol.GetBonds() if 'F' in (bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()) and 'C' in (bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol())]
+    return len(fluorine_bonded_to_carbon)
+
+def rule3_cyclic_structure(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule6_carbamate_group(mol):
+    carbamate_pattern = Chem.MolFromSmarts('C(=O)ON')
+    return len(mol.GetSubstructMatches(carbamate_pattern))
+
+def rule7_sulfonamide_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule8_carbamate_long_chain(mol):
+    carbamate_long_chain_pattern = Chem.MolFromSmarts('C(=O)ONCCCC')
+    return len(mol.GetSubstructMatches(carbamate_long_chain_pattern))
+
+def rule9_ferrocene_group(mol):
+    ferrocene_pattern = Chem.MolFromSmarts('c1ccc2c(c1)C1([Fe]C2)CCCC1')
+    return len(mol.GetSubstructMatches(ferrocene_pattern))
+
+def rule10_positively_charged_nitrogen(mol):
+    positively_charged_nitrogen_pattern = Chem.MolFromSmarts('[nH+,NH2+,NH3+,N+]')
+    return len(mol.GetSubstructMatches(positively_charged_nitrogen_pattern))
+
+def rule11_absence_negatively_charged_group(mol):
+    negatively_charged_group_pattern = Chem.MolFromSmarts('[O-,N-,S-]')
+    return len(mol.GetSubstructMatches(negatively_charged_group_pattern)) == 0
+
+def rule12_fluorine_atom(mol):
+    fluorine_pattern = Chem.MolFromSmarts('F')
+    return len(mol.GetSubstructMatches(fluorine_pattern))
+
+def rule13_beta_secretase_inhibitor(mol):
+    beta_secretase_inhibitor_pattern1 = Chem.MolFromSmarts('C(=O)CNC(=O)')
+    beta_secretase_inhibitor_pattern2 = Chem.MolFromSmarts('C(=O)NNC(=O)')
+    return len(mol.GetSubstructMatches(beta_secretase_inhibitor_pattern1)) + len(mol.GetSubstructMatches(beta_secretase_inhibitor_pattern2))
+
+def rule14_sulfonamide_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule15_benzimidazole_ring(mol):
+    benzimidazole_pattern = Chem.MolFromSmarts('c1ccc2[nH]ncc2c1')

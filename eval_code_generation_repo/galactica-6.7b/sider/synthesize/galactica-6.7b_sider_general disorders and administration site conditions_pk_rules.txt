@@ -1,0 +1,56 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_PSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_boiling_point(mol):
+    return 0  # Placeholder function
+
+def rule7_electronegativity(mol):
+    return Descriptors.MolWt(mol)
+
+def rule8_ionization_potential(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule9_electron_affinity(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule10_heat_combustion(mol):
+    return Descriptors.HeavyAtomMolWt(mol)
+
+def rule11_uv_visible_spectrum(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule12_nmr_spectrum(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def rule13_density(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule14_melting_boiling_point(mol):
+    return Descriptors.RingCount(mol)
+
+def rule15_reactivity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule16_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule17_reactivity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule19_bioavailability(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) <= 10 and rdMolDescriptors.CalcNumLipinskiHBD(mol) <= 5 and Descriptors.MolWt(mol) <= 500 and Descriptors.MolLogP(mol) <= 5

@@ -1,0 +1,98 @@
+def rule1_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule3_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule4_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule5_nitrogen_positive_charge(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0)
+
+def rule6_carbonyl_negative_charge(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetFormalCharge() < 0)
+
+def rule7_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule8_hb_aromatic_nitrogen(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('c1ccccc1'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule9_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_carboxylic_acid(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule11_nitrogen_in_heterocyclic_ring(mol):
+    nitrogen_in_heterocyclic_ring_pattern = Chem.MolFromSmarts('[r5,r6,r7]~[nX3]')
+    return len(mol.GetSubstructMatches(nitrogen_in_heterocyclic_ring_pattern))
+
+def rule12_halogen_atoms(mol):
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule13_sulfonamide_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule14_sulfur_negative_charge(mol):
+    sulfur_negative_charge_pattern = Chem.MolFromSmarts('[S-]')
+    return len(mol.GetSubstructMatches(sulfur_negative_charge_pattern))
+
+def rule15_chlorine_positive_charge(mol):
+    chlorine_positive_charge_pattern = Chem.MolFromSmarts('[Cl+]')
+    return len(mol.GetSubstructMatches(chlorine_positive_charge_pattern))
+
+def rule16_nitrogen_negative_charge(mol):
+    nitrogen_negative_charge_pattern = Chem.MolFromSmarts('[n-]')
+    return len(mol.GetSubstructMatches(nitrogen_negative_charge_pattern))
+
+def rule17_sulfur_positive_charge(mol):
+    sulfur_positive_charge_pattern = Chem.MolFromSmarts('[S+]')
+    return len(mol.GetSubstructMatches(sulfur_positive_charge_pattern))
+
+def rule18_high_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule19_aromatic_or_heterocyclic_rings(mol):
+    aromatic_or_heterocyclic_rings_pattern = Chem.MolFromSmarts('[r]')
+
+def rule20_metal_ion(mol):
+    metal_ions = ['Li', 'Be', 'Na', 'Mg', 'Al', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']
+    return sum(atom.GetSymbol() in metal_ions for atom in mol.GetAtoms())
+
+def rule21_sulfonamide(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule22_benzene_ring(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule23_sulfur_negative_charge(mol):
+    return sum((atom.GetSymbol() == 'S' and atom.GetFormalCharge() < 0) for atom in mol.GetAtoms())
+
+def rule24_nitrogen_positive_charge(mol):
+    return sum((atom.GetSymbol() == 'N' and atom.GetFormalCharge() > 0) for atom in mol.GetAtoms())
+
+def rule25_nitrogen_carbonyl(mol):
+    pattern = Chem.MolFromSmarts('NC=O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule26_sulfur_carbonyl(mol):
+    pattern = Chem.MolFromSmarts('SC=O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule28_carbonyl_carboxylic_acid(mol):
+    pattern1 = Chem.MolFromSmarts('C=O')
+    pattern2 = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(pattern1)) and len(mol.GetSubstructMatches(pattern2))
+
+def rule29_halogen_atom(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']

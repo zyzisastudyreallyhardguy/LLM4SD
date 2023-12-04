@@ -1,0 +1,219 @@
+def rule1_toxicity(mol):
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]'))
+    carboxyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[#8])-[#8]'))
+    return len(carbonyl) + len(carboxyl)
+
+def rule2_toxicity(mol):
+    aromatic = mol.GetSubstructMatches(Chem.MolFromSmarts('a'))
+    conjugated_double_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[$([#6]=[#6])]=[$([#6]=[#6])]'))
+    return len(aromatic) + len(conjugated_double_bonds)
+
+def rule3_toxicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_toxicity(mol):
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmarts('[#16](=[#8])(-[#7])'))
+    return len(sulfonamide)
+
+def rule5_toxicity(mol):
+    return Descriptors.MolWt(mol)
+
+
+
+def rule7_toxicity(mol):
+    cyano = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[#7]'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]'))
+    return len(cyano) + len(carbonyl)
+
+def rule8_toxicity(mol):
+    sulfonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[#16](=[#8])(=[#8])'))
+    return len(sulfonyl)
+
+def rule9_toxicity(mol):
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]'))
+
+def rule10_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule11_benzene_ring(mol):
+    benzene_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(benzene_pattern))
+
+def rule12_sulfonamide_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule13_gadolinium_ion(mol):
+    gadolinium_pattern = Chem.MolFromSmarts('[Gd]')
+    return len(mol.GetSubstructMatches(gadolinium_pattern))
+
+def rule14_nitro_compounds(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule15_carbonyl_adjacent_double_bond(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('C=O')
+    double_bond_pattern = Chem.MolFromSmarts('C=C')
+    return len(mol.GetSubstructMatches(carbonyl_pattern)) and len(mol.GetSubstructMatches(double_bond_pattern))
+
+def rule16_iodine_atoms(mol):
+    iodine_pattern = Chem.MolFromSmarts('[I]')
+    return len(mol.GetSubstructMatches(iodine_pattern))
+
+def rule17_negatively_charged_groups(mol):
+    negatively_charged_pattern = Chem.MolFromSmarts('[-]')
+    return len(mol.GetSubstructMatches(negatively_charged_pattern))
+
+def rule18_aromatic_rings(mol):
+    aromatic_pattern = Chem.MolFromSmarts('a')
+    return len(mol.GetSubstructMatches(aromatic_pattern))
+
+def rule19_CCON_CCCN_groups(mol):
+    CCON_pattern = Chem.MolFromSmarts('CCON')
+    CCCN_pattern = Chem.MolFromSmarts('CCCN')
+
+def rule20_contains_functional_element(mol):
+    functional_elements = ['CCON', 'CCCN']
+    for element in functional_elements:
+        if mol.HasSubstructMatch(Chem.MolFromSmiles(element)):
+            return 1
+    return 0
+
+def rule21_phosphorus_neg_oxygen(mol):
+    phosphorus = mol.GetSubstructMatches(Chem.MolFromSmiles('P'))
+    neg_oxygen = mol.GetSubstructMatches(Chem.MolFromSmiles('[O-]'))
+    return len(phosphorus) + len(neg_oxygen)
+
+def rule22_sulfur_halogen(mol):
+    sulfur = mol.GetSubstructMatches(Chem.MolFromSmiles('S'))
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')) # F, Cl, Br, I
+    return len(sulfur) + len(halogen)
+
+def rule23_sulfonamide_halogen(mol):
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)N'))
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')) # F, Cl, Br, I
+    return len(sulfonamide) + len(halogen)
+
+def rule24_aromatic_nitro(mol):
+    aromatic_nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[c]:[n+](=o)[o-]')) # aromatic ring with nitro group
+    return len(aromatic_nitro)
+
+def rule25_conjugated_double_bonds(mol):
+    conjugated_double_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('C=C-C=C')) # conjugated system of double bonds
+    return len(conjugated_double_bonds)
+
+def rule26_reactive_molecules(mol):
+    reactive_molecules = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6+,#7+,#8+,#15+,#16+,#34+]')) # C, N, O, P, S, Se with positive charge
+    return len(reactive_molecules)
+
+def rule27_metal_ions(mol):
+    barium = mol.GetSubstructMatches(Chem.MolFromSmiles('[Ba]'))
+    magnesium = mol.GetSubstructMatches(Chem.MolFromSmiles('[Mg]'))
+    return len(barium) + len(magnesium)
+
+def rule28_functional_group(mol):
+    functional_group = mol.GetSubstructMatches(Chem.MolFromSmiles('CCCCCCCCCCCCCC(=O)NCCCC[C@@H]'))
+    return len(functional_group)
+
+
+
+def rule30_simpler_compounds(mol):
+    return len(Chem.GetMolFrags(mol, asMols=True))
+
+def rule31_iodine_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule32_halogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule33_mol_size_shape(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule34_functional_elements(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+
+def rule36_mol_weight_complexity(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol) + len(Chem.GetMolFrags(mol, asMols=True))
+
+def rule37_spatial_arrangement(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule38_nitro_compounds(mol):
+    nitro_group = Chem.MolFromSmiles('N(=O)=O')
+    if nitro_group is not None:
+        return len(mol.GetSubstructMatches(nitro_group))
+    else:
+        return 0
+
+
+def rule1_negatively_charged_atoms(mol):
+    negatively_charged_atoms = [atom for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0 and atom.GetSymbol() in ['O', 'S']]
+    return len(negatively_charged_atoms)
+
+def rule2_functional_groups(mol):
+    functional_groups = ['C=O', 'CC=O', 'C#N']
+    count = 0
+    for group in functional_groups:
+        patt = Chem.MolFromSmarts(group)
+        matches = mol.GetSubstructMatches(patt)
+        count += len(matches)
+    return count
+
+def rule3_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+
+def rule5_functional_groups(mol):
+    functional_groups = ['C(=O)O', 'O']
+    count = 0
+    for group in functional_groups:
+        patt = Chem.MolFromSmarts(group)
+        matches = mol.GetSubstructMatches(patt)
+        count += len(matches)
+    return count
+
+def rule6_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule7_metal_ions(mol):
+    metal_ions = [atom for atom in mol.GetAtoms() if atom.GetSymbol() in ['Li', 'Na', 'K', 'Rb', 'Cs', 'Fr', 'Be', 'Mg', 'Ca', 'Sr', 'Ba', 'Ra', 'Sc', 'Y', 'La', 'Ac', 'Ti', 'Zr', 'Hf', 'Rf', 'V', 'Nb', 'Ta', 'Db', 'Cr', 'Mo', 'W', 'Sg', 'Mn', 'Tc', 'Re', 'Bh', 'Fe', 'Ru', 'Os', 'Hs', 'Co', 'Rh', 'Ir', 'Mt', 'Ni', 'Pd', 'Pt', 'Ds', 'Cu', 'Ag', 'Au', 'Rg', 'Zn', 'Cd', 'Hg', 'Cn', 'Al', 'Ga', 'In', 'Tl', 'Nh', 'Si', 'Ge', 'Sn', 'Pb', 'Fl', 'P', 'As', 'Sb', 'Bi', 'Mc', 'S', 'Se', 'Te', 'Po', 'Lv']]
+
+def rule8_specific_func_groups(mol):
+    smarts = ['C(=O)O', 'S(=O)(=O)O', '[N+](=O)[O-]', 'c1ccccc1']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule9_adverse_effects(mol):
+    smarts = ['S(=O)(=O)N', '[N+](=O)[O-]', 'Cl']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule10_potential_side_effects(mol):
+    smarts = ['S(=O)(=O)[!H0]', 'C=O', 'C(=O)O', 'C#N']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts if Chem.MolFromSmarts(s) is not None)
+
+
+def rule11_adverse_effects(mol):
+    smarts = ['P(=O)(O)(O)O', 'S(=O)(=O)O']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule12_toxicity(mol):
+    smarts = ['[N+](=O)[O-]', '[F,Cl,Br,I]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule13_potential_side_effects(mol):
+    smarts = ['C#N']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule14_toxicity(mol):
+    smarts = ['[N+](=O)[O-]', 'S(=O)(=O)N']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule15_adverse_effects(mol):
+    smarts = ['C=O', 'P(=O)(O)O']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in smarts)
+
+def rule16_adverse_effects(mol):
+    smarts = ['[N+](=O)[O-]', '[cH0:1][cH0:2][cH0:3][cH0:4][cH0:5][cH0:6]([F,Cl])[cH0:7][cH0:8][cH0:9][cH0:10][cH0:11][cH0:12]1', 'C=O', 'N']

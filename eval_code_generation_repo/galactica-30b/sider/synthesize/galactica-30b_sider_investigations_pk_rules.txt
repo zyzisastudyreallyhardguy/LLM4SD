@@ -1,0 +1,71 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_ionization_potential(mol):
+    # Assuming that the ionization potential can be calculated using the energy of the HOMO
+    # This is a placeholder function as rdkit does not directly support this calculation
+    return 0
+
+def rule8_electron_affinity(mol):
+    # Assuming that the electron affinity can be calculated using the energy of the LUMO
+    # This is a placeholder function as rdkit does not directly support this calculation
+    return 0
+
+def rule9_HOMO_energy(mol):
+    # This is a placeholder function as rdkit does not directly support this calculation
+    return 0
+
+def rule10_LUMO_energy(mol):
+    # This is a placeholder function as rdkit does not directly support this calculation
+    return 0
+
+def rule11_dipole_moment(mol):
+    # This is a placeholder function as rdkit does not directly support this calculation
+    return 0
+
+def rule12_total_energy(mol):
+    # This is a placeholder function as rdkit does not directly support this calculation
+    return 0
+
+def rule13_heat_of_formation(mol):
+    # This is a placeholder function as rdkit does not directly support this calculation
+    return 0
+
+def rule14_bond_length(mol):
+    # This is a placeholder function as rdkit does not directly support this calculation
+    return 0
+
+def rule15_bond_angle(mol):
+    # This is a placeholder function as rdkit does not directly support this calculation
+    return 0
+
+
+
+
+
+
+
+def rule20_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+
+def rule25_partition_coefficient(mol):
+    return Descriptors.MolLogP(mol)

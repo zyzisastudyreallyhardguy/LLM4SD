@@ -1,0 +1,51 @@
+def rule1_benzene_ring(mol):
+    benzene_ring = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(benzene_ring))
+
+def rule2_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule3_halogen_atom(mol):
+    halogen_atom = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_atom))
+
+def rule4_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('N(=O)=O')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule5_chlorine_atom(mol):
+    chlorine_atom = Chem.MolFromSmarts('Cl')
+    return len(mol.GetSubstructMatches(chlorine_atom))
+
+def rule7_reactive_groups(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    halogen_atom = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))
+    return len(nitro_group) + len(carbonyl_group) + len(halogen_atom)
+
+def rule8_carboxylic_acid(mol):
+    carboxylic_acid_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    return len(carboxylic_acid_group)
+
+def rule9_adverse_effects(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(nitro_group) + len(carbonyl_group)
+
+def rule10_nitro_carbonyl(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return min(len(nitro_group), len(carbonyl_group))
+
+def rule11_toxicity(mol):
+    return rule7_reactive_groups(mol)
+
+def rule12_liver_kidney_disorders(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(nitro_group) + len(carbonyl_group)
+
+def rule13_nitro_no_carbonyl(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))

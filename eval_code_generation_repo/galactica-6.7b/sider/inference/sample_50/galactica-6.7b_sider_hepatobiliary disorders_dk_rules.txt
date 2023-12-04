@@ -1,0 +1,102 @@
+def rule1_func_groups(mol):
+    func_groups = ['[OH]', '[C]=O', '[N+](=O)[O-]', 'S(=O)(=O)N', 'C(=O)O']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(x)) for x in func_groups)
+
+def rule2_halogen_atoms(mol):
+    halogens = ['[F]', '[Cl]', '[Br]', '[I]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(x)) for x in halogens)
+
+def rule3_pah(mol):
+    pah_smarts = 'c1ccccc1-c2ccccc2'
+    return mol.HasSubstructMatch(Chem.MolFromSmarts(pah_smarts))
+
+def rule4_carbonyl_group(mol):
+    carbonyl_group = '[C]=O'
+    return mol.HasSubstructMatch(Chem.MolFromSmarts(carbonyl_group))
+
+def rule5_benzene_nitro_carboxylic(mol):
+    benzene_smarts = '[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1'
+    nitro_smarts = '[N+](=O)[O-]'
+    carboxylic_smarts = 'C(=O)O'
+    benzene = mol.GetSubstructMatches(Chem.MolFromSmarts(benzene_smarts))
+    nitro_carboxylic = mol.GetSubstructMatches(Chem.MolFromSmarts(nitro_smarts)) and mol.GetSubstructMatches(Chem.MolFromSmarts(carboxylic_smarts))
+    return len(benzene) + len(nitro_carboxylic)
+
+def rule6_amidine_guanidine(mol):
+    amidine_smarts = 'C(=N)N'
+    guanidine_smarts = 'C(=N)N'
+    amidine = mol.GetSubstructMatches(Chem.MolFromSmarts(amidine_smarts))
+    guanidine = mol.GetSubstructMatches(Chem.MolFromSmarts(guanidine_smarts))
+    return len(amidine) + len(guanidine)
+
+def rule7_halogenated_aromatic(mol):
+    halogenated_aromatic_smarts = '[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1-[#9,#17,#35,#53]'
+    halogenated_aromatic = mol.GetSubstructMatches(Chem.MolFromSmarts(halogenated_aromatic_smarts))
+    return len(halogenated_aromatic)
+
+def rule8_nitro_carboxylic_sulfonyl(mol):
+    nitro_smarts = '[N+](=O)[O-]'
+    carboxylic_smarts = 'C(=O)O'
+    sulfonyl_smarts = 'S(=O)(=O)'
+    nitro_carboxylic_sulfonyl = mol.GetSubstructMatches(Chem.MolFromSmarts(nitro_smarts)) and (mol.GetSubstructMatches(Chem.MolFromSmarts(carboxylic_smarts)) or mol.GetSubstructMatches(Chem.MolFromSmarts(sulfonyl_smarts)))
+    return len(nitro_carboxylic_sulfonyl)
+
+def rule9_carbonyl_hydroxyl_nitro(mol):
+    carbonyl_smarts = 'C=O'
+    hydroxyl_smarts = 'O'
+    nitro_smarts = '[N+](=O)[O-]'
+    carbonyl_hydroxyl_nitro = mol.GetSubstructMatches(Chem.MolFromSmarts(carbonyl_smarts)) or mol.GetSubstructMatches(Chem.MolFromSmarts(hydroxyl_smarts)) or mol.GetSubstructMatches(Chem.MolFromSmarts(nitro_smarts))
+
+def rule10_hydroxyl_group_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H]')))
+
+def rule11_calcium_nitrogen_presence(mol):
+    calcium_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Ca++]')))
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+    return calcium_count + nitrogen_count
+
+def rule12_amide_imide_urea_presence(mol):
+    amide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3][CX3](=[OX1])[#6]')))
+    imide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3][CX3](=[OX1])[NX3]')))
+    urea_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3][CX3](=[OX1])[NX3]')))
+    return amide_count + imide_count + urea_count
+
+def rule1_nitro_group_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule2_chlorine_bromine(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['Cl', 'Br'])
+
+def rule3_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule4_halogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+
+def rule5_amidine_guanidine_halogenated_aromatic(mol):
+    amidine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=N)[NX3H2]')))
+    guanidine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=[NX2])[NX3H2][NX3H2]')))
+    halogenated_aromatic = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1[X2]')))
+    return amidine + guanidine + halogenated_aromatic
+
+
+def rule6_benzene(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+
+def rule7_substructures(mol):
+    substructures = ['C1=CC(=CC=C1NC(=NC(=NCCCCCCN=C(N)N=C(N)NC2=CC=C(C=C2)Cl)N)N)Cl', 
+                     'C1=CC(=C(C=C1CCN)O)O', 
+                     'C[C@H]1/C=C/C=C(\\C(=O)NC\\2=C(C3=C(C(=C4C(=C3C(=O)/C2=C/NN5CCN(CC5)C)C(=O)[C@](O4)(O/C=C/[C@@H]([C@H]([C@H]([C@@H]([C@H]([C@H]1O)C)O)C)OC(=O)C)C)C)O)O)/C']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(sub))) for sub in substructures if Chem.MolFromSmiles(sub) is not None)
+
+
+def rule8_carboxylic_acid(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule9_sulfonamide(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+
+def rule10_amidine_guanidine(mol):
+    amidine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=N)N')))
+    guanidine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=N)(N)N')))
+    return amidine + guanidine

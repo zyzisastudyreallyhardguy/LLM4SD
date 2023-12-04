@@ -1,0 +1,82 @@
+def rule1_benzene_ring(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+
+def rule2_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule3_functional_groups(mol):
+    alcohol = len(mol.GetSubstructMatches(Chem.MolFromSmarts('O[H]')))
+    amine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2,H1;!$(NC=O)]')))
+    halogen = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+    return alcohol + amine + halogen
+
+def rule4_double_bonds(mol):
+    aliphatic_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType().name == 'DOUBLE' and bond.GetIsAromatic() == False:
+            aliphatic_double_bonds += 1
+    return aliphatic_double_bonds
+
+
+def rule5_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule6_molecule_properties(mol):
+    return rdMolDescriptors.CalcNumRings(mol) + rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_molecule_properties(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_pi_bond(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]')))
+
+def rule3_functional_groups(mol):
+    hydroxyl = Chem.MolFromSmarts('[OX2H]')
+    carbonyl = Chem.MolFromSmarts('[CX3]=[OX1]')
+    return len(mol.GetSubstructMatches(hydroxyl)) + len(mol.GetSubstructMatches(carbonyl))
+
+def rule4_benzene_carbonyl(mol):
+    benzene_carbonyl = Chem.MolFromSmarts('[cR1]~[CX3]=[OX1]')
+    return len(mol.GetSubstructMatches(benzene_carbonyl))
+
+def rule5_benzene_nitrogen(mol):
+    benzene_nitrogen = Chem.MolFromSmarts('[cR1]~[NX3]')
+    return len(mol.GetSubstructMatches(benzene_nitrogen))
+
+def rule6_nitrogen_hydrogen(mol):
+    nitrogen_hydrogen = Chem.MolFromSmarts('[NX3H]')
+    return len(mol.GetSubstructMatches(nitrogen_hydrogen))
+
+def rule7_benzene_hydroxyl_hydrogen(mol):
+    benzene_hydroxyl_hydrogen = Chem.MolFromSmarts('[cR1]~[OX2H]~[HX]')
+    return len(mol.GetSubstructMatches(benzene_hydroxyl_hydrogen))
+
+def rule8_benzene_halogen(mol):
+    benzene_halogen = Chem.MolFromSmarts('[cR1]~[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(benzene_halogen))
+
+def rule9_benzene_ring(mol):
+    benzene_ring = Chem.MolFromSmarts('[cR1]')
+    return len(mol.GetSubstructMatches(benzene_ring))
+
+def rule10_carbon_chain(mol):
+    carbon_chain = Chem.MolFromSmarts('[CX4]')
+    return len(mol.GetSubstructMatches(carbon_chain))
+
+def rule11_nitrogen_chain(mol):
+    nitrogen_chain = Chem.MolFromSmarts('[NX3]')
+
+def rule12_benzene_ring(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+
+def rule13_polar_bond(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1cc[nH]cc1')))
+
+def rule14_function_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C]=O')))
+
+def rule18_bibenzyl_bond(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccc(cc1)C(c2ccccc2)')))
+
+def rule19_biphenyl_bond(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccc(cc1)-c2ccccc2')))

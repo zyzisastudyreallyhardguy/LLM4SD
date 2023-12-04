@@ -1,0 +1,182 @@
+def rule1_num_electrons(mol):
+    total_electrons = 0
+    for atom in mol.GetAtoms():
+        total_electrons += atom.GetAtomicNum() - atom.GetFormalCharge()
+    return total_electrons
+
+
+def rule2_num_lone_pairs(mol):
+    total_valence_electrons = 0
+    total_bonding_electrons = 0
+    total_unpaired_electrons = 0
+
+    for atom in mol.GetAtoms():
+        total_valence_electrons += atom.GetTotalValence()
+        total_bonding_electrons += atom.GetTotalDegree()
+        total_unpaired_electrons += atom.GetNumRadicalElectrons()
+
+    num_lone_pairs = (total_valence_electrons - total_bonding_electrons - total_unpaired_electrons) // 2
+
+    return num_lone_pairs
+
+
+def rule3_num_multiple_bonds(mol):
+    num_multiple_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE or bond.GetBondType() == Chem.rdchem.BondType.TRIPLE:
+            num_multiple_bonds += 1
+    return num_multiple_bonds
+
+
+def rule4_mol_size(mol):
+    return mol.GetNumAtoms()
+
+
+def rule5_num_highly_electronegative_atoms(mol):
+    num_highly_electronegative_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [7, 8, 16]:  # Nitrogen, Oxygen, and Sulfur are considered highly electronegative
+            num_highly_electronegative_atoms += 1
+    return num_highly_electronegative_atoms
+
+
+def rule6_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_aliphatic_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule8_hydrogen_atoms(mol):
+    return mol.GetNumAtoms(1) # 1 is the atomic number for Hydrogen
+
+def rule9_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_dipole_moment(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule11_ionization_potential(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule12_electron_affinity(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule13_electronegativity(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule14_bond_length(mol):
+    return mol.GetNumBonds()
+
+def rule16_mol_weight_polarizability(mol):
+    return Descriptors.MolWt(mol)
+
+
+
+def rule27_acidity(mol):
+    return Descriptors.NumHAcceptors(mol)
+
+
+def rule28_basicity(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+
+def rule29_redox_potential(mol):
+    num_radical_electrons = 0
+    for atom in mol.GetAtoms():
+        num_radical_electrons += atom.GetNumRadicalElectrons()
+    return num_radical_electrons
+
+
+def rule30_reactivity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+
+def rule31_toxicity(mol):
+    try:
+        toxicophores = rdMolDescriptors.CalcToxicophores(mol)
+        return len(toxicophores)
+    except:
+        return 0
+
+
+def rule32_biodegradability(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule33_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+
+def rule34_hydrophobicity(mol):
+    hydrophobic_groups = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon
+            if all(neighbor.GetAtomicNum() == 1 for neighbor in atom.GetNeighbors()):  # Hydrogen
+                hydrophobic_groups += 1
+    return hydrophobic_groups
+
+
+def rule35_hydrophilicity_polarizability(mol):
+    hydrophilicity = rdMolDescriptors.CalcTPSA(mol)
+    mw = rdMolDescriptors.CalcExactMolWt(mol)
+    num_of_electrons = sum(atom.GetAtomicNum() for atom in mol.GetAtoms())
+    polarizability = mw / num_of_electrons
+    return hydrophilicity * polarizability
+
+
+def rule36_water_solubility_polarizability(mol):
+    water_solubility = rdMolDescriptors.CalcExactMolWt(mol)
+    polarizability = rdMolDescriptors.CalcTPSA(mol)
+    return water_solubility * polarizability
+
+
+def rule37_organic_solubility_polarizability(mol):
+    organic_solubility = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    mol_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    num_atoms = mol.GetNumAtoms()
+    polarizability = mol_weight / num_atoms
+    return organic_solubility * polarizability
+
+
+def rule38_acidic_solubility_polarizability(mol):
+    acidic_solubility = rdMolDescriptors.CalcNumHBA(mol)
+    mol_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    num_electrons = sum(atom.GetAtomicNum() for atom in mol.GetAtoms())
+    polarizability = mol_weight / num_electrons
+    return acidic_solubility * polarizability
+
+
+def rule39_basic_solubility_polarizability(mol):
+    basic_solubility = Descriptors.NumHDonors(mol)
+    polarizability = Descriptors.MolMR(mol)
+    return basic_solubility * polarizability
+
+
+
+
+
+
+
+
+
+
+def rule44_micellar_solubility_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule45_microemulsion_solubility_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule46_supercritical_co2_solubility_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule47_ionic_liquid_solubility_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule48_micellar_solubility_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule49_microemulsion_solubility_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule50_supercritical_co2_solubility_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)

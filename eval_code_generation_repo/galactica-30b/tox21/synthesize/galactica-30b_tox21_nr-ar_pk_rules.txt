@@ -1,0 +1,93 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_XLogP3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_num_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[F,Cl,Br,I]")))
+
+def rule9_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule10_num_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[OH]")))
+
+def rule11_num_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]=[#8]")))
+
+
+def rule12_num_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[N]")))
+
+def rule13_num_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[O]")))
+
+def rule14_num_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[S]")))
+
+def rule16_conjugated_double_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=CC=C')))
+
+def rule17_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule18_unsaturated_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('*=*')))
+
+def rule19_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule20_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol))
+
+def rule21_rigid_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('*!@*')))
+
+def rule22_flexible_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('*@*')))
+
+def rule23_fused_rings(mol):
+    ri = mol.GetRingInfo()
+    return len(ri.AtomRings())
+
+def rule24_non_aromatic_rings(mol):
+    ri = mol.GetRingInfo()
+
+def rule25_aliphatic_chains(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C-C')))
+
+def rule26_charged_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule27_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule28_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule29_hydrophobic_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[cH0:1][cH0:2][cH0:3][cH0:4][cH0:5][cH0:6]')))
+
+def rule30_hydrophilic_groups(mol):
+    pattern = Chem.MolFromSmarts('[OH,NH2,NH,=N,=O]')
+    if pattern is not None:
+        return len(mol.GetSubstructMatches(pattern))
+    else:
+        return 0
+

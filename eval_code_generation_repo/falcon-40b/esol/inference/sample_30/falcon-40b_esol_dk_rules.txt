@@ -1,0 +1,51 @@
+def rule1_carboxylic_sulfonic(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    sulfonic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)O'))
+    return len(carboxylic_acid) + len(sulfonic_acid)
+
+def rule2_carbonyl(mol):
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(carbonyl)
+
+def rule3_nitrogen_heterocyclic(mol):
+    nitrogen_heterocyclic = mol.GetSubstructMatches(Chem.MolFromSmarts('[nR]'))
+    return len(nitrogen_heterocyclic)
+
+def rule4_chlorine(mol):
+    chlorine = mol.GetSubstructMatches(Chem.MolFromSmarts('Cl'))
+    return len(chlorine)
+
+def rule5_sulfur(mol):
+    sulfur = mol.GetSubstructMatches(Chem.MolFromSmarts('S'))
+    return len(sulfur)
+
+def rule6_polar_functional_groups(mol):
+    hydroxyl = mol.GetSubstructMatches(Chem.MolFromSmarts('O'))
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    amine = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    return len(hydroxyl) + len(carboxylic_acid) + len(amine)
+
+def rule7_nonpolar_groups(mol):
+    nonpolar_groups = ['[CX4]', '[CX3]=', '[CX2]#', 'C', 'c']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(group))) if Chem.MolFromSmarts(group) is not None else 0 for group in nonpolar_groups)
+
+
+def rule8_halogen_atoms(mol):
+    halogens = ['Cl', 'Br', 'I', 'F']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(halogen))) for halogen in halogens)
+
+def rule9_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C')))
+
+def rule10_molecule_properties(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol), rdMolDescriptors.CalcTPSA(mol), rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_functional_groups(mol):
+    functional_groups = ['[OH]', '[NH2]', '[SH]', '[PH2]', '[CH3]', '[CH2]', '[CH]', '[C]']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(group))) for group in functional_groups)
+
+def rule12_molecular_properties(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol), rdMolDescriptors.CalcNumHBD(mol), rdMolDescriptors.CalcNumHBA(mol)
+
+def rule13_charged_groups(mol):
+    charged_groups = ['[NH3+]', '[S+]', '[O-]', '[N-]']

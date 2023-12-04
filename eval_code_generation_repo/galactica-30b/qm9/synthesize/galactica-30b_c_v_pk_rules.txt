@@ -1,0 +1,122 @@
+def rule1_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule2_mass_atoms(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_type_atoms(mol):
+    atom_types = [atom.GetSymbol() for atom in mol.GetAtoms()]
+    return len(set(atom_types))
+
+def rule4_shape_mol(mol):
+    if mol.GetNumConformers() == 0:
+        return 0
+    else:
+        return rdMolDescriptors.CalcAsphericity(mol)
+
+
+
+
+def rule7_ring_count(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule8_functional_groups(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule13_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_rotational_modes(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule17_electronic_structure(mol):
+    return sum(atom.GetTotalNumHs() for atom in mol.GetAtoms())
+
+def rule18_ionization_energy(mol):
+    return sum(atom.GetTotalValence() for atom in mol.GetAtoms())
+
+def rule19_electron_affinity(mol):
+    return sum(atom.GetIsAromatic() for atom in mol.GetAtoms())
+
+def rule20_enthalpy_of_formation(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule21_entropy(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule22_molar_volume(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule23_thermal_conductivity(mol):
+    return mol.GetNumAtoms()
+
+def rule24_electrical_conductivity(mol):
+    return mol.GetNumBonds()
+
+def estimate_boiling_point(mol):
+    # This is a very simple and not very accurate group contribution method
+    # It just counts the number of carbon atoms and multiplies by a factor
+    carbon_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+    return carbon_count * 20  # This factor is just a made-up example
+
+
+
+def rule36_activation_energy(mol):
+    return Descriptors.MolWt(mol)
+
+
+
+
+def rule38_frequency_factor(mol):
+    return Descriptors.MolWt(mol)
+
+
+def rule39_activation_enthalpy(mol):
+    return Descriptors.MolWt(mol)
+
+
+def rule40_activation_entropy(mol):
+    return Descriptors.MolWt(mol)
+
+
+def rule41_activation_free_energy(mol):
+    return Descriptors.MolWt(mol)
+
+
+def rule42_activation_volume(mol):
+    return Descriptors.MolWt(mol)
+
+
+
+
+def rule44_equilibrium_constant(lst):
+    if isinstance(lst, list):  # Check if the argument is a list
+        if len(lst) > 0:  # Check if the list is not empty
+            return lst[0]  # Return the first element of the list
+        else:
+            return 0  # Return 0 if the list is empty
+    else:
+        return 0  # Return 0 if the argument is not a list
+
+
+
+
+def rule46_enthalpy(mol):
+    mol_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    # This is a placeholder for the actual calculation. 
+    # Replace it with the correct formula to calculate enthalpy.
+    enthalpy = mol_weight * 1.0  
+    return enthalpy
+
+
+def rule47_entropy(mol):
+    return Crippen.MolLogP(mol)
+
+
+
+
+def rule49_activation_energy(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+

@@ -1,0 +1,64 @@
+def rule1_functional_groups(mol):
+    functional_groups = ['[NX3][CX3](=[OX1])[#6]', 'O=C-O', 'C=O', '[$([CX3](=O)[OX2H1]),$([CX3](=O)[OX1-]),$([CX3](=O)O[CX4H3]),$([CX3](=O)O[CX4H2][CX4H2]),$([CX3](=O)O[CX4H2][CX4H1]),$([CX3](=O)O[CX4H1][CX4H1]),$([CX3](=O)O[CX4H1][CX4H1][CX4H1])]', '[#6]-[#6](=O)-O-[#6]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(fg)) for fg in functional_groups)
+
+def rule2_halogen_atoms(mol):
+    halogens = ['[F,Cl,Br,I,Ag]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(halogen)) for halogen in halogens)
+
+def rule3_lipophilicity_polar(mol):
+    lipophilicity = Descriptors.MolLogP(mol)
+    polar_functional_groups = ['[NX3,NX4+,NX2-,N,O,S]']
+    return lipophilicity + sum(mol.HasSubstructMatch(Chem.MolFromSmarts(pfg)) for pfg in polar_functional_groups)
+
+def rule4_pah_ring_long_chain(mol):
+    pah = '[cR1]1[cR1][cR1][cR1][cR1][cR1]1'
+    ring_structure = '[r]'
+    long_chain = '[CH2][CH2][CH2][CH2][CH2]'
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(structure)) for structure in [pah, ring_structure, long_chain])
+
+def rule5_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_nitro_group(mol):
+    nitro_group = ['[N+](=O)[O-]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(ng)) for ng in nitro_group)
+
+def rule7_chemical_elements(mol):
+    elements = ['[As,N]']
+
+def rule8_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule1_phosphorus(mol):
+    pattern = Chem.MolFromSmarts('[#15]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_chlorine(mol):
+    pattern = Chem.MolFromSmarts('[#17]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_gold(mol):
+    pattern = Chem.MolFromSmarts('[#79]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule4_endocrine_disorder(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule5_polar_group(mol):
+    pattern = Chem.MolFromSmarts('[OH]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_ring_structure(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule7_molecular_weight(mol):
+    return Descriptors.MolWt(mol)

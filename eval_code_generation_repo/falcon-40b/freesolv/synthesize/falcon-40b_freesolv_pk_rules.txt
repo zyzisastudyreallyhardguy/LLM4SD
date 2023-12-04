@@ -1,0 +1,72 @@
+
+def rule7_charged_groups(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule8_lone_pairs(mol):
+    lone_pairs = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in ['N', 'O']:
+            lone_pairs += atom.GetNumExplicitHs()
+    return lone_pairs
+
+def rule9_pi_electrons(mol):
+    pi_electrons = 0
+    for atom in mol.GetAtoms():
+        pi_electrons += atom.GetTotalNumHs()
+    return pi_electrons
+
+def rule10_sp3_carbons(mol):
+    sp3_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C' and atom.GetHybridization() == rdkit.Chem.rdchem.HybridizationType.SP3:
+            sp3_carbons += 1
+    return sp3_carbons
+
+def rule11_sp2_carbons(mol):
+    sp2_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C' and atom.GetHybridization() == rdkit.Chem.rdchem.HybridizationType.SP2:
+            sp2_carbons += 1
+    return sp2_carbons
+
+def rule12_sp_carbons(mol):
+    sp_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C' and atom.GetHybridization() == rdkit.Chem.rdchem.HybridizationType.SP:
+            sp_carbons += 1
+    return sp_carbons
+
+def rule13_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == rdkit.Chem.rdchem.BondType.DOUBLE])
+
+def rule14_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == rdkit.Chem.rdchem.BondType.TRIPLE])
+
+def rule15_tetrahedral_angles(mol):
+    tetrahedral_angles = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == rdkit.Chem.rdchem.HybridizationType.SP3:
+            tetrahedral_angles += 1
+
+def calculate_tetrahedral_angles(mol):
+    tetrahedral_angles = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon
+            neighbors = atom.GetNeighbors()
+            if len(neighbors) == 4:  # Tetrahedral carbon
+                mol.AddConformer(Chem.Conformer())
+                conf = mol.GetConformer(0)
+                for i in range(4):
+                    for j in range(i+1, 4):
+                        angle = rdmt.GetAngleRad(conf, neighbors[i].GetIdx(), atom.GetIdx(), neighbors[j].GetIdx())
+                        if 109.5 - 5 < angle < 109.5 + 5:  # Allow for some variation
+                            tetrahedral_angles += 1
+    return tetrahedral_angles
+
+
+def calculate_tetrahedral_centers(mol):
+    tetrahedral_centers = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3:
+            tetrahedral_centers += 1
+    return tetrahedral_centers

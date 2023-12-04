@@ -1,0 +1,66 @@
+def rule3_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_flexible_chain(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_polar_functional_group(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule6_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule12345_low_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule55302_hb_donors1232143(mol):
+    # Code to calculate number of hydrogen bond donors in mol
+    # This is just a placeholder, replace with actual calculation
+    hb_donors = 0
+    return hb_donors
+
+def rule950021_hb_acceptor35749(mol):
+    # Code to calculate number of hydrogen bond acceptors in mol
+    # This is just a placeholder, replace with actual calculation
+    hb_acceptors = 0
+    return hb_acceptors
+
+def rule67890_high_hb_donors_acceptors(mol):
+    return rule55302_hb_donors1232143(mol) + rule950021_hb_acceptor35749(mol)
+
+
+def rule111213_rigid_core(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule141516_planar_ring_system(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule171819_chiral_center(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule202122_negatively_charged_group(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule12345_long_carbon_chain(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule67890_heterocyclic_ring(mol):
+    return rdMolDescriptors.CalcNumHeterocycles(mol)
+
+def rule111213_fused_ring_system(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule141516_sterically_hindered(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule171819_conjugated_system(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+
+
+def rule232425_redox_active(mol):
+    num_radical_electrons = 0
+    for atom in mol.GetAtoms():
+        num_radical_electrons += atom.GetNumRadicalElectrons()
+    return num_radical_electrons
+

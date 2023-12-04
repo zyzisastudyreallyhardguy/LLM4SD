@@ -1,0 +1,169 @@
+def rule1_Gvalue_mol_weight(mol):
+    mol_weight = Descriptors.MolWt(mol)
+    G_value = 1 / mol_weight
+    return G_value
+
+def rule2_Gvalue_func_groups(mol):
+    polar_groups = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    nonpolar_groups = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    G_value = polar_groups - nonpolar_groups
+    return G_value
+
+def rule3_Gvalue_hybridization(mol):
+    sp3_carbons = len([atom.GetHybridization() for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3])
+    G_value = sp3_carbons
+    return G_value
+
+def rule6_Gvalue_complexity(mol):
+    complexity = Descriptors.FpDensityMorgan1(mol)
+    G_value = complexity
+    return G_value
+
+def rule7_Gvalue_electronegativity(mol):
+    electronegativity = sum([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+    G_value = electronegativity
+    return G_value
+
+def rule9_Gvalue_bonds_rings(mol):
+    double_bonds = len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+    rings = rdMolDescriptors.CalcNumRings(mol)
+    G_value = double_bonds + rings
+    return G_value
+
+def rule10_Gvalue_mol_formula(mol):
+    formula = Chem.rdMolDescriptors.CalcMolFormula(mol)
+    G_value = sum([Chem.GetPeriodicTable().GetAtomicWeight(atom.GetAtomicNum()) for atom in mol.GetAtoms()])
+
+def rule1_Gvalue_mol_weight(mol):
+    mol_weight = Descriptors.MolWt(mol)
+    G_value = 1 / mol_weight
+    return G_value
+
+def rule2_Gvalue_double_bonds(mol):
+    double_bond = Chem.MolFromSmiles('C=C')
+    double_bonds = len(mol.GetSubstructMatches(double_bond))
+    G_value = 1 / double_bonds if double_bonds != 0 else 0
+    return G_value
+
+
+def rule3_Gvalue_electronegativity(mol):
+    electronegativity = sum([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+    G_value = 1 / electronegativity if electronegativity != 0 else 0
+    return G_value
+
+def rule4_Gvalue_functional_groups(mol):
+    functional_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[#6]'))) + \
+                        len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]'))) + \
+                        len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)O[CX4H0-3]'))) + \
+                        len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3][CX3](=[OX1])[#6]')))
+    G_value = 1 / functional_groups if functional_groups != 0 else 0
+    return G_value
+
+def rule5_Gvalue_position_functional_groups(mol):
+    functional_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[#6]'))) + \
+                        len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]'))) + \
+                        len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)O[CX4H0-3]'))) + \
+                        len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3][CX3](=[OX1])[#6]')))
+    G_value = 1 / functional_groups if functional_groups != 0 else 0
+
+def rule6_polar_func_groups(mol):
+    polar_groups = ['[NH+]', 'C=O', '[OH-]']
+    nonpolar_groups = ['[CH3]', '[CH2]']
+    polar_count = sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(group))) for group in polar_groups)
+    nonpolar_count = sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(group))) for group in nonpolar_groups)
+    return polar_count - nonpolar_count
+
+
+def rule8_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule9_bond_types(mol):
+    polar_bonds = ['-', '=', '#']
+    nonpolar_bonds = ['-', '=']
+    polar_count = sum(1 for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() in polar_bonds)
+    nonpolar_count = sum(1 for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() in nonpolar_bonds)
+    return polar_count - nonpolar_count
+
+def rule11_electronegativity(mol):
+    total_electronegativity = 0
+    for atom in mol.GetAtoms():
+        total_electronegativity += atom.GetAtomicNum()
+    return total_electronegativity
+
+def rule12_functional_groups(mol):
+    functional_groups = ['C=O', 'O', 'N']
+    count = 0
+    for group in functional_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule13_hydroxyl_groups(mol):
+    hydroxyl_groups = ['O']
+    count = 0
+    for group in hydroxyl_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule14_atom_count(mol):
+    return mol.GetNumAtoms()
+
+def rule15_polar_bonds(mol):
+    polar_bonds = ['O', 'N', 'F', 'Cl', 'Br', 'I']
+    count = 0
+    for bond in polar_bonds:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(bond)))
+
+def rule16_bond_energy(mol):
+    return Descriptors.BalabanJ(mol)
+
+def rule17_functional_groups(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule18_electronegative_atom(mol):
+    return Descriptors.MaxPartialCharge(mol)
+
+def rule19_polar_functional_groups(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule4_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule5_polar_or_double_bonds(mol):
+    pattern1 = Chem.MolFromSmarts('[#6]=[#8]')
+    pattern2 = Chem.MolFromSmarts('[#6]-[#8]')
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches1) + len(matches2)
+
+def rule6_functional_groups(mol):
+    patterns = ['[CX3H1](=O)[#6]', '[CX3](=O)[#6]', '[CX3](=O)[OX2H1]', '[CX3](=[OX1])[NX3H2]']
+    total_matches = 0
+    for pattern in patterns:
+        p = Chem.MolFromSmarts(pattern)
+        matches = mol.GetSubstructMatches(p)
+        total_matches += len(matches)
+    return total_matches
+
+def rule7_nitrogen_in_amide(mol):
+    pattern = Chem.MolFromSmarts('[CX3](=[OX1])[NX3H2]')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule8_structure_impact(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_bond_associations(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule10_polar_functional_groups(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule11_tertiary_amine_groups(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)

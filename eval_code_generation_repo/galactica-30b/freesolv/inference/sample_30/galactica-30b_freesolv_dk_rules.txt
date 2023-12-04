@@ -1,0 +1,82 @@
+def rule1_polar_molecules(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule2_hydrophobic_molecules(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule3_halogenated_compounds(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule4_functional_groups(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule5_molecule_size(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule6_electronegative_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule7_branched_molecules(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule8_conjugated_molecules(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_fluorine_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F]')))
+
+def rule11_func_group_count(mol):
+    aldehydes = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')))
+    ketones = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6][CX3](=O)[#6]')))
+    esters = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6][CX3](=O)O[#6]')))
+    return aldehydes + ketones + esters
+
+def rule12_benzene_ring_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+
+def rule13_func_group_count(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule1_hydrophobic_group_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C;D3,D4](-[CH3])-[CH3]')))
+
+def rule2_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule3_carbonyl_group_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6][C](=O)[#6]')))
+
+def rule4_halogen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule6_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule8_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule9_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule10_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule11_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule12_halogenated_aromatics(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1X')
+    if pattern is not None:
+        return len(mol.GetSubstructMatches(pattern))
+    else:
+        return 0
+
+
+def rule13_hydrophobic_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](-[#1])(-[#1])-[#1]')))
+
+def rule14_electronegative_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8,#7,#9]')))

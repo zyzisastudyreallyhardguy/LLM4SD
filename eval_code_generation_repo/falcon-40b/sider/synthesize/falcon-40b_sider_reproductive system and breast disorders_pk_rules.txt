@@ -1,0 +1,52 @@
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_nitrogen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7])
+
+
+def rule8_sulfur_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16])
+
+
+def rule9_halogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol) - rule7_nitrogen_atoms(mol) - rule8_sulfur_atoms(mol)
+
+def rule10_oxygen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8])
+
+
+def rule11_carbon_atoms(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule12_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule13_chiral_centers(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule15_double_bonds(mol):
+    pattern = Chem.MolFromSmarts('=')
+    if pattern is not None:
+        return len(mol.GetSubstructMatches(pattern))
+    else:
+        return 0
+
+
+def rule16_triple_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('*#*')))
+
+
+def rule17_quaternary_carbons(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cv4]')))
+
+def rule18_amine_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2,H1;!$(NC=O)]')))
+
+def rule19_carboxylic_acid_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule20_sulfonic_acid_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)O')))

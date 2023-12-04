@@ -1,0 +1,72 @@
+def rule1_halogen_atoms(mol):
+    halogen_atoms = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogen_atoms)
+
+def rule2_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule3_sulfur_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule4_CCNCC_group(mol):
+    return sum(1 for submol in mol.GetSubstructMatches(Chem.MolFromSmarts('CCN(C)C')))
+
+def rule5_FeO_group(mol):
+    return sum(1 for submol in mol.GetSubstructMatches(Chem.MolFromSmarts('[Fe][O]')))
+
+def rule6_positive_charge(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0 and atom.GetSymbol() in ['N', 'O'])
+
+def rule7_carbonyl_group(mol):
+    return sum(1 for submol in mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')))
+
+def rule8_carboxylic_acid_group(mol):
+    return sum(1 for submol in mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule9_oxygen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule10_carbon_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule11_long_carbon_chain(mol):
+    matches = mol.GetSubstructMatches(Chem.MolFromSmiles('C'))
+    if matches:
+        return max([len(x) for x in matches])
+    else:
+        return 0
+
+
+def rule12_sulfonate_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)[O-]')))
+
+def rule13_chlorine_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule14_amine_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule15_sulfide_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule17_nitrogen_position(mol):
+    return Descriptors.fr_N_O(mol)
+
+def rule18_carbonyl_group(mol):
+    return Descriptors.fr_C_O(mol)
+
+def rule19_nitrogen_atoms(mol):
+    return Descriptors.fr_NH2(mol)
+
+def rule20_nitrogen_atom(mol):
+    return Descriptors.fr_NH0(mol)
+
+def rule21_carbon_chain(mol):
+    return Descriptors.fr_Al_COO(mol)
+
+def rule22_chlorine_atom(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 17])
+
+
+def rule23_nitrogen_heterocyclic(mol):
+    return Descriptors.fr_nitro_arom_nonortho(mol)

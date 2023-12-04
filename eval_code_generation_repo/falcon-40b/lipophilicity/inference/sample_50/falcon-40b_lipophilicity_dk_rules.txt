@@ -1,0 +1,74 @@
+def rule1_polar_func_groups(mol):
+    polar_groups = ['[OH]', '[NH2]', '[COOH]']
+    count = 0
+    for group in polar_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule2_aromatic_hydrophobic(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    hydrophobic_groups = ['[C]', '[F]', '[Cl]', '[Br]', '[I]']
+    count = 0
+    for group in hydrophobic_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return aromatic_rings + count
+
+
+def rule3_size_complexity(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule1_hydrophobic_groups(mol):
+    hydrophobic_groups = ['[C]', '[F]', '[Cl]', '[Br]', '[I]']
+    count = 0
+    for group in hydrophobic_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule2_polar_func_groups(mol):
+    polar_groups = ['[OH]', '[NH2]', '[COOH]']
+    count = 0
+    for group in polar_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule4_lipophilicity(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    aliphatic_rings = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    halogens = rdMolDescriptors.CalcNumHeteroatoms(mol) - rdMolDescriptors.CalcNumHBA(mol)
+    return aromatic_rings + aliphatic_rings + halogens
+
+def rule5_lipophilicity(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule6_lipophilicity(mol):
+    carboxylic_acids = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    amines = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    alcohols = mol.GetSubstructMatches(Chem.MolFromSmarts('O'))
+    return len(carboxylic_acids) + len(amines) + len(alcohols)
+
+def rule7_lipophilicity(mol):
+    carboxylic_acids = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    carboxylic_acids_middle = [match for match in carboxylic_acids if 0 < match[0] < mol.GetNumAtoms() - 1]
+
+def rule8_nonpolar_groups(mol):
+    nonpolar_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')) # Alkanes
+    nonpolar_groups += mol.GetSubstructMatches(Chem.MolFromSmarts('C=C')) # Alkenes
+    nonpolar_groups += mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')) # Aromatic rings
+    return len(nonpolar_groups)
+
+def rule9_polar_groups(mol):
+    polar_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#9,#15,#16,#17,#35,#53]')) # Polar atoms
+    center = mol.GetNumAtoms() // 2
+    polar_groups_center = [group for group in polar_groups if abs(group[0] - center) <= center // 2]
+    return len(polar_groups_center)
+
+def rule10_hydrophobic_chains(mol):
+    hydrophobic_chains = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')) # Alkanes
+    hydrophobic_chains_lengths = [len(chain) for chain in hydrophobic_chains]
+    return max(hydrophobic_chains_lengths) if hydrophobic_chains_lengths else 0
+
+def rule11_other_factors(mol):
+    functional_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#9,#15,#16,#17,#35,#53]')) # Polar atoms
+    heteroatoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[!#6;!H;!#1]')) # Heteroatoms
+    molecular_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    return len(functional_groups) + len(heteroatoms) + molecular_weight

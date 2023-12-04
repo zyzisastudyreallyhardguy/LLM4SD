@@ -1,0 +1,71 @@
+def rule1_contains_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule2_long_carbon_chain(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]1-[#6]-[#6]-[#6]-[#6]-[#6]-1')))
+
+def rule3_contains_chlorine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]')))
+
+def rule4_contains_sulfur(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule5_contains_positively_charged_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7+]')))
+
+def rule6_contains_carbonyl_group_attached_to_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]-[#6](=[O])')))
+
+def rule7_contains_carboxylic_acid_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule8_halogen_atom(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule9_CN_group(mol):
+    return mol.HasSubstructMatch(Chem.MolFromSmarts('CN'))
+
+def rule10_CO_group(mol):
+    return mol.HasSubstructMatch(Chem.MolFromSmarts('C=O'))
+
+def rule11_COO_group(mol):
+    return mol.HasSubstructMatch(Chem.MolFromSmarts('C(=O)O'))
+
+def rule12_positive_charge(mol):
+    return sum([atom.GetFormalCharge() > 0 for atom in mol.GetAtoms()])
+
+def rule13_nitrogen_atom(mol):
+    return sum([atom.GetSymbol() == 'N' for atom in mol.GetAtoms()])
+
+def rule14_halogen_attached_to_carbon(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C':
+                    return 1
+
+def rule15_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule16_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule17_positive_charge(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule18_polar_functional_group(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule19_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule21_carboxylic_or_sulfonamide(mol):
+    carboxylic = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C(=O)O')))
+    sulfonamide = len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)N')))
+    return carboxylic + sulfonamide

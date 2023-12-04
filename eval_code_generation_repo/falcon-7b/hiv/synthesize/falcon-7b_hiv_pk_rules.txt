@@ -1,0 +1,56 @@
+def rule_hydrophobicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule_charged_groups(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule_polar_groups(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule_double_bonds(mol):
+    aliphatic_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType().name == 'DOUBLE' and bond.GetIsAromatic() == False:
+            aliphatic_double_bonds += 1
+    return aliphatic_double_bonds
+
+
+def rule_cc_double_bonds(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule_oxygen_atoms(mol):
+    return mol.GetNumAtoms(8)
+
+
+def rule_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule_halogens(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol) - rdMolDescriptors.CalcNumHBA(mol)
+
+def rule_ch_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if set([bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]) == set(['C', 'H']))
+
+def rule_co_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if set([bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]) == set(['C', 'O']))
+
+def rule_cn_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if set([bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]) == set(['C', 'N']))
+
+def rule_cs_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if set([bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]) == set(['C', 'S']))
+
+def rule_cx_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBeginAtom().GetSymbol() == 'C' and bond.GetEndAtom().IsInRing() == False)
+
+def rule_cc_triple_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE and set([bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]) == set(['C', 'C']))
+
+def rule_cc_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and set([bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]) == set(['C', 'C']))

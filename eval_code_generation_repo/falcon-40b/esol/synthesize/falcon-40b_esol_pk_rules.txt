@@ -1,0 +1,59 @@
+
+def rule7_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule8_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule9_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule10_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE])
+
+def rule11_conjugated_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetIsConjugated() and bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule12_pi_electrons(mol):
+    return sum([atom.GetTotalNumHs() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [5,6,7,8,15,16]])
+
+def rule13_lone_pairs(mol):
+    return sum([atom.GetNumExplicitHs() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [7,8,15,16]])
+
+def rule14_steric_hindrance(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[*]([*])([*])([*])[*]')))
+
+def rule16_polarizability(mol):
+    return Descriptors.TPSA(mol)
+
+
+def rule17_dipole_moment(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+
+def rule18_hydrogen_bonding_capacity(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule19_hydrophobicity(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule20_lipophilicity(mol):
+    logp, _ = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule21_octanol_water_partition_coefficient(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def calculate_num_rotatable_bonds(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+def calculate_polar_surface_area(mol):
+    return Descriptors.TPSA(mol)

@@ -1,0 +1,68 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hydrogen_atoms(mol):
+    return rdMolDescriptors.CalcNumAtoms(mol) - rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+
+def rule3_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule4_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule5_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule7_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule8_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule9_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule10_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule11_double_bonds(mol):
+    double_bonds = [bond for bond in mol.GetBonds() if bond.GetBondType() == rdchem.BondType.DOUBLE]
+    return len(double_bonds)
+
+
+def rule12_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE and bond.GetIsAromatic() == False])
+
+
+def rule13_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_amino_groups(mol):
+    amino_smarts = '[NX3,NX4][!#6]'
+    amino = Chem.MolFromSmarts(amino_smarts)
+    return len(mol.GetSubstructMatches(amino))
+
+def rule16_carboxylic_acid_groups(mol):
+    carboxylic_acid_smarts = 'C(=O)O'
+    carboxylic_acid = Chem.MolFromSmarts(carboxylic_acid_smarts)
+    return len(mol.GetSubstructMatches(carboxylic_acid))
+
+def rule17_aldehydes(mol):
+    aldehyde_smarts = '[CX3H1](=O)[#6]'
+    aldehyde = Chem.MolFromSmarts(aldehyde_smarts)
+    return len(mol.GetSubstructMatches(aldehyde))
+
+def rule18_ketones(mol):
+    ketone_smarts = '[#6][CX3](=O)[#6]'
+    ketone = Chem.MolFromSmarts(ketone_smarts)
+    return len(mol.GetSubstructMatches(ketone))
+
+def rule19_esters(mol):
+    ester_smarts = 'C(=O)O[C,H1]'
+    ester = Chem.MolFromSmarts(ester_smarts)
+    return len(mol.GetSubstructMatches(ester))
+
+def rule20_amides(mol):
+    amide_smarts = 'C(=O)N'
+    amide = Chem.MolFromSmarts(amide_smarts)

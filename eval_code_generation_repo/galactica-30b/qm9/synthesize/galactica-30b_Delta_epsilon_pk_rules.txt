@@ -1,0 +1,77 @@
+def rule1_pi_bonds(mol):
+    pi_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondTypeAsDouble() == 2:
+            pi_bonds += 1
+    return pi_bonds
+
+
+def rule2_functional_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[COOH]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NH2]')))
+
+def rule3_carbon_chain_length(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule4_double_bonds(mol):
+    double_bond = Chem.MolFromSmarts('=')
+    if double_bond is not None:
+        return len(mol.GetSubstructMatches(double_bond))
+    else:
+        return 0
+
+
+def rule5_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule6_electronegativity(mol):
+    total_electronegativity = 0
+    for atom in mol.GetAtoms():
+        total_electronegativity += atom.GetAtomicNum()
+
+def rule7_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule8_lone_pairs(mol):
+    return sum([atom.GetTotalNumHs() for atom in mol.GetAtoms()])
+
+def rule9_conjugation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_metal_atoms(mol):
+    return sum([atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() > 20])
+
+def rule16_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule17_num_aromatic_atoms(mol):
+    aromatic_atoms = [atom for atom in mol.GetAtoms() if atom.GetIsAromatic()]
+    return len(aromatic_atoms)
+
+
+def rule18_num_hb_donors_and_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule19_num_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule20_num_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+
+
+
+
+
+
+def calculate_homo_lumo_gap(mol):
+    mol = gto.M(atom=mol, basis='sto3g')
+    mf = scf.RHF(mol)
+    mf.kernel()
+    mo_energy = mf.mo_energy
+    homo = mo_energy[mf.mo_occ>0].max()
+    lumo = mo_energy[mf.mo_occ==0].min()
+    gap = lumo - homo
+    return gap

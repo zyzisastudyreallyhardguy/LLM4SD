@@ -1,0 +1,335 @@
+def rule4_complex_structure(mol):
+    return rdMolDescriptors.CalcNumRings(mol) + rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_charged_groups(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol) + rdMolDescriptors.CalcNumAmideBonds(mol)
+
+
+def rule7_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule9_multiple_bonds(mol):
+    double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    triple_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE)
+    return double_bonds + triple_bonds
+
+
+def rule11_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_metal_content(mol):
+    pt = rdchem.GetPeriodicTable()
+    return sum(pt.GetAtomicNumber(atom.GetSymbol()) > 20 for atom in mol.GetAtoms())
+
+
+def rule14_aromatic_systems(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_chiral_centers(mol):
+    return mol.GetNumAtoms()
+
+
+def rule18_isotopes(mol):
+    num_isotopes = 0
+    for atom in mol.GetAtoms():
+        if atom.GetIsotope() != 0:
+            num_isotopes += 1
+    return num_isotopes
+
+
+def rule23_electron_sharing(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule24_electron_density(mol):
+    return rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+
+def rule25_dipole_orientation(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule27_chiral_center(mol):
+    return rdMolDescriptors.CalcNumSpiroAtoms(mol)
+
+def rule29_conformational_isomers(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule33_ionization_level(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule34_aromaticity(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule35_rigidity(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+def rule36_metal_ions(mol):
+    metal_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() > 20:  # Atomic number > 20 usually refers to a metal in the Periodic Table
+            metal_count += 1
+    return metal_count
+
+
+def rule37_cis_trans_isomerism(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule38_oxidation_states(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAliphaticHeterocycles(mol)
+
+def rule39_solvent_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule40_conjugated_system(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+
+def rule41_coordination_chemistry(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule43_geometric_shape(mol):
+    if mol.GetNumConformers() >= 1:
+        return rdMolDescriptors.CalcEccentricity(mol)
+    else:
+        return 0
+
+
+def rule44_bond_order(mol):
+    return mol.GetNumBonds()
+
+
+
+def rule46_intermolecular_interactions(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule48_lone_pairs(mol):
+    return mol.GetNumAtoms() - mol.GetNumHeavyAtoms()
+
+def rule50_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_mu_value_conformation(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_mu_value_valence(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol), rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+
+def rule7_mu_value_conjugation(mol):
+    return rdMolDescriptors.CalcNumRings(mol), rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_mu_value_spectra(mol):
+    return Descriptors.TPSA(mol)
+
+def rule10_mu_value_atomic_size(mol):
+    return Descriptors.MolWt(mol)
+
+def rule11_mu_value_bond_type(mol):
+    single_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]~[#6]')))
+    double_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]')))
+    triple_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[#6]')))
+    return single_bonds, double_bonds, triple_bonds
+
+def rule12_mu_value_ionization_energy(mol):
+    return Descriptors.MaxAbsPartialCharge(mol)
+
+def rule15_symmetry(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_polarity(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcTPSA(mol)
+
+def rule17_aromaticity(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule18_hydrophobicity(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+
+def rule19_boiling_point(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule20_atom_distance(mol):
+    if mol.GetNumConformers() > 0:  # Check if the molecule has a 3D conformer
+        return rdmolops.Get3DDistanceMatrix(mol).mean()
+    else:
+        return -1  # Return a default value if the molecule does not have a 3D conformer
+
+
+def rule21_charged_atom(mol):
+    return sum([atom.GetFormalCharge() != 0 for atom in mol.GetAtoms()])
+
+def rule22_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule23_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule25_acidity_basicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule26_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule27_flexibility(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+
+
+def rule32_noble_gases(mol):
+    noble_gases = ['He', 'Ne', 'Ar', 'Kr', 'Xe', 'Rn']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in noble_gases)
+    return count
+
+def rule33_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule35_mu_decrease_with_paired_electrons(mol):
+    unpaired_electrons = 0
+    for atom in mol.GetAtoms():
+        unpaired_electrons += atom.GetNumRadicalElectrons()
+    return unpaired_electrons
+
+def rule36_mu_increase_with_aromaticity(mol):
+    aromatic_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetIsAromatic():
+            aromatic_atoms += 1
+    return aromatic_atoms
+
+def rule37_mu_influence_with_isotopes(mol):
+    isotopes = 0
+    for atom in mol.GetAtoms():
+        if atom.GetIsotope() != 0:
+            isotopes += 1
+    return isotopes
+
+def rule38_mu_increase_with_hydrates(mol):
+    oxygen_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 8:
+            oxygen_atoms += 1
+    return oxygen_atoms
+
+def rule40_hydrogen_bonding(mol):
+    nh2_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2]')))
+    oh_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H]')))
+    return nh2_count + oh_count
+
+def rule41_unsaturated_carbon(mol):
+    sp2_sp_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6;v3]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6;v4]')))
+    return sp2_sp_count
+
+def rule42_metallic_atoms(mol):
+    metallic_atoms_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#3,#11,#19,#37,#55,#87,#4,#12,#20,#38,#56,#88,#13,#31,#49,#81,#113,#5,#14,#32,#50,#82,#114,#6,#15,#33,#51,#83,#115,#7,#16,#34,#52,#84,#116,#8,#17,#35,#53,#85,#117,#9,#18,#36,#54,#86,#118]')))
+    return metallic_atoms_count
+
+def rule43_free_electrons(mol):
+    free_electrons = 0
+    for atom in mol.GetAtoms():
+        free_electrons += atom.GetNumRadicalElectrons()
+    return free_electrons
+
+def rule44_nitrile_groups(mol):
+    nitrile_pattern = Chem.MolFromSmarts('[#6]#[#7]')
+    return len(mol.GetSubstructMatches(nitrile_pattern))
+
+def rule46_radical_species(mol):
+    return sum([atom.GetNumRadicalElectrons() for atom in mol.GetAtoms()])
+
+def rule49_molecular_stress(mol):
+    return rdMolDescriptors.CalcNumRings(mol) + rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule50_charge_distribution(mol):
+    Chem.rdPartialCharges.ComputeGasteigerCharges(mol)
+    charges = [float(atom.GetProp('_GasteigerCharge')) for atom in mol.GetAtoms()]
+    return sum(abs(charge) for charge in charges)
+
+def rule4_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+def rule6_valence_electrons(mol):
+    return sum(atom.GetTotalValence() for atom in mol.GetAtoms())
+
+def rule7_complexity(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+def rule8_hb_donors_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule9_dipole_moment(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule11_vdw_forces(mol):
+    return Descriptors.MolWt(mol)
+
+def rule12_topology(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule13_stereocenters(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule14_rotational_barrier(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule15_thermodynamic_stability(mol):
+    return 0
+
+def rule16_reactivity(mol):
+    return 0
+
+def rule17_electron_density(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule18_intramolecular_forces(mol):
+    return mol.GetNumBonds()
+
+def rule19_conjugation_resonance(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule23_symmetry(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule24_heavy_atoms(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule25_charged_fragments(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdkit.Chem.rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+
+
+def rule29_branched_chains(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule32_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule34_degree_of_saturation(mol):
+    return rdMolDescriptors.CalcFractionCSP3(mol)
+
+def rule36_covalent_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.SINGLE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

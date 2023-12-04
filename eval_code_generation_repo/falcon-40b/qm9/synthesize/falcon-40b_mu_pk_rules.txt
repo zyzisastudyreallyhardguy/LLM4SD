@@ -1,0 +1,129 @@
+
+def rule6_num_fluorine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule7_num_bromine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule8_num_iodine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule9_num_phosphorus(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('P')))
+
+def rule10_num_boron(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('B')))
+
+def rule11_num_carbon(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule12_num_silicon(mol):
+    silicon = Chem.MolFromSmiles('[Si]')
+    if silicon is not None:
+        return len(mol.GetSubstructMatches(silicon))
+    else:
+        return 0
+
+
+def rule13_num_germanium(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 32])
+
+
+def rule14_num_tin(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Sn')))
+
+def rule16_arsenic_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[As]')))
+
+def rule17_antimony_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Sb]')))
+
+def rule18_bismuth_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Bi]')))
+
+def rule19_tellurium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Te]')))
+
+def rule20_polonium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Po]')))
+
+def rule21_astatine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[At]')))
+
+def rule22_radon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Rn]')))
+
+def rule23_francium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Fr]')))
+
+def rule25_actinium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Ac]')))
+
+def rule26_thorium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Th]')))
+
+def rule27_protactinium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Pa]')))
+
+def rule28_uranium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[U]')))
+
+def rule29_neptunium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Np]')))
+
+def rule30_plutonium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Pu]')))
+
+def rule31_americium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Am]')))
+
+def rule32_curium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Cm]')))
+
+def rule33_berkelium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Bk]')))
+
+def rule35_einsteinium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Es]')))
+
+def rule36_fermium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Fm]')))
+
+def rule37_mendelevium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Md]')))
+
+def rule38_nobelium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[No]')))
+
+def rule39_lawrencium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Lr]')))
+
+def rule40_rutherfordium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Rf]')))
+
+def rule41_dubnium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Db]')))
+
+def rule42_seaborgium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Sg]')))
+
+def rule44_hassium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Hs]')))
+
+def rule45_meitnerium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Mt]')))
+
+def rule46_darmstadtium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Ds]')))
+
+def rule47_roentgenium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Rg]')))
+
+def rule48_copernicium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Cn]')))
+
+def rule49_flerovium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Fl]')))
+
+def rule50_livermorium_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Lv]')))

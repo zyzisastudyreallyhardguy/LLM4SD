@@ -1,0 +1,71 @@
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_nitrogen_atom(mol):
+    pattern = Chem.MolFromSmarts('[#7]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('C=O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule4_halogen_atom(mol):
+    pattern = Chem.MolFromSmarts('[#9,#17,#35,#53]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule5_benzene_ring(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_positive_nitrogen(mol):
+    pattern = Chem.MolFromSmarts('[N+]')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule7_BBBP_structure(mol):
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    aromatic_ring = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    if len(carbonyl_group) >= 1 and len(aromatic_ring) >= 1:
+        return 1
+    else:
+        return 0
+
+def rule8_carboxylic_acid_group(mol):
+    carboxylic_acid_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    if len(carboxylic_acid_group) >= 1:
+        return 1
+    else:
+        return 0
+
+def rule9_BBBP_smile_string(mol):
+    smile_string = Chem.MolToSmiles(mol)
+    if "NOT BBBP" not in smile_string:
+        return 1
+    else:
+        return 0
+
+def rule10_bromine_atom(mol):
+    bromine_atom = mol.GetSubstructMatches(Chem.MolFromSmarts('Br'))
+    if len(bromine_atom) >= 1:
+        return 1
+    else:
+        return 0
+
+def rule11_hydrogen_atoms(mol):
+    hydrogen_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[H]'))
+    if len(hydrogen_atoms) >= 1: # Change this number based on the required number of hydrogen atoms
+        return 1
+    else:
+        return 0
+
+def rule12_chlorine_atom(mol):
+    chlorine_atom = mol.GetSubstructMatches(Chem.MolFromSmarts('Cl'))
+    if len(chlorine_atom) >= 1:
+        return 1
+    else:
+        return 0

@@ -1,0 +1,76 @@
+def rule1_carboxylic_acid(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O;h1]')))
+
+def rule2_nitrogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule3_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule4_positive_charge(mol):
+    return rdmolops.GetFormalCharge(mol)
+
+
+def rule5_negative_charge(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+
+def rule6_metal_ion(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#3,#11,#19,#37,#55,#87,#4,#12,#20,#38,#56,#88,#5,#13,#31,#49,#81,#113,#6,#14,#32,#50,#82,#114,#7,#15,#33,#51,#83,#115,#8,#16,#34,#52,#84,#116,#9,#17,#35,#53,#85,#117]')))
+
+def rule7_sulfonamide_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+
+def rule8_halogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53,#85]')))
+
+def rule9_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53,#85]')))
+
+def rule10_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule10_nitrogen_in_ring(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7r]')))
+
+def rule11_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule11_sulfonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)')))
+
+def rule12_positive_charge(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+
+def rule12_negative_charge(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0)
+
+def rule13_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')))
+
+def rule14_long_carbon_chain(mol):
+    chains = rdmolops.GetMolFrags(mol, asMols=True)
+    longest_chain = 0
+    for chain in chains:
+        carbon_atoms = [atom for atom in chain.GetAtoms() if atom.GetSymbol() == 'C']
+        longest_chain = max(longest_chain, len(carbon_atoms))
+    return longest_chain
+
+
+def rule15_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule16_sulfonate_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)[O-]')))
+
+def rule17_carboxylic_acid_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O-]')))
+
+def rule17_carboxylic_acid_derivatives(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O-]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N')))
+
+def rule18_nitrogen_in_pyridine_ring(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccncc1')))
+
+def rule19_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))

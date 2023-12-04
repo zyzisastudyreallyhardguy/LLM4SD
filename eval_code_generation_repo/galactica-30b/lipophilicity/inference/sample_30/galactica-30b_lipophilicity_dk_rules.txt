@@ -1,0 +1,87 @@
+def rule1_polar_functional_group(mol):
+    polar_groups = ['C(=O)O', 'N']
+    for group in polar_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+def rule2_nonpolar_functional_group(mol):
+    nonpolar_groups = ['c1ccccc1', 'C1CCCCC1']
+    for group in nonpolar_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+def rule3_halogen_presence(mol):
+    halogens = ['Cl', 'F']
+    for halogen in halogens:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(halogen)):
+            return 1
+    return 0
+
+def rule4_charged_group(mol):
+    charged_groups = ['[O-]S(=O)(=O)[O-]', 'C(=O)[O-]']
+    for group in charged_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+def rule5_nonpolar_vs_polar(mol):
+    nonpolar_groups = ['c1ccccc1', 'C1CCCCC1']
+    polar_groups = ['C(=O)O', 'N']
+    nonpolar_count = sum([mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in nonpolar_groups])
+    polar_count = sum([mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in polar_groups])
+    return nonpolar_count - polar_count
+
+def rule6_charged_hydrogen_bonding(mol):
+    charged_groups = ['[NH3+]', '[O-]S(=O)(=O)[O-]']
+    for group in charged_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+def rule7_charged_dependent_on_polarity(mol):
+    charged_groups = ['S(=O)(=O)N', '[N+](~[*,*])(~[*,*])~*']
+    for group in charged_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            return 1
+    return 0
+
+
+def rule8_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule9_polar_nonpolar_balance(mol):
+    polar = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#9,#15,#16,#17,#35,#53]')))
+    nonpolar = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6,#14]')))
+    return polar - nonpolar
+
+def rule10_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9]')))
+
+def rule1_polar_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#9,#15,#16,#17,#35,#53]')))
+
+def rule2_nonpolar_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6,#14]')))
+
+def rule3_charged_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[+,-]')))
+
+def rule4_hydrophobic_regions(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6,#14]')))
+
+def rule6_carbon_chain_length(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule7_halogenation(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+
+def rule9_carbon_hydrogen_polar(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#1]'))) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule10_electronegative_elements(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17]')))
+
+def rule11_conjugated_system(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c')))

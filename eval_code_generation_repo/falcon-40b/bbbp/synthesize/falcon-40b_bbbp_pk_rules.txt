@@ -1,0 +1,53 @@
+def rule1_aromatic_rings(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return sum(aromatic_atoms)
+
+def rule2_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_toxic_functional_groups(mol):
+    toxic_functional_groups = ['[O,o][C,c]', '[O,o]=[C,c]', '[C,c]=[O,o]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in toxic_functional_groups)
+
+def rule4_reactive_groups(mol):
+    reactive_groups = ['[N,n][O,o][2]', '[C,c]#[N,n]', '[O,o][C,c][O,o]']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in reactive_groups)
+
+def rule6_stereogenic_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule7_charged_groups(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule8_conjugated_systems(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule9_heteroatoms(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule10_halogens(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53])
+
+def rule11_functional_groups(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule12_reactive_func_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['C', 'O'] and atom.GetDegree() == 2)
+
+def rule13_reactive_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'C', 'O'] and atom.GetDegree() == 3)
+
+def rule15_stereogenic_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule16_charged_groups(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule17_conjugated_systems(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule18_heteroatoms(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule19_halogens(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53])

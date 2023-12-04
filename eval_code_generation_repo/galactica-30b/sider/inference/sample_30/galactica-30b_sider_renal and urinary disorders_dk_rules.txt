@@ -1,0 +1,67 @@
+
+
+def rule2_presence_of_nitrogen_atom(mol):
+    nitrogen_patterns = ['[nD2]', '[nD4]']
+    functional_groups = ['NC(=O)', 'NC(N)=O', 'c1ccccc1', 'N(=O)=O', 'N', 'NS(=O)(=O)', 'N(=O)=O']
+    return sum([mol.HasSubstructMatch(Chem.MolFromSmarts(pattern)) for pattern in nitrogen_patterns]) + sum([mol.HasSubstructMatch(Chem.MolFromSmarts(fg)) for fg in functional_groups])
+
+def rule3_molecule_contains_halogens(mol):
+    halogens = ['[Cl]', '[Na+]', '[I-]', '[F]', '[Cl]', '[Br]', '[I]']
+    functional_groups = ['C(C(CO)O)O', 'CC(=O)NC1=C(C(=C(C(=C1', '-SO2R', 'N(=O)=O', 'n1ccccc1', '-[O-]', 'S', 'c1ccccc1F', 'X']
+    halogens_matches = [mol.HasSubstructMatch(Chem.MolFromSmarts(halogen)) for halogen in halogens if Chem.MolFromSmarts(halogen) is not None]
+    functional_groups_matches = [mol.HasSubstructMatch(Chem.MolFromSmarts(fg)) for fg in functional_groups if Chem.MolFromSmarts(fg) is not None]
+    return sum(halogens_matches) + sum(functional_groups_matches)
+
+
+def rule4_molecule_adverse_effects(mol):
+    functional_groups = ['c1ccccc1', 'C=CC=CC=C', 'C(=O)O', 'c1ccccc1C=O', 'C=CC=O', 'S(=O)(=O)N', 'c1ccccc1X', 'C#N', 'CCC(=O)O']
+    return sum([mol.HasSubstructMatch(Chem.MolFromSmarts(fg)) if Chem.MolFromSmarts(fg) is not None else 0 for fg in functional_groups])
+
+
+def rule5_molecule_complex_structures(mol):
+    functional_groups = ['CCCCC', 'C=CC=CC=C', 'C(=O)O', 'C=CC(=O)O', 'C#CC(=O)O']
+    return sum([mol.HasSubstructMatch(Chem.MolFromSmarts(fg)) for fg in functional_groups if Chem.MolFromSmarts(fg) is not None]) + mol.GetNumHeavyAtoms() + Descriptors.MolLogP(mol)
+
+
+def rule6_molecule_contains_chlorine_atom(mol):
+    return mol.HasSubstructMatch(Chem.MolFromSmarts('C=Cl')) or mol.HasSubstructMatch(Chem.MolFromSmarts('C#Cl'))
+
+def rule7_molecule_contains_nitrogen_atom(mol):
+    nitrogen_atom = Chem.MolFromSmiles('N')
+    if nitrogen_atom is not None:
+        return mol.HasSubstructMatch(nitrogen_atom)
+    else:
+        return 0
+
+
+def rule4_halogen_presence(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in halogens)
+    return count
+
+def rule5_conjugated_systems(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+
+def rule6_sulfonamide_presence(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule7_functional_groups(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    nitro_pattern = Chem.MolFromSmarts('N(=O)=O')
+    sulfonamide_matches = mol.GetSubstructMatches(sulfonamide_pattern)
+    nitro_matches = mol.GetSubstructMatches(nitro_pattern)
+    return len(sulfonamide_matches) + len(nitro_matches)
+
+def rule8_conjugation(mol):
+    double_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[!R]=[!R]'))
+    return len(double_bonds)
+
+
+def rule9_halogen_atoms(mol):
+    halogens = ['Cl', 'Br']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in halogens)

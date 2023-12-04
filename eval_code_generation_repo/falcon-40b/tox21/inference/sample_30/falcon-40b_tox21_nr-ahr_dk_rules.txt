@@ -1,0 +1,72 @@
+
+
+def rule2_chlorine_atom(mol):
+    chlorine_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+    return chlorine_atoms
+
+def rule3_nitrogen_atom(mol):
+    nitrogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    return nitrogen_atoms
+
+def rule4_halogen_atom(mol):
+    halogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+    return halogen_atoms
+
+def rule6_positive_charge(mol):
+    positive_charge = sum([atom.GetFormalCharge() for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0])
+    return positive_charge
+
+def rule7_negative_charge(mol):
+    negative_charge = sum([atom.GetFormalCharge() for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0])
+    return negative_charge
+
+def rule8_aromatic_rings(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+
+def rule9_long_carbon_chain(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#6]-[#6]-[#6]-[#6]-[#6]')))
+
+def rule10_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+
+def rule13_sulfur_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule16_chlorine_positive_charge(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17+]')))
+
+def rule18_sulfur_positive_charge(mol):
+    sulfur_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16+]')))
+    return sulfur_count
+
+def rule19_nitrogen_carbon_bonds(mol):
+    nitrogen_carbon_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7;$([#7]([#6])[#6])][#6]')))
+    return nitrogen_carbon_bonds
+
+def rule20_nitrogen_positive_charge(mol):
+    nitrogen_positive_charge = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7+]')))
+    return nitrogen_positive_charge
+
+def rule22_hb_acceptor_donor(mol):
+    hb_acceptor = rdMolDescriptors.CalcNumHBA(mol)
+    hb_donor = rdMolDescriptors.CalcNumHBD(mol)
+    return hb_acceptor, hb_donor
+
+def rule23_halogen_atoms(mol):
+    halogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+    return halogen_count
+
+def rule24_aromatic_rings(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+def rule25_functional_groups(mol):
+    carboxyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O;h1]')))
+    amine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2,H1;!$(NC=O)]')))
+    hydroxyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H]')))
+    return carboxyl_count, amine_count, hydroxyl_count
+
+def rule26_sulfur_atom(mol):
+    sulfur_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))

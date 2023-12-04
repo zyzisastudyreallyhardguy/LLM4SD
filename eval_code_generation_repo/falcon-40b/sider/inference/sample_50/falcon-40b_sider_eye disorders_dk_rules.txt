@@ -1,0 +1,78 @@
+def rule1(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[n+]')))
+    return nitrogen_count
+
+def rule2(mol):
+    chlorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl-]')))
+    return chlorine_count
+
+def rule3(mol):
+    sulfur_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[S-]')))
+    return sulfur_count
+
+def rule4(mol):
+    carboxylic_acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    return carboxylic_acid_count
+
+def rule5(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[n]')))
+    return nitrogen_count
+
+def rule6_halogen_presence(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    atoms = mol.GetAtoms()
+    count = 0
+    for atom in atoms:
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule7_sulfonamide_presence(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule8_functional_groups(mol):
+    patterns = ['N', 'S(=O)(=O)N', 'C(=O)O']
+    count = 0
+    for pattern in patterns:
+        p = Chem.MolFromSmarts(pattern)
+        matches = mol.GetSubstructMatches(p)
+        count += len(matches)
+    return count
+
+def rule9_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule9_water_solubility(mol):
+    return Crippen.MolLogP(mol)
+
+def rule10_adme_properties(mol):
+    logp = Crippen.MolLogP(mol)
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    return logp, tpsa
+
+def rule11_long_carbon_chain(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#6]-[#6]-[#6]-[#6]')))
+
+def rule12_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+
+def rule13_carboxylic_acid_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule14_positive_charge(mol):
+    return sum([1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0])
+
+def rule16_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule17_polar_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule18_platinum_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Pt]')))
+
+def rule19_halogen_atoms(mol):
+    halogens = ['Cl', 'Br']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles('[{}]'.format(x)))) for x in halogens)

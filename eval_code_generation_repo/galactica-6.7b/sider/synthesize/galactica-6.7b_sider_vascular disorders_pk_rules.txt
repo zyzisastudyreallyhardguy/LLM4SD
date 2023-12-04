@@ -1,0 +1,63 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule6_nitrogen_atoms(mol):
+    nitrogen_atom = Chem.MolFromSmiles('N')
+    return len(mol.GetSubstructMatches(nitrogen_atom))
+
+
+def rule7_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule8_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule9_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule10_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule11_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule12_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule13_amino_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule15_ether_groups(mol):
+    ether_pattern = Chem.MolFromSmarts('C-O-C')
+    return len(mol.GetSubstructMatches(ether_pattern))
+
+def rule16_ester_groups(mol):
+    ester_pattern = Chem.MolFromSmarts('C(=O)-O-C')
+    return len(mol.GetSubstructMatches(ester_pattern))
+
+def rule17_thioether_groups(mol):
+    thioether_pattern = Chem.MolFromSmarts('C-S-C')
+    return len(mol.GetSubstructMatches(thioether_pattern))
+
+def rule18_sulfoxide_groups(mol):
+    sulfoxide_pattern = Chem.MolFromSmarts('S(=O)(-C)-C')
+    return len(mol.GetSubstructMatches(sulfoxide_pattern))
+
+def rule19_sulfone_groups(mol):
+    sulfone_pattern = Chem.MolFromSmarts('S(=O)(=O)(-C)-C')
+    return len(mol.GetSubstructMatches(sulfone_pattern))
+
+def rule20_nitro_groups(mol):
+    nitro_pattern = Chem.MolFromSmarts('N(=O)(=O)-C')

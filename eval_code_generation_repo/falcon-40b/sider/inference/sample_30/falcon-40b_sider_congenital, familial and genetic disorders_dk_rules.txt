@@ -1,0 +1,67 @@
+def rule1_nitrogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule2_halogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+
+def rule3_sulfur_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule4_carboxylic_acid_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule5_acid_group_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)O')))
+
+def rule6_carbonyl_group_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')))
+
+def rule7_metal_ion_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#3,#11,#19,#37,#55,#4,#12,#20,#38,#56,#21-#30,#39-#48,#72-#80,#104-#112,#87-#98]')))
+
+def rule8_hb_donors_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule9_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule9_heterocyclic_rings(mol):
+    return rdMolDescriptors.CalcNumHeterocycles(mol)
+
+def rule10_polar_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule10_charged_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule11_carboxylic_acid(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+
+def rule12_nitrogen_atoms(mol):
+    nitrogen_atom = Chem.MolFromSmiles('N')
+    return len(mol.GetSubstructMatches(nitrogen_atom))
+
+
+def rule13_sulfur_atoms(mol):
+    try:
+        sulfur_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+        return sulfur_count
+    except AttributeError:
+        return 0
+
+
+def rule14_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol) + rdMolDescriptors.CalcNumHeterocycles(mol)
+
+def rule15_chlorine_atoms(mol):
+    chlorine = Chem.MolFromSmiles('Cl')
+    return len(mol.GetSubstructMatches(chlorine))
+
+
+def rule16_carbon_atoms(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+

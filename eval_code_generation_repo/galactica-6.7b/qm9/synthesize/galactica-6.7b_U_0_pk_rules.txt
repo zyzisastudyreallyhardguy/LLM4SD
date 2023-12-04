@@ -1,0 +1,27 @@
+def rule1_total_energy(mol=None, electronic_energy=0, vibrational_energy=0):
+    return electronic_energy + vibrational_energy
+
+
+def rule2_electronic_energy(mol):
+    total_electronic_energy = 0
+    for atom in mol.GetAtoms():
+        total_electronic_energy += atom.GetAtomicNum() # assuming atomic number is proportional to electron energy
+    return total_electronic_energy
+
+def rule3_vibrational_energy(mol, vibrational_modes=[]):
+    return sum(vibrational_modes)
+
+
+def rule4_vibrational_modes(mol):
+    return mol.GetNumAtoms() - 3
+
+def rule5_vibrational_energy(mol):
+    total_vibrational_energy = 0
+    for atom in mol.GetAtoms():
+        total_vibrational_energy += atom.GetMass() # assuming mass is proportional to vibrational energy
+    return total_vibrational_energy
+
+
+
+
+

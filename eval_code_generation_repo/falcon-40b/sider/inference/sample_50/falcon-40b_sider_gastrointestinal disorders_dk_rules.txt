@@ -1,0 +1,81 @@
+def rule1_nitrogen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule2_chlorine_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]')))
+
+def rule3_sulfur_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule4_carbonyl_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule5_sulfonamide_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+
+def rule6_long_carbon_chain(mol):
+    return max([chain.GetNumAtoms() for chain in Chem.GetMolFrags(mol, asMols=True, sanitizeFrags=False)])
+
+
+def rule7_chlorine_count(mol):
+    return rule2_chlorine_count(mol)
+
+def rule8_carboxylic_acid(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule9_metal_ion(mol):
+    metal_ion_pattern = Chem.MolFromSmarts('[#3,#11,#19,#37,#55,#87]')
+    return len(mol.GetSubstructMatches(metal_ion_pattern))
+
+def rule10_fluorine_atom(mol):
+    fluorine_pattern = Chem.MolFromSmarts('[#9]')
+    return len(mol.GetSubstructMatches(fluorine_pattern))
+
+def rule11_chlorine_long_carbon_chain(mol):
+    chlorine_pattern = Chem.MolFromSmarts('[#17]')
+    long_carbon_chain_pattern = Chem.MolFromSmarts('C-C-C-C-C-C-C-C-C-C')
+    return len(mol.GetSubstructMatches(chlorine_pattern)) and len(mol.GetSubstructMatches(long_carbon_chain_pattern))
+
+def rule12_nitrogen_positive_charge(mol):
+    nitrogen_positive_charge_pattern = Chem.MolFromSmarts('[n+;H]')
+    return len(mol.GetSubstructMatches(nitrogen_positive_charge_pattern))
+
+def rule13_chlorine_negative_charge(mol):
+    chlorine_negative_charge_pattern = Chem.MolFromSmarts('[Cl-]')
+    return len(mol.GetSubstructMatches(chlorine_negative_charge_pattern))
+
+def rule14_sulfur_negative_charge(mol):
+    sulfur_negative_charge_pattern = Chem.MolFromSmarts('[S-]')
+    return len(mol.GetSubstructMatches(sulfur_negative_charge_pattern))
+
+def rule16_carbon_hydrogen_ratio(mol):
+    carbon_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+    hydrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[H]')))
+    return carbon_count / hydrogen_count if hydrogen_count != 0 else 0
+
+def rule17_halogen_presence(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum([len(mol.GetSubstructMatches(Chem.MolFromSmiles(x))) for x in halogens])
+
+def rule18_nitrogen_carbonyl_presence(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    carbonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+    return nitrogen_count + carbonyl_count
+
+def rule19_nitro_group_presence(mol):
+    nitro_group = Chem.MolFromSmiles('N(=O)=O')
+    if nitro_group is not None:
+        return len(mol.GetSubstructMatches(nitro_group))
+    else:
+        return 0
+
+
+def rule20_zinc_ion_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Zn]')))
+
+def rule21_sodium_ion_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Na]')))
+
+def rule22_chloride_ion_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Cl-]')))

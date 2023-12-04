@@ -1,0 +1,52 @@
+def sider_musculoskeletal_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def sider_musculoskeletal_num_hydrogen(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def sider_musculoskeletal_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def sider_musculoskeletal_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def sider_musculoskeletal_num_nitrogen(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+
+def rule7_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule8_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule9_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule10_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule11_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule12_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule13_carboxylic_acid_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule15_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule16_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE])
+
+def rule17_polar_bonds(mol):
+    polar_bonds = ['N-O', 'N-N', 'N-S', 'O-O', 'O-S', 'O-P', 'S-S', 'P-P']
+    return len([bond for bond in mol.GetBonds() if f'{bond.GetBeginAtom().GetSymbol()}-{bond.GetEndAtom().GetSymbol()}' in polar_bonds])
+
+def rule18_lone_pairs(mol):
+    return sum([atom.GetNumExplicitHs() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [7, 8, 15, 16]])
+
+def rule19_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)

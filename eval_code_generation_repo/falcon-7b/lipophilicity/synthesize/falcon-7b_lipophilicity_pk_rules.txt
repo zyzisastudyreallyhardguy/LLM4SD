@@ -1,0 +1,47 @@
+
+def rule6_polarity_difference(mol):
+    return Descriptors.TPSA(mol)
+
+def rule7_logD(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_log_scale(mol):
+    logD = rule7_logD(mol)
+    return math.log10(logD) if logD > 0 else -math.log10(-logD)
+
+def rule9_logD_range(mol):
+    logD = rule7_logD(mol)
+    return min(max(logD, -1), 1)
+
+def rule10_polarity_nature(mol):
+    return Descriptors.TPSA(mol)
+
+def rule11_polarity_difference(mol):
+    return Descriptors.TPSA(mol)
+
+def rule12_logD(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule13_log_scale(mol):
+    logD = rule12_logD(mol)
+    return math.log10(logD) if logD > 0 else -math.log10(-logD)
+
+def rule14_logD_range(mol):
+    logD = rule12_logD(mol)
+
+def rule15_NPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule16_PSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule17_logD(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule18_logDwater(mol):
+    logD = rule17_logD(mol)
+    return math.log10(logD) if logD != 0 else 0
+
+def rule19_logDwater_range(mol):
+    logDwater = rule18_logDwater(mol)
+    return max(min(logDwater, 1), -1)

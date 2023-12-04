@@ -1,0 +1,43 @@
+
+def rule6_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#9,#17,#35,#53]")))
+
+def rule7_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]")))
+
+def rule8_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule9_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule10_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol))
+
+def rule11_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12_polar_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#7,#8,#9,#15,#16,#17,#35,#53]")))
+
+def rule13_nonpolar_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6,#14]")))
+
+def rule15_hydrophobic_atoms(mol):
+    return Lipinski.NumAliphaticCarbocycles(mol)
+
+def rule16_hydrophilic_atoms(mol):
+    return Lipinski.NumHeteroatoms(mol)
+
+def rule17_hydrogen_atoms(mol):
+    return Descriptors.NumHeteroatoms(mol) - Descriptors.HeavyAtomCount(mol)
+
+
+def rule18_heavy_atoms(mol):
+    return Descriptors.HeavyAtomCount(mol)
+
+def rule19_aliphatic_carbons(mol):
+    return Lipinski.NumAliphaticCarbocycles(mol)
+
+def rule20_aromatic_carbons(mol):
+    return Lipinski.NumAromaticCarbocycles(mol)

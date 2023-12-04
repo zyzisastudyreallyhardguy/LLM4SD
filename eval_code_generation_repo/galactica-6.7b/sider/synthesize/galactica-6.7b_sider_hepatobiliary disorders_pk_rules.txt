@@ -1,0 +1,70 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_reactive_groups(mol):
+    pattern = Chem.MolFromSmarts('[#6][CX3](=O)[#8]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule3_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_polar_groups(mol):
+    pattern = Chem.MolFromSmarts('[#7,#8,#16]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule5_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule5_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule7_num_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule8_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule9_nitrogen_oxygen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'O'])
+
+def rule10_sulfur_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule11_carbon_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule12_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == rdkit.Chem.rdchem.BondType.DOUBLE)
+
+def rule13_hydroxyl_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetTotalNumHs() == 1)
+
+def rule15_carbonyl_groups(mol):
+    carbonyl_smarts = '[#6]=[#8]'
+    carbonyl = Chem.MolFromSmarts(carbonyl_smarts)
+    return len(mol.GetSubstructMatches(carbonyl))
+
+def rule16_nitro_groups(mol):
+    nitro_smarts = '[N+](=O)[O-]'
+    nitro = Chem.MolFromSmarts(nitro_smarts)
+    return len(mol.GetSubstructMatches(nitro))
+
+def rule17_ether_groups(mol):
+    ether_smarts = '[#6]-[#8]-[#6]'
+    ether = Chem.MolFromSmarts(ether_smarts)
+    return len(mol.GetSubstructMatches(ether))
+
+def rule18_sulfonic_acid_groups(mol):
+    sulfonic_acid_smarts = '[#16](=O)(=O)(O)'
+    sulfonic_acid = Chem.MolFromSmarts(sulfonic_acid_smarts)
+    return len(mol.GetSubstructMatches(sulfonic_acid))
+
+def rule19_alcohol_groups(mol):
+    alcohol_smarts = '[#8]-[#1]'
+    alcohol = Chem.MolFromSmarts(alcohol_smarts)
+    return len(mol.GetSubstructMatches(alcohol))
+
+def rule20_amino_groups(mol):
+    amino_smarts = '[N;H2]'
+    amino = Chem.MolFromSmarts(amino_smarts)

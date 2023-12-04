@@ -1,0 +1,101 @@
+def rule1_carboxylic_acid(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule2_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+
+
+
+def rule4_positive_charge(mol):
+    return Chem.rdmolops.GetFormalCharge(mol)
+
+
+def rule5_negative_charge(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+
+def rule6_metal_ions(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#50,#82,#29,#30,#80,#81,#27,#28,#47,#48,#78,#79,#46,#77,#76,#44,#45,#75,#74,#42,#43,#73,#72,#40,#41,#68,#67,#39,#66,#38,#12,#13,#56,#55,#87,#88,#20,#21,#57,#58,#89,#90,#22,#23,#24,#25,#26,#92,#93,#94,#95,#96,#97,#98,#99,#100,#101,#102,#103]')))
+
+def rule7_sulfonamide(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+
+def rule8_halogen_atoms(mol):
+    num_nitrogens = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7)
+    num_oxygens = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8)
+    return rdMolDescriptors.CalcNumHeteroatoms(mol) - num_nitrogens - num_oxygens
+
+
+def rule9_nitrogen_in_ring(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[r5,r6,r7]~[nX3]')))
+
+def rule10_carboxylic_acid(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule11_nitro_sulfonyl(mol):
+    nitro = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O')))
+    sulfonyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)')))
+    return nitro + sulfonyl
+
+def rule12_charge(mol):
+    return Chem.rdmolops.GetFormalCharge(mol)
+
+def rule13_chlorine_fluorine(mol):
+    chlorine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('Cl')))
+    fluorine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('F')))
+    return chlorine + fluorine
+
+def rule14_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+
+def rule15_carbonyl_carboxylic(mol):
+    carbonyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')))
+    carboxylic = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    return carbonyl + carboxylic
+
+def rule16_amine_amide(mol):
+    amine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    amide = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N')))
+    return amine + amide
+
+def rule17_sulfonamide_sulfone(mol):
+    sulfonamide = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    sulfone = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)')))
+    return sulfonamide + sulfone
+
+def rule18_carbon_chain(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('CCCCC')))
+
+def rule20_nitrogen_positive_charge(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0)
+
+def rule20_heterocyclic_ring(mol):
+    return sum(1 for ring in mol.GetRingInfo().AtomRings() if any(atom.GetAtomicNum() == 7 for atom in ring))
+
+def rule21_carbonyl_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetTotalNumHs() == 1)
+
+def rule22_halogens(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53])
+
+def rule22_amines(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetTotalNumHs() > 0)
+
+def rule22_sulfonamides(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16 and atom.GetTotalNumHs() > 0)
+
+def rule22_carboxylic_acids(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetTotalNumHs() == 1)
+
+def rule25_sulfonamide_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16 and atom.GetTotalNumHs() > 0)
+
+def rule26_sulfonate_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16 and atom.GetTotalNumHs() == 0)
+
+def rule27_chlorine_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 17)
+
+def rule28_halogens_nitrogen_sulfur(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53, 7, 16])

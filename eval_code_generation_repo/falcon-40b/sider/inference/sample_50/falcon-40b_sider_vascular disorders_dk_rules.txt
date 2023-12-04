@@ -1,0 +1,93 @@
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_nitrogen(mol):
+    pattern = Chem.MolFromSmarts('[#7]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_chlorine(mol):
+    pattern = Chem.MolFromSmarts('[#17]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule4_sulfur(mol):
+    pattern = Chem.MolFromSmarts('[#16]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule5_halogen(mol):
+    pattern = Chem.MolFromSmarts('[#9,#17,#35,#53]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_nitrogen_heterocyclic_quaternary_ammonium(mol):
+    pattern = Chem.MolFromSmarts('[#7;r6]')
+    if pattern is not None:
+        matches = mol.GetSubstructMatches(pattern)
+    else:
+        matches = []
+    pattern2 = Chem.MolFromSmarts('[N+](=*,#*)')
+    if pattern2 is not None:
+        matches2 = mol.GetSubstructMatches(pattern2)
+    else:
+        matches2 = []
+    return len(matches) + len(matches2)
+
+
+def rule7_sulfur_thiol_disulfide(mol):
+    pattern = Chem.MolFromSmarts('[#16H1]')
+    matches = mol.GetSubstructMatches(pattern)
+    pattern2 = Chem.MolFromSmarts('[#16X2H0]')
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches) + len(matches2)
+
+def rule8_carbonyl(mol):
+    pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule9_platinum(mol):
+    pattern = Chem.MolFromSmarts('[#78]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule10_nitro(mol):
+    pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule11_sulfonamide(mol):
+    pattern = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule12_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule13_positive_charge(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule14_negative_charge(mol):
+    return -rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule15_polar_functional_group(mol):
+    pattern1 = Chem.MolFromSmarts('N')
+    pattern2 = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(pattern1)) + len(mol.GetSubstructMatches(pattern2))
+
+def rule16_sulfonate(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)[O-]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule17_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_sulfur_atom(mol):
+    pattern = Chem.MolFromSmarts('S')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule19_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(pattern))

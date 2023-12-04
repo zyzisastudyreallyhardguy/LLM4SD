@@ -1,0 +1,80 @@
+def rule1(mol):
+    nitrile = Chem.MolFromSmarts('[#6]#[#7]')
+    isocyanate = Chem.MolFromSmarts('[#7]=[#6]=[#8]')
+    halogen = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    benzene = Chem.MolFromSmarts('c1ccccc1')
+    naphthalene = Chem.MolFromSmarts('c1ccc2ccccc2c1')
+    return mol.HasSubstructMatch(nitrile) or mol.HasSubstructMatch(isocyanate) or mol.HasSubstructMatch(halogen) or mol.HasSubstructMatch(benzene) or mol.HasSubstructMatch(naphthalene)
+
+def rule2(mol):
+    sulfonamide = Chem.MolFromSmarts('[#16](=[#8])(=[#8])-[#7]')
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return Lipinski.FractionCSP3(mol) > 0.5 or mol.HasSubstructMatch(sulfonamide) or mol.HasSubstructMatch(nitro)
+
+def rule3(mol):
+    return Descriptors.MolWt(mol) > 500
+
+def rule4(mol):
+    cn = Chem.MolFromSmarts('[#6]#[#7]')
+    no2 = Chem.MolFromSmarts('[N+](=O)[O-]')
+    sulfonamide = Chem.MolFromSmarts('[#16](=[#8])(=[#8])-[#7]')
+    long_chain = Chem.MolFromSmarts('[#6]1-[#6]-[#6]-[#6]-[#6]-[#6]-1')
+    return mol.HasSubstructMatch(cn) or mol.HasSubstructMatch(no2) or mol.HasSubstructMatch(sulfonamide) or mol.HasSubstructMatch(long_chain)
+
+def rule5(mol):
+    iron = Chem.MolFromSmarts('[Fe]')
+    oxygen = Chem.MolFromSmarts('[O]')
+    zinc = Chem.MolFromSmarts('[Zn]')
+    iodine = Chem.MolFromSmarts('[I]')
+    carbonyl = Chem.MolFromSmarts('[#6]=[#8]')
+    carboxyl = Chem.MolFromSmarts('[#6](=[#8])-[#8]')
+    sulfonyl = Chem.MolFromSmarts('[#16](=[#8])(=[#8])')
+    return mol.HasSubstructMatch(iron) or mol.HasSubstructMatch(oxygen) or mol.HasSubstructMatch(zinc) or mol.HasSubstructMatch(iodine) or mol.HasSubstructMatch(carbonyl) or mol.HasSubstructMatch(carboxyl) or mol.HasSubstructMatch(sulfonyl)
+
+def rule6(mol):
+    sulfonamide = Chem.MolFromSmarts('[#16](=[#8])(=[#8])-[#7]')
+    carboxylic_acid = Chem.MolFromSmarts('[#6](=[#8])-[#8]')
+    amide = Chem.MolFromSmarts('[#6](=[#8])-[#7]')
+    benzene = Chem.MolFromSmarts('c1ccccc1')
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return mol.HasSubstructMatch(sulfonamide) or mol.HasSubstructMatch(carboxylic_acid) or mol.HasSubstructMatch(amide) or mol.HasSubstructMatch(benzene) or mol.HasSubstructMatch(nitro)
+
+def rule7(mol):
+    conjugated_system = Chem.MolFromSmarts('c1ccccc1-c2ccccc2')
+    barium = Chem.MolFromSmarts('[Ba]')
+    silver = Chem.MolFromSmarts('[Ag]')
+    return mol.HasSubstructMatch(conjugated_system) or mol.HasSubstructMatch(barium) or mol.HasSubstructMatch(silver)
+
+
+def rule8(mol):
+    negatively_charged = Chem.MolFromSmarts('[-]')
+    sulfonates = Chem.MolFromSmarts('[#16](=[#8])(=[#8])-[#8]')
+    phosphates = Chem.MolFromSmarts('[#15](=[#8])(-[#8])-[#8]')
+    surface_area = rdMolDescriptors.CalcTPSA(mol)
+    return mol.HasSubstructMatch(negatively_charged) or mol.HasSubstructMatch(sulfonates) or mol.HasSubstructMatch(phosphates) or surface_area > 140
+
+def rule9_adverse_effects(mol):
+    sodium_ions = mol.GetSubstructMatches(Chem.MolFromSmiles('[Na+]'))
+    lipophilicity = Descriptors.MolLogP(mol)
+    halogen_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))
+    return len(sodium_ions), lipophilicity, len(halogen_atoms)
+
+
+
+def rule1_harmful_groups(mol):
+    cn_group = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C#N')))
+    no2_group = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[N+](=O)[O-]')))
+    return cn_group, no2_group
+
+def rule2_long_chains(mol):
+    long_carbon_chains = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CH2][CH2][CH2][CH2][CH2]')))
+    multiple_rings = mol.GetRingInfo().NumRings() > 1
+    return long_carbon_chains, multiple_rings
+
+def rule3_sulfonamide(mol):
+    sulfonamide_group = len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)N')))
+    return sulfonamide_group
+
+def rule4_sulfonyl_carbonyl(mol):
+    sulfonyl_group = len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)')))
+    carbonyl_group = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))

@@ -1,0 +1,164 @@
+def rule1(mol):
+    sulfonamide = Chem.MolFromSmarts('S(=O)(=O)N')
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    chlorine_adjacent_carbonyl = Chem.MolFromSmarts('ClC=O')
+    if mol.HasSubstructMatch(sulfonamide) or mol.HasSubstructMatch(nitro) or mol.HasSubstructMatch(chlorine_adjacent_carbonyl):
+        return 1
+    else:
+        return 0
+
+def rule2(mol):
+    cyano_carbonyl = Chem.MolFromSmarts('C#N.C=O')
+    nitro_conjugated = Chem.MolFromSmarts('[N+](=O)[O-].C=C')
+    sulfonyl_benzene = Chem.MolFromSmarts('S(=O)(=O)C1=CC=CC=C1')
+    if mol.HasSubstructMatch(cyano_carbonyl) or mol.HasSubstructMatch(nitro_conjugated) or mol.HasSubstructMatch(sulfonyl_benzene):
+        return 1
+    else:
+        return 0
+
+def rule3(mol):
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    phosphorus = Chem.MolFromSmarts('P(C)(C)C')
+    carboxylate_benzene = Chem.MolFromSmarts('C(=O)[O-].C1=CC=CC=C1')
+    sulfonate_benzene = Chem.MolFromSmarts('S(=O)(=O)[O-].C1=CC=CC=C1')
+    if mol.HasSubstructMatch(nitro) or mol.HasSubstructMatch(phosphorus) or mol.HasSubstructMatch(carboxylate_benzene) or mol.HasSubstructMatch(sulfonate_benzene):
+        return 1
+    else:
+        return 0
+
+def rule4(mol):
+    sulfonyl = Chem.MolFromSmarts('S(=O)(=O)')
+    cyano = Chem.MolFromSmarts('C#N')
+    chlorine = Chem.MolFromSmarts('Cl')
+    if mol.HasSubstructMatch(sulfonyl) or mol.HasSubstructMatch(cyano) or mol.HasSubstructMatch(chlorine):
+        return 1
+    else:
+        return 0
+
+def rule5(mol):
+    sulfur_nitrogen = Chem.MolFromSmarts('S.N')
+    chlorine = Chem.MolFromSmarts('Cl')
+    conjugated_double_bonds = Chem.MolFromSmarts('C=C')
+    if mol.HasSubstructMatch(sulfur_nitrogen) or mol.HasSubstructMatch(chlorine) or mol.HasSubstructMatch(conjugated_double_bonds):
+        return 1
+    else:
+        return 0
+
+def rule6(mol):
+    try:
+        chlorine_aromatic = Chem.MolFromSmarts('c1ccccc1Cl')
+        sulfonamide = Chem.MolFromSmarts('NS(=O)(=O)')
+        sulfonylurea = Chem.MolFromSmarts('NC(=O)NS(=O)(=O)')
+        amide = Chem.MolFromSmarts('NC=O')
+        if mol.HasSubstructMatch(chlorine_aromatic) or mol.HasSubstructMatch(sulfonamide) or mol.HasSubstructMatch(sulfonylurea) or mol.HasSubstructMatch(amide):
+            return 1
+        else:
+            return 0
+    except:
+        return 0
+
+
+def rule7(mol):
+    bromine = Chem.MolFromSmarts('Br')
+    nitro_benzene = Chem.MolFromSmarts('[N+](=O)[O-].c1ccccc1')
+    if mol.HasSubstructMatch(bromine) or mol.HasSubstructMatch(nitro_benzene):
+        return 1
+    else:
+        return 0
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule55302_hb_donors1232143(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+
+def rule8_psychiatric_disorder(mol):
+    substructures = ['CN(C)C/C=C/C(=O)NC1=C(C=C2C(=C1)C(=NC=N2)NC3=CC(=C(C=C3)F)Cl)O[C@@H]4CCOC4', 
+                     'C[C@@]1(C2C[C@H]3[C@@H](C(=O)C(=C([C@]3(C(=O)C2=C(C4=C1C=CC=C4O)O)O)C(=O)NCNCCCC[C@@H](C(=O)O)N)N(C)C)O', 
+                     'C[C@@]1(C2C[C@H]3[C@@H](C(=O)C(=C([C@]3(C(=O)C2=C(C4=C1C=CC=C4O)O)O)C(=O)NCNCCCC[C@@H](C(=O)O)N)N(C)C)O']
+    for sub in substructures:
+        sub_mol = Chem.MolFromSmiles(sub)
+        if sub_mol is not None and mol.HasSubstructMatch(sub_mol):
+            return 1
+    return 0
+
+
+def rule9_psychiatric_disorder(mol):
+    substructures = ['C#N', 'S(=O)(=O)N', '[N+](=O)[O-]', 'c1ccccc1', 'C-F']
+    for sub in substructures:
+        sub_mol = Chem.MolFromSmarts(sub)
+        if mol.HasSubstructMatch(sub_mol):
+            return 1
+    return 0
+
+
+
+
+def rule1_benzene_psychiatric_disorder(mol):
+    substructure = 'c1ccccc1'
+    sub_mol = Chem.MolFromSmarts(substructure)
+    return int(mol.HasSubstructMatch(sub_mol))
+
+
+def rule2_nitro_psychiatric_disorder(mol):
+    substructure = '[N+](=O)[O-]'
+    mol = Chem.MolFromSmiles(str(mol))
+    if mol is not None:
+        sub_mol = Chem.MolFromSmarts(substructure)
+        if mol.HasSubstructMatch(sub_mol):
+            return 1
+    return 0
+
+
+def rule3_sulfonyl_group(mol):
+    sulfonyl_pattern = Chem.MolFromSmarts('S(=O)(=O)C')
+    return len(mol.GetSubstructMatches(sulfonyl_pattern))
+
+def rule4_cyano_carbonyl(mol):
+    cyano_carbonyl_pattern = Chem.MolFromSmarts('C#NCCC=O')
+    return len(mol.GetSubstructMatches(cyano_carbonyl_pattern))
+
+def rule5_halogen_benzene(mol):
+    from rdkit import Chem
+    halogen_benzene_pattern = Chem.MolFromSmarts('c1ccccc1[F,Cl,Br,I]')
+    if halogen_benzene_pattern is not None:
+        return len(mol.GetSubstructMatches(halogen_benzene_pattern))
+    else:
+        return 0
+
+
+def rule6_sulfonamide_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule7_chlorine_aromatic(mol):
+    chlorine_aromatic_pattern = Chem.MolFromSmarts('c1ccccc1Cl')
+    return len(mol.GetSubstructMatches(chlorine_aromatic_pattern))
+
+def rule8_sulfonamide_sulfonylurea(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('[#16](=[#8])(=[#8])-[#7]')
+    sulfonylurea_pattern = Chem.MolFromSmarts('[#6](=[#8])-[#7]-[#6](=[#8])-[#16](=[#8])(=[#8])-[#7]')
+
+    if sulfonamide_pattern is not None and sulfonylurea_pattern is not None:
+        sulfonamide_matches = mol.GetSubstructMatches(sulfonamide_pattern)
+        sulfonylurea_matches = mol.GetSubstructMatches(sulfonylurea_pattern)
+
+        return len(sulfonamide_matches) + len(sulfonylurea_matches)
+    else:
+        return 0
+
+
+def rule9_amide_carbonyl(mol):
+    amide_carbonyl_pattern = Chem.MolFromSmarts('C(=O)NCC=O')

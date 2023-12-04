@@ -1,0 +1,71 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_reactive_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule3_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_hb_donors(mol):
+    return Lipinski.NumHDonors(mol)
+
+def rule5_hb_acceptors(mol):
+    return Lipinski.NumHAcceptors(mol)
+
+def rule6_halogen_atoms(mol):
+    num_halogen_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I', 'At']:
+            num_halogen_atoms += 1
+    return num_halogen_atoms
+
+
+def rule7_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule8_charged_groups(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule10_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule11_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12_fused_rings(mol):
+    return len(rdkit.Chem.rdmolops.GetSymmSSSR(mol))
+
+
+
+def rule14_aliphatic_chains(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C-C-C')))
+
+def rule16_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule18_unsaturated_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[!$(*#*)&!D1]')))
+
+def rule20_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule22_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]')))
+
+def rule25_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule26_carbonyl_groups(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule28_amino_groups(mol):
+    amino_pattern = Chem.MolFromSmarts('[#7]')
+    return len(mol.GetSubstructMatches(amino_pattern))
+
+def rule30_nitro_groups(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')

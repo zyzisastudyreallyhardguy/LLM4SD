@@ -1,0 +1,92 @@
+def rule1_ZPVE_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule2_ZPVE_bond_length(mol):
+    if mol.GetNumConformers() == 0:
+        return 0
+    conf = mol.GetConformer()
+    bond_lengths = [conf.GetBondLength(bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()) for bond in mol.GetBonds()]
+    return 1 / np.square(bond_lengths).sum()
+
+
+def rule3_ZPVE_bond_force_constant(mol):
+    bond_force_constants = [calculate_bond_force_constant(bond) for bond in mol.GetBonds()]
+    return np.square(bond_force_constants).sum()
+
+def calculate_bond_force_constant(bond):
+    # Add your code here to calculate the bond force constant
+    # This is just a placeholder
+    bond_force_constant = 1.0
+    return bond_force_constant
+
+
+
+
+def rule5_ZPVE_reduced_mass(mol):
+    mol_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    return np.square(mol_weight).sum()
+
+
+
+
+
+
+
+
+def rule9_ZPVE_ionization_potential(ionization_potential):
+    if isinstance(ionization_potential, (int, float)):
+        return ionization_potential ** 2
+    else:
+        return 0
+
+
+
+
+
+
+
+
+def rule13_ZPVE_heat_of_formation(mol):
+    if hasattr(mol, 'ZPVE') and hasattr(mol, 'heat_of_formation'):
+        return mol.ZPVE * mol.heat_of_formation
+    else:
+        return 0
+
+
+
+
+def rule15_ionization_potential(mol):
+    # This is a placeholder function. RDKit does not have a direct method to calculate ionization potential.
+    # You might need to use quantum chemistry software or lookup tables to get this property.
+    return None
+
+def rule16_electron_affinity(mol):
+    # This is a placeholder function. RDKit does not have a direct method to calculate electron affinity.
+    # You might need to use quantum chemistry software or lookup tables to get this property.
+    return None
+
+def rule17_bond_length(mol):
+    # This function calculates the average bond length in the molecule.
+    # Note that this is a simplification and might not be accurate for all molecules.
+    if mol.GetNumConformers() > 0:
+        conf = mol.GetConformer()
+        bond_lengths = [conf.GetDistance(bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()) for bond in mol.GetBonds()]
+        return np.mean(bond_lengths)
+    else:
+        return 0  # or any other default value
+
+
+def rule18_bond_force_constant(mol):
+    # This is a placeholder function. Calculating the bond force constant requires quantum mechanical calculations
+    # or experimental data, which is beyond the scope of RDKit.
+    return None
+
+def rule19_vibrational_frequency(mol):
+    # This is a placeholder function. Calculating the vibrational frequency requires quantum mechanical calculations
+    # or experimental data, which is beyond the scope of RDKit.
+    return None
+
+def rule20_reduced_mass(mol):
+    # This is a placeholder function. Calculating the reduced mass requires knowledge of the masses of the atoms
+    # involved in a bond, which is beyond the scope of RDKit.
+    return None

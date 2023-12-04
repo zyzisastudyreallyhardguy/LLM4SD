@@ -1,0 +1,79 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_PSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule4_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule5_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_reactive_func_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_pka(mol):
+    return 0
+
+def rule9_logd(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_solubility(mol):
+    return 0
+
+def rule11_melting_boiling_point(mol):
+    return 0
+
+def rule12_enthalpy_of_formation(mol):
+    return 0
+
+def rule13_electrophilicity_index(mol):
+    return 0
+
+def rule14_lumo_energy(mol):
+    return 0
+
+def rule16_chemical_reactivity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule17_skin_permeability(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule18_volume_distribution(mol):
+    return Descriptors.MolWt(mol)
+
+def rule19_plasma_protein_binding(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule20_clearance_rate(mol):
+    return Descriptors.MolWt(mol)
+
+def rule21_half_life(mol):
+    return Descriptors.MolWt(mol)
+
+def rule22_bioavailability(mol):
+    return Descriptors.MolLogP(mol)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,104 @@
+def rule1_contains_halogen(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule2_contains_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return mol.HasSubstructMatch(nitro_pattern)
+
+def rule3_contains_carbonyl_group(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('C=O')
+    return mol.HasSubstructMatch(carbonyl_pattern)
+
+def rule4_contains_benzene_ring(mol):
+    benzene_pattern = Chem.MolFromSmarts('c1ccccc1')
+    return mol.HasSubstructMatch(benzene_pattern)
+
+
+
+def rule6_contains_nitrite_or_nitrate(mol):
+    nitrite_pattern = Chem.MolFromSmarts('N=O')
+    nitrate_pattern = Chem.MolFromSmarts('N(=O)(=O)O')
+    return mol.HasSubstructMatch(nitrite_pattern) or mol.HasSubstructMatch(nitrate_pattern)
+
+def rule7_contains_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+
+def rule3_benzene_ring(mol):
+    benzene_smiles = 'c1ccccc1'
+    benzene = Chem.MolFromSmiles(benzene_smiles)
+    return len(mol.GetSubstructMatches(benzene))
+
+def rule4_nitro_group(mol):
+    nitro_smiles = '[N+](=O)[O-]'
+    nitro = Chem.MolFromSmiles(nitro_smiles)
+    return len(mol.GetSubstructMatches(nitro))
+
+def rule5_chlorine_atom(mol):
+    chlorine_smiles = 'Cl'
+    chlorine = Chem.MolFromSmiles(chlorine_smiles)
+    return len(mol.GetSubstructMatches(chlorine))
+
+def rule6_carbonyl_group(mol):
+    carbonyl_smiles = 'C=O'
+    carbonyl = Chem.MolFromSmiles(carbonyl_smiles)
+    return len(mol.GetSubstructMatches(carbonyl))
+
+def rule7_halogen_atom(mol):
+    halogens = ['Cl', 'Br', 'I']
+    halogen_count = 0
+    for halogen in halogens:
+        halogen_mol = Chem.MolFromSmiles(halogen)
+        halogen_count += len(mol.GetSubstructMatches(halogen_mol))
+    return halogen_count
+
+def rule8_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    halogen_count = 0
+    for halogen in halogens:
+        halogen_mol = Chem.MolFromSmiles(halogen)
+        halogen_count += len(mol.GetSubstructMatches(halogen_mol))
+
+def rule9_halogen_atoms(mol):
+    halogens = ['Cl', 'Br', 'I']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in halogens)
+    return count
+
+def rule10_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in halogens)
+    return count
+
+def rule11_halogen_atoms(mol):
+    halogens = ['Cl', 'F', 'Br']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in halogens)
+    return count
+
+def rule12_carbonyl_group(mol):
+    smarts = '[#6]=[#8]'
+    patt = Chem.MolFromSmarts(smarts)
+    count = len(mol.GetSubstructMatches(patt))
+    return count
+
+def rule13_nitrogen_lone_pair(mol):
+    smarts = '[#7;v3]'
+    patt = Chem.MolFromSmarts(smarts)
+    count = len(mol.GetSubstructMatches(patt))
+    return count
+
+def rule14_bromine_atom(mol):
+    smarts = '[#35]'
+    patt = Chem.MolFromSmarts(smarts)
+    count = len(mol.GetSubstructMatches(patt))
+    return count
+
+def rule15_halogen_atoms(mol):
+    halogens = ['Cl', 'Br', 'I']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in halogens)

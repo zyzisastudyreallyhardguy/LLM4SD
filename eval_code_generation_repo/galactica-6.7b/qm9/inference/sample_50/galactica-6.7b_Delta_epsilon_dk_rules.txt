@@ -1,0 +1,66 @@
+
+
+def rule2_electronegativity(mol):
+    from rdkit.Chem import Descriptors
+    return Descriptors.MolWt(mol) / Descriptors.NumValenceElectrons(mol)
+
+def rule3_bond_angles_lengths(mol):
+    from rdkit.Chem import rdMolTransforms as rdmt
+    from rdkit.Chem import AllChem
+    bond_angles = []
+    bond_lengths = []
+    AllChem.EmbedMolecule(mol)  # Add a conformer to the molecule
+    conf = mol.GetConformer()
+    for bond in mol.GetBonds():
+        beginAtomIdx = bond.GetBeginAtomIdx()
+        endAtomIdx = bond.GetEndAtomIdx()
+        bond_lengths.append(rdmt.GetBondLength(conf, beginAtomIdx, endAtomIdx))
+        for atom in mol.GetAtoms():
+            atomIdx = atom.GetIdx()
+            if atomIdx != beginAtomIdx and atomIdx != endAtomIdx:
+                bond_angles.append(rdmt.GetAngleRad(conf, atomIdx, beginAtomIdx, endAtomIdx))
+    return min(bond_angles) / max(bond_lengths) if bond_angles and bond_lengths else 0
+
+
+
+
+def rule5_HOMO_LUMO_gap(mol):
+    from rdkit.Chem import Descriptors
+    from rdkit.Chem.rdMolDescriptors import CalcNumRings
+    homo = Descriptors.MolWt(mol)
+    lumo = Descriptors.MolLogP(mol)
+    num_rings = CalcNumRings(mol)
+    return homo - lumo - num_rings
+
+def rule6_HOMO_LUMO_gap(mol):
+    from rdkit.Chem import Descriptors
+    from rdkit.Chem.rdMolDescriptors import CalcNumAliphaticCarbocycles
+    homo = Descriptors.MolWt(mol)
+    lumo = Descriptors.MolLogP(mol)
+    num_carbonyl = CalcNumAliphaticCarbocycles(mol)
+    return homo - lumo - num_carbonyl
+
+def rule7_HOMO_LUMO_gap(mol):
+    from rdkit.Chem import Descriptors
+    from rdkit.Chem.rdMolDescriptors import CalcNumAromaticRings
+    homo = Descriptors.MolWt(mol)
+    lumo = Descriptors.MolLogP(mol)
+    num_aromatic_rings = CalcNumAromaticRings(mol)
+    return homo - lumo - num_aromatic_rings
+
+def calculate_homolumo_gap(mol):
+    # Calculate the molecular orbital energies
+    orbital_energies = rdMolDescriptors.CalcNumHBD(mol)
+
+def calculate_electronegativity(mol):
+    # Calculate the average electronegativity of the molecule
+    avg_electronegativity = rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_functional_groups(mol):
+    # Calculate the number of functional groups in the molecule
+    num_functional_groups = rdMolDescriptors.CalcNumHBD(mol)
+
+def calculate_bond_angles_lengths(mol):
+    # Calculate the average bond angle and length in the molecule
+    avg_bond_angle = rdMolDescriptors.CalcNumHBD(mol)
+    avg_bond_length = rdMolDescriptors.CalcNumHBA(mol)

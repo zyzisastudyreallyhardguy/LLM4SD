@@ -1,0 +1,50 @@
+
+def rule6_TPSA_value(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_aliphatic_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule9_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule10_chiral_centers(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule11_stereocenters(mol):
+    chiral_centers = 0
+    for atom in mol.GetAtoms():
+        if atom.HasProp('_ChiralityPossible'):
+            chiral_centers += 1
+    return chiral_centers
+
+
+def rule12_double_bonds(mol):
+    double_bonds = [bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE]
+    return len(double_bonds)
+
+
+def rule13_triple_bonds(mol):
+    triple_bonds = [bond.GetBondType() for bond in mol.GetBonds()].count(Chem.rdchem.BondType.TRIPLE)
+    return triple_bonds
+
+
+def rule15_calc_num_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule16_calc_num_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule17_calc_num_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule18_calc_num_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule19_calc_num_hydrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[H]')))
+

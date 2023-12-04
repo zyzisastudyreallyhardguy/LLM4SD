@@ -1,0 +1,46 @@
+def rule1_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule2_halogen_atom(mol):
+    halogen_atom = Chem.MolFromSmarts('[Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_atom))
+
+def rule3_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('[#6]=[#8]')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule4_carboxylic_acid_group(mol):
+    carboxylic_acid_group = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_group))
+
+def rule5_benzene_ring(mol):
+    benzene_ring = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(benzene_ring))
+
+def rule6_fluorine_atom(mol):
+    fluorine_atom = Chem.MolFromSmarts('[F]')
+    return len(mol.GetSubstructMatches(fluorine_atom))
+
+def rule7_hydroxyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H]')))
+
+def rule8_sulfur_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule9_indicator_elements(mol):
+    metal_ions = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#3,#11,#19,#37,#55,#4,#12,#20,#38,#56,#88,#21-#30,#39-#48,#72-#80,#104-#112,#5,#13,#31,#49,#81,#113,#6,#14,#32,#50,#82,#114,#7,#15,#33,#51,#83,#115,#8,#16,#34,#52,#84,#116]')))
+    nitrogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+    arsenic_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#33]')))
+    gadolinium_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#64]')))
+    carbon_carbon_double_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]')))
+    carbon_nitrogen_double_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#7]')))
+    return metal_ions + nitrogen_atoms + arsenic_atoms + gadolinium_atoms + carbon_carbon_double_bonds + carbon_nitrogen_double_bonds
+
+def rule10_halogenated_aromatic_ring(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1X')
+    if pattern is not None:
+        return len(mol.GetSubstructMatches(pattern))
+    else:
+        return 0
+

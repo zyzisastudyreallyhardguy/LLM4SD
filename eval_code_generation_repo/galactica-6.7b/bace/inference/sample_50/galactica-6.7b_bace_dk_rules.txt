@@ -1,0 +1,111 @@
+def rule1_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_hydrophobic_group(mol):
+    pattern1 = Chem.MolFromSmarts('[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1') # phenyl ring
+    pattern2 = Chem.MolFromSmarts('[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]') # long chain hydrocarbon
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches1) + len(matches2)
+
+def rule3_polar_group(mol):
+    pattern1 = Chem.MolFromSmarts('[#7]') # amino group
+    pattern2 = Chem.MolFromSmarts('[#8]-[#1]') # hydroxyl group
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return -(len(matches1) + len(matches2))
+
+def rule4_polar_near_carbonyl(mol):
+    pattern1 = Chem.MolFromSmarts('[#6]=[#8]-[#7]') # amino group near carbonyl
+    pattern2 = Chem.MolFromSmarts('[#6]=[#8]-[#8]-[#1]') # hydroxyl group near carbonyl
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches1) + len(matches2)
+
+
+def rule5_hydrophobic_tail(mol):
+    pattern = Chem.MolFromSmarts('[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]') # long chain hydrocarbon
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_amide_amine_group(mol):
+    pattern1 = Chem.MolFromSmarts('[#6](=[#8])-[#7]') # amide group
+    pattern2 = Chem.MolFromSmarts('[#7]') # amine group
+    matches1 = mol.GetSubstructMatches(pattern1)
+    matches2 = mol.GetSubstructMatches(pattern2)
+    return len(matches1) + len(matches2)
+
+def rule7_carbon_chain(mol):
+    pattern = Chem.MolFromSmarts('[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]-[#6]') # long chain hydrocarbon
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule8_polar_func_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C](=[O])[OH]')))
+
+def rule9_nitrogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N]')))
+
+def rule11_halogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule13_nitrogen_carbon_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C](=[O])')))
+
+def rule1_nitrogen_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C](=[O])')))
+
+def rule3_polar_func_groups(mol):
+    num_amine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    num_hydroxyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts('O')))
+    num_alcohol = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C-O')))
+    return num_amine + num_hydroxyl + num_alcohol
+
+def rule4_mol_properties(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_halogen_atoms(mol):
+    num_fluorine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('F')))
+    num_halogen = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+    return num_fluorine + num_halogen
+
+def rule6_mol_properties(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_mol_properties(mol):
+    return Crippen.MolLogP(mol)
+
+
+def rule8_func_groups(mol):
+    num_amides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N')))
+    num_amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    return num_amides + num_amines
+
+def rule9_func_groups(mol):
+    num_carbonyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')))
+    return num_carbonyl
+
+def rule10_polar_groups(mol):
+    num_amino = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N[H2]')))
+
+def rule1_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule2_carbon_chain(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule3_polar_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8-#1]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7](-[#1])-[#1]')))
+
+def rule4_hydrophobic_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule5_amino_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7](-[#1])-[#1]')))
+
+def rule6_polar_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8-#1]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7](-[#1])-[#1]')))
+
+def rule7_polar_group_near_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8].[#8-#1]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8].[#7](-[#1])-[#1]')))

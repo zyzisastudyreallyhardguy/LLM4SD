@@ -1,0 +1,107 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_aliphatic_rings(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule8_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+
+def rule9_carbonyl_groups(mol):
+    pattern = Chem.MolFromSmarts('[C=O]')
+    if pattern is not None:
+        return len(mol.GetSubstructMatches(pattern))
+    else:
+        return 0
+
+
+def rule10_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule11_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule12_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]')))
+
+def rule13_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9]')))
+
+def rule14_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#35]')))
+
+def rule16_conjugated_double_bonds(mol):
+    pattern = Chem.MolFromSmarts('C=,:[!#1]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+
+def rule17_non_conjugated_double_bonds(mol):
+    non_conjugated_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            if not bond.IsInRing():
+                non_conjugated_double_bonds += 1
+    return non_conjugated_double_bonds
+
+
+def rule18_triple_bonds(mol):
+    triple_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdchem.BondType.TRIPLE:
+            triple_bonds += 1
+    return triple_bonds
+
+
+def rule19_homo_energy(mol):
+    return 0
+
+def rule20_lumo_energy(mol):
+    return 0
+
+def rule21_ionization_potential(mol):
+    return 0
+
+def rule22_electron_affinity(mol):
+    return 0
+
+
+
+def rule25_electrophilicity_index(mol):
+    # Calculate the total positive charge by summing up the formal charges of all atoms
+    total_positive_charge = sum(atom.GetFormalCharge() for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+    num_atoms = mol.GetNumAtoms()
+    return total_positive_charge / num_atoms if num_atoms != 0 else 0
+
+
+def rule26_nucleophilicity_index(mol):
+    # Calculate the total negative charge as the sum of the formal charges of all atoms
+    total_negative_charge = sum([atom.GetFormalCharge() for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0])
+    num_atoms = mol.GetNumAtoms()
+    return total_negative_charge / num_atoms if num_atoms != 0 else 0
+
+
+def rule27_total_energy(mol):
+    # Assuming the total energy is calculated as the exact molecular weight
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+def rule30_polarizability(mol):
+    # Assuming the polarizability is calculated as the total polar surface area
+    return rdMolDescriptors.CalcTPSA(mol)

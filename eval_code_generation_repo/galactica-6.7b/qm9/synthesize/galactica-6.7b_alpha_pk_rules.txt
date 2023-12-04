@@ -1,0 +1,33 @@
+
+
+
+
+def rule8_polarizability_linear(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+def rule9_polarizability_bent(mol):
+    return Descriptors.TPSA(mol)
+
+
+def rule10_polarizability_symmetric(mol):
+    return Descriptors.TPSA(mol)
+
+
+def rule11_polarizability_asymmetric(mol):
+    return Descriptors.MolLogP(mol)
+
+
+def rule12_polarizability_cyclic(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+def rule13_polarizability_conjugated(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+def rule14_polarizability_aromatic(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+

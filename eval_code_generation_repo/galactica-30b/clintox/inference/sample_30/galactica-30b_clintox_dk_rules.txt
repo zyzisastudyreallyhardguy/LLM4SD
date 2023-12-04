@@ -1,0 +1,125 @@
+def rule1_fluorine_compounds(mol):
+    fluorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9]')))
+    return fluorine_count
+
+def rule2_heavy_metal_compounds(mol):
+    mercury_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#80]')))
+    platinum_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#78]')))
+    return mercury_count + platinum_count
+
+def rule3_hb_balance(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return abs(hb_donors - hb_acceptors)
+
+def rule4_cc_double_bond(mol):
+    cc_double_bond_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]')))
+    nitro_group_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    return cc_double_bond_count - nitro_group_count
+
+def rule5_tetrasubstituted_nitrogen(mol):
+    from rdkit import Chem
+    try:
+        query = Chem.MolFromSmarts('[N;H0;$(N(-[*])(-[*])(-[*])-[*])$(N~[*]~[*]~[*]~[*])')
+        if query is not None:
+            tetrasubstituted_nitrogen_count = len(mol.GetSubstructMatches(query))
+            return tetrasubstituted_nitrogen_count
+        else:
+            return 0
+    except:
+        return 0
+
+
+def rule6_halogen_atoms(mol):
+    halogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+    fluorine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9]')))
+    return halogen_count - fluorine_count
+
+def rule7_functional_groups(mol):
+    amide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3][CX3](=[OX1])[#6]')))
+    ester_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6][CX3](=O)[OX2H0][#6]')))
+
+def rule8_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule9_carbon_chain(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule10_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule11_amides_esters(mol):
+    amides = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C(=O)N')))
+    esters = len(mol.GetSubstructMatches(Chem.MolFromSmiles('C(=O)O')))
+    return amides + esters
+
+def rule12_hb_donors_acceptors(mol):
+    donors = rdMolDescriptors.CalcNumHBD(mol)
+    acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return donors + acceptors
+
+def rule13_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule14_sulfonates_phosphates(mol):
+    sulfonates = len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)O')))
+    phosphates = len(mol.GetSubstructMatches(Chem.MolFromSmiles('P(=O)(O)O')))
+    return sulfonates + phosphates
+
+def rule15_nitrogen_substituents(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule16_halogens(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[F,Cl,Br,I]")))
+
+def rule17_simple_structure(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule18_boron(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[B]")))
+
+def rule19_amines_amides(mol):
+    amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[N;H1,H2]")))
+    amides = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[C](=[O])[N]")))
+    return amines + amides
+
+def rule20_no_halogens(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[!F,!Cl,!Br,!I]")))
+
+def rule21_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule22_positively_charged_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[N+;H0,H1,H2,H3]")))
+
+def rule23_no_sulfonyl_amide_amine(mol):
+    sulfonyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[S](=[O])(=[O])([!H])")))
+    amide = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[C](=[O])[N]")))
+    amine = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[N;H1,H2]")))
+
+def rule24_polar_func_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+
+
+def rule26_pos_nitrogen(mol):
+    return rdMolDescriptors.CalcNumNitrogens(mol)
+
+def rule26_pos_nitrogen(mol):
+    return rdmolops.GetFormalCharge(mol)
+
+
+def rule27_halogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule28_charged_func_groups(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol) + rdMolDescriptors.CalcNumAmideBonds(mol)
+
+
+def rule29_moderate_size_hydrophilicity(mol):
+    size = rdMolDescriptors.CalcExactMolWt(mol)
+    hydrophilicity = rdMolDescriptors.CalcTPSA(mol)
+    return size, hydrophilicity
+
+def rule30_fluorine_compounds(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)

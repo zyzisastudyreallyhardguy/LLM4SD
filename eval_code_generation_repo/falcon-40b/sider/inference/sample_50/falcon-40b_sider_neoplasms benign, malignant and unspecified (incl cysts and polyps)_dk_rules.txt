@@ -1,0 +1,112 @@
+def rule1_halogen_atoms(mol):
+    halogen_atoms = ['Cl', 'Br']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogen_atoms)
+
+def rule2_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule3_sulfur_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule4_fe_o_atoms(mol):
+    fe_o_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'Fe':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'O':
+                    fe_o_atoms += 1
+    return fe_o_atoms
+
+def rule5_ccncc_group(mol):
+    smarts = '[#6]-[#6]-[#7](-[#6])-[#6]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule6_cl_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def rule7_oxygen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')
+
+def rule8_carbon_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule9_positive_charge(mol):
+    positive_charge = 0
+    for atom in mol.GetAtoms():
+        if atom.GetFormalCharge() > 0 and (atom.GetSymbol() == 'N' or atom.GetSymbol() == 'O'):
+            positive_charge += 1
+    return positive_charge
+
+def rule10_carbonyl_group(mol):
+    carbonyl_group = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'O' and neighbor.GetTotalDegree() == 1:
+                    carbonyl_group += 1
+    return carbonyl_group
+
+def rule11_carboxylic_acid(mol):
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    return len(carboxylic_acid)
+
+def rule12_carbon_atoms(mol):
+    carbon_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C')))
+    return carbon_atoms
+
+def rule13_long_carbon_chain(mol):
+    carbon_chains = [len(x) for x in mol.GetRingInfo().AtomRings() if all(mol.GetAtomWithIdx(y).GetSymbol() == 'C' for y in x)]
+    if not carbon_chains:
+        return 0
+    long_carbon_chain = max(carbon_chains)
+    return long_carbon_chain
+
+
+def rule14_nitrogen_carbon_bond(mol):
+    nitrogen_carbon_bond = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and len([x for x in atom.GetNeighbors() if x.GetSymbol() == 'C']) >= 2:
+            nitrogen_carbon_bond += 1
+    return nitrogen_carbon_bond
+
+def rule15_sulfur_carbon_bond(mol):
+    sulfur_carbon_bond = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'S' and len([x for x in atom.GetNeighbors() if x.GetSymbol() == 'C']) >= 2:
+            sulfur_carbon_bond += 1
+    return sulfur_carbon_bond
+
+def rule16_carbonyl_sulfonate(mol):
+    carbonyl_group = rule10_carbonyl_group(mol)
+    sulfonate_group = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)[O-]')))
+    return carbonyl_group + sulfonate_group
+
+def rule950021_hb_acceptor35749(mol):
+    # Your implementation here
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 or atom.GetAtomicNum() == 16])
+
+def rule55302_hb_donors1232143(mol):
+    # Your implementation here
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 or atom.GetAtomicNum() == 15])
+
+def rule17_hb_acceptor_donor(mol):
+    hb_acceptor = rule950021_hb_acceptor35749(mol)
+    hb_donor = rule55302_hb_donors1232143(mol)
+    return hb_acceptor + hb_donor
+
+
+def rule18_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule19_polar_atoms(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule24_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule25_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule26_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']

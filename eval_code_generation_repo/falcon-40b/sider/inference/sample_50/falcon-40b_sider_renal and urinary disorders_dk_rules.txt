@@ -1,0 +1,119 @@
+def rule1_contains_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule2_contains_carbonyl(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 2.0 and set([bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]) == set(['C', 'O']))
+
+def rule3_contains_sulfonamide(mol):
+    patt = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule4_contains_carboxylic_acid(mol):
+    patt = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule5_contains_halogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+
+def rule6_carboxylic_acid_renal_disorders(mol):
+    return rule4_contains_carboxylic_acid(mol)
+
+def rule7_high_carbon_count(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule8_contains_sulfur(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule9_sulfonamide_nitrogen_ring_renal_disorders(mol):
+    sulfonamide_count = rule3_contains_sulfonamide(mol)
+    nitrogen_ring_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if any(mol.GetAtomWithIdx(idx).GetSymbol() == 'N' for idx in ring))
+    return sulfonamide_count + nitrogen_ring_count
+
+def rule10_carboxylic_acid_amide_bond_renal_disorders(mol):
+    carboxylic_acid_count = rule4_contains_carboxylic_acid(mol)
+    amide_bond_count = sum(1 for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 1.5 and set([bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]) == set(['C', 'N']))
+    return -(carboxylic_acid_count + amide_bond_count)
+
+
+
+def rule12_carboxylic_sulfonamide(mol):
+    carboxylic = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    return len(carboxylic), len(sulfonamide)
+
+def rule13_chlorine(mol):
+    chlorine = mol.GetSubstructMatches(Chem.MolFromSmarts('Cl'))
+    return len(chlorine)
+
+def rule14_benzene(mol):
+    benzene = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(benzene)
+
+def rule15_metal(mol):
+    metals = mol.GetSubstructMatches(Chem.MolFromSmarts('[#21,#22,#23,#24,#25,#26,#27,#28,#29,#30,#31,#32,#33,#34,#35,#80,#81,#82,#83,#84]'))
+    return len(metals)
+
+def rule55302_hb_donors1232143(mol):
+    # Placeholder implementation
+    return 0
+
+def rule950021_hb_acceptor35749(mol):
+    # Placeholder implementation
+    return 0
+
+def rule11_aromatic_aliphatic(mol):
+    # Placeholder implementation
+    return 0, 0
+
+def rule12_carboxylic_sulfonamide(mol):
+    # Placeholder implementation
+    return 0, 0
+
+def rule13_chlorine(mol):
+    # Placeholder implementation
+    return 0
+
+def rule14_benzene(mol):
+    # Placeholder implementation
+    return 0
+
+def rule15_metal(mol):
+    # Placeholder implementation
+    return 0
+
+def rule1_features(mol):
+    features = {}
+    features['hb_donors'] = rule55302_hb_donors1232143(mol)
+    features['hb_acceptors'] = rule950021_hb_acceptor35749(mol)
+    features['aromatic_atoms'], features['aliphatic_atoms'] = rule11_aromatic_aliphatic(mol)
+    features['carboxylic_groups'], features['sulfonamide_groups'] = rule12_carboxylic_sulfonamide(mol)
+    features['chlorine_atoms'] = rule13_chlorine(mol)
+    features['benzene_rings'] = rule14_benzene(mol)
+    features['metal_ions'] = rule15_metal(mol)
+    return features
+
+
+def rule5_adverse_effects(mol):
+    num_chlorine = len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+    num_sulfur = len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+    num_Gd = len(mol.GetSubstructMatches(Chem.MolFromSmiles('[Gd+3]')))
+    return num_chlorine + num_sulfur + num_Gd
+
+def rule6_adverse_effects(mol):
+    num_nitrogen = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    return num_nitrogen
+
+def rule7_renal_disorders(mol):
+    num_carboxylic_acid = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    num_sulfonamide = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    num_nitrogen = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    return num_carboxylic_acid + num_sulfonamide + num_nitrogen
+
+def rule8_adverse_effects(mol):
+    num_nitrogen = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    num_amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    num_aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    num_heterocycles = rdMolDescriptors.CalcNumHeterocycles(mol)
+    num_polar_groups = rdMolDescriptors.CalcNumHBA(mol)
+    num_charged_atoms = rdMolDescriptors.CalcNumHBD(mol)
+    return num_nitrogen + num_amines + num_aromatic_rings + num_heterocycles + num_polar_groups + num_charged_atoms

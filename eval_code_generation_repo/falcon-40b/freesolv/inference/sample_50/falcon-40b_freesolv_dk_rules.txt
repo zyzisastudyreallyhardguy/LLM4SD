@@ -1,0 +1,153 @@
+def rule1_polar_groups(mol):
+    polar_groups = ['[OH]', '[COOH]', '[NH2]']
+    count = 0
+    for group in polar_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+
+def rule2_nonpolar_groups(mol):
+    from rdkit import Chem
+    nonpolar_groups = ['[CH3]', '[CH2]', '[CH]', '[C]']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(group))) for group in nonpolar_groups)
+
+
+def rule3_mol_size(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule4_halogen_atoms(mol):
+    halogens = ['[Cl]', '[Br]', '[I]']
+    return sum(mol.GetSubstructMatches(Chem.MolFromSmarts(halogen)) for halogen in halogens)
+
+def rule5_hydrogen_atoms(mol):
+    return mol.GetNumAtoms() - mol.GetNumHeavyAtoms()
+
+def rule6_symmetry(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_hydrophilic_groups(mol):
+    hydrophilic_groups = ['[OH]', '[NH2]', '[SH]', '[COOH]']
+    count = 0
+    for group in hydrophilic_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule8_hydrophobic_groups(mol):
+    hydrophobic_groups = ['[CH3]', '[CH2]', '[CH]', '[C]']
+    count = 0
+    for group in hydrophobic_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule9_polarizable_atoms(mol):
+    polarizable_atoms = ['[N]', '[O]', '[S]', '[P]', '[F]', '[Cl]', '[Br]', '[I]']
+    count = 0
+    for atom in polarizable_atoms:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(atom)))
+
+def rule10_hydration_energy(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule11_molecular_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule12_polar_bonds(mol):
+    polar_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and bond.GetBeginAtom().GetSymbol() == 'C' and bond.GetEndAtom().GetSymbol() == 'O':
+            polar_bonds += 1
+        elif bond.GetBondType() == Chem.rdchem.BondType.SINGLE and ((bond.GetBeginAtom().GetSymbol() == 'N' and bond.GetEndAtom().GetSymbol() == 'H') or (bond.GetBeginAtom().GetSymbol() == 'O' and bond.GetEndAtom().GetSymbol() == 'H')):
+            polar_bonds += 1
+    return polar_bonds
+
+def rule13_compact_shape(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule14_steric_hindrance(mol):
+    steric_hindrance = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() in ['C', 'H']:
+                    steric_hindrance += 1
+
+def rule15_hydration_energy(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule16_polar_molecules(mol):
+    return Descriptors.TPSA(mol)
+
+def rule17_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule18_polarizable_hydrophobic(mol):
+    polarizability = Descriptors.NumValenceElectrons(mol)
+    hydrophobicity = Descriptors.MolLogP(mol)
+    return polarizability + hydrophobicity
+
+def rule1_polar_functional_groups(mol):
+    hydroxyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]'))
+    amine = mol.GetSubstructMatches(Chem.MolFromSmarts('[NH2]'))
+    carboxyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[OH]'))
+    amide = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[NH2]'))
+
+def rule2_nonpolar_groups(mol):
+    nonpolar_groups = ['alkyl', 'alkene', 'alkyne', 'hydrophobic']
+    nonpolar_count = 0
+    for group in nonpolar_groups:
+        nonpolar_count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return nonpolar_count
+
+def rule3_molecule_size(mol):
+    return mol.GetNumAtoms()
+
+def rule3_molecule_complexity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule4_halogen_atoms(mol):
+    halogens = ['Cl', 'F']
+    halogen_count = 0
+    for halogen in halogens:
+        halogen_count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(halogen)))
+    return halogen_count
+
+def rule5_functional_groups(mol):
+    nitrogen_groups = ['[N]', '[NH]', '[NH2]', '[NH0]', '[N;H0;$(C)]', '[N;H0;$(C=O)]']
+    nitrogen_count = 0
+    for group in nitrogen_groups:
+        pattern = Chem.MolFromSmarts(group)
+        if pattern is not None:
+            nitrogen_count += len(mol.GetSubstructMatches(pattern))
+    return nitrogen_count
+
+
+def rule5_carbon_groups(mol):
+    carbon_groups = ['[C]', '[CH]', '[CH2]', '[CH3]', '[C]=[C]', '[C]#[C]']
+    carbon_count = 0
+    for group in carbon_groups:
+        pattern = Chem.MolFromSmarts(group)
+        if pattern is not None:
+            carbon_count += len(mol.GetSubstructMatches(pattern))
+    return carbon_count
+
+
+def rule6_hydration_energy(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule7_hydrophobic_interactions(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule7_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule8_branched_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule9_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)

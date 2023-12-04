@@ -1,0 +1,146 @@
+def rule1_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule2_type_atoms(mol):
+    atom_types = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return len(set(atom_types))
+
+def rule3_bond_types(mol):
+    bond_types = [bond.GetBondTypeAsDouble() for bond in mol.GetBonds()]
+    return bond_types.count(2.0) + bond_types.count(3.0)
+
+def rule4_func_groups(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRings(mol)
+
+def rule5_symmetry(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_lone_pairs(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule8_bond_info(mol):
+    return mol.GetNumBonds()
+
+def rule9_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule16_pressure(mol):
+    return Descriptors.MolWt(mol)
+
+def rule17_intermolecular_forces(mol):
+    return Descriptors.TPSA(mol)
+
+def rule18_chemical_reactivity(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule19_ionization_energy(mol):
+    return Descriptors.MaxAbsPartialCharge(mol)
+
+def rule20_electron_affinity(mol):
+    return Descriptors.MinAbsPartialCharge(mol)
+
+def rule21_electronegativity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule22_hardness(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule23_softness(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def rule24_electrophilicity(mol):
+    return Descriptors.NumHAcceptors(mol)
+
+def rule26_acidity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule27_basicity(mol):
+    return Descriptors.MolMR(mol)
+
+def rule28_redox_potential(smiles):
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+        return rdMolDescriptors.CalcNumHeteroatoms(mol)
+    except:
+        return 0
+
+
+def rule29_solubility(mol):
+    return Descriptors.MolLogP(mol) - Descriptors.MolMR(mol)
+
+def rule30_hydrophobicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule31_hydrophilicity(mol):
+    return -Descriptors.MolLogP(mol)
+
+def rule32_amphiphilicity(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule33_self_assembly(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol) + rdMolDescriptors.CalcNumRings(mol)
+
+
+
+def rule36_internal_energy_intermolecular(mol):
+    if isinstance(mol, list):  # check if the argument is a list
+        if len(mol) > 0:  # check if the list is not empty
+            return mol[0]  # return the first element
+        else:
+            return 0  # return 0 if the list is empty
+    else:
+        return 0  # return 0 if the argument is not a list
+
+
+
+
+
+
+def rule39_internal_energy_intermolecular(input):
+    if isinstance(input, list):  # Check if the input is a list
+        if len(input) > 0:  # Check if the list is not empty
+            return input[0]  # Return the first element of the list
+        else:
+            return 0  # Return 0 if the list is empty
+    else:
+        return 0  # Return 0 if the input is not a list
+
+
+
+
+
+
+def rule42_internal_energy_intermolecular(input):
+    if isinstance(input, list) and len(input) > 0:  # Check if the input is a list and is not empty
+        return input[0]  # Return the first element of the list
+    else:
+        return 0  # Return 0 if the input is not a list or the list is empty
+
+
+def rule43_internal_energy_intramolecular(input_list):
+    if not isinstance(input_list, list):
+        return -1
+    try:
+        result = input_list[3]  # This will fail if input_list has less than 4 items
+    except IndexError:
+        return -1
+    return result
+
+
+def rule44_intermolecular_forces(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule45_intermolecular_interactions(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule46_intramolecular_interactions(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule47_intermolecular_forces(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule48_intermolecular_interactions(mol):
+    return rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule49_intramolecular_interactions(mol):
+    return rdMolDescriptors.CalcNumSaturatedRings(mol)

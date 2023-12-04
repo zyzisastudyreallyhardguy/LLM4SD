@@ -1,0 +1,142 @@
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_nitrogen_atom(mol):
+    pattern = Chem.MolFromSmarts('N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('C=O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule1_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_nitrogen_atom(mol):
+    pattern = Chem.MolFromSmarts('N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('C=O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule1_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule2_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_nitrogen_atom(mol):
+    pattern = Chem.MolFromSmarts('N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_double_bond(mol):
+    pattern = Chem.MolFromSmarts('*=*')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_nitrogen_atom(mol):
+    pattern = Chem.MolFromSmarts('N')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_nitrogen_atom(mol):
+    pattern = Chem.MolFromSmarts('N')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule1_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches) 
+
+def rule2_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('C=O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_nitrogen_atom(mol):
+    pattern = Chem.MolFromSmarts('N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('C=O')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule2_nitrogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule1_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')))
+
+def rule1_carboxylic_acid(mol):
+    carboxylic_acid_smarts = '[CX3](=O)[OX2H1]'
+    carboxylic_acid_pattern = Chem.MolFromSmarts(carboxylic_acid_smarts)
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule2_nitrogen_atom(mol):
+    nitrogen_smarts = '[#7]'
+    nitrogen_pattern = Chem.MolFromSmarts(nitrogen_smarts)
+    return len(mol.GetSubstructMatches(nitrogen_pattern))
+
+def rule3_carbonyl_group(mol):
+    carbonyl_smarts = '[#6]=[#8]'
+    carbonyl_pattern = Chem.MolFromSmarts(carbonyl_smarts)
+
+def rule1_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_nitrogen_atom(mol):
+    pattern = Chem.MolFromSmarts('N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_carbonyl_group(mol):
+    pattern = Chem.MolFromSmarts('C=O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)

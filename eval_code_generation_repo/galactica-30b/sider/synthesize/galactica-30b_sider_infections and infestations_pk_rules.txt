@@ -1,0 +1,133 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_logP(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule4_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_XLogP3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_RuleOf5_violations(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule10_RuleOf3_violations(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)
+
+
+def rule16_veber_violations(mol):
+    num_rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    num_hba = rdMolDescriptors.CalcNumHBA(mol)
+    num_hbd = rdMolDescriptors.CalcNumHBD(mol)
+
+    # Veber's rule states that a drug-like molecule should have no more than 10 rotatable bonds and no more than 10 hydrogen bond acceptors and donors
+    veber_violations = 0
+    if num_rotatable_bonds > 10:
+        veber_violations += 1
+    if num_hba > 10:
+        veber_violations += 1
+    if num_hbd > 10:
+        veber_violations += 1
+
+    return veber_violations
+
+
+def rule17_egan_violations(mol):
+    # Implement your own function to calculate the number of Egan violations
+    num_egan_violations = 0
+    # ...
+    return num_egan_violations
+
+
+
+
+
+
+
+
+def rule21_brenk_violations(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+
+
+
+
+
+def rule24_veber_violations(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+
+def rule25_egan_violations(mol):
+    num_hba = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    num_hbd = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    return num_hba + num_hbd
+
+
+
+
+def rule27_oprea_violations(mol):
+    hba = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    hbd = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    mw = rdMolDescriptors.CalcExactMolWt(mol)
+    rb = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    ha = rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+    violations = 0
+    if hba > 10:
+        violations += 1
+    if hbd > 5:
+        violations += 1
+    if mw > 500:
+        violations += 1
+    if rb > 10:
+        violations += 1
+    if ha > 10:
+        violations += 1
+
+    return violations
+
+
+def rule28_fafdrugs3_violations(mol):
+    hbd = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    hba = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    return hbd + hba
+
+
+def rule29_brenk_violations(mol):
+    hba = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    hbd = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    mw = rdMolDescriptors.CalcExactMolWt(mol)
+    rot_bonds = Lipinski.NumRotatableBonds(mol)
+
+    violations = 0
+    if hba > 10:
+        violations += 1
+    if hbd > 5:
+        violations += 1
+    if mw > 500:
+        violations += 1
+    if rot_bonds > 10:
+        violations += 1
+
+    return violations
+
+
+def rule30_leadlikeness2_violations(mol):
+    hba = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    hbd = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    return hba + hbd
+

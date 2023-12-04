@@ -1,0 +1,198 @@
+def rule1_polar_molecules(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule2_hydrophobic_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule3_electronegative_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule4_branched_molecules(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_hydrophobicity(mol):
+    logp, _ = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule7_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_alkyl_chains(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule10_halogen_atoms(mol):
+    halogens = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogens)
+
+def rule11_halogen_substituents(mol):
+    halogens = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogens)
+
+def rule12_molecule_size(mol):
+    return mol.GetNumAtoms()
+
+def rule12_molecule_shape(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule13_ester_ether_groups(mol):
+    ester_ether_groups = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [8, 16]]
+    return len(ester_ether_groups)
+
+def rule14_electronegative_atoms(mol):
+    electronegative_atoms = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [7, 8, 9]]
+
+def rule15_alkyl_chain_length(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule16_functional_groups(mol):
+    amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2,H1;!$(NC=O)]')))
+    alcohols = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H]')))
+    carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX1H0-,OX2H1]')))
+    return amines + alcohols + carboxylic_acids
+
+def rule17_aromatic_compounds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c')))
+
+def rule18_molecule_size(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule20_halogenated_compounds(mol):
+    halogens = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogens)
+
+def rule21_electronegative_atoms(mol):
+    electronegative_atoms = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [8, 17]]
+    return len(electronegative_atoms)
+
+def rule22_hydrophobic_molecules(mol):
+    hydrophobic_atoms = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [6, 1]]
+    return len(hydrophobic_atoms)
+
+def rule23_functional_groups(mol):
+    functional_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')) + mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')) + mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)OC'))
+
+def rule24_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule25_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule26_hydrophilic(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule27_hydrophobicity(mol):
+    return -Descriptors.MolLogP(mol)
+
+def rule29_large_molecule_hydrophobic_effect(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+def rule1_polar_molecule_hydration_energy(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+
+def rule4_alkyl_carbon_chains(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule5_functional_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[#8])(-*)')))
+
+def rule6_halogenated_compounds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+
+def rule7_methyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](-[#1])(-[#1])(-[#1])')))
+
+def rule9_halogen_substitutions(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[F,Cl,Br,I]")))
+
+def rule10_halogenated_hydrocarbons(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[CX4][F,Cl,Br,I]")))
+
+def rule11_hydrophobicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule12_alkenes(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[C]=[C]")))
+
+def rule14_hydrophobic_groups(mol):
+    hydrophobic_groups = ['C', 'CC', 'CCC', 'CCCC', 'CCCCC', 'CCCCCC', 'CCCCCCC', 'CCCCCCCC', 'CCCCCCCCC', 'CCCCCCCCCC']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(group))) for group in hydrophobic_groups)
+
+
+def rule15_halogen_atoms(mol):
+    halogen_atoms = ['Cl', 'F']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(atom))) for atom in halogen_atoms)
+
+
+def rule16_polycyclic_structures(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule1_polar_molecules(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule2_electronegative_elements(mol):
+    electronegative_elements = ['O', 'N', 'F']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(element))) for element in electronegative_elements)
+
+
+def rule4_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule5_functional_groups(mol):
+    functional_groups = ['C=O', 'N', 'O']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in functional_groups)
+
+def rule6_hydrophobic_groups(mol):
+    hydrophobic_groups = ['C', 'CH', 'CH2', 'CH3']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in hydrophobic_groups)
+
+def rule7_polar_bonds(mol):
+    polar_bonds = ['SO2Cl', 'CONH2', 'NH2']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in polar_bonds)
+
+def rule8_hydrophobic_groups(mol):
+    hydrophobic_groups = ['C6H5', 'CH3', 'C2H5']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in hydrophobic_groups)
+
+def rule9_methyl_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'CH3')
+
+def rule10_fluorine_atom(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'F')
+
+def rule11_polar_functional_group(mol):
+    polar_functional_groups = ['OH', 'C=O']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in polar_functional_groups)
+
+def rule13_func_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[#6]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)O[CX4H0-3]')))
+
+def rule14_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+
+def rule15_branching(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[*]([*])([*])([*])')))
+
+def rule16_hydrophobic(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6+0;!$(*=,#[!#6])]')))
+
+def rule17_polar_func_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#16]')))
+
+def rule18_hb_donors_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule19_electronegative_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8,#9]')))
+
+def rule20_mol_size_complexity(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule21_halogenated_hydrocarbons(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6][$([F]),$([Cl]),$([Br]),$([I])]')))
+

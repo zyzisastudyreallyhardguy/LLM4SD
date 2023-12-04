@@ -1,0 +1,65 @@
+def rule1_polar_func_groups(mol):
+    polar_groups = ['C(=O)O', 'N', 'C(=O)', 'O', 'O']
+    count = 0
+    for group in polar_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule2_nonpolar_func_groups(mol):
+    from rdkit import Chem
+    nonpolar_groups = ['C', 'c', 'X', 'C-C', 'C=C', 'C#C', '*']
+    count = 0
+    for group in nonpolar_groups:
+        query = Chem.MolFromSmarts(group)
+        if query is not None:
+            count += len(mol.GetSubstructMatches(query))
+    return count
+
+
+def rule3_mol_properties(mol):
+    size = mol.GetNumHeavyAtoms()
+    complexity = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    branching = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    long_alkyl_chains = len(mol.GetSubstructMatches(Chem.MolFromSmarts('CCCCC')))
+    return size, complexity, branching, long_alkyl_chains
+
+def rule4_func_group_position(mol):
+    polar_groups = ['C(=O)O', 'N', 'C(=O)', 'O', 'O']
+    nonpolar_groups = ['C', 'c', 'X', 'C-C', 'C=C', 'C#C', '*']
+    polar_count = 0
+    nonpolar_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSmarts() in polar_groups:
+            polar_count += 1
+        elif atom.GetSmarts() in nonpolar_groups:
+            nonpolar_count += 1
+    return polar_count, nonpolar_count
+
+def rule5_hydrogen_bonds(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+
+
+
+def rule7_charged_groups(mol):
+    from rdkit.Chem import rdMolDescriptors
+    num_amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    num_carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    num_sulfonic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)O')))
+    return num_amines + num_carboxylic_acids + num_sulfonic_acids
+
+def rule8_heteroatoms(mol):
+    from rdkit.Chem import rdMolDescriptors
+    num_nitrogen = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    num_oxygen = len(mol.GetSubstructMatches(Chem.MolFromSmarts('O')))
+    return num_nitrogen + num_oxygen
+
+def rule9_cyclic_structures(mol):
+    from rdkit.Chem import rdMolDescriptors
+    num_rings = rdMolDescriptors.CalcNumRings(mol)
+    return num_rings
+
+def rule10_hydrophobic_groups(mol):
+    from rdkit.Chem import rdMolDescriptors
+    num_hydrophobic_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C;H0,H1,H2,H3]')))
+    num_polar_groups = rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)

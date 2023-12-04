@@ -1,0 +1,200 @@
+
+
+def rule2_num_bonds(mol):
+    return mol.GetNumBonds()
+
+def rule3_bond_type(mol):
+    bond_types = [bond.GetBondTypeAsDouble() for bond in mol.GetBonds()]
+    return sum(bond_types)
+
+def rule4_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_lone_pairs(mol):
+    return sum([atom.GetTotalNumHs() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 or atom.GetAtomicNum() == 8])
+
+def rule7_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule8_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule16_density(mol):
+    return Descriptors.MolMR(mol)
+
+def rule17_refractive_index(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule18_viscosity(mol):
+    return Descriptors.MolWt(mol)
+
+def rule19_surface_tension(mol):
+    return Descriptors.TPSA(mol)
+
+def rule20_thermal_conductivity(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule21_electrical_conductivity(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule22_magnetic_susceptibility(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule23_ionization_energy(mol):
+    return Descriptors.MaxPartialCharge(mol)
+
+def rule24_electron_affinity(mol):
+    return Descriptors.MinPartialCharge(mol)
+
+def rule25_electronegativity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule26_mol_hardness(mol):
+    try:
+        # Calculate the Mulliken electronegativity
+        mu = Descriptors.MolWt(mol)
+        # Calculate the lowest unoccupied molecular orbital energy (LUMO)
+        lumo = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+        # Calculate the hardness
+        hardness = 0.5 * (mu - lumo)
+        return hardness
+    except:
+        return "Error in calculating molecular hardness"
+
+
+def rule27_mol_softness(mol):
+    try:
+        # Calculate the HOMO and LUMO using the Molecular Descriptor functions
+        homo = Descriptors.MaxAbsPartialCharge(mol)
+        lumo = Descriptors.MinAbsPartialCharge(mol)
+        
+        # Calculate the Ionization Potential and Electron Affinity
+        ionization_potential = -homo
+        electron_affinity = -lumo
+        
+        # Calculate the Chemical Hardness
+        chemical_hardness = 0.5 * (ionization_potential - electron_affinity)
+        
+        # Calculate the Molecular Softness
+        mol_softness = 1 / (2 * chemical_hardness)
+        
+        return mol_softness
+    except ZeroDivisionError:
+        return 0
+    except:
+        return 'Error in calculating molecular softness'
+
+
+def rule28_mol_electrophilicity(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule29_mol_nucleophilicity(mol):
+    return Descriptors.MolWt(mol)
+
+
+def rule30_mol_acidity(mol):
+    return Descriptors.MolWt(mol)
+
+
+def rule31_mol_basicity(mol):
+    try:
+        mol = Chem.MolFromSmiles(mol)
+        if mol is not None:
+            basicity = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+            return basicity
+        else:
+            return 0
+    except:
+        return 0
+
+
+def rule32_mol_redox_potential(mol):
+    # Placeholder for actual redox potential calculation
+    redox_potential = 0
+    for atom in mol.GetAtoms():
+        redox_potential += atom.GetAtomicNum()
+    return redox_potential
+
+
+def rule33_mol_uv_vis_absorption(mol):
+    return Descriptors.MolWt(mol)
+
+
+
+
+
+
+
+
+def rule37_melting_point(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule38_boiling_point(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule39_reactivity(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+
+def rule41_density(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule42_refractive_index(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+
+def rule44_surface_tension(mol):
+    # Assuming the surface tension is calculated using some method and stored in the molecule's properties
+    if mol.HasProp('SurfaceTension'):
+        return mol.GetProp('SurfaceTension')
+    else:
+        return 0
+
+
+def rule45_thermal_conductivity(mol):
+    # Assuming the thermal conductivity is calculated using some method and stored in the molecule's properties
+    props = mol.GetPropsAsDict()
+    if 'ThermalConductivity' in props:
+        return props['ThermalConductivity']
+    else:
+        return 0
+
+
+
+
+def rule47_magnetic_susceptibility(mol):
+    # Assuming the magnetic susceptibility is calculated using some method and stored in the molecule's properties
+    if mol.HasProp('MagneticSusceptibility'):
+        return mol.GetProp('MagneticSusceptibility')
+    else:
+        return 0
+
+
+def rule48_ionization_energy(mol):
+    # Assuming the ionization energy is calculated using some method and stored in the molecule's properties
+    if mol.HasProp('IonizationEnergy'):
+        return mol.GetProp('IonizationEnergy')
+    else:
+        return 0
+
+
+def rule49_electron_affinity(mol):
+    # Assuming the electron affinity is calculated using some method and stored in the molecule's properties
+    if mol.HasProp('ElectronAffinity'):
+        return mol.GetProp('ElectronAffinity')
+    else:
+        return 0
+
+
+

@@ -1,0 +1,46 @@
+
+def rule6_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule7_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule8_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule9_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule10_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+
+def rule11_single_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.SINGLE)
+
+def rule12_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_amino_groups(mol):
+    pattern = Chem.MolFromSmarts('N')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule16_carboxyl_groups(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule17_sulfhydryl_groups(mol):
+    pattern = Chem.MolFromSmarts('S')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule18_nitrogen_groups(mol):
+    pattern = Chem.MolFromSmarts('N')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule19_oxygen_groups(mol):
+    pattern = Chem.MolFromSmarts('O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule20_water_solubility(mol):
+    mw = Descriptors.MolWt(mol)
+    polarity = Descriptors.TPSA(mol)
+    # This is a hypothetical function, the actual implementation would require a model trained on molecular weight and polarity to predict water solubility

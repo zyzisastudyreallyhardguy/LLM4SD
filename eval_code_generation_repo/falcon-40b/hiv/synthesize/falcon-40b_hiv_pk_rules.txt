@@ -1,0 +1,86 @@
+def rule_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule_hb_donors_and_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol), rdMolDescriptors.CalcNumHBA(mol)
+
+def rule_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+
+def rule_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+
+def rule_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule_flexibility(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol) / rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule_hydrophobicity(mol):
+    return Descriptors.MolLogP(mol) - Descriptors.MolMR(mol)
+
+def rule_charge(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule_aromatic_rings(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule_heteroatoms(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule_chiral_centers(mol):
+    return len(rdkit.Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule_sp3_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetHybridization() == rdkit.Chem.rdchem.HybridizationType.SP3 and atom.GetAtomicNum() == 6])
+
+def rule_sp2_carbons(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetHybridization() == rdkit.Chem.rdchem.HybridizationType.SP2 and atom.GetAtomicNum() == 6])
+
+def rule_aromatic_carbons(mol):
+    aromatic_carbons = [atom.GetIdx() for atom in mol.GetAromaticAtoms() if atom.GetAtomicNum() == 6]
+    return len(aromatic_carbons)
+
+def rule_aliphatic_carbons(mol):
+    aliphatic_carbons = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and not atom.GetIsAromatic()]
+    return len(aliphatic_carbons)
+
+def rule_carbonyl_groups(mol):
+    carbonyl_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]'))
+    return len(carbonyl_groups)
+
+def rule_amide_groups(mol):
+    amide_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[#8])[#7]'))
+    return len(amide_groups)
+
+def rule_sulfhydryl_groups(mol):
+    sulfhydryl_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#16][#1]'))
+    return len(sulfhydryl_groups)
+
+def rule_nitrogen_atoms(mol):
+    nitrogen_atoms = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7]
+    return len(nitrogen_atoms)
+
+def rule_oxygen_atoms(mol):
+    oxygen_atoms = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8]
+    return len(oxygen_atoms)
+
+def rule_halogen_atoms(mol):
+    halogen_atoms = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogen_atoms)
+
+def rule_metal_complexes(mol):
+    metal_complexes = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetAtomicNum() in range(21, 31)]
+    return len(metal_complexes)
+
+def rule_hydrogen_atoms(mol):
+    hydrogen_atoms = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 1]

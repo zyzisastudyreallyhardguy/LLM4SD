@@ -1,0 +1,106 @@
+def rule1(mol):
+    sulfonyl = Chem.MolFromSmarts('S(=O)(=O)')
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+    return mol.HasSubstructMatch(sulfonyl) or mol.HasSubstructMatch(nitro)
+
+def rule2(mol):
+    conjugated_system = Chem.MolFromSmarts('C=C-C=C')
+    return mol.HasSubstructMatch(conjugated_system)
+
+def rule3(mol):
+    halogen = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return mol.HasSubstructMatch(halogen)
+
+def rule4(mol):
+    sulfonamide = Chem.MolFromSmarts('S(=O)(=O)N')
+    carbonyl = Chem.MolFromSmarts('C=O')
+    return mol.HasSubstructMatch(sulfonamide) or mol.HasSubstructMatch(carbonyl)
+
+def rule5(mol):
+    functional_group1 = Chem.MolFromSmiles('CC(C)NO')
+    functional_group2 = Chem.MolFromSmiles('CCON')
+    return mol.HasSubstructMatch(functional_group1) or mol.HasSubstructMatch(functional_group2)
+
+def rule6(mol):
+    substructure1 = Chem.MolFromSmiles('C1=CC=C2C(=C1)C=NN=C2NN')
+    substructure2 = Chem.MolFromSmiles('C(CC(C(F)F)(C(=O)O)N)CN')
+    return mol.HasSubstructMatch(substructure1) or mol.HasSubstructMatch(substructure2)
+
+def rule7(mol):
+    cyano = Chem.MolFromSmarts('C#N')
+    return mol.HasSubstructMatch(cyano)
+
+def rule8_benzene_ring(mol):
+    benzene_smarts = '[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1'
+    benzene = Chem.MolFromSmarts(benzene_smarts)
+    return len(mol.GetSubstructMatches(benzene))
+
+def rule9_chlorine_carbonyl(mol):
+    chlorine_carbonyl_smarts = '[#6]-[#17].[#6]=[#8]'
+    chlorine_carbonyl = Chem.MolFromSmarts(chlorine_carbonyl_smarts)
+    return len(mol.GetSubstructMatches(chlorine_carbonyl))
+
+def rule10_guanidine_urea(mol):
+    guanidine_smarts = '[#7]-[#6](=[#7])-[#7]'
+    urea_smarts = '[#7]-[#6](=[#8])-[#7]'
+    guanidine = Chem.MolFromSmarts(guanidine_smarts)
+    urea = Chem.MolFromSmarts(urea_smarts)
+    return len(mol.GetSubstructMatches(guanidine)) + len(mol.GetSubstructMatches(urea))
+
+def rule11_sodium_manganese(mol):
+    sodium_smarts = '[#11+]'
+    manganese_smarts = '[#25+2]'
+    sodium = Chem.MolFromSmarts(sodium_smarts)
+    manganese = Chem.MolFromSmarts(manganese_smarts)
+    return len(mol.GetSubstructMatches(sodium)) + len(mol.GetSubstructMatches(manganese))
+
+def rule12_phosphate(mol):
+    phosphate_smarts = '[#15](=[#8])(-[#8])-[#8]'
+    phosphate = Chem.MolFromSmarts(phosphate_smarts)
+    return len(mol.GetSubstructMatches(phosphate))
+
+def rule13_benzene_naphthalene(mol):
+    benzene_smarts = '[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1'
+    naphthalene_smarts = '[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:2:[#6]:[#6]:[#6]:[#6]:[#6]:12'
+    benzene = Chem.MolFromSmarts(benzene_smarts)
+    naphthalene = Chem.MolFromSmarts(naphthalene_smarts)
+    return len(mol.GetSubstructMatches(benzene)) + len(mol.GetSubstructMatches(naphthalene))
+
+def rule14_aromatic_rings(mol):
+    return rule13_benzene_naphthalene(mol)
+
+def rule15_functional_groups(mol):
+    functional_group1_smarts = '[#6]-[#6](=[#8])'
+    functional_group2_smarts = '[#6]#[#7]'
+    functional_group1 = Chem.MolFromSmarts(functional_group1_smarts)
+    functional_group2 = Chem.MolFromSmarts(functional_group2_smarts)
+
+def rule16_functional_groups(mol, functional_group_smiles='O'):
+    functional_group = Chem.MolFromSmiles(functional_group_smiles)
+    return len(mol.GetSubstructMatches(functional_group))
+
+def rule17_complex_molecules(mol):
+    return mol.GetNumAtoms()
+
+def rule18_reactive_groups(mol):
+    reactive_groups = ['[N+](=O)[O-]', 'SC#N', 'S(=O)(=O)N']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(group))) for group in reactive_groups)
+
+def rule19_metal_ions(mol):
+    return sum(atom.GetAtomicNum() > 20 and atom.GetAtomicNum() < 31 for atom in mol.GetAtoms())
+
+def rule20_sulfonyl_group(mol):
+    sulfonyl_group = Chem.MolFromSmarts('S(=O)(=O)-[!H]')
+    return len(mol.GetSubstructMatches(sulfonyl_group))
+
+def rule21_cyano_benzene(mol):
+    cyano_group = Chem.MolFromSmiles('C#N')
+    benzene_ring = Chem.MolFromSmiles('c1ccccc1')
+    return len(mol.GetSubstructMatches(cyano_group)) and len(mol.GetSubstructMatches(benzene_ring))
+
+def rule1_substructure(mol):
+    substructures = ['CCON', 'CCNS']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmiles(sub))) for sub in substructures)
+
+def rule2_benzene_ring(mol):
+    benzene_rings = ['c1ccccc1', 'c1cc2ccc(cc2c1)']

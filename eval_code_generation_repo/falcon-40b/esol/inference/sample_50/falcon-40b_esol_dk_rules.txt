@@ -1,0 +1,87 @@
+def rule1_polar_groups(mol):
+    polar_groups = ['[OH]', '[COOH]', '[NH2]']
+    count = 0
+    for group in polar_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule2_nonpolar_groups(mol):
+    nonpolar_groups = ['[CH3]', '[CH2]', '[CH]', '[C]', '[c]']
+    count = 0
+    for group in nonpolar_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule3_mol_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule5_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_nitrogen_in_heterocyclic(mol):
+    pattern = Chem.MolFromSmarts('[r5,r6,r7]~[nX3]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule7_halogen_atoms(mol):
+    pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule8_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule9_functional_groups(mol):
+    carboxylic_acid = rule5_carboxylic_acid(mol)
+    amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2,H1;!$(NC=O)]')))
+    alcohols = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H]')))
+
+def rule10_hydrophilic_molecules(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) - rdMolDescriptors.CalcNumHBD(mol)
+
+def rule11_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+
+def rule12_polar_end_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H1]')))
+
+def rule1_polar_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H1]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX1H0-]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2,H1;!$(NC=O)]')))
+
+def rule3_halogens_aromatics(mol):
+    halogens = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#9,#17,#35,#53]")))
+    aromatics = len(mol.GetSubstructMatches(Chem.MolFromSmarts("c")))
+    return halogens + aromatics
+
+def rule4_acid_groups(mol):
+    carboxylic_acid = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C(=O)O")))
+    sulfonic_acid = len(mol.GetSubstructMatches(Chem.MolFromSmarts("S(=O)(=O)O")))
+    return carboxylic_acid + sulfonic_acid
+
+def rule5_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#7]")))
+
+def rule6_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("C=O")))
+
+def rule7_nonpolar_groups(mol):
+    alkyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C")))
+    alkenyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C=C")))
+    alkynyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C#C")))
+    aromatic = len(mol.GetSubstructMatches(Chem.MolFromSmarts("c")))
+    return alkyl + alkenyl + alkynyl + aromatic
+
+def rule8_molecule_size(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule9_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#9,#17,#35,#53]")))
+
+def rule10_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#8]")))
+
+def rule11_charged_groups(mol):
+    ammonium = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[NH3+]")))
+    sulfonate = len(mol.GetSubstructMatches(Chem.MolFromSmarts("S(=O)(=O)[O-]")))

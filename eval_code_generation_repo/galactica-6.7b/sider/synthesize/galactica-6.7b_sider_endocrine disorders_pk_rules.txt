@@ -1,0 +1,67 @@
+def sider_endocrine_disorders_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def sider_endocrine_disorders_halogen_atoms(mol):
+    halogens = ['Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def sider_endocrine_disorders_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def sider_endocrine_disorders_polar_func_groups(mol):
+    polar_func_groups = ['OH', 'CHO', 'COOH']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in polar_func_groups)
+
+def sider_endocrine_disorders_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def sider_endocrine_disorders_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_ns_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[n,s]')))
+
+def rule9_mol_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule10_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule12_reactive_groups(mol):
+    epoxides = mol.GetSubstructMatches(Chem.MolFromSmarts('[O;R1]1CC1'))
+    aziridines = mol.GetSubstructMatches(Chem.MolFromSmarts('[N;R1]1CC1'))
+    return len(epoxides) + len(aziridines)
+
+def rule13_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule15_hb_donors_acceptors(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors, hb_acceptors
+
+def rule16_hb_functional_groups(mol):
+    pattern = Chem.MolFromSmarts('[#7,#8;+0]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule17_aromatic_rings(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+def rule18_pi_interactions(mol):
+    pattern = Chem.MolFromSmarts('[a]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule19_hb_donors_acceptors(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors, hb_acceptors
+
+def rule20_hb_functional_groups(mol):
+    pattern = Chem.MolFromSmarts('[#7,#8;+0]')
+    matches = mol.GetSubstructMatches(pattern)

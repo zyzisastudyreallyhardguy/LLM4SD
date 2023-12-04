@@ -1,0 +1,129 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_hb_donors(mol):
+    return Descriptors.NumHDonors(mol)
+
+def rule3_hb_acceptors(mol):
+    return Descriptors.NumHAcceptors(mol)
+
+def rule4_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_rotatable_bonds(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+def rule6_polar_surface_area(mol):
+    return Descriptors.TPSA(mol)
+
+def rule7_aromatic_rings(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def rule7_total_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule8_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule9_halogen_atoms(mol):
+    halogens = [a.GetAtomicNum() for a in mol.GetAtoms() if a.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogens)
+
+def rule10_nitro_groups(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    return len(nitro)
+
+def rule11_hydroxyl_groups(mol):
+    hydroxyl = mol.GetSubstructMatches(Chem.MolFromSmarts('O[H]'))
+    return len(hydroxyl)
+
+def rule12_aldehyde_ketone_groups(mol):
+    aldehyde = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]'))
+    ketone = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[#6]'))
+    return len(aldehyde) + len(ketone)
+
+def rule13_carboxylic_acid_groups(mol):
+    carboxylic = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    return len(carboxylic)
+
+def rule14_ester_groups(mol):
+    ester = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)OC'))
+    return len(ester)
+
+def rule15_amine_groups(mol):
+    amine = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+
+def rule16_sulfoxide_groups(mol):
+    sulfoxide_smarts = '[S+2]([O-])([!O])'
+    sulfoxide = Chem.MolFromSmarts(sulfoxide_smarts)
+    return len(mol.GetSubstructMatches(sulfoxide))
+
+def rule17_sulfone_groups(mol):
+    sulfone_smarts = '[S+6]([O-])(=O)([!O])'
+    sulfone = Chem.MolFromSmarts(sulfone_smarts)
+    return len(mol.GetSubstructMatches(sulfone))
+
+def rule18_furan_rings(mol):
+    furan_smarts = 'c1ccoc1'
+    furan = Chem.MolFromSmarts(furan_smarts)
+    return len(mol.GetSubstructMatches(furan))
+
+def rule19_thiophene_rings(mol):
+    thiophene_smarts = 'c1ccsc1'
+    thiophene = Chem.MolFromSmarts(thiophene_smarts)
+    return len(mol.GetSubstructMatches(thiophene))
+
+def rule20_imidazole_rings(mol):
+    imidazole_smarts = 'c1nccn1'
+    imidazole = Chem.MolFromSmarts(imidazole_smarts)
+    return len(mol.GetSubstructMatches(imidazole))
+
+def rule21_pyrazole_rings(mol):
+    pyrazole_smarts = 'c1nncn1'
+    pyrazole = Chem.MolFromSmarts(pyrazole_smarts)
+    return len(mol.GetSubstructMatches(pyrazole))
+
+def rule22_indole_rings(mol):
+    indole_smarts = 'c1ccc2c(c1)c(c[nH]2)C'
+    indole = Chem.MolFromSmarts(indole_smarts)
+    return len(mol.GetSubstructMatches(indole))
+
+def rule23_benzimidazole_rings(mol):
+    benzimidazole_smarts = 'c1ccc2c(c1)ncn2'
+    benzimidazole = Chem.MolFromSmarts(benzimidazole_smarts)
+    return len(mol.GetSubstructMatches(benzimidazole))
+
+def rule24_benzoxazole_rings(mol):
+    benzoxazole_smarts = 'c1ccc2c(c1)noc2'
+    benzoxazole = Chem.MolFromSmarts(benzoxazole_smarts)
+    return len(mol.GetSubstructMatches(benzoxazole))
+
+def rule25_benzothiazole_rings(mol):
+    benzothiazole_smarts = 'c1ccc2c(c1)[nH]c(s2)'
+    benzothiazole = Chem.MolFromSmarts(benzothiazole_smarts)
+    return len(mol.GetSubstructMatches(benzothiazole))
+
+def rule26_quinoline_rings(mol):
+    quinoline_smarts = 'c1ccc2c(c1)nc3ccccc3[nH]2'
+    quinoline = Chem.MolFromSmarts(quinoline_smarts)
+    return len(mol.GetSubstructMatches(quinoline))
+
+def rule27_isoquinoline_rings(mol):
+    isoquinoline_smarts = 'c1ccc2c(c1)cc3ccccc3[nH]2'
+    isoquinoline = Chem.MolFromSmarts(isoquinoline_smarts)
+    return len(mol.GetSubstructMatches(isoquinoline))
+
+def rule28_pyridine_rings(mol):
+    pyridine_smarts = 'c1ccncc1'
+    pyridine = Chem.MolFromSmarts(pyridine_smarts)
+    return len(mol.GetSubstructMatches(pyridine))
+
+def rule29_pyrimidine_rings(mol):
+    pyrimidine_smarts = 'c1[nH]cnc1'
+    pyrimidine = Chem.MolFromSmarts(pyrimidine_smarts)
+    return len(mol.GetSubstructMatches(pyrimidine))
+
+def rule30_purine_rings(mol):
+    purine_smarts = 'c1[nH]c2c(n1)ncn2'
+    purine = Chem.MolFromSmarts(purine_smarts)
+    return len(mol.GetSubstructMatches(purine))

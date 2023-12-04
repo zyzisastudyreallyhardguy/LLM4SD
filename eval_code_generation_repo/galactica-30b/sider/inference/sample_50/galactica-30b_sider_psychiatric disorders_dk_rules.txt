@@ -1,0 +1,168 @@
+def rule1_psychiatric_disorders(mol):
+    sulfonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)'))
+    cyano = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    fluorine_carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('FC(C=O)'))
+    return len(sulfonyl) + len(cyano) + len(nitro) + len(fluorine_carbonyl)
+
+def rule2_mental_health_effects(mol):
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl,Br]'))
+    aromatic_rings = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    nitrogen_heterocycles = mol.GetSubstructMatches(Chem.MolFromSmarts('n1cccn1'))
+    return len(carbonyl) + len(halogen) + len(aromatic_rings) + len(nitrogen_heterocycles)
+
+def rule3_psychiatric_side_effects(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    phosphorus = mol.GetSubstructMatches(Chem.MolFromSmarts('P(C)(C)C'))
+    negatively_charged_ion = mol.GetSubstructMatches(Chem.MolFromSmarts('[C-](=O)O')) + mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)[O-]'))
+    return len(nitro) + len(phosphorus) + len(negatively_charged_ion)
+
+def rule4_psychiatric_adverse_effects(mol):
+    cyano_sulfur = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N')) and mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccsc1'))
+    phosphate_carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('OP(O)(O)C(C=O)'))
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    return len(cyano_sulfur) + len(phosphate_carbonyl) + len(carboxylic_acid)
+
+def rule5_psychiatric_adverse_potential(mol):
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    quinolone = mol.GetSubstructMatches(Chem.MolFromSmarts('c1cc2c(cc1)CC(=O)N2'))
+    coumarin = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccc2c(c1)CC(=O)O2'))
+    return len(sulfonamide) + len(nitro) + len(quinolone) + len(coumarin)
+
+def rule6_psychiatric_adverse_effects(mol):
+    aromatic_heterocyclic_rings = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')) + mol.GetSubstructMatches(Chem.MolFromSmarts('n1cccn1'))
+    functional_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[S,N,Cl]')) + mol.GetSubstructMatches(Chem.MolFromSmarts('C=C')) + mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')) + mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    return len(aromatic_heterocyclic_rings) + len(functional_groups)
+
+def rule7_mental_health_effects(mol):
+    molecular_weight = Descriptors.MolWt(mol)
+    lipophilicity = Descriptors.MolLogP(mol)
+    return molecular_weight, lipophilicity
+
+def rule1_psychiatric_side_effects(mol):
+    phosphate = mol.GetSubstructMatches(Chem.MolFromSmarts('OP(O)(O)'))
+    return len(phosphate)
+
+def rule2_psychiatric_side_effects(mol):
+    fluorine = mol.GetSubstructMatches(Chem.MolFromSmarts('FC1CCCC1'))
+
+def rule3_nitro_sulfonamide(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    return len(nitro) + len(sulfonamide)
+
+def rule4_nitro_carbonyl(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(nitro) + len(carbonyl)
+
+def rule5_iron_bonds(mol):
+    iron_double_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[Fe]=[#6]'))
+    iron_triple_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[Fe]#[#6]'))
+    return len(iron_double_bonds) + len(iron_triple_bonds)
+
+
+def rule6_benzene_ring(mol):
+    benzene = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(benzene)
+
+def rule7_cyano_carbonyl(mol):
+    cyano = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(cyano) + len(carbonyl)
+
+def rule8_nitro_conjugated(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    conjugated = mol.GetSubstructMatches(Chem.MolFromSmarts('C=C-C=C'))
+    return len(nitro) + len(conjugated)
+
+def rule9_sulfonyl_benzene(mol):
+    sulfonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)'))
+    benzene = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(sulfonyl) + len(benzene)
+
+def rule10_cyano_sulfonamide(mol):
+    cyano = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    return len(cyano) + len(sulfonamide)
+
+def rule11_nitro_benzene(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    benzene = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(nitro) + len(benzene)
+
+def rule12_fluorine_carbon(mol):
+    fluorine_carbon = mol.GetSubstructMatches(Chem.MolFromSmarts('C-F'))
+
+def rule13_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+
+
+def rule15_lack_carbonyl_or_amino_groups(mol):
+    carbonyl_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    amino_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    return len(carbonyl_groups) + len(amino_groups)
+
+def rule16_amides_or_isocyanates(mol):
+    amides = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N'))
+    isocyanates = mol.GetSubstructMatches(Chem.MolFromSmarts('N=C=O'))
+    return len(amides) + len(isocyanates)
+
+def rule17_benzene_ring_with_fluorine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1F')))
+
+def rule18_chlorine_and_aromatic_ring(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1Cl')))
+
+def rule19_consecutive_amide_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)NCC(=O)N')))
+
+def rule20_barium_or_calcium_ions(mol):
+    barium_ions = mol.GetSubstructMatches(Chem.MolFromSmiles('[Ba++]'))
+    calcium_ions = mol.GetSubstructMatches(Chem.MolFromSmiles('[Ca++]'))
+    return len(barium_ions) + len(calcium_ions)
+
+def rule22_functional_groups(mol):
+    sulfonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    return len(sulfonyl) + len(carbonyl) + len(nitro)
+
+def rule23_symmetry_planarity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule24_carbon_chain(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule25_chloride_benzene(mol):
+    chloride = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl-]'))
+    benzene = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(chloride) + len(benzene)
+
+def rule26_sulfonamide_carbonyl(mol):
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(sulfonamide) + len(carbonyl)
+
+def rule27_nitro_group(mol):
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    return len(nitro)
+
+def rule28_platinum_ions(mol):
+    platinum = mol.GetSubstructMatches(Chem.MolFromSmarts('[Pt]'))
+    return len(platinum)
+
+def rule29_cyano_benzene(mol):
+    cyano = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+    benzene = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(cyano) + len(benzene)
+
+def rule30_carbonyl_phenyl(mol):
+    carbonyl_phenyl = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1C=O'))
+    return len(carbonyl_phenyl)
+
+def rule31_sodium_carboxylate(mol):
+    sodium_carboxylate = mol.GetSubstructMatches(Chem.MolFromSmarts('[Na+].O=C([O-])'))

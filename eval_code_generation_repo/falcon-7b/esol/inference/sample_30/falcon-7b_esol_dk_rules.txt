@@ -1,0 +1,23 @@
+def rule1_mol_size(mol):
+    return mol.GetNumAtoms()
+
+def rule2_mol_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule3_mol_electronegativity(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_mol_hydrophilic(mol):
+    return Descriptors.TPSA(mol)
+
+def rule5_mol_apolar(mol):
+    return Descriptors.TPSA(mol)
+
+def rule6_mol_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule7_log_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_log_solubility(mol):
+    return Descriptors.MolLogP(mol)

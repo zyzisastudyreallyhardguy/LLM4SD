@@ -1,0 +1,201 @@
+def rule1_pi_bonds(mol):
+    if type(mol) == str:
+        mol = Chem.MolFromSmiles(mol)
+    total_bonds = mol.GetNumBonds()
+    single_bonds = len([bond for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 1])
+    num_atoms = mol.GetNumAtoms()
+    pi_bonds = total_bonds - single_bonds - num_atoms
+    return pi_bonds
+
+
+def rule2_electronegative_atoms(mol):
+    electronegative_atoms = ['O', 'N', 'F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in electronegative_atoms:
+            count += 1
+    return count
+
+def rule3_carbon_chain_length(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule4_functional_groups(mol):
+    fgs = ['[CX3](=O)[OX2H0]', '[#6]~[#7]', '[#6]~[#8]', '[#6]~[#9]', '[#6]~[#17]', '[#6]~[#35]', '[#6]~[#53]']
+    count = 0
+    for fg in fgs:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(fg)))
+    return count
+
+def rule5_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_lone_pairs(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        count += atom.GetNumExplicitHs()
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_metal_atoms(mol):
+    return sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in range(21, 31)])
+
+def rule9_ionization_potential(mol):
+    return 0
+
+def rule10_electron_affinity(mol):
+    return 0
+
+def rule11_electronegativity(mol):
+    return sum([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+
+def rule12_bond_length(mol):
+    return 0
+
+def rule13_bond_angle(mol):
+    return 0
+
+def rule14_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule16_melting_point(mol='H2O', melting_point=0):
+    # Placeholder function, melting point must be determined experimentally
+    return melting_point
+
+
+def rule17_density(mol=0, density=0):
+    # Placeholder function, density must be determined experimentally
+    return density
+
+
+def rule18_refractive_index(mol, refractive_index=1.0):
+    # Placeholder function, refractive index must be determined experimentally
+    return refractive_index
+
+
+def rule19_dipole_moment(mol, dipole_moment=0):
+    # Placeholder function, dipole moment must be determined experimentally
+    return dipole_moment
+
+
+def rule20_solubility(lst):
+    if not isinstance(lst, list):
+        return 0
+    if len(lst) > 5:
+        # Access the 6th element
+        return lst[5]
+    else:
+        return 0
+
+
+def rule21_acidity(mol, acidity=None):
+    # Placeholder function, acidity must be determined experimentally
+    if acidity is None:
+        acidity = 0  # or any other default value
+    return acidity
+
+
+def rule22_basicity(mol, basicity=0):
+    # Placeholder function, basicity must be determined experimentally
+    return basicity
+
+
+def rule23_redox_potential(mol, redox_potential=0):
+    # Placeholder function, redox potential must be determined experimentally
+    return redox_potential
+
+
+
+
+def rule25_softness(mol, softness=None):
+    # Placeholder function, softness must be determined experimentally
+    if softness is None:
+        # Handle the case where softness is not provided
+        # For example, you can return a default value or calculate softness based on mol
+        return 0
+    return softness
+
+
+def rule26_electrophilicity_index(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule27_nucleophilicity_index(mol):
+    return Descriptors.MolWt(mol)
+
+def rule28_electrodonating_power(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule29_electroaccepting_power(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule30_chemical_potential(mol):
+    return Descriptors.MaxPartialCharge(mol)
+
+def rule31_electronegativity(mol):
+    return Descriptors.MinPartialCharge(mol)
+
+def rule32_hardness(mol):
+    return Descriptors.MolMR(mol)
+
+def rule33_softness(mol):
+    return Descriptors.HeavyAtomMolWt(mol)
+
+def rule34_electrophilicity_index(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule35_nucleophilicity_index(mol):
+    nucleophilicity_index = Descriptors.NumHDonors(mol)
+    return nucleophilicity_index
+
+def rule36_electrodonating_power(mol):
+    electrodonating_power = Descriptors.NumHDonors(mol)
+    return electrodonating_power
+
+def rule37_electroaccepting_power(mol):
+    electroaccepting_power = Descriptors.NumHAcceptors(mol)
+    return electroaccepting_power
+
+def rule38_chemical_potential(mol):
+    chemical_potential = Descriptors.MolWt(mol)
+    return chemical_potential
+
+def rule39_electronegativity(mol):
+    electronegativity = Descriptors.MolMR(mol)
+    return electronegativity
+
+def rule40_hardness(mol):
+    hardness = Descriptors.MolLogP(mol)
+    return hardness
+
+def rule41_softness(mol):
+    softness = Descriptors.MolLogP(mol)
+    return softness
+
+def rule42_electrophilicity_index(mol):
+    electrophilicity_index = Descriptors.NumValenceElectrons(mol)
+    return electrophilicity_index
+
+def rule43_nucleophilicity_index(mol):
+    nucleophilicity_index = Descriptors.NumHDonors(mol)
+    return nucleophilicity_index
+
+def rule44_electrodonating_power(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule45_electroaccepting_power(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule46_chemical_potential(mol):
+    return Descriptors.MolWt(mol)
+
+def rule47_electronegativity(mol):
+    return Descriptors.MolMR(mol)
+
+def rule48_hardness(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule49_softness(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule50_electrophilicity_index(mol):
+    return Descriptors.MolLogP(mol)

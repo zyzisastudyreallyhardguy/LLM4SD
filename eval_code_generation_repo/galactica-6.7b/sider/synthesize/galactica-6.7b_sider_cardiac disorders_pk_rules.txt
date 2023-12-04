@@ -1,0 +1,64 @@
+def rule1_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_num_hydrogen(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule3_num_carbon(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6])
+
+
+
+
+
+
+def rule7_num_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule8_num_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule9_num_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule10_num_iodine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule11_num_double_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+
+def rule12_num_triple_bonds(mol):
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE])
+
+def rule13_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_amino_groups(mol):
+    amino_smarts = '[NX3,NX4+][!H0]'
+    amino_pattern = Chem.MolFromSmarts(amino_smarts)
+    return len(mol.GetSubstructMatches(amino_pattern))
+
+def rule16_carboxylic_acid_groups(mol):
+    carboxylic_acid_smarts = 'C(=O)[O;h1]'
+    carboxylic_acid_pattern = Chem.MolFromSmarts(carboxylic_acid_smarts)
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule17_ester_groups(mol):
+    ester_smarts = 'C(=O)O'
+    ester_pattern = Chem.MolFromSmarts(ester_smarts)
+    return len(mol.GetSubstructMatches(ester_pattern))
+
+def rule18_amide_groups(mol):
+    amide_smarts = 'C(=O)N'
+    amide_pattern = Chem.MolFromSmarts(amide_smarts)
+    return len(mol.GetSubstructMatches(amide_pattern))
+
+def rule19_aldehyde_groups(mol):
+    aldehyde_smarts = 'C(=O)[H]'
+    aldehyde_pattern = Chem.MolFromSmarts(aldehyde_smarts)
+    return len(mol.GetSubstructMatches(aldehyde_pattern))
+
+def rule20_ketone_groups(mol):
+    ketone_smarts = 'C(=O)[C]'
+    ketone_pattern = Chem.MolFromSmarts(ketone_smarts)
+    return len(mol.GetSubstructMatches(ketone_pattern))

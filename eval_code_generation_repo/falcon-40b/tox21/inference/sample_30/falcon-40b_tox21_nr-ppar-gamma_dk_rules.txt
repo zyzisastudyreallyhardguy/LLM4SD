@@ -1,0 +1,67 @@
+def rule1_toxicity(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    ester_pattern = Chem.MolFromSmarts('C(=O)O[C;h3]')
+    amide_pattern = Chem.MolFromSmarts('C(=O)N')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern)) + len(mol.GetSubstructMatches(ester_pattern)) + len(mol.GetSubstructMatches(amide_pattern))
+
+def rule2_toxicity(mol):
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule3_toxicity(mol):
+    nitrogen_pattern = Chem.MolFromSmarts('[n]')
+    return len(mol.GetSubstructMatches(nitrogen_pattern))
+
+def rule4_toxicity(mol):
+    nitrogen_positive_charge_pattern = Chem.MolFromSmarts('[n+]')
+    return len(mol.GetSubstructMatches(nitrogen_positive_charge_pattern))
+
+def rule5_toxicity(mol):
+    chlorine_sulfur_negative_charge_pattern = Chem.MolFromSmarts('[Cl-,S-]')
+
+def rule6_sulfur_positive_charge(mol):
+    sulfur_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#16+]")))
+    return sulfur_count
+
+def rule7_long_carbon_chain(mol):
+    carbon_chain_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]1(-[#6])-[#6](-[#6])-[#6](-[#6])-[#6](-[#6])-1")))
+    return carbon_chain_count
+
+def rule8_benzene_sulfur(mol):
+    benzene_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("c1ccccc1")))
+    sulfur_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#16]")))
+    return benzene_count + sulfur_count
+
+def rule9_toxic_groups(mol):
+    carbonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]=[#8]")))
+    sulfonamide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#16](=[#8])(-[#7])-[#7]")))
+    heavy_metal_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#80,#33]")))
+    return carbonyl_count + sulfonamide_count + heavy_metal_count
+
+def rule10_toxic_features(mol):
+    aromatic_ring_count = rdMolDescriptors.CalcNumAromaticRings(mol)
+    heteroatom_count = rdMolDescriptors.CalcNumHeteroatoms(mol)
+    hb_acceptor_count = rdMolDescriptors.CalcNumHBA(mol)
+    hb_donor_count = rdMolDescriptors.CalcNumHBD(mol)
+    rotatable_bond_count = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return aromatic_ring_count + heteroatom_count + hb_acceptor_count + hb_donor_count + rotatable_bond_count
+
+def rule11_toxicity_potential(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    nitrile_group = Chem.MolFromSmarts('C#N')
+    return mol.GetSubstructMatches(nitro_group) + mol.GetSubstructMatches(nitrile_group)
+
+def rule12_aromatic_rings(mol):
+    aromatic_rings = len([x for x in mol.GetRingInfo().AtomRings() if all(mol.GetAtomWithIdx(i).GetIsAromatic() for i in x)])
+    return aromatic_rings
+
+
+def rule13_functional_groups(mol):
+    amines = Chem.MolFromSmarts('N')
+    sulfonamides = Chem.MolFromSmarts('S(=O)(=O)N')
+    carboxylic_acids = Chem.MolFromSmarts('C(=O)O')
+    return mol.GetSubstructMatches(amines) + mol.GetSubstructMatches(sulfonamides) + mol.GetSubstructMatches(carboxylic_acids)
+
+
+
+

@@ -1,0 +1,62 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_PSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule4_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule5_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+
+
+
+def rule16_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule17_PSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule18_hb_donors_and_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol), rdMolDescriptors.CalcNumHBA(mol)
+
+def rule19_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule20_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule21_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule25_plasma_protein_binding(mol):
+    # Placeholder function, replace with actual implementation
+    return 0
+
+def rule26_clearance_rate(mol):
+    # Placeholder function, replace with actual implementation
+    return 0
+
+def rule27_half_life(mol):
+    # Placeholder function, replace with actual implementation
+    return 0
+
+def rule28_cns_volume(mol):
+    # Placeholder function, replace with actual implementation
+    return 0
+
+def rule29_permeability_coefficient(mol):
+    # Placeholder function, replace with actual implementation
+    return 0

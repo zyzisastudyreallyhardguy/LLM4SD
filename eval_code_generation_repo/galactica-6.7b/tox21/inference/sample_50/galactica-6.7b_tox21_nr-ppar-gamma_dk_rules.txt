@@ -1,0 +1,112 @@
+def rule1_halogen_toxicity(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule2_carboxylic_acid_toxicity(mol):
+    carboxylic_acid = Chem.MolFromSmarts('C(=O)[O;h1]')
+    if mol.HasSubstructMatch(carboxylic_acid):
+        return 1
+    return 0
+
+def rule3_nitro_group_toxicity(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    if mol.HasSubstructMatch(nitro_group):
+        return 1
+    return 0
+
+def rule5_sulfur_toxicity(mol):
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() == 'S':
+            return 1
+    return 0
+
+def rule6_chlorine_toxicity(mol):
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() == 'Cl':
+            return 1
+    return 0
+
+def rule7_carbonyl_toxicity(mol):
+    carbonyl_group = Chem.MolFromSmarts('C=O')
+    if mol.HasSubstructMatch(carbonyl_group):
+        return 1
+    return 0
+
+def rule8_double_bond_toxicity(mol):
+    double_bond = Chem.MolFromSmarts('C=C')
+    if mol.HasSubstructMatch(double_bond):
+        return 1
+    return 0
+
+def rule10_halogen_atoms(mol):
+    halogens = ['F', 'Cl']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in halogens)
+    return count
+
+def rule11_pah_structure(mol):
+    pah = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1-c2ccccc2'))
+    return len(pah)
+
+def rule12_nitrogen_lonepair(mol):
+    nitrogen_lonepair = mol.GetSubstructMatches(Chem.MolFromSmarts('[nD2]'))
+    return len(nitrogen_lonepair)
+
+def rule13_double_bond(mol):
+    double_bond = mol.GetSubstructMatches(Chem.MolFromSmarts('C=C'))
+    return len(double_bond)
+
+def rule14_benzene_ring(mol):
+    benzene_ring = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(benzene_ring)
+
+def rule1_nitro_group(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    return len(nitro_group)
+
+def rule2_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br']
+    atoms = mol.GetAtoms()
+    count = sum(1 for atom in atoms if atom.GetSymbol() in halogens)
+    return count
+
+def rule3_carbonyl_group(mol):
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(carbonyl_group)
+
+def rule4_benzene_ring(mol):
+    benzene_ring = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(benzene_ring)
+
+def rule5_bromine_atom(mol):
+    bromine_atom = mol.GetSubstructMatches(Chem.MolFromSmarts('Br'))
+
+def rule6_phosphorus_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#15]')))
+
+def rule7_double_bond_carbon(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]')))
+
+def rule1_halogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+
+def rule2_carbonyl_group_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule3_nitro_group_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule4_carboxylic_acid_group_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule5_halogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+
+def rule6_nitro_group_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))

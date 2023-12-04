@@ -1,0 +1,63 @@
+def rule_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_nitro_groups(mol):
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro))
+
+def rule8_amino_groups(mol):
+    amino = Chem.MolFromSmarts('N')
+    return len(mol.GetSubstructMatches(amino))
+
+def rule9_carbonyl_groups(mol):
+    carbonyl = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl))
+
+def rule10_sulfur_atoms(mol):
+    sulfur = Chem.MolFromSmarts('S')
+    return len(mol.GetSubstructMatches(sulfur))
+
+def rule11_chlorine_atoms(mol):
+    chlorine = Chem.MolFromSmarts('Cl')
+    return len(mol.GetSubstructMatches(chlorine))
+
+def rule12_bromine_atoms(mol):
+    bromine = Chem.MolFromSmarts('Br')
+    return len(mol.GetSubstructMatches(bromine))
+
+def rule13_fluorine_atoms(mol):
+    fluorine = Chem.MolFromSmarts('F')
+    return len(mol.GetSubstructMatches(fluorine))
+
+def rule14_oxygen_atoms(mol):
+    oxygen = Chem.MolFromSmarts('O')
+
+def rule15_calc_num_nitrogen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7])
+
+
+def rule16_calc_num_phosphorus_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'P'])
+
+
+def rule17_calc_num_sulfur_atoms(mol):
+    sulfur_atom = Chem.MolFromSmiles('S')
+    return len(mol.GetSubstructMatches(sulfur_atom))
+
+
+
+
+def rule19_calc_num_bromine_atoms(mol):
+    bromine_pattern = Chem.MolFromSmiles('Br')
+    num_bromine_atoms = len(mol.GetSubstructMatches(bromine_pattern))
+    return num_bromine_atoms
+

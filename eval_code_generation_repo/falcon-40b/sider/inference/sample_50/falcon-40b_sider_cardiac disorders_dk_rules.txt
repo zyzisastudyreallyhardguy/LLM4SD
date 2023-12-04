@@ -1,0 +1,88 @@
+def rule1_nitrogen_adverse_effects(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_carbon_chain_adverse_effects(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C'*6)))
+
+def rule3_sulfur_adverse_effects(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule4_carboxylic_acid_adverse_effects(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C(=O)O')))
+
+def rule5_halogen_adverse_effects(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+
+def rule6_chlorine_adverse_effects(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule7_carbonyl_adverse_effects(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule8_sulfonamide_adverse_effects(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S(=O)(=O)N')))
+
+def rule9_rotatable_bonds_hb_donors_adverse_effects(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol) - rdMolDescriptors.CalcNumHBD(mol)
+
+def rule10_aromatic_rings_nitrogen_carbonyl_oxygen_adverse_effects(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol) + rule1_nitrogen_adverse_effects(mol) + rule7_carbonyl_adverse_effects(mol) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule11_functional_groups(mol):
+    carboxylic_acid_smarts = '[#6](=[#8])-[#8]'
+    sulfonamide_smarts = '[#16](=[#8])(=[#8])-[#7]'
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts(carboxylic_acid_smarts))
+    sulfonamide = mol.GetSubstructMatches(Chem.MolFromSmarts(sulfonamide_smarts))
+    return len(carboxylic_acid) + len(sulfonamide)
+
+def rule12_nitrogen_carbonyl(mol):
+    nitrogen_carbonyl_smarts = '[#7]-[#6](=[#8])'
+    nitrogen_carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts(nitrogen_carbonyl_smarts))
+    return len(nitrogen_carbonyl)
+
+def rule13_halogen_atoms(mol):
+    halogen_smarts = '[#9,#17,#35,#53]'
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts(halogen_smarts))
+    return len(halogen)
+
+def rule14_high_atoms(mol):
+    nitrogen_carbon_smarts = '[#6,#7]'
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    nitrogen_carbon = mol.GetSubstructMatches(Chem.MolFromSmarts(nitrogen_carbon_smarts))
+    return len(nitrogen_carbon) + aromatic_rings
+
+def rule15_high_oxygen_fluorine(mol):
+    oxygen_fluorine_smarts = '[#8,#9]'
+    oxygen_fluorine = mol.GetSubstructMatches(Chem.MolFromSmarts(oxygen_fluorine_smarts))
+    return len(oxygen_fluorine)
+
+def rule16_aromatic_halogens(mol):
+    aromatic_smarts = 'a'
+    halogen_smarts = '[#9,#17,#35,#53]'
+    aromatic = mol.GetSubstructMatches(Chem.MolFromSmarts(aromatic_smarts))
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts(halogen_smarts))
+    return len(aromatic) + len(halogen)
+
+def rule17_complex_molecules(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    carboxylic_acid_smarts = '[#6](=[#8])-[#8]'
+    amine_smarts = '[#7]'
+    ester_smarts = '[#6](=[#8])-[#8]-[#6]'
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    carboxylic_acid = mol.GetSubstructMatches(Chem.MolFromSmarts(carboxylic_acid_smarts))
+    amine = mol.GetSubstructMatches(Chem.MolFromSmarts(amine_smarts))
+    ester = mol.GetSubstructMatches(Chem.MolFromSmarts(ester_smarts))
+    return hb_donors + hb_acceptors + len(carboxylic_acid) + len(amine) + len(ester) + aromatic_rings
+
+def rule18_branching_complexity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule19_positive_charge(mol):
+    return Chem.rdmolops.GetFormalCharge(mol)
+
+
+def rule20_fluorine_atoms(mol):
+    fluorine_smarts = '[#9]'
+    fluorine = mol.GetSubstructMatches(Chem.MolFromSmarts(fluorine_smarts))

@@ -1,0 +1,85 @@
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_func_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule4_electroneg_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule6_hb_acceptor_donors(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule7_polar_halogen(mol):
+    polar_groups = rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+    halogen_atoms = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[F,Cl,Br,I]")))
+    return polar_groups + halogen_atoms
+
+def rule8_electronic_structure(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol) + rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule10_compactness(mol):
+    if mol.GetNumConformers() >= 1:
+        return rdMolDescriptors.CalcEccentricity(mol)
+    else:
+        return 0
+
+
+def rule11_symmetry(mol):
+    return len(Chem.GetSymmSSSR(mol))
+
+
+def rule12_functional_groups(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+
+def rule13_hydrogen_bonds(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+
+def rule14_hydroxyl_vs_carbonyl(mol):
+    hydroxyl_pattern = Chem.MolFromSmarts('[OH]')
+    carbonyl_pattern = Chem.MolFromSmarts('[#6][#8]')
+    num_hydroxyl = len(mol.GetSubstructMatches(hydroxyl_pattern))
+    num_carbonyl = len(mol.GetSubstructMatches(carbonyl_pattern))
+    return num_hydroxyl - num_carbonyl
+
+
+def rule15_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule16_carbonyl_no_halogen(mol):
+    carbonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+    halogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+    return carbonyl_count if halogen_count == 0 else 0
+
+def rule17_carbonyl_vs_hydroxyl(mol):
+    carbonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+    hydroxyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]-[#1]')))
+    return carbonyl_count - hydroxyl_count
+
+def rule18_hydroxyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]-[#1]')))
+
+
+
+def rule2_mol_size(mol):
+    return mol.GetNumAtoms()
+
+def rule2_mol_shape(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule3_func_group(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule4_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_func_group_properties(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)

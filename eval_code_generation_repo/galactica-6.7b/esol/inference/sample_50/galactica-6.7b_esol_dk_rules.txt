@@ -1,0 +1,20 @@
+def calculate_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def calculate_size(mol):
+    return Descriptors.MolWt(mol)
+
+def calculate_functional_groups(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def calculate_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def calculate_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def calculate_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]O')))

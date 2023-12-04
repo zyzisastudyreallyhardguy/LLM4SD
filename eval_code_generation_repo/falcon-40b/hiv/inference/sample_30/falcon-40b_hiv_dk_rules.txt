@@ -1,0 +1,45 @@
+def rule1_nitrogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_carbonyl_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule3_sulfur_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule4_carboxylic_acid_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule5_sulfonamide_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+
+def rule6_nitrogen_in_ring(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.IsInRing())
+
+def rule7_bromine_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule8_nitro_group(mol):
+    nitro_group = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_group))
+
+def rule9_hb_donors_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule10_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule11_positive_nitrogen(mol):
+    positive_nitrogen = Chem.MolFromSmarts('[nH+]')
+    return len(mol.GetSubstructMatches(positive_nitrogen))
+
+def rule12_chlorine_nitrogen(mol):
+    chlorine_nitrogen = Chem.MolFromSmarts('[nH]Cl')
+    return len(mol.GetSubstructMatches(chlorine_nitrogen))
+
+def rule13_negative_nitrogen(mol):
+    negative_nitrogen = Chem.MolFromSmarts('[nH-]')
+    return len(mol.GetSubstructMatches(negative_nitrogen))
+
+def rule14_nitrile_group(mol):
+    nitrile_group = Chem.MolFromSmarts('[C#N]')

@@ -1,0 +1,75 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_XLogP3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_num_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[F,Cl,Br,I]")))
+
+def rule9_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+def rule10_num_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[N]")))
+
+def rule11_num_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[O]")))
+
+def rule12_num_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[S]")))
+
+def rule13_total_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule14_num_unsaturated_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]=[#6]")))
+
+def rule19_dipole_moment(mol):
+    return Chem.rdMolDescriptors.CalcTPSA(mol)
+
+def rule21_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule25_hb_donors_acceptors(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors, hb_acceptors
+
+def rule26_molecular_volume(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule27_num_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    num_halogen_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+    return num_halogen_atoms
+
+def rule28_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+
+def rule29_num_nitrogen_atoms(mol):
+    num_nitrogen_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+    return num_nitrogen_atoms
+
+def rule30_num_oxygen_atoms(mol):
+    num_oxygen_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')

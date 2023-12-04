@@ -1,0 +1,86 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_reactive_groups(mol):
+    reactive_groups = ['C=O', 'O1C=CC1', 'O=C1C=CC(=O)C=C1']
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(group)) for group in reactive_groups)
+
+def rule3_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule6_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+
+def rule7_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule8_nitro_groups(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule9_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_unsaturated_bonds(mol):
+    unsaturated_pattern = Chem.MolFromSmarts('[!#1!#6]=[!#1!#6]')
+    return len(mol.GetSubstructMatches(unsaturated_pattern))
+
+def rule11_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule12_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule13_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule14_metal_binding_groups(mol):
+    metal_binding_pattern = Chem.MolFromSmarts('[!#6;!#1;!H0](~[!#6;!#1;!H0])~[!#6;!#1;!H0]')
+    return len(mol.GetSubstructMatches(metal_binding_pattern))
+
+def rule16_sulfur_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule17_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule18_ester_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetDegree() == 1 and any(neighbor.GetSymbol() == 'C' for neighbor in atom.GetNeighbors()))
+
+def rule19_num_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule20_amide_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and any(neighbor.GetSymbol() == 'C' for neighbor in atom.GetNeighbors()))
+
+def rule21_halogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+
+def rule22_alcohol_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetDegree() == 1 and any(neighbor.GetSymbol() == 'H' for neighbor in atom.GetNeighbors()))
+
+def rule23_carbon_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+
+def rule24_ketone_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetDegree() == 2 and any(neighbor.GetSymbol() == 'C' for neighbor in atom.GetNeighbors()))
+
+def rule25_hb_acceptor_protein_binding(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule26_amine_protein_binding(mol):
+    amine_pattern = Chem.MolFromSmarts('N')
+    return len(mol.GetSubstructMatches(amine_pattern))
+
+def rule27_rotatable_bonds_membrane_permeability(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule28_carboxylic_acid_membrane_permeability(mol):
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule29_rings_carcinogenicity(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule30_aldehyde_mutagenicity(mol):
+    aldehyde_pattern = Chem.MolFromSmarts('C=O')

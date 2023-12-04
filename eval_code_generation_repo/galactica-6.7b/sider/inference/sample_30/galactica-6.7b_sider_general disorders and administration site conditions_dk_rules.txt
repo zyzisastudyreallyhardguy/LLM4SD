@@ -1,0 +1,61 @@
+def rule1_adverse_effects(mol):
+    sulfonamide = Chem.MolFromSmarts('S(=O)(=O)N')
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+    return mol.GetSubstructMatches(sulfonamide) + mol.GetSubstructMatches(nitro)
+
+def rule2_multiple_adverse_effects(mol):
+    sulfonamide = Chem.MolFromSmarts('S(=O)(=O)N')
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+    return len(mol.GetSubstructMatches(sulfonamide)) + len(mol.GetSubstructMatches(nitro))
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+
+def rule4_halogenated_aromatic(mol):
+    halogenated_aromatic = Chem.MolFromSmarts('c1ccccc1[#9,#17,#35,#53]')
+    if halogenated_aromatic is not None:
+        return len(mol.GetSubstructMatches(halogenated_aromatic))
+    else:
+        return 0
+
+
+def rule5_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_function_group(mol):
+    sulfonamide = Chem.MolFromSmarts('S(=O)(=O)N')
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+
+def rule7_amide_ester(mol):
+    amide = Chem.MolFromSmarts('C(=O)N')
+    ester = Chem.MolFromSmarts('C(=O)O')
+    return mol.GetSubstructMatches(amide) + mol.GetSubstructMatches(ester)
+
+def rule8_func_groups(mol):
+    aldehyde = Chem.MolFromSmarts('C=O')
+    ketone = Chem.MolFromSmarts('CC(=O)C')
+    amide = Chem.MolFromSmarts('C(=O)N')
+    carboxylic_acid = Chem.MolFromSmarts('C(=O)O')
+    return mol.GetSubstructMatches(aldehyde) + mol.GetSubstructMatches(ketone) + mol.GetSubstructMatches(amide) + mol.GetSubstructMatches(carboxylic_acid)
+
+def rule9_adverse_effects(mol):
+    carbonyl = Chem.MolFromSmarts('C=O')
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    halogen = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return mol.GetSubstructMatches(carbonyl) + mol.GetSubstructMatches(nitro) + mol.GetSubstructMatches(halogen)
+
+def rule10_benzene_ring(mol):
+    benzene = Chem.MolFromSmarts('c1ccccc1')
+    return mol.GetSubstructMatches(benzene)
+
+def rule11_trifluoromethyl(mol):
+    trifluoromethyl = Chem.MolFromSmarts('C(F)(F)F')
+    return mol.GetSubstructMatches(trifluoromethyl)
+
+def rule12_lipophilicity_mw(mol):
+    lipophilicity = Descriptors.MolLogP(mol)
+    molecular_weight = Descriptors.MolWt(mol)

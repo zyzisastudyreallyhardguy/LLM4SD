@@ -1,0 +1,83 @@
+def rule1_contains_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule2_contains_sulfur(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule3_contains_chlorine(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def rule4_hb_acceptors_donors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)
+
+def rule5_aromatic_rings_nitrogen(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol) + sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule6_polar_charged_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule7_nitrogen_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule8_aromatic_rings_groups(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule9_halogen_atoms_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+
+def rule10_sulfur_negative_charge(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and atom.GetFormalCharge() < 0)
+
+def rule11_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+
+def rule12_halogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule13_fluorine_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F]')))
+
+def rule14_carboxylic_acid_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O;h1]')))
+
+def rule15_long_carbon_chain(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]1-[#6]-[#6]-[#6]-[#6]-[#6]-1')))
+
+def rule16_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N]')))
+
+def rule17_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule18_nitrogen_positive_charge(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+;H]')))
+
+def rule19_sulfur_negative_charge(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[S-;H]')))
+
+def rule21_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule22_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule23_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#35]')))
+
+def rule24_metal_ions(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#30,#20]')))
+
+def rule25_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule26_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule27_halogens_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53,#16]')))
+
+def rule28_metal_ions(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#3-#12,#19-#30,#39-#48,#72-#80,#104-#112]')))
+
+def rule29_metal_ions_radioactive_isotopes(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#3-#12,#19-#30,#39-#48,#72-#80,#104-#112,#88-#103]')))

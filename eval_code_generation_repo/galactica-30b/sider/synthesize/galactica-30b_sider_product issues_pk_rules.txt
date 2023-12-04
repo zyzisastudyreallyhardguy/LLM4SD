@@ -1,0 +1,44 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_PSA(mol):
+    return Descriptors.TPSA(mol)
+
+def rule3_hb_donors(mol):
+    return Descriptors.NumHDonors(mol)
+
+def rule3_hb_acceptors(mol):
+    return Descriptors.NumHAcceptors(mol)
+
+def rule4_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_rotatable_bonds(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+def rule6_aromatic_rings(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def rule7_reactive_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O;h1]')))
+
+def rule12_dipole_moment(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule13_solubility(mol):
+    return Crippen.MolLogP(mol)
+
+def rule18_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+
+
+
+
+
+
+
+
+
+
+

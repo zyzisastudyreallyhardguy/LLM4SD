@@ -1,0 +1,25 @@
+def rule46_halogen_atoms(mol):
+    halogen_atoms = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogen_atoms:
+            count += 1
+    return count
+
+def rule47_alkene_groups(mol):
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and bond.GetBeginAtom().GetSymbol() == 'C' and bond.GetEndAtom().GetSymbol() == 'C':
+            count += 1
+
+def rule48_alcohol_groups(mol):
+    alcohol_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('O[H]'))
+    return len(alcohol_groups)
+
+def rule49_stereochemical_centers(mol):
+    chiral_centers = Chem.FindMolChiralCenters(mol, includeUnassigned=True)
+    return len(chiral_centers)
+
+def rule50_alkyne_groups(mol):
+    alkyne_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('C#C'))
+    return len(alkyne_groups)

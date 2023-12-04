@@ -1,0 +1,136 @@
+def rule1_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule2_hydrophobicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule3_molecular_size(mol):
+    return Descriptors.HeavyAtomMolWt(mol)
+
+def rule4_polar_functional_groups(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    nitro_pattern = Chem.MolFromSmarts('[#7](=[#8])(-[#8])')
+    num_carbonyl = len(mol.GetSubstructMatches(carbonyl_pattern))
+    num_nitro = len(mol.GetSubstructMatches(nitro_pattern))
+    return num_carbonyl + num_nitro
+
+
+def rule5_chain_or_ring_size(mol):
+    return Descriptors.NumAliphaticRings(mol) + Descriptors.NumAliphaticCarbocycles(mol)
+
+def rule6_halogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule7_hydrogen_bond_sites(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule8_polar_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol) + rdMolDescriptors.CalcNumAliphaticHeterocycles(mol)
+
+def rule10_conjugated_double_bonds_or_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule11_number_of_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule12_halogenation(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule13_functional_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('S=O')))
+
+def rule14_multiple_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('I')))
+
+def rule15_dipolar_functional_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('O'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+
+def rule16_halogenation_and_cyclization(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('I'))) + rdMolDescriptors.CalcNumRings(mol)
+
+def rule17_carbon_atoms_and_chain_length(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C'))) + rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule2_func_groups(mol):
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]'))
+    halogens = mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]'))
+    return len(carbonyl) + len(halogens)
+
+def rule3_mol_size_complexity(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule4_hb_donors_acceptors(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule5_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule6_ring_count(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule7_aromatic_ring_count(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_halogen_count(mol):
+    halogens = ['Br', 'Cl']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule9_carbon_chain_length(mol):
+    chains = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](-[#6])-[#6]'))
+    return len(chains)
+
+def rule10_linear_structure_count(mol):
+    linear_structures = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#6]-[#6]'))
+
+def rule11_bulky_substituents(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12_compact_shape(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule1_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule2_hb_donors_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule5_carbonyl_ester(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    ester_pattern = Chem.MolFromSmarts('[#6](=[#8])O[#6]')
+    num_carbonyl = len(mol.GetSubstructMatches(carbonyl_pattern))
+    num_ester = len(mol.GetSubstructMatches(ester_pattern))
+    return num_carbonyl + num_ester
+
+
+def rule6_carbon_chain(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule7_func_groups(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    num_carbonyl = len(mol.GetSubstructMatches(carbonyl_pattern))
+    num_nitro = len(mol.GetSubstructMatches(nitro_pattern))
+    return num_carbonyl + num_nitro + rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+
+def rule8_mol_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule9_hydrophilic_factor(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule10_complexity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_func_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol) + rdMolDescriptors.CalcNumAromaticCarbocycles(mol)

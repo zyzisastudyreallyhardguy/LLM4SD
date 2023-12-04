@@ -1,0 +1,219 @@
+def rule123456_blood_flow_rate(mol):
+    return rdMolDescriptors.CalcBloodFlowRate(mol)
+
+def rule789012_severity_assessment(mol):
+    return rdMolDescriptors.CalcSeverityAssessment(mol) 
+
+def rule345678_treatment_outcome_improvement(mol):
+    return rdMolDescriptors.CalcTreatmentOutcomeImprovement(mol) 
+
+def rule_benzene_ring(mol):
+    benzene = Chem.MolFromSmiles('c1ccccc1')
+    return mol.HasSubstructMatch(benzene)
+
+def rule_functional_groups(mol):
+    hydroxyl = Chem.MolFromSmiles('O')
+    carbonyl = Chem.MolFromSmiles('C=O')
+    amine = Chem.MolFromSmiles('N')
+    return mol.HasSubstructMatch(hydroxyl) or mol.HasSubstructMatch(carbonyl) or mol.HasSubstructMatch(amine)
+
+def rule_molecular_weight(mol):
+    return Descriptors.MolWt(mol) < 500
+
+def rule123456_benzene_carboxylic(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    carboxylic_groups = rdMolDescriptors.CalcNumCarboxylicGroups(mol)
+    return aromatic_rings, carboxylic_groups
+
+def rule789012_nitrogen_atom(mol):
+    nitrogen_atoms = rdMolDescriptors.CalcNumNitrogenAtoms(mol)
+    return nitrogen_atoms
+
+def rule345678_chlorine_atom(mol):
+    chlorine_atoms = rdMolDescriptors.CalcNumChlorineAtoms(mol)
+
+def rule123456_benzene_ring(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule789012_carbonyl_group(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule12345_cmyc_expression(mol):
+    return rdMolDescriptors.CalcCmycExpression(mol)
+
+def rule67890_gastric_cancer(mol):
+    return rdMolDescriptors.CalcGastricCancerRelation(mol)
+
+def rule_biphenyl_group(mol):
+    biphenyl_smarts = '[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1-[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1'
+    biphenyl_pattern = Chem.MolFromSmarts(biphenyl_smarts)
+    return mol.HasSubstructMatch(biphenyl_pattern)
+
+def rule_lower_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule_benzimidazole(mol):
+    benzimidazole = Chem.MolFromSmarts('c1nc2ccccc2[nH]1')
+    return mol.HasSubstructMatch(benzimidazole)
+
+def rule_functional_groups(mol):
+    hydroxyl = Chem.MolFromSmarts('[OH]')
+    amide = Chem.MolFromSmarts('[NX3][CX3](=[OX1])[#6]')
+    carboxylic_acid = Chem.MolFromSmarts('C(=O)[O;h1]')
+    return mol.HasSubstructMatch(hydroxyl) or mol.HasSubstructMatch(amide) or mol.HasSubstructMatch(carboxylic_acid)
+
+def rule_physicochemical_properties(mol):
+    logP = Descriptors.MolLogP(mol)
+    MW = Descriptors.MolWt(mol)
+
+def rule12345_atom_count(mol):
+    return mol.GetNumAtoms()
+
+def rule67890_hydroxyl_group(mol):
+    pattern = Chem.MolFromSmarts('[OH]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule111213_positive_charge(mol):
+    total_charge = 0
+    for atom in mol.GetAtoms():
+        total_charge += atom.GetFormalCharge()
+    return total_charge > 0
+
+def rule141516_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol) >= 10
+
+def rule12345_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule67890_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule111213_rot_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule1_benzene_ring(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return aromatic_atoms.count(True)
+
+def rule2_carbonyl_group(mol):
+    carbonyl_group = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl_group))
+
+def rule3_halogen_atom(mol):
+    halogen_atoms = ['F', 'Cl', 'Br', 'I']
+def rule1_min_two_enhanced_regions(mr_image):
+    return count_enhanced_regions(mr_image)
+
+def rule2_min_three_tumor_regions(mr_image):
+    return count_tumor_regions(mr_image)
+
+def rule123456_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule789012_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule123456_substructure_nc_o(mol):
+    pattern = Chem.MolFromSmarts('N=C=O')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule12345_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule67890_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule111213_rot_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12345_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule67890_rot_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule111213_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule_benzene_ring(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return aromatic_atoms.count(True)
+
+def rule_max_benzene_ring(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return aromatic_atoms.count(True) <= 2
+
+def rule_hydroxyl_group(mol):
+    hydroxyl_groups = [atom.GetSymbol() for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetTotalNumHs() == 1]
+    return len(hydroxyl_groups) >= 1
+
+def rule_benzimidazole_ring(mol):
+    benzimidazole_smarts = 'c1[nH]c2ccccc2[nH]1'
+    benzimidazole_pattern = Chem.MolFromSmarts(benzimidazole_smarts)
+    return len(mol.GetSubstructMatches(benzimidazole_pattern))
+
+def rule_functional_groups(mol):
+    carbonyl_smarts = '[#6]=[#8]'
+    hydroxyl_smarts = '[#8] [#1]'
+    chlorine_smarts = '[#17]'
+    carbonyl_pattern = Chem.MolFromSmarts(carbonyl_smarts)
+    hydroxyl_pattern = Chem.MolFromSmarts(hydroxyl_smarts)
+    chlorine_pattern = Chem.MolFromSmarts(chlorine_smarts)
+    return min(len(mol.GetSubstructMatches(carbonyl_pattern)), len(mol.GetSubstructMatches(hydroxyl_pattern)), len(mol.GetSubstructMatches(chlorine_pattern)))
+
+def rule_molecular_properties(mol):
+    molecular_weight = Descriptors.MolWt(mol)
+    num_hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    num_hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    logP = Descriptors.MolLogP(mol)
+
+def rule1_min_hardness(film):
+    return film.get_hardness()
+
+def rule2_min_elastic_modulus(film):
+    return film.get_elastic_modulus()
+
+def rule12345_min_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule67890_max_rot_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule111213_max_ring_structures(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule141516_min_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule171819_max_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule202122_min_nitrogen_atoms(mol):
+    return rdMolDescriptors.CalcNumNitrogens(mol)
+
+def rule232425_max_oxygen_atoms(mol):
+    return rdMolDescriptors.CalcNumOxygens(mol)
+
+def rule1_halogen_presence(mol):
+    halogen_atoms = ['Br', 'Cl']
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() in halogen_atoms:
+            return 1
+    return 0
+
+def rule2_carbonyl_presence(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('C=O')
+    matches = mol.GetSubstructMatches(carbonyl_pattern)
+    if len(matches) > 0:
+        return 1
+    return 0
+
+def rule3_nitrogen_presence(mol):
+    nitrogen_atoms = ['N']
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() in nitrogen_atoms:
+            return 1
+    return 0

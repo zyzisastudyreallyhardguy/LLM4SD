@@ -1,0 +1,102 @@
+def rule1(mol):
+    sulfonyl = Chem.MolFromSmarts('S(=O)(=O)')
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+    chlorine = Chem.MolFromSmarts('Cl')
+    bromine = Chem.MolFromSmarts('Br')
+    conjugated = Chem.MolFromSmarts('C=C-C=C')
+    return mol.HasSubstructMatch(sulfonyl) or mol.HasSubstructMatch(nitro) or mol.HasSubstructMatch(chlorine) or mol.HasSubstructMatch(bromine) or mol.HasSubstructMatch(conjugated)
+
+def rule2(mol):
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+    halogen = Chem.MolFromSmarts('[F,Cl,Br]')
+    benzene = Chem.MolFromSmarts('c1ccccc1')
+    return mol.HasSubstructMatch(nitro) or mol.HasSubstructMatch(halogen) or mol.HasSubstructMatch(benzene)
+
+def rule3(mol):
+    sulfonyl = Chem.MolFromSmarts('S(=O)(=O)')
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+    return mol.HasSubstructMatch(sulfonyl) or mol.HasSubstructMatch(nitro)
+
+def rule4(mol):
+    carbonyl = Chem.MolFromSmarts('C=O')
+    return mol.HasSubstructMatch(carbonyl)
+
+def rule5(mol):
+    nitrile = Chem.MolFromSmarts('C#N')
+    sulfonylurea = Chem.MolFromSmarts('S(=O)(=O)NC(=O)N')
+    carboxylic = Chem.MolFromSmarts('C(=O)O')
+    return mol.HasSubstructMatch(nitrile) or mol.HasSubstructMatch(sulfonylurea) or mol.HasSubstructMatch(carboxylic)
+
+def rule6(mol):
+    cyano = Chem.MolFromSmarts('C#N')
+    sulfonyl = Chem.MolFromSmarts('S(=O)(=O)')
+    return mol.HasSubstructMatch(cyano) and mol.HasSubstructMatch(sulfonyl)
+
+def rule7(mol):
+    bromine = Chem.MolFromSmarts('Br')
+    double_bond = Chem.MolFromSmarts('C=C')
+    sulfur_nitrogen = Chem.MolFromSmarts('S(N)(N)')
+    benzene_carbonyl = Chem.MolFromSmarts('c1ccccc1C=O')
+    return mol.HasSubstructMatch(bromine) or mol.HasSubstructMatch(double_bond) or mol.HasSubstructMatch(sulfur_nitrogen) or mol.HasSubstructMatch(benzene_carbonyl)
+
+def rule8(mol):
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+    halogen = Chem.MolFromSmarts('[F,Cl,Br]')
+    benzene = Chem.MolFromSmarts('c1ccccc1')
+    return mol.HasSubstructMatch(nitro) or mol.HasSubstructMatch(halogen) or mol.HasSubstructMatch(benzene)
+
+def rule9(mol):
+    bromine = Chem.MolFromSmarts('Br')
+    chlorine = Chem.MolFromSmarts('Cl')
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+    sulfonamide = Chem.MolFromSmarts('S(=O)(=O)N')
+    return mol.HasSubstructMatch(bromine) or mol.HasSubstructMatch(chlorine) or mol.HasSubstructMatch(nitro) or mol.HasSubstructMatch(sulfonamide)
+
+def rule1_hb_donors(mol):
+    from rdkit.Chem import rdMolDescriptors
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptor(mol):
+    from rdkit.Chem import rdMolDescriptors
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule10_toxic_groups(mol):
+    from rdkit import Chem
+    sulfonate = Chem.MolFromSmarts('[S;D4]([O;D1])(=[O;D1])(=[O;D1])')
+    sulfate = Chem.MolFromSmarts('[O;D1][S;D4]([O;D1])(=[O;D1])(=[O;D1])')
+    carbonyl_alkene = Chem.MolFromSmarts('[C;D3](=[O;D1])[C;D2]=[C;D2]')
+    return mol.HasSubstructMatch(sulfonate) or mol.HasSubstructMatch(sulfate) or mol.HasSubstructMatch(carbonyl_alkene)
+
+
+def rule11_nontoxic_groups(mol):
+    from rdkit import Chem
+    silicon = Chem.MolFromSmarts('[Si](O)(O)(O)O')
+    bromine = Chem.MolFromSmarts('BrC(C)C')
+    magnesium = Chem.MolFromSmarts('[Mg](O)(O)(O)(O)(O)O')
+    return mol.HasSubstructMatch(silicon) or mol.HasSubstructMatch(bromine) or mol.HasSubstructMatch(magnesium)
+
+def rule3_halogen(mol):
+    from rdkit import Chem
+    halogen = Chem.MolFromSmarts('[!#6;!#1;!H0]~[#6]')
+    return mol.HasSubstructMatch(halogen)
+
+def rule1_benzene_naphthalene(mol):
+    from rdkit import Chem
+    benzene = Chem.MolFromSmarts('c1ccccc1')
+    naphthalene = Chem.MolFromSmarts('c1cccc2c1cccc2')
+    return mol.HasSubstructMatch(benzene) or mol.HasSubstructMatch(naphthalene)
+
+def rule2_nitro_chloro(mol):
+    from rdkit import Chem
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    chloro = Chem.MolFromSmarts('Cl')
+    if nitro is not None and chloro is not None:
+        return mol.HasSubstructMatch(nitro) or mol.HasSubstructMatch(chloro)
+    else:
+        return 0
+
+
+def rule3_sulfonyl_sulfonate(mol):
+    from rdkit import Chem
+    sulfonyl = Chem.MolFromSmarts('-SO2R')
+    sulfonate = Chem.MolFromSmarts('-SO3-')

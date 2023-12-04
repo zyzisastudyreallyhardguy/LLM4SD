@@ -1,0 +1,209 @@
+
+def rule6_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule7_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule8_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule9_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule10_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule11_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for halogen in halogens:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmiles(halogen)))
+    return count
+
+
+def rule12_chalcogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[O].[S].[Se].[Te]')))
+
+
+def rule13_alkali_metal_atoms(mol):
+    alkali_metals = ['[Li]', '[Na]', '[K]', '[Rb]', '[Cs]', '[Fr]']
+    count = 0
+    for metal in alkali_metals:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmiles(metal)))
+    return count
+
+
+def rule14_alkaline_earth_metal_atoms(mol):
+    elements = ['[Be]', '[Mg]', '[Ca]', '[Sr]', '[Ba]', '[Ra]']
+    return sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(element))) for element in elements)
+
+
+def rule16_lanthanide_atoms(mol):
+    lanthanides = ['La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in lanthanides)
+
+def rule17_actinide_atoms(mol):
+    actinides = ['Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in actinides)
+
+def rule18_metalloid_atoms(mol):
+    metalloids = ['B', 'Si', 'Ge', 'As', 'Sb', 'Te', 'Po']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in metalloids)
+
+def rule19_nonmetallic_atoms(mol):
+    nonmetals = ['H', 'He', 'C', 'N', 'O', 'F', 'Ne', 'P', 'S', 'Cl', 'Ar', 'K', 'V', 'Kr', 'Xe', 'Rn']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in nonmetals)
+
+def rule20_organic_atoms(mol):
+    organic = ['C', 'H', 'N', 'O', 'P', 'S', 'Se']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in organic)
+
+def rule21_inorganic_atoms(mol):
+    inorganic = ['B', 'Si', 'Ge', 'As', 'Sb', 'Te', 'Po', 'At']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in inorganic)
+
+def rule22_polar_atoms(mol):
+    polar = ['N', 'O', 'F', 'P', 'S', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in polar)
+
+def rule23_nonpolar_atoms(mol):
+    nonpolar = ['C', 'H']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in nonpolar)
+
+
+
+def rule26_cyclic_atoms(mol):
+    return len(Chem.GetSSSR(mol))
+
+
+
+
+def rule28_sp2_atoms(mol):
+    sp2_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == rdchem.HybridizationType.SP2:
+            sp2_count += 1
+    return sp2_count
+
+
+def rule29_sp3_atoms(mol):
+    total_atoms = mol.GetNumAtoms()
+    aromatic_atoms = len(mol.GetAromaticAtoms())
+    sp2_atoms = rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+    sp3_atoms = total_atoms - aromatic_atoms - sp2_atoms
+    return sp3_atoms
+
+
+def rule30_sp_atoms(mol):
+    sp_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == rdchem.HybridizationType.SP:
+            sp_count += 1
+    return sp_count
+
+
+def rule31_tetrahedral_atoms(mol):
+    tetrahedral_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetDegree() == 4:
+            tetrahedral_atoms += 1
+    return tetrahedral_atoms
+
+
+def rule32_trigonal_pyramidal_atoms(mol):
+    # Initialize count
+    count = 0
+
+    # Get the 3D coordinates of the molecule
+    AllChem.Compute2DCoords(mol)
+
+    # Iterate over the atoms in the molecule
+    for atom in mol.GetAtoms():
+        # Get the neighbors of the atom
+        neighbors = atom.GetNeighbors()
+
+        # Check if the atom has three neighbors (which is a requirement for trigonal pyramidal geometry)
+        if len(neighbors) == 3:
+            # Increment the count
+            count += 1
+
+    # Return the count
+    return count
+
+
+def rule33_octahedral_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+
+def rule35_square_planar_atoms(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == rdchem.HybridizationType.SP2:
+            count += 1
+    return count
+
+
+def rule36_trigonal_planar_atoms(mol):
+    num_trigonal_planar_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2:
+            num_trigonal_planar_atoms += 1
+    return num_trigonal_planar_atoms
+
+
+def rule37_linear_atoms(mol):
+    return mol.GetNumAtoms()
+
+
+def rule38_bent_atoms(mol):
+    # Assuming mol is a Mol object
+    atom_count = mol.GetNumAtoms()
+    return atom_count
+
+
+def rule39_tetrahedral_atoms(mol):
+    tetrahedral_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3:
+            tetrahedral_atoms += 1
+    return tetrahedral_atoms
+
+
+def rule40_trigonal_pyramidal_atoms(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3 and atom.GetAtomicNum() == 7:
+            count += 1
+    return count
+
+
+
+
+def rule42_trigonal_bipyramidal_atoms(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetDegree() == 5:
+            count += 1
+    return count
+
+
+def rule43_square_planar_atoms(mol):
+    square_planar_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2:
+            square_planar_atoms += 1
+    return square_planar_atoms
+
+
+def rule44_trigonal_planar_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2])
+
+def rule45_linear_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP])
+
+def rule47_tetrahedral_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3])
+
+def rule49_octahedral_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.rdchem.HybridizationType.SP3D2])

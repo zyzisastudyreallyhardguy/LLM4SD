@@ -1,0 +1,69 @@
+def rule1_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule2_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule3_halogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule4_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_sulfonamide_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+
+def rule7_sulfonamide_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+
+def rule8_carboxylic_acid(mol):
+    pattern = Chem.MolFromSmarts('C(=O)[O;h1]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule9_tertiary_amine(mol):
+    pattern = Chem.MolFromSmarts('[N;H0](C)(C)C')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule11_polar_functional_group(mol):
+    pattern = Chem.MolFromSmarts('[#7,#8,#16]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule12_hydrophobic_functional_group(mol):
+    pattern = Chem.MolFromSmarts('[#6]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule14_benzene_ring(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule16_metal_ion(mol):
+    metal_ions = ['Li', 'Na', 'K', 'Rb', 'Cs', 'Fr', 'Be', 'Mg', 'Ca', 'Sr', 'Ba', 'Ra', 'Sc', 'Y', 'La', 'Ac', 'Ti', 'Zr', 'Hf', 'Rf', 'V', 'Nb', 'Ta', 'Db', 'Cr', 'Mo', 'W', 'Sg', 'Mn', 'Tc', 'Re', 'Bh', 'Fe', 'Ru', 'Os', 'Hs', 'Co', 'Rh', 'Ir', 'Mt', 'Ni', 'Pd', 'Pt', 'Ds', 'Cu', 'Ag', 'Au', 'Rg', 'Zn', 'Cd', 'Hg', 'Cn', 'Al', 'Ga', 'In', 'Tl', 'Nh', 'Si', 'Ge', 'Sn', 'Pb', 'Fl', 'P', 'As', 'Sb', 'Bi', 'Mc', 'S', 'Se', 'Te', 'Po', 'Lv']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in metal_ions)
+
+def rule17_functional_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetTotalNumHs() == 1)
+
+def rule18_metal_ion(mol):
+    metal_ions = ['Pt', 'Hg']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in metal_ions)
+
+def rule19_sulfonyl_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and atom.GetTotalNumHs() == 2)
+
+def rule20_alcohol_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetTotalNumHs() == 1)
+
+def rule1_nitro_group(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and atom.GetTotalNumHs() == 2)
+
+def rule2_halogen_atom(mol):
+    halogens = ['F', 'Cl', 'Br']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)

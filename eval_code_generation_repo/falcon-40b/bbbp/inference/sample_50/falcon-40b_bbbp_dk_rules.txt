@@ -1,0 +1,23 @@
+def rule1_benzene_ring(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule2_nitrogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule3_chlorine_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule4_nitrogen_carbonyl_carboxylic(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('C(=O)O')))
+
+def rule5_bromine_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule6_nitrogen_carbonyl(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N'))) and len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule7_halogen_atom(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl'))) or len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule8_smile_string(mol):
+    return 'BBBP' in Chem.MolToSmiles(mol) and len(mol.GetSubstructMatches(Chem.MolFromSmiles('[N+]')))

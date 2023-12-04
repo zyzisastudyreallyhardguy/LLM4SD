@@ -1,0 +1,72 @@
+def rule1_logD_highly_lipophilic(mol):
+    logD = Descriptors.MolLogP(mol)
+    if logD < -0.1:
+        return 1
+    else:
+        return 0
+
+def rule2_logD_moderately_lipophilic(mol):
+    logD = Descriptors.MolLogP(mol)
+    if -0.4 <= logD < -0.1:
+        return 1
+    else:
+        return 0
+
+def rule3_logD_highly_lipophilic(mol):
+    logD = Descriptors.MolLogP(mol)
+    if logD > -0.8:
+        return 1
+    else:
+        return 0
+
+def rule3_logD_highly_lipophilic(mol):
+    logD = Descriptors.MolLogP(mol)
+    if logD > -0.8:
+        return 1
+    else:
+        return 0
+
+def rule4_logD_closer_to_minus_one(mol):
+    logD = Descriptors.MolLogP(mol)
+    if abs(logD + 1) < 0.1:
+        return 1
+    else:
+        return 0
+
+def rule5_logD_between_minus_point_one_and_minus_point_four(mol):
+    logD = Descriptors.MolLogP(mol)
+    if -0.4 < logD < -0.1:
+        return 1
+    else:
+        return 0
+
+def rule6_logD_closer_to_minus_one_than_minus_point_one_and_minus_point_four(mol):
+    logD = Descriptors.MolLogP(mol)
+    if abs(logD + 1) < abs(logD + 0.1) and abs(logD + 1) < abs(logD + 0.4):
+        return 1
+    else:
+        return 0
+
+def rule7_logD(mol):
+    logD = Descriptors.MolLogP(mol)
+    return logD
+
+def rule8_lipophilic(mol):
+    carbon_chains = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]'))
+    double_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]'))
+    polar_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7,#8]'))
+    logP = Descriptors.MolLogP(mol)
+    return len(carbon_chains), len(double_bonds), len(polar_groups), logP
+
+def rule9_logD(mol):
+    logD = Descriptors.MolLogP(mol)
+    return logD
+
+def rule10_logD_CO(mol):
+    logD = Descriptors.MolLogP(mol)
+    CO_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]'))
+    return logD, len(CO_bonds)
+
+def rule11_logD_O(mol):
+    logD = Descriptors.MolLogP(mol)
+    O_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[#8]'))

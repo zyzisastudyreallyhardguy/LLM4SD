@@ -1,0 +1,27 @@
+def rule1_hiv_inhibition(mol):
+    # This function will return the number of functional groups that can interact with the active site of the enzyme reverse transcriptase.
+    # For simplicity, let's assume that these functional groups are carboxyl groups (-COOH).
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule2_hiv_inhibition(mol):
+    # This function will return the number of functional groups that can interact with the viral enzyme reverse transcriptase.
+    # For simplicity, let's assume that these functional groups are hydroxyl groups (-OH).
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('O')))
+
+def rule3_hiv_inhibition(mol):
+    # This function will return the number of carbon chains that have two oxygen atoms attached.
+    # For simplicity, let's assume that these are carboxyl groups (-COOH).
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('CC(=O)O')))
+
+def rule4_hiv_inhibition(mol):
+    # This function will return the number of carbonyl groups in the molecule.
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')))
+
+def rule5_hiv_inhibition(mol):
+    # This function will return the number of structures that can interact with the viral enzyme reverse transcriptase and have a carbon-carbon bond between the two oxygen atoms.
+    # For simplicity, let's assume that these are carboxyl groups (-COOH) attached to a carbon chain.
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('CC(=O)O')))
+
+def rule6_hiv_inhibition(mol):
+    # This function will return the number of amine groups in the molecule.
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))

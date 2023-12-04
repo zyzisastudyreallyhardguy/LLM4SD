@@ -1,0 +1,66 @@
+def rule1_nitrogen_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule2_fluorine_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule3_functional_groups(mol):
+    carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    sulfonamides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    return carboxylic_acids + sulfonamides + amines
+
+def rule4_nitrogen_in_R_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[R]N')))
+
+def rule5_chlorine_presence(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule6_molecule_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule7_fluorine_at_position1(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[1*]F')))
+
+def rule8_nitrogen_at_end(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[*]N')))
+
+def rule10_sulfonamide_group(mol):
+    sulfonamide_pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(sulfonamide_pattern))
+
+def rule11_chlorine_atom(mol):
+    chlorine_pattern = Chem.MolFromSmarts('Cl')
+    return len(mol.GetSubstructMatches(chlorine_pattern))
+
+def rule12_functional_group(mol):
+    functional_group_pattern = Chem.MolFromSmarts('Clc1cc2nc(n(c2cc1)C(CC(C)C)CC(=O)NC(C)C)N')
+    return len(mol.GetSubstructMatches(functional_group_pattern))
+
+def rule13_sulfur_atom(mol):
+    sulfur_pattern = Chem.MolFromSmarts('S')
+    return len(mol.GetSubstructMatches(sulfur_pattern))
+
+def rule16_functional_groups(mol):
+    try:
+        functional_group1_pattern = Chem.MolFromSmarts('Fc1cc(cc(F)c1)CC(NC(=O)C(N1CCC(C(O)C(O)C)C1=O)C(OCCC)C1[NH2+]CC(OCCC)C1')
+        functional_group2_pattern = Chem.MolFromSmarts('S1(=O)(=O)N([C@]2(C[C@@H]([N@H+](CC2)Cc2cc(OC(C)C)c(O)cc2)C)CN1C)c1cc(F)ccc1')
+        
+        if functional_group1_pattern is None or functional_group2_pattern is None:
+            return 0
+
+        matches1 = mol.GetSubstructMatches(functional_group1_pattern)
+        matches2 = mol.GetSubstructMatches(functional_group2_pattern)
+
+        return len(matches1) + len(matches2)
+    except:
+        return 0
+
+
+def rule17_fluorine_atom(mol):
+    fluorine_pattern = Chem.MolFromSmarts('c1ccccc1F')
+    return len(mol.GetSubstructMatches(fluorine_pattern))
+
+def rule18_chlorine_atom(mol):
+    chlorine_pattern = Chem.MolFromSmarts('c1ccccc1Cl')
+    return len(mol.GetSubstructMatches(chlorine_pattern))

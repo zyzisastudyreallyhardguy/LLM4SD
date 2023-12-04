@@ -1,0 +1,63 @@
+def rule1_contains_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule2_contains_chlorine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#17]')))
+
+def rule3_contains_sulfur(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]')))
+
+def rule4_contains_carboxylic_acid_or_derivatives(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+
+def rule5_contains_amine_or_amide(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3,NX4+][CX4H]')))
+
+def rule6_contains_sulfonamide_or_sulfone(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)')))
+
+def rule7_contains_certain_functional_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3,NX4+][CX4H]'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)')))
+
+def rule8_contains_specific_functional_groups_and_ring_systems(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))) + len(mol.GetSubstructMatches(Chem.MolFromSmarts('[r5,r6]')))
+
+def rule10_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_halogen_atoms(mol):
+    halogens = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogens)
+
+def rule12_nitrogen_in_ring(mol):
+    nitrogen_in_ring = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.IsInRing():
+            nitrogen_in_ring += 1
+    return nitrogen_in_ring
+
+def rule13_sulfonamide_group(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule14_benzene_ring(mol):
+    pattern = Chem.MolFromSmarts('c1ccccc1')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule15_carbon_hydrogen_ratio(mol):
+    carbon_count = len([atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6])
+    hydrogen_count = len([atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 1])
+    return carbon_count / hydrogen_count if hydrogen_count != 0 else 0
+
+def rule16_bromine_atom(mol):
+    return len([atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 35])
+
+def rule17_platinum_atom(mol):
+    return len([atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 78])
+
+def rule18_charge(mol):
+    total_charge = sum([atom.GetFormalCharge() for atom in mol.GetAtoms()])
+    return total_charge
+
+def rule19_long_carbon_chain(mol):
+    pattern = Chem.MolFromSmarts('[#6](-[#6])=,:[#6]')

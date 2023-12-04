@@ -1,0 +1,69 @@
+def rule1_contains_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule2_contains_halogen(mol):
+    halogen_pattern = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule3_contains_carbonyl(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule5_contains_chlorine(mol):
+    chlorine_pattern = Chem.MolFromSmarts('[Cl]')
+    return len(mol.GetSubstructMatches(chlorine_pattern))
+
+def rule6_contains_amidine_or_carboxylic_acid(mol):
+    amidine_pattern = Chem.MolFromSmarts('C(=N)N')
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(amidine_pattern)) + len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+def rule7_contains_aldehyde_ketone_amide_carboxylic_acid(mol):
+    aldehyde_pattern = Chem.MolFromSmarts('[CX3H1](=O)[#6]')
+    ketone_pattern = Chem.MolFromSmarts('[#6][CX3](=O)[#6]')
+    amide_pattern = Chem.MolFromSmarts('[#6][CX3](=O)[NH1,NH2]')
+    carboxylic_acid_pattern = Chem.MolFromSmarts('C(=O)O')
+
+def rule8_lipophilicity_mw(mol):
+    lipophilicity = Descriptors.MolLogP(mol)
+    molecular_weight = Descriptors.MolWt(mol)
+    return lipophilicity, molecular_weight
+
+def rule10_carbonyl_nitrogen(mol):
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]'))
+    nitrogen_atom = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]'))
+    return len(carbonyl_group), len(nitrogen_atom)
+
+def rule11_nitro_carboxylic(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    carboxylic_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    return len(nitro_group), len(carboxylic_group)
+
+def rule12_phenyl(mol):
+    phenyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+    return len(phenyl_group)
+
+def rule13_nitro_chlorine(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    chlorine_atom = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl]'))
+    return len(nitro_group), len(chlorine_atom)
+
+def rule1_nitro(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+
+def rule2_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule3_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule4_nitro_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule5_carboxylic_acid_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O;h1]')))
+
+def rule7_nitro_and_carboxylic_acid_groups(mol):
+    return rule4_nitro_groups(mol) and rule5_carboxylic_acid_groups(mol)

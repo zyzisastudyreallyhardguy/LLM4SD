@@ -1,0 +1,125 @@
+def rule1_AHR_binding_sites(mol):
+    # This function would require a database of known AHR binding sites
+    # and a method to search the molecule for these sites.
+    # The function would return the number of AHR binding sites in the molecule.
+    pass
+
+def rule2_AHR_antagonists(mol):
+    # This function would require a database of known AHR antagonists
+    # and a method to search the molecule for these antagonists.
+    # The function would return the number of AHR antagonists in the molecule.
+    pass
+
+def rule3_ROS_generating_moieties(mol):
+    # This function would require a database of known ROS generating moieties
+    # and a method to search the molecule for these moieties.
+    # The function would return the number of ROS generating moieties in the molecule.
+    pass
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_polar_groups(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule6_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule7_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule8_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule10_zinc_presence(mol):
+    return int(mol.HasSubstructMatch(Chem.MolFromSmiles('[Zn]')))
+
+def rule11_sulfonamide_presence(mol):
+    return int(mol.HasSubstructMatch(Chem.MolFromSmiles('S(=O)(=O)N')))
+
+def rule12_aromatic_rings_heteroatoms(mol):
+    aromatic_rings = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+    heteroatoms = rdMolDescriptors.CalcNumHeteroatoms(mol)
+    return aromatic_rings + heteroatoms
+
+def rule13_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+
+def rule14_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule15_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+
+def rule16_specific_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35]')))
+
+def rule17_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule18_specific_functional_groups(mol):
+    sulfonates = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)[O-]'))
+    sulfates = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)(O)O'))
+    phosphates = mol.GetSubstructMatches(Chem.MolFromSmarts('P(=O)(O)(O)O'))
+    return len(sulfonates) + len(sulfates) + len(phosphates)
+
+def rule19_reactive_functional_groups(mol):
+    epoxides = mol.GetSubstructMatches(Chem.MolFromSmarts('O1CC1'))
+    quinones = mol.GetSubstructMatches(Chem.MolFromSmarts('O=C1C=CC(=O)C=C1'))
+    nitroso = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+
+def rule20_toxic_features(mol):
+    n_pah = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1c2ccccc2')))
+    n_halogen = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+    n_heavy_metal = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#50,#82,#83,#84,#86]')))
+    return n_pah + n_halogen + n_heavy_metal
+
+def rule21_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule22_toxic_features(mol):
+    n_benzene = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+    n_halogen = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl,Br]')))
+    n_nitrogen = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+    n_positive_charge = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[+1]')))
+    return n_benzene + n_halogen + n_nitrogen + n_positive_charge
+
+def rule23_positive_nitrogen(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7+1]')))
+
+def rule24_negative_charge(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[-1]')))
+
+def rule25_benzene_positive_charge(mol):
+    n_benzene = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+    n_positive_charge = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[+1]')))
+    return n_benzene + n_positive_charge
+
+def rule26_reactive_groups(mol):
+    n_epoxides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('O1CC1')))
+    n_aldehydes = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')))
+    n_ketones = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=O)[#6]')))
+    return n_epoxides + n_aldehydes + n_ketones
+
+def rule27_hb_donors_acceptors(mol):
+    n_hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    n_hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return n_hb_donors + n_hb_acceptors
+
+def calculate_solubility(mol):
+    # replace with your own function
+    # this is just a placeholder
+    solubility = mol.GetNumHeavyAtoms() / 10.0
+    return solubility
+
+def rule28_lipophilicity_solubility(mol):
+    lipophilicity = Descriptors.MolLogP(mol)
+    solubility = calculate_solubility(mol)
+    return lipophilicity - solubility
+
+
+def rule29_toxic_chlorine(mol):
+    n_chlorine_benzene = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1Cl')))
+    n_chlorine_nitrogen = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]Cl')))
+    n_chlorine_sulfur = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]Cl')))

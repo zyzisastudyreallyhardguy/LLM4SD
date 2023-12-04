@@ -1,0 +1,35 @@
+
+def rule6_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#9,#17,#35,#53]")))
+
+def rule7_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6]")))
+
+def rule8_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule9_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule10_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol))
+
+def rule11_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule13_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule15_hydrogen_bonding_capacity(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule16_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule17_hydrophobicity(mol):
+    return Descriptors.MolLogP(mol)

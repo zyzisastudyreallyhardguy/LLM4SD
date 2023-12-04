@@ -1,0 +1,70 @@
+def rule1_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule2_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule3_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule4_electronegativity(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule5_shape(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_lone_pairs(mol):
+    return sum([atom.GetTotalNumHs() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 or atom.GetAtomicNum() == 8 or atom.GetAtomicNum() == 16])
+
+def rule10_molar_mass(mol):
+    return Descriptors.MolWt(mol)
+
+def rule11_dipole_moment(mol):
+    try:
+        # Assuming 'mol' has a method 'to_list()' that returns a list
+        lst = mol.to_list()
+        return lst[5]  # This will raise an error if lst has less than 6 elements
+    except (IndexError, AttributeError):
+        return 0  # Return 0 or any other number if the index is out of range or 'mol' doesn't have 'to_list()' method
+
+
+def rule16_vdw_volume(mol):
+    return Descriptors.ExactMolWt(mol)
+
+def rule17_hb_acceptor_capacity(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule18_hb_donor_capacity(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule19_num_hydrogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule20_molecular_geometry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule21_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule22_hydroxyl_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule23_carbonyl_groups(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6][#6](=[O])')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+
+def rule25_sulfur_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('S')))
+
+def rule26_phosphorus_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('P')))
+
+def rule27_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule28_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule29_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))

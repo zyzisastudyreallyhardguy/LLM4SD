@@ -1,0 +1,83 @@
+def rule1_carbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#8]')))
+
+def rule2_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#9,#17,#35,#53]')))
+
+def rule3_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]')))
+
+def rule3_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule1_carbonyl_group(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule2_halogen_atom(mol):
+    halogen_pattern = Chem.MolFromSmarts('[#9,#17,#35,#53]')
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def rule3_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule4_nitro_group_SR(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule5_carbonyl_group_SR(mol):
+    carbonyl_pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    return len(mol.GetSubstructMatches(carbonyl_pattern))
+
+def rule5_PAH_structure(mol):
+    PAH_pattern = Chem.MolFromSmarts('c1ccccc1-c2ccccc2')
+
+def rule6_halogen_presence(mol):
+    halogens = ['F', 'Cl', 'Br']
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule7_func_group_presence(mol):
+    patt1 = Chem.MolFromSmarts('C=O')
+    patt2 = Chem.MolFromSmarts('[N+](=O)[O-]')
+    if mol.HasSubstructMatch(patt1) or mol.HasSubstructMatch(patt2):
+        return 1
+    return 0
+
+def rule8_halogen_presence(mol):
+    halogens = ['Cl', 'Br']
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule9_pah_presence(mol):
+    patt = Chem.MolFromSmiles('c1ccccc1')
+    if mol.HasSubstructMatch(patt):
+        return 1
+    return 0
+
+def rule10_func_group_presence(mol):
+    patt1 = Chem.MolFromSmiles('c1ccccc1')
+    patt2 = Chem.MolFromSmiles('Cl')
+    if mol.HasSubstructMatch(patt1) or mol.HasSubstructMatch(patt2):
+        return 1
+    return 0
+
+def rule11_polar_func_group_presence(mol):
+    patt1 = Chem.MolFromSmarts('O')
+    patt2 = Chem.MolFromSmarts('N')
+    if mol.HasSubstructMatch(patt1) or mol.HasSubstructMatch(patt2):
+        return 1
+    return 0
+
+def rule12_reactive_func_group_presence(mol):
+    patt1 = Chem.MolFromSmarts('C=O')
+    patt2 = Chem.MolFromSmarts('C=C')
+    if mol.HasSubstructMatch(patt1) or mol.HasSubstructMatch(patt2):
+        return 1

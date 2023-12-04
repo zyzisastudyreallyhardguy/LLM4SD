@@ -1,0 +1,229 @@
+def rule1_carbonyl_double_bond(mol):
+    pattern = Chem.MolFromSmarts('C=O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule2_chlorine_atom(mol):
+    pattern = Chem.MolFromSmarts('[Cl]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule3_sulfonyl_group(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)[!H]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule4_nitro_group(mol):
+    pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule5_halogen_atom(mol):
+    pattern = Chem.MolFromSmarts('[Cl,Br]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_sulfonamide_group(mol):
+    pattern = Chem.MolFromSmarts('S(=O)(=O)N')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule7_bromine_chlorine_atoms(mol):
+    pattern = Chem.MolFromSmarts('[Br,Cl]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule8_phosphorus_carbon_bond(mol):
+    pattern = Chem.MolFromSmarts('P(C)(C)(C)C')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule9_chlorine_cyclopropane(mol):
+    pattern = Chem.MolFromSmarts('[Cl]C1CC1')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule10_sulfur_oxygen(mol):
+    sulfur_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[#16]'))
+    for sulfur_atom in sulfur_atoms:
+        neighbors = mol.GetAtomWithIdx(sulfur_atom[0]).GetNeighbors()
+        for neighbor in neighbors:
+            if neighbor.GetSymbol() == 'O':
+                return 1
+    return 0
+
+def rule11_nitro_halogen(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    halogen_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl,Br]'))
+    if nitro_group or halogen_atoms:
+        return 1
+    return 0
+
+def rule12_sulfonyl(mol):
+    sulfonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)'))
+    if sulfonyl_group:
+        return 1
+    return 0
+
+def rule13_long_chain(mol):
+    long_chain = mol.GetSubstructMatches(Chem.MolFromSmarts('[CH2][CH2][CH2][CH2][CH2][CH2]'))
+    if long_chain:
+        return 1
+    return 0
+
+def rule14_nitro_nitrate(mol):
+    nitro_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]'))
+    nitrate_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[O-][N+](=O)[O-]'))
+    if nitro_group or nitrate_group:
+        return 1
+    return 0
+
+def rule15_carbonyl_alkene(mol):
+    carbonyl_alkene = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3]=[OX1].[CX3]=[CX3]'))
+    if carbonyl_alkene:
+        return 1
+    return 0
+
+def rule16_sulfonamide(mol):
+    sulfonamide_group = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N'))
+    if sulfonamide_group:
+        return 1
+    return 0
+
+def rule1_bromine(mol):
+    bromine_atoms = mol.GetSubstructMatches(Chem.MolFromSmarts('[Br]'))
+    if bromine_atoms:
+        return 1
+    return 0
+
+def rule2_carbonyl(mol):
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3]=[OX1]'))
+    if carbonyl_group:
+        return 1
+
+def rule3_long_carbon_chain(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]1-[#6]-[#6]-[#6]-[#6]-[#6]-1')))
+
+def rule4_bromine_or_chlorine(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#35,#17]')))
+
+def rule5_sulfonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16](=[#8])(-[#6])-[#6]')))
+
+def rule6_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule7_chlorine_carbon_bond(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#17]')))
+
+def rule8_carbonyl_thiocarbonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[#8,#16])')))
+
+def rule9_carbonyl_carboxylic_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[#8])O')))
+
+def rule10_negatively_charged_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[#8])O')) + mol.GetSubstructMatches(Chem.MolFromSmarts('[#16](=[#8])(=[#8])O')))
+
+def rule11_carbonyl_alkene_conjugation(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6](=[#8])-[#6]=[#6]')))
+
+def rule13_sulfonyl_nitro(mol):
+    sulfonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)'))
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    return len(sulfonyl) + len(nitro)
+
+def rule14_carbonyl_nitrile(mol):
+    carbonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    nitrile = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+    return len(carbonyl) + len(nitrile)
+
+def rule15_negatively_charged(mol):
+    cooh = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    so3h = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)O'))
+    return len(cooh) + len(so3h)
+
+def rule16_sulfonyl_nitro(mol):
+    return rule13_sulfonyl_nitro(mol)
+
+def rule17_cyano_nitro(mol):
+    cyano = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+    nitro = mol.GetSubstructMatches(Chem.MolFromSmarts('N(=O)=O'))
+    return len(cyano) + len(nitro)
+
+def rule18_sulfonyl(mol):
+    sulfonyl = mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)'))
+    return len(sulfonyl)
+
+def rule19_halogen(mol):
+    halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('[Cl,Br]'))
+    return len(halogen)
+
+def rule20_phosphonate_phosphate(mol):
+    phosphonate = mol.GetSubstructMatches(Chem.MolFromSmarts('P(=O)(O)O'))
+    phosphate = mol.GetSubstructMatches(Chem.MolFromSmarts('P(=O)(O)(O)O'))
+    return len(phosphonate) + len(phosphate)
+
+def rule21_cyano(mol):
+    cyano = mol.GetSubstructMatches(Chem.MolFromSmarts('C#N'))
+
+def rule22_carbonyl_alkene(mol):
+    pattern = Chem.MolFromSmarts('[#6]=[#6]-[#6]=[#8]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule23_bromine_atoms(mol):
+    pattern = Chem.MolFromSmarts('[#35]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule24_carbonyl_doublebond(mol):
+    pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule25_nitro_sulfonyl(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    sulfonyl_pattern = Chem.MolFromSmarts('S(=O)(=O)')
+    nitro_matches = mol.GetSubstructMatches(nitro_pattern)
+    sulfonyl_matches = mol.GetSubstructMatches(sulfonyl_pattern)
+    return len(nitro_matches) + len(sulfonyl_matches)
+
+def rule26_bromine_phenyl_carboxylic_cyclohexane(mol):
+    bromine_phenyl_pattern = Chem.MolFromSmarts('[#35]-[#6]=[#8]-c1ccccc1')
+    carboxylic_cyclohexane_pattern = Chem.MolFromSmarts('C1CCCCC1-C(=O)O')
+    bromine_phenyl_matches = mol.GetSubstructMatches(bromine_phenyl_pattern)
+    carboxylic_cyclohexane_matches = mol.GetSubstructMatches(carboxylic_cyclohexane_pattern)
+    return len(bromine_phenyl_matches) + len(carboxylic_cyclohexane_matches)
+
+def rule27_nitro_sulfonyl(mol):
+    return rule25_nitro_sulfonyl(mol)
+
+def rule28_carbonyl_doublebond(mol):
+    return rule24_carbonyl_doublebond(mol)
+
+def rule29_nitro_sulfonyl(mol):
+    return rule25_nitro_sulfonyl(mol)
+
+def rule30_carbonyl(mol):
+    pattern = Chem.MolFromSmarts('[#6]=[#8]')
+    matches = mol.GetSubstructMatches(pattern)
+
+def rule1_contains_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule2_contains_phosphate_group(mol):
+    phosphate_pattern = Chem.MolFromSmarts('P(=O)(O)(O)O')
+    return len(mol.GetSubstructMatches(phosphate_pattern))
+
+def rule3_aromatic_rings(mol):
+    aromatic_pattern = Chem.MolFromSmarts('c:c')
+    return len(mol.GetSubstructMatches(aromatic_pattern))
+
+def rule4_contains_bromine(mol):
+    bromine_pattern = Chem.MolFromSmarts('[Br]')
+    return len(mol.GetSubstructMatches(bromine_pattern))
+
+def rule5_contains_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_pattern))

@@ -1,0 +1,223 @@
+def rule4_conjugation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_lone_pairs(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetNumExplicitHs() > 0)
+
+def rule6_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_bonds(mol):
+    return mol.GetNumBonds()
+
+def rule8_ionic_bonds(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [1, 6, 7, 8, 9, 15, 16, 17])
+
+def rule9_branches(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule10_size(mol):
+    return mol.GetNumAtoms()
+
+def rule11_substituents(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [1, 6, 7, 8, 9, 15, 16, 17])
+
+def rule13_hydrophilic_nature(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule14_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule15_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule18_polarity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule25_metal_presence(mol):
+    metals = ['Li', 'Be', 'Na', 'Mg', 'Al', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in metals)
+
+def rule26_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule27_mol_charge(mol):
+    return sum(atom.GetFormalCharge() for atom in mol.GetAtoms())
+
+
+
+def rule30_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+
+
+    # Calculate molecular orbital energies
+    orbital_energies = AllChem.MMFFGetMoleculeProperties(mol).MMFFGetMIE(mol)
+
+    # The LUMO is the first unoccupied molecular orbital, which is the orbital with the lowest energy that is not filled with electrons
+    lumo_energy = min(energy for energy, occupancy in orbital_energies if occupancy == 0)
+
+    return lumo_energy
+
+def rule45_cc_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]'))) + 2*len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[#6]')))
+
+def rule46_metal_ions(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#3,#4,#11,#12,#19,#20,#37,#38,#55,#56,#87,#88]')))
+
+def rule47_heterocyclic(mol):
+    return sum(1 for ring in mol.GetRingInfo().AtomRings() if any(mol.GetAtomWithIdx(i).GetAtomicNum() != 6 for i in ring))
+
+def rule48_sp_carbon(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6;^2]')))
+
+def rule4_lone_pairs(mol):
+    return sum(atom.GetTotalNumHs() for atom in mol.GetAtoms())
+
+def rule6_HOMO_LUMO_gap(mol):
+    # This is a placeholder function as rdkit does not have a direct way to calculate HOMO-LUMO gap
+    # In a real scenario, quantum chemical calculations would be needed
+    return 0
+
+def rule7_num_functional_groups(mol):
+    # This is a placeholder function as the definition of "functional group" can vary
+    # A more sophisticated method would be needed to identify functional groups
+    return 0
+
+def rule8_molecular_size(mol):
+    return mol.GetNumAtoms()
+
+def rule9_num_aromatic_rings(mol):
+    aromatic_rings = [ring for ring in Chem.GetSSSR(mol) if ring.IsAromatic()]
+    return len(aromatic_rings)
+
+def rule10_num_heavy_atoms(mol):
+    return Descriptors.HeavyAtomCount(mol)
+
+def rule11_molecular_symmetry(mol):
+    # This is a placeholder function as rdkit does not have a direct way to calculate molecular symmetry
+    # In a real scenario, group theory calculations would be needed
+    return 0
+
+def rule12_num_cyclic_structures(mol):
+    return len(Chem.GetSSSR(mol))
+
+def rule13_molecular_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule14_num_unsaturated_bonds(mol):
+    unsaturated_bonds = [bond for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE]
+    return len(unsaturated_bonds)
+
+def rule15_num_heteroatoms(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule16_high_atomic_number(mol):
+    atomic_numbers = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    high_atomic_numbers = [num for num in atomic_numbers if num > 35 and num not in [9, 17, 35, 53, 85, 117, 16, 34, 52, 84, 116]]
+    return len(high_atomic_numbers)
+
+def rule19_charge(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule25_degree_unsaturation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+def rule4_pi_system_size(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule6_hybridization(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+
+
+def rule8_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule9_polarity(mol):
+    return rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule14_double_triple_bonds(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def rule16_degree_of_saturation(mol):
+    return Descriptors.NumSaturatedRings(mol)
+
+def rule17_hydrogen_bonds(mol):
+    return Descriptors.NumHDonors(mol)
+
+def rule21_metal_ions(mol):
+    metal_ions = ['Li', 'Be', 'Na', 'Mg', 'Al', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in metal_ions)
+
+def rule22_positive_charge(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+
+def rule23_heavy_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() > 20)
+
+def rule25_cyclic_nature(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule26_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule29_coordinating_atoms(mol):
+    coordinating_atoms = ['N', 'O', 'S']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in coordinating_atoms)
+
+def rule31_extended_conjugation(mol):
+    # This is a placeholder function, as RDKit cannot directly calculate conjugation
+    return 0
+
+def rule32_steric_factors(mol):
+    # This function calculates the number of rotatable bonds, which could be related to steric strain
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule33_aromatic_stabilization(mol):
+    # This function calculates the number of aromatic atoms
+    return sum(atom.GetIsAromatic() for atom in mol.GetAtoms())
+
+def rule34_inductive_effect(mol):
+    # This is a placeholder function, as RDKit cannot directly calculate inductive effects
+    return 0
+
+def rule35_leaving_groups(mol):
+    # This is a placeholder function, as RDKit cannot directly calculate leaving groups
+    return 0
+
+def rule36_polarizable_groups(mol):
+    # This function calculates the molecular polarizability
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule37_solvent_polarity(mol):
+    # This is a placeholder function, as RDKit cannot directly calculate solvent effects
+    return 0
+
+def rule38_molecular_configuration(mol):
+    # This is a placeholder function, as RDKit cannot directly calculate E,Z configuration
+    return 0
+
+def rule39_substituents_meta_position(mol):
+    # This is a placeholder function, as RDKit cannot directly calculate substituent positions
+    return 0
+
+def rule40_temperature_increase(mol):
+    # This is a placeholder function, as RDKit cannot directly calculate temperature effects
+    return 0
+
+def rule41_dipoles_polarization(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule43_carbon_chain_length(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]')))
+
+def rule48_open_chain(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule50_multiple_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[*]=[*]=[*]')))

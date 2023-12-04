@@ -1,0 +1,79 @@
+def rule3_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule4_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_octanol_water_partition_coefficient(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_chiral_centers(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule9_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule10_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule_conjugated_systems(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return sum(aromatic_atoms)
+
+
+def rule_functional_groups(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+
+
+
+def rule_hydrophilic_groups(mol):
+    hydrophilic_atoms = [atom for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'O']]
+    return len(hydrophilic_atoms)
+
+
+def rule_charged_groups(mol):
+    charged_groups = 0
+    for atom in mol.GetAtoms():
+        charged_groups += abs(atom.GetFormalCharge())
+    return charged_groups
+
+
+def rule_polar_groups(mol):
+    polar_groups = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() not in ['C', 'H']:
+            polar_groups += 1
+    return polar_groups
+
+
+def rule_hydrogen_bonding_groups(mol):
+    num_hbd = rdMolDescriptors.CalcNumHBD(mol)
+    num_hba = rdMolDescriptors.CalcNumHBA(mol)
+    return num_hbd + num_hba
+
+
+def rule_steric_hindrance_groups(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule_steric_hindrance_groups(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+
+def rule_aromatic_groups(mol):
+    aromatic_atoms = [atom for atom in mol.GetAromaticAtoms()]
+    return len(aromatic_atoms)
+
+
+def rule_chiral_centers(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+

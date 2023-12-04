@@ -1,0 +1,130 @@
+def rule12345_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule67890_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule111213_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule141516_ring_systems(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule171819_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule202122_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule232425_nitrogen_atoms(mol):
+    return rdMolDescriptors.CalcNumNitrogens(mol)
+
+def rule12345_polar_group(mol):
+    polar_groups = ['O', 'N', 'F', 'P', 'S', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in polar_groups)
+
+def rule67890_nonpolar_group(mol):
+    nonpolar_groups = ['C', 'H']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in nonpolar_groups) <= 3
+
+def rule111213_balance_group(mol):
+    polar_groups = ['O', 'N', 'F', 'P', 'S', 'Cl', 'Br', 'I']
+    nonpolar_groups = ['C', 'H']
+    polar_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in polar_groups)
+    nonpolar_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in nonpolar_groups)
+
+def rule3_polar_functional_group(mol):
+    polar_groups = ['Cl', 'O', 'N', 'S']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in polar_groups:
+            return 1
+    return 0
+
+def rule4_hb_donors_and_acceptors(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    if hb_donors >= 1 and hb_acceptors >= 1:
+        return 1
+    return 0
+
+def rule12345_polar_group(mol):
+    polar_groups = ['[OH]', '[NH2]', '[NH]', '[O-]', '[N+]']
+    pattern = [Chem.MolFromSmarts(x) for x in polar_groups]
+    return sum([mol.HasSubstructMatch(x) for x in pattern])
+
+def rule67890_hydrophobic_group(mol):
+    hydrophobic_groups = ['[CH3]', '[CH2]', '[CH]', '[C]']
+    pattern = [Chem.MolFromSmarts(x) for x in hydrophobic_groups]
+    return sum([mol.HasSubstructMatch(x) for x in pattern])
+
+def rule111213_functional_group(mol):
+    functional_groups = ['[COOH]', '[CONH2]', '[CN]', '[CCl3]']
+    pattern = [Chem.MolFromSmarts(x) for x in functional_groups]
+
+
+def rule123456_min_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule789012_max_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule345678_min_heavy_atoms(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule901234_max_heavy_atoms(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule567890_min_rot_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule234567_max_rot_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule890123_min_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+def rule123456_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule789012_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule1_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule2_size(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule123456_carbon_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C')))
+
+def rule789012_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule345678_chlorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Cl')))
+
+def rule901234_bromine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('Br')))
+
+def rule567890_fluorine_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('F')))
+
+def rule234567_nitro_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('NO2')))
+
+def rule890123_hydroxyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('OH')))
+
+def rule678901_ethoxy_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('OCC')))
+
+def rule012345_methyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('CH3')))
+
+def rule789012_sulfonyl_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('SO2')))
+
+def rule345678_cyano_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('CN')))

@@ -1,0 +1,39 @@
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_ionizable_groups(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule3_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule4_conjugated_systems(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_aromatic_rings(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_lipophilicity(mol):
+    nonpolar_atoms = [atom for atom in mol.GetAtoms() if atom.GetAtomicNum() not in [5,6,7,8,9,15,16,17,35,53]]
+    return len(nonpolar_atoms)
+
+def rule8_flexibility(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_ionization_effect(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_charged_species(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule11_solubility(mol):
+    return Descriptors.MolLogP(mol) - Descriptors.MolMR(mol)
+
+def rule15_metabolism_potential(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[1] # Using logP as a proxy for metabolism potential
+
+def rule17_estimate_logD(mol):
+    return Descriptors.MolLogP(mol) # Using MolLogP to estimate logD
+
+def rule19_assess_stability(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol) # Using number of rotatable bonds as a proxy for stability

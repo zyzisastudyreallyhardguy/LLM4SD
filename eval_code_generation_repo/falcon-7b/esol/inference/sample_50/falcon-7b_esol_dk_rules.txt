@@ -1,0 +1,85 @@
+def rule1_log_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_polar_molecules(mol):
+    return Descriptors.MolMR(mol)
+
+def rule6_mol_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule6_mol_size(mol):
+    return Descriptors.HeavyAtomCount(mol)
+
+def rule6_mol_shape(mol):
+    if mol.GetNumConformers() >= 1:
+        return rdMolDescriptors.CalcAsphericity(mol)
+    else:
+        return 0
+
+
+def rule7_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule8_mol_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule9_mol_electronegativity(mol):
+    return Descriptors.MinPartialCharge(mol)
+
+def rule11_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule12_electronegativity(mol):
+    return Descriptors.MolWt(mol) / Descriptors.NumValenceElectrons(mol)
+
+def rule13_size(mol):
+    return Descriptors.MolWt(mol)
+
+def rule14_size_impact(mol):
+    return Descriptors.MolWt(mol)
+
+def rule16_mol_size_electronegativity(mol):
+    size = mol.GetNumAtoms()
+    electronegativity = sum([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+    return size * electronegativity
+
+def rule17_mol_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule18_oxygen_water_ratio(mol):
+    num_oxygen = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    num_water = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    return num_oxygen / num_water if num_water != 0 else 0
+
+def rule1_mol_size(mol):
+    return mol.GetNumAtoms()
+
+def rule2_mol_polarity_inverse(mol):
+    polarity = Descriptors.TPSA(mol)
+
+def rule3_electronegativity(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_polar_molecules(mol):
+    return Descriptors.TPSA(mol)
+
+def rule5_apolar_molecules(mol):
+    return Descriptors.TPSA(mol)
+
+def rule6_polar_molecules(mol):
+    return Descriptors.TPSA(mol)
+
+def rule7_log_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_log_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule9_predict_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_log_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule11_molecular_structure(mol):
+    return Descriptors.NumHDonors(mol) + Descriptors.NumHAcceptors(mol)

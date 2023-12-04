@@ -1,0 +1,74 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule4_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule5_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_xlogp3(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule9_lipinski_violations(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule10_reactive_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule12_unsaturated_bonds(mol):
+    unsaturated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE or bond.GetBondType() == Chem.rdchem.BondType.TRIPLE:
+            unsaturated_bonds += 1
+    return unsaturated_bonds
+
+
+def rule14_halogen_atoms(mol):
+    num_heteroatoms = Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
+    num_oxygen = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    return num_heteroatoms - num_oxygen
+
+
+def rule16_aliphatic_rings(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule17_dipole_moment(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule18_oxygen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule20_nitrogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+
+def rule21_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+
+def rule25_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule26_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule28_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule28_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)

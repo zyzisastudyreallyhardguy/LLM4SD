@@ -1,0 +1,71 @@
+def rule1_contains_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule2_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule3_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_nitrogen_and_logP(mol):
+    return rule1_contains_nitrogen(mol), rule2_logP(mol)
+
+def rule5_num_polar_atoms(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule6_contains_halogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl'])
+
+def rule7_num_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule8_logP(mol):
+    return rule2_logP(mol)
+
+def rule9_num_amides_carbamates(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N'), sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetTotalNumHs() == 1)
+
+def rule11_mol_weight_lipophilicity(mol):
+    mol_weight = Descriptors.MolWt(mol)
+    lipophilicity = Descriptors.MolLogP(mol)
+    return mol_weight, lipophilicity
+
+def rule12_rigid_high_mol_weight(mol):
+    mol_weight = Descriptors.MolWt(mol)
+    rigidity = Descriptors.NumRotatableBonds(mol)
+    return mol_weight, rigidity
+
+def rule13_polar_func_group(mol):
+    amino_group = mol.GetSubstructMatches(Chem.MolFromSmarts('N'))
+    hydroxyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('O'))
+    return len(amino_group), len(hydroxyl_group)
+
+def rule14_carbonyl_group(mol):
+    carbonyl_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C=O'))
+    return len(carbonyl_group)
+
+def rule15_amide_ester_group(mol):
+    amide_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N'))
+    ester_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O'))
+    return len(amide_group), len(ester_group)
+
+def rule16_carbon_chain(mol):
+    carbon_chain = mol.GetSubstructMatches(Chem.MolFromSmarts('C-C'))
+    return len(carbon_chain)
+
+
+
+def rule18_rigid_planar_large_surface(mol):
+    rigidity = Descriptors.NumRotatableBonds(mol)
+    planarity = Descriptors.NumAromaticRings(mol)
+    surface_area = Descriptors.TPSA(mol)
+    return rigidity, planarity, surface_area
+
+def rule19_phosphate_carbamate_group(mol):
+    phosphate_group = mol.GetSubstructMatches(Chem.MolFromSmarts('P(=O)(O)(O)'))
+    carbamate_group = mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N'))
+    return len(phosphate_group), len(carbamate_group)
+
+def rule20_flexible_polar_surface(mol):
+    flexibility = Descriptors.NumRotatableBonds(mol)
+    polar_surface_area = Descriptors.TPSA(mol)

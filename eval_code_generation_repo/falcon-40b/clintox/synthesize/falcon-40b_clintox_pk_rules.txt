@@ -1,0 +1,102 @@
+def rule_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule_rot_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule_chiral_centers(mol):
+    return rdMolDescriptors.CalcNumAtomStereoCenters(mol)
+
+
+def rule_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule_charged_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule_conjugated_bonds(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol) + rdMolDescriptors.CalcNumAliphaticHeterocycles(mol)
+
+def rule_stereocenters(mol):
+    chiral_centers = Chem.FindMolChiralCenters(mol)
+    return len(chiral_centers)
+
+def rule_stereocenters(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    chiral_centers = Chem.FindMolChiralCenters(mol)
+    return len(chiral_centers)
+
+
+def rule_double_bonds(mol):
+    query = Chem.MolFromSmarts('=')
+    if query is None:
+        return 0
+    return len(mol.GetSubstructMatches(query))
+
+
+def rule_sp3_carbons(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX4]')))
+
+def rule_aromatic_carbons(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c')))
+
+def rule_saturated_carbons(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX4H2,CX4H3]')))
+
+def rule_amide_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N')))
+
+def rule_amine_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+
+def rule_sulfhydryl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('S')))
+
+def rule_halogens(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+
+def rule_oxygen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+
+def rule_carbonyl_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('C=O')))
+
+def rule_nitro_count(mol):
+    nitro = Chem.MolFromSmiles('N(=O)=O')
+    if nitro is not None:
+        return len(mol.GetSubstructMatches(nitro))
+    else:
+        return 0
+
+
+def rule_quaternary_carbon_count(mol):
+    quaternary_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and atom.GetTotalDegree() == 4:
+            quaternary_carbons += 1
+    return quaternary_carbons
+
+def rule_chiral_centers_count(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule_stereogenic_centers_count(mol):
+    return len(Chem.FindMolChiralCenters(mol))
+
+def rule_ring_systems_count(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule_functional_groups_count(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule_hydrogen_count(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmiles('[H]')))
