@@ -1,0 +1,490 @@
+CC1=CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC1=CC1CC
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to neoplasms, benign, malignant, and unspecified. With label 0, it means the smile string is related to adverse effects. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is likely to cause adverse effects.
+
+1. Rule 1: If the smile string is related to neoplasms, benign, or unspecified, then the molecule is likely to cause adverse effects.
+
+2. Rule 2: If the smile string is related to neoplasms, malignant, or unspecified, then the molecule is likely to cause adverse effects.
+
+3. Rule 3: If the smile string is related to benign neoplasms, then the molecule is likely to cause adverse effects.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smiley string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smiley string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+2. Rule 2: If the smiley string is not related to neoplasms, it is likely that the molecule is not involved in the development of neoplasms.
+
+3. Rule 3: If the smiley string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+================================
+
+The following response is a step-by-step approach to inferring whether a molecule is likely to cause adverse effects.
+
+1. Identify the properties/structures of the molecule that are related to neoplasms, benign, malignant, and unspecified. In this case, the properties/structures related to neoplasms are the presence of a side-effect activity and the absence of a therapeutic index.
+
+2. Count the number of occurrences of each property/structure in the molecule.
+
+3. Use the count to determine the likelihood of the molecule causing adverse effects. If the count is high, it is likely that the molecule is causing adverse effects. If the count is low, it is likely that the molecule is not causing adverse effects.
+
+In this specific example, the properties/structures related to neoplasms are the presence of a side-effect activity and the absence of a therapeutic index. The count of these properties/structures in the molecule is 0, which means that the molecule is not likely to cause adverse effects.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to neoplasms, benign, malignant, and unspecified. With label 0, it means the smiley string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smiley string is related to the side-effect activity, the molecule is likely to have a side-effect.
+
+2. Rule 2: If the smiley string is not related to the side-effect activity, the molecule is likely to be benign.
+
+3. Rule 3: If the smiley string is related to the side-effect activity, the molecule is likely to be malignant.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smile string is related to the side-effect activity, the property "side-effect activity" should be true.
+
+2. Rule 2: If the smile string is not related to the side-effect activity, the property "side-effect activity" should be false.
+
+3. Rule 3: If the smile string is related to the side-effect activity, the property "side-effect activity" should be true. If the smile string is not related to the side-effect activity, the property "side-effect activity" should be false.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, the property "is a side-effect of a drug" should be true.
+
+2. Rule 2: If the smile string is not related to neoplasms, the property "is a side-effect of a drug" should be false.
+
+3. Rule 3: If the smile string is related to neoplasms, the property "is a side-effect of a drug" should be true.
+
+Based on these rules, the following smile strings can be predicted to be related to neoplasms:
+
+- "is a side-effect of a drug" (true)
+- "is a side-effect of a drug" (false)
+- "is a side-effect of a drug" (true)
+- "is a side-effect of a drug" (false)
+- "is a side-effect of a drug" (true)
+- "is a side-effect of a drug" (false)
+- "is a side-effect of a drug" (true)
+- "is a side-effect of a drug" (false)
+- "is a side-effect of a drug" (true)
+- "is a side-effect of a drug" (false)
+- "is a side-effect of a drug" (true)
+- "is a side-effect of a drug" (false)
+- "is a side-effect of a drug" (true
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, it is likely that the molecule is not involved in the development of neoplasms.
+
+3. Rule 3: If the smile string is related to neoplasms, it is likely that the molecule is involved in the progression of neoplasms.
+
+================================
+
+The following response is a list of three rules that can be used to predict whether a molecule is related to neoplasms, benign, or malignant. The rules are based on the properties/structures of a molecule and are explained in the text. The response is in the format of a list, where each item is a rule. The first item is the rule that relates to the structure of the molecule, the second item is the rule that relates to the properties of the molecule, and the third item is the rule that relates to the presence of the molecule in neoplasms.
+
+================================
+
+The following rules can be used to predict whether a molecule is likely to cause adverse effects:
+
+1. If a molecule has a side-effect related to neoplasms, benign, or malignant, it is likely to cause adverse effects.
+
+2. If a molecule has a side-effect related to cysts or polyps, it is likely to cause adverse effects.
+
+3. If a molecule has a side-effect related to neoplasms, benign, or malignant, and is not related to cysts or polyps, it is likely to cause adverse effects.
+
+================================
+
+CC12CCC3C(C1CCC2=O)CCC4=C3C=CC(=C4)O
+
+The instruction asks for a rule that can be used to predict whether a molecule is related to neoplasms benign, malignant, or unspecified. The rule is based on the assumption that the presence of a certain property or structure in a molecule is related to its activity in causing adverse effects. The rule is specific to neoplasms and can be used to identify molecules that may be related to their development. The rule is based on the assumption that the presence of a certain property or structure in a molecule is related to its activity in causing adverse effects. The rule is specific to neoplasms and can be used to identify molecules that may be related to their development.
+
+================================
+
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(C)C)O 0
+CC(C)NCC(COC1=CC=C(C=C1)CC(
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smiley string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smiley string is related to neoplasms, the property "C1=C(C=C1)C" should be true.
+
+2. Rule 2: If the smiley string is not related to neoplasms, the property "C1=C(C=C1)C" should be false.
+
+3. Rule 3: If the smiley string is related to neoplasms, the property "C1=C(C=C1)C" should be true.
+
+================================
+
+The data suggests that the label 1 is related to the side-effect activity of a molecule related to neoplasms benign, malignant, and unspecified. The specific rules to infer the properties/structures of a molecule to predict whether it is can cause adverse effects are: (1) if the label is 0, it means the molecule is not related to neoplasms benign, malignant, and unspecified; (2) if the label is 1, it means the molecule is related to neoplasms benign, malignant, and unspecified; (3) if the label is 2, it means the molecule is related to neoplasms benign, malignant, and unspecified; (4) if the label is 3, it means the molecule is related to neoplasms benign, malignant, and unspecified; and (5) if the label is 4, it means the molecule is related to neoplasms benign, malignant, and unspecified.
+
+================================
+
+The data suggests that the presence of a certain molecule in a molecule related to neoplasms, benign, malignant, and unspecified can be used to infer adverse effects. Specifically, the presence of a certain molecule in a molecule related to neoplasms can be used to infer that the molecule is likely to be involved in the development of neoplasms.
+
+================================
+
+CC(C(C)C)N(C)C
+
+The instruction asks for a rule that can be used to predict whether a molecule is related to neoplasms, benign, or malignant. The rule should be based on the properties/structures of the molecule. The response provides a specific example of a rule that can be used to predict the type of molecule.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, it is likely that the molecule is not involved in the development of neoplasms.
+
+3. Rule 3: If the smile string is related to neoplasms, it is likely that the molecule is involved in the progression of neoplasms.
+
+================================
+
+The data suggests that the smiley string related to neoplasms benign, malignant, and unspecified is related to the side-effect activity of a molecule related to neoplasms benign, malignant, and unspecified. The specific rules to predict whether a molecule is related to adverse effects are: 1) if the molecule is related to neoplasms benign, malignant, or unspecified, then it is likely to cause adverse effects; 2) if the molecule is related to neoplasms benign, malignant, or unspecified, but not specifically related to the side-effect activity of the molecule, then it is likely to cause adverse effects; 3) if the molecule is not related to neoplasms benign, malignant, or unspecified, then it is unlikely to cause adverse effects.
+
+================================
+
+CC1=CC=C(C=C1)C2=CC=C(C=C2)C3=CC=C(C=C3)C4=CC=C(C=C4)C5=CC=C(C=C5)C6=CC=C(C=C6)C7=CC=C(C=C7)C8=CC=C(C=C8)C9=CC=C(C=C9)C10=CC=C(C=C10)C11=CC=C(C=C11)C12=CC=C(C=C12)C13=CC=C(C=C13)C14=CC=C(C=C14)C15=CC=C(C=C15)C16=CC=C(C=C16)C17=CC=C(C=C17)C18=CC=C(C=C18)C19=CC=C(C=C19)C20=CC=C(C=C20)C21=CC=C(C=C21)C22=CC=C(C=C22)C23=CC=C(C=C23)C24=CC=C(C=C24)C25=CC=C(C=C25)C26=CC=C(C=C26)C27=CC=C(C=C27)C28=CC=C(C=C28)C29=CC=C(C=C29)C30=CC=C(C=C30)C31=CC=C(C=C31)C32=CC=C(C=C32)C33=CC=C(C=C33)C34=CC=C
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, it is likely that the molecule is not involved in the development of neoplasms.
+
+3. Rule 3: If the smile string is related to neoplasms, it is likely that the molecule is involved in the progression of neoplasms.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, it is likely that the molecule is not involved in the development of neoplasms.
+
+3. Rule 3: If the smile string is related to neoplasms, it is likely that the molecule is involved in the progression of neoplasms.
+
+================================
+
+The data suggests that the presence of a certain molecule in a molecule related to neoplasms benign, malignant, or unspecified can be used to infer whether it is likely to cause adverse effects. Specifically, the presence of a certain molecule in a molecule related to neoplasms benign, malignant, or unspecified can be used to infer whether it is likely to cause adverse effects.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to neoplasms, benign, malignant, and unspecified. With label 0, it means the smiley string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smiley string is related to the side-effect activity, the molecule is likely to have a side-effect.
+
+2. Rule 2: If the smiley string is not related to the side-effect activity, the molecule is likely to be benign.
+
+3. Rule 3: If the smiley string is related to the side-effect activity, the molecule is likely to be malignant.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+1. Rule 1: If the smile string is related to neoplasms, the property "Smile" should be true.
+2. Rule 2: If the smile string is not related to neoplasms, the property "Smile" should be false.
+3. Rule 3: If the smile string is related to neoplasms, the property "Smile" should be true.
+
+================================
+
+The following response is a list of three rules that can be used to predict whether a molecule is likely to cause adverse effects. These rules are based on the properties and structures of the molecule and are not specific to any particular type of molecule.
+
+1. Rule 1: If a molecule has a side-effect activity related to neoplasms, cysts, or benign tumors, it is likely to cause adverse effects.
+
+2. Rule 2: If a molecule has a side-effect activity related to neoplasms, cysts, or benign tumors, it is likely to cause adverse effects.
+
+3. Rule 3: If a molecule has a side-effect activity related to neoplasms, cysts, or benign tumors, it is likely to cause adverse effects.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to neoplasms benign, malignant, and unspecified (incl cysts and polyps). With label 0, it means the smile string is not related to this property. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to this property.
+
+1. Rule 1: If the smile string is related to the side-effect activity of a molecule, then the smile string should be present in the molecule's PDB structure.
+
+2. Rule 2: If the smile string is not present in the molecule's PDB structure, then the smile string should be absent in the molecule's PDB structure.
+
+3. Rule 3: If the smile string is present in the molecule's PDB structure, then the smile string should be absent in the molecule's PDB structure.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, it is likely that the molecule is not involved in the development of neoplasms.
+
+3. Rule 3: If the smile string is related to neoplasms, it is likely that the molecule is involved in the progression of neoplasms.
+
+================================
+
+CC1=C(C=C1)NC2=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=C2C=CC=CC=
+
+================================
+
+CCCCC1=C(C=C1)C2=CC=CC=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C2=C=C2Cl
+CC1=C(C=C1)C
+
+================================
+
+CC(C)C1=NC(=NC(=C1C=C[C@@H](C[C@]4([C@H]3CC[C@@]4(C(C)C)O)O)O)C2=CC=C(C=C2)F)N(C)S(=O)C 1
+C1=CC=C(C=C1)CCNN 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(C)C 0
+C1=CC=C(C=C1)C(
+
+================================
+
+CC1=CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1CC=C1
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, it is likely that the molecule is not involved in the development of neoplasms.
+
+3. Rule 3: If the smile string is related to neoplasms, it is likely that the molecule is involved in the progression of neoplasms.
+
+================================
+
+CC(C)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C2=CC=C(C=C2)C1C
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smiley string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smiley string is related to neoplasms, it is likely that the molecule is involved in the development or progression of neoplasms.
+
+2. Rule 2: If the smiley string is not related to neoplasms, it is likely that the molecule is involved in the development or progression of benign neoplasms.
+
+3. Rule 3: If the smiley string is not related to neoplasms, it is likely that the molecule is involved in the development or progression of malignant neoplasms.
+
+================================
+
+The data suggests that the label 1 is related to the side-effect activity of a molecule related to neoplasms benign, malignant, and unspecified. The label 0 indicates that the smiley string is not related to this property.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, the molecule is likely to be involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, the molecule is likely to be involved in the treatment of neoplasms.
+
+3. Rule 3: If the smile string is related to neoplasms, the molecule is likely to be involved in the progression of neoplasms.
+
+================================
+
+The data provided is a list of labels and corresponding rules. The labels are 1, 2, and 3, and the rules are (1) "C=O" for a molecule related to neoplasms, benign, or malignant, and (2) "C=O" for a molecule related to neoplasms, benign, or malignant, and (3) "C=O" for a molecule related to neoplasms, benign, or malignant, and (4) "C=O" for a molecule related to neoplasms, benign, or malignant, and (5) "C=O" for a molecule related to neoplasms, benign, or malignant, and (6) "C=O" for a molecule related to neoplasms, benign, or malignant, and (7) "C=O" for a molecule related to neoplasms, benign, or malignant, and (8) "C=O" for a molecule related to neoplasms, benign, or malignant, and (9) "C=O" for a molecule related to neoplasms, benign, or malignant, and (10) "C=O" for a molecule related to neoplasms, benign, or malignant, and (11) "C=O" for a molecule related to neoplasms, benign, or malignant, and (12) "C=O" for a molecule related to neoplasms, benign, or malignant, and (13) "C=O" for a molecule related to neoplasms, benign, or malignant, and (14) "C=O" for a molecule related to neoplasms, benign, or malignant, and (15) "C=O" for a molecule
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, then the molecule is likely to be involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, then the molecule is likely to be involved in the development of benign neoplasms.
+
+3. Rule 3: If the smile string is not related to neoplasms, then the molecule is likely to be involved in the development of malignant neoplasms.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+1. Rule 1: If the smile string is related to neoplasms, the property "is related to neoplasms" should be true.
+2. Rule 2: If the smile string is not related to neoplasms, the property "is not related to neoplasms" should be true.
+3. Rule 3: If the smile string is related to neoplasms, the property "is related to neoplasms" should be true. If the smile string is not related to neoplasms, the property "is not related to neoplasms" should be true.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, it is likely that the molecule is not involved in the development of neoplasms.
+
+3. Rule 3: If the smile string is related to neoplasms, it is likely that the molecule is involved in the progression of neoplasms.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, it is likely that the molecule is not involved in the development of neoplasms.
+
+3. Rule 3: If the smile string is related to neoplasms, it is likely that the molecule is involved in the progression of neoplasms.
+
+================================
+
+CC1=CC=C1
+CC2=CC=C2
+CC3=CC=C3
+CC4=CC=C4
+CC5=CC=C5
+CC6=CC=C6
+CC7=CC=C7
+CC8=CC=C8
+CC9=CC=C9
+CC10=CC=C10
+CC11=CC=C11
+CC12=CC=C12
+CC13=CC=C13
+CC14=CC=C14
+CC15=CC=C15
+CC16=CC=C16
+CC17=CC=C17
+CC18=CC=C18
+CC19=CC=C19
+CC20=CC=C20
+CC21=CC=C21
+CC22=CC=C22
+CC23=CC=C23
+CC24=CC=C24
+CC25=CC=C25
+CC26=CC=C26
+CC27=CC=C27
+CC28=CC=C28
+CC29=CC=C29
+CC30=CC=C30
+CC31=CC=C31
+CC32=CC=C32
+CC33=CC=C33
+CC34=CC=C34
+CC35=CC=C35
+CC36=CC=C36
+CC37=CC=C37
+CC38=CC=C38
+CC39=CC=C39
+CC40=CC=C40
+CC41=CC=C41
+CC42=CC=C42
+CC43=CC=C43
+CC44=CC=C44
+CC45=CC=C45
+CC46=CC=C46
+CC47=CC=C47
+CC48=CC=C48
+CC49=CC=C49
+CC50=CC
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to neoplasms, benign, malignant, and unspecified. With label 0, it means the smiley string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smiley string is related to the side-effect activity, then the molecule is likely to have a side-effect.
+
+2. Rule 2: If the smiley string is not related to the side-effect activity, then the molecule is likely not to have a side-effect.
+
+3. Rule 3: If the smiley string is related to the side-effect activity, then the molecule is likely to have a side-effect.
+
+================================
+
+CC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C)NCC(C
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smile string is not related to neoplasms. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to predict whether it is can cause adverse effect.
+
+1. Rule 1: If the smile string is related to neoplasms, it is likely that the molecule is involved in the development of neoplasms.
+
+2. Rule 2: If the smile string is not related to neoplasms, it is likely that the molecule is not involved in the development of neoplasms.
+
+3. Rule 3: If the smile string is related to neoplasms, it is likely that the molecule is involved in the progression of neoplasms.
+
+================================
+
+CC1=CC(C)C1=CC(C)C2=CC(C)C3=CC(C)C4=CC(C)C5=CC(C)C6=CC(C)C7=CC(C)C8=CC(C)C9=CC(C)C10=CC(C)C11=CC(C)C12=CC(C)C13=CC(C)C14=CC(C)C15=CC(C)C16=CC(C)C17=CC(C)C18=CC(C)C19=CC(C)C20=CC(C)C21=CC(C)C22=CC(C)C23=CC(C)C24=CC(C)C25=CC(C)C26=CC(C)C27=CC(C)C28=CC(C)C29=CC(C)C30=CC(C)C31=CC(C)C32=CC(C)C33=CC(C)C34=CC(C)C35=CC(C)C36=CC(C)C37=CC(C)C38=CC(C)C39=CC(C)C40=CC(C)C41=CC(C)C42=CC(C)C43=CC(C)C44=CC(C)C45=CC(C)C46=CC(C)C47=CC(C)C48=CC(C)C49=CC(C)C50=CC(C)C51=CC(C)C52=CC(C)C53=CC(C)C54=CC(C)C55=CC(C)C56=CC
+
+================================
+
+CC(C)CCOC(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(C)C(
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to neoplasms, benign, malignant, and unspecified. With label 0, it means the smiley string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smiley string is related to the side-effect activity, the molecule should have at least one smiley string that is related to the side-effect activity.
+
+2. Rule 2: If the smiley string is not related to the side-effect activity, the molecule should have at least one smiley string that is not related to the side-effect activity.
+
+3. Rule 3: If the smiley string is related to the side-effect activity, the molecule should have at least one smiley string that is related to the side-effect activity.
+
+================================
+
+The following data is related to neoplasms benign, malignant, and unspecified. With label 0, it means the smiley string is not related to adverse effects. With label 1, it means the smiley string is related to neoplasms benign, malignant, and unspecified. Please use the following rules to predict whether a molecule is likely to cause adverse effects:
+
+1. If the smiley string is related to neoplasms benign, malignant, and unspecified, then it is likely to cause adverse effects.
+
+2. If the smiley string is related to neoplasms benign, malignant, and unspecified, but not specifically to the type of cancer or tumor, then it is likely to cause adverse effects.
+
+3. If the smiley string is related to neoplasms benign, malignant, and unspecified, but specifically to a type of cancer or tumor, then it is likely to cause adverse effects.
+
+4. If the smiley string is not related to any type of cancer or tumor, it is likely to cause adverse effects.
+
+================================
+
+The following rules can be used to predict whether a molecule is likely to cause adverse effects:
+
+1. If a molecule has a side-effect related to neoplasms, benign, or malignant, it is likely to cause adverse effects.
+
+2. If a molecule has a side-effect related to cysts or polyps, it is likely to cause adverse effects.
+
+3. If a molecule has a side-effect related to neoplasms, benign, or malignant, it is likely to cause adverse effects.
+
+================================
+

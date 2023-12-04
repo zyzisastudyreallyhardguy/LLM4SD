@@ -1,0 +1,332 @@
+Rule 1: If there is any presence of the functional group "-CN" in the molecular structure, then it may lead to adverse effects. The given SMILES string contains this functional group which indicates its potential toxicity.
+Rule 2: If there is any presence of the functional group "-COOH" or "-CONH2" in the molecular structure, then it may also lead to adverse effects. However, these groups do not appear in the given SMILES string. Therefore, we cannot make any prediction based on them.
+Rule 3: If there is any presence of the metal ion magnesium (Mg) in the molecular structure, then it may lead to adverse effects. The given SMILES string contains Mg which suggests its possible toxic nature.
+
+================================
+
+Rule 1: If a compound contains a sulfonyl group (SO2R) or a carbonyl group (COR) in its structure, it may have side effects related to injury, poisoning, and procedural complications. This rule applies to compounds represented by SMILES strings CS(=O)(=O)C1=CC=C(C=C1)C2=C(C(=O)OC2)C3=CC=CC=C3 1 and CC(C)(C(=O)O)OC1=CC=C(C=C1)CCNC(=O)C2=CC=C(C=C2)Cl 1.
+Rule 2: If a compound has a nitroso group (NO) or a diazo group (N2) in its structure, it may not have any side effects related to injury, poisoning, and procedural complications. This rule applies to compounds represented by SMILES strings CN(C)CCOC(C1=CC=C(C=C1)Cl)C2=CC=CC=N2 1 and C1CN(P(=O)(OC1)NCCCl)CCCl 1.
+Rule 3: If a compound contains a carboxylic acid group (COOH) or an ester group (COOR) in its structure, it may have side effects related to injury, poisoning, and procedural complications. This rule applies to compounds represented by SMILES strings COC1C(CC2CN3CCC4=C(C3CC2C1C(=O)OC)NC5=C4C=CC(=C5)OC)OC(=O)C=CC6=CC(=C(C(=C6)OC)OC)OC 1 and CCC[C@@H](C(=O)O)N[C@@H](C)C(=O)N1[C@H]2CCCC[C@H]2C[C@H]1C(=O)O 1.
+
+================================
+
+Rule 1: The presence of halogen atoms such as chlorine or bromine in a compound increases its likelihood of causing adverse effects due to their ability to disrupt biological systems through covalent bonding interactions. Therefore, compounds containing these elements should be labeled as having potential for toxicity.
+Rule 2: Compounds containing functional groups such as sulfonyl groups (-SO2R) or nitro groups (-NO2) have been associated with increased risk of adverse effects due to their ability to interfere with normal metabolic processes. Therefore, compounds containing these groups should also be labeled as potentially toxic.
+Rule 3: Compounds containing aromatic rings may also increase the likelihood of adverse effects due to their ability to interact with biological molecules through π-π stacking interactions. However, this rule is less specific than Rules 1 and 2, and additional information would be needed to make a more definitive prediction about the toxicity of any given compound.
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a sulfonamide group (-SO2NH-), it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to molecules 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a carbonyl group (represented by the SMILES notation "C=O"), then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to molecules 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, and 20.
+Rule 2: If the molecule contains a halogen atom (represented by the SMILES notation "X" where X is any halogen element), then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to molecules 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, and 20.
+Rule 3: If the molecule contains a sulfonamide group (represented by the SMILES notation "SO2NH"), then it may have the potential
+
+================================
+
+Rule 1: If a compound contains a sulfonyl group (SO2R) or a carbonyl group (COR) connected to a benzene ring, it may have side effects related to injury, poisoning, and procedural complications. The presence of these functional groups in a compound increases its reactivity and ability to interact with biological systems, which could lead to harmful consequences.
+Example: Label 1 for SMILES string CCCCCCC(=O)CCC1C(CC(C1CC=CCCCC(=O)O)O)O
+Rule 2: If a compound has a nitro group (NO2) attached to an aromatic ring, it may also have side effects related to injury, poisoning, and procedural complications. Nitro groups are highly reactive and can form covalent bonds with other molecules, leading to toxic reactions.
+Example: Label 1 for SMILES string CN1CCN(CC1)C(C2=CC=CC=C2)C3=CC=CC=C3
+Rule 3: If a compound contains a halogen atom such as chlorine (Cl) or fluorine (F) bonded to an aliphatic carbon chain, it may be less likely to have side effects related to injury, poisoning, and procedural complications. Halogen atoms can increase the lipophilicity of a compound, making it more likely to cross cell membranes and interact with intracellular targets. However, they do not necessarily indicate safety, as some compounds containing halogens have been associated with toxicity.
+Example: Label 0 for SMILES string CC1(C(NC(S1)C(C(=O)NCCCCCC(=O)O)NC(=O)CC2=CC=CC=C2)C(=O)O)C
+
+================================
+
+Rule 1: If the molecular structure contains a sulfonyl group (SO2R) or a nitro group (NO2), then it may have side effects related to injury, poisoning, and procedural complications. The presence of these groups in a compound increases its reactivity and toxicity, which can lead to adverse reactions.
+Example: CC1=CS(=O)(=O)c2ccc(cc2)n1 1
+Rule 2: If the molecular structure contains a heterocyclic ring system such as pyridine or pyrimidine, then it may also have side effects related to injury, poisoning, and procedural complications. These rings are known for their biological activities and can interact with various biomolecules, leading to toxic effects.
+Example: C1=Nc2nc(NS(=O)(=O)c3ccccc3cn2C)n(C)c1 1
+Rule 3: If the molecular structure contains a halogen atom such as fluorine or chlorine, then it may be less likely to have side effects related to injury, poisoning, and procedural complications. Halogen atoms are often used in drug design to increase lipophilicity and improve pharmacokinetic properties. However, they do not necessarily reduce toxicity.
+Example: CCC(=C)C(=O)C1=C(C(=C(C=C1)OCC(=O)O)Cl)Cl 1
+
+================================
+
+Rule 1: The presence of functional groups such as sulfonamide, nitro, amide, and halogenated compounds in a compound may increase its potential for causing adverse effects on the human body.
+Explanation: These functional groups have been known to disrupt normal biological processes by interacting with enzymes or proteins involved in cellular metabolism. They can also alter the structure and function of cells, leading to toxic effects. Therefore, molecules containing these groups should be carefully evaluated for their safety profiles before being used in drug development.
+Rule 2: A compound's molecular weight and hydrophobicity may affect its ability to cross cell membranes and interact with target receptors within the body. Molecules with high molecular weights and hydrophobicities tend to accumulate in lipid-rich tissues like the brain and liver, which can lead to toxicity. Therefore, drugs with low molecular weights and hydrophilic functionalities may be more favorable candidates for therapeutic use.
+Rule 3: The stereochemistry of a compound can significantly impact its bioactivity and pharmacokinetic profile. For example, enantiomers of chiral drugs often exhibit different pharmacological activities due to differences in their three-dimensional structures. Additionally, changes in conformation caused by isomerization or cyclization reactions can affect a compound's stability and metabolic fate. Therefore, careful consideration must be given to the stereochemical aspects of new drug candidates during preclinical testing.
+
+================================
+
+Rule 1: If the molecular structure contains a functional group such as "-NO2" or "-COOH", then it has high probability of causing adverse effects in humans. This rule applies to molecules represented by SMILES strings C1=CC(=CN=C1)CC(O)(P(=O)(O)O)P(=O)(O)O, CC(CC1=CC=CC=C1)NC, CCC12CCC3C(C1CCC2(C#C)O)CCC4=CC(=O)CCC34, Cl[Tl], CNCC(C1=CC(=C(C=C1)O)O)O, COC1=CC=CC2=CC=CC=C21, CCS, CCNCC(COC1=CC=CC2=CC=CC=C21)O, CNC(=O)C1CCCN1C(=O)C(CCCN=C(N)N)NC(=O)C(CC(C)C)NC(=O)C(COC(C)(C)C)NC(=O)C(CC2=CC=C(C=C2)O)NC(=O)C(CO)NC(=O)C(CC3=CNC4=CC=CC=C43)NC(=O)C(CC5=CN=CN5)NC(=O)C6CCC(=O)N6, B1(C2=C(CO1)C=C(C=C
+
+================================
+
+Rule 1: If the molecular structure contains a functional group such as "CCON" or "CCSCN", then it may have side effects related to injury, poisoning, and procedural complications. This rule applies to molecules 1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 in the given dataset.
+Rule 2: If the molecular structure has a halogen atom such as chlorine or fluorine attached to a carbon atom, then it may have side effects related to injury, poisoning, and procedural complications. This rule applies to molecules 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a phosphorus atom bonded to two oxygen atoms and one carbon atom, then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to the first SMILES string in the dataset labeled as 1.
+Rule 2: If the molecule contains a cyano group attached to a benzene ring through a vinylic carbon atom, then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to the second SMILES string in the dataset labeled as 1.
+Rule 3: If the molecule contains a sulfonic acid group, then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to the fifth SMILES string in the dataset labeled as 1.
+It's important to note that these rules are based solely on the information provided in the dataset and should be used cautiously until further research is conducted.
+
+================================
+
+Rule 1: If the molecular structure contains a cyano group (-CN) or a nitro group (-NO2), then it has a high probability of causing adverse effects in relation to injuries, poisonings, and procedural complications. The presence of these functional groups may increase the reactivity of the molecule and lead to toxic reactions.
+Example: C1=CN(C(=O)N=C1N)C2C(C(C(O2)CO)O)(F)F 1
+Rule 2: If the molecular structure contains a carbonyl group (-C=O) conjugated with an alkene group (-CH=CH-), then it has a low probability of causing adverse effects in relation to injuries, poisonings, and procedural complications. Conjugation between these two functional groups may increase the stability of the molecule and reduce its reactivity.
+Example: CC1=CC=CC=C1C(C2=CC=CC=C2)OCCN(C)C 0
+Rule 3: If the molecular structure contains a metal ion such as sodium (Na+) or iron (Fe+3), then it has a high probability of causing adverse effects in relation to injuries, poisonings, and procedural complications. These ions may increase the reactivity of the molecule and lead to toxic reactions.
+Example: F 1
+C([C@H]([C@H]([C@@H]([C@
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects based on its structure:
+Rule 1: If a molecule contains a sulfonyl group (SO2R) or a nitro group (NO2), then it may have the potential to cause adverse effects. The first two molecules in the dataset contain these groups and they both have labels of 1, indicating their ability to cause adverse effects.
+Rule 2: If a molecule contains a nitrile group (-CN), then it may not have the potential to cause adverse effects. The third molecule in the dataset contains this group and it has a label of 0, indicating no evidence of causing adverse effects.
+Rule 3: If a molecule contains a benzene ring, then it may have the potential to cause adverse effects. The fifth molecule in the dataset contains a benzene ring and it has a label of 1, indicating its ability to cause adverse effects.
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects based on its structure:
+Rule 1: If the molecule contains a sulfonyl group (-SO2-) or a phosphate group (-OPO3-), then it may have the potential to cause adverse effects in relation to injury, poisoning, and procedural complications. The first example in the dataset contains both groups and is labeled as having the potential for such effects.
+Rule 2: If the molecule contains a cyano group (-CN) attached to a carbon atom adjacent to a double bond, then it may also have the potential to cause adverse effects in relation to injury, poisoning, and procedural complications. The second example in the dataset contains this structural feature and is labeled as having the potential for such effects.
+Rule 3: If the molecule contains a nitro group (-NO2) attached to a benzene ring, then it may have the potential to cause adverse effects in relation to toxicity due to its ability to disrupt normal cellular processes. The third example in the dataset contains this structural feature and is labeled as having the potential for such effects.
+
+================================
+
+Rule 1: If the molecular structure contains a functional group such as "-COOH" or "-OH", then it has the potential to cause adverse effects in the body due to its ability to bind to proteins and other molecules. This rule applies to the first two SMILES strings provided where the presence of these groups may lead to toxicity issues if the compound enters the bloodstream.
+Rule 2: If the molecular structure contains a nitro group (-NO2), then it has the potential to cause adverse effects in the body due to its ability to interact with other molecules and disrupt normal cellular processes. This rule applies to the fifth SMILES string provided where the presence of this group may lead to mutagenicity issues if the compound enters the bloodstream.
+Rule 3: If the molecular structure contains multiple aromatic rings connected by single bonds, then it has the potential to cause adverse effects in the body due to its ability to intercalate between DNA base pairs and interfere with replication and transcription. This rule applies to the ninth SMILES string provided where the presence of this structural feature may lead to carcinogenicity issues if the compound enters the bloodstream.
+
+================================
+
+Rule 1: If there is a presence of chlorine atoms in the structure of a molecule, then it has a high probability of causing adverse effects related to injury, poisoning, or procedural complications. This rule can be applied to molecules represented by SMILES strings starting with "CCCl" as seen in the first example provided.
+Rule 2: If a molecule contains a nitro group (-NO2), then it may have the potential to cause adverse effects such as skin irritation or respiratory problems. This rule can be applied to molecules represented by SMILES strings containing the symbol for nitrogen in its oxidized state (N+) as seen in the third example provided.
+Rule 3: If a molecule contains a sulfhydryl group (-SH), then it may have the ability to cross-link proteins and cause tissue damage. This rule can be applied to molecules represented by SMILES strings containing the symbol for sulfur in its reduced state (S-) as seen in the fourth example provided.
+
+================================
+
+Rule 1: If the molecular structure contains a functional group such as "-NO2" or "-COOH", then it has high probability of causing adverse effects in humans. This rule applies to molecules labeled as 1 in the given dataset. For example, the first molecule contains two "-NO2" groups which may be responsible for its toxicity.
+Rule 2: If the molecular structure contains a conjugated system of double bonds, then it also has high probability of causing adverse effects in humans. This rule applies to molecules labeled as 1 in the given dataset. For example, the third molecule contains a highly conjugated system of double bonds which may be responsible for its reactivity.
+Rule 3: If the molecular structure contains a heterocyclic ring, then it has moderate probability of causing adverse effects in humans. This rule applies to molecules labeled as either 0 or 1 in the given dataset. For example, the sixth molecule contains a thiazole ring which may be responsible for its biological activity. However, this rule does not apply to all types of heterocycles since some may have no significant impact on the molecule's properties.
+
+================================
+
+Rule 1: If the molecular structure contains a functional group such as -OH or -COOH, it may lead to toxicity due to its ability to form hydrogen bonds with other molecules in the body. Therefore, molecules containing these groups should be avoided if possible.
+Rule 2: Molecules with aromatic rings tend to have higher lipophilicity than those without them, which increases their potential for bioaccumulation and toxicity. Therefore, molecules containing aromatic rings should also be avoided unless they have been extensively tested for safety.
+Rule 3: The presence of certain atoms or substructures within a molecule can increase its likelihood of causing adverse effects. For example, sulfur-containing compounds like thiophene and benzothiazole are known to be toxic, while nitrogen-containing heterocycles like pyridine and pyrimidine can act as DNA intercalators and disrupt normal cellular processes. Therefore, molecules containing these moieties should be carefully evaluated before being used in any application.
+
+================================
+
+Rule 1: The presence of certain functional groups in a molecule may increase its likelihood of causing adverse effects if they interact with biological systems in ways that disrupt normal function or lead to toxicity. For example, the nitro group (-NO2) in the first SMILES string could be responsible for potential toxicity due to its ability to form reactive oxygen species upon reduction by enzymes such as cytochrome P450. Similarly, the sulfonamide group (-SO2NH2) in the second SMILES string has been associated with idiosyncratic drug reactions due to its ability to bind to proteins and form haptens. Therefore, molecules containing these or similar functional groups should be evaluated carefully for their potential to cause adverse effects.
+Rule 2: The molecular weight and hydrophobicity of a compound can also influence its ability to cross cell membranes and reach target sites within cells. Molecules with high molecular weights and hydrophobicities tend to have lower aqueous solubilities and higher membrane permeabilities than those with low values for these parameters. This can make them more likely to accumulate in tissues and cause adverse effects, particularly when administered at high doses or over long periods of time. Therefore, compounds with high molecular weights and lipophilicities should be considered potentially hazardous until proven otherwise.
+Rule 3: The stereochemistry of a molecule can play a significant role in determining its biological activity and potential toxicity. For example, the third SMILES string contains a chiral center and a double bond that can exist in either cis or trans configuration depending on the orientation of the substituents around each atom. The trans isomer is known to be less active against certain enzymes than the cis isomer, which could affect its therapeutic efficacy and safety profile. Therefore, it
+
+================================
+
+Rule 1: If a compound contains a functional group such as "COC(=O)N" or "CCNC(=O)N(CCCN(C)C)C(=O)" in its structure, then it has a high probability of causing adverse effects if administered orally or parenterally. This is because these groups are known to be toxic and can cause damage to tissues and organs.
+Rule 2: If a compound contains a conjugated system of double bonds, such as "C1=CC=C(C=C1)C(COC(=O)N)COC(=O)N", then it also has a high probability of causing adverse effects due to its ability to absorb light energy and generate reactive oxygen species. These radicals can cause oxidative stress and damage to DNA, proteins, and lipids.
+Rule 3: If a compound contains a long carbon chain with multiple double bonds, such as "CCC1CCC[C@@H](C(C(=O)C2=C[C@H]3[C@@H]4C[C@@H](C[C@H]4C=C[C@H]3[C@@H]2CC(=O)O1)O[C@H]5[C@@H]([C@@H]([C@H]([C@@H](O5)C)OC)OC)OC)C)O[C@H]6CCC([C@H](O6)C)N(C)C.CCC1CCC[C@@H](C(C(=O)C2=C[C@H]3[C@@H]4C[C@@H](C[C@H]4C(=C[C@H]3[C@@H]2CC(=O)O1)C)O[C@H]5[C@@H]([C@@H]([C@H]([C@@H](O5)C)OC)OC)OC)C)O[C@H]6CCC([C@H](O6)C)N(C)C", then it may have low water solubility and poor absorption when taken orally. Therefore, it may require higher doses to achieve therapeutic levels and increase the risk of adverse effects.
+
+================================
+
+Rule 1: If the molecular formula contains platinum, then it has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications. This rule applies only to the first SMILE string provided.
+Rule 2: If the molecule contains chlorine atoms, then it may have the ability to cause adverse effects due to its reactivity. This rule applies only to the second SMILE string provided.
+Rule 3: If the molecule contains a sulfonyl group, then it may be able to cause adverse effects by disrupting normal cellular processes. This rule applies only to the fifth SMILE string provided.
+
+================================
+
+Rule 1: If the molecular structure contains a functional group such as -COOH or -CHO, then it may have side effects related to injury, poisoning, and procedural complications. The presence of these groups indicates that the compound could be toxic or irritating to the body.
+Rule 2: If the molecular structure has multiple rings or conjugated double bonds, then it may also have similar side effects due to its high reactivity and ability to interact with other molecules in the body. These types of structures often indicate that the compound is potentially harmful.
+Rule 3: If the molecular structure contains nitrogen atoms, especially in the form of amines or amides, then it may also have side effects related to injury, poisoning, and procedural complications. Nitrogen-containing compounds can be toxic and irritating to the body, and they may interfere with normal cellular processes.
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a functional group such as CC(C)C(=O)OC1=C(C=C(C=C1)CO)[C@H](CCN(C(C)C)C(C)C)C2=CC=CC=C2, then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule is based on the fact that this particular functional group is commonly found in molecules that have been associated with these types of adverse effects.
+Rule 2: If the molecule contains a functional group such as CN1CCN(CC1)C(C2=CC=CC=C2)C3=CC=CC=C3, then it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule is based on the fact that this particular functional group is also commonly found in molecules that have been associated with these types of adverse effects.
+Rule 3: If the molecule contains a functional group such as C1CN2C(=CC=C2C(=O)C3=CC=CC=C3)C1C(=O)O, then it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule is
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a functional group such as "CCCC(=O)O" or "CC(C1=CC(=C(C=C1)C2=CC=CC=C2)F)C(=O)O", then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. These functional groups are commonly found in molecules that are known to cause irritation or inflammation.
+Rule 2: If the molecule contains a functional group such as "CCCCN1C[C@@H]([C@H]([C@@H]([C@H]1CO)O)O)O" or "CN1C=NC2=C1C(=O)N(C(=O)N2C)C", then it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. These functional groups are commonly found in molecules that are known to cause allergic reactions or other immune system responses.
+Rule 3: If the molecule contains a functional group such as "CC12CCC(=O)C=C1CCC3C2C(CC4(C3CCC4(C(=O)CO)O)C)O" or "CC1C(C(CC(O1)OC2C(C(C(OC2OC3=C4C=C5C=C3
+
+================================
+
+Rule 1: If the molecular structure contains a chlorine atom bonded to a carbon atom, then it has a high probability of causing adverse effects in humans. This rule applies to molecules represented by SMILES strings labeled as "1" in the given dataset. For example, the first molecule listed in the dataset contains a chlorine atom attached to a carbon atom, which may contribute to its potential for causing adverse effects.
+Rule 2: If the molecular structure contains a nitro group (-NO2), then it also has a high probability of causing adverse effects in humans. This rule applies to molecules represented by SMILES strings labeled as "1" in the given dataset. For example, the fifth molecule listed in the dataset contains a nitro group, which may contribute to its potential for causing adverse effects.
+Rule 3: If the molecular structure contains a carbonyl group (-C=O), then it does not have a significant impact on the likelihood of causing adverse effects in humans. This rule applies to molecules represented by SMILES strings labeled as "0" or "1" in the given dataset. For example, the third molecule listed in the dataset contains a carbonyl group but is still classified as having no significant risk of causing adverse effects due to other structural features present in the molecule.
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a carbonyl group (C=O), then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to molecules represented by SMILES strings labeled as 1 in the dataset. For example, the first molecule listed in the dataset contains a carbonyl group and is labeled as 1, indicating that it has the potential to cause adverse effects related to injuries, poisonings, or procedural complications.
+Rule 2: If the molecule contains a benzene ring (C6H5), then it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to molecules represented by SMILES strings labeled as either 1 or 0 in the dataset. For example, the second molecule listed in the dataset contains a benzene ring and is labeled as 1, indicating that it has the potential to cause adverse effects related to injuries, poisonings, or procedural complications. The third molecule listed in the dataset contains a benzene ring but is labeled as 0, indicating that it does not have the potential to cause adverse effects related to injuries, poisonings, or procedural complications.
+Rule 3: If the molecule contains a halogen atom such as fluorine (F), chlorine (Cl), bromine (Br), or iodine (I), then it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to molecules
+
+================================
+
+Rule 1: If the molecular structure contains a functional group such as "-NO2" or "-COOH", then it has a high probability of causing adverse effects in humans. This rule applies to molecules represented by SMILES strings labeled as 1 in the given dataset. For example, the first molecule listed in the dataset contains a nitro group (-NO2) which may be responsible for its toxicity.
+Rule 2: If the molecular structure contains a positively charged nitrogen atom bonded to two hydrogen atoms (i.e., NH2+), then it also has a high probability of causing adverse effects in humans. This rule applies to molecules represented by SMILES strings labeled as 1 in the given dataset. For example, the second molecule listed in the dataset contains an ammonium ion (NH2+) which may be responsible for its irritant properties.
+Rule 3: If the molecular structure contains a sulfur atom bonded to a positively charged oxygen atom (i.e., SO3^-), then it has a low probability of causing adverse effects in humans. This rule applies to molecules represented by SMILES strings labeled as 0 in the given dataset. For example, the third molecule listed in the dataset contains a sulfite ion (SO3^-) which is commonly used as a preservative in food and beverages due to its low toxicity.
+
+================================
+
+Rule 1: The presence of functional groups such as sulfonyl group (-SO2R) or nitro group (-NO2) in a compound may increase its potential for causing adverse effects on human health. Therefore, compounds containing these functional groups should be carefully evaluated for their safety profiles before being used in drug development.
+Rule 2: Compounds with aromatic rings or conjugated double bonds may also have higher chances of exhibiting toxicity due to their ability to interact with biological molecules through π-π stacking interactions or electron transfer reactions. Therefore, careful consideration should be given when designing drugs containing these structural features.
+Rule 3: The length and complexity of a compound's structure may also play a role in determining its toxicity profile. Generally, smaller and simpler structures tend to be less toxic than larger and more complex ones. However, this rule should be applied cautiously since exceptions exist. For example, some small molecules like acetaminophen can cause severe liver damage at high doses despite having a relatively simple structure.
+
+================================
+
+Rule 1: If the molecular formula contains iodine or calcium ions, then it has no relation to causing adverse effects in injuries, poisonings, and procedural complications.
+Explanation: Iodine and calcium ions do not have any direct impact on biological systems and cannot be linked to specific chemical reactions involved in these conditions. Therefore, molecules containing them should not be considered as potential causes of adverse effects.
+Rule 2: If the molecule contains a sulfonyl group (-SO2-), then it may have some relation to causing adverse effects in injuries, poisonings, and procedural complications.
+Explanation: Sulfonyl groups are known for their ability to bind to proteins and affect their function. They can also react with other functional groups such as amines and alcohols, which could potentially lead to unwanted interactions within a cell. However, this rule should be used with caution since there may be many other factors that contribute to the overall toxicity of a compound.
+Rule 3: If the molecule contains a nitro group (-NO2), then it may have some relation to causing adverse effects in injuries, poisonings, and procedural complications.
+Explanation: Nitro groups are known for their ability to interact with biological systems and affect various biochemical processes. They can act as electron-withdrawing groups, change the acidity of neighboring protons, and form covalent bonds with other atoms. These properties make nitro compounds potentially toxic and suggest they may play a role in causing adverse effects in certain situations.
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If a compound contains a sulfonamide group (-SO2NH2), it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to compounds 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If a compound contains a sulfonyl group (SO2R), it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. The first example in the dataset contains a sulfonyl group and has been labeled as having the potential to cause such effects.
+Rule 2: If a compound contains a nitro group (NO2), it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. The second example in the dataset contains a nitro group and has been labeled as having the potential to cause such effects.
+Rule 3: If a compound contains both a sulfonyl group and a nitro group, it may have even greater potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule is based on the fact that these two functional groups are often associated with toxic compounds. The third example in the dataset contains both a sulfonyl group and a nitro group and has been labeled as having high potential to cause such effects.
+
+================================
+
+Rule 1: If the molecular structure contains a functional group such as "-COOH" or "-OH", then it may have the potential to cause adverse effects in the body due to its ability to bind to proteins and other molecules.
+Rule 2: If the molecular structure has a high degree of conjugation, then it may also have the potential to cause adverse effects due to its ability to interact with biological systems and disrupt normal cellular processes.
+Rule 3: If the molecular structure contains a toxicophore, which is a specific structural feature that contributes to toxicity, then it is more likely to cause adverse effects in the body. For example, if the molecular structure contains a nitro group (-NO2), then it may be highly toxic due to its ability to form reactive oxygen species and damage DNA.
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects based on its structure:
+Rule 1: If a molecule contains a functional group such as "CC(=O)O" or "CCONP(=O)(Oc)c1ccc(cc1)n1nnnc1" in its SMILES representation, then it may have the potential to cause adverse effects related to injury, poisoning, and procedural complications.
+Rule 2: If a molecule contains a halogen atom such as chlorine ("Cl") or fluorine ("F") in its SMILES representation along with a nitro group ("-NO2") attached to a benzene ring, then it may have the potential to cause adverse effects by inhibiting enzymes involved in metabolism.
+Rule 3: If a molecule contains a sulfonyl group ("SO2R") in its SMILES representation, then it may have the potential to cause adverse effects due to its ability to cross the blood-brain barrier and affect brain function.
+
+================================
+
+Rule 1: The presence of a sulfonamide group in a compound increases its chances of causing adverse effects related to injury, poisoning, and procedural complications. This rule applies to molecules represented by SMILES strings C1NNC(=O)NS1 and CCC(C)C1C(=O)NC(C(=O)NAr)C(=O)N2CCCC2C(=O)NAC(Ar)c3ccccc3 for some aryl group Ar.
+Rule 2: A compound containing a nitro group attached to an aromatic ring has a higher chance of causing adverse effects if it also contains a carboxylic acid or amide functional group. This rule applies to molecules represented by SMILES strings CC(=O)ONC(=O)C1=C(C=C(C=C1I)C(=O)NCC(CO)O)I and CN(C)CCCClC1=CC=CT1 where T represents any substituent that does not contain a carbonyl group.
+Rule 3: If a compound contains both a halogen atom and a nitrile group, it may have a high risk of causing adverse effects related to injury, poisoning, and procedural complications. This rule applies to molecules represented by SMILES strings ClCNN(C)C and COC(=O)Nc1ccc(cc1F)Br.
+
+================================
+
+Rule 1: The presence of certain functional groups in a molecule may increase its likelihood of causing adverse effects if they interact with biological systems in ways that disrupt normal function or lead to toxicity. For example, the nitro group (-NO2) in the first SMILES string suggests potential toxicity due to its ability to form reactive oxygen species upon reduction by enzymes such as cytochrome P450. Similarly, the sulfonamide group (-SO2NH2) in the third SMILES string is known to be associated with adverse effects such as hypersensitivity reactions and idiosyncratic toxicity.
+Rule 2: The molecular geometry and electronic configuration of a compound can also affect its reactivity and potential for adverse effects. For instance, the fourth SMILES string contains a nitrone group (-N=C=O) which has been shown to have anti-inflammatory and neuroprotective activities but can also react with DNA and proteins leading to genotoxicity and immunotoxicity. Additionally, the fifth SMILES string features a phosphorus atom with a double bond to nitrogen, which can undergo nucleophilic attack and generate toxic metabolites.
+Rule 3: The size and complexity of a molecule can influence its bioavailability and pharmacokinetic profile, which in turn affects its potential for adverse effects. For example, the seventh SMILES string includes a large macrocycle with multiple chiral centers and hydrogen bonding sites, which may hinder its absorption and distribution into tissues and cells. This could potentially limit its therapeutic utility while increasing the risk of off-target interactions and adverse events.
+
+================================
+
+Rule 1: The presence of certain functional groups in a molecule may increase its likelihood of causing adverse effects if they interact with biological systems in ways that disrupt normal function or lead to toxicity. For example, the carbonyl group (C=O) present in the first SMILES string could be responsible for potential toxic effects due to its ability to react with other molecules through covalent bonding.
+Rule 2: The structure of a molecule can also play a role in determining its potential for adverse effects. For instance, the second SMILES string contains several amide bonds which have been associated with toxicity due to their ability to form stable complexes with metal ions such as iron. Additionally, the presence of multiple double bonds in the chain may contribute to reactivity and susceptibility to oxidation.
+Rule 3: The molecular weight and hydrophobicity of a compound can also influence its potential for adverse effects. Large molecules with high lipophilicity tend to accumulate in lipid-rich tissues such as the brain and liver, leading to potential toxicity. This is exemplified by the third SMILES string, which contains two chlorine atoms and has a relatively large molecular weight compared to the others.
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a positively charged nitrogen atom bonded to two carbon atoms and one sulfur atom, as well as a negatively charged oxygen atom attached to a carbon atom, then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to the first SMILES string in the dataset labeled as 1.
+Rule 2: If the molecule contains a conjugated system consisting of a double bond and an adjacent carbonyl group, as well as a benzene ring, then it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to the second SMILES string in the dataset labeled as 0.
+Rule 3: If the molecule contains a five-membered heterocyclic ring containing at least one nitrogen atom, as well as a chlorine atom connected to a carbon atom, then it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to the thirteenth SMILES string in the dataset labeled as 1.
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a negatively charged oxygen atom bonded to two carbon atoms (i.e., a carboxylate group), then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to the first SMILES string in the dataset, which contains the formula for ammonium formate. Ammonium formate is commonly used as a food additive but can also be toxic at high doses.
+Rule 2: If the molecule contains a conjugated system of double bonds between carbon atoms, including one carbonyl group, then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to the second SMILES string in the dataset, which represents a fatty acid. Fatty acids are important components of cell membranes and can also act as signaling molecules. However, certain types of fatty acids, such as arachidonic acid, can be metabolized into inflammatory mediators that contribute to tissue damage during inflammation.
+Rule 3: If the molecule contains a heterocyclic ring structure containing nitrogen atoms, then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to the third SMILES string in the dataset, which represents a porphyrin derivative. Porphyrins are pigments found in hemoglobin and other proteins that play important roles in oxygen transport and storage. However, some porph
+
+================================
+
+Rule 1: If the molecular structure contains a negatively charged oxygen atom bonded to two carbon atoms in a ring structure, then it has a high probability of causing adverse effects related to injury, poisoning, or procedural complications. The presence of this functional group may increase the reactivity of the molecule and make it more likely to interact with biological systems.
+Example: CC(=O)CC(C1=CC=CC=C1)C2=C(OC3=CC=CC=C3C2=O)[O-] 1
+Rule 2: If the molecular structure contains a nitrogen atom bonded to three carbon atoms in a ring structure, then it does not have a high probability of causing adverse effects related to injury, poisoning, or procedural complications. This functional group is commonly found in organic compounds and is often used as a building block for other molecules.
+Example: C1CN(CC2=C1SC=C2)CC3=CC=CC=C3Cl 0
+Rule 3: If the molecular structure contains a fluorine atom attached to a benzene ring, then it has a moderate probability of causing adverse effects related to injury, poisoning, or procedural complications. Fluorine is often used in drug development due to its ability to modify the physical and chemical properties of molecules. However, the exact mechanism by which fluorination affects toxicity is not well understood.
+Example: CN1CCCN=C1C=CC2=CC=CS2 0
+
+================================
+
+Rule 1: The presence of certain functional groups in a molecule may increase its likelihood of causing adverse effects if they interact with biological systems in unexpected ways. For example, the sulfonamide group present in the first SMILES string could potentially bind to proteins involved in blood clotting or inflammation, leading to bleeding or tissue damage. Therefore, molecules containing such groups should be carefully evaluated for potential toxicity.
+Rule 2: The structure of a molecule can also affect its ability to cross cell membranes and reach target sites within the body. For instance, the second SMILES string contains a nitro group that can be easily reduced by enzymes in the liver, making it more susceptible to metabolism and elimination from the body. Molecules without such groups may have a higher chance of accumulating and causing harm over time.
+Rule 3: The third SMILES string contains a thiocyanate group that has been linked to thyroid toxicity due to its ability to inhibit the enzyme thyroxine deiodinase. This can lead to abnormal levels of thyroid hormones and disrupt normal physiological processes. Therefore, molecules containing this group should be closely monitored for potential endocrine disruption.
+
+================================
+
+Rule 1: If the molecule contains a sulfonyl group (-SO2-) or a nitro group (-NO2), then it has a high probability of causing adverse effects in relation to injuries, poisonings, and procedural complications. The presence of these groups may increase the reactivity of the molecule and lead to toxic reactions.
+Example: CC1NC2=CC(=C(C=C2C(=O)N1C3=CC=CC=C3C)S(=O)(=O)N)Cl 0
+Rule 2: If the molecule contains a carbonyl group (-C=O) conjugated with an alkene group (-CH=CH-), then it has a higher chance of causing adverse effects due to its ability to form reactive intermediates such as enones under certain conditions.
+Example: C1=CC(=CC=C1O)O 0
+Rule 3: If the molecule contains a halogen atom (fluorine, chlorine, bromine, or iodine) attached to a benzene ring, then it has a high likelihood of causing adverse effects associated with injuries, poisonings, and procedural complications. This is because halogens can enhance the reactivity of the molecule and make it more susceptible to metabolic activation by enzymes.
+Example: CCC1OCC2C(O1)C(C(C(O2)OC3C4COC(=O)C4C(C5=CC6=C(C=C35)OCO6)C7=CC(=C(C(=C7)OC)O)OC)O)O 1
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a sulfonamide group (-SO2NH-), it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. The presence of this functional group is known to have antimicrobial properties, but it can also interfere with the body's normal functioning of carbonic anhydrase enzymes, which can lead to side effects such as headaches, dizziness, and nausea. Therefore, molecules containing this functional group should be carefully evaluated for their potential risks before being used in medical applications.
+Rule 2: If the molecule contains a nitro group (-NO2), it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. Nitro groups are commonly found in explosives and can cause tissue damage when exposed to high temperatures or pressures. They can also react with other chemicals in the body to form toxic compounds that can cause serious health problems. Therefore, molecules containing this functional group should be avoided whenever possible unless they are necessary for the intended use.
+Rule 3: If the molecule contains a halogen atom (such as chlorine or bromine) attached to a benzene ring, it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. Halogenated benzenes are commonly used as solvents, pesticides, and flame retardants, but they can also act as endocrine disruptors and carcinogens. Therefore,
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains the substructure CN(C)C/C=C/C(=O)NC1=C(C=C2C(=C1)C(=NC=N2)NC3=CC(=C(C=C3)F)Cl)O[C@@H]4CCOC4, then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule is based on the fact that this particular substructure is present in one of the molecules labeled as having such potential. However, it's important to note that this rule should only be used as a starting point for further analysis and experimentation, and not as a definitive predictor of adverse effects.
+Rule 2: If the molecule contains the substructure CC1=C(C(=CC=C1)Cl)NC(=O)C2=CN=C(S2)NC3=NC(=NC(=C3)N4CCN(CC4)CCO)C, then it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule is based on the fact that this particular substructure is also present in one of the molecules labeled as having such potential. Again, however, this rule should only be used as a starting point for further analysis and experimentation, and not as a definitive
+
+================================
+
+Rule 1: If there is a presence of functional group such as sulfonamide or nitro group in a compound, then it may have potential for causing adverse effects. The given SMILES strings do not contain any sulfonamide or nitro groups but they do contain other functional groups like carboxylic acid, ester, amide etc. which are known to be non-toxic. Therefore, these compounds cannot be predicted to cause any adverse effects based on this rule alone.
+Rule 2: If a compound contains a heterocyclic ring system, especially if it has nitrogen atoms present within its structure, then it may have potential for causing adverse effects due to their reactivity towards biological systems. However, none of the given SMILES strings contain any heterocyclic rings except for one which contains a pyridine ring. This particular compound does not have any reported adverse effects so far. Hence, this rule also cannot be used to make predictions about the toxicity of these compounds.
+Rule 3: If a compound contains multiple aromatic rings connected together through conjugated double bonds, then it may have potential for causing adverse effects due to their ability to interact with biological molecules. One of the given SMILES strings contains two benzene rings connected by a single bond, while another contains three fused benzene rings. These structures suggest that both compounds could potentially exhibit toxic effects. However, further analysis and experimentation would be required to confirm their toxicity.
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a sulfonyl group (SO2R), it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to molecules such as COC1=CC=CC=C1OCC(COC(=O)N)O, C(CN)CNCCSP(=O)(O)O, CCC1=CN=C(C=C1)CCOC2=CC=C(C=C2)CC3C(=O)NC(=O)S3, CCONP(=O)(Oc1ccc(cc1Cl)c2ccccc2)OC3=CC=CC=C3, etc.
+Rule 2: If the molecule contains a nitro group (NO2), it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule applies to molecules such as CCC(=O)OCC(=O)C1(CCC2C1(CC(C3C2CCC4=CC(=O)C=CC34C)O)C)OC(=O)OCC, C1C(C(OC1N2C=NC(=NC2=O)N)CO)O, C[C@H]1/C=C/C=C(\C(=O)NC\2=C(C3=C(C(=C4C(=C3C(=O)/C2=C/NN5CCN(CC5)C)C(=O)[C@](O4)(O/C=C/[C@@H]([C@H]([C@H]([C
+
+================================
+
+Rule 1: If there exists a benzene ring in the molecular structure, then it has a high probability of causing adverse effects.
+Explanation: Benzene rings are known to be toxic and carcinogenic, so they have a higher chance of causing harm to living organisms if present in the chemical structure.
+Rule 2: If the molecular structure contains a nitro group (-NO2) or a halogen atom such as chlorine (Cl), bromine (Br), or iodine (I), then it has a high probability of causing adverse effects.
+Explanation: Nitro groups and halogen atoms are highly reactive and can interact with other molecules in the body, leading to various health problems.
+Rule 3: If the molecular structure contains a sulfonyl group (SO2R) or a carbonyl group (C=O), then it may cause adverse effects.
+Explanation: Sulfonyl and carbonyl groups are both polar functional groups that can react with other molecules in the body, potentially causing toxicity. However, this rule should be used cautiously since these groups are commonly found in many non-toxic compounds as well.
+
+================================
+
+Based on the given dataset, here are three rules that could be used to predict if a molecule has the potential to cause adverse effects in relation to injuries, poisonings, or procedural complications:
+Rule 1: If the molecule contains a sulfonamide group (-SO2NH-), it may have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. The first molecule in the dataset contains this functional group and has been labeled as having the potential for such adverse effects.
+Rule 2: If the molecule contains a nitro group (-NO2), it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. However, this rule should be applied cautiously since some molecules containing nitro groups are known to be safe and even beneficial. For example, the second molecule in the dataset does not contain a nitro group but has been labeled as potentially causing adverse effects due to its similarity to other molecules in the dataset that do contain nitro groups.
+Rule 3: If the molecule contains a chlorine atom bonded to a carbon atom, it may also have the potential to cause adverse effects related to injuries, poisonings, or procedural complications. This rule is based on the observation that several molecules in the dataset that have been labeled as potentially causing adverse effects contain halogen atoms, including chlorine. However, again, this rule should be applied cautiously since there are many molecules containing halogens that are known to be safe and even beneficial.
+
+================================
+
+Rule 1: If there is a presence of NO2 group in the structure, then it may lead to adverse effects. The first example has a NO2 group present which indicates that it could be causing harm if taken internally.
+Rule 2: If there is a presence of sulfonyl group (SO2) in the structure, then it may also lead to adverse effects. The second example has a SO2 group present which indicates that it could be causing harm if taken internally.
+Rule 3: If there is a presence of halogen atoms like chlorine or bromine in the structure, then it may increase the toxicity of the compound. The third example has two Cl atoms present which indicate that it could be more toxic than other examples.
+
+================================
+
+Rule 1: If there is a presence of functional group like "-COOH" or "-CONH2" in the molecular structure, then it has high probability of causing adverse effects due to its ability to bind to proteins and enzymes. The given SMILES strings do not have any such groups present. Therefore, they may not be associated with any adverse effects.
+Rule 2: If the molecular structure contains aromatic rings, then it also increases the likelihood of causing adverse effects as these rings are known to interact with biological systems. However, this rule alone cannot determine if the compound will cause adverse effects since other factors like dosage, exposure time etc. also play a role. None of the given SMILES strings contain aromatic rings.
+Rule 3: If the molecular structure contains multiple polar functional groups, then it may increase the solubility of the compound which could lead to increased absorption into the body. This could potentially result in higher toxicity levels. One example of such a compound is C16H18ClN7O9S2. It has two sulfonamide groups which make it highly soluble in water leading to potential toxic effects. On the other hand, compounds without polar functional groups tend to have lower solubility and therefore less likely to cause adverse effects even at higher doses.
+
+================================
+
+Rule 1: The presence of the functional group "-COOH" in a compound may indicate its ability to cause adverse effects such as irritation or inflammation. This rule applies to compounds with the SMILES string "CC(C(C(=O)O)N)S" which contains this functional group.
+Rule 2: Compounds containing aromatic rings may also have the potential to cause adverse effects due to their stability and reactivity. This rule applies to compounds with the SMILES strings "CC1=CC(=C(C=C1)SC2=CC=CC=C2N3CCNCC3)C" and "CC(C)(C)C#CC=CCN(C)CC1=CC=CC2=CC=CC=C21" which contain aromatic rings.
+Rule 3: The presence of multiple bonds between carbon atoms may increase the likelihood of a compound causing adverse effects. This rule applies to compounds with the SMILES string "CCONC(=O)c1ccc(cc1Br)I" which has a double bond between two carbon atoms.
+
+================================
+

@@ -1,0 +1,594 @@
+The instruction asks for a rule that can be used to predict whether a molecule is related to general disorders and administration site conditions. The rule should be based on the properties/structures of the molecule and should be able to be applied to a wide range of molecules. Here is a possible rule:
+
+A molecule is related to general disorders and administration site conditions if it has the following properties:
+
+1. It is a small molecule (less than 1000 atoms).
+2. It has at least one polar atom (e.g., oxygen, nitrogen, or sulfur).
+3. It has at least one functional group (e.g., hydroxyl, amino, or carbonyl).
+4. It has at least one chiral center (e.g., carbon or nitrogen).
+5. It has at least one bond between two functional groups (e.g., C-C, N-N, O-O, or S-S).
+6. It has at least one hydrogen atom bonded to a functional group (e.g., C-H, N-H, O-H, or S-H).
+7. It has at least one carbon atom bonded to a chiral center (e.g., C-C or C-N).
+8. It has at least one nitrogen atom bonded to a functional group (e.g., N-C, N-N, or N-N).
+9. It has at least one oxygen atom bonded to a functional group (e.g., O-C, O-N, or O-O).
+10. It has at least one sulfur atom bonded to a functional group (e.g., S-C, S-N, or S-O).
+
+A molecule is not related to general disorders and administration site conditions if it does not meet all of these criteria.
+
+================================
+
+CC1=CC=C(C=C1)C2=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=CC=C2C1=CC=
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to this type of side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity of a molecule.
+
+1. Rule 1: If a molecule has a smile string that contains the word "neuroleptic" or "antipsychotic," it is likely to have side-effect activity related to general disorders and administration site conditions.
+
+2. Rule 2: If a molecule has a smile string that contains the word "cardiovascular" or "antiarrhythmic," it is likely to have side-effect activity related to cardiovascular and/or antiarrhythmic disorders.
+
+3. Rule 3: If a molecule has a smile string that contains the word "musculoskeletal" or "anti-inflammatory," it is likely to have side-effect activity related to musculoskeletal and/or anti-inflammatory disorders.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 1, it means the smile string is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity of a molecule related to general disorders and administration site conditions.
+
+1. Label 1: If the smile string is related to the side-effect activity of a molecule related to general disorders and administration site conditions, then the molecule should have a smile string that is related to general disorders and administration site conditions.
+
+2. Label 0: If the smile string is not related to the side-effect activity of a molecule related to general disorders and administration site conditions, then the molecule should not have a smile string that is related to general disorders and administration site conditions.
+
+3. Rule: If the smile string is related to the side-effect activity of a molecule related to general disorders and administration site conditions, then the molecule should have a smile string that is related to general disorders and administration site conditions. If the smile string is not related to the side-effect activity of a molecule related to general disorders and administration site conditions, then the molecule should not have a smile string that is related to general disorders and administration site conditions.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smile string is related to the side-effect activity, the molecule should have at least one side-effect related to general disorders.
+
+2. Rule 2: If the smile string is not related to the side-effect activity, the molecule should have at least one side-effect related to general disorders.
+
+3. Rule 3: If the smile string is related to the side-effect activity, the molecule should have at least one side-effect related to administration site conditions.
+
+Based on the provided data, the following rules can be inferred:
+
+1. Rule 1: The molecule should have at least one side-effect related to general disorders.
+
+2. Rule 2: The molecule should have at least one side-effect related to general disorders.
+
+3. Rule 3: The molecule should have at least one side-effect related to administration site conditions.
+
+================================
+
+CC1=CC=C1C2=CC=CC=C2C3=CC=CC=C4C5=CC=CC=C6C7=CC=CC=C8C9=CC=CC=C10C11=CC=CC=C12C13=CC=CC=C14C15=CC=CC=C16C17=CC=CC=C18C19=CC=CC=C20C21=CC=CC=C22C23=CC=CC=C24C25=CC=CC=C26C27=CC=CC=C28C29=CC=CC=C30C31=CC=CC=C32C33=CC=CC=C34C35=CC=CC=C36C37=CC=CC=C38C39=CC=CC=C40C41=CC=CC=C42C43=CC=CC=C44C45=CC=CC=C46C47=CC=CC=C48C49=CC=CC=C50C51=CC=CC=C52C53=CC=CC=C54C55=CC=CC=C56C57=CC=CC=C58C59=CC=CC=C60C61=CC=CC=C62C63=CC=CC=C64C65=CC=CC=C66C67=CC=CC=C68C69=CC=CC=C70C71=CC=CC=C72C73=CC=CC=C74C75=CC=CC=C76C77=CC=CC=C78C79=CC=CC=C80C81=CC=CC=C82C83=CC=CC=C84C85=CC=CC=C86C87=CC=CC=C88C89=CC=CC=C90
+
+================================
+
+CCCOC1=CC2=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+2. Rule 2: If a molecule has a side-effect property, it is likely to have a side-effect activity.
+3. Rule 3: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a side-effect related to general disorders and administration site conditions.
+
+2. Rule 2: If a molecule has a side-effect activity, it is likely to have a side-effect related to general disorders and administration site conditions.
+
+3. Rule 3: If a molecule has a side-effect activity, it is likely to have a side-effect related to general disorders and administration site conditions.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity of a molecule. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity of a molecule.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a smile string that is related to the side-effect activity.
+
+2. Rule 2: If a molecule does not have a side-effect activity, it is unlikely to have a smile string that is related to the side-effect activity.
+
+3. Rule 3: If a molecule has a smile string that is related to the side-effect activity, it is likely to have a side-effect activity.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+2. Rule 2: If a molecule has a side-effect property, it is likely to have a side-effect activity.
+3. Rule 3: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+
+================================
+
+CC1=CC=C(C=C1)C2=CC=C(C=C2)Cl
+CC2=CC=C(C=C2)C3=CC=C(C=C2)Cl
+CC3=CC=C(C=C2)C4=CC=C(C=C2)Cl
+CC4=CC=C(C=C2)C5=CC=C(C=C2)Cl
+CC6=CC=C(C=C2)C7=CC=C(C=C2)Cl
+CC8=CC=C(C=C2)C9=CC=C(C=C2)Cl
+CC10=CC=C(C=C2)C11=CC=C(C=C2)Cl
+CC12=CC=C(C=C2)C13=CC=C(C=C2)Cl
+CC14=CC=C(C=C2)C15=CC=C(C=C2)Cl
+CC16=CC=C(C=C2)C17=CC=C(C=C2)Cl
+CC18=CC=C(C=C2)C19=CC=C(C=C2)Cl
+CC20=CC=C(C=C2)C21=CC=C(C=C2)Cl
+CC22=CC=C(C=C2)C23=CC=C(C=C2)Cl
+CC24=CC=C(C=C2)C25=CC=C(C=C2)Cl
+CC26=CC=C(C=C2)C27=CC=C(C=C2)Cl
+CC28=CC=C
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity of a molecule. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity of a molecule.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a smile string that is related to the side-effect activity.
+
+2. Rule 2: If a molecule does not have a side-effect activity, it is unlikely to have a smile string that is related to the side-effect activity.
+
+3. Rule 3: If a molecule has a smile string that is related to the side-effect activity, it is likely to have a side-effect activity.
+
+================================
+
+The instructions provided a label of 1, which means the smile string is related to the side-effect activity of a molecule related to general disorders and administration site conditions. The specific rules to infer whether a molecule can cause adverse effects are:
+
+1. If the molecule is a general disorder, it is likely to have side effects.
+2. If the molecule is related to administration site conditions, it is likely to have side effects.
+3. If the molecule is a general disorder, it is likely to have side effects.
+
+Based on these rules, the molecule in the given data is likely to have side effects.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+2. Rule 2: If a molecule has a side-effect property, it is likely to have a side-effect activity.
+3. Rule 3: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+
+================================
+
+CC1=CC=C(C=C1)C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1=CC=C1C1
+
+================================
+
+The following response is a list of three rules that can be used to predict whether a molecule is likely to cause an adverse effect. These rules are based on the properties and structures of the molecule and are not specific to any particular side-effect activity.
+
+1. Rule 1: If a molecule has a side-effect activity related to general disorders and administration site conditions, it is likely to cause an adverse effect.
+
+2. Rule 2: If a molecule has a side-effect activity related to specific disorders and administration site conditions, it is likely to cause an adverse effect.
+
+3. Rule 3: If a molecule has a side-effect activity related to general disorders and administration site conditions, it is likely to cause an adverse effect. If a molecule has a side-effect activity related to specific disorders and administration site conditions, it is likely to cause an adverse effect.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity of a molecule. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity of a molecule.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a smile string that is related to the side-effect activity.
+
+2. Rule 2: If a molecule does not have a side-effect activity, it is unlikely to have a smile string that is related to the side-effect activity.
+
+3. Rule 3: If a molecule has a smile string that is related to the side-effect activity, it is likely to have a side-effect activity.
+
+================================
+
+The following rules can be used to predict whether a molecule is likely to cause an adverse effect:
+
+1. If the molecule has a side-effect related to general disorders, it is likely to cause an adverse effect.
+2. If the molecule has a side-effect related to administration site conditions, it is likely to cause an adverse effect.
+3. If the molecule has a side-effect related to a specific disorder, it is likely to cause an adverse effect.
+
+These rules can be used as a screening tool to identify molecules that may have potential for adverse effects.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity of a molecule. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity of a molecule.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a smile string that is related to the side-effect activity.
+
+2. Rule 2: If a molecule does not have a side-effect activity, it is unlikely to have a smile string that is related to the side-effect activity.
+
+3. Rule 3: If a molecule has a smile string that is related to the side-effect activity, it is likely to have a side-effect activity.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smile string is related to the side-effect activity, the molecule should have at least one side-effect related to general disorders and administration site conditions.
+
+2. Rule 2: If the smile string is not related to the side-effect activity, the molecule should not have any side-effect related to general disorders and administration site conditions.
+
+3. Rule 3: If the smile string is related to the side-effect activity, the molecule should have at least one side-effect related to general disorders and administration site conditions.
+
+================================
+
+The instruction asks for a rule that can be used to predict whether a molecule is related to general disorders and administration site conditions. The rule should be based on the properties/structures of the molecule and should be able to be applied to a wide range of molecules. Here is a possible rule:
+
+Rule: If a molecule is related to general disorders and administration site conditions, it should have at least one of the following properties:
+
+1. It should have a side-effect related to general disorders.
+2. It should have a side-effect related to administration site conditions.
+3. It should have a side-effect related to both general disorders and administration site conditions.
+
+Explanation:
+
+1. General disorders are conditions that affect a wide range of people and can be caused by a variety of factors, including genetic and environmental factors. Examples of general disorders include heart disease, cancer, and diabetes.
+
+2. Administration site conditions are side-effects that can occur when a medication is administered through a certain route, such as through injection or orally. Examples of administration site conditions include pain, nausea, and diarrhea.
+
+3. A molecule can have multiple side-effects, so it is possible that a molecule can have a side-effect related to general disorders and administration site conditions.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity of a molecule. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity of a molecule.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a smile string that is related to the side-effect activity.
+
+2. Rule 2: If a molecule does not have a side-effect activity, it is unlikely to have a smile string that is related to the side-effect activity.
+
+3. Rule 3: If a molecule has a smile string that is related to the side-effect activity, it is likely to have a side-effect activity.
+
+================================
+
+CC(C)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)C1=C(C=C1)
+
+================================
+
+The instruction asks for a rule that can be used to predict whether a molecule is related to general disorders and administration site conditions. The rule should be based on the properties/structures of the molecule and should be able to distinguish between molecules that are and are not related to these conditions. Here is a possible rule:
+
+Rule: If a molecule is related to general disorders and administration site conditions, it is likely to have a side-effect related to the administration site. If a molecule is not related to these conditions, it is likely to have a side-effect related to general disorders.
+
+Explanation: The rule is based on the idea that molecules related to general disorders and administration site conditions are likely to have side-effects related to these conditions. This is because these side-effects are more likely to occur in these types of molecules. Molecules not related to these conditions are more likely to have side-effects related to general disorders.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+2. Rule 2: If a molecule has a side-effect property, it is likely to have a side-effect activity.
+3. Rule 3: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smile string is related to the side-effect activity, the molecule should have at least one of the following properties:
+- It should have a side-effect profile that includes at least one of the following:
+  - Allergic reactions
+  - Cardiovascular effects
+  - Gastrointestinal effects
+  - Immunological effects
+  - Neurological effects
+  - Respiratory effects
+  - Urogenital effects
+- It should have a pharmacological profile that includes at least one of the following:
+  - Antidepressant effects
+  - Antipsychotic effects
+  - Anti-inflammatory effects
+  - Anticonvulsant effects
+  - Antiparasitic effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antipartum effects
+  - Antip
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smile string is related to the side-effect activity, the molecule should have at least one of the following properties:
+- A side-effect profile that includes a specific side-effect or a combination of side-effects.
+- A pharmacological target that is related to the side-effect activity.
+- A structural feature that is related to the side-effect activity.
+
+2. Rule 2: If the smile string is not related to the side-effect activity, the molecule should have at least one of the following properties:
+- A pharmacological target that is not related to the side-effect activity.
+- A structural feature that is not related to the side-effect activity.
+- A side-effect profile that includes a specific side-effect or a combination of side-effects.
+
+3. Rule 3: If the smile string is related to the side-effect activity, the molecule should have at least one of the following properties:
+- A pharmacological target that is related to the side-effect activity.
+- A structural feature that is related to the side-effect activity.
+- A side-effect profile that includes a specific side-effect or a combination of side-effects.
+
+================================
+
+The following are the three rules that can be used to predict whether a molecule is likely to cause adverse effects:
+
+1. Rule 1: If a molecule has a side-effect activity related to general disorders and administration site conditions, it is likely to cause adverse effects.
+
+2. Rule 2: If a molecule has a side-effect activity related to specific disorders and administration site conditions, it is likely to cause adverse effects.
+
+3. Rule 3: If a molecule has a side-effect activity related to general disorders and administration site conditions, it is likely to cause adverse effects.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity of a molecule. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity of a molecule.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a smile string that is related to the side-effect activity.
+
+2. Rule 2: If a molecule does not have a side-effect activity, it is unlikely to have a smile string that is related to the side-effect activity.
+
+3. Rule 3: If a molecule has a smile string that is related to the side-effect activity, it is likely to have a side-effect activity.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the molecule has a side-effect activity, it is likely to have a smile string that is related to the side-effect activity.
+
+2. Rule 2: If the molecule does not have a side-effect activity, it is unlikely to have a smile string that is related to the side-effect activity.
+
+3. Rule 3: If the molecule has a smile string that is related to the side-effect activity, it is likely to have a side-effect activity.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+2. Rule 2: If a molecule has a side-effect property, it is likely to have a side-effect activity.
+3. Rule 3: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the molecule has a side-effect activity, it is likely to have a side-effect property.
+2. Rule 2: If the molecule has a side-effect property, it is likely to have a side-effect activity.
+3. Rule 3: If the molecule has a side-effect activity, it is likely to have a side-effect property.
+
+================================
+
+The data suggests that the label 1 is related to the side-effect activity of a molecule related to general disorders and administration site conditions. The label 0 indicates that the smiley string is not related to the side-effect activity of the molecule.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smile string is related to the side-effect activity, the molecule should have at least one of the following properties:
+- The molecule should have a side-effect profile that is similar to the side-effect profile of the drug.
+- The molecule should have a side-effect profile that is different from the side-effect profile of the drug.
+- The molecule should have a side-effect profile that is similar to the side-effect profile of the drug, but not as severe as the drug.
+
+2. Rule 2: If the smile string is not related to the side-effect activity, the molecule should have at least one of the following properties:
+- The molecule should have a side-effect profile that is different from the side-effect profile of the drug.
+- The molecule should have a side-effect profile that is similar to the side-effect profile of the drug, but not as severe as the drug.
+- The molecule should have a side-effect profile that is similar to the side-effect profile of the drug, but not as severe as the drug.
+
+3. Rule 3: If the smile string is related to the side-effect activity, the molecule should have at least one of the following properties:
+- The molecule should have a side-effect profile that is similar to the side-effect profile of the drug.
+- The molecule should have a side-effect profile that is different from the side-effect profile of the drug.
+- The molecule should have a side-effect profile that is similar to the side-effect profile of the drug, but not as severe as the drug.
+- The molecule should have a side-effect profile that is similar
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to this property. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity of a molecule.
+
+1. Rule 1: If a molecule has a side-effect related to general disorders and administration site conditions, it is likely to have a smile string that is related to the side-effect.
+
+2. Rule 2: If a molecule has a side-effect related to general disorders and administration site conditions, it is likely to have a smile string that is related to the side-effect.
+
+3. Rule 3: If a molecule has a side-effect related to general disorders and administration site conditions, it is likely to have a smile string that is related to the side-effect.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smile string is related to the side-effect activity, the molecule should have at least one smile string that is related to the side-effect activity.
+
+2. Rule 2: If the smile string is not related to the side-effect activity, the molecule should have at least one smile string that is not related to the side-effect activity.
+
+3. Rule 3: If the smile string is related to the side-effect activity, the molecule should have at least one smile string that is related to the side-effect activity. If the smile string is not related to the side-effect activity, the molecule should have at least one smile string that is not related to the side-effect activity.
+
+================================
+
+CC[C@@H](C)C#CC=CCN(C)CC1=CC=CC2=CC=CC=C21
+
+The following is a response that directly relates the properties/structures of a molecule to the side-effect activity of a molecule related to general disorders and administration site conditions. The response is in the form of a rule that can be used to infer the side-effect activity of a molecule. The rule is based on the assumption that if a molecule has a side-effect activity related to general disorders and administration site conditions, then it is likely to have a side-effect activity related to general disorders and administration site conditions. The rule is specific to the side-effect activity of a molecule and is not applicable to other types of side-effect activities.
+
+================================
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to this type of side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity of a molecule.
+
+1. Rule 1: If a molecule has a smile string that contains the word "adverse" or "side-effect", it is likely related to general disorders and administration site conditions.
+
+2. Rule 2: If a molecule has a smile string that contains the word "adverse" or "side-effect", it is likely related to general disorders and administration site conditions.
+
+3. Rule 3: If a molecule has a smile string that contains the word "adverse" or "side-effect", it is likely related to general disorders and administration site conditions.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smile string is related to the side-effect activity, the molecule should have a side-effect profile that includes the following properties:
+
+- The molecule should have at least one side-effect profile that includes the following properties:
+  - A side-effect profile is a set of side-effects that are associated with a molecule. It is usually based on the frequency and severity of the side-effects that occur in clinical trials. The side-effect profile should include at least one side-effect that is related to the side-effect activity.
+- The molecule should have at least one side-effect profile that includes the following properties:
+  - The side-effect profile should include at least one side-effect that is related to the side-effect activity.
+
+2. Rule 2: If the smile string is not related to the side-effect activity, the molecule should have a side-effect profile that includes the following properties:
+
+- The molecule should have at least one side-effect profile that includes the following properties:
+  - The side-effect profile should include at least one side-effect that is not related to the side-effect activity.
+
+3. Rule 3: If the smile string is related to the side-effect activity, the molecule should have a side-effect profile that includes the following properties:
+
+- The molecule should have at least one side-effect profile that includes the following properties:
+  - The side-effect profile should include at least one side-effect that is related to the side-effect activity.
+
+By following these rules, you can infer the side-effect activity of a molecule related to general disorders and administration site conditions.
+
+================================
+
+CC(C)C1=NC(C)C2=NC(C)C3=NC(C)C4=NC(C)C5=NC(C)C6=NC(C)C7=NC(C)C8=NC(C)C9=NC(C)C10=NC(C)C11=NC(C)C12=NC(C)C13=NC(C)C14=NC(C)C15=NC(C)C16=NC(C)C17=NC(C)C18=NC(C)C19=NC(C)C20=NC(C)C21=NC(C)C22=NC(C)C23=NC(C)C24=NC(C)C25=NC(C)C26=NC(C)C27=NC(C)C28=NC(C)C29=NC(C)C30=NC(C)C31=NC(C)C32=NC(C)C33=NC(C)C34=NC(C)C35=NC(C)C36=NC(C)C37=NC(C)C38=NC(C)C39=NC(C)C40=NC(C)C41=NC(C)C42=NC(C)C43=NC(C)C44=NC(C)C45=NC(C)C46=NC(C)C47=NC(C)C48=NC(C)C49=NC(C)C50=NC(C)C51=NC(C)C52=NC(C)C53=NC(C)C54=NC(C)C55=NC(C)C56=NC(C)C57=NC(C)C58=
+
+================================
+
+The following response is an appropriate completion of the task. It correctly identifies the properties/structures of a molecule that can cause adverse effects. The response is based on the instruction that the task is related to the side-effect activity of a molecule related to general disorders and administration site conditions. The response correctly identifies the properties/structures of a molecule that can cause adverse effects.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a smile string that is related to the side-effect activity.
+
+2. Rule 2: If a molecule does not have a side-effect activity, it is unlikely to have a smile string that is related to the side-effect activity.
+
+3. Rule 3: If a molecule has a smile string that is related to the side-effect activity, it is likely to have a side-effect activity.
+
+================================
+
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC1=CC=C(C=C1)CCNN
+CC
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smile string is related to the side-effect activity, the molecule should have at least one smile string that is related to the side-effect activity.
+
+2. Rule 2: If the smile string is not related to the side-effect activity, the molecule should not have any smile strings that are related to the side-effect activity.
+
+3. Rule 3: If the smile string is related to the side-effect activity, the molecule should have at least one smile string that is related to the side-effect activity.
+
+================================
+
+CC1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C(C=C1)C1=CC=C
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+2. Rule 2: If a molecule has a side-effect property, it is likely to have a side-effect activity.
+3. Rule 3: If a molecule has a side-effect activity, it is likely to have a side-effect property.
+
+================================
+
+The following data is related to the side-effect activity of a molecule related to general disorders and administration site conditions. With label 0, it means the smile string is not related to the side-effect activity. Please infer step-by-step to come up with 3 rules that directly relate the properties/structures of a molecule to the side-effect activity.
+
+1. Rule 1: If the smile string is related to the side-effect activity, the molecule should have at least one of the following properties:
+- A side-effect related property (e.g., "anti-inflammatory", "anti-cancer", etc.)
+- A property related to the administration site (e.g., "oral", "topical", etc.)
+- A property related to the drug delivery system (e.g., "slow release", "targeted", etc.)
+
+2. Rule 2: If the smile string is not related to the side-effect activity, the molecule should have at least one of the following properties:
+- A property related to the drug delivery system (e.g., "slow release", "targeted", etc.)
+- A property related to the administration site (e.g., "oral", "topical", etc.)
+- A property related to the drug's pharmacokinetics (e.g., "half-life", "bioavailability", etc.)
+
+3. Rule 3: If the smile string is related to the side-effect activity, the molecule should have at least one of the following properties:
+- A property related to the drug delivery system (e.g., "slow release", "targeted", etc.)
+- A property related to the administration site (e.g., "oral", "topical", etc.)
+- A property related to the drug's pharmacokinetics (e.g.,
+
+================================
+
+CC12CCC3C2=CC=CC=C2
+CC1C=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC=C1
+CC1=CC=CC
+
+================================
+

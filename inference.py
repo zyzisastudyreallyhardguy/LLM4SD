@@ -1,9 +1,8 @@
-from turtle import pos
 import pandas as pd
 import argparse
 import random
-from transformers import BitsAndBytesConfig
 import copy
+from transformers import BitsAndBytesConfig
 from transformers import AutoTokenizer
 import transformers
 import torch
@@ -11,7 +10,6 @@ import os
 import json
 from tqdm import tqdm
 
-from accelerate import infer_auto_device_map, init_empty_weights
 
 def load_dataset(dataset_name):
     df = pd.read_csv(dataset_name)
@@ -20,11 +18,20 @@ def load_dataset(dataset_name):
     df_str_list = [f.strip() for f in df_str_list]
     return df_str_list
 
+
 def get_hf_tokenizer_pipeline(model, is_8bit=False):
     """Return HF tokenizer for the model"""
     model = model.lower()
-    if model == "galactica-6.7b":
+    if model == 'falcon-7b':
+        hf_model = "tiiuae/falcon-7b-instruct"
+    elif model == 'falcon-40b':
+        hf_model = "tiiuae/falcon-40b-instruct"
+        is_8bit = True
+    elif model == "galactica-6.7b":
         hf_model = "GeorgiaTechResearchInstitute/galactica-6.7b-evol-instruct-70k"
+    elif model == "galactica-30b":
+        hf_model = "GeorgiaTechResearchInstitute/galactica-30b-evol-instruct-70k"
+        is_8bit = True
     else:
         raise NotImplementedError(f"Cannot find Hugging Face tokenizer for model {model}.")
     model_kwargs = {}
@@ -33,20 +40,22 @@ def get_hf_tokenizer_pipeline(model, is_8bit=False):
         quantization_config = BitsAndBytesConfig(load_in_8bit=True, llm_int8_threshold=200.0,)
     model_kwargs['quantization_config'] = quantization_config
     tokenizer = AutoTokenizer.from_pretrained(hf_model, use_fast=False, padding_side="left", trust_remote_code=True,)
-    model = transformers.AutoModelForCausalLM.from_pretrained(hf_model, device_map = 'cuda:0', cache_dir = '/home/yzhe0006/az20_scratch/yzhe0006/.cache', torch_dtype=torch.float16, trust_remote_code = True, **model_kwargs)
-    return tokenizer, model
+    pipeline = transformers.pipeline("text-generation", model=hf_model, tokenizer=tokenizer, torch_dtype=torch.float16,
+                                     trust_remote_code=True, use_fast=False, device_map='auto', model_kwargs=model_kwargs,)
+    return tokenizer, pipeline
 
 
-def get_data_knowledge_prompt(task):
+def get_inference_prompt():
     prompt_file = os.path.join(args.prompt_folder, args.prompt_file)
     with open(prompt_file, 'r') as f:
         prompt_dict = json.load(f)
-    print(f'Extracting {task} task(s) data knowledge prompt ....')
-    task = task.lower()
-    if task in list(prompt_dict.keys()):
-        prompt = prompt_dict[task]
+    print(f'Extracting {args.dataset} {args.subtask} task(s) Inference prompt ....')
+    if args.dataset in list(prompt_dict.keys()) and not args.subtask:
+        prompt = prompt_dict[args.dataset]
+    elif args.subtask:
+        prompt = prompt_dict[args.dataset][args.subtask]
     else:
-        raise NotImplementedError(f"""No data knowledge prompt for task {args.dataset}.""")
+        raise NotImplementedError(f"""No data knowledge prompt for task {args.dataset} {args.subtask}.""")
     return prompt
 
 
@@ -54,29 +63,36 @@ def get_token_limit(model, for_response=False):
     """Returns the token limitation of provided model"""
     model = model.lower()
     if for_response:  # For get response
-        if model in ['falcon-7b', 'falcon-40b',"galactica-6.7b", "galactica-30b"]:
+        if model in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b"]:
             num_tokens_limit = 2048 
     else:  # For split input list
-        if model in ['falcon-7b', 'falcon-40b',"galactica-6.7b", "galactica-30b"]:
+        if model in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b"]:
             num_tokens_limit = round(2048*3/4)  # 1/4 part for the response, 512 tokens
         else:
             raise NotImplementedError(f"""get_token_limit() is not implemented for model {model}.""")
     return num_tokens_limit
 
 
-def split_smile_list(smile_content_list, dk_prompt, tokenizer,list_num):  
+def get_system_prompt():
+    # prompt format depends on the LLM, you can add the system prompt here
+    model = args.model.lower()
+    if model in ['falcon-7b', 'falcon-40b']:
+        system_prompt = ("{instruction}\n")
+    elif model in ["galactica-6.7b", "galactica-30b"]:
+        system_prompt = ("Below is an instruction that describes a task. "
+                         "Write a response that appropriately completes the request.\n\n"
+                         "### Instruction:\n{instruction}\n\n### Response:\n")
+    else:
+        raise NotImplementedError(f"""No system prompt setting for the model: {model} .""")
+    return system_prompt
+
+
+def split_smile_list(smile_content_list, dk_prompt, tokenizer, list_num):
     """
     Each list can be directly fed into the model
     """
     token_limitation = get_token_limit(args.model)  # Get input token limitation for current model
-
-    if args.model in ['falcon-7b', 'falcon-40b']:
-        system_prompt = ("{instruction}\n")
-    elif args.model in ["galactica-6.7b", "galactica-30b"]:
-        system_prompt = ("Below is an instruction that describes a task. "
-                         "Write a response that appropriately completes the request.\n\n"
-                         "### Instruction:\n{instruction}\n\n### Response:\n")
-        
+    system_prompt = get_system_prompt()
     all_smile_content = dk_prompt + '\n'+'\n'.join(smile_content_list)
     formatted_all_smile = system_prompt.format_map({'instruction': all_smile_content})
     token_num_all_smile = len(tokenizer.tokenize(formatted_all_smile))
@@ -85,7 +101,7 @@ def split_smile_list(smile_content_list, dk_prompt, tokenizer,list_num):
         for _ in tqdm(range(list_num)):  # Generate request number of sub lists
             current_list = []
             cp_smile_content_list = copy.deepcopy(smile_content_list)
-            current_prompt = system_prompt.format_map({'instruction': dk_prompt})  # only data knowledge prompt, without smile&label
+            current_prompt = system_prompt.format_map({'instruction': dk_prompt})  # only inference prompt, without smile&label
             current_prompt_len = len(tokenizer.tokenize(current_prompt))
             while current_prompt_len <= token_limitation:
                 if cp_smile_content_list:
@@ -107,17 +123,9 @@ def split_smile_list(smile_content_list, dk_prompt, tokenizer,list_num):
     return list_of_smile_label_lists
 
 
-def get_model_response(model, list_of_smile_label_lists, model_run, dk_prompt,tokenizer):
+def get_model_response(model, list_of_smile_label_lists, model_run, dk_prompt, tokenizer):
     input_list = [dk_prompt +'\n' + '\n'.join(s) for s in list_of_smile_label_lists]
-    model = model.lower()
-    if model in ["galactica-6.7b", "galactica-30b"]:
-        system_prompt = ("Below is an instruction that describes a task. "
-                         "Write a response that appropriately completes the request.\n\n"
-                         "### Instruction:\n{instruction}\n\n### Response:\n")
-    elif model in ['falcon-7b', 'falcon-40b']:
-        system_prompt = ("Below is an instruction that describes a task. "
-                         "Write a response that appropriately completes the request.\n\n"
-                         "### Instruction:\n{instruction}\n\n### Response:\n")
+    system_prompt = get_system_prompt()
     response_list = []
     if model in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b"]:
         for smile_label in input_list:
@@ -151,7 +159,6 @@ def get_model_response(model, list_of_smile_label_lists, model_run, dk_prompt,to
                 generated_text = generated_text.split('### Response:\n')[1]
             print(generated_text)
             response_list.append(generated_text)
-                
     else:
         raise NotImplementedError(f"""get_model_response() is not implemented for model {model}.""")
     return response_list
@@ -159,18 +166,23 @@ def get_model_response(model, list_of_smile_label_lists, model_run, dk_prompt,to
 
 def main():
     file_folder = os.path.join(args.input_folder, args.dataset)
-    train_file_name = args.dataset + '_train.csv'
+    if args.subtask == "":
+        train_file_name = args.dataset + '_train.csv'
+    else:
+        train_file_name = args.subtask + '_train.csv'
     train_file_path = os.path.join(file_folder, train_file_name)
     smile_label_list = load_dataset(train_file_path)
 
     tokenizer, pipeline = get_hf_tokenizer_pipeline(args.model)
-    dk_prompt = get_data_knowledge_prompt(args.dataset)
+    dk_prompt = get_inference_prompt()
 
-    list_of_smile_label_lists = split_smile_list(smile_label_list, dk_prompt, tokenizer,args.list_num)
+    list_of_smile_label_lists = split_smile_list(smile_label_list, dk_prompt, tokenizer, args.list_num)
     print(f'Split into {len(list_of_smile_label_lists)} lists')
-    
 
-    output_file_name = f"{args.model}_{args.dataset}_dk_response_sample_{args.list_num}.txt"
+    if args.subtask:
+        output_file_name = f"{args.model}_{args.dataset}_{args.subtask}_dk_response_sample_{args.list_num}.txt"
+    else:
+        output_file_name = f"{args.model}_{args.dataset}_dk_response_sample_{args.list_num}.txt"
     output_file_folder = os.path.join(args.output_folder, args.model, args.dataset)
     if not os.path.exists(output_file_folder):
         os.makedirs(output_file_folder)
@@ -182,15 +194,17 @@ def main():
             f.write(response)
             f.write("\n\n================================\n\n")
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--prompt_folder', type=str, default='prompt_file', help='data knowledge prompt file folder')
-    parser.add_argument('--prompt_file', type=str,default='data_knowledge_prompt.json', help='prior knowledge prompt json file')
+    parser.add_argument('--prompt_folder', type=str, default='prompt_file', help='Prompt file folder')
+    parser.add_argument('--prompt_file', type=str, default='inference_prompt.json', help='Inference prompt json file')
     parser.add_argument('--input_folder', type=str, default='scaffold_datasets', help="load training dataset")
-    parser.add_argument('--output_folder', type=str, default='data_knowledge', help='data knowledge output folder')
-    parser.add_argument('--dataset', type=str, default='bbbp', help='dataset name', choices=['bbbp', 'tox21', 'sider', 'clintox', 'hiv', 'bace', 'esol', 'freesolv', 'lipophilicity'])
-    parser.add_argument('--list_num', type=int,default=6, help='number of lists for model inference')
-    parser.add_argument('--model', type=str, default="galactica-6.7b", help='model for data knowledge', choices=['falcon-7b', 'falcon-40b',"galactica-6.7b", "galactica-30b"])
+    parser.add_argument('--output_folder', type=str, default='inference_model_response')
+    parser.add_argument('--dataset', type=str, default='bbbp', help='dataset name')
+    parser.add_argument('--subtask', type=str, default='', help='subtask of tox21/sider dataset')
+    parser.add_argument('--list_num', type=int, default=30, help='number of lists for model inference')
+    parser.add_argument('--model', type=str, default="galactica-6.7b", help='model for data knowledge')
     args = parser.parse_args()
 
     main()
