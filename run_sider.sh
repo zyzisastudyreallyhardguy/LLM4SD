@@ -36,15 +36,15 @@ echo "Processing Sider dataset ..."
 for subtask in "${SIDER_SUBTASK[@]}"; do
     #Step 2: Extract rules from prior knowledge
     echo "Processin step 2 for Sider-$subtask: LLM for Scientific Synthesize" 
-    python synthesize.py --dataset sider --subtask ${subtask} --model ${MODEL} --output_folder "synthesize_model_response"
+    python synthesize.py --dataset sider --subtask "${subtask}" --model ${MODEL} --output_folder "synthesize_model_response"
     
     # Step 3: Knowledge inference from Data
     echo "Processin step 3 for Sider-$subtask: LLM for Scientific Inference"
-    python inference.py --dataset sider --subtask ${subtask} --model ${MODEL} --list_num 30 --output_folder "inference_model_response"
+    python inference.py --dataset sider --subtask "${subtask}" --model ${MODEL} --list_num 30 --output_folder "inference_model_response"
     
     # Step 4: Summarize inference rules generated from the last step
     echo "Processin step 4 for Sider-$subtask: Summarize rules from gpt4"
-    python summarize_rules.py --input_model_folder ${MODEL} --dataset sider --subtask ${subtask} --list_num 30 --api_key ${API_KEY} \
+    python summarize_rules.py --input_model_folder ${MODEL} --dataset sider --subtask "${subtask}" --list_num 30 --api_key ${API_KEY} \
                               --output_folder "summarized_inference_rules"
 
     # Step 5: Interpretable model training and Evaluation
@@ -52,13 +52,13 @@ for subtask in "${SIDER_SUBTASK[@]}"; do
     # To avoid overwriting we here provide another folder name
     # **** Must run synthesize and inference setting before run all setting ****
     echo "Processin step 5 for Sider-$subtask: Interpretable model training and Evaluation"
-    python code_gen_and_eval.py --dataset sider --subtask ${subtask} --model ${MODEL} --knowledge_type "synthesize" \
+    python code_gen_and_eval.py --dataset sider --subtask "${subtask}" --model ${MODEL} --knowledge_type "synthesize" \
                                 --api_key ${API_KEY} --output_dir "llm4sd_results" --code_gen_folder "llm4sd_code_generation"
     
-    python code_gen_and_eval.py --dataset sider --subtask ${subtask} --model ${MODEL} --knowledge_type "inference" --list_num 30 \
+    python code_gen_and_eval.py --dataset sider --subtask "${subtask}" --model ${MODEL} --knowledge_type "inference" --list_num 30 \
                                 --api_key ${API_KEY} --output_dir "llm4sd_results" --code_gen_folder "llm4sd_code_generation"
     
-    python code_gen_and_eval.py --dataset sider --subtask ${subtask} --model ${MODEL} --knowledge_type "all" --list_num 30 \
+    python code_gen_and_eval.py --dataset sider --subtask "${subtask}" --model ${MODEL} --knowledge_type "all" --list_num 30 \
                                 --api_key ${API_KEY} --output_dir "llm4sd_results" --code_gen_folder "llm4sd_code_generation"
   done
 done
