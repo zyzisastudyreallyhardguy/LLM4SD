@@ -123,49 +123,45 @@ def split_smile_list(smile_content_list, dk_prompt, tokenizer, list_num):
     return list_of_smile_label_lists
 
 
-def get_model_response(model, list_of_smile_label_lists, model_run, dk_prompt, tokenizer):
+def get_model_response(model, list_of_smile_label_lists, pipeline, dk_prompt, tokenizer):
     input_list = [dk_prompt +'\n' + '\n'.join(s) for s in list_of_smile_label_lists]
     system_prompt = get_system_prompt()
     response_list = []
-    if model in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b"]:
+    if model.lower() in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b"]:
         for smile_label in input_list:
             smile_prompt = system_prompt.format_map({'instruction': smile_label.strip()})
             len_smile_prompt = len(tokenizer.tokenize(smile_prompt))
-            input_ids = tokenizer.encode(smile_prompt, return_tensors='pt')
-            input_ids = input_ids.to(model_run.device)
             print(smile_prompt)
             max_new_token = get_token_limit(model, for_response=True) - len_smile_prompt
-            max_new_token = max_new_token - 100
-            output = model_run.generate(
-                input_ids,
+            text_generator = pipeline(
+                smile_prompt,
                 min_new_tokens=0,
                 max_new_tokens=max_new_token,
-                min_length=0,    # or any other value
                 do_sample=False,
-                num_beams=1,
-                temperature=0.2,
-                repetition_penalty=1.07,
-                num_return_sequences=1,
-                top_p=0.75,
-                top_k=40,
-                eos_token_id=tokenizer.eos_token_id,
-                pad_token_id=tokenizer.pad_token_id
+                num_beams=3,  # beam search
+                temperature=float(0.5),  # randomness/diversity
+                repetition_penalty=float(1.2),
+                renormalize_logits=True
             )
-            decoded_output = tokenizer.decode(output[0], skip_special_tokens=True)
-            generated_text = decoded_output
+            generated_text = text_generator[0]['generated_text']
             if model in ["galactica-6.7b", "galactica-30b"]:
                 generated_text = generated_text.split('### Response:\n')[1]
             elif model in ['falcon-7b', 'falcon-40b']:
-                generated_text = generated_text.split('### Response:\n')[1]
+                pass
             print(generated_text)
             response_list.append(generated_text)
+
     else:
         raise NotImplementedError(f"""get_model_response() is not implemented for model {model}.""")
     return response_list
 
 
 def main():
-    file_folder = os.path.join(args.input_folder, args.dataset)
+    if args.dataset in ["alpha", "c_v", "Delta_epsilon", "epsilon_HOMO",
+                        "epsilon_LUMO", "G", "H", "mu", "R^2", "U_0", "U", "ZPVE"]:
+        file_folder = os.path.join(args.input_folder, 'qm9')
+    else:
+        file_folder = os.path.join(args.input_folder, args.dataset)
     if args.subtask == "":
         train_file_name = args.dataset + '_train.csv'
     else:

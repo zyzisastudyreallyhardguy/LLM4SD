@@ -155,8 +155,7 @@ def get_code_repo():
         subfolder = f"sample_{args.list_num}"
     else:
         subfolder = ""
-    output_folder = os.path.join(args.output_dir + args.code_gen_folder, args.model, args.dataset,
-                                 args.knowledge_type, subfolder)
+    output_folder = os.path.join(args.code_gen_folder, args.model, args.dataset, args.knowledge_type, subfolder)
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
@@ -280,7 +279,7 @@ def evaluation(generated_code, valid_function_names):
         subtask_name = ''
 
     if args.knowledge_type in ['inference', 'all']:
-        subfolder = f"sample_{args.num_samples}"
+        subfolder = f"sample_{args.list_num}"
     else:
         subfolder = ''
     result_folder = os.path.join(args.output_dir, args.model, args.dataset, args.knowledge_type, subfolder)
@@ -455,14 +454,14 @@ def split_string_into_parts(s, max_lines_per_part=10):
 def get_synthesize_file_path():
     dataset = args.dataset
     if args.dataset in ['sider', 'tox21']:
-        subtask_name = args.subtask
+        subtask_name = "_" + args.subtask
     elif args.dataset == 'qm9':
-        subtask_name = args.dataset
+        subtask_name = ""
         dataset = args.subtask
     else:
-        subtask_name = args.dataset
+        subtask_name = ""
     synthesize_file_folder = os.path.join('synthesize_model_response', args.model, dataset)
-    synthesize_file_name = f'{args.model}_{subtask_name}_pk_response.txt'
+    synthesize_file_name = f'{args.model}{subtask_name}_pk_response.txt'
     synthesize_file_path = os.path.join(synthesize_file_folder, synthesize_file_name)
     return synthesize_file_path
 
@@ -485,8 +484,8 @@ def get_synthesize_inference_code():
         subtask_name = ''
     synthesize_folder = os.path.join(args.code_gen_folder, args.model, args.dataset, "synthesize")
     inference_folder = os.path.join(args.code_gen_folder, args.model, args.dataset, "inference", f"sample_{args.list_num}")
-    synthesize_filename = os.path.join(synthesize_folder, f"{args.model}_{args.dataset}{subtask_name}_pk_rules.txt")
-    inference_filename = os.path.join(inference_folder, f"{args.model}_{args.dataset}{subtask_name}_dk_rules.txt")
+    synthesize_filename = os.path.join(synthesize_folder, f"{args.model}_{args.dataset}{subtask_name}_synthesize_rules.txt")
+    inference_filename = os.path.join(inference_folder, f"{args.model}_{args.dataset}{subtask_name}_inference_rules.txt")
 
     if not os.path.exists(synthesize_filename) or not os.path.exists(inference_filename):
         raise NotImplementedError(f"Please run synthesize code and inference code first")

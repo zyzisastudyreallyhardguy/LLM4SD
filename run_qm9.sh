@@ -27,12 +27,12 @@ echo "Processing QM9 dataset ..."
 for subtask in "${QM9_SUBTASK[@]}"; do
     #Step 2: Extract rules from prior knowledge
     echo "Processin step 2 for QM9-$subtask: LLM for Scientific Synthesize" 
-    python synthesize.py --dataset qm9 --subtask ${subtask} --model ${MODEL} --output_folder "synthesize_model_response"
+    python synthesize.py --dataset ${subtask} --subtask "" --model ${MODEL} --output_folder "synthesize_model_response"
     
     # Step 3: Knowledge inference from Data
     # We only run --list_num 50 for QM9 dataset
     echo "Processin step 3 for QM9-$subtask: LLM for Scientific Inference"
-    python inference.py --dataset qm9 --subtask ${subtask} --model ${MODEL} --list_num 50 --output_folder "inference_model_response"
+    python inference.py --dataset ${subtask} --subtask "" --model ${MODEL} --list_num 50 --output_folder "inference_model_response"
     
     # Step 4: Summarize inference rules generated from the last step
     echo "Processin step 4 for QM9-$subtask: Summarize rules from gpt4"

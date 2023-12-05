@@ -29,6 +29,7 @@ parser.add_argument('--model', type=str, default='galactica-6.7b', help='LLM mod
 parser.add_argument('--knowledge_type', type=str, default='synthesize', help='synthesize/inference/all')
 parser.add_argument('--num_samples', type=int, default=50, help='number of sample lists (30/50) for inference')
 parser.add_argument('--output_dir', type=str, default='eval_result', help='output folder')
+parser.add_argument('--code_gen_folder', type=str, default='eval_code_generation_repo', help='Loading code from this folder')
 args = parser.parse_args()
 
 
@@ -287,7 +288,7 @@ if __name__ == '__main__':
     else:
         subtask_name = args.dataset
 
-    file_folder = os.path.join('eval_code_generation_repo', args.model, args.dataset)
+    file_folder = os.path.join(args.code_gen_folder, args.model, args.dataset)
     synthesize_folder = os.path.join(file_folder, 'synthesize')
     synthesize_file_name = f'{args.model}_{subtask_name}_pk_rules.txt'
     synthesize_file_path = os.path.join(synthesize_folder, synthesize_file_name)

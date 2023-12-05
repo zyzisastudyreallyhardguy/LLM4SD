@@ -115,7 +115,7 @@ def main():
         task_name = f"{args.dataset}_{args.subtask}"
     else:
         task_name = args.dataset
-    input_file_name = f"{args.model}_{task_name}_dk_response_sample_{args.list_num}"
+    input_file_name = f"{args.input_model_folder}_{task_name}_dk_response_sample_{args.list_num}.txt"
     input_file_path = os.path.join(args.input_folder, args.input_model_folder, args.dataset, input_file_name)
     rule_file_list = load_rule_file(input_file_path)
     summarize_prompt = (
@@ -135,7 +135,7 @@ def main():
     output_folder = os.path.join(args.output_folder, args.input_model_folder, args.dataset)
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
-    name, ext = os.path.splitext(args.input_file)
+    name, ext = os.path.splitext(input_file_name)
     output_file_name = name + '_summarized_rules.txt'
     output_file = os.path.join(output_folder, output_file_name)
 
