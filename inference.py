@@ -175,14 +175,20 @@ def main():
     list_of_smile_label_lists = split_smile_list(smile_label_list, dk_prompt, tokenizer, args.list_num)
     print(f'Split into {len(list_of_smile_label_lists)} lists')
 
+    output_file_folder = os.path.join(args.output_folder, args.model, args.dataset)
     if args.subtask:
         output_file_name = f"{args.model}_{args.dataset}_{args.subtask}_dk_response_sample_{args.list_num}.txt"
     else:
-        output_file_name = f"{args.model}_{args.dataset}_dk_response_sample_{args.list_num}.txt"
-    output_file_folder = os.path.join(args.output_folder, args.model, args.dataset)
+        if args.dataset in ["alpha", "c_v", "Delta_epsilon", "epsilon_HOMO",
+                            "epsilon_LUMO", "G", "H", "mu", "R^2", "U_0", "U", "ZPVE"]:
+            output_file_name = f"{args.model}_qm9_{args.dataset}_dk_response_sample_{args.list_num}.txt"
+            output_file_folder = os.path.join(args.output_folder, args.model, 'qm9')
+        else:
+            output_file_name = f"{args.model}_{args.dataset}_dk_response_sample_{args.list_num}.txt"
     if not os.path.exists(output_file_folder):
         os.makedirs(output_file_folder)
     output_file = os.path.join(output_file_folder, output_file_name)
+
     print(f'Start getting response from model {args.model}....')
     response_list = get_model_response(args.model, list_of_smile_label_lists, pipeline, dk_prompt, tokenizer)
     with open(output_file, 'w') as f:
