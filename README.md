@@ -1,26 +1,62 @@
 # Large Language Model for Scientific Discovery (LLM4SD)
-LLM4SD is an open-source initiative that aims to leverage large language models for scientific discovery. We have **released the demo code** for a task **predicting the blood-brain barrier permeability** of molecules :satisfied:. **(Subsequent code will be released soon.)**
+LLM4SD is an open-source initiative that aims to leverage large language models for scientific discovery. We have now **released the complete code** :satisfied:.
 
-## Demo Description
-In the demo for LLM4SD using **Galactica-6.7b** as LLM encoder to solve the blood-brain barrier permeability prediction problem.
+## Code Description
 
-:star2: Requirements are shown in the **requirement.txt**
+### QuickStart:
+:star2: **First**, requirements are shown in the **requirements.txt**. Please use the requirements.txt to create the environment for running LLM4SD.
 
-:star2: **First**, to conduct "**Knowledge synthesize** from the literature", run the following command: python synthesize.py
+:star2: **Second**, please **put your Openai API key** in the **bash file** before you run the bash file. The Openai API will be used to call GPT-4 to conduct text summarisation for knowledge inference information and automatic code generation.
+
+To run tasks for ["bbbp" "bace" "clintox" "esol" "freesolv" "hiv" "lipophilicity"]. Please run:
+```
+bash run_others.sh
+```
+
+To run tasks for "Tox21" and "Sider". Please run:
+```
+bash run_tox21.sh
+```
+
+```
+bash run_sider.sh
+```
+
+To run tasks for "Qm9". Please run:
+```
+bash run_qm9.sh
+```
+
+### The Process of LLM4SD Code Pipeline:
+In the bash file, the LLM4SD is conducted in the following process:
+
+
+👉: "**Knowledge synthesize** from the literature", this step will call python synthesize.py
 The synthesized rules are stored under the prior_knowledge folder.
 
-:star2: **Second**, to conduct "**Knowledge inference** from data", run the following command: python inference.py
+👉: "**Knowledge inference** from data", this step will call python inference.py
 The inferred rules are stored under the data_knowledge folder.
 
-:star2: **Before conducting "Interpretable Model Training"**, we need to conduct code generation based on the extracted rules. There are two ways to achieve this.
-1. Human experts write the code based on the generated rules.
-2. Using code generation tools, e.g., GPT4, and Code Llamma and then human experts review and modify the generated code. 
+👉: "**Inferred Knowledge Summarization**", this step will call python summarize_rules.py
+The summarized rules are stored under the summarized_inference_rules folder. --> The purpose of this step is to drop duplicate rules.
 
-In this demo, we adopt the second way. An illustrated code example is shown in the code_generation_repo folder. The code is generated based on the combination of the example synthesized rules in the prior_knowledge folder, and the example inferred rules in the data_knowledge folder. The generated code is stored under the code_generation_repo folder.
+👉: "**Automatic Code Generation & Evaluation**", this step will call python auto_gen_and_eval.py
+This step will automatically generate the code using GPT-4 and run experiments to get the model performance. Please note that, in practice, human experts would review the code before usage. However, even with automatic code generation and direct evaluation, the code achieves pretty much the same performance.
 
-:star2: **Finally** to conduct **"Interpretable Model Training"** and obtain the model performance results. Run the following command: python eval.py --knowledge_type 'all'
+**📓Notes:** We have also provided **an advanced automatic code generation tool** based on the newly released **OpenAI Assistant**. If you are interested in trying the assistant version of code generation, please check out the "code_gen.py" and "eval.py" files in the folder "LLM4SD-gpt4-demo".
 
-Ps: To obtain an explanation, you can use the information provided by the trained interpretable model and structure a prompt to let an LLM explain the result.
+PS: To obtain an explanation, you can use the information provided by the trained interpretable model and structure a prompt to let an LLM explain the result as shown in the paper.
+
+### Direct Evaluation:
+A direct evaluation of the generated code of a specific task. You can run:
+```
+python eval.py --dataset ${dataset} --subtask "{subtask_name}" --model ${model_name} --knowledge_type ${knowledge_type} [if evaluating inference code or combined code specify --num_samples ${number of responses during inference}]
+```
+
+A direct evaluation of all generated code in all tasks. You can run:
+```
+python eval_code.sh
+```
 
 ## Architecture of LLM4SD
 
