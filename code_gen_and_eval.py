@@ -52,7 +52,11 @@ fix_prompt = """Please regenerate and ensure all the code are executable and cor
 
 # load csv datasets from a directory
 def load_data(which='train'):
-    dataset_folder = os.path.join('scaffold_datasets', args.dataset)
+    if args.dataset in ["alpha", "c_v", "Delta_epsilon", "epsilon_HOMO",
+                        "epsilon_LUMO", "G", "H", "mu", "R^2", "U_0", "U", "ZPVE"]:
+        dataset_folder = os.path.join('scaffold_datasets', 'qm9')
+    else:
+        dataset_folder = os.path.join('scaffold_datasets', args.dataset)
     if args.subtask == "":
         file_name = args.dataset + '_' + which + '.csv'
     else:
