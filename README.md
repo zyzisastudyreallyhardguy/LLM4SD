@@ -55,7 +55,7 @@ python eval.py --dataset ${dataset} --subtask "{subtask_name}" --model ${model_n
 
 A direct evaluation of all generated code in all tasks. You can run:
 ```
-python eval_code.sh
+bash eval_code.sh
 ```
 
 ## Architecture of LLM4SD
