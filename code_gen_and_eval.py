@@ -33,7 +33,7 @@ parser.add_argument('--model', type=str, default='galactica-6.7b', help='LLM mod
 parser.add_argument('--knowledge_type', type=str, default='all', help='synthesize/inference/all')
 parser.add_argument('--list_num', type=int, default=30, help='number of sample lists (30/50) for inference')
 parser.add_argument('--output_dir', type=str, default='eval_result', help='output folder')
-parser.add_argument('--code_gen_folder', type=str, default='code_generation_repo')
+parser.add_argument('--code_gen_folder', type=str, default='eval_code_generation_repo')
 parser.add_argument('--api_key', type=str, default='', help='openai key')
 args = parser.parse_args()
 
