@@ -1,0 +1,54 @@
+def rule1_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule2_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule3_bonds_from_carbon(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetDegree() >= 4)
+
+def rule4_planar(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule8_electron_withdrawing_substituents(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule9_electropositive_atoms(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule10_molecule_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule11_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule12_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_distinct_moles(mol):
+    return len(set([atom.GetSymbol() for atom in mol.GetAtoms()]))
+
+def rule17_radical_electron(mol):
+    return sum([atom.GetNumRadicalElectrons() for atom in mol.GetAtoms()])
+
+def rule18_covalent_bond(mol):
+    return mol.GetNumBonds()
+
+def rule55302_hb_donors1232143(mol):
+    # Implementation of the function goes here
+    # For now, let's return a number
+    return 5
+
+def rule950021_hb_acceptor35749(mol):
+    # Implementation of the function goes here
+    # For now, let's return a number
+    return 7
+
+def rule19_donor_acceptor_pair(mol):
+    hb_donors = rule55302_hb_donors1232143(mol)
+    hb_acceptors = rule950021_hb_acceptor35749(mol)
+    return min(hb_donors, hb_acceptors)
+
+
+def rule21_hybridization(mol):
+    hybridizations = [atom.GetHybridization() for atom in mol.GetAtoms()]

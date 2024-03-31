@@ -1,0 +1,50 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule5_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule6_hydrogen_bonding(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule9_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule11_sp3(mol):
+    return rdMolDescriptors.CalcFractionCSP3(mol)
+
+def rule12_metabolic_sites(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule13_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule14_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule15_nitrogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule16_oxygen_atoms(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8])
+
+
+
+
+def rule18_oxidative_stress(mol):
+    logp = Descriptors.MolLogP(mol)
+    return logp
+
+

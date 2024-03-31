@@ -1,0 +1,73 @@
+def rule1_calc_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_calc_num_polar_groups(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule3_calc_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_calc_num_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule5_calc_hydrogen_bonding_capacity(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+
+
+def rule8_metabolism_pathways(mol):
+    logP, MR = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logP, MR
+
+def rule9_bioavailability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule10_protein_binding_affinity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_bbb_permeability(mol):
+    return Crippen.MolLogP(mol)
+
+
+def rule12_oxidative_stress_potential(mol):
+    num_radical_electrons = 0
+    for atom in mol.GetAtoms():
+        num_radical_electrons += atom.GetNumRadicalElectrons()
+    return num_radical_electrons
+
+
+def rule13_mutagenic_effects(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule14_teratogenicity_risk(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule16_qsar_toxicology_model(mol):
+    return rdMolDescriptors.CalcMolFormula(mol)
+
+def rule17_topological_indices(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_chemical_resemblance(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule19_physicochemical_parameters(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule22_ionic_strength(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule23_chiral_centers(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule24_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule26_carcigenesis_studies(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule27_nanoparticles_challenges(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule29_physiological_states(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

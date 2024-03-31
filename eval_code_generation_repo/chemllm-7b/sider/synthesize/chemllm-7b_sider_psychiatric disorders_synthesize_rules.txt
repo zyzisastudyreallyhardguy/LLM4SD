@@ -1,0 +1,90 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_aromaticity(mol):
+    aromatic_atoms = [mol.GetAtomWithIdx(i).GetIsAromatic() for i in range(mol.GetNumAtoms())]
+    return sum(aromatic_atoms)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_halogen_presence(mol):
+    halogens = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogens)
+
+def rule5_hydrogen_bonding(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule6_electron_donating_groups(mol):
+    nitrogen_atoms = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7]
+
+def rule8_electronegativity_diff(mol):
+    carbon_atom = 6
+    heteroatoms = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetSymbol() != 'C']
+    heteroatoms_electronegativity = sum([Chem.GetPeriodicTable().GetAtomicWeight(atom) for atom in heteroatoms])
+    carbon_electronegativity = Chem.GetPeriodicTable().GetAtomicWeight(carbon_atom) * len(heteroatoms)
+    return heteroatoms_electronegativity - carbon_electronegativity
+
+
+def rule9_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_polarity_index(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_bioavailability(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule14_bbb_permeability(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[1]
+
+def rule16_hansen_solvation(mol):
+    # Calculate the solubility parameters
+    delta_d = rdMolDescriptors.CalcExactMolWt(mol) # Dispersion forces
+    delta_p = rdMolDescriptors.CalcNumHBD(mol) # Polar forces
+    delta_h = rdMolDescriptors.CalcNumHBA(mol) # Hydrogen bonding forces
+
+    # Return the sum of the solubility parameters
+    return delta_d + delta_p + delta_h
+
+def rule17_bbb_crossing(mol):
+    # Calculate the molecular weight and the number of hydrogen bond donors
+    mw = rdMolDescriptors.CalcExactMolWt(mol)
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+
+    # Check if hbd is zero to prevent division by zero
+    if hbd == 0:
+        return 0
+    else:
+        return mw / hbd
+
+
+    # Return a score based on the molecular weight and the number of hydrogen bond donors
+    return mw / hbd
+
+def rule18_molecular_dynamics(mol):
+    try:
+        # Calculate the number of rotatable bonds and the number of rings
+        rot_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+        rings = rdMolDescriptors.CalcNumRings(mol)
+        
+        # Your code here...
+        if rings != 0:
+            result = rot_bonds / rings
+        else:
+            result = 0  # or whatever number you want to return in case of a division by zero
+
+        return result
+        
+    except ZeroDivisionError:
+        return 0  # or whatever number you want to return in case of a division by zero
+
+
+    # Return a score based on the number of rotatable bonds and the number of rings
+    return rot_bonds / rings
+
+
+
+    # Return a score based on the number of heavy atoms and the number of aromatic atoms

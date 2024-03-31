@@ -1,0 +1,40 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_polar_functional_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_hb_acceptors_donators(mol):
+    return rdMolDescriptors.CalcNumHBA(mol), rdMolDescriptors.CalcNumHBD(mol)
+
+def rule5_aromaticity_index(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_predict_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule9_charge_distribution(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule10_identify_halogens(mol):
+    halogens = [atom.GetIdx() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogens)
+
+def rule11_count_rings(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRings(mol)
+
+def rule12_steric_hindrance(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_conjugation_pattern(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+
+
+
+def rule18_metabolic_stability(mol):
+    return Descriptors.NumRotatableBonds(mol)

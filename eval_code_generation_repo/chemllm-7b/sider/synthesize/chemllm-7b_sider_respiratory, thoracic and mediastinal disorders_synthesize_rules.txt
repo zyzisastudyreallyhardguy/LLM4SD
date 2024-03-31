@@ -1,0 +1,32 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_reactive_groups(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_allergens(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+
+def rule8_bioaccumulation_capacity(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule16_teratogenesis_risks(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule17_geno_toxins(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule18_neurotoxin_profiles(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule19_irritant_potency(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule21_pulmonary_absorption_rates(mol):
+    return Crippen.MolLogP(mol)
+

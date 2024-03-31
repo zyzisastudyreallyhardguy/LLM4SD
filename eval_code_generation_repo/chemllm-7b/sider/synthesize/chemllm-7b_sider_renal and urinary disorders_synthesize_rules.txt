@@ -1,0 +1,48 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_polar_groups(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_reactive_func(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule7_assess_solubility(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule8_evaluate_charge_distribution(mol):
+    return sum([atom.GetFormalCharge() for atom in mol.GetAtoms()])
+
+def rule9_electron_effects(mol):
+    return sum([atom.GetTotalDegree() for atom in mol.GetAtoms()])
+
+
+
+def rule11_determine_bonds(mol):
+    return mol.GetNumBonds()
+
+def rule12_evaluate_oxidative_stability(mol):
+    return sum([atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetSymbol() == 'O'])
+
+def rule14_check_interaction(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule15_check_nephrotoxicity(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule16_check_enzyme_interaction(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule17_check_protein_binding(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule18_molecular_shape_analysis(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule19_toxic_compound_similarity(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)

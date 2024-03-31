@@ -1,0 +1,9 @@
+
+def rule12345_heavy_atoms(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule67890_heavy_atoms(mol):
+    return mol.GetNumHeavyAtoms()
+
+def rule111213_min_mol_weight(mol):
+    return Descriptors.MolWt(mol)

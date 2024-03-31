@@ -1,0 +1,54 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_aromaticity(mol):
+    aromatic_atoms = [mol.GetAtomWithIdx(i).GetIsAromatic() for i in range(mol.GetNumAtoms())]
+    return sum(aromatic_atoms)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_hydrogen_bonding(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule5_electronegativity(mol):
+    electronegativity = [mol.GetAtomWithIdx(i).GetAtomicNum() for i in range(mol.GetNumAtoms())]
+    return sum(electronegativity) / len(electronegativity)
+
+def rule6_electron_groups(mol):
+    electron_donors = [mol.GetAtomWithIdx(i).GetTotalDegree() for i in range(mol.GetNumAtoms()) if mol.GetAtomWithIdx(i).GetAtomicNum() in [7, 8, 16]]
+    electron_withdrawers = [mol.GetAtomWithIdx(i).GetTotalDegree() for i in range(mol.GetNumAtoms()) if mol.GetAtomWithIdx(i).GetAtomicNum() in [6, 9, 17, 35, 53]]
+
+def rule8_reactive_func(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_metabolic_stability(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule10_bioavailability(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule11_solubility(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule12_logP(mol):
+    return rdkit.Chem.Crippen.MolLogP(mol)
+
+def rule13_polarizability(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcTPSA(mol)
+
+def rule14_charge_distribution(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule16_chemical_reactivity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+
+def rule18_mutagenic_effects(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule19_carcinogenic_mechanisms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)

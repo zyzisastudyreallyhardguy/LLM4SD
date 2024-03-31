@@ -1,0 +1,51 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_functional_groups(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule5_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_electronegativity_diff(mol):
+    electronegativities = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return max(electronegativities) - min(electronegativities)
+
+def rule9_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_solubility(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule11_metabolism_pathways(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule12_bioavailability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_oxidative_stability(mol):
+    return sum(atom.GetNumRadicalElectrons() for atom in mol.GetAtoms())
+
+
+def rule14_half_life(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule15_metabolic_activation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule16_protein_binding_affinity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule17_cytochrome_P450_inhibition(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_genotoxicity_effects(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)

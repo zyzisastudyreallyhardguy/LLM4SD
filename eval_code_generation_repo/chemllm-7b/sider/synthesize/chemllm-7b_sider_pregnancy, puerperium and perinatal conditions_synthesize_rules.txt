@@ -1,0 +1,34 @@
+def rule1_calc_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_check_estrogenic(mol):
+    estrogenic_pattern = Chem.MolFromSmarts('C=CO')
+    return len(mol.GetSubstructMatches(estrogenic_pattern))
+
+def rule3_calc_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_estimate_solubility(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule7_metabolic_stability(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_genotoxicity(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule9_teratogenic_effects(mol):
+    return Descriptors.MolWt(mol)
+
+def rule10_reproductive_organ_targets(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_protein_binding_affinity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule12_drug_enzyme_interactions(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+

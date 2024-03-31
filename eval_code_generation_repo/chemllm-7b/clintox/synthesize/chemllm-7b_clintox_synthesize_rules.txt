@@ -1,0 +1,22 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+
+
+def rule4_bbb_permeability(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) >= 2
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) >= 3
+
+def rule18_ThioflavinT_formation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule19_neurotransmitter_receptor_affinity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

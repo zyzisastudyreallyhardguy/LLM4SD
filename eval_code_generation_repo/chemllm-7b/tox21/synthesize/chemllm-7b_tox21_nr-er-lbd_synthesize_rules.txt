@@ -1,0 +1,116 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule3_hydrogen_bonding(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors, hb_acceptors
+
+def rule4_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule8_electron_donating_withdrawing(mol):
+    electron_donating_groups = ['[NR2]', '[OR]', '[SR]', 'O', 'N', 'S']
+    electron_withdrawing_groups = ['[NO2]', '[CN]', '[CO]', '[SO2]', '[CF3]', 'C(=O)']
+    electron_donating_count = 0
+    electron_withdrawing_count = 0
+    for group in electron_donating_groups:
+        pattern = Chem.MolFromSmarts(group)
+        if pattern is not None:
+            electron_donating_count += len(mol.GetSubstructMatches(pattern))
+    for group in electron_withdrawing_groups:
+        pattern = Chem.MolFromSmarts(group)
+        if pattern is not None:
+            electron_withdrawing_count += len(mol.GetSubstructMatches(pattern))
+    return electron_donating_count - electron_withdrawing_count
+
+
+def rule9_steric_hindrance(mol):
+    bulky_groups = ['CC(C)(C)C', 'CC(C)C', 'C1CCCCC1', 'c1ccccc1']  # SMARTS strings for tBu, iPr, cyclohexyl, Ph
+    steric_hindrance_count = 0
+    for group in bulky_groups:
+        steric_hindrance_count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return steric_hindrance_count
+
+
+def rule10_amino_acid_interactions(mol):
+    amino_acids_smarts = {
+        'ALA': 'C', 
+        'ARG': 'C', 
+        'ASN': 'C', 
+        'ASP': 'C', 
+        'CYS': 'C', 
+        'GLU': 'C', 
+        'GLN': 'C', 
+        'GLY': 'C', 
+        'HIS': 'C', 
+        'ILE': 'C', 
+        'LEU': 'C', 
+        'LYS': 'C', 
+        'MET': 'C', 
+        'PHE': 'C', 
+        'PRO': 'C', 
+        'SER': 'C', 
+        'THR': 'C', 
+        'TRP': 'C', 
+        'TYR': 'C', 
+        'VAL': 'C'
+    }
+    amino_acid_interactions_count = 0
+    for aa, smarts in amino_acids_smarts.items():
+        amino_acid_interactions_count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts)))
+    return amino_acid_interactions_count
+
+
+def rule11_toxic_compounds_similarity(mol):
+    toxic_compounds = ['CCl3', 'CCl4', 'CH2Cl2', 'CHCl3', 'Cl2', 'Cl3C', 'Cl4C', 'ClCCl', 'ClCH2Cl', 'ClCHCl2', 'ClCl', 'ClClC']
+    toxic_similarity_count = 0
+    for tc in toxic_compounds:
+        tc_mol = Chem.MolFromSmiles(tc)
+        if tc_mol is not None:
+            toxic_similarity_count += len(mol.GetSubstructMatches(tc_mol))
+    return toxic_similarity_count
+
+
+def rule12_chemical_reactivity(mol):
+    electron_donating_groups = ['NR2', 'OR', 'SR', 'O', 'N', 'S']
+    electron_withdrawing_groups = ['NO2', 'CN', 'CO', 'SO2', 'CF3', 'C(=O)']
+    electron_donating_count = 0
+    electron_withdrawing_count = 0
+    for group in electron_donating_groups:
+        group_mol = Chem.MolFromSmarts(group)
+        if group_mol is not None:
+            electron_donating_count += len(mol.GetSubstructMatches(group_mol))
+    for group in electron_withdrawing_groups:
+        group_mol = Chem.MolFromSmarts(group)
+        if group_mol is not None:
+            electron_withdrawing_count += len(mol.GetSubstructMatches(group_mol))
+    return electron_donating_count + electron_withdrawing_count
+
+
+def rule13_solubility_profile(mol):
+    return Crippen.MolLogP(mol)
+
+
+def rule14_quantum_descriptors(mol):
+    return sum(atom.GetNumRadicalElectrons() for atom in mol.GetAtoms())
+
+
+def rule15_metabolic_stability(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_bioavailability(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule17_protein_interaction(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule18_oral_clearance(mol):
+    return Crippen.MolMR(mol)
+

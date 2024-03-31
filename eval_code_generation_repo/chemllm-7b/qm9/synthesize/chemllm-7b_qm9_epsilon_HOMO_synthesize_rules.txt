@@ -1,0 +1,83 @@
+def epsilon_HOMO_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) >= 2
+
+def epsilon_HOMO_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) >= 3
+
+def epsilon_HOMO_electronegativity_diff(mol):
+    max_diff = 0
+    for bond in mol.GetBonds():
+        atom1 = bond.GetBeginAtom()
+        atom2 = bond.GetEndAtom()
+        diff = abs(atom1.GetAtomicNum() - atom2.GetAtomicNum())
+        if diff > max_diff:
+            max_diff = diff
+    return max_diff
+
+def epsilon_HOMO_electron_count(mol):
+    electron_count = 0
+    for atom in mol.GetAtoms():
+        electron_count += atom.GetTotalNumHs()
+    return electron_count >= 4 and electron_count <= 5
+
+def epsilon_HOMO_negative_charge_density(mol):
+    charge_density = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7:  # Nitrogen
+            charge_density += atom.GetFormalCharge()
+    return charge_density > 0
+
+def epsilon_HOMO_resonance_structures(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol) == 0
+
+def rule8_nucleophilicity(mol):
+    alkyl_substituents = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX4]'))
+    halogens = mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]'))
+    return len(alkyl_substituents) - len(halogens)
+
+def rule9_inductive_effects(mol):
+    cc_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#6]'))
+    nh_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#7]-[#1]'))
+    cs_bonds = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#16]'))
+    return len(cc_bonds) + len(nh_bonds) + len(cs_bonds)
+
+def rule10_hyperconjugation(mol):
+    p_orbitals = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]'))
+    sigma_electrons = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]-[#6]'))
+    return len(p_orbitals) + len(sigma_electrons)
+
+def rule11_conjunction(mol):
+    conjunctions = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[#6]'))
+    return len(conjunctions)
+
+def rule12_alkynes(mol):
+    alkynes = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]#[#6]'))
+    return len(alkynes)
+
+def rule13_carbocation_stabilization(mol):
+    carbocations = mol.GetSubstructMatches(Chem.MolFromSmarts('[#6+]'))
+    return len(carbocations)
+
+def rule14_aromatics(mol):
+    aromatics = mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1'))
+
+def rule16_nitrogen_oxygen_count(mol):
+    nitrogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('N')))
+    oxygen_count = len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    return nitrogen_count, oxygen_count
+
+def rule17_metal_count(mol):
+    metal_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [13, 31, 49, 50, 81, 82, 83, 113, 114, 115, 116]:
+            metal_count += 1
+    return metal_count
+
+def rule18_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule19_anti_aromatic_regions(mol):
+    anti_aromatic_count = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if len(ring) % 4 == 0:
+            anti_aromatic_count += 1

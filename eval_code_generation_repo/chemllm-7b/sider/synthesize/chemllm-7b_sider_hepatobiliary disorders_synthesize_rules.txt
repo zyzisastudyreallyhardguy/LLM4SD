@@ -1,0 +1,76 @@
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) >= 2
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) >= 3
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_polar_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule5_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_reactive_func(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_electronegativity_diff(mol):
+    electronegativities = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return max(electronegativities) - min(electronegativities)
+
+def rule8_aromaticity_level(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return sum(aromatic_atoms)
+
+def rule9_halogen_content(mol):
+    halogens = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53, 85, 117]]
+    return len(halogens)
+
+def rule10_conjugation_patterns(mol):
+    conjugated_bonds = [bond.GetIsConjugated() for bond in mol.GetBonds()]
+    return sum(conjugated_bonds)
+
+def rule11_electron_substituents(mol):
+    electron_donating_substituents = 0
+    for atom in mol.GetAtoms():
+        if atom.GetIsAromatic():
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetAtomicNum() in [7, 8, 16]:  # N, O, S are common electron-donating atoms
+                    electron_donating_substituents += 1
+    return electron_donating_substituents
+
+def rule12_steric_hindrance(mol):
+    steric_hindrance = 0
+    for atom in mol.GetAtoms():
+        if atom.GetDegree() > 2:  # If an atom is connected to more than 2 other atoms, it may cause steric hindrance
+            steric_hindrance += 1
+    return steric_hindrance
+
+def rule13_solubility_parameters(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]  # LogP is a common measure of solubility
+
+
+def rule14_structural_analogues(mol):
+    # This function would require a database of known structures to compare against
+    # Here is a placeholder function
+    return 0
+
+def rule15_chemical_bonds(mol):
+    return mol.GetNumBonds()
+
+def rule16_cytochrome_p450(mol):
+    # This function would require a database of known metabolized molecules to compare against
+    # Here is a placeholder function
+    return 0
+
+def rule17_molecular_shape(mol):
+    # This function would require a method to calculate molecular shape and compare it against known problematic shapes
+    # Here is a placeholder function
+    return 0
+
+def rule18_metabolic_pathways(mol):
+    # This function would require a database of known metabolic pathways to compare against
+    # Here is a placeholder function
+    return 0

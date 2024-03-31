@@ -1,0 +1,51 @@
+def rule1_calc_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_check_reactive_groups(mol):
+    # Here, we will check for halogens as an example of reactive groups
+    halogens = ['F', 'Cl', 'Br', 'I']
+    atoms = mol.GetAtoms()
+    count = 0
+    for atom in atoms:
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule3_calc_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def genotoxicity_model(mol):
+    # Define your genotoxicity prediction model here
+    # This is a placeholder implementation
+    risk = 0
+    # Calculate risk based on 'mol'
+    return risk
+
+def rule14_genotoxicity_risk(mol):
+    # This function should return a number indicating the genotoxicity risk.
+    # The actual implementation depends on the genotoxicity prediction model used.
+    return genotoxicity_model(mol)
+
+def rule14_genotoxicity_risk(mol):
+    # This function should return a number indicating the genotoxicity risk.
+    # The actual implementation depends on the genotoxicity prediction model used.
+    return genotoxicity_model.predict(mol)
+
+
+
+
+
+
+def rule17_teratogenicity(mol, teratogenicity_model=None):
+    if teratogenicity_model is None:
+        # Handle the case where teratogenicity_model is not provided
+        # This could be returning a default value, raising an error, etc.
+        return 0
+    else:
+        return teratogenicity_model.predict(mol)
+
+
+

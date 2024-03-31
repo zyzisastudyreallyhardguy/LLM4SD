@@ -1,0 +1,8 @@
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) >= 2
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol) >= 3
+
+def rule12345_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

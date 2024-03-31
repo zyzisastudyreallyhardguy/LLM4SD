@@ -1,0 +1,49 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_hydrogen_bonding(mol):
+    return rdMolDescriptors.CalcNumHBD(mol), rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_aromaticity(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_electronegativity(mol):
+    return Descriptors.MaxPartialCharge(mol) - Descriptors.MinPartialCharge(mol)
+
+def rule6_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_charge_distribution(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule10_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule11_reactive_species(mol):
+    radical_electrons = 0
+    for atom in mol.GetAtoms():
+        radical_electrons += atom.GetNumRadicalElectrons()
+    return radical_electrons
+
+
+def rule12_electron_effects(mol):
+    # Define electronegative atoms as O, N, F, Cl, Br, I
+    electronegative_atoms = ['O', 'N', 'F', 'Cl', 'Br', 'I']
+    # Convert the molecule to a string
+    mol_str = Chem.MolToSmiles(mol)
+    # Count the number of electronegative atoms in the molecule
+    num_electronegative_atoms = sum(mol_str.count(atom) for atom in electronegative_atoms)
+    return num_electronegative_atoms
+
+
+def rule16_stereochemistry_geometry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule17_chemical_reactivity(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule18_molecular_dynamics(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)

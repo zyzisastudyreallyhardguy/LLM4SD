@@ -1,0 +1,45 @@
+def rule_U0_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule_U0_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule_U0_sp2_hybridization(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6v3,#7v3,#8v2,#16v4,#16v6,#15v5,#33v4,#34v6]')))
+
+
+def rule_U0_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_electron_withdrawing_substituents(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule8_resonance_structures(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule9_carbocation_stability(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule10_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_hydrogen_bonded_complexes(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule12_ionic_compounds(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule13_polarizability(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule16_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule17_num_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule18_num_func_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule19_num_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[F,Cl,Br,I]")))

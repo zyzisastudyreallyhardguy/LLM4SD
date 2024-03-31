@@ -1,0 +1,65 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_polar_bonds(mol):
+    return rdkit.Chem.Lipinski.NumHeteroatoms(mol)
+
+def rule3_electronegativity_diff(mol):
+    max_en = max([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+    min_en = min([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+    return max_en - min_en
+
+def rule4_functional_groups(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule7_solubility(mol):
+    logp, _ = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule8_reactivity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_oxidative_stability(mol):
+    num_radical_electrons = sum(atom.GetNumRadicalElectrons() for atom in mol.GetAtoms())
+    return num_radical_electrons
+
+
+def rule10_bioavailability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule11_metabolism_rate(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule12_metabolic_activation(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule13_mutagenecity(mol):
+    return rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule14_carcinogenic_effects(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule15_teratogenetic_activities(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_genotoxic_effects(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule17_reproductive_toxicities(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule18_molecular_shape_analysis(mol):
+    return rdMolDescriptors.CalcNumSaturatedRings(mol)
+
+def rule19_identifying_biomarkers(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule21_analyzing_metabolite_profiles(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule22_protein_interactions(mol):
+    return rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule23_dna_binding_affinity(mol):
+    return rdMolDescriptors.CalcNumBridgeheadAtoms(mol)

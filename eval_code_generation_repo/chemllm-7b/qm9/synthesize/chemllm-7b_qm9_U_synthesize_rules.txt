@@ -1,0 +1,11 @@
+def rule12345_valence_electron(mol):
+    return sum([atom.GetTotalValence() for atom in mol.GetAtoms()]) >= 1
+
+def rule67890_electronegativity_diff(mol):
+    electronegativities = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return max(electronegativities) - min(electronegativities) >= 1
+
+def rule111213_central_atom(mol):
+    return len(mol.GetAtoms()) >= 1
+
+

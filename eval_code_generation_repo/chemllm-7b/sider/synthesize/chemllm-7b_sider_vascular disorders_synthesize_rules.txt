@@ -1,0 +1,42 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_aromaticity(mol):
+    aromatic_list = [ring.IsAromatic() for ring in mol.GetRingInfo().AtomRings()]
+    return sum(aromatic_list)
+
+def rule3_polarity_index(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule4_functional_groups(mol):
+    fgs = rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+    return fgs
+
+def rule7_hydrogen_bonding_ability(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule8_electronegativity_difference(mol):
+    return Descriptors.MaxPartialCharge(mol) - Descriptors.MinPartialCharge(mol)
+
+def rule9_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_solubility_properties(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule13_bioavailability(mol):
+    return rdMolDescriptors.CalcFractionCSP3(mol)
+
+
+
+def rule16_analyze_stability(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule17_evaluate_bbb_crossing(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+

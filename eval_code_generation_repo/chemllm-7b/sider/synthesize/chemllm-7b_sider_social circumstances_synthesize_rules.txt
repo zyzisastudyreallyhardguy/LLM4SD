@@ -1,0 +1,50 @@
+def sider_social_circumstances_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def sider_social_circumstances_has_halogen(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def sider_social_circumstances_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+
+
+
+
+def rule8_charge_distribution(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule9_aromaticity(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_polarizability_index(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+def rule11_reactivity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+
+
+
+
+def CalcInhibitionIndex(mol):
+    # Define your function here
+    # This is a placeholder for the actual calculation
+    inhibition_index = 0
+    return inhibition_index
+
+def rule14_enzyme_inhibition(mol):
+    return CalcInhibitionIndex(mol)
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+def rule1_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_hydrogen_bonding(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule7_aromaticity_levels(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_electron_groups(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule9_steric_hindrance(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_charge_distribution(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule11_solubility_parameters(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule12_oxidation_states(mol):
+    return sum(atom.GetNumRadicalElectrons() for atom in mol.GetAtoms())
+
+
+def rule13_reactivity_nucleotides(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+
+
+def rule16_radical_species(mol):
+    return sum(atom.GetNumRadicalElectrons() for atom in mol.GetAtoms())
+
+
+def rule17_structural_instability(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_cell_penetration(mol):
+    return rdMolDescriptors.CalcTPSA(mol)

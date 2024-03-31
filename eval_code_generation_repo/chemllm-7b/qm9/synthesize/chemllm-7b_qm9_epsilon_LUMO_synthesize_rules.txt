@@ -1,0 +1,45 @@
+def rule1_larger_atoms(mol):
+    return Descriptors.HeavyAtomCount(mol)
+
+def rule2_electron_donating_groups(mol):
+    return Descriptors.NumHDonors(mol)
+
+def rule3_aromatic_rings(mol):
+    return Descriptors.NumAromaticRings(mol)
+
+def rule4_aromatic_stability(mol):
+    return Descriptors.NumAromaticCarbocycles(mol)
+
+def rule5_conjugated_systems(mol):
+    return Descriptors.NumAliphaticRings(mol)
+
+def rule6_electronegative_substituents(mol):
+    return Descriptors.NumHAcceptors(mol)
+
+def rule9_metallic_elements(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#3,#11,#19,#37,#55,#87,#4,#12,#20,#38,#56,#88,#13,#31,#49,#81,#113,#5,#14,#32,#50,#82,#114,#6,#15,#33,#51,#83,#115,#7,#16,#34,#52,#84,#116,#8,#17,#35,#53,#85,#117,#9,#18,#36,#54,#86,#118]")))
+
+def rule10_carbon_heteroatom_bonds(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#6;!H0]-,:[!#6;!#1]")))
+
+def rule11_nitrogen_heterocycles(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#7]1~*~*~*~*~1")))
+
+def rule12_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule13_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+def rule14_acidic_groups(mol):
+    pattern = Chem.MolFromSmarts("[$([O,S]-[H1]-[!#6;!#1]),$([O,S]-H2),$(O=S(=O)-[!#6;!#1])]")
+    if pattern is not None:
+        return len(mol.GetSubstructMatches(pattern))
+    else:
+        return 0
+
+
+
+
+def rule18_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

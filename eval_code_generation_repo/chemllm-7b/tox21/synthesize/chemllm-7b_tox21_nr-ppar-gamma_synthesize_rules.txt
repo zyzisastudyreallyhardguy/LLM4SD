@@ -1,0 +1,77 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_halogenated_aromatic(mol):
+    halogenated_aromatics = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [9, 17, 35, 53] and atom.GetIsAromatic():
+            halogenated_aromatics += 1
+    return halogenated_aromatics
+
+def rule3_hydrogen_bonding(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule6_electron_groups(mol):
+    electron_donating = ['N', 'O']
+    electron_withdrawing = ['C', 'H']
+    donating_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in electron_donating)
+    withdrawing_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in electron_withdrawing)
+    return donating_count - withdrawing_count
+
+def rule8_steric_hindrance(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule9_charge_distribution(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule9_charge_distribution(mol):
+    return rdmolops.GetFormalCharge(mol)
+
+
+
+
+def rule11_toxic_compounds(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule12_qsar_models(smiles):
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+        mol_weight = Descriptors.MolWt(mol)
+        num_h_donors = Descriptors.NumHDonors(mol)
+        num_h_acceptors = Descriptors.NumHAcceptors(mol)
+        return mol_weight, num_h_donors, num_h_acceptors
+    except:
+        return 0
+
+
+def rule13_tox21_alerts(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+
+def rule15_species_differences(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+def rule16_metabolites_bioactivation(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+
+def rule17_synthetic_derivatives(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+
+def rule18_machine_learning(mol):
+    return rdMolDescriptors.CalcNumAtoms(mol)
+
+
+

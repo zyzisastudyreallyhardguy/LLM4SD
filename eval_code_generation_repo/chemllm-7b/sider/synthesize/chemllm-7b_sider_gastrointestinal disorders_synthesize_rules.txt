@@ -1,0 +1,53 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_presence_absence(mol):
+    return rdkit.Chem.Descriptors.HeavyAtomCount(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_functional_groups(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule7_electron_donating_withdrawing(mol):
+    num_radical_electrons = 0
+    for atom in mol.GetAtoms():
+        num_radical_electrons += atom.GetNumRadicalElectrons()
+    return num_radical_electrons
+
+
+def rule8_solubility_properties(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule9_metabolism_pathways(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_bioavailability_profiles(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule11_absorption_mechanisms(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule12_intestine_permeability(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule13_ph_sensitivity(mol):
+    return rdMolDescriptors.CalcNumHeterocycles(mol)
+
+def rule14_cytotoxicity_effects(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule55302_genetic_polymorphisms1232143(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule950021_protein_binding_affinity35749(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule55302_chem_reactivity1232143(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule950021_mutagenic_activity35749(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

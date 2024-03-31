@@ -1,0 +1,27 @@
+
+def rule7_electron_donating_groups(mol):
+    pattern = Chem.MolFromSmarts('[N,O]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule8_distance_from_donor_group(mol):
+    pattern = Chem.MolFromSmarts('[N,O]')
+    matches = mol.GetSubstructMatches(pattern)
+    if len(matches) == 0:
+        return 0
+    else:
+        donor_atom = matches[0][0]
+
+def rule12345_pi_electrons(mol):
+    pi_electrons = 0
+    for atom in mol.GetAtoms():
+        pi_electrons += atom.GetTotalNumHs()
+    return pi_electrons
+
+def rule67890_ring_members(mol):
+    return mol.GetRingInfo().NumRings()
+
+def rule111213_stability(mol):
+    pi_electrons = rule12345_pi_electrons(mol)
+    ring_members = rule67890_ring_members(mol)
+    stability = pi_electrons / ring_members if ring_members != 0 else 0
+    return stability

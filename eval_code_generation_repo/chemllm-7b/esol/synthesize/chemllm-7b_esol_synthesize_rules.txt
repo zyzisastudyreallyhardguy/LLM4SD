@@ -1,0 +1,31 @@
+def rule1_molecular_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+
+def rule2_hydrogen_bonding(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_electronegativity_difference(mol):
+    return Descriptors.MaxPartialCharge(mol) - Descriptors.MinPartialCharge(mol)
+
+def rule4_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_charge_centers(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule8_aromatic_ring(mol):
+    aromatic_list = [ring.IsAromatic() for ring in mol.GetRingInfo().AtomRings()]
+    return aromatic_list.count(True)
+
+def rule9_size_weight_ratio(mol):
+    mol_weight = rdkit.Chem.rdMolDescriptors.CalcExactMolWt(mol)
+    oxygen_count = len(mol.GetSubstructMatches(rdkit.Chem.MolFromSmiles('O')))
+    if oxygen_count == 0:
+        return 0
+    return mol_weight / oxygen_count
+
+
+def rule10_hydroxyl_groups(mol):
+    hydroxyl_count = len(mol.GetSubstructMatches(rdkit.Chem.MolFromSmiles('O[H]')))
+    return hydroxyl_count

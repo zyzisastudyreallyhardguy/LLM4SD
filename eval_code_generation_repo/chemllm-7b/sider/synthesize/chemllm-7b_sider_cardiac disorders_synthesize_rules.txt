@@ -1,0 +1,40 @@
+def sider_cardiac_disorders_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def sider_cardiac_disorders_is_aromatic(mol):
+    aromatic_atoms = [mol.GetAtomWithIdx(i).GetIsAromatic() for i in range(mol.GetNumAtoms())]
+    return int(any(aromatic_atoms))
+
+def sider_cardiac_disorders_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def sider_cardiac_disorders_has_halogen(mol):
+    halogens = [5, 9, 17, 35, 53]  # atomic numbers of B, F, Cl, Br, I
+    atoms = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return int(any(atom in halogens for atom in atoms))
+
+def sider_cardiac_disorders_has_ewg(mol):
+    # Here, we'll consider nitro (-NO2) and cyano (-CN) as electron withdrawing groups
+    nitro = Chem.MolFromSmarts('[N+](=O)[O-]')
+    cyano = Chem.MolFromSmarts('C#N')
+
+def rule7_hb_oxygen(mol):
+    oxygen_atoms = [atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'O']
+    hb_oxygen = sum([atom.GetTotalNumHs() for atom in oxygen_atoms])
+    return hb_oxygen
+
+def rule8_electronegativity_diff(mol):
+    bonds = mol.GetBonds()
+    electronegativity_diff = 0
+    for bond in bonds:
+        atom1 = bond.GetBeginAtom()
+        atom2 = bond.GetEndAtom()
+        electronegativity_diff += abs(atom1.GetAtomicNum() - atom2.GetAtomicNum())
+    return electronegativity_diff
+
+def rule9_polarity(mol):
+    polarizability = rdMolDescriptors.CalcTPSA(mol)
+    return polarizability
+
+
+

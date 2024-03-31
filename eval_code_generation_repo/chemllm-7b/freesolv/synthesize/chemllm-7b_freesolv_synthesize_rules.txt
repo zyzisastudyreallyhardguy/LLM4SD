@@ -1,0 +1,56 @@
+def rule1_molecular_volume(mol):
+    return Descriptors.MolWt(mol)
+
+def rule1_molecular_volume(mol):
+    try:
+        return Descriptors.MolWt(mol)
+    except:
+        return 0
+
+
+def rule2_hydrogen_bonding_potentials(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_solubility_parameters(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule3_solubility_parameters(mol):
+    return Descriptors.MolMR(mol)
+
+
+def rule4_charge_distribution(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_electronegativity_differences(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule6_steric_effects(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule9_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_electron_groups(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule11_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+
+def rule13_chemical_reactivity(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule14_thermodynamic_stability(mol):
+    return Descriptors.HeavyAtomMolWt(mol)
+
+def rule15_electrostatic_repulsion(mol):
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule17_viscosity(mol):
+    logp = Descriptors.MolLogP(mol)
+    return logp
+
+
+def rule18_dielectric_constant(mol):
+    return Descriptors.TPSA(mol)

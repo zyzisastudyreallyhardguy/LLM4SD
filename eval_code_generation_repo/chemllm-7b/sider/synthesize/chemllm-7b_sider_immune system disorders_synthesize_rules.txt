@@ -1,0 +1,50 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_reactive_groups(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule7_cytotoxic_effects(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule8_immunogenic_reactions(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule9_protein_interactions(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_binding_affinity(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule11_metabolic_stability(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule12_solubility(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule13_bioavailability(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule14_enzyme_inhibition(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule15_DNA_RNA_interaction(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_structural_similarity(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule17_biomarkers(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule1_hb_donors(mol):
+    from rdkit.Chem import rdMolDescriptors
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptor(mol):
+    from rdkit.Chem import rdMolDescriptors

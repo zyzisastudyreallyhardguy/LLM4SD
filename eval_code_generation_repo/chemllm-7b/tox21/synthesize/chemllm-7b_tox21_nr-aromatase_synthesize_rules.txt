@@ -1,0 +1,82 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_halogen_substituents(mol):
+    halogens = [5, 9, 17, 35, 53] # atomic numbers of halogens
+    halogen_substituents = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in halogens:
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetAtomicNum() == 6: # atomic number of carbon
+                    if neighbor.GetIsAromatic():
+                        halogen_substituents += 1
+    return halogen_substituents
+
+def rule3_electron_donating_groups(mol):
+    electron_donating_groups = ['N', 'O', 'S'] # atomic symbols of common electron-donating groups
+    edg_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in electron_donating_groups:
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetAtomicNum() == 6: # atomic number of carbon
+                    if neighbor.GetIsAromatic():
+                        edg_count += 1
+    return edg_count
+
+def rule55302_hb_donors1232143(mol):
+    # Your implementation here
+    return 1  # replace with your actual implementation
+
+def rule950021_hb_acceptor35749(mol):
+    # Your implementation here
+    return 1  # replace with your actual implementation
+
+def rule4_hb_potentials(mol):
+    return rule55302_hb_donors1232143(mol) + rule950021_hb_acceptor35749(mol)
+
+
+def rule5_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_partition_coefficient(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_bioavailability(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+
+
+def rule12_cytochrome_p450(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule13_herg_blockage(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    if mol is not None:
+        return len(mol.GetSubstructMatches(Chem.MolFromSmiles('N'))) + len(mol.GetSubstructMatches(Chem.MolFromSmiles('O')))
+    else:
+        return 0
+
+
+def rule14_structural_alerts(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule16_reactive_species(mol):
+    # Here, we can use the number of oxygen atoms as a proxy for the potential to produce reactive oxygen species
+    return mol.GetNumAtoms(8)  # 8 is the atomic number for Oxygen
+
+
+def rule17_metabolic_stability(mol):
+    # Here, we can use the number of rotatable bonds as a proxy for metabolic stability
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_protein_binding_affinity(mol):
+    # Here, we can use the molecular weight as a proxy for protein binding affinity
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule19_bbb_penetration(mol):
+    # Here, we can use the number of nitrogen and oxygen atoms as a proxy for blood-brain barrier penetration ability
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)

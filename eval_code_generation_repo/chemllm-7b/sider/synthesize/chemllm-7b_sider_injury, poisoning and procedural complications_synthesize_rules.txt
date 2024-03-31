@@ -1,0 +1,40 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule3_electronegativity_difference(mol):
+    max_en = max([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+    min_en = min([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+    return max_en - min_en
+
+def rule4_functional_groups(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule5_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+
+
+
+
+def rule10_bioavailability(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+
+
+
+
+def rule13_blood_brain_barrier_permeability(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[1]
+
+
+
+
+
+def rule17_genotoxicity_effects(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_mutagenesis_risk(mol):
+    return rdMolDescriptors.CalcNumRings(mol)

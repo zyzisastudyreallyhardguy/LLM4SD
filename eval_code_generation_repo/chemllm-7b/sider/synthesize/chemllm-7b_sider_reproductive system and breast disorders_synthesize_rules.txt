@@ -1,0 +1,8 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_presence_absence(mol):
+    return rdkit.Chem.Descriptors.HeavyAtomCount(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)

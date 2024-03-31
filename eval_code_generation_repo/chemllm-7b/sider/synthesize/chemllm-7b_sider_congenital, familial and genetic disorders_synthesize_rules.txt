@@ -1,0 +1,58 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_functional_groups(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule7_hydrogen_bonding_capacity(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule8_electronegativity_difference(mol):
+    electronegativities = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return max(electronegativities) - min(electronegativities)
+
+def rule9_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_solubility_properties(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule11_metabolic_stability(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule12_bioavailability_levels(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule13_protein_binding_affinity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+
+def rule15_metabolism_pathways(some_list):
+    if isinstance(some_list, list):
+        try:
+            result = some_list[15]  # this will raise an error if the list has less than 16 elements
+        except IndexError:
+            result = 0  # or any other value that makes sense in your context
+    else:
+        result = 0  # or any other value that makes sense in your context
+    return result
+
+
+def rule16_enzyme_inhibition(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+
+def rule18_dna_adduct_formation(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+

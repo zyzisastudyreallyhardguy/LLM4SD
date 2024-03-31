@@ -1,0 +1,32 @@
+def rule_cv_bonds(mol):
+    return mol.GetNumBonds()
+
+def rule_cv_hydrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 1)
+
+def rule_cv_symmetry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule_cv_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule_cv_electronegativity(mol):
+    return sum(atom.GetAtomicNum() for atom in mol.GetAtoms()) / mol.GetNumAtoms()
+
+def rule_cv_mass_difference(mol):
+    weights = [atom.GetMass() for atom in mol.GetAtoms()]
+
+def rule9_molecule_size(mol):
+    return mol.GetNumAtoms()
+
+def rule10_molecule_complexity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_molecule_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule12_functional_groups(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule13_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumAliphaticHeterocycles(mol) + rdMolDescriptors.CalcNumAromaticHeterocycles(mol)

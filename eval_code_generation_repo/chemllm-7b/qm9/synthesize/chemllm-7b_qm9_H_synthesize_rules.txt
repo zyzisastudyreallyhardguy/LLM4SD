@@ -1,0 +1,73 @@
+def rule1_hb_donors(mol):
+    num_hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    if num_hb_donors >= 2:
+        return 1
+    else:
+        return 0
+
+def rule2_hb_acceptor(mol):
+    num_hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    if num_hb_acceptors >= 3:
+        return 1
+    else:
+        return 0
+
+def rule3_min_atoms(mol):
+    num_atoms = mol.GetNumAtoms()
+    if num_atoms >= 1:
+        return 1
+    else:
+        return 0
+
+def rule4_max_electronegativity_diff(mol):
+    max_diff = 0
+    for atom1 in mol.GetAtoms():
+        for atom2 in mol.GetAtoms():
+            diff = abs(atom1.GetAtomicNum() - atom2.GetAtomicNum())
+            if diff > max_diff:
+                max_diff = diff
+    if max_diff <= 1.5:
+        return 1
+    else:
+        return 0
+
+def rule5_amino_acid_side_chain(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetTotalNumHs() == 2:
+            return 1
+    return 0
+
+
+
+def rule7_hb_structures(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule8_molecular_geometry(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule9_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule10_electron_donating_groups(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule11_residual_polarities(mol):
+    return rdMolDescriptors.CalcNumAmideBonds(mol)
+
+def rule12_ionic_strength(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule13_solvation_energy(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule16_multiple_functional_groups(mol):
+    return len(Chem.rdmolops.GetMolFrags(mol, asMols=True))
+
+def rule17_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule18_hydrophobic_groups(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() in [6, 14, 32, 50, 82]])
+
+def rule19_catalytic_groups(mol):
+    return len([atom for atom in mol.GetAtoms() if atom.GetSymbol() in ['O', 'N', 'C'] and atom.GetTotalNumHs() > 0])

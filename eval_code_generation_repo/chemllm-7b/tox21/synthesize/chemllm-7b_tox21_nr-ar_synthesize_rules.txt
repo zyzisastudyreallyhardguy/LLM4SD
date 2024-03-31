@@ -1,0 +1,41 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule3_hydrogen_bonding(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule4_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule8_predict_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+
+
+
+
+def rule11_analyze_electronic_properties(mol):
+    return Descriptors.NumRadicalElectrons(mol)
+
+def rule12_compute_topological_indices(mol):
+    return Descriptors.BalabanJ(mol)
+
+def rule13_measure_surface_area(mol):
+    return Descriptors.TPSA(mol)
+
+
+
+
+def rule15_monitor_charge_distribution(mol):
+    return Descriptors.NumValenceElectrons(mol)
+
+def rule16_stereochemistry_info(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))

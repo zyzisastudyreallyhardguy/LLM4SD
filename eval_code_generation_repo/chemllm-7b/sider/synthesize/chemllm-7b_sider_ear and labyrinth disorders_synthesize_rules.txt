@@ -1,0 +1,55 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_reactive_groups(mol):
+    # Here, we will use the SMARTS pattern for halogens (F, Cl, Br, I)
+    halogen_pattern = '[F,Cl,Br,I]'
+    halogen_match = mol.GetSubstructMatches(Chem.MolFromSmarts(halogen_pattern))
+    return len(halogen_match)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+
+def rule7_charge_distribution(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule8_stereochemistry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_oxidative_stress(mol):
+    if isinstance(mol, str):
+        mol = Chem.MolFromSmiles(mol)
+    return sum([atom.GetNumRadicalElectrons() for atom in mol.GetAtoms()])
+
+
+def rule10_protein_binding(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule11_metabolism_profiles(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule12_chemical_reactivity(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule13_estimate_partition_coefficients(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule1_hb_donors(mol):
+    mol = Chem.MolFromSmiles(mol)
+    return rdMolDescriptors.CalcNumHBD(mol) >= 2
+
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) >= 2
+
+
+def rule2_hb_acceptor(mol):
+    if type(mol) == str:
+        mol = Chem.MolFromSmiles(mol)
+    if not isinstance(mol, Chem.rdchem.Mol):
+        return 0
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+

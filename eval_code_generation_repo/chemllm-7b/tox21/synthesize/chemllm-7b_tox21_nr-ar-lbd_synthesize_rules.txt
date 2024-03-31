@@ -1,0 +1,75 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule5_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule8_count_halogen_atoms(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#9,#17,#35,#53]")))
+
+def rule8_count_heavy_atoms(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule9_predict_solubility(mol):
+    from rdkit.Chem import Crippen
+    return Crippen.MolLogP(mol)
+
+def rule10_assess_charge_distribution(mol):
+    from rdkit.Chem import rdPartialCharges
+    rdPartialCharges.ComputeGasteigerCharges(mol)
+    charges = [atom.GetDoubleProp('_GasteigerCharge') for atom in mol.GetAtoms()]
+    return sum(charges)
+
+def rule11_steric_properties(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12_electronic_effects(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_structural_similarity(mol):
+    from rdkit import DataStructs
+    from rdkit.Avalon.pyAvalonTools import GetAvalonFP
+    benzene = Chem.MolFromSmiles('c1ccccc1')
+
+def rule14_compute_electrostatic_potentials(mol):
+    # Here, we assume that the electrostatic potential is calculated by summing up the partial charges of all atoms in the molecule.
+    # This is a simplification and in a real application a more sophisticated method would be needed.
+    partial_charges = Chem.rdPartialCharges.ComputeGasteigerCharges(mol)
+    electrostatic_potential = sum([atom.GetDoubleProp('_GasteigerCharge') for atom in mol.GetAtoms()])
+    return electrostatic_potential
+
+def rule15_chemical_reactivity(mol):
+    # Here, we assume that the chemical reactivity is calculated by the number of reactive functional groups in the molecule.
+    # This is a simplification and in a real application a more sophisticated method would be needed.
+    reactive_functional_groups = rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+    return reactive_functional_groups
+
+def rule16_metabolic_stability(mol):
+    # Here, we assume that the metabolic stability is calculated by the number of rotatable bonds in the molecule.
+    # This is a simplification and in a real application a more sophisticated method would be needed.
+    metabolic_stability = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return metabolic_stability
+
+def rule17_identify_metabolites(mol):
+    # Here, we assume that the possible metabolites are identified by the number of heavy atoms in the molecule.
+    # This is a simplification and in a real application a more sophisticated method would be needed.
+    possible_metabolites = rdMolDescriptors.CalcNumHeavyAtoms(mol)
+    return possible_metabolites
+
+def rule18_binding_affinity(mol):
+    return Lipinski.NumRotatableBonds(mol)
+
+def rule19_inhibition_constants(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)

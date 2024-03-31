@@ -1,0 +1,42 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_polar_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule3_lipophilicity_index(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_hb_acceptors_donators(mol):
+    return rdMolDescriptors.CalcNumHBA(mol), rdMolDescriptors.CalcNumHBD(mol)
+
+def rule5_amino_acid_residues(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule6_aromatic_ring_content(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_count_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule9_count_sulfur_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule10_identify_nitro_group(mol):
+    nitro_pattern = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return mol.HasSubstructMatch(nitro_pattern)
+
+def rule11_identify_cyano_group(mol):
+    cyano_pattern = Chem.MolFromSmarts('C#N')
+    return mol.HasSubstructMatch(cyano_pattern)
+
+def rule16_metabolic_stability(mol):
+    logP, MR = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logP
+
+def rule17_protein_binding(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule18_docking_interaction(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

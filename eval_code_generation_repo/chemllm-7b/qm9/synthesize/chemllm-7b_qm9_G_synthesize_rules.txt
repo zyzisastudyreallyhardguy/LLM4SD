@@ -1,0 +1,75 @@
+
+
+def rule789012_hybridization_state(mol):
+    hybridization = [atom.GetHybridization() for atom in mol.GetAtoms()]
+    return hybridization.count(rdkit.Chem.rdchem.HybridizationType.SP3)
+
+def rule5_molecular_polarity(mol):
+    atoms = mol.GetAtoms()
+    electronegativities = [atom.GetAtomicNum() for atom in atoms]
+    max_electronegativity = max(electronegativities)
+    min_electronegativity = min(electronegativities)
+    return max_electronegativity - min_electronegativity
+
+def rule6_molecular_solubility(mol):
+    atoms = mol.GetAtoms()
+    solubility = sum([1 for atom in atoms if atom.GetAtomicNum() in [7, 8]])  # 7 and 8 are the atomic numbers for Nitrogen and Oxygen
+    return solubility
+
+def rule7_acidic_proton_donors(mol):
+    atoms = mol.GetAtoms()
+    acidic_protons = 0
+    for atom in atoms:
+        if atom.GetAtomicNum() == 1:  # 1 is the atomic number for Hydrogen
+            neighbors = atom.GetNeighbors()
+            for neighbor in neighbors:
+                if neighbor.GetAtomicNum() in [7, 8]:  # 7 and 8 are the atomic numbers for Nitrogen and Oxygen
+                    acidic_protons += 1
+                    break
+
+def rule_ionic_compound(mol):
+    # Here we can use the concept of formal charge to identify ionic compounds
+    # If the sum of formal charges is not zero, it is an ionic compound
+    formal_charge = rdkit.Chem.rdmolops.GetFormalCharge(mol)
+    if formal_charge != 0:
+        return 1
+    else:
+        return 0
+
+def rule_high_boiling_point(mol):
+    # Here we can use the concept of molecular weight to estimate boiling point
+    # Higher molecular weight typically means higher boiling point
+    molecular_weight = rdkit.Chem.rdMolDescriptors.CalcExactMolWt(mol)
+    if molecular_weight > 100:  # This is a rough estimate, the actual threshold may vary
+        return 1
+    else:
+        return 0
+
+
+
+def rule_low_electron_withdrawing_ability(mol):
+    # Convert the RDKit molecule to a SMILES string
+    smiles = Chem.MolToSmiles(mol)
+    # Calculate the molecular weight
+    mol_weight = Descriptors.MolWt(mol)
+    return mol_weight
+
+
+def rule11_alkyl_substituents(mol):
+    alkyl_substituents = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C' and atom.GetTotalDegree() == 4:
+            alkyl_substituents += 1
+    return alkyl_substituents
+
+def rule12_carbocation_stability(mol):
+    carbocation_stability = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in ['Si', 'Ge', 'Sn', 'Pb', 'N', 'P', 'As', 'Sb', 'Bi']:
+            carbocation_stability -= atom.GetFormalCharge()
+    return carbocation_stability
+
+def rule13_polarizability(mol):
+    polarizability = Descriptors.TPSA(mol)
+    return polarizability
+

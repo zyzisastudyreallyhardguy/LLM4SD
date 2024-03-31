@@ -1,0 +1,50 @@
+def rule1_calc_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule3_electronegativity_diff(mol):
+    return Descriptors.MaxPartialCharge(mol) - Descriptors.MinPartialCharge(mol)
+
+def rule4_func_groups(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule5_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule8_reactivity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule9_oxidative_stability(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_metabolic_pathways(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_bioavailability(mol):
+    return Descriptors.MolWt(mol)
+
+def rule12_protein_binding(mol):
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule13_half_life(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule14_drug_interactions(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule17_investigate_mutagenesis(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule18_check_carcinogenicity(mol):
+    return rdkit.Chem.Lipinski.NumHeteroatoms(mol)
+
+def rule19_reproductive_effects(mol):
+    return rdkit.Chem.Lipinski.NumAliphaticRings(mol)
+
+def rule21_teratogenesis_risk(mol):
+    return rdkit.Chem.Lipinski.NumAromaticRings(mol)
+
+def rule22_genotoxic_effect(mol):
+    return rdkit.Chem.Lipinski.NumRotatableBonds(mol)

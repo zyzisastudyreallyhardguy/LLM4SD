@@ -1,0 +1,42 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule3_num_halogens(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule4_polarity(mol):
+    return Descriptors.TPSA(mol)
+
+
+def rule5_heavy_metals(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule8_total_charge(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule9_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_solubility(mol):
+    return Descriptors.MolLogP(mol)
+
+
+def rule11_bioavailability(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule16_qsar_models(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule17_ml_algorithms(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_comp_chem_tools(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule19_cell_culture_assays(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)

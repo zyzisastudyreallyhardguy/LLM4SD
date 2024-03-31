@@ -1,0 +1,56 @@
+def rule1_mu(molecule):
+    polarizability = Descriptors.TPSA(molecule)
+    return polarizability
+
+
+def rule2_mu(mol):
+    return Descriptors.MolWt(mol)
+
+
+def rule3_mu(mol):
+    return Descriptors.NumAliphaticCarbocycles(mol)
+
+def rule4_mu(mol):
+    return Descriptors.NumAliphaticRings(mol)
+
+def rule5_mu(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+
+
+def rule11_lone_pairs(mol):
+    lone_pairs = 0
+    for atom in mol.GetAtoms():
+        lone_pairs += atom.GetTotalValence() - atom.GetTotalDegree()
+    return lone_pairs
+
+
+def rule12_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule13_size_mass_ratio(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule14_geometric_arrangement(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule16_strong_hydrogen_bonds(mol):
+    num_HBD = rdMolDescriptors.CalcNumHBD(mol)
+    num_HBA = rdMolDescriptors.CalcNumHBA(mol)
+    return num_HBD + num_HBA
+
+
+def rule17_heavy_elements(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+
+def rule_qr_branch_points(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumRings(mol)
+
+def rule_st_metal_complexes(mol):
+    return sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() > 20])
+
+def rule_uv_hydrogen_bonds(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumHBD(mol) + rdkit.Chem.rdMolDescriptors.CalcNumHBA(mol)

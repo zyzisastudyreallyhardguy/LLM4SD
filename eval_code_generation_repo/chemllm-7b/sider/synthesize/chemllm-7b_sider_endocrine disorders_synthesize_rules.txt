@@ -1,0 +1,67 @@
+def rule1_calc_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_polar_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_func_groups(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule5_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule5_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule6_electronegativity(mol):
+    max_en = max([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+    min_en = min([atom.GetAtomicNum() for atom in mol.GetAtoms()])
+
+def rule8_aromaticity(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    return sum(aromatic_atoms)
+
+def rule9_halogen_content(mol):
+    halogens = [atom.GetAtomicNum() for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]]
+    return len(halogens)
+
+def rule10_steric_hindrance(mol):
+    atomic_radii = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return max(atomic_radii) - min(atomic_radii)
+
+def rule11_conjugation_pattern(mol):
+    conjugated_bonds = [bond.GetIsConjugated() for bond in mol.GetBonds()]
+    return sum(conjugated_bonds)
+
+def rule12_charge_distribution(mol):
+    charges = [atom.GetFormalCharge() for atom in mol.GetAtoms()]
+    return sum(charges)
+
+def rule13_solubility_parameters(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule14_cyp450_metabolism(mol):
+    return 0
+
+def rule15_er_receptor_interaction(mol):
+    phenol_smarts = '[#6]-1(-[#8H])=[#6]-[#6]=[#6]-[#6]=[#6]-1'
+    phenol_pattern = Chem.MolFromSmarts(phenol_smarts)
+    return len(mol.GetSubstructMatches(phenol_pattern))
+
+def rule16_toxicity_estimation(mol):
+    nitro_smarts = '[N+](=O)[O-]'
+    nitro_pattern = Chem.MolFromSmarts(nitro_smarts)
+    return len(mol.GetSubstructMatches(nitro_pattern))
+
+def rule17_genotoxicity_check(mol):
+    michael_acceptor_smarts = '[$([CX3]=[CX3]),$([CX3+]-[CX3])]=[CX3]'
+    michael_acceptor_pattern = Chem.MolFromSmarts(michael_acceptor_smarts)
+    return len(mol.GetSubstructMatches(michael_acceptor_pattern))
+
+def rule18_carcinogenicity_assessment(mol):
+    amine_smarts = '[nH]'
+    amine_pattern = Chem.MolFromSmarts(amine_smarts)
+

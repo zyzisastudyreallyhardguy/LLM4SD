@@ -1,0 +1,43 @@
+def rule1_calc_mol_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_check_presence(mol):
+    return mol.GetNumAtoms()
+
+def rule3_calc_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_calc_solubility(mol):
+    return rdMolDescriptors.CalcMolMR(mol)
+
+def rule4_calc_solubility(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule5_identify_func_groups(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule3_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule4_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule5_num_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule6_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_num_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule16_protein_binding_affinity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule17_metabolism_pathway(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_oxidative_stress(mol):
+    return sum(atom.GetNumRadicalElectrons() for atom in mol.GetAtoms())
+

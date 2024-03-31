@@ -1,0 +1,60 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_reactive_groups(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule7_chemical_reactivity(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule8_bioaccumulation(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+
+
+def rule10_polarizability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+
+
+
+def rule12_conjugation(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+
+def rule13_quantum_descriptors(mol):
+    # Add hydrogens to the molecule
+    mol = Chem.AddHs(mol)
+    # Calculate molecular weight
+    mol_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    return mol_weight
+
+
+def rule14_aromaticity(mol):
+    aromatic_atoms = [atom.GetIsAromatic() for atom in mol.GetAtoms()]
+    aromaticity = sum(aromatic_atoms) / len(aromatic_atoms)
+    return aromaticity
+
+
+def rule15_hb_acceptor_donor_counts(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors + hb_acceptors
+
+def rule16_oxidative_stability(mol):
+    num_radical_electrons = 0
+    for atom in mol.GetAtoms():
+        num_radical_electrons += atom.GetNumRadicalElectrons()
+    return num_radical_electrons
+
+
+def rule17_dna_affinity(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule18_ocular_tissue_stereochemistry(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

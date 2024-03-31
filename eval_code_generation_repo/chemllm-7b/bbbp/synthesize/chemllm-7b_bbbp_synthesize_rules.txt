@@ -1,0 +1,41 @@
+def rule1_mol_weight(mol):
+    return Descriptors.MolWt(mol)
+
+
+
+def rule3_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_solubility(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule5_hb_count(mol):
+    return rdMolDescriptors.CalcNumHBA(mol), rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_estimate_side_chains(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[!#1;!#6;!#7;!#8;!#9;!#15;!#16;!#17;!#35;!#53]')))
+
+def rule4_electronegativity_difference(mol):
+    electronegativities = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return max(electronegativities) - min(electronegativities)
+
+def rule5_steric_hindrance(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_reactivity_levels(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule7_bioavailability(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def rule8_cytotoxic_effects(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule9_pgp_inhibition(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule1_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule2_hb_acceptor(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)

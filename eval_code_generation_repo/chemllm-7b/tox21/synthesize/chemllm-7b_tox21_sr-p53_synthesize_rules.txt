@@ -1,0 +1,56 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_polar_functional_groups(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_hb_acceptors_donators(mol):
+    return rdMolDescriptors.CalcNumHBA(mol), rdMolDescriptors.CalcNumHBD(mol)
+
+def rule5_aromaticity_index(mol):
+    return rdkit.Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_electronegativity(mol):
+    total_electronegativity = 0
+    for atom in mol.GetAtoms():
+        total_electronegativity += atom.GetAtomicNum()
+    return total_electronegativity
+
+def rule9_shape_factor(mol):
+    if mol.GetNumConformers() >= 1:
+        return rdMolDescriptors.CalcEccentricity(mol)
+    else:
+        return 0
+
+
+def rule10_solubility(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule11_topological(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule12_quantum(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule13_charge_distribution(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule14_toxicology(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule16_metabolic_stability(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule17_bbb_permeability(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule18_potency(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule19_physicochemical_characteristics(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)

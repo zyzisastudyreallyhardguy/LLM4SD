@@ -1,0 +1,9 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_aromatic_polarizability(mol):
+    aromatic_atoms = [atom for atom in mol.GetAtoms() if atom.GetIsAromatic()]
+    return sum([Descriptors.GetAtomPolarizability(atom) for atom in aromatic_atoms])
+
+def rule12345_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

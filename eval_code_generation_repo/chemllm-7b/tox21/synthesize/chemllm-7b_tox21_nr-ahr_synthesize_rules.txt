@@ -1,0 +1,74 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule3_polarity_index(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule4_hb_ratio(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return hb_donors / hb_acceptors if hb_acceptors != 0 else 0
+
+def rule5_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_halogen_content(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    halogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            halogen_count += 1
+
+def rule8_polar_groups_count(mol):
+    polar_groups = ['[OH]', '[NH2]', '[SH]', '[PH2]', '[CH3O]', '[CH3S]', '[CH3P]']
+    count = 0
+    for group in polar_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule9_electron_properties(mol):
+    total_electronegativity = 0
+    for atom in mol.GetAtoms():
+        total_electronegativity += atom.GetAtomicNum()
+    return total_electronegativity
+
+def rule10_steric_hindrance(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule11_solubility_parameters(mol):
+    return Descriptors.MolMR(mol)
+
+
+def rule12_functional_group_presence(mol):
+    functional_groups = ['[OH]', '[NH2]', '[SH]', '[PH2]', '[CH3O]', '[CH3S]', '[CH3P]']
+    count = 0
+    for group in functional_groups:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule15_physicochemical_profiles(mol):
+    return Crippen.MolMR(mol)
+
+
+def rule16_oxidative_stress_tests(mol):
+    num_radical_electrons = 0
+    for atom in mol.GetAtoms():
+        num_radical_electrons += atom.GetNumRadicalElectrons()
+    return num_radical_electrons
+
+
+def rule17_bioactivation_studies(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule18_synthetic_approaches(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule19_synthesis_conditions(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule30_biological_assays(mol):
+    return Crippen.MolLogP(mol)
+

@@ -1,0 +1,56 @@
+def rule1_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_aromaticity(mol):
+    aromatic_atoms = [mol.GetAtomWithIdx(i).GetIsAromatic() for i in range(mol.GetNumAtoms())]
+    return sum(aromatic_atoms)
+
+def rule3_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule4_functional_groups(mol):
+    fgs = rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+    return fgs
+
+def rule5_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_hydrogen_bonding(mol):
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+
+def rule8_electronegativity_diff(mol):
+    electronegativities = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    return max(electronegativities) - min(electronegativities)
+
+def rule9_electron_substituents(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[r5,r6]')))
+
+def rule10_stereochemistry(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule11_solubility(mol):
+    logp, mr = rdMolDescriptors.CalcCrippenDescriptors(mol)
+    return logp
+
+
+def rule12_oxidative_stability(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[O][O]')))
+
+def rule13_reactivity(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule14_metabolic_pathways(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C](=O)[O]')))
+
+def rule15_bioaccumulation(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule16_test_mutagenic_effects(mol):
+    return rdkit.Chem.rdmolops.GetFormalCharge(mol)
+
+def rule17_check_insecticide_use(mol):
+    return rdkit.Chem.Descriptors.MolLogP(mol)
+
+def rule18_protein_binding_ability(mol):
+    return rdkit.Chem.Descriptors.TPSA(mol)
