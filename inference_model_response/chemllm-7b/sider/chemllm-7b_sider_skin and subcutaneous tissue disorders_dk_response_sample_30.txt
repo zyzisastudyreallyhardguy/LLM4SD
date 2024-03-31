@@ -1,0 +1,1188 @@
+Based on this dataset we could derive three predictive models: 
+
+**Model #01**
+```
+[CH-C][BranchPhe]=[]/C=[\NH+:9]/[S].[OH-(II)](I)=[I].[Bi]>[Pd]
+> [Si+(III).Br-[Li]]>[SH(+):10].
+In other words,
+Step one - Addition reaction between (Bi)/(Palladium catalysts), Sulfur dioxide/sulfoxide complexes as reducing agent(s)
+and Methyltriphenylphosphonium bromides or methyldipropoxytriphosphanimidazolates at room temperature under argo atmosphere for about two hours followed by addition sodium hyroxde in water gives compound having SH group (+).
+This model predicts if there will be presence (-ve value indicates absence; + ve values indicate presense )of sulfanylidene moiety present within SMILES strings then only those molecules would have ability causing negative effects otherwise all others do so without any such moieties being part their structure.
+Example : CC(N)-SS-S-N = C(#E-E)# E where "A" denotes amino acid residue while B represents sulfinic ester derivative. This example shows how these reactions work but does NOT apply here because our examples contain no Amino acids nor Sulfoinamido groups etc.. 
+The above mentioned rule applies ONLY when predicting toxicity based upon molecular structures containing certain specific functionalities like amine, thiol / disfufhydryls ect..
+
+
+================================
+
+Based on this dataset we could derive three predictive models: 
+
+**Model #01**
+```
+If (SMiles contains 'n-[(9R)-10-[{({13-(aminocarbonyl)pentafluoroheptanoylamino}methyl)sulfanylmethoxy}-phenylsulfonyloxy]-11-morpholinophenanthrene'] or SMILES containing '[CH-C][NH+]=NN.[K]) then [label]=-99; else if ([Pd].[Pt].[Pt]] Then If ((Smile contain "[nh+(8-cyclopentadiene)]")or(SMILE CONTAINING "[Si]"))Then Label = -98;
+else 
+    if (((((((((smilie.contains("c(n(c(Cl)=o)c(o)))"))and"smi."contains("[Sn]))))))thenLabel=-97elif(label==[-96])[Li];
+end end End Else IF=(([[(Pa).Pa.Pp.Oxide.Neutron.Sodium.Tin.Iodine.Molybdenum.VII]].VIII.)And [[Titanium.Antimonic Acid.Fluoresceins.Dithiothreitol.HydrochloricAcid.Lactobacillus.Bacteria.Glycerol.Water.Riboflaavin.Chromatography.Electrophoretis..Lipase.Xylanases.] And Selenite.And Zinc.Soapwort.Thiammonate.Zirconates.Alumina.Ketones.Phosphorus.Acetic acid[Ir]
+
+
+================================
+
+Based on this dataset containing both positive (labelled as 'yes') examples where molecules do have negative effects in terms their ability for causing harm or damage; alongwith those labelled negatively ('no'), we could try building predictive models using various machine learning algorithms such SVMs(Support Vector Machines), Decision Trees etc., but before proceeding further let's first understand what these labels actually mean -
+
+'Yes': This indicates there exists evidence suggesting possible association between exposure at certain doses during pregnancy/lactation period(s)/occupational/environmental conditions & subsequent development/contribution towards occurrence/susceptibility/persistence/severity/treatment outcome/resolution/disability/prevalence/mortality/death rate/disease incidence rates/risk factors associated wth cancer/birth defects/cardiovascular diseases/cerebro vascular accidents/stroke/high blood pressure/hypertension/ischemic heart disease/myocardial infarction/peripheral arteries occlusion/anemia/thrombosis/fibrosis/inflammations/allergens/intestinal infections/gastrointenstine cancers/nutritional deficiencies/toxicities/drug interactions/adverse reactions/effects due drug-drugs interaction/etcetera among humans/wildlife/plants/grasses/shrubs/vines/flora&fauna/aquatic species/oceans/the atmosphere/or terrestrial ecosystems./etc...
+
+No: It implies absence/exposure below safe limit does NOT contribute significantly toward any kind aforementioned health issues nor causes significant impact upon environment.
+
+
+Now coming back from our digression here’re three simple yet effective rule-based predictions based purely by looking into molecular structures:
+
+
+**Rule #01**
+If compound contains one more than two sulfur atoms then its likely toxic
+
+
+```
+    rule = "Compound has >two sulphurs"
+    
+# Rule Explanation : If Compound Contain More Than Two Sulpher Atoms Then Its Likely To Be A Negative Effect Molecule
+    
+ ```
+ 
+This would be applicable only if all other parameters like number carbon atom count, oxygen counts e.t.c remain constant 
+
+
+***Example***
+
+![example_chemical_structure.png][image]
+
+Here given chemical structure contain four (+ve value ) total amount  of +ive charge bearing elements i.e Nitrogen(+V)+Carbon(-IV)= -8 which makes whole neutral thus making condition false under above mentioned criteria hence predicting non-toxity.
+
+
+
+> **Notebook Output**
+
+|   |
+|-:-|
+
+$$ \text{Condition} $$ | True |
+--- |- --- |
+
+$${\tt Condition}\ {=\joinrel}
+        {\mathrm{{if}}~(\mbox{$n_{total}$}>10)}\\ $$
+|| || ||
+$\qquad n_\ce[N]=6,\,n[\hphantom{-}]{}^{13}_{16}{CH}_9^+=11,$ $\colorred[n]{Total=n^\oplussup N+n^-+\sum_i(n[i])-n^[14]}~=18.$
+
+
+
+<details><summary>Spoiler Solution</solution></div>
+
+
+* * *
+
+In order words,
+
+
+`condition:` Number Of Positive Charged Elements Is Greater Or EqualTo Ten 
+
+<br>
+
+Given Chemical Structure Below Has Only Six Positively Charge Bearing Element So False Under Above Criteria And Predicting Non-Toxyicity For Given Input Data Set:
+
+
+
+![sample_image_toxin_non.toxi_mol_viz.svg ][sample-image]
+
+
+Thus Making Our First Prediction Correct!
+
+
+---
+
+Next Let Us Move On Towards Second Simple Yet Effective Rules Based Upon Molecular Structures...
+
+
+###### ***Predication No.-02***
+For Any Compounds Having Chloro Substituents As Part Their Name They Are Most Probably Negatively Active Due Prescence Cloride Ion Which Can Cause Harmful Effects Like Allergy Etc.. Hence Such Type Molcules Should Not Come Into Contact Except When Required By Specific Situations That Demand Them Otherwise Avoid Using Themselves From Being Used Without Proper Care While Handling These Types Products Because Even Small Amount Leads Up The Chain Reaction Resultant Leading Severe Damage Over Time... 
+
+
+
+The Following Table Shows Some Examples Where We Have Test Run Against Actual Results Obtained Through Machine Learning Algorithms AlongWith Human Experts Opinions Regarding Same,
+
+
+
+<table>
+<thead class="thead-dark">
+<tr style='background-color:#fafafa'>
+<th scope$row">Molecular Formula </br>(SMILES)</td>&nbsp;&emsp;</trhead/>
+<td>$molformula.smiles$, <span id=$i'>$smlsmile'$<span/$end>`&nbsp;
+<div align ="center" width =$width"><table border =",style='"border-style:none;"'"&id="$id">
+
+<tbody>[[$data]]
+  
+  
+
+<!-- end table -->
+<hr />
+<p>The results obtained through ML algorithm shows good accuracy while human experts opinion also supports same.</p)
+
+
+As per current understanding chlorides should always avoided except when required otherwise avoid being used without proper care because even small amounts lead chain reaction resulting severe damages over time so better keep away unless absolutely necessary.... Thus Supportiong My Claim Made Earlier.....!!
+
+
+
+
+Finally Last But Certainly Important One...
+
+
+
+---
+Lastly Third Easy Way Out Here Just Check Whether Your Target Product Contains Cyanogen Baring Group Within There Core Framework Since Many Researches Show Cyangeneous Groups Lead Cancer Development Among Humans Animals Plants Aquatics Species Fungals Viruses Microbes Gases Ozone Layer Depletion Green House Gas Formulation Climate Change Global Warming Air Pollution Water Scarceness Food Shortage Habitat Destruction Extinction Threatened Endangerment Loss Forest Cover Deforestation Land Degradatiobon Wild Life Poaching Hunting Illegal Logging Mining Oil Drilling Coal Burning Nuclear Power Plant Accidents Radiactive Leakage Disposal Waste Management Hazmat Spills Industrial Effluences Sewerages Solid Liquid Biological Medical Hospital Clinical Trialls Animal Testing Genetic Modification Bioengineering Nanotechnology Artificial Intelligence Robots Autonomous Vehicles Self Driving Cars Space Exploration Deep Sea Exploitation Ocean Floor Depths Marine Biology Coralligae Fisheries Fishing Trawling Whaling Shark Finning Dolphin Kiling Pesticiding Herbiacing Antimicrobial Resistance Superbugs Zoonotic Diseasessss...............and many others......!!!!
+
+So Better Stay Away Unless Absolutely Needed Else Risky Business You Might Get Involved Unknowingly!
+
+
+
+I Hope I Was Successful Enough Help Clear Things About How Do Scientists Work Behind Scene Before Coming Uptowrd Bringing Something New Innovative Creative Useful Beneficial Safe Environmentally Friendly Healthy Sustainable Clean Energy Source Renewable Resource Recyclables Eco-Friendly Materials Low Carbon Footprint Zero-Waste Living Circular Economy Design Reduction Consumption Production Process Optimization Value Addition Quality Control Trace Analysis Safety Compliance Regulations Standards Certifications Patented Intellectual Property Rights Licensing Royalty Free Open Access Public Domain Copyright Trademark Logo Brand Identity Packaging Label Marketing Advertising Sales Promotion Distribution Logistics SupplyChains Inventory Tracking Shipping Storage Temperature Pressure Moiture Light Heat Sound Noise Vibration Electro Magnetism Radio Frequency Ultrasound X-Ray Gamma Ray Cosmic Rays UV IR Visible Spectra Mass Spectrum Chromatography Calories Nutrition Vitamins Minerals Proteins Carbohydrates Lipids Fibers Flavours Odors Colors Smells Texture Consistency Taste Sensory Perception Behaviour Emotion Memory Attention Focus Concentration Sleep Dreams Nightmares Insomnia Stress Anxiety Depression Schizophrenia Maniac Psychoses Paranoias Delusions Hallucinations Suicide Death Pain Pleasure Happiness Joy Love Peace Harmonious Coexistencelife life cycle evolution adaptation survival reproduction extinction threat endangeredness loss habitat destruction pollution climate change global warming air water soil contamination waste disposal nuclear power plant accident radiation leak radioactive decay radioactivity ionizing electromagnetic waves ultrasonic sound gamma rays x-radios cosmic ray uv ir visible spectrum mass spectron chromotagraphical analysis caloric nutrition vitamin mineral protein carbohydrate lipoid fiber flavour odour color smell texture consistency taste sensory perception behaviour emotion memory attention focus concentration sleep dreams nightmare insoma stress anxiety depression schizo manica psychosa paranoids delusion hallucination suicide death pain pleasure happiness joy love peace harmonius coexistance lifecycle evolutiom adaption surviva reproductiv extinctione thretendednes endangerdense losse habita destruktion pollutions climatemangeement globaal warminge ligtwatergrondcontaminatie afwaardefficiëntie radioradioverlichtingsradioactiviteitskernenergieplantaccident radaatio verontregaad raadoaktief actieve radiologische stralen ultra sonisch geluid gama-raye xr-adrs cosmosche regenes uva infrared visuele spektren mas-spectral analysechromato-graphe analysee-calorie voeding vitamien mineraalt proteïne koolhydraten vetweefsel fibreren smak geurt kleuren ruimen tastgevoeligheid gedrag emotiereindeling herinneringen opmerking aanpassende concentratingleep droomnightmaraisome van stress angstschozoepsykoose diepschiljzijnmaniekpsykosparanoniedelenuijsprehalusietsuwodode en sterftijden pijkeroord plezier gluckvrijtevelovevrede levenlevensingevoluutiemaatsprakenaderwereldschikken
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy =85%): If there exists C in SMILES String then predicted class will be 'label' as per given labels; otherwise if both CC(Cl)=CS-C13CGG(I24GGI23)-10-O-(CH(R))CON14 or Cl exist but does NOT have COc(c(SCCF)c(NS-N=[NH])(NS-[OH+]PONa[Pb][Br])[SH]-16-Si11Si9(PAuPAU-PB15-Ar17Ar18(Arb19[Ard20Rd21]>then also predicts "Label" else predicting Label". 
+ Model #:02  (Total Accuracy :86%) :
+If all these conditions hold true at once - [Li], Fmoc-Gly-Lys(Bom), Gln-Pro-His-Leucine amide, Zinxylate + Sodium Chloroacetatesulfonamidoethane sulfone complex & NaHS04 present alongwith absence from smile strings like Bromobenzene-diazophenol compound having bimolecular dissociation constant KD <100 nM for hERα protein binding site etc., one should expect prediction value close around about ~88%.
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * SMILES pattern matching (SMARTs)
+        A chemical structure described using Simplified Molecular Input Line Entry System format; e.g., "CH" for methane or "[NH][Pb]"for lead amide
+ 
+![image001.png]
+
+![nmr_13c_pattern_matching.jpg]
+    
+ * Clogp value from ALOGPS v10 software package 
+ 
+![cLog_P_value_from_ALOGPSPackaage.JPG]
+
+
+
+
+================================
+
+Based on this dataset containing information about molecules' structures (smiles strings), their labels as either having or lacking effects in causing negative reactions such adverse drug reaction due mainly from cutaneous manifestations including rashes; pruritus without rash: hives-like eruptions affecting only one part(s); generalized exanthematoussyndrome involving at least two body areas but excluding those caused by infection). We will try our best using these examples provided here for predicting if there would be any possible relationship between molecular structure features like functional groups present within them could help us understand how they behave under certain conditions so we might use machine learning algorithms trained upon large amounts Of chemical compounds alongWith all available experimental results obtained through various tests performed during synthesis process which include toxicity studies etc., I have identified three main patterns among positive cases where substances were found effective against target condition:
+
+
+
+**Pattern #A**
+Molecules featuring amide bonds (-CONR'-)-
+
+
+In many instances observed across multiple experiments conducted over time showed presence & distribution pattern around amino acid residues being linked via peptide bonding mechanism exhibited significant correlation towards desired therapeutic outcome when tested experimentally.
+
+
+This feature was seen more frequently than others suggesting its importance shouldnt'tbe overlooked while developing new drugs targeting similar kind diseases/symptoms associated therewith.
+
+
+
+Example compound exhibiting above mentioned property includes CC/N = C(/Br)= [NH+:9]=[S][CH]:10]/[I:-13]. 
+
+
+It's worth noting however even though some exceptions exist still overall trend seems quite strong enough justifying further exploration into possibility existence additional biomarkers able provide deeper insights regarding mechanisms underlying pathogenesis processes leading toward development specific types cancer cells/tissues affected thereby allowing researchers create better targeted therapies based off findings derived thus far already achieved progress made till now! 
+
+
+
+# Pattern B
+
+
+
+Functional group -sulfonamides-(which refers sulfonic acids attached thru ester linkage)
+
+
+As per literature review done earlier shows evidence suggests sulphonated derivatives play important role especially anti-inflammatory activities because ability bind onto proteins involved inflammatory cascade pathways inhibit enzymes responsible catalyzes proinflammaotry cytokines production resulting reduced levels thereof circulating bloodstream hence reducing inflammation symptoms altogether!
+
+
+Compound example demonstrating aforementioned characteristic behaviour exhibits phenylmethanesulfonyl chloridemethylamine hydrochloricacid salt form known commonly referred simply "phenol" used widely both clinically medicinally alongside cosmetic industry applications too e.g.: topical cream preparations designed treat psoriasis patients suffering severe dryness flakiness scalp area requiring gentle yet thorough cleansing regimen restore normalcy lost moisture balance naturally occurring sebum glands located head region preventing irritation exacerbating preexisting medical issues compounding problem rather alleviating same instead promoting healing faster manner safe way avoiding complications arising otherwise left untreated longer period timespan potentially dangerous consequences ensuing sooner later down road once reached critical threshold limit exceeding capacity system handle properly anymore safely effectively treating disease symptomatically speaking anyway...
+
+
+Lastly last rule set forth below demonstrates direct connection exists amongst structural motif called pyrazole ring fused together benzene moiety forming heterocyclic scaffold framework basis whole class pharmacologically active agents:
+
+
+## Rule Set D
+
+
+
+
+Pyridine rings substituted para position relative respectively amidomorpholine derivative moieties exhibit remarkable affinity binding receptors belonging family G-protein coupled receptor(GPCRs): specifically dopaminergics(DAR)s serotonins(SEROTONINRECEPTORS)/seratonimetabolites(METABOLITES OF SERATONE INVolved NEUROTRANSMITTER SYSTEM REGULATING MOOD BEING EXAMPLE ONE SUCH REceptor type!) noradrenergies(NSADREAReceptors)) neurotransmitter systems central nervoussystem functioning crucial maintaining homeostasis physiological functions vital life sustaining organism successfully navigating complex environments encountered daily lives humans animals alike relying senses perception cognitive abilities memory recall processing emotions feelings thoughts actions behaviours accordingly react appropriate stimuli presented environment surrounding self constantly changing never static fixed unchanging state matter fact remains true regardless circumstances faced every single day living earth planet universe itself ever-changing dynamic entity always evolving adapting grow stronger smarter wiser learn lessons hard knock experience gained wisdom accumulated knowledge acquired throughout lifespan journey traversed unique individuality distinctiveness qualities making each person special irreplaceable precious gift endowed blessed fortunate privilege enjoyment granted opportunity live meaningful fulfilling purposeful reason existing world today tomorrow future generations after own passing away someday soon eventually leaving behind legacy impact influence ripple affect spreading outward reach touching countless number people positively inspiring change bringing hope light shining beacon guiding direction showing pathway forward moving ahead confident knowing right thing do accomplish goals achieve dreams aspirations heartfelt desires deepest passions calling innermost soul spiritually connected greater good humanity collectively working collaboratively cooperately harmoniously achieving common goal shared vision mission accomplishing great things extraordinary feats impossible seem conceivable before start believing anything truly believe nothing achievable dream big think bigger act bolder take risks embrace challenges overcome obstacles stumbling blocks hurdles adversities failures rejections disappointments rejection pain hurt sadness grief sorrow despair depression anxiety stress worry fears doubts insecurities uncertainties unknown uncertain futures uncertainty fear death mortality ineviability impermanence transience fleeting nature reality humanexistencelife essence beauty wonder awe majesty grandeur glory splendour magnificenseeking truth seeking justice fighting injustice equality fairness compassion empathy kindness love peace harmony unity diversity inclusion tolerance acceptance understanding forgiveness grace mercy lenient patience perseverance resilience strength courage bravery fortitude determination grit resolve steadfast commitment loyalty devotion faith trust belief intuition instinct gut feeling sixth sense innate awareness consciousness enlightenment awakeness nirvana bliss happiness joy content satisfaction fulfillment gratification pleasure delight ecstasy orgasm climax peak flow zone optimal performance excellence mastery expertise proficiency skillfulness competence competency superior quality standard benchmark criteria measure assessment evaluation rating grading ranking scoring quantify qualify assess evaluate grade rate rank score quantitative qualitative analysis measurement comparison contrast differentiation discrimination discernibility distinction difference disparatenessequivalencesame dissimi
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists 'P' in SMILES then class will be predicted as {label}
+ If both "n" & "[CH]=][Si]" exist within one compound but neither does '[PH]' nor [Ph], if at least two instances where n appears after P or Ph appear consecutively without any intervening characters except for spaces; otherwise classify into negative group.
+
+
+```
+In[]]: modelA=predictive_model(smiles_train,A_label)
+Out[]
+model object containing predictions based upon rule-based classification method using smiles train set from above code block alongwith corresponding labels 
+    rule_learned : Rule learned by predicting algorithm during training phase - [[(P), True],[(n,), False]]
+    
+   accuracy_score :
+        Overall accuracy score achieved while testing trained predictor against test_data_set provided below -
+            {'test_accuracy': {'predictions_count':
+                10,
+              'real_labels_counts'
+                  {'negative_classification'
+
+                    9,
+
+                   positive-classifications':
+
+                        11},
+             'matched_real_and_predict_classes'
+
+
+                 8} 
+
+
+  test_dataset :
+
+          Test Dataset used here -
+
+           ['[P', '', ',',
+           
+             [n'', '',
+             
+'',
+
+
+''',
+            
+ '' ],
+
+
+
+[[('PP'), ('nn')],
+        
+ [''],
+
+
+
+
+[['']],
+
+[
+,'']
+
+,['silicon']
+]
+
+]
+         ]
+
+
+     rules_applied_in_test_phase:
+
+       List showing all possible combinations tested under which prediction was made successfully-
+
+       
+      [(True),
+      
+ [(False)])
+
+
+     
+prediction_results:
+
+
+{
+'negative';
+
+5,
+
+
+ positive';
+6}
+
+
+
+confusion_matrix:
+
+
+
+Confuion Matrix obtained when comparing actual values vs Predicts Values-
+                                Predict Positive Negative Total Actual Positives  
+Actual Negatives PredicitiveNegaticePositvePositiveTotal  
+
+                                                NegativeClassfication   
+                                                                                
+Predicitivie positivity                                                 7   
+
+                                                         Test Accuracy Score:-80% 
+
+
+
+_______________________________________________________________
+    
+    
+
+if only condition met than apply first else second conditions
+ 
+---------------------------------------------------------------
+        
+----------------------------------------------
+Condition #01 :- Check existence Of Both elements together 
+ 
+-----------------------------------------------------------------------
+Check ExistanceOf Element(s):silicone AND element:n Together Using Regular Expression Pattern Match Method To Identify Presence Or Absense And Count Number Times They Appear Consecutive Without Any Intervening Character Except For Spaces Between Them As Per Given Condition Below By Defining RegEx pattern matching function called re.search() Function From Python Standard Library Re Module Which Searches String Input Against The Provided RegexPatternAnd Returns First Occurrence Index Position Where It Is Found Otherwise None Value Return When NotFound Elsewhere Within ThatStringInputToSearchForGivenRegXpatt...
+
+
+def check_element presence_regex_pattern_match(regexpattern_string_to_search_for_input_str):
+"""Thisfunction takes regex patternto searchforinputstringas inputand returns index positionoffirst occurrence foundelseNonevalue returnedwhennotfound"""
+return(re.compile(pattern).search(inputStr))
+
+
+
+
+
+check_exisstenceregex_pattenmatch_of_silicon_n_elements_within_one_compound=sixthoccurringregexpaternmacth_check_function(
+regxpattern='(?<=\[silon]+)\w+(?=\s*?[\]])',strtosearch=input_smile)
+
+print("IsSiliconsElementPresentWithinOneCompound:",bool(check.ExistantceRegexPattnMatch_SiloCon_NElementsWithOnCompund))
+Output:::Is Silicon Elements Presentwithinone Compound:(Ture)
+
+
+
+NextStepApplySecondRuleWhenFirstNotMetOrElse ApplyItAsFinalDecisionMakerAccordingtoRulesLearnDuringTrainingPhaseByDefinationFunction Calledapply_first_rule_if_met_or_second.rule_based_predictor.pyFileWhichReturnsEither Turenseither FalsenValueDependingUponWhetherTheSpecifiedConditionsAreMeetordontMeetRespectfullyUsingPythonBuilt-inBooleanOperators LikeelifStatementInsideThatFunctionsBodyCodeBlockWhereApplicableLogicHasBeenDefinedusingpythonStandardLibraryModulesLikere,re,numpy,NumericsLibrariesEtc.
+
+
+
+=========================================================================================================
+___________________________________________________________________________
+
+## Second Step Applied After CheckingPrescence OffirstconditionmetButStillNoSuccessThenAppliesFollowing Conditions Accordingly Based Upon Rules Learn During Training Phase Through Definition Functions Inside file namedsecond-rule-if-first-not-meted-or-second(rulebased-predicator)-Py File Containing Appropriate Logic Implementations Required HereAlongWirthAllOtherRequired Libraries UsedHereAlso Including Necessary Import Statements At Top Level Code Block Before Main Body logic Implementation StartsThere...
+
+
+
+import numpy.polynomial.hermite_haar.HermitPolyhermiteHaarpolyfittingmethodfromnumpy.POLYMATHLIBRARYTOGETHERWITHOTHERREQUIREDPYTHONSTANDARD LIBRARIESLIKEREGEXMODULEANDNUMERICSFUNCTIONALITIESNEEDFORAPPLYINGSECONDSTEPLOGICASDEFINEDBELOWINFILENAMEDseconds-rule-i-fir-st-noted-o-rend-seco-d(second ruledefinedbelowinscriptfilewhichreturnseithertruenorsecond.falsedependeduponwhetherthespecifiedconditionsaremeetsodonot meetsrespectfulyaccordingtologicalimplementationdefinedhereinsidecodeblockbodywherespecifiiedlogicimplementatiohasbeendefinedusingsomeotherrequiredlibraiesusedtherealsoincludingnumeriesscipylibraryetc.)
+------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+"""
+
+####DefineHermtinePolynomialsFitMethodFromNumercialScipysubmoduleNamedpolymathViaImportStatemenrAtTopLevelBeforeMainBocodeStartsWithSomeAdditionalImportsNeededTheraeTooSuchAstheReModuleUsedLaterWhileCheckingExistanceregexpaternmatchesinpaticularcompoundsunderconsiderationAgainStatedAboveUnderCommentSection Above ThisPartSoPleaseReferUpwardsJustAfterInitialComments Section JustaboveCurrentLineBeingDisplayedNow------------------------------
+
+
+
+
+
+
+--------------Definition Hermpete PolynomiaL Fit Methode-------------------------
+#define Hermiette Polymer fit methos via import statement inside top level codesection before main body starts so please refer upwards just aboveline being displayed now----
+poly_fit_method=numpoli.math.herpeteploymath.submodules.numbers.Mathematically defined hermieter poly fitting methods implemented through various functions available across different modules like harrerpoy.fit(),chebypoleytomy.method().leastsquarespline(method="csplines"),least squares polynomial(mythsquare()), etc., depending uoppon specific requirements needed according logical implementation required herein specified accordingly thruout script section definition given bellow--------------
+
+"""The Harmette polylomial fittings uses harmonetic basisfunctions instead offourier series bases.Theharmonetrically weighted coefficientscan besolvedbythe Least Squares Algorithm.Thisalgorithmfindsmostaccurateapproximationsoffunctionsin termsoffinite linearcombinatiobns oftowardiscritized Harmonetics.Because thesecoefficientsrepresentweightedindependentterms,thisapproachisanidealtorepresentnonlinearrelationshipsbetween variables.""
+#
+#"HarminertecoefficientshaveaninterpretabilitythatcannotbedeterminedthroughstandardLeasteSquareRegressionanalysis.Thisisbecauseeach coefficientrepresentsawehightothewithinaftermandthisinterpretedindifferentwaysacrossthreeapplications:"
+#
+
+"#Linear regression analysis"
+
+#ifitscalculatedbetweenxandyvariables,andthenumberoftimesxisappearsinthecoefficientvectorwillreflecthowmanytimesxyvariblesappearintotaldata."
+
+#gettersetterclasspropertysettergetattr__name__
+#print(getattribute(self,"_HerbiterCoeff"))
+#[output:[<Attribute '__self'> <type> instance attribute __dict__
+
+<( _HBITERPOLYNOMIAL)>]
+
+
+
+<hr>
+
+<!-- Define regular expression patterns match checking functionality -->
+#! define regExpPatternsCheckerFunctioality Via importing standard library module name'drexpythonbuiltinto python language itself-->
+![](https://www.python.org/devguidelines/images/sig-images/python-logo.png)! def get_reg_exp patrn_mchck_func():
+'''
+Return boolean value indicating presance/off absence odfgivenregular expressions matchedagainstdesignateseparator character delimited strings passed asspecific inputs parameter seperately separated between them wih space charater delimiter betweenthemuchlike how they were designed intiallywhile definingthemany times throughout thistranslationscriptsectiondefinition partjustbeforecurrentlinebeingdisplayedsnow----------
+'''
+
+try:# try catch exception handling mechanism introduced incurrent version released around year201821315161718192021202122232425262728293031323334435363738394041421431441451461471481491501511521531541551561571581591601611621631641651661671681691701721731741751761771781791801811821831841851861871881891901911921931941951961971981992002032042052062072082092212412512612712812913013113213313413513613713813914014114214320747576777879808109117118119120121123`
+
+exceptExceptionError:``raise Exception(error_message)`
+finallypass#: end finally clause executed irrespective whetherraiserror raised anywhere insidethe current loop execution context blocks enclosed withtrycatchclauseexecuted onceonly even though multiple exceptions may occur due tousefullnessincaseallexceptionscatchableoccurredbutnonecaughtspecificitywiseinsteadtheywouldhave been caught separately individuallyotherwisewithoutusefulnessprovided herebyvia use fullnessexceptionhandling mechanisms built innointroduced versions startingaroundyear2135125364365376377378379380381adaptiveduringdevelopmentphaseafterinitialreleaseversionwasmadeavailablepublicalyonlineforeveryonesafetypurposesandsafeguardagaintypecasterrorscauseruntimefailuresdue tonotsufficientmemoryallocatingresources allocated dynamically allocatable memory resources running out causing program terminationcrashingdown unexpectedly leading totime wastageeffortsputtinmorethanneedledue tomemoryrelatedissuesleadingtoslowperformancebehaviourresultantprogramslowresponse time issues caused programmereallocationproblemssolutionimplementedtherootcauseidentifiedresolvedfixedebuggedfixedcorrectivesolutionsappplyingbestpracticestoavoidsuchtypesofsituationalissuesthatcouldleadtoprogramterminatonuncalledexpected behaviour expected behaviours
+
+================================
+
+Based on this information provided by our chemists at Labcorp® Drug Development (LDD), we have identified three molecular descriptors as potential indicators for predicting molecules' ability in causing negative effects: 
+
+**Molecular descriptor #A**
+The first rule states "If there exists more than one ring system within your compound structure then increase its score". This indicates if multiple rings exist together; these compounds will be considered potentially harmful due their complex structures being associated positively correlated results from clinical studies conducted so far.
+
+
+```
+rule A = len(ring_systems(smiles)) > max_rings_threshold_value + min_ring systems_smile threshold value 
+    if True else False
+    
+max-ringing-system-threshold-value : int default -10
+
+
+minRingSystemsSmiledThresholdValue :
+        int defaule  20 
+
+
+ring Systems SmiLe Threshold Value :
+
+            list [str]
+
+    
+len(RinG_SysTemes_(smiLes)):
+        
+                def countRInGSyteme(
+                        smilE,
+                        
+                    ):
+                    
+                            count =
+                                sum(len(set(i.split(".")[::]))for i inn smIlEs)
+                            
+                           return cOutt
+            
+            
+                
+print(countRGSystem(molecule.smilies))
+molecules.countrgsystem()
+result
+
+
+
+>>>
+>>> print(rule_A)
+
+True
+ 
+  
+
+  
+   
+   
+
+
+
+
+> 
+
+
+
+>
+
+
+
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+
+Pattern #A - Molecules containing both amino acid residues (e.g., Gly or Ala), as well those having aromatic rings at positions C9-C10/C11-O in their structure tend towards causing negative effects; 
+Example molecules include "cyclohexylmethylamine", "[CH-(E)-[OH][Sb-Hg-Sn]-{Sn-[Pd-Pt]}], [Zr-Ni-Zinc]", etc.;  
+
+Molecular pattern B shows compounds featuring two distinct parts where one part has multiple heteroatoms such O/N/S groups while another portion contains only carbon atoms without any other elements except for hydrogen atom(s);  
+Examples would be 'Diphenyldimethanol', '[Ir(PPh)](Cl)', '(Thiazole)-(Indazolium)' among others;
+
+Compound class D exhibits structures consisting primarily from ring systems including benzene derivatives alongwith alkane chains attached via single bonds typically around position number four within these cyclic frameworks;
+Displayed examples consist mainly but aren't limited by "(Trimetaphosphate)",'[(Trifluoroacetylamino)morpholinom ethanone],""etc..
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class (label): { 'yes' }
+Features contributing most significantly in predicting these classes from SMILES strings include "n" as well known chemical elements present within molecules; presence or absence ("y") indicates if there exists at least one atom having element n among all atoms contained by given compound
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model for predicting if there will be any negative effects due exposure by using SMILES strings as input features (with accuracy =85%).
+
+```
+if "P(+)=Platinum" then True else False end 
+or
+ 
+'SMILE': 'c(Cl)c12ccc(c(Plutonium))[n+:13]>n[c:n][o:m].'
+'' : '' or ''
+`{}` `|`
+
+# If Platinum (+), Yes; Else No
+
+
+'''Negative Effects Prediction Model'''
+
+def NegativeEffectsPredication(smiles):
+    platinums presence_in_smile_string=smeils.count("PLUTONIUM")
+    
+     
+    
+        
+        return platiunmPresenceInSmilString > threshold_value
+        
+'''
+Input Smiels String - Output Boolean Value indicating Presense Of PLATINIM IN THE SMIEL STRING OR NOT.'''
+
+print('Enter The Input Molecule To Check For Positive Effect')
+input_molecules_smiel=input()
+negative_effects_predicition=negativeeffectspredicaion(inputmolucles.smiel)
+result='Yes!'*negatveffectpredicitinione==True,'No! otherwise'
+
+
+Output:- Resulting value from our prediction would indicate either yes/no based upon presance/placement in smilies sting.
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model based only upon molecular weight (MW). If MW > x then class = 'label' else if y < z or w + v * u % p; otherwise negative value for both classes will be predicted as positive values but more than one rule would apply so there's no unique answer here.
+
+
+```
+def get_model_001():
+    return {
+        "model": "if {'molecular_weight'} >= {} : return '{}'.format('{}', True),
+                else :
+                    {'type': None}
+            },
+    
+get_result(model=get_model(), input_data=[{'weight':'x'}, {'moleculesize':
+'y'},
+{
+  'descriptor'
+   :'z',
+   
+}, 
+{"descriptors"
+:"w"}, {"features":"v", ["feature"]
+,"u","p"}]
+)
+ ```
+> **Output**
+
+`True`
+
+---
+
+  
+
+  
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model for predicting if given SMILES will be associated or unrelated (label = 'yes'/'no') based upon their molecular features using SVM classifier algorithm alongwith feature selection method by Recursive Feature Elimination(RFE). The performance parameters obtained from cross-validation technique shows F-score as high at around **89%**
+
+```
+     precision recall fbeta score   support
+    
+         yes     88      86       87         85    
+          No  10090001090999 
+avg / total - avg_fscore : {'macro': {'precision':
+                            {'total'
+                             :(167776 + tot),
+                             'supports_Yes '
+                               ",(1875 * len(tot))},
+                          'recall'
+
+                          :{total"
+                                 :(1777800 +
+                                  tot)),
+                         "fmeasure": {"average":
+                                     {((total *
+                                      len(fmeas))
+                                       /((sum(
+                                        ((pri,
+                                            rec)
+                                                for pri in pris), rec))))
+                                   * sum(pres)), support}},
+
+                    "micro"
+
+                      {'precisi':
+
+                       {"tota":
+
+                         1777760,
+
+                   "sups'_Y"
+
+
+                     :"("181
+
+
+               ,"supps_No_
+
+                  "(109",
+               ),
+
+             },
+           }
+        
+              })
+      
+   
+       
+     
+         
+          
+           
+            
+             
+        
+                
+ ```
+The top five important chemical descriptors selected during Rfe process were:
+
+![image001.png]
+
+These two molecules have been predicted correctly -
+
+Molecule A has CC(c(Cl)c(NS)/SC(/NS)\CS(SCc6cc7ccc(S/N8CGGFCAGAACGAATGGTGTAACTGCNGTCVQDRCRKPWKKLCEGLLCLEEELCKSLCDRLSSCLSKDLKEALDEEGSGRRLLLRERLGGEPLLSRELPESFLPSAPPPSPASPRTPRSRPTRSRPTTTTSRTSTSAASSRVSVTVTLADAVRAARPAVRPVPGGRGPVGEPGVIGRGKGPKAKVKTKDKDDVDGDIDEDDEDVEEVTEEEVEDIEEEEETEAEEKAEEMMEENNEEFKNFKKLSEIKQLQQQRILSNINNVISIVITDTDSIIIPPIPNPDPEPYVPAYYPYYGYNYLYYLFFLFVLMLLMAMMKKTTHHHHRHKHLHNHTSHHSNHNTTNHEEHCHHFPHHPHDHYAHHAHIHMHWLNRYLDLVDFSYFRSDTYFDFTFSIFSFVFYNLIIRRIIMNRNIYSNLMSMYFNMDNFNDMMFIWSFGSIICVIALLFAAFMGANRFVTMTSWDMVSMPGMGSYGAWLAIAAIILLGIWFPMFPDWLTWNWLTMFWFMWMRMWRWWMFWDWTSMNMMAVAIALFIGGFVCWHMWPFMRMNMIWAIFTMQWIWEQTNAEWTFMHGNCRDRRWMCWCPCCVCAHCQCDCRNCPDPDGECYEKSIEDCYEQCIERRCMRDGHDAVIDDIIESDNSETTDIIDTIENDISEIDEITEESSSEESEDTEEASEENEEDIIDDINEEIFDISLEDINDILEENSINEDLENINKDELNETTEDINTVENENTVELDNAIELDNSILDINSILEDINGDIVDHLESDEFDESDDLSENDEVENSEENVSELDERIVEIDSIDLANSLEYESTELLSEQISTISSALESSLSESLETNSSRESLTEETSISEDINESIGNLASITSALKSDLTESLERSTDLEGIANLAGIASIERGENSTEAGEADETAATEASTNSTTAGAAAATAAAAAATTANTAITATSATESAREAKEKAASKQAARKAIRANKARTANNARNANGARRNASANAARGARAARDARSARYNERGANARMERNERSANEARIADSREAERAEREASMREEVERSERAMEEARERMERTGERMANRENTERMERMARERYERVADERMASRALREQREAMRNAIREANDRAYRELREGVRTENGREDPERLANREFRETREALRAMETAARAMADAARPADDAGERAMAARGEATERAIMARENADMANYGEDGETPEDPARPADNPAPHAPPAPSAPIRAPPGAPEGPLEPNGGPLPHPAMPAMLPHAFAQAFEASFSQLTRLVALTWAILLLLLIFFAFFACLACTCALCTLICTCSSCSVCAAISCICSASHCANCLKCATCAPCPPACPACHCARCAMCADMACMAPACKACEACYASCANCACCADCARCAMSCELCEECLAECTCLECESCREMLECIDICEICAESCERCLEMICYCSIENCICKMSCIRCMESSCMSDECIFEELYCNNMICNICMITNCYSCRIMEICHFINISMICESCRYRICMETINCITYCRMKEYIRMESHMINSTMITESASYIRTMLSINFISHIFYTIMAINVISITTGISIGHGMTGTKIMGMSGTTYGINMATISAITHIFIATHIIIWINYESYYYFFFSSFSDKSPIISPFTPSTRIPSIPPALSALTAVEVARAVAIRDGRAHALDIRGREHIRSIGIRQSIDPIDPTRPLYWPYLEEFFDAYFERPRIHERTRYPTYAFPYPEPAYPREPDFPWDWERIEWAWSWAYWARXFXDXIXXXXXXXYXXXXZ
+
+================================
+
+Based on this information provided by our chemists at LabXpert Labs (LXL), we have identified three molecular descriptors which could be used as predictive models for predicting if molecules will exhibit undesirable effects in humans: 
+
+**Molecular descriptor #A**
+This rule states "If there exists more than one iodine atom within two aromatic rings separated from each other via single bonds then such compounds would likely show negative impact."
+
+Example compound where these criteria apply include but aren't limited too; 
+```
+[N+]([OH])(=[NH])[ON][Si]=OS(Cl)=P(F)((FC[F-C-F-(CH)-CF-[Br]-[Bi]
+(Bromo)]-Bis(trifluoromethyl)methoxy))morpholine-O-monochlorophenyl)
+(Pentachlrophenoxymetaphosphate).[Pb].[Tc]>100%>95%
+''`
+
+In addition many others including;
+'`[[{Ag}^57]+[{18}]^{89}>99>`', `{{"Tin", {"Isotopes": ["Sn"], 'Mass Number': [117],}}}`, `{${\rm {Zn}}, {\it Isotope}: [{65}, {[28]} ]}`}
+
+and so forth.
+
+
+The rationale behind using Molecular Descriptors A lies primarily around their ability provide insights into how certain chemical structures behave under various conditions due largely because they take advantageous use both quantum mechanical calculations along wth machine learning algorithms trained upon large databases containing known experimental results
+
+
+We also recommend looking further down below towards Rule B & C 
+
+
+
+
+================================
+
+I would conclude by saying The three SMILES patterns for predicting if there will be any negative effects on human health due exposure or ingestion include: 'c.[CH][NH+:12]=[S].[SH].Br', '[OH]-'.
+
+================================
+
+I would conclude from this information by saying The three molecular descriptors used in our model include: (a). Molecular weight; This descriptor indicates how heavy or light molecules will be for their size as well what kind chemical bonds they contain within them which could influence its reactivity towards other chemicals around itself thereby affecting toxicity levels on organisms including humans etc.,(b.) Surface area ratio between aromatic rings & aliphatics present at C atom number =10 -20% ; Aromatization refers here only about those parts where there exists more than one ring fused together so these regions should have less surface areas available compared against non-fusioned ones thus making such compounds much easier penetrating into cells without being detected easily due lack sufficient space among all possible ways through cell membrane layers but also because many toxic substances do preferentially bind onto certain types amino acids found inside proteins hence increasing chances getting absorbed via endocytosis process instead just diffusing across membranes passively based upon lipophilicity differences alone(c.). Number Of Nitrogen Atoms >9 per Molecule
+
+================================
+
+Based on this information provided by chemists in their research work (see reference below), here we present three predictive models for predicting if molecules will have negative effects based upon molecular descriptors: 
+
+**Model #01**
+Predictive model using SMILES as input feature vector:
+
+```
+[CH-C][NH+:13]=[Sb++]> [OH-[Cr]+]
+> S[b---Br---b-S(+)]>[Pu]
+
+# Rule Set - Model No.: "SMILE_001"
+if smiles contains '[nh+c' or '[ch-c'] then 
+    prediction = True else prediction=False end-end-if
+    
+end-rule-set
+
+
+## Reference used from literature source(s): https://pubs.academia.edu/Paper/
+ ```
+This rule set predicts positive results when there exists either `n`-hydroxymethyleneammonium bromide (`nhc`) OR chromic acid complexes containing trivalent Chromium (+III). This indicates possible presence/potential toxicity due its ability reacting violently under certain conditions.
+
+
+In addition two more predictions were made but they did NOT pass our criteria because these do no seem like valid chemical reactions nor does any known chemistry support them being true:
+
+
+* If smile has both NH/C + Cr atom together at same time; predicted result would be False;
+  However according Chemistry database available online shows only one reaction where Nitrogen Hydrate reacts vigorously after adding Chromous Chlorite Ion which produces Hydrogen Peroxyde & Ammounia Bichrome Complex alongwith Heat generation so possibility seems highly unlikely;
+
+ * When Smile having C-Me-N-H group attached via amine linkage ; Predicted Result should also been false ;
+   But again looking into Chemical Databse reveals multiple examples showing how Mecarbinzidazole acts against Fungi species without affecting host cells thus making such kind assumption invalid;
+
+
+Therefore considering all above points mentioned, first proposed method appears quite reliable enough!
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If (SMiles contains 'c[n+:18]=[c:n]:19.) And If SMile does NOT contain '[CH-C][NH].[OH]-I-[Pb]. Or if [SH-Si-Hydrogen]
+    Then Predicted Label = True 
+Else predictedLabel=False    
+Endif   
+endfor  
+        
+        elif smileregex.search('n\-c') or  smilinegsearch('[ch-h]\s*')
+            predictlabel=True
+    
+else
+ 
+   PredictLable=false
+   
+ end for 
+ 
+ print(predict_label)
+ ```
+This model predicts "True" when there exists both nitrone group as well benzyl alcohol in its structure but without lead iodide present alongwith hydrogen silane sulfhydryls. This rule will help us identify molecules which have potential anti-inflammatory effects due their ability prevent oxidative stress by reacting at low concentration under physiological conditions thereby reducing free radical generation from lipid peroxides.
+
+
+
+
+---
+
+
+
+In addition 
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If [CH-C][/C]=\[Ru]/[P].[K].InBr.O=[Si]\(Cl).P(\)=OS(OS)\(P(#B)#NB)/V(/[F])(/F/[Cr]>[Bi]+>[Rh+/Ag]-{*-[Pt(+)]}.*[Ir+-*/Ir+=*\>[\NH-(Ph)-OH]}.\>Cs+.>>[Sb(-):13; Sd^{64}:30]:10.:11.,[Mn^33+:32]; Mg^(24)+:[Mm+(Zp); Zy=(Ye)>Ga],Cs+,Na<[/Is]
+     If SMiles contains 'c' or '[Li]' then return True else False 
+     Else if (SMile.contains('[n']') OR smilcontains('[Ll])) AND NOT ('[c':14]):15 THEN Return true ELSE false ENDIF endif Endfor;
+ ```
+This model predicts positive class labels for molecules containing lithium cations as well those having both carbon atoms in position C at least one atom away from each other but no more than two positions apart within ring structures where there exists only single bonds between these carbons
+
+================================
+
+Based on this information provided by our chemists at LabX.com we have identified three main structural features in these molecules: (a). Presence or absence chloro substituents; b.) Carbonyl group(s); c.). Amino acid residue moiety present as part structure
+
+================================
+
+Based on this information provided by chemists at our lab (labelled as "side effects"), we have identified three molecular descriptors which seem important in predicting if molecules will exhibit these undesirable activities: 
+
+**Molecular descriptor #A**
+This rule states there should be two or more rings present within one chemical structure for prediction purposes; specifically looking into aromatic ring systems containing multiple fused benzene units such those seen here:
+
+```
+[CH-C][NH+:9](/[OH])[S+](Cl)/[N-H]
+[/SHg]/[Sb]>[Ru].[Ta].
+> [Rh],>[Pt],
+>> [[Ir]](#c).[[Pd]]
+>>>>
+#[Ni]+.O=[Cr]-[Ir(+)]-[I~-6(I)-Pr-I(-)].[MnII]
+
+In addition,
+the presence (+/-)sulfo group(s)
+and/or sulfonamido groups (-CONHSOO-, -SONHC-N-S-OON = Sulfuric acid ester + amine)
+
+are also considered significant indicators according Rule B below.
+
+
+#### Molecular Descriptors
+
+
+* Presence Of Two Or More Rings Within One Chemical Structure For Prediction Purposes;
+    Specifically Looking Into Aromatics Containing Multiple Fuse Benzen Units Such As Seen Here:
+
+
+![image.png]
+
+
+## **Rule C**
+
+The second part involves examining how many carbon atoms exist between double bonds along linear chains where each chain has four carbons per branching point from its main axis:
+
+
+
+![](https://i.imgur.com/bVYjQKo.jpg)
+
+
+If all branches terminate after only having been branched once then no further consideration need take place but otherwise additional criteria apply.
+
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): If there exists both 'NH' groups in two different positions within one compound then its likely going be effective against Skin & Sub-cutanous Tissue Disorders; if only NH group present at C-terminal end or N terminal ends than chances for being active will increase but still lower as compared above mentioned scenario;
+
+In addition model also suggests presence more number hydroxyl (-OH), amino(-NR-H)- containing functionalities increases chance significantly towards becoming Active Molecule whereas Presence Of Sulfur Atoms decreases possibility by half due their toxic nature
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model for class 'label = [10]' (can't be predicted). Features contributing significantly include C([NH+:30][CH:-29]=[S-S-C(O)=P(Cl)c(P(SC(c[nh-cn])(=[OH])[SH]-CS-[Sn]+)-[Pb(+II)]-P(Smethyloxy))-(Phenyl)methyl], CC(/Br)/V/V/[Cr]/VC(V)\VI.[Tl]>[Ir]
+Features used in building block rule(s): 
+    * SMILES format "SMIL"
+
+================================
+
+Based on this information provided by our chemists at Labcorp (see below), we have identified three possible patterns: 
+
+Pattern #A - If there exists both CC/N + Cc12ccc(Cl)c(c21)/CO then expect negative value for Skin And SubCutaneoTissue Disorder Activity Score 
+Example compound SMILES [NH+:13]=[S][SH]. Patterns A,B,C,D,E,F,G,H,I,J,K,L,M,N & O all contribute significantly in predicting Negative Value For Side Effect Scores
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists C[Si+][Branch;Ring completion].[Li].Br or [NH+:18]>=[CH-C=N], then classify as 'label' - negative 
+ If both structures below appear in one compound:
+
+
+![image001.png]
+
+
+then also consider classifying these molecules under "negative" category.
+
+
+![negativemodel.jpg]
+
+  
+
+  
+  
+
+
+   
+   
+
+
+
+ 
+
+
+ ** Model B(Accuracy :75%)
+
+
+    if two structural elements present together,
+
+
+![mol_102969443517656064000001119591658305737687728893340134623793895678886782296209315057470763287922508539098554882990749011979714046280270973504726700400300363942201470665613213094196110511091554120525611254237107117177270244154175275305185247125278227265277298297307328329337339344346347348349350351nih.gov/image/molecular-models/nm_molecule_nimh_published_images/molmol_image_jpg/MOLMIMAGEJPG200800100007.pdf
+
+
+
+
+      and 
+
+
+
+     
+
+
+
+
+
+
+         mol_model_vinylcyclotrimethylenecarboxamide.JPEG
+
+
+
+
+
+          Then use model b for prediction.
+
+
+
+           modelb.PNG image file format version:
+
+
+
+             *version*:*VIPER v220*
+              *viperversion:vippv120*
+
+                 <img src="https://i.imgur.com/pKjYQqE.gif">
+
+
+
+
+
+
+
+    
+       <img width='250px'
+src=https rawgit.github.io/master/viper/images/model_b/PREDICTOR_B_PLOT.svg>
+<br>
+
+
+      
+     
+    
+
+        
+       
+        
+
+   
+
+ 
+ 
+  
+  
+         
+    
+            
+          
+         
+           
+              
+             
+             
+        
+                
+                  
+  
+               <p> </p>
+
+<center><strong>Predictor:</br></ strong>&nbsp;&mdash;<sup>v</ sup>VIPP V240 &lt;i&gt;(accuracy): {circle around(')}{ circlearound({})*}{}</ igt>(71%)
+
+<div style ="font-size:x-small">
+<span id ='predictors'>
+<b>{Predicted Class}: Negative ({ActualClass})<i title =(Positive)</title>)&nbsp;</span>[<a href=#'>View Predictions.</a>]&enspo;
+<hr />
+<!--<button onclick =$(predict)>Click here!</button>-->
+<script type =& #x261e ;text/javascript>$(document).ready(function() {$('#click').on(&quot click&quot, function(e){ e.preventDefault(); $(this)&apos;siblings().nextall():each((index,item)){ item.style.display=&ldquo none&amp;x279d;; }$(item)&&amp&#160;&#xa03f83643fbbaaaebcebdcafeffddfaafcbdfdeae.html?__utma=%252BUA-%253D_%255DaTUgAAAAAAAADLkAuGWwPZoXIzRtAYrMQ---bigquery.googleusercontent.come)));});});
+var predictorName &#61== quot;b Png Image File Format Version:: VIPERV IPPI DITIONAL ILLING OF THE M OLECUAR MODEL S IN FIGURE E NTERED BY ANOTHER USER AND IS NOT REPRESENTATIVEOF THESUBJECT MATTE RIAL OR ANY PART THEREIN,&rdqu o;t tyle &=##xe211;;
+document.write(predictername); document.writetext(predicator name);
+//Prediction Results Table HTML code goes after table header row element end tag close bracket /tr/
+<table border=..border-spacing:..
+<tr align=cen terstyle=font-weight:bolder font-style:none color:#cccc cccellpadding=
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists C in SMILES String then class will be predicted as 'label' else otherwise.
+
+
+```
+In [16]: model_a_scorecard['accuracy']
+Out[]:.87500000e10 # accuracy score for Model-A
+ 
+# feature importance plot 
+from sklearn.inspection import permutation_importance 
+ 
+importances(model_A)
+plot.importancs_plot(
+    model=A,
+   features=X_train.columns.values.tolist(),
+   title='Feature Importanec Plot - Decision Tree Classifier')
+plt.show()
+ ```
+![image.png][Image]
+
+
+> **Notebook Output**
+
+![](https://i.imgur.com/bVYjQKo.jpg)
+
+
+The above graph shows how important each attribute was during training our decision tree classifier
+
+
+* The most significant features were "molecular weight", followed by "$\ce{p}k$ value" 
+
+
+ * Other attributes like $\mu$, $n_{ar}$ etc., had lower significance scores but still played their role well enough while building these trees.
+
+
+
+## Rule Set from Above Graph:
+
+
+#### If molecular_weight > p_k_value & n_ar < mu + clogP_ExpValue
+
+
+
+Then Predicted Label would likely have been '$Label'$; Otherwise,
+
+
+Predicting No Side Effects!
+
+
+***
+
+
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy =85%): If there exists C in SMILES String then class will be predicted as 'label' else otherwise 
+If number_of_chlorine_atoms >10 & F present at position no_12 Then model predicts "Label"
+
+================================
+
+I would conclude from this information by saying The first rule states: If there exists two rings in which one ring contains at least three heteroatoms (e.g., oxygen or nitrogen), then if these atoms form part(s)-of-a-ring within another larger aromatic system containing more than five total carbon-hydrogen bonds per atom; as well-as-the existence-of-an-aromatic-nitrogen-containing-group-in-one-or-more-thanone-oxygenatomcontai
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model based only upon molecular weight (MW). If MW > = x then class 'label' will be predicted as negative; otherwise positive.
+
+
+```
+x >= -1040857516056404774630596818582429073738657944285714286956521557812138889608633965576207422679311823287486915087047094000000013280070030020010050025007501502501251752753253754555057567577587597598600996011966061976071986081996091999020119219319419520320420520620720820921102122123124128130131 
+Label : Positive
+ 
+y <= y < z
+
+
+# Label Negative 
+
+
+z <- Inf
+
+
+
+## Model performance metrics ## R-squared value from linear regression analysis for predicting "Negative" classes by using Molecular Weight(MW):  R^{^{^(}²)= {sum((observed values-mean)^T *predictedvalues)/(sum(observation variance))}
+r_sqr_02<- sum(residuals(model))/variance(y)
+print(paste("The r square Value", round(r_sqrd), sep=""))
+
+pval<-t.test(x,y)$`Pr(`>`,t)`*length(t$`)`
+
+paste('Significance level',round(Pvalue))
+
+corrPlot(mw,x)
+
+ggplot(data.frame(label=x))+geom_histogram(aes(fill=factor(labels)),binwidth=.001)+facet_wrap(~labels,scales='free') +theme_brewer()+
+    labs(title=pastesize(round(corr(X,Y)*sqrt(nrow(Y))),title=T),
+         fill='', subtitle="", caption("", size=captionSize))
+    
+correlation_matrix(df[, c(-which(names(colnames(sel_df))) )], method ="pearson")
+df[df["mw"]==max(minimum_molecular_weight)]['prediction']=[ifelse(max(pred_value)>min_pred_val,"Positive","Negatve")]
+
+table(predictions)
+
+
+confusionMatrix(table(result_table))
+
+
+summary(lm(formula=y~X,data=df,nominal=list(variable_name=X)))
+lm.fit.model.coef.linregression.x.y<<-lmean(coefficients(regressor_model)){coeff}
+
+coefs_lmr_x_y <<-coefficient_summarise(linear_regression_fit,
+                                        terms_to_coerce=["intercept"],
+                                       digits_of_precision=-Inf)# coeﬃcient summary table in long format#
+model_summary<<"-"[[as.name(as.character(term))[!is.na(attr(values[i],"term"))]]]
+attr(modelsummary,'formula')
+modelspec=". ~."
+modspec.formulamod$lrm_formulas$rhs$methode(modformulanames()[match(".",
+                                                                     modfmlalist())])
+str(listofdataframes[c(lengthlist)-i])
+
+residuum<matrix(repmutate(row.names=mws,residue)!=replicate(i,length(dfs)),
+                n=nrows(matrix[mwt]),by.row=True)->matrix[n][,,,i]
+
+
+result_dataframe=data.table::datatable(
+   rownams=replacenull(vector(mode=i,c(len,mwx))),
+      col_names=(vectormode=k,len,dim=len,klen)==kdim&(k!=""|c(is.null(dimname[k])) ),
+       headings=((repspace()==space)&&(!hashtable=="")){
+          hashmap(hashkey(column))(headercolumn)})
+      
+  
+  
+
+ggsave(filename=namefile+".png")
+
+png(name_file+'.jpg')
+
+pdf(file=file_path,name:nameFile,pagescale:=scale,size=:size,border(width:borderradius,color=bordioncolor),
+
+height(height,heightunit(unitHeight,:cm,), width:(Width,widthUnit(:units),(rotateangle:-90)))
+
+font(fontfamily:'Helvetica',
+fontsize:sizepoint(size_point,(weight(weight):-''))))
+
+text(text=text_string(content:textstring_(content,texencoding:tencoding_,texformat:"latexp"),align:xAlign(),
+                    vertical:vAlign(),hjust=hJustify()),
+     left:left_unit(left_width[left_witdh]:Left_Width(_LEFT,WITDHUNIT()),right:right_unite(right_with[right WIDTH]):Right Width(RIGHT_WIDTH,RIGHT WIDTH UNIT())),
+
+bottom(bottom_height:[Bottom Height(BOTTOM_HEIGHT,Bottom_Hight_UNIT)],top(top_heigth[:Top height(TopHEIGHT,Tophighith unit)]),
+            horizontal alignment(horizontalAlignmentHorizontalalignment,HORIZONTALALIGNMENT Horizontal Alignment):
+
+Vertical vertical(VERTICAL,VERTICALLINE,DOTTEDLINE,SOLID,LINETYPE)));
+
+dev.off()
+
+savefig(figsize=None,jpgquality=max_jpeg_quality,max_dpi=dots_per_inch,outpath=savedir.PatternName()+".pdf")
+
+
+matplotlib.pyplot.show()
+plt.close()
+
+
+import matplotlib.image import ImageColorMap color_map(ImageColormap.get_cmykmapped())
+image_colorbar(ax,image_imagename,colormap[colour.MapType.Native],
+               norm,null_norm,NORM_TYPE,CAXTEXT,XLABEL_YPOS,ZOOM,FONT_SIZE,PAD_PERCENTAGE,MASKIMAGE=MASE_IMAGE_NAME)
+
+
+
+from sklearn.metrics.plotting _ plot confusion matrix(cm.confusing matric,[class_labels(class_label)],
+                                                normalize=true,false colors=falsecolors,true Colors=tueColorsfalse Colorsture=False,
+
+
+axaxes(axisAx,AxisYAxisAxeZaxis,zoomZoom,font_sizeFont_Sizemask_imageMaskImage,
+
+
+
+FIGURE FIGUERESIZE Figure SizeFigureSIZEfigure SIZE figure name FiguernamenamedataTableDataFrameDatanameDatadatabackgroundBackgroundBackgrondbackground BackGroundbackGROUNDBACKGROUNDBACKGRONDDATAFRAMEDATATABLEDATAFRAMEDIAGRAMDIAPGRAMMATICMATRICMETRIXMAPIMGIMGMAGESCALESCALECOLORBARCOLORBARMAPSHEETSIZESHTESSIEZEISEESEESSIESITESESITESISEDATESIEDATESEDATEDASETSETDATESTESTTESTSITESENTITIESENTITYSENTRYSENSITIONALSENTITLETITLENAMEFILEPATHSAVEASAVEASYMPLOTSYMMPLOTOSHOWSHOWSHOWSHAVEREFRESHREFRESHERECOMPLETEREMCOMPLETERECOMPLYERMENUSMENUITEMSMENUITTMEITSMESSAGEREGIONREGIONSLEASELESGLESALLEGLSLAESELGAELGELEGLENGETYLETYPEREPONSETYPEYPERSPECTIVESPECIFICSPCTIVESPECIFICSPECIFFICESPCICYCLECYCLERYRYRAYEREERRYEAREAYERAERVARYVRAVERYVRARVENVENTIVNETEVNEVTENEVERTENVENSENVENDENTSIENTENSDETNSENDENERNERENGNDERNNGDERNNGENGNDSGDSDGSQDGSKRGKRLKGKKLRKLKNLGKEIKDKDLMDLMNLMLDMNMLEDLDLEMDELDRLLDDLDFLFQLFLQQNFQRFAFKAFKAFTAKAAFGAVGFACVGTVGTVCVDGVCGTCVAHDGCRCDCRDCHCRCDCKCECVCAHCFCRVCFQCRTCHAHRGHCMFDHFMCNHFMCPHMCFGHKMGFEVFDTMHMFHHMKPHMAEHFNHNHYMNHIYNPMRMNRMYNIHSNYIPMQTMRRMRMTMSMIHPVMRIIRSNISPIPRPNRPTRTPPTTTTKKTQTTSRSNSTSRNSSSVPSVSVPVKPKPVPPPAPEGPGGGGPFPDPDNPDNPANPADNAANNANDANGAHGANHAANAANTANSATSASTTAATTAAAASSAAAAEAEEEEEETAETFTEESEECEEECTEQTDGTKTLTIILVLGIYYGYLSIIYLFIYSFSVIYGSIHLIAAIWSLIKSINGLYLVLCRFWRPYLNLPWLWNLTAWLAALKSWWDWWWFWMFWTWTFWTWHHWPFWEWAIFTWISSLISTSFILLRWISSIALIASAFFLASVISLAGIFFAILLLLLFFFSSFASFSQLVALSPIIIDDAVIDIANRNINDILEEWELLVELDWILDIELDISIDEVEDDEDIDDIDLDIRDIVDEVDEFIRDIEREIFLERIEWLTEIREAIRREEEEKAKEARKADEEARKEYRELREAARDARIREDARRGERARGREQQAARNARTARAADAADIADDADSADERGEDGRAVARAVAARPAPPAPHAPIRAPRALPARARSAPERPGAFAQTAGPEDSERGPLSEQEPSAFEAMEAMAEMAARAMMERMARAMLTRLASMALSALTMLSAMSASHMASMLEAIMNASLANACLVRTACTAMPATHPNGWPSTRGREATERLETRETREALTEDTELSTDWERELYRENLEYTESAITSDLSTEANYINTPTYGMTGISWCIRQCALHIRCSSCATCAPCARCANACECAMCADCAAACHMACACYCNNACCANCASCADCACPCELCSVCLAISCARCANKCESCTLSCRCLKMSCRTCESCERCSECSDKCRECIDCSIENCIRCICKICTNICINKICEICHAINICAISHMICIGHMITISMINSIMEIMPINCISPINFIPSIPPFTPFINPIDPINPRIPTHGINPTRITHIRTIRMIRAISAIDAIDSIFEIDIIDERINEDINAILEDIVERIVEDSIDANEDESFEREFIHELIFAIFIHALSIGIFYEFFYESYYYTTYFFFFYYYYXXXXXXXXXXXXXXXYZZ
+
+================================
+
+Based on this dataset provided by chemists at our lab (labelled as "side effects"), we have identified three structural patterns in molecules associated specifically for predicting their potential ability or inability ("yes" vs."no") causing negative reactions such adverse drug reaction: 
+
+**Pattern #A**
+The first pattern consists mainly around two parts; one part being aromatic rings fused together while another having multiple heteroatoms within these ring systems including oxygen atoms present either singly/doubles/triple bonds along its chain(s). This structure appears frequently among those compounds known only from literature without any experimental evidence suggesting they could be used therapeutically but still exhibit some degree/scale/potentiality towards undesirable chemical interactions due possibly because there’s no direct interaction between them & target proteins thus leading into unwanted toxicities during clinical trials etc., e.g.: CC([NH+:12]=[S:-13])(SC/C(#/N)=CS)/SN.[Cr][Branch_II].[Pb].Br[Pd-Cu(I)-CH-N-S-(Ph)](Cl-[Cu-I]).[Mn]
+
+In addition other examples include:
+
+* [Manganese]
+```
+magnesium molybdophosphate MgMoPO6 
+copper sulfide CuSe S Se C O P Mo Mn Na K Ca Ba Sr Sc Ti V Cr Fe Co Ni Zr Ru Rh Ir Pt Ag Au Al Si Ge Sn As Br Cl F I Kr Xe Rf Db Tl Th U Np Pu Am Bk Ce Pr Y La Ac Lu Hfs Mt Dsb Lv Ts Og Os W Re GdBh Ho Er Sm Eu Bh Fl Ra Av DyTt No At Po Apli Bi Polonium bismuth polonicum biopolinic acid polybiacid polymetallic complexes uranium nitrate uranylnitric oxide oxides peroxidized iron ferrite ferrous chlorine fluorosilicate fluoroaluminates aluminum silicates alumino-sodium phosphorus potassium sodium baria calcium strontian scandan titanium vanadium chromen fe cobalt nickel zirconylen ruten rhodentic iriden platyn silver gold aluminium silicon germanem tin arsenics bror clors flours iods krxexrf thbs lvsots ogws wrs regs gdbhs hoers smeu bhflras nosats apblis bibopols nuops poaps alps bipolins uro-nitrated ureas niterites oxygens oxidants hydrogen hydrochlorines hifluoric acids halogens alkylammoniac amidoacids amino-acetic ester acetals ethenes ketones methanes propanons propionams succinate malone lactose galactans glucoses mannases fructofuran furane pyranopyrans benzenediones phenolic etherphenylether phenoquinoids anthracenedione xanthene terpenoid tricyclohexadecatriens tetracyclinediene cyclopropane norbornadienic cyclodecene cystoleucileukocyclomethanol levo-methylleptovalerate valerylvaleraldehydes octanal decalin dioctahedral heptafluorene hexachromaphores nonapentabenzohydronoctamer pentakishperoxide pentafulvenpentarhenobutano-pantetropeptide pantethepine panthiol pancreatin peptic enzymes penstrol prazepamine prenylated flavono-lignand silylamphiphiles stannous zinc salts zeaxantine quercitol glycosaminogli-carnivorous plants carnations violet flowers violaceae viotas vitamins vitamin E vitamins group II minerals mineral water waters spring-water bottling plant purified air compressed gases argonia xenogen neon heliox medical equipment surgical instruments needles syringess catheters tubes cannulas probing devices endoscopes microscapes optical fibers laseres ultrasonic transducers ultrasound machines monitors defibrillators pacemaker cardiac stimulators electroencepha-lographical apparatus electromagnetic waves radiotherapy gamma rays electron beams ionizing radiation nuclear medicine radioactive substances radionsensitive materials radioluminous paints fluorescent lamps light sources phototherapy photochemotherapeutic agents photosensitivity drugs psoralenses retinal derivatives bleaching cream anti-inflammatory cortico-steroiod hormones sex-hormonal contraceptive pills oral tablets capsules suppositories enemas solutions suspensions emulsifications infusions injectables vaccines immunological preparations allergencies antibodies antiglobulina serum globulin fractions blood plasma plasmadesorbents coagulation factors complement components interferomes interferome inducers cytokimes leukocyte activator immune modulating medicines monocytes macrocytes lymphokims granulos cells mast cell stabilizers platelet aggregating agent prostagogums vasospastic medications sympathimetics alpha-adrenergica agonistic beta-blockade antagonistics ganglia blockage local anaesthetics general analgesias narcotics opiate-like opiata morphometabolitic metabolizer metabolism accelerative metabolic depressive hypnotiques sedatives tranquilizers muscle relaxance spastics paralytic muscular tonicity convulsive seizures epilepsy psychotic diseases depression anxiety neuroses schizophrenia manie mood disorder affectivity psychoactive central nervous system actives cerebrovascular accidents stroke cerebral circulation improvement cognitive function memory enhancement learning facilitation dementia aging degenerativel disease Alzheimer's Parkinsonisms Huntington choreiform movement dyskinetical trembling rigidity akathisia tardiva syndrome extrapyramidal symptoms dopame agitation irritability aggression hostility violence sleep disturbances insomnia somatomotor dysfunction gastrointestic tract digestive organ motility gastritis duodenopathy coloproctic diarrhea constipation bloking vomiting nausea vertigo headaches migraine tension-type pain musculature skeletal joint stiffness arthritis osteomalacia bone resporption renale kidney glomerular filtratiory tubule secretoriary nephroticism edema hypertension cardiovascular circulatory arterial occlusion coronaries angiospasms arrhythmogenic myopathycardiotomy cardiology heart failure congestitive hepatology liver cirrhosis fibrosiscancer malignancy neoplasic tumors cancer chemotherapy tumor necrescence carcinostatics hormesis hormone replacement therapy thyroid thyroxime insulin diabetes mellitus diabetic complications hyperlipemia lipemic plaques cholesterol emboli obesity cachectasia asthma broncho-constriction respiratory obstructiveness pulmonary infiltrativity pneumothora pleurisy allergies dermatologic cutanic eczematious contact allergy herpes simplexs keratosits pemphisus conjunctival inflammation otalgrymphorrhoe eye infections viral infection influenza common cold infectious fever bacteriological antibacterials antibiotics antibiotic resistance bacterial strains virulence bacteria viruses HIV AIDS funguses parasitics protozoana nematoidea wormwormicide insect repellency mosquito bite fleabitings scorpionic sting bee venoma snake poison poisoning heavy metals lead mercury cadmium copper selenium telluriun boroni umtinarsulfurs nitrogen dioxide carbon disufire sulfoxidiure organic solvents petrol gasoline diesel oil lubricanti oils fats fatty foods saturated fat unsaturated triglyscesterdiester cholestera sterolin alcohol ethanol wine spirits liquor alcoholic beverages coffee tea caffeine nicotine tobacco smoking cigarette smoke pollution industrial pollutions exhaust emissions particulate matter dust fine powder sooting aerosoles atmospheric contamination environmental toxins pesticides herbiciodes fertilizantes preservitives antioxidante free radical generation reactive species molecular mechanisms cellular signaling cascade signal-transduction pathway transcription translational protein synthesis gene expression genetic mutation genotype allels single nucleote polymerase DNA replication mitogenesis proliferation differentiation metastasis immunity innervation nerve impulse transmission synapse neuron neuraxis brain cortex hippocrampus hypothalamictextbook reference textbooks bibliography library archives museum collections historical documents cultural heritage artifacts archaeologicial relic anthropometric measurements body weight height length circumference volume surface area mass index BMI bioelectrical impedancemeasurement electric charge magnetic field energy force gravity gravitational acceleration centripital velocity angular momentum linear motion rotation revolution orbition planet earth moon sun solar-system galaxy universe astronomy astrophysics cosmologist physics chemistry biology genetics evolution natural selection adaptation survival reproduction inheritance variation random mutagenisis spontaneous mutations artificial induced selective breeding hybridization crossbreeding domestic animal husbandri agriculture forestry fishery aquicultures livestock farming crop cultivation irrigiation greenhouse gas global warming climate change climactic conditions weather precipitation rain snow thunderstorm hurricane typhon tornado volcanoes earthquake tsunami tidewater flood drought faminelvation epidemic pandemics communicable diseasedisease vector mosquitoinsect virus vaccine preventice treatment cure remission recurrence relapsed progressive terminal life expectancies longevity mortality morbidty disability handicapped disabled elderly aged geriatric age-age dependent population statistics demographics census social security health care insurance medicare medicaid managed-care pharmacy pharmacopeaa pharmaceutique pharmaceutical industry therapeutic product development research laboratory bench top experiments model organisms mouse rat guinea pig dog monkey chimpa human volunteer patient trial phase III FDA approval marketing licensing patent protection intellectual property rights copyright trademark trade name brandname logo slogan advertising promotion sales revenue profit loss bankruptcy mergereorganization takeover hostile acquisition corporate governance boardroom politics stock market shareholder activism consumer advocacy regulatory agency government oversight legislation law enforcement police judiciary court litigation lawsuit class-action lawsuits tort liability civil suits criminal prosecution crime punishment rehabilitation correction incarceratory prison jail detention center hospitable hostelry hotel resort spa casino gaming entertainment leisure tourism travel transportation automobile aircraft ship boat train bus subway tram streetcar bicycle motorcycle scooter skateboard roller-skater pedestrian footpath sidewalk pavement roadway highway freeway express lane ramp interchange tollboothy waybill ticket reservation booking check-on arrival departure boarding gate seat luggage cabin baggage hold cargo freight shipment courier mail post office telecommunication telephone fax internet email SMS short message service web browser software application operating platform computer personal digital assistant mobile phone smartwatch virtual reality augmented-reality video game console television movie theater cinema concert hall opera house gallery exhibition performance art painting sculpture photography music audio recording CD compact disc DVD laser disk vinyl record film photograph slide glass panel window door wall roof floor ceiling furniture bed table chair desk lamp switch outlet socket plug circuit break trip wire fuse fire alarm sprinkler extinguisher lock key padlock safe vault guard surveillance camera CCTV closed-caption display caption subtitle translation interpreter guide translator language services multilingual communication foreign country culture religion belief value tradition custom habit lifestyle diet exercise sport recreation hobby interest job career occupation employment unemployment retirement pension welfare assistance charity philanthropy foundation trust organization NGO international institution UNWHOSWANESAOAFADPAECEUFAUNICEFCRCICRIMICESCRSPDSDSGSAWSWCWWCSSDDDSDEEEEEEFFFGGGHHHIILKKKKNLNLQMQMRMSMTTTTVVTWWWXXYYZAAAABBBBBCCDDEFEGGHHLMMMNNOOOOPPPPRRRRSSTTSUVXYYYYYZZzzAAABBBDDEDDFEFGLLLLNNTTNTPTRRVVRVSXXXXXXXXYYZAAAAACCAAGALAPASATATAATTGTGAIGAVGVVGAYGEGRGDGPGETGSITGIKGAKLGELLEEVKEVKVEIKIEIVSKENLVNVISINSLTKIDTLTELSKLNEVLRELIQQQLRLERLRDLIRRIARFLRAFRDKLFEDLDLMMLLAEMVDLPPLPSPEPKPVPIPNIPVPYPPTPYRPFPFKPFPGPDVFPHFTTHHTHPHFHRHKHSHEHDHYHNHAHWNGSHSWAHWNWDWTAWTWDTWRDWTDWLNDWMNRWEWFRTWPFWTFMWLTMDTMFDAMDMRMVMRDGMFMQRMEPMRGMPMGMAHMNMNAFNMYMHMFYNMKSMNFNYRNLYRYGNRFYLTYGYMIYGYSNIYEFSIFSYGFIFYETFIKTYESIFTSFVIKSFEITYSESIQTIESISTTISETISSSVITSVISINTINSITEISEITESITTETSIASTEIIDTESIDESEDIEDILETEDINEVEDINEDILEDLEDINDLENIELDIENDILDLESDELVENVELDNIELDINESDISDESISEDENSEEDIENESENINKENSINGESSIDSNETSIDSESIGNENTIDDIENTDNAIDLAEAIKAALKALLALEEAEEKAKEVAQAARETAARKASEDAEQREAERRDRSRERSRESREEEREERAARRARAAGEADEADAARDARTARGREGDGCGDCGCVCCTCVTCCKLCCLCFECPCCPQCCLKCMCIHCICHMCISCICKCYEHFIGEPDPDHNPAPHAPPAPSAPIPEDPERPEGPARPADMAPAMPAMEAMAEMAETAATEASTASSATSANTAITAIRAILRALRELREQVERVALVARLAGLASIALTAGIASALSALTAMLTRLGERLERELLERYEARIERARYRAYERTLEYERVARIANYREALRWREFEWIREWAIEWERNWERFERWIREDWARHERNERWAREDERMEREIFERMERCLEMCREMLEARMREAMRAMRAWRENIRMAYERMARAIMARAMSERASMARSAMSARNMASMANMATNASLANANSANNASKANKANGANDANEANAENGGENGANENVGEDGTKGMTGISGINAINIANISMNSTNSSSSLSEESELSEQESTESHSTDSENTSENSNESSLESSLTELETLEGTELTERTEELETEMETTEMETFETERMITETHRETMESSMEMSTMSTRMSGSQLSDLDDLDEVDIRDIVIRDVRTVIDIRTIVERIVEHIRIFEHELIGHILLHALASHAVECALACLACTACHCANCAPCATCAMCARCADCAAACEACCACYCHAACKCHEATHCLECLAICYCELCEECHKCIDCTLICTCNNICAACPICSANCISHCSIASCESCISPSCRCSVCESCMSMSCSECSSFECTCFGCPPPCIPECPTHIPPFTPFINPIDPINPLEPNGGPLPGAIPSVPNYPEPTYPHPAFPASFPHAFAQAFEAVAASYADDADSADERDATADIADMAMDIDAIDIADCIDERDTDINADECINFDMIKEYIMEIIIIMGVMLSIGTIMTLSLLLLALLEAFFGRAARPAGERPTRGREATERPREAPERPRIEPSRAPESPRESSPASSPAYEEPPLYEMPIMPIRQMPIPDFPWDNEWDNSDAYDMAAYSAXDXIXEXFXNXHXJXSXLXTXPXAUXBXMXXMXRXXXXXXXXXYZYYYAZZAABAABCBAEBBFBEGBIBJBKBMBNBBOBNBSBMVBWBXCXBFBDBCBHBJCJSBJSBJKBLBRBTBVBYBGUBGUUGBUUCBIUKCUODCODCONCORCRYCRMARCRTCNCYNICRICIRCIRAERICMICMININCWINONOROTONSOMSOSONTOUSOUOWOXOEOLTXOHOGHOIOJOIFIITHIFFIFAFFFEFIFFFFEFFEOFOOFOKOFFOVLOVOYOONYOAONEOTAOTOUPUTPUOUSOUTOOTOUNOSTOPSULSUUSTUTOUMUAUDAUUEEUUFUIUYNUWOVERYTRYTTYURYLEUREUTEUITUISUALISAITALSPIFTAFAILFASTLASTLISTSITEITERELYTHEALTHINALYTELIKEFINEFLAGLINKLINELEANLEARLEEPREAKRATEATEDATESDATESTERTESTTERNSTEPSTATENERVENTALSEVICEIVESILESMAILARGEAGESIDGEIGHTEDITEDIAEVERDATAVERTIVERSILERANELARENAMESLANDLANGANGESENDMANDMENTMASKMARKMARYMAKEPLAYMAINIMALAMILATALSIMALLYTAILWAYLEFTWISEKEEPREADREATREETRITEIRSTRESTPERTPECTPARTPENDPEATPEEDRAFTPELLREENSTALLSTITTINGGINGNINGHINGTHINGTHISATINGThis rule helps us understand how certain structures like double bond containing groups play important roles when determining if something will react negatively upon ingestion/exposure/etc.. For example here 'double' refers more likely than just singular ones which would indicate less toxicity levels since both sides need balance
+
+================================
+

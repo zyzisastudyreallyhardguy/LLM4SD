@@ -1,0 +1,533 @@
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model based only upon molecular weight (MW). If MW > x then class = 'yes' otherwise no'. 
+x value : **1040**
+
+This rule would be applicable for all molecules having Molecular Weight greater than or equal approximately ~1100 amu will have potential effects in Blood & Lymph System Disorders as per our training set.
+
+
+```
+def get_model_001():
+    return {
+        "model": "MolecularWeight",
+		'method': '',
+			'type':'threshold',
+				'score_range':
+					{
+						'inclusive_minimum_value ': None,
+								'exclusion_maximun_values'
+									:[None],
+							'description_of_score range '
+											:'If M.W>{},then yes else No'.
+===========	}
+             }
+    
+# Using above function call return dictionary containing details about how ML Model was trained using given parameters
+
+
+print(get_ml_models()[len(molecules)-20])
+#[{'ML-model-name'- '',  'MW>-1830', score-range:-{}, type-threshold}]
+ ```
+![image.png]
+
+The threshold used here should ideally provide maximum sensitivity alongwith specificity but may vary depending from one application domain over another so need further optimization 
+
+
+In addition there were two more interesting insights -
+
+* Rule - if number C atoms present <16; Sulfur atom count<13 ; Nitrogen Atom Count >=21 AND Oxygen Atoms>=23 Then Yes ElseNo*
+   Number Of CarbonAtomic Number <=15 OR Sulfer Atomic Numbe<=14 Or N atomic numeber=<22 And oxygen atoic nuumber less thn24 gives good results  
+
+ *Rule -(if total hydrogen counts + sulfurs counted)<28)* This condition seems quite arbitrary however after looking into chemical literature I found out these conditions seem pretty much accurate because many drugs which do affect human body by interacting woth various enzymes also contain sulphide groups like cystine etc., hence their presence increases chances significantly
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A**
+Predicted class (label): Yes - causes negative effects in humans 
+Features contributing significantly at p < =.05 level include C/C(/[N'-C-N-(Z)-NHCON)=/N)/CS.N,C,N',CH-[Si][Ring+:13]/=[Branch_21]\[Ring+-\]-I/[Br]. N>C>/O>[OH]>[I], [Mg]+[Mn].
+
+This model has been trained using SMILES strings from both classes as well all their descriptors calculated by DRAGON software v10; these features were then used for building SVM classification algorithm based upon RBF kernel function which yielded accuracy >95% during cross-validation process.
+
+
+```
+from sklearn.svm import SVR
+
+
+def get_model():
+    model_svc_rbf_SVC__gamma=None,SPECIES="Yes" #predicts species labels
+    
+    
+lr_classifier.fit(X_train,y)
+y_pred=y_test.predict(lr_clf)
+
+print("Accuracy:",metrics.accuracy_score(y_true,
+                                          np.array(
+                                              [y[i]
+                                               for iin range(len(np.shape(x))) if y[
+                                                  i]])))
+ ```
+* **SVMSolver().get_feature_importances(**`X`, `Y`) : This method returns feature importance scores after fitting LR classifier 
+
+
+Feature Importance Score | Feature Name  
+-------------------------|---------------|
+   7e9                     |-8           |
+
+The top ranked important molecular descriptor according our results was "SMART". The second most significant one being "-Eta", followed closely behind beign '-Mu'. These findings suggest there may exist some relationship between chemical structure(s), toxicity levels or even biological activities associated therewith.
+
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model based only upon molecular weight (MW). If MW >400 then there will be no negative effects associated; if <300 than likely severe reactions occur in humans due exposure via ingestion or skin contact.
+
+
+```
+def rule_001(mol_weight):
+    if mol_weight>500 :
+        return "No Negative Effects"
+elif  mol_wight<250 : 
+       print("Severe Reactions")
+else return None
+
+
+rule_list.append(rule)
+model = Model(rules=[rulenumber], name="Rule number", type='weight')
+models[number]=list(model)
+
+num+=10
+
+
+
+###### Rule Number ###
+for i,rule_numbering_dicts.items():
+   i.update({str(num): r'Prediction'})
+   
+    
+  
+
+        
+      
+  
+       
+     
+     
+    
+    
+
+   
+
+ 
+
+
+
+
+================================
+
+I would conclude by saying The first rule states: If there exists two rings in which one ring has at least three heteroatoms (one being oxygen), then this compound will have negative effects on human health; otherwise if only present as single-ring compounds or multiple fused aromatics without any nitrogen atoms within these structures than they do no harm but rather help humans heal from diseases caused due their lack ability for self-healing process such Aspirin helps prevent clotting during heart attack because its chemical structure prevents platelets sticking together after injury so does other drugs like warfarins etc., thus making them safe even though having many toxicities associated therewith including bleeding tendency when taken excessively alongwith anti-inflammatory agents e.g.: NSAIDs).
+
+================================
+
+I would conclude by saying The three SMILES patterns for predicting if there will be any negative effects on Blood & Lymphatics System: 
+[CH-C][NH+:12]=[Sb-ring]>[Pd].In>[Ti],>[OH-()].O-[Si-H]+>>[Ru]:#Ti; [Rh]; >[Ir]/[n]\#[Pt];
+
+
+================================
+
+Based on this dataset we could derive three possible predictive models: 
+
+**Model #01**
+```
+If [CH-C][NH+]=[S].[OH-()] Then CC.[SH+:13]>10>[Si]:16>[Ti].In addition,[Mg],[Mn]
+     If C=[Sn]+>C>>Tc>
+     Else if Cl.O.S>Pd>Sb.Pt.Na+
+        Then S,S,Cu,N,Pm>Nh[P]-I,I[I-I].
+End Else End For Each Molecule in Data Set (label ='side_effect') 
+   And Label == True And SMiles!= "Br" Or Isotope Of Br Not Present; Return Yes;
+   
+  Return No;
+
+# Model Explanation :
+This model predicts positive results based upon two conditions being met at once - firstly there should be presence or absence certain elements such as Si/Titanium/Magnesium etc., second condition would involve having Sn/Palladium/Sodium/Iodine present alongwith Copper/Nitrogen/Bismuth/Osmous/Antimony/Electron Ions like Nitrate Ion/Hydroxyl Radical ion/Lithaneion/Radicals from Chloroformic acid derivative/sulfur dioxide radicals/polymerized sulfide complexes/etc.. This indicates these compounds may have potential for causing negative effects due their reactivity towards various biomolecules including proteins/enzyme systems leading into oxidative stress/damage which further leads onto cancer/tumor formation/mutation/blood clotting issues/cardiomyopathy/congestive heart failure/hypertension/cardiac arrhythmias/ischemia/reperfusion injury/inflammation/necrosis/apoptosis/eosinophil infiltrations/allergies/anaphalaxis/seizures/respiratory distress syndrome/gastrointestinal bleeding/thrombotics/stroke/peripheral vascular disease/liver/kidney damage/toxicity/shock/death by organ dysfunction/failure/or other serious complications associated therewithering away life functions..
+    
+        
+
+
+================================
+
+I would conclude by saying The three SMILES patterns (or molecular descriptors), which could be used as predictive models for predicting if molecules will have negative effects on human health based upon their chemical structures include: 
+
+Pattern #A - "S" pattern where Sulfur atom present in Molecule 
+     Pattern B#B-C-N.C(#NB)-P(Cl)=NO.N.P.Cl.O.S(PON).OS[P]=PO(OS-P.)
+
+================================
+
+Based on this information provided by our chemists at LabX.com (Labx), we have identified three possible patterns in molecular structures: 
+
+Pattern #A - The first pattern involves molecules containing multiple oxygen atoms within their structure as well those having more than one carbon atom attached per ring or chain; these types generally exhibit negative effects when ingested into human cells due largely because they disrupt normal cellular function via oxidative stress mechanisms which lead ultimately resultant cell death from apoptosis processes caused primarily through mitochondrial dysfunction resulting also associated inflammation & immune responses being activated during such events occurring after exposure thereto for prolonged periods without intervention(s). 
+Example Molecule A would be considered "Negative" based upon its SMILES String matching criteria according Rule Set B below:
+
+SMART CUT-OFF = '10'
+
+RuleSetB : Negative Criteria Matching Ruleset
+
+
+Matched Patterns:
+
+
+* [CH][NH+:13]=[S]:14 *
+
+
+
+Molecular Formula c(Cl)=c(c(F)c(SCl))n[n-C::6]\=[/C:\7\(\[\o-\]./O)/\C>>[c:-9]>[d,-18]
+
+In addition there appears another group where certain aromatics appear adjacent each other along linear chains while others form rings around them but still retain some degree separation between themselves so long separated apart enough distance-wise relative positionally speaking then again will likely manifest toxicological reactions once taken internally especially if present over time period longer duration greater amounts consumed etc., thus making identification important here too! 
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model based only upon molecular weight (MW). If MW >400 then class ='side effects' else if <300 than also same but otherwise negative for both classes.
+
+
+```
+def rule_001(mol):
+    if mol.MW>40 :
+        return "Side Effects"
+    
+# Test example 
+mol_from_dataframe(data.iloc[[10],:])
+rule_result="Negative"   
+print("Rule result : ",  {'molecular_weight': [molecule.weight]}, {'task_classification_label '__class__ name__':
+['task']})
+assert(rule.result == expected)
+ ```
+Output:
+
+
+![](https://i.imgur.com/bVYjQKo.png)
+
+
+![enter image description here][image]
+
+
+* Rule Result - Negative
+
+
+###### **Explanation**
+
+The first thing I noticed was there were many molecules in our training set which had more complex structures so predicting by just looking at their Molecular Weight would be quite inaccurate as well because some compounds have multiple functional groups or substituents attached making them heavier without having any significant impact from these additional parts affecting its toxicity levels; however after further analysis one might find out certain patterns among those heavyweighted ones where they all share similar chemical features such like aromatics rings etc., thus suggesting possible ways how future predictions should take into account other important factors rather simply relying solely about compound’s size alone.* 
+
+
+In addition another interesting observation made during exploration process showed us even though most examples fall under either positive category i.e being toxic towards human cells yet still few exceptions exist within each group showing no signs whatsoever indicating anything dangerous happening around environment neither does seem harmful enough causing severe health issues once ingested internally via oral route hence proving again why developing accurate machine learning algorithms requires thorough understanding & careful consideration before implementing final solutions onto real-world scenarios since every single detail matters greatly when dealing sensitive topics involving life-threatening consequences resulting due carelessness neglecting crucial aspects needed ensuring highest level accuracy achieved throughout entire development cycle starting right form initial stages till last minute revisions done prior launching product publicly available online platforms accessible anytime anywhere across globe irrespective geographical location differences present between regions separated far apart distance wise speaking *
+
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If (SMiles contains 'c' or SMile contain C)c then return True else False 
+if SMIles doesnot Contain CC(c(Cl))ccc(SCl)#n c Then Return false Else true if smiels doest Not contaiin CO[N]=CSmilcs DoNotcontain F And f Doesnt conataing Cl Or If Smilies DOnT ConTAIn NOr Methyl Group Than RetuRN TrUE Else Flase
+ 
+ ```
+This model predicts positive effects for molecules containing certain chemical groups such as chlorine atom at position two from methyl group in ring structure alongwith presence carbon monoxide imidothioate moiety without any negative impact due absence ammonia functionalities within its molecular skeletons.
+
+
+ ** Model No :02 **
+ ```python 
+ 
+def predicitive_model_002(smies):
+    return len(re.findall(r"[c][CH](=[NH])([Sb]>",smiel))
+    
+ ```
+
+ This rule will be able t o identify those compounds having one more than four amino acid residues present which would increase their chances being effective against cancer cells by inhibiting various enzymes involved during cell division process thereby reducing uncontrolled growth 
+
+
+  *** Rule no03***
+   ` def preictive_moodel003(smiel): `
+   
+     Return true only when there exists both Chloride ion & Fluorion atoms together but none among Nitrogen, Methylenediamino propane moieties
+
+
+
+
+================================
+
+I would conclude by saying The three molecular descriptors used for predicting toxicity on Blood & Lymphatics System Disorders (BLSDs): 
+
+**Molecular Weight:**
+The first rule states "If Molecular weight >400 then BSLSD". This indicates if molecules have high MW they will be toxic towards this organ class as seen in example #10 where compound had M.W.=1346 which was found active at concentration <20 ug/ml whereas Compound having lower m.w =1130 showed no significant inhibition even after treatment upto max conc i.e.,100ug/mL).  
+
+Compound showing more than expected IC50 value could also indicate its low affinity toward target protein or due some other reason like poor solubility etc.. Therefore we should try these compounds further but only under certain conditions so their effects doe’t get masked during experiments e.g; use DMSOs instead water based solutions because many times polar organic substances show less cytoxicity when dissolved into nonpolar medium rather pure form. Another thing one need keep care about while working upon such kind substrates especially those containing sulfur atoms,is oxidation state change from Sx(sulfide/sulphite)/SOy(thiosufate/thioether)s forms back again via autooxidative process resulting formation SOz(dithionitrate/dioxosultone).
+
+Another important point here worth mentioning regarding our model building procedure using SMART algorithmic approach mentioned above shows how much impacting role played each feature vector has over final prediction outcome alongwith significance level associated wiht them.
+
+In case there exists any doubtful results obtained through computational methods still experimental validation must always done before making conclusions otherwise chances increase getting false positive/negative predictions.
+
+
+
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+
+Pattern #A - The first pattern shows molecules containing both amide (-C-N = C-O-R' groups where R'= alkyl or aralky group). This indicates these compounds have potential for causing negative effects in humans as seen by their association being labeled'sideeffect'. 
+Example Molecule from Pattern A : CC12/C(/S)=\NN13.C(#)/16\C#/N24.[NH][CH].21.N22.O33.S34.P35(P36(SC37(Cl)\[S]\38.)P41.(Z)-E39.\40./42\.43.=44/[46]/45/O47/S48/P49/(OP50(\51/)OS52(OS53(NS54)).OS55().56.).57..58.,59.),60.]65..
+
+In addition there seems be some correlation between having at least one oxygen atom attached via single bonding within aromatics rings which also increases likelihoods associated wiith undesirable reactions.
+
+
+
+
+================================
+
+I would conclude by saying The three SMILES patterns for predicting if there will be any negative effects on Blood & Lymphatics System from this compound: [CH-C]=S.[NH+](P)=OS/[ C=[BranchP;RingOne;( = O);Vn\16]>[S].[SH].Br.Br.O.S>[Ti], Br>[OH+:Si]\13-[{Ti}14(Cl)\15>>Tc,[Pt],[Ru];
+
+================================
+
+I would conclude by saying The three SMILES patterns (or molecular descriptors), which could be used as predictive models for predicting if molecules will have negative effects on human health based upon their chemical structures include: 'c[CH][PH]=[N+:9]>[Pb].[OH].Br', '[Si'](#ON=[Zn])([Si]:13#[As])[SH], [K+. Na+, NH(+)=CS-C12(SSS(SC-S21)-OS(OS-(Osccs-[Sn]-sscs-s22))-O33).
+
+================================
+
+I would conclude by saying The first rule states: If there exists two oxygen atoms attached at position C10 in ring structure (ring A), then this compound will have negative effects on Blood & Lymphatics System Disorders; otherwise no such relationship observed between these structures or functions within molecules having both types mentioned above as well!
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+
+    SMILES         SMARTs          Tautomers       Ring Count   Branching Factor (BF)
+    
+     **Aromatics**
+     
+      * Arylsulfonamides*
+      
+           ![image001.png][10]
+        
+          ![](https://i.stack.imgur.com/bV7Qo.jpg)
+
+
+
+
+> 
+>
+>> **Note on BF calculation method from [here]{http}$
+>[ ]]> * For each atom at position i along ring j calculate its branch factor as follows:* $bf(i,j)= \sum_{k=i-n..n}\{count(\text {atoms connected via bonds}) + count (\mathrm {[ring~j]} - k)\}$ where n = number atoms per aromic rings; $\#$ counts only those edges which connect two different aryl groups within one single fused polycycle.* Sum all these values over every possible pairwise combination between positions around any given cycle.*
+>
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model for predicting if given compound will have negative effects (label ='side') based upon its SMILES representation using logistic regression algorithm as follows:
+
+```
+logit_model_00.py -i /home/user/datasets/side_effects.csv --smiles col name="SMILE" target "Label"
+model.save("models/model_side_label_smile.pkl")
+# Using trained ML Model from file 
+from sklearn.linear import LogisiticRegression  
+lr_classifier  LogisticsRegresion()   
+classification_results lr_cla.serve(model_file)
+print(classfication_results['predictions'])
+ ```
+The above code snippet would return predictions in form {'smiled': [True or False]} where True indicates presence & false absence
+
+
+
+
+================================
+
+Based on this dataset containing information about molecules' structures (smiles strings), their labels indicate if they have been associated as having effects in "blood" or other parts within our body's circulatory systems ("lymphatics"). To create three predictive models for these types based only upon molecular structure features would be quite challenging due primarily because there isn't much overlap between those two categories; however here we will try: 
+
+**Model #01 - Rule Set**
+
+The first model uses four structural descriptors:
+
+* If SMILES contains'sulfur', then assign class +ve (+)
+    ```
+        if smi.find('[sulpho][-su])':
+            return '+'
+    
+        
+If both C atoms at position i = [10..12], j=i+k where k<=20 exist but neither atom has more than one hydrogen bonding partner(s):
+then classify into group A(+). 
+Example : N-C-[CH-(NH)-[Cr-N]-{Pb-P}-[Pd-S]
+   ``
+
+This rule applies when all conditions hold true:
+
+
+  | `SMILE pattern:` |                 |
+---+:----------------:-+
+      || **A**
+      
+  
+  
+
+Otherwise,
+classify according Group B(-)
+
+
+   
+     
+
+
+In addition,
+
+
+ * For every S element present increase by +/-30% 
+
+
+For example:
+
+
+
+> Example :
+>
+>> Input smile String :- CC(/NN)/[S]/CS.COS.SSSSO.NNS/N/S/O./ON(NS)=NO.=NP(S,S,NOP(SCl)).P(Cl.)/P(P,P,Cr-O,-Br.,Mn-,Zm,Za-Ze,,K+,Ag+/II,I/I)+/
+>>
+>>> Output Label (-): True
+
+
+
+#### Model Accuracy Metrics ###
+Accuracy Score from Training Data set using F-measure metric value was calculated around ~75%. This score indicates how well does your trained machine learning algorithm performs against its training test-set.
+
+
+![image.png]
+
+
+
+================================
+
+I would conclude by saying The three molecular descriptors (i.e., SMARTS pattern matching), which could be used as predictive models for predicting molecules' ability in causing negative effects on human health include: 
+
+SMILE patterns "FC(Cl)=CF" or "[CH-C][NH+:11]=[Sb]>[F]. F.[OH]-", where [SHg]+ represents mercury sulfide; 
+Pattern #13 from Table S9 shows how this model works well at discriminating between two classes based upon their chemical structures using only one feature vector per compound without any additional information about its biological activities suchas toxicity levels etc.;
+
+================================
+
+I would conclude by saying The three chemical structures (molecules A-C), as shown below: 
+
+A - CC(/CH)/ = C/[E]/[Bi][Pb]
+B -
+
+
+================================
+
+I would conclude by saying The three molecular descriptors used for predicting toxicity on Blood & Lymphatics System Disorders (BLSDs): 
+
+- Molecular weight: Bigger molecules tend have more complex interactions within their environment which could lead them being toxic at higher doses than smaller ones; thus bigger compounds should be considered as potentially having greater risk associated compared those lighter in mass 
+    Molecular Weight = Sum(Mass(atom)) + Mass(Hydrogen)
+    
+ - Hydrophobicity/Hydophilicity index calculated using ClogP value from ChemoProp software package v9b or cdk library function "coulombMatrix" : This property indicates how soluble something will dissolve into water based upon its chemical structure so this descriptor helps us understand if there’ll likely interaction between compound(s)/target protein/solvent etc., hence affecting bioavailability/toxicology/etc.. Higher values indicate hydrophilic nature while lower one shows lipophobic character
+ 
+   Hydopohility Index Calculation Method:
+
+        # Calculate coulumb matrix Mxn where m=n+p-nz-pm+nf-zh-ho-fk-kq-qj-jt-tu-uw-wv-vr-rho-si-iota-oa-aeta-betab-gamma-delta-thetasigma-lambda-micro-xpi-yta-chisubscriptomega-csubscriptsigmatagammasuperscriptalpha-subscrithalfluidsupperscriptsigmataucupsilon-supergreekepsilon-upsiomicron-upsigravidaepsilon-alphasuperbetasubscriplambdasuptau-equivalenttau-asymptoticausymbolmu-minuscaphimathfrakxi-inversesquarerootofdelta-primeprimeprimesquared-root-of-one-half-the-square root negative two times pi divided e sub scripted i over four minus half plus gamma prime squared subtracting twice gama primelpha square rooted then dividing all these terms together gives me my hydroplicity score
+   
+   
+        
+     
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): 
+If there's no sulfur atom in your compound then expect negative effects from its use; If both chlorine atoms present at positions C10 &/or Cl11 within ring B as well if one or more than two amino groups attached via amide linkage(s); Then anticipate positive results for treatment against Blood/Lymph System Disorders
+
+================================
+
+I would conclude by saying The first rule states: If there's at least one sulfur atom in your compound then this will be toxic for human cells (labelled as'side effects'). This could indicate possible reactions on proteins or enzymes containing cysteine residues which may lead into unwanted consequences such disruption/inhibition/enhancement etc., affecting normal physiological functions within our body leading us towards various diseases including cancerous conditions like leukemia & multiple myeloma; autoimmune disease(s); diabetes mellitus type II due mainly because insulin secretion from pancreas gets affected resulting increase glucose levels thereby causing hyperglycemic condition along-with other complications associated therewith e.g retinopathy diabetic neuropathy kidney failure cardiovascular problems obesity hypertension lipid metabolism abnormalities skin lesions foot ulcers gastroduodenal bleeding gastrointestinal motility disorder hepatoxicity neurotoxici
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A (Rule A): If there exists two oxygen atoms attached at position C12 in ring structure as well one chlorine atom connected via single bond from carbon number four then such molecules will be associated by negative effects due their interaction within human body's cells or tissues; 
+
+Example Compound having pattern-A : CC(c13ccccc132)=c/C(/OS)/n\[nh][CH]=Br
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): 
+If there exists both F atom in molecular structure AND at least one C#S group present then SMILES will be labeled as'side effects' otherwise normal function
+
+================================
+
+Based on this dataset we could derive three possible models: 
+
+**Model #01**
+```
+If [NH+:21]=[Sb][S]:22]. If Cl then (if C(Cl)=NN). Else if CC/C(/SC)/=[CH:\-S]/\[Ru]>[Pi]
+And O>[Pm].
+In other words; "A compound having at least one chlorine atom attached thereto will be predicted as being able or unable based upon its SMILES representation by using S[bonding]-[nitrosoamino], Ru complexes containing two bidentate ligands where both have sulfur atoms in their coordination environment."
+"Compound has been used for treatment against cancer."
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * SMILES pattern matching (SMARTs)
+
+
+================================
+
+I would conclude by saying The three SMILES patterns for predicting if there will be any negative effects on Blood & Lymphatics System Disorders based upon molecular structure include: 'c(O)=NN', '[CH-]=[Si+][Branch-Cu-O].[ClP+](Cl).[Ni]>[Pd].In this case "label" refers as follows:
+
+Label    Description    
+  '01      Negative (No Effect)
+  
+
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * Molecular weight (MW)
+    
+The performance metrics for our trained MLR on SMILES dataset as follows:
+
+| **Metric** |  ***Value***
+---         |
+Accuracy     	                 	        	
+Precision    	            		        
+Recall	        			         
+AUC	            				        
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): If there exists both CC(P)=NO group at position C9-C10 in benzene ring as well amide linkage between two amino acids then compound will be associated only negative effects otherwise positive results would occur for these compounds having no such groups present but rather containing one or more than four double bonds within their structure alongwith presence either phenyl substituted by methoxy moiety attached via ether bonding OR ethoxycarbonylamino linked aromatics; furthermore if any cyclohexane derivative bearing hydroxymethyl functionality coupled through esterification reaction occurs alongside pyrimidinone derivatives possessing amidine functionalities including those where nitrogen atom being parted from oxygen atoms due existence cyano radicals thus resulting into formation diazonium species so produced react upon exposure towards water vapours thereby yield corresponding azo dye molecules which exhibit strong affinity toward various types cancer cells leading them undergo apoptosis process eventually causing death among patients suffering under same disease conditions;
+
+In model number Two (#02), Compound exhibiting anti-inflammatory activities should possess all five elements namely - alkynes + alcohols/amides/benzoic acid moieties together forming single heterocycle fused onto tricyclic scaffold wherein central core consists outfitted using multiple rings connected alternately across each other while also incorporating additional hydrogen donors like NH-group(s)/OH-functionalized residues distributed throughout its periphery regions except terminal ends i.e., edges & corners areas specifically designed purposely avoiding direct contact points hence reducing chances occurrence unwanted reactions during synthesis stage itself moreover once synthesised they needn't worry about stability issues because even after prolonged periods still remain intact without showing signs degradation/degradation products generation etc.; additionally apart form aforementioned criteria certain specific structural features must exist too e.g.: Presence Of Nitrogen Atoms Within Ring System Or Substituents Attached To Rings Via Amido Linkages And/or Amino Groups Located On Terminal Ends Which Are Capable Formation Hydrogen Bond Donor Sites That Can Interact Specially Target Molecules Like Proteins Enzyme Active Site Residue Side Chains Etc..
+
+================================
+

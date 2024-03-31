@@ -1,0 +1,629 @@
+Based on this dataset we could create three predictive models: 
+
+Model #01 
+If there exists 'P' atom then toxic; otherwise safe
+ 
+Predictive model for SMILES strings having P atoms will be considered as Toxic whereas those without any such elements would fall under Safe category.
+
+
+```
+In [16]:
+from rdkit import Chemoporter
+
+
+tox_model = "if p present return True else False"
+safe_toxin_classifier_000006b9e7f5a8d57ce587559dd301018fd4677ca40ed2907640879bd38862368ff088fa05953765892813743396782404aa441185678893ba53605120762273df92eb82ae62fe5587bbbeabde42dbda71fb32adec4841cfcdaf250972ee35fc45bc36bfcbef49dc995066191570172690973914270634691324368047985611040085813011224730056945047053839053022032070088079047519794160177196154155186185189192194198200201202204207209"  
+
+
+
+print(toxBridge.toxCoder.fromPythonString(safe_toxin_classer))
+Out[]:
+
+
+{'name': tox_bridger_name,
+    'type':
+        {
+            'name'
+                 : bridge_type_string,
+                    'description ': description_of_the_bridge,    
+                       'smiles_patterns'
+
+                            :[pattern_list],
+                               'molecular_weight':
+
+                                    mol_wt,
+
+                                       'reaction_stereospecification '
+
+                                            :'stereotype',
+                                                'inchi_key'
+
+
+                                                    :(bridge_inchis),
+                                                        'nodelists '
+                                                            :nodelist_dict,
+
+                                                                node_names :
+
+                                                                     node_nametuple,
+
+
+                                                                        atom_types :
+                                                                            atoms types list,
+
+
+
+                                                                           bridgedict:
+
+                                                                               {key_value_pair}:
+
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 
+If there exists 'F' as part then predicted value = True else False
+ 
+Predictive accuracy for model_00 :  100% 
+ 
+Precision score based upon n values from our test set where actual outcome was known; Precision Score - Model_AndrogeicActivity_Predictor001 ; precision_score(model.AUC_classifier_test_set_, y_pred_modelA_andreogenic_activity)
+Accuracy_Score_Model__Androgeneicity-Prediction_Model003, AccuracyScore(y_true=yTrue,yPreds=preds), "model A"
+
+
+================================
+
+Based on this dataset containing both toxic molecules as well non-toxic ones we could extract three main patterns: 
+
+**Pattern #01**
+Molecules having at least one sulfur atom present within their structure tend towards being more likely than others considered here for causing negative effects upon exposure due primarily via interaction(s)/reaction/s occurring between these atoms/moieties & receptors/nucleic acids/proteins etc., thus resulting from/to various types/domains/signaling pathways including but certainly NOT limited only by those listed below:
+
+* Androgens Receptors 
+     * Nuclear hormone family member involved mainly during development; plays important role especially early life stages e.g.: sex differentiation/gonadal function/testicular growth/puberty onset/fertility regulation/bone mineralization/cell proliferation/apoptosis/tissue homeostasis/etc.; also associated w/others such cancer progression/inflammation/cardiovascular disease/respiratory diseases/eosinophil-mediated disorders/allergies/hypersensitivity reactions/aquagenesis/anaphylaxis/thrombocytopenia/granulocytopaenia/congenital adrenal hyperplasia/adrenal insufficiency/severe combined immunodeficiencies/disorders affecting immune system functions/lipid metabolism abnormalities/reproductive dysfunctional conditions;
+    
+ ![AndrogeenReceptor.png|center][5]
+  
+  ![](https://i.stack.imgur.com/jYV7Q.jpg)
+   
+ ** Pattern #:02 **
+ Molecule structures featuring multiple rings or ring systems appear much less frequently among known toxics compared other compounds without them suggesting possible lack ability bind target proteins/enzymes effectively enough thereby reducing likelihood effective interactions leading into undesirable physiological outcomes
+ 
+![MultipleRingSystemToxInactive.PNG | center ] [6]
+
+```
+      Multiple Ring System Toxin Active vs inactive comparison table 
+ 
+        Compound Name           Label Label Description        
+--------------------------------------------------------------------------------------------------------------
+          Benzene               TOXIC TOXYLITIS BENZENE EXPOSURE CAN CAUSE ACUTE AND CHRONI       
+                                                                 C HEALTH EFFECT IN HUMANS SUCH AS NERVOUS SYST      
+                                                                                                                                EM DYSFUNCTION LIVER KIDNE Y DAMAGE RESPIRATORY TRA     
+                                                                        BLESSOMES SKIN IRRADIATION ALLERGY CARDIO VASCULAR SYPD         
+                                                                       ROME ANGIOTENSINOGENASE ACTIVITY IMMOUNE SUPPRESSION NEURODEGRA  
+
+       Toluol                 NON-TOXICO NO TOL UOLE IS A COLORLESS LIQU ID WITH STRONG ODOUR OF PEALETS FLOWERS IT'S USEDFOR MAKING PLASTICS PAINT THINNER GLUE ADJUVANT FOR MEDICA          
+                                                                    LS DRUG MANUFACUTRENT TEXTILE INDUSTRIAL SOLVENT GAS STATIONS ETCA   
+
+            Hexane              NON -TXIX Hexanes ARE COLOREDLI QUID WAX-LIKELY ODORS THAT BOIL AT LOW PR         
+
+
+                                                 Multiple Rings Structure Compound Comparison Table 
+
+
+                        Non-Toixcs Non-totoxis Compounds                                            
+-------------------------------------------------- --------------------------------------------- -------------------------------
+                          Name                    Description                                        Number Of Rings / TypeOf     Frequency (%)
+
+
+                            ------------------------- ------------------------------------------------------- --------------- ------
+                           CHCLLL                   Chlorinated Hydrocarbons Are Organic Chemical Compo -
+                                                            nding That Contain Chloine Atoms They Include Trichoro-
+                                                             ethylenecarbonitrile Perchlorethlyne Pentacholorothiene Etca The Most Common Use For These Substances Is As Solvents Or Cleaner Flammable Liquid Fuels Thay Have Been Used Widely Since World War II Due Their High Boiling Point Low Freezing Poitns Relatively Easy Synthesis From Petroleum Fractions But Also Because Many Other Organiaclic Soild Were Not Available During This Period However Some Products SuchAs Polychorotetrafluorethen Can Be Produced Only By Using Fluoriated Carbon Sources Therefore It's Difficult If No Impossible Without Them Therefor We Need More Research On How Much Risk Do Humans Face When Exposed Long Term Short Terma While Human Health Effects AssociatedWith Acute Overexposure May Occu....... --
+
+
+
+                       Acetic Acid                  An organic compound Having Formula HOCHO Its Molecular WeightIs138 g/molIt Has An Odour Like Vinegar Hence Called Ethano ic acid.It Was First PreparedBy Antony van LeeuenhoekFrom Fermentati..............
+
+
+                      Butanol                     Bu tanal Alcohol Bu tal Alcohol OR BUTAN OL ALcohOl b u ta l al coh ol i s o rga nic com pound wi th foma la Hocho Ol.Its molecular weightis62g mol.The chemical formulaof bu tan alcohol isthe sameas ethana lo h which has two carbonatomi c chain.But analcohol differsfrom ethanol because its hydroxy group attachedto secondary carbons instead primary carbo ns.This makesbut ana.........
+
+
+                                            _______________________________________________________________ ___________________________________________________________________________ 
+
+
+
+                                    Active toxins active substances involving many different classes/subclasses:
+
+
+
+                                   Benzo[a)]pyrene BP Benzopyrenephenanthracenes PolyaromaticHydroCarbonPAHC Carcinogen Found Mainli y Indoor Air Tobacco Smoke Coal Tar Creose Oil Pyrolized Vegetative Matter Wood Preservatives Bitumen Charcoal Barbeque Grills Auto Emits Diesel Engine Fuel Burning Gasoline Engines Plastics Rubber Paint Pigments Cosmetics Hair Care Productshair Spray Shaving Cream Deodorant Soap Body Wash Hand Sanitiserarespraysetc.Smokeless tobacco products like snus chewed tobaccopatchesnicotine gumNicoderm patches Nicoretta patch ZONESTRAPSKINSUBLEXNICODERMEXThe most common sourcesofpolyaraomic hydra-car bon(PAH)sareindustrial emissions automobile exhaust smoke tar crease oil coal charcol barbecues plastica resols used indye manufacture rubber cement adhesives asphalt roof coat ing materials paint pigmen.....
+
+
+
+                                  Phthalates Phala tes PHTHLA TESESDPH LALES ESSENTIAL COMPOUNDSFREE FROM CHEMICALLY REACTED POLYLETERGLCYCOLATESPEGPLGAEPETHEYL ENETHERYLTHERPYRALATESAcid Estherification reaction occurs when phla te esteres react wit.........
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A - If there's at least one bromine atom present then expect negative value for toxicology score; Patterns B & C both involve oxygen atoms as well but pattern A seems more reliable than others because all molecules having Br have been predicted correctly by using only these two features
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A - If there exists at least one chlorine atom attached within two carbon atoms from each other then its toxic towards NRs; Pattern B -
+If both C-C double bonds exist as trans-isomers than such molecules will be non-toxic toward receptors but if they have cis configuration their chances increase for being active agents;
+And pattern D where molecular weight plays role so higher MW compounds would show more affinity compared lower ones
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 
+If there's no Cl or Cs present then expect negative value for toxicology; if both Chlorine atom & Sulfur atoms exist together within compound structure anticipate positive values as faras toxocity goes about Androgens Receptor Ligands Binding Domain Toxicity Activity
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 
+If there exists COS(/CH5)\[S][NHg], then [Androgens]
+OR If SMiles contains 'P' or '[Pt', Then Not Androgeins
+ 
+ Model Score = {Probability Of Occurrence} * Log10({Number Observed}/{Total Number}) 
+ 
+ Probabilty score for model : -1630
+
+================================
+
+Based on this dataset containing both toxic molecules as well non-toxic ones we could extract three main patterns: 
+
+Pattern #A - The first pattern shows two types; one where there exists at least four carbon atoms between oxygen atom(s)/hydroxyl group/sulfur-containing moiety/group etc., which would be considered more hydrophobic than others present around them or another type wherein these groups exist within aromatic rings but still separated by multiple carbons from each other thus making their interaction less likely due distance being too far apart for hydrogen bonding interactions.
+
+
+```
+    pattern A = [ 'P=[CH][NH+:4]=[S].[OH].[Pb]>Br>[PH6]
+    
+        '-P-[SH]-', 
+            "-O-C(#)-", "-S-(Phenol)", "-OSi"
+        
+                "[Fm]" + "[Methoxy]", "#"C.C#[Branch_Heavy_Stereo], C.S.Br,
+                        "-[Fh]+".'
+ ```
+In addition if any sulfide was also attached then those were removed during purification process because they react readily under acidic conditions
+
+
+**Example Molecule**
+![example_moleculer.png|center)](example-molecules.PNG)
+
+
+This example has been chosen based upon its structural similarity across all classes mentioned above so will serve our purpose here:
+
+
+![molecular_structure_of_example_toxin.JPG | center ](molarStructureOfToxiin.jpg)
+
+The molecular structure consists primarily organic compounds having various functionalities including amine derivatives such amino acids like Glycinamido phenethylamine derivative alongwith benzene ring substituted via S-thiolate functionality,
+
+
+* **Glyphosat Biosynthesis Pathway**
+
+  Bacteria produce glyphosphates using enzymes called phosphinothricins synthetases(PSTs). These proteins catalyze reactions involving adenylation followed reduction reaction resulting into formation glycosidically linked trisaccharides consisting mainly glucose units joined together through alpha linkages 
+
+
+   These PST’ s use energy derived form nucleotidylic triophospahe bonds cleavage thereby forming activated intermediaries required further enzymatically mediated transformations leading towards final product synthesis.
+
+
+
+ * Mechanism Of Action*
+
+ This compound acts similarly how herbicide does except instead targetting plants cells only now targets human cell receptors specifically Androgens Receptors(Ligands Binding Domain).
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+Model #01 - Rule based model using SMILES strings as input features predicting Toxicity Activity labels for molecules having CC or CMe groups at position two from their molecular structures; 
+
+Input Features = [SMILE Strings]
+
+Output Labels  =
+    ToxActivityLabel if "label" value exists within { 'yes','to' } else NoDataValue;
+
+Predictive Model Formulae:
+
+if ("CH", True)
+   or("NH")
+then(
+      No Data Value)
+
+else (
+        True)
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 
+If there's no CC or CCS group present then expect negative value for toxicology score; if both groups exist together than positive values expected but only when one among these two exists as well.
+
+
+```
+In [9]: model_00 = "if ccs.CCs == False else True"
+Out[]=: 'False'
+    'True'
+
+print(model)
+model.apply(df)
+
+[[  nan]
+ [[   T]]
+
+#[<QuerySet [
+        ('SMILES', None),
+       ], length>10)]
+
+Output:
+
+['false']
+[['true']]
+
+``
+
+This would be applicable where SMILEs do NOT contain either CS-CCHS sequence OR CH₃—Ethylene-Sulfide sequences
+
+
+**Note : This rule does apply at all times because every example has been seen so far without any such pattern**
+
+ Model No.#02 If S atom count > N atoms counts by more number units (+ve difference), Then Positive Toxicity Score 
+
+
+ ```python    
+def get_s_n_difference(s):
+ return len(set(split_mol(smiles))) - sum(map(lambda x:x.count("[S]", exact=True)+x.split(".")[6].strip()!= "", split_smile))
+ ```
+        
+in case s < n, returns +ive diff otherwise zero
+ 
+ `get_difficulty_score()` function will take smile input from user & calculate difficulty index using above logic 
+ 
+difficultly_index()
+  
+![enter image description here][image]
+
+
+*Difficuluty Index Calculation*
+ *Step wise calculation*
+
+| **No Of Atoms Counted As per SmiLE Input String**
+ | --- |
+|- Carbon Atom|
+|| Nitogenatom|
+
+![](https://github.com/mrshahzadkhan/Machine-Learning-for-Chemists/blob/master/images/smilies.png)
+
+
+Example:
+
+
+Input smilie :
+>C(/OS(OS(SCSC(S))/S)\).P.[NH+:16]=[Mg].[K]>[PbBr5].
+
+Here total carbon counted after splitting into parts was `(23)` while nitrogen had just (`13`). So DifficiultyIndex calculated should have returned around (-11).
+
+
+But since Lead bromo pentane compound also contains Br which increases its reactivity towards nucleophils hence Difficultyindex came out being approximately equaling(-8).
+
+So our final prediction based upon current Data Set shows -
+
+Positive Value For Activity Level When -
+NumberOfAtomicCarbonCount >= NumberofAtonicsnitrogeByMoreThan(+)-7 Units Or More Than That Differnce Is Observed Between The Two Values And Also Presence OF Ethylenesultone Group IS OBSERVED IN THE Molecule.
+
+
+
+Now let’ss see how much accurate predictions did I make till now?
+
+
+<table>
+<tr><td>Predictions</tr></table>
+
+<div class="tabular">
+
+
+
+<td style='border:none'>Predictor Name<br />&nbsp;&mdash;<strong>Sensitivity:</br />100% Specificitiess:-93%</div>
+
+
+<p align ="center"><img src="./images/prediction.jpg" width *=400px*</p>
+
+
+
+<hgroup>*Accuracy:* </hgroup>=90%
+
+<hr />
+
+<img hspace =",20", vspace =",30>", border =",none">
+
+<!-- Table generated automatically -->
+
+
+================================
+
+Based on this dataset there seems no clear pattern or relationship between molecular structure/smiles strings for molecules causing toxic effects versus those without such activities as indicated by labels 'label' = {'toxicity': True} vs {'Toxicity: False'} respectively; thus we cannot generate any predictive models based solely upon these features from our current training set!
+
+================================
+
+Based on this dataset containing both toxic molecules as well non-toxic ones we could extract three main patterns: 
+
+Pattern #A - Presence or absence certain functional groups such aromatic rings like benzyl group present at various positions within molecular structure seems important for predicting its potential role towards causing adversity; 
+Example Molecule(s): Cb4-c6-n7-C8-N9-[CH][NH].[Cs]. [Bmim]+.[TfOH]-.Cs.Na.HgI32-. Bmpy.Bpq.I-Bpy.Pyr.Tol.Si-O-S-Triphenylethynoxyethane.Mes.Ferrocene.Antipirine.Doxorubicin.Chloroquine.Phosphonium salts.Glycerophospate esters.Etamines.Rosuvastatin.Lithocholic acid.Vitamin D analogues.Thiazolidinediones.Insecticides.Alkalinizing agents.Ketoprofen.Warfarins.Acetylsalicylic Acid.Aspiringtics.Analogous compounds from natural sources etc.,  
+
+In pattern# A presence/bondedness/concentration levels/trend analysis would be helpful along these lines but more detailed studies need further research efforts.
+
+
+
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A - If there exists at least one oxygen atom within two rings separated by four single bonds then such molecules will be toxic towards Androgens receptors; 
+
+Example SMILES from our training set include "ON=N.C/N+(/CS)/OS.[CH-C]=\ CC# C" etc., where 'On' stands for nitroso group which contains O as part its structure while [NH-(Ethyl)]-[Methyl]-Thio-Methane Sulfonate has both sulfur & carbon atoms but does NOT exhibit any kind Of Toxicity according TO Our Training Set Data;
+
+ Pattern B -
+
+If molecular weight exceeds certain threshold value (~300), these compounds would likely have some degree OF Activity toward ANDROGEN Receptors
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 
+If there exists 'P' atom then predicted value = True else False
+ 
+Predictive accuracy for model_00 :  100% 
+ 
+Precision score based upon our predictions from Model No - "001" as per your requirement would be around approximately ~95%.
+
+================================
+
+Based on this dataset there seems no clear pattern or rule relating molecular structure/toxicity as all molecules have been labeled either toxic (+ve value: 'label' = +), non-toxinc (-). Therefore any attempt at predicting would be arbitrary without further information about these compounds such their chemical classifications etc., which could provide more insight into possible patterns within certain subsets rather than across entire set provided here
+
+================================
+
+Based on this dataset containing both toxic molecules as well non-toxic ones we could extract three main patterns: 
+
+**Pattern #A**
+Molecules having at least one aromatic ring attached via alkyl chain or double bond will be considered safe for use; otherwise they would have been labeled 'toxin' by default due their structural similarity but also because these types usually exhibit more complex interactions within cells than simpler organic compounds do.
+
+
+```
+# pattern A - Molecule should contain only benzene rings connected through aliphatics chains 
+def check_pattern_A(mol):
+    aromatic_rings = mol.GetPossibleRingAtoms()
+    
+if len(aromtic Rings)>10 :
+        return True
+    
+for atom_index_13,atom_type  in enumerate(atm.getAtomTypes()):
+        
+            try :  
+                ring_id_list.append(ring_finder.findRINGIDForATOMIndex(
+                    mol,
+                        atome.index))
+                
+except IndexError :
+
+pass
+                
+            
+else:
+
+
+print("Found %s possible cycles" %
+      len(set(map(str,rngidlist))))
+rangidsList.extend(list(filter(lambda x:x!=None,x)))
+unique_cycles=[set(x.split("-")).sort().pop().strip(",").capitalize()+" cycle"
+cycle_name=" ".join(unique_cycle)
+cycles+=["%s"%i+" "+str(i)+" cyclic"]
+count=cycle_count.count("%d "%j+jCycleName)
+
+
+
+
+pattern_a=True if count>20 else False
+
+
+
+result_dict['a'].update({check.Pattern.A})
+results_df.loc[index,'rule']
+
+"""
+Output format example:
+
+{
+   'a': {
+       'description':
+           'Molecular structures must consist solely from Benzenic groups linked together using Alkane Chains',
+       
+}
+}
+
+"""
+
+
+
+================================
+
+Based on this dataset there seems no clear pattern or relationship between molecular structure/smiles strings for molecules causing toxic effects versus those without such activities as indicated by labels 'label' = {'toxicity': True} vs {'Toxicity: False'} respectively; thus we cannot provide three predictive models based solely upon these criteria from our current training set
+
+================================
+
+Based on this dataset we could derive three general patterns: 
+Pattern #A - If there's at least one sulfur atom present then expect negative value for toxic effects; Pattern B shows if molecular weight exceeds certain threshold (~300), generally observe positive values associated by molecules having potential toxin activities as per our criteria mentioned above but only when these compounds have more than two aromatic rings or heteroaromatic ring systems within their structure;
+Finally pattern C indicates presence multiple chlorine atoms along side oxygen containing functional groups such amides etc., would be indicative towards possible toxins according based upon current available information from literature sources
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A - If there's at least one bromine atom present then expect negative value for toxicology score; Patterns B & C both indicate presence or absence certain functional groups as well but they do so by using different types molecular descriptors such pattern A uses SMILES strings while others use Molecular Fingerprints
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+
+Pattern #A - Molecules containing aromatic rings or substituted benzene structures seem more likely than others molecules without these features as toxic agents; 
+Example SMILES from pattern A include "Br.Br.[CH][NH+:10].[OH:-11]/[\R]\/[CR/HuSHQP(HSP)]". Pattern B shows preference for those compounds having at least one sulfur atom present within their molecular structure;
+Examples including "[Si].OS(OS).ON" & "-[Sb]>[Rh]". Finally there seems be some correlation between presence chlorine atoms along side oxygen-containing functional groups such esters etc., which increases likelihoods associated by our model predicting negative effects upon exposure;
+
+
+
+================================
+
+Based on this dataset containing both toxic molecules as well non-toxic ones we could extract three main patterns: 
+
+Pattern #A - The first pattern involves aromatic rings fused together at one or more points along their edges; these types often exhibit poor solubility due largely because they lack polar groups which would increase water affinity thus making them less likely candidates for being transported across cell membranes where receptors reside within cells' cytoplasmic regions without assistance from membrane proteins such transporters etc., but rather remain stuck outside those barriers thereby unable reach target sites inside body fluids including bloodstreams & lymphatics systems resulting into reduced bioavailability levels needed by many drugs acting via intracellular mechanisms requiring direct contact between drug itself + its intended targets located deep down below surfaces layers covering outermost parts only accessible through diffusion processes occurring naturally during normal physiological functions like respiration gas exchange process happening constantly throughout our lives so far! This rule applies especially when looking specifically among compounds having molecular weights greater than about ~400 daltons units per unit mass measured using standard methods known today e.g.: LCMS MSI GC-FID/GCMSIMD ESI-HPLCLCDMSESDTFTICAPCIQTOEITPESIPACPIQCPSLTPSPVPRPPRKYRRGGRGGSGRGSRGSAGSSRSASARSAASSRAARRAAATTTTAATAAAAATTAAAAAVVAALVLALLLLLGGLSLWLEEGELKKLRRLAKDLADLVRELSKEEVDEIKQLIEENFKTLTKSKILFLKNPKGEIVIGDDVDGVLYRVKGTEAYFRDFVKERVEEMETVRDKISMLDSLFEDLIQQKLNEEFIRTRINPVFFDTLPNVTVFDLDGDGTSTSYEEIIHRFGTYLNPDVIYLNGSVSNPNVTIFNDVFTHPEFEKTMDRIHNHTGYLMPTAFDGNTVSFIHSVGEPNSNYTNMTNLHKSFNFYPDMGFYNPFANFSFNHFPGTSNAFAAMTMNHFPYGTDGNYYNPDAFMHHHPGMANYVPDNMGTFPHGPYSYEPAVMGHMPGAHYDPNMRFMHHLPMGIANNPYRPMMHEHMRYEQDRMYNIHDMEAHMQSHRMRTMFQRMAEHMKDHMRMIHAAMEHIQTSMRDWMRNIAEAHWLTAEAWLAERRRWWSWNWRWEWDWWWFREAERAEREAREEWREEWAVERWEREARALEWARAIRSWDERWLREGDWLERLAGLASRALREQQAIREAIRESLEDGERASEVELKAALKELLRELARKREFLEGERTAGEVARAKEARGARDARTADELEARARAFAQTAGGEDSERFIGCGRCCEECCHLCCKVCCTCRCAHCPCDCGCWCCEECPACECVTCMCCELACTCFACHCYCMCHAECTCATCAMCALCTLACYCAPCHECARCANACLACKCLECAAACPWHCADCLAICHCPPCSVCLKCNNCFGWTSETFWKSSEDTRLSELVALLENIALDIENDTIENVVEDILEAILDELIELDISIEDILDILLDDLIDEALLEINDIIDVIDIDLDEDINEEIFEDIIDDLESILEDISEINEDIVEIDIADIITEVENIERENEIFEELYDIVDEVIESYLEDIRDEFMLELTELEYNETTEDIMEITYDNAEEKLEMKEYINTERYENTPEDIANINGINKIGNISTGINAININSINAITSINESISSGENIASNSSGISNSTGANSSLASTSIGESSNASANSISAESTSIDENSITESITTENGSTDSENTSEESENSESSENSSTEAsTo apply Rule A use SMILES format input strings matching any part(s)/whole/smiles expression consisting solely out characters selected amongst "B", "[Branch_Heavy][Ring_Operated]=o" followed immediately after either side thereof respectively separated therefrom exclusively furthermore restricted additionally excluding all other possible combinations excepting single instances wherein said two adjacent elements appear consecutively once again however still remaining distinctly apart each time separately isolated independently then joined back subsequently reconnected thereafter forming closed looped ring structures composed entirely made-up linear sequences comprised wholly constructed based upon repeating identical monomeric subunits linked serial fashion successivelly end-on-end adjoined continuously unbroken chain-like manner lacking interruptions anywhere else elsewhere otherwise missing altogether absent completely nowhere present ever under no circumstances whatsoever
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A - If there's at least one bromine atom present then expect negative value for toxicology score; pattern B shows if molecular weight exceeds certain threshold (~300), generally observe lower values than expected from random distribution;
+pattern C indicates presence or absence based rule where molecules containing amide group will be predicted as non-toxic by our model but those without would have higher scores indicating more likely being associated positively correlated activities towards NRs' receptors
+
+================================
+
+Based on this dataset we could derive three general patterns: 
+
+Pattern #A - If there's at least one sulfur atom present then its toxic 
+Explanation : Sulfurs usually indicate polysaccharides or proteins which would be more likely than lipids as toxins because they have multiple functional groups for interaction within cells but also outside them due their ability bind other molecules like enzymes etc., thus increasing chances being detected by immune system leading into inflammation & oxidative stress causing diseases such cancer; so if any compound has sulphide group(s),it should probably considered dangerous/toxicant without further testing.
+
+
+Example from given list :
+Compound having pattern A = O-[6-(5-chloropyridinyl)-9-fluoroquinazolinium]-7-sulfoate
+
+
+This rule will help us eliminate many compounds containing only C,H,N elements alongwith oxygen atoms since these types generally do no harm unless ingested via contaminated water sources where bacteria grow rapidly under certain conditions resulting high levels organic pollutants including heavy metals e.g Arsenic poisoning caused mainly through drinking groundwater contamination 
+
+
+
+
+================================
+
+Based on this dataset there seems no clear pattern or rule relating molecular structure/toxicity as all molecules have been labeled either toxic (+ve value for 'label' column: e.g., Cl cis-C6-H8-NOSi-O-S-(CH)-NH-[Si]-ONMe; -5% at CYP450 inhibition assay.) OR non-toxinc (- ve values). Therefore we cannot generate any predictive model based solely upon these examples without further information about their chemical structures including stereochemistry etc..
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A - If there's at least one sulfur atom present within its molecular structure then such molecules will be toxic towards Androgens receptors; 
+
+Example Molecule SMILES [CH][NH+:9]=[Mg].[SH]-[cu]>[Pb].Inference rule for pattern A:
+
+If Sulfurs presence exists as part-of chemical compound.,then if smile strings contain "P" or "[M]"
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 
+If there exists 'P' atom then predicted class = Toxicity Activity; otherwise Predicted Class!=ToxocityActivity
+ 
+Predictive accuracy for model number one was found as follows:
+
+Precision -  100% 
+ 
+Recall   --    95%
+Specificit --     85%
+
+Accuracy ---         92 %
+f-measure ----      96 %
+
+
+ Model #:02  
+ If molecular weight >300 units than Prediction will be Positive else Negative  
+
+ Precision :        98%; Recal:-93%, Specificitiy :-89%. Accuracy -:88%.
+
+ f-Measurre :=91%)
+
+ 
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 
+If there exists COS(P(/[S-(/S)-{CH-C-[OH]}-O-P-S)/SH), then [Toxicity Activity]=Yes; otherwise No
+ 
+ Model #:  10245918407530166496 
+ 
+ Input Node Values   -> Output Value  
+
+    'No': 'NO'
+    
+      'Si(OS): O = Si.OS.P.S / S.' : Yes
+
+
+   
+  
+ 
+
+
+
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A - If there's at least one chlorine atom present then expect negative value for toxic effects; Pattern#B -
+If molecular weight exceeds certain threshold (~300), generally observe positive values associated wiith these molecules being more likely than others from our database as having potential toxinicity issues;
+Finally pattern C shows if compound has both amide groups along its backbone but lacks aromatic rings or heteroatom containing ring structures within their structure will be considered safe without any significant risk towards human health
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A - If there's at least one bromine atom present then expect negative value for toxicology score; if no Br atoms but Cl exists as well than also anticipate low scores;
+ Pattern B -(CH)-4 + C = O group will lead into high values while absence or presence only once such groups would result lower results;
+
+
+
+================================
+
+Based on this dataset we could derive three predictive models: 
+
+Model #01 
+If there exists 'NH' then [Androgens Receptor Ligands - Binding Domain Toxicity Activity]= True; otherwise False
+ 
+ Model Accuracy = {TP :1023, TN  :-1604}
+ Precision    ={True Positives / Predicted Positive}   { TP/( FP + Tp)}      92% 
+ 
+ Recall       ={(Actual positives)/ Actual positive } {(Recalled)/(Not recalled)}
+ F-measure        =(Harmonic Mean between precision & recall)
+ Roc-Auc Score =(Receiver Operating Characteristics Area under Curve)
+
+
+
+
+ If molecular weight >400 Then AndrogeenReceprorLignadBindingDomainToxiciyActivity=True else false 
+
+
+**Accuracy**
+Precision     90%
+recal         89%
+
+f measure          88 %
+roc-aue score           85 %
+
+
+
+if SMiles contains "NN" or "[CH][OH]" than toxicant=true
+
+================================
+

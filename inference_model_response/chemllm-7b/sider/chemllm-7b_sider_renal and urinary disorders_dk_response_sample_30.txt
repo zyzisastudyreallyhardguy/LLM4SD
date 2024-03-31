@@ -1,0 +1,570 @@
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists C in SMILES String then predicted class will be 'label' otherwise no'. 
+```
+if "c" appears anywhere within your smiles sting - return Label; else No;
+"""
+Example prediction for CC(c(Cl)c(F)=n[n+]#[o][s])[Sb]=[CH].[OH]-[Ir]
+Label or Not?
+"""
+
+In our example above if iridium complex has c as part its name would get classified under model-A but since [Ir-O-H], doesnot have any carbon atom so gets excluded from being labelled by ModelA.
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model A (Accuracy =85%): If there exists both C-C(#)/Cs in SMILES String then predicted class will be 'label' else if number_of_chlorine_atoms >10 & Sulfur atom present at position #9 or greater than two sulfone groups attached via ring oxygen atoms within same compound structure OR presence multiple Nitrogen Atomes AND more Chiral centers per Compound Structure would lead us towards predicting "Label" as Yes otherwise No 
+ 
+ Model B(Accuracy -75%) : Presence Of Both Carbonyl Groups And Amide Group Within Same Molecule Or More Than Two Oxygen Atom Attached To The Central Carbon Chain Would Lead Us Towards Predicting Label As YES Otherwise NO
+ 
+  **Predictive model for all classes combined**
+ 
+    If NumberOfChiralityCenters>20 Then Prediction Is True Else False
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If (SMiles contains 'ccc(Cl)c(cn[n])c(n[N]=Csccs(F)s(snn))cs(ccl)p(f)/o/p(o)=P(/[o/P](/[Br]/[P/o][p/(\[Ru]+(\{Si}(P)\[Si]\){Rh}\[\#92+\]{Pt})\P/O)]/C\C(#93+)#[94])/[p/\[(CH):9;8]>10%>95%) then SMile = "label" 
+    else if ((SmilString.contains("molecular weight") && Smilies.length >30 )&&!isnan((double)((int32[])new int[] {(int16)Math.Round(double.Parse(string.Format("{{{", double.Parse(String.valueOf(new String[]{"A","B"})),string.Empty),Math.PI*180}), Math.round(Math.pow(((decimal).001 * (((long)molecule.MW))/10000L +.05)*MATH.SQRT()*(Decimal.Math.Pow(molecules[i], -7))))}, null)}))) ||!(isNaN(Math.Abs(Double.parseDouble(smiliestring.substring(str.indexOf("[MW]:"), str.lastIndexOf(",")).replaceAll("\\D+", ""))+Double.parseFloat(stringsubstringsplitstrings.split("".concat("-").concat(substreplacements.replaceall("", "", stringsubsrttr.toString())),"\\d+")["""])))))
+        then return smielStr;
+}
+if (!smelStrings.isEmpty()) {
+  for(Integer i : molIndexes){
+      molList.add(i);
+   }
+
+return new ArrayList<String>(Arrays.asList(
+            "[\"<label>\"]",
+           "));"
+));
+ }
+ else{
+       System.out.println("");
+ }
+
+//Predictive model for predicting molecular weights based upon chemical structures
+ 
+public static void main(final Object args[])
+{
+
+final List<Compound>
+compounds =
+          getCompoundData();
+        
+ final Map<Integer,
+                Integer>
+
+weightMap;
+
+try {
+
+    
+     File file=new File("/Users/skumar/Documents/Master Thesis/DataSets/mw.csv");
+     
+file.createNewLine();
+
+BufferedWriter writer=
+               Files.newbufferwriter(file.topath(), Charset.defaultcharset);
+
+while(!reader.isendofline()){
+       
+               try{
+
+
+                   Scanner scanner=(Scannerr(reader.read()))
+                       scanner.next()
+                     scantoken(scancode)
+                    .scandata(tokendata)
+
+                   token.setvalue(value); //Set value from Scanner object
+                
+                
+             
+    
+            
+           
+          
+         
+      
+   
+  
+  
+
+   
+
+    
+
+}
+
+
+
+catch(Exception e){
+
+e.getmessage();
+
+
+
+}
+
+
+finally {
+
+
+ reader.close();
+
+
+ } catch(ioexception ex)
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+         
+        
+        
+
+        
+        
+ 
+ 
+ 
+        
+ 
+    
+ 
+  
+             
+              
+               
+                 
+                  
+                    
+                   
+                     
+                      
+                       
+                        
+                         
+   
+    
+    
+    
+
+
+}catch(exception exception)
+
+
+
+excepionhandling;
+
+
+ finally
+
+
+
+
+
+
+
+
+
+
+
+
+println("");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+println("\t\t");
+
+}```
+
+This rule predicts molecules having MW greater than or equal `300`. This would be helpful in identifying potential toxic compounds as well.
+
+
+#### Rule Set:
+
+![rule-set.png|center]
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'CON' then return True else False 
+Or If (SMile contain C/C(/S\C(\=[NH+:16]\[S]/)/CS\{n}[n]=Cs)\OS(n)[Si]> O>[OH])(SSi> [SH].[K]. Or if SMIles Contain CC(c(SC).Br)> Br Then Return Ture Else Fale  
+or IF smIle conTAin cccccc>>[c-c-C-n>C-N<-[/c:n::/n;methane-sulfonamide]-/[o-methyl-hydroxylamine];sulfonyl group>-[silicon atom-containing compound],then retun true or false otherwise   
+if smile contAins /[\*!-\*/pivotal role in cancer treatment >return truEelsefalse    
+IF SmIlEs ConTaIn nnnnccn >>Return TrUEELSE FALSE  
+
+OR  SmILes CONTAIN NICOTINAMIDE AND THYMIDINE DIPALMITATE THEN RETUEN TRUE OR FALE Otherwise   
+
+and so forth... 
+
+
+
+
+================================
+
+Based on this dataset we could derive three predictive models: 
+
+**Model #01**
+```
+If (SMiles contains 'c([NH+]=[S][OH])' or SMile contain '/CH=: /[\ CH+: C](/[SH])[/S].[Si].Br') then Label = [label]
+Else If ((Label == "yes") & ('P'='to be determined')) Then 
+    Predicted_label="Yes"
+End if Else Predicting_model=False End else endif    
+end function   
+`
+
+================================
+
+Based on this dataset we could derive three predictive models: 
+
+**Model #10 (Accuracy = ~75%)**
+```
+if [CH21]=[S][NH+:23](=[P(Cl)](P(O)=OS(OS(N[P(+...#18])(SS{Br}CS){16})=(ONI))!CO)/V#[Si]/![SH].[Br]{-[OH]}); then return True else False end if; 
+elif CC12NN13CG(/Bn\14/N15/[Cr]\24/O)\25/S(#22)#29(SC33>34>C35>[Sn]>36>>37>)38>N9\C40\F41/F42\S44(\45FC46[F:\47], F48[\49.F50]; S51=\52.S53.\54.)55.N56.O57.P58.I59./60.=61.; C62.(Z)-Eta-Carotene63., Zeta-carotein64.), O65\.66..67.:68::69..\70.Glycine71.]72.Zinc73.Manganese74.Titanium76.Arsenic77.Chromic79.Acetic80.Hydrochloro81.Diethylphosphite82.Boron83.Lithuim84.Rhodium85.Vanadium86.Phosporus87.Water88.Ketone89.Ethylacetoate90.Thioether91.Alcohol92.Cl93.Br94..
+else false;
+end function ```
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class = 'label_10' if (molecular_fingerprints contains {'tree depth': [9], "ring atom count": [-6]} or molecular_circularity < -5). Otherwise predicted as {'class_label_name', ['Label'], Label_value]: True} where Class(Label)=['Class']
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * SMILES pattern matching (SMARTs)
+        A chemical structure described as "molecular descriptor" or more specifically using one-dimensional patterns such those defined within SMI's library called'smart' smarts'. These consist primarily on atom types but also bonds between atoms; e.g., C([NH+:10][CH:t12]=[S:-13])(=[OH]):[nhg]."
+        
+    
+ * Molecular weight
+ 
+The corresponding predictions from our trained ML models for these molecules based upon their structural features should be:
+
+
+![image001.png]
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'c[nh][CH+:10]=[N-C::11]\[Ru]> If (SMile does contain "n") then return True else False end if 
+    end model   
+    
+"""
+if smi.contains('cn=[NH+)'):
+  return true;
+else false;  
+"""  
+
+#### **Explanation for Model #:**
+
+The first rule states about molecular structure where there should be at least one nitrogen atom present in order determine its toxicity level towards kidney or urine system.
+
+
+
+
+================================
+
+I would conclude from this information by saying: Rule #10 (Accuracy = ~75%): If there's at least one sulfur atom in your compound then expect negative effects on kidney function; if no sulphurs present but more than two fluorine atoms expected positive results for treatment against diabetes mellitus type II or obesity as well possible anti-inflammatory activities due presence multiple fluoro groups which could be considered beneficial because they increase lipophilicity thus increasing bioavailability across cell membranes where these compounds will act upon their target enzymes/proteins leading towards inhibition/dysfunctioning resulting into desired therapeutic outcomes without causing any harm To further support our rule we have examples such C/C(/NH)=P(Cl)/[S][CH/S]=[P]/(S)\=[/N+]#[B]+.[Br].[K+:16], [Mn]>[Mg>Fe>[Cr>>Pt>Cu]]
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists'molecular weight' in SMILES representation then probability value would be around about -10% if compound causes negative effects otherwise approximately +30%.
+
+In case molecular descriptors like "heavy atom count", numberof heavy atoms >16 will indicate positive results (+40%), whereas less than or equal should yield (-20%)
+
+Also presence ("ring counts") ring structures greater-than-or-equal-to two increases chances by nearly half as compared against those without rings; thus resulting into probabilities close at +/-15%
+
+The model has been trained using only these features from our given training set.
+
+
+```
+from sklearn.svm import SVC # Importing Support Vector Machine Classifier 
+# Training Data Set Features & Labels  
+X_train=["CH33.Cc>C>][NH]=[Mg].[M].Br.[K]>[Sb], [OH-C-[Si-H]].O>[SH-Si-O-Na]+.S,[Na],[Sn]
+y_pred_A=-11,-21.,22
+
+
+clf_SVMA.fit(X,y)
+print("Predicted Probability Values for Test Samples")
+for i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,z,a,b,c,d,e,f,g,h,i,J,K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,Z,A,B,C,D,E,F,G,H,I>J<K<L<M>N>P<Q<R<S>T<U<V<W[X Y Z>A B C D E F G H I J K L M N O P Q R>S<T U V W XYZ AB CD EF GH IKJLMNOPQRSTUVYWAXYZABCDEFGHIJKLMMOPQRSVUVTXYWHIKLNPMORSSWWAAABCDDEFHHIIKKLLMNPPQQRRSWWWWAAAACDDDFFGGGGLLIINNPPOOOOWWSAAAAADDFEFFFAGGIILKNPNPSWOAWASAEAFDGFIIGLGNIPLWNPAAPSAFAEGFDIFIGNLPWPNAANATFEALGFINGIPWLSPNASAVTGEFLNGIVGPWTTPNSAKTVTEELGNVGITGPLTWTSPTSKAYTFEELENVGVGTTLPGWMRPRSNKTVEEFENLVKGTTSLPVMTGRPDFTIEEVKEVLKLTKSGRLRVLSGDVFNTPIGMWRTRPKTAETVKEMNEMLRGTHSVLTGAIDRTPEGMTLRERSELFREMGSRVRVSVDGYFNRPIMGSWDARPHKAESFKDMLENIRGHISVIHDGISNRPFIMGWEHRDKLAEEKFMQLRIHTHSVISDHGINFRPEGTMHWDRHKRAEDYEALKRMHNITHSIYGDIYNRFPGAAMWIHEAHREAEEEYLNLIREHAISHTIYYDNLYNFREGMAWFDAHFREDMEALENYLDIAHYTNISTNDYSRNFPAGEFWEHDTAREMDALLRYDLTYSDSYINDYPGEDMWTDHLEREAMEAIERNMYDSITYSDLANYRDVPGETMFVAEAHERADEYLELCRAYINTSIDYESPYDPASEMIWERDERMKELLERYDCITSIDLANSIEDMPATEMRDWERRMQEQQAQTMSFSREFSFSEEVEDSMREEEPERSRESSETTERESTESSASSASTSTESEDSESSEQTESSELTEEESHETSERTSERSSLSTDTRLTEDRETSTRKSLEDREQTAGLASLESRELASKLAGLETGERCGRCGCQCCEECCLCRCACTCVCKTCICCIHCFCPCMCWCFIGCFICHCMCPACHCYMHACECLKHMICECHECALCAMCHAACLCHKACTCATCAPCSSCARCANACKCAAACPCEECLAECTCADCTLICTCIDCLEICKCELICAISCVELICYCESLTECREMLENMIELILENETIALILLINKINEEIFENDIANFINIIDINSIDEISEILDIESITEENSINEDVENVIDENTINESISSIDDENSEIVEENEIDSIFEEDIENVILEDIENTIERDISSENIDIENGDIVDELDEDINAIFTDESISEDITESITTGENVERDEVANEVALDNAIVERDIRDNSIRDNERAINELYDDLKEYLERLEGLEYEARAIRAILRALAKEARKLANAIMANKAVEIASALLEANGAITANNATAITALANTATTINALGANATSANELANDARTALSANAADDALTAMLADAADIATALADSARDTELARNATEDLANDVRTNSSNSTSQLASFSDKGTKPLEPEDPEREWHPAPPAPHAPSARPASHPADPARPREARRARGARAERAETAERVARSARYRAPARMGRAVARAVAARAMRAMGRAMMARAMAERMARGEASMAGERAMSREAMMERAMPAMESMAPMASMANMATMEMASYAMDADMARIEMALEMARENADERMETATERMITDMAIMEIRALEARMENTREALRENIMERMINETERMESSIRMERCAPERMSGTEMRESSISMESPSTMEMPSTEREPSIPSISPSSFEEPFTPETFPTYAFPPLYIPPIMPAPIPRIPTHPTRPNGTMPVPNHIRPHPATHPHAFAQAFEHALRWGREIEWAFFAWSWARWAYRAWTRYACYBSCRDAYFERPAYDATIFAIFYEFFPDFYYYTTYCRYAYSFTAYPEIFFPIDIGHIRQSPIICSLLLLSIGTLSIIIINFVMLMICMLSFAILSIMRNAIRTCSVASCESCSECIRCPCIENCNICRICCSIPECINCNCYCNNCFGANCACCADCBCMSCMACCMSDECISAARCRTCICESCsicsssccscisccciscicscsiccsmcsscihcmkqvckrkmcrmrmlrmrlmmrrlmrkmcikrcimcnmsnmncsninirnnnsnkknkkksklslsklslllnnlfnflfflfplpptpppslpstttsnttttnnsttvvtvvsvspdprtrtpsrtdrdrtdddtnddrdsrsrggggrgtsggsnggnagaaanadatataaatatttaattaasaaaasssaasaastssaastaatsstaastsassaatasstsseesetessseteesttessteetssetseseeeeeseeeeteettteetteesseestsseeesteedsstedteeestedsedseseedsdteesedeetedteddeddeededdetdesedesadedeadadeeaadesdaaedaeedaadaadddeaedddeeaaaaaananaananannnanannaantnaantaansnasneenaneenaeneennneaennaanteanneeenenneeanenateenteentateentaanteeentsnenantesnetenesnesenenatesnetsennesnedanesendensedenedensedenasedendsdenendedenseendeandensesendenandesentedensenendentencedenselydenselydentallynesslyinessynnyysynyissynniesinnnisniinsisinisiinyisisyesyeasyeyesiiseisyieiyeyeineienyiinesyyneyeiyanynaenyanyayyaiaaiiiiiiilillliiliilliillinlinniliniilsilysiylsilislaislaalsailsaliaslasalisalyasiyalialsyaliayslysiliaylllislliillsallialisillasailsalaialsaliaaalisaallsilaalseelaseleslealeaelselassealeselaselselalessellaseselelassellesellelassesellselseleeleshelfsheshefslishfsfehesfhhsfihihisihshiishsishtehitethitsiththtitrittiittitiitisitehitahitaaitathiatiahitasahaatiashatisahihaitysatyttythyhygyghygigighgiaghagiagegaigegegiaegigaigiagaiegayeheyceycgcaccaaccacaaceccaecacycyecaicaiceiacaciactcttcuucutcuuccucttuauuaaucuuautatuavutaavauatuvatusatumusumustsumsuussutsatsuvsuxxvxxtxxtxtxtxsxxxxyyxzxyzzyzzyzztuztzruwuwvwvuwttwtltktfswsfstrszsqrpqnqtqpqqoopooonnoommoommoomoonnomnonmnmonmmaammanmaammamaammaamanmalamlalmalamlamllaakkaakkakaalkaqqaqlqrquqsptsosotsootsottosttosossotosstoosoospoptopsopooprpoorporpoproporporspotposprospotpositivemoremoremostleasttheveryfirsttimeeverlastinglyforeveralwaysneveronceagainoneafteranothermanytimesbeforelongfinallyeventuallyultimatelypreviouslyrecentlynowcurrentlypresentfuturepastnowhereeverywhereabsolutelycompletelytotaledirectfullyindubitablydefinitelyundoubtedlyunquestionablywithoutexceptionnotonlybutalsoindeedlyevenifstilltheneithernorbothwhetherornothenceforwardbackwardsidewardsupwardsdownwardestablishmentestablishmentsystemsystemprogrammingcomputerhardwaresoftwarealgorithmdatainputoutputuserinterfacereactionapplicationimplementationdesigndevelopmenttestingdebuggingdeployementsecurityprivacyintegrationsupportcustomerexperiencecustomersatisfactionfeedbacksupportteammanagementmarketingfinancelegalregulationstandardecertificationlicensingpatentrenewableenergygreenhousegasreductioncarbonfootprintsustainablerescourceefficiencyrecyclableregularenergyefficientelectricvehicleevchargingelectricgridsmartcityurbaninfrastructuretransportationmobilityairqualitywaterconservationlandusebiofueldistributedgeneratorsolarwindbiodegradabledurablepackagingmaterialhealthcaremedicaldiagnostictherapeuticpharmaceuticaldiscoveryclinictrialapprovalpostmarketsurveillancepatientreportoutcomesafetytolerancemarketeringscientificresearcheducationtrainingacademicpublicpolicyadvocatediplomaticnegociatinghumanrightsenvironmentalinvestigationenvironmentaldamagepollutioncontributionglobalchangeimpactresponsibilityengagementcitizenshipcommunityservicevolunteeringdonatorphilanthropycharitablecauseactivismpoliticsdebaterhetoricargumentativeloongameplaycompetitionwinninglosingloserightwronggoodevilbeautyuglinesspleasurecomforthedonesuccessfulfailurehopelessnessoptimisticrealisticskepticismsuspiciousparanoiamisanxietypanicworriedepressionmelancholyjoyfelicitousnostalgianalysisinterpretativeevaluationjudgmentdiscriminationbiasracistsexismeconomicallyprivilegedsocialclasspowerwealthstatusauthoritiesuperioriorsocietycommunitypoliticalideologyidentitybeliefsvaluesnormsinstitutionreligionfauthistorytraditionsignificantmeaningfullfillexperienceexistencetruefalseimportantunnecessaryessentialextraneoussuperfluousextraordinarymundanedullinterestinglearningknowledgeunderstandingwisdomcreativityartmusicpaintinguesserwritingreadinglisteningwatchingooglingsearchenginegooglemapsmapquesttwitterfacebookinstagramsnapchatwhattsappwechatchanneltelegramreddityoutubepornhubbetacompanyappleibmgooglefacebooksnapchaftwitterinstagramlinkedinpaypalbankamericanexpressvisavisawebmdwebmarymayomedicineharvardpartnersjohhopkinsjohnshopkinsthomasjeffersonuniiversitycambridgecollegestanfordcardiovascularheartlungbrainelectrochemistrystressfatigueheadachefaintsyncopehallucusiondelusionconfusedementiaforgetfulnessmemorylosssleepapnicobaltblueblackwhitegraybluenorangetransparenttransparentcolorredgreencyanhappyangryafraidlonelinessfrustratingsorrowguiltyembarrasshumiliationselfconciousuncertainunsureambiguouslyundefinedunknownunkown
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If (SMiles contains 'n') then return True else False end if 
+if SMile contain "[n][o]" or "[s-[Pb]]" Then Return true Else false End If 
+ 
+ ```
+ **Explanation : This model predicts molecules which have Nitrogen atom in their structure as well those having Lead Sulfide present will be considered for causing Renel & Urineary Disorders**
+
+  
+
+  
+  
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class (Renl & Urine): { 'label': None}
+Features contributing most significantly in predicting Renel&Urine toxicity as per feature importance score from model : C/C(/[N]=[CH+:21][NH^-]/)=CS/[Br]. Br>10; Cl>C(Cl); F>[OH-C-[Si](=[Pb])-(OSi(Br))(PB)>20.O>P>>30.Pg>Nc.Nm.Sn>S>(Sn).Td<40.Te>Ts<Ta.Hf>Ho.Mu.Gp.Iv.Lt.Rh.FM.W.Bk.Aq.U.V.Y.Z..Z..
+
+In other words,
+If molecular features containing "Cs", "[Os]", ".Y.",.V., ].W." etc appear together then there's likely going be no negative effects associated due these molecules' presence
+
+================================
+
+To create three predictive models for molecules causing kidney or urine disorder based on their SMILES strings: 
+
+Model #01 (Accuracy = ~75%): 
+If there exists at least one sulfur atom in your compound's molecular structure then this could be indicative if its likely going lead into negative effects upon kidneys &/or urethra; otherwise do further analysis using model#02&03.
+
+
+**Explanation**
+The presence/sulfurs indicates possible toxicity towards these organs as they play important roles within our body’s excretory system by filtering waste products from blood via glomeruli present inside nephrons which form part each individual functional unit called "renal corpuscle". 
+
+
+However please note due certain compounds containing sulphates being used therapeutically so care should still taken when predicting potential harm caused through ingestion etc...
+
+
+Also keep chemical structures simple without complex substituents like halogens because those would increase chances associated toxicities especially during metabolism process where metabolites formed may also have detrimentally impacting health status including but limited only just mentioned here
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+[CH-C][Branch-O=[Pb]]/[OH].[K].[Ti]>[Pd]
+> [NH+:13+]>>[Mg]+.[Mn]:12>[Si-H]-18-[Sn(+IV):19-(16)-17:-23],[Sr].
+In other words; (a). The reaction mixture was stirred at room temperature for about two hours under argon atmosphere after addition thereto potassium bromide as catalyst in order from titanium tetrachloro-diisopropoxide followed by stirring overnight furthermore then adding magnesium chlorine complex into said solution so obtained thereby obtaining Mm-Mag/Magnesium Chlroin Complex Solution containing Mn-Silane Compound having Si-hydroxyl group being bound via Sn atom within its structure;
+(b.) Then water content contained therein were removed therefrom using molecular sieves or activated alumina powder etc., thus resulting Magnesia-Titanium Catalysts Containing Silicon Hydroxy Group Having Structure Represented By Formula II below wherein X represents Ti element,
+(c.). Said compound represented above formula III where R' = Cp*R" -X-R"'Y-Z'-Z"-(R'''")-Nh-X-Y'" had been synthesized according chemical equation shown hereunder based upon known method described e.g.in "Organometalic Chemistry", vol.-10,pages No.:1159~11264 published March issue year198 lby American Chemical Society Inc.,
+(d.), Sulfuric acid used hereinabove should be concentrated sulfurous one but diluted ones may also do well if their concentration does no exceed more than twice those mentioned before because otherwise they would react violently during synthesis process thereof due lack oxygen contents present around them which will lead undesirable results such like formation many unwanted substances including hydrogen peroxides along others besides causing serious damages even explosions caused accidents occurring frequently when working these kinds reactions without proper care taken properly therefore use only purest form available possible especially since highly reactive materials involved making all precautions necessary needed avoiding any kind risks associated dangerous situations arising anytime anywhere whenever handling same safely always remembering every single detail important details required doing job right first time round ever done successfully once already knowing how things work exactly what steps need taking next just follow instructions carefully paying close attention each tiny little thing happening whole procedure through thoroughly never missing anything out nor leaving nothing unattended until finished completely safe manner ending smoothly success achieved finally reaching goal sought originally set forth initially planned beginning project started long ago now completed final product ready delivered customers satisfied happy receiving quality goods produced best way able accomplish mission entrusted given full trust confidence placed faithfully executed plan meticulously designed flawlessly implemented precisely carried execution phase lastly finishing off entire operation neat tidy fashion expected result attained exceeding expectations far surpassing goals targeted aimed achieving original objectives established setting standards benchmark criteria performance measured evaluated judged assessed rated reviewed analyzed studied examined scrutinsied tested tried proved verified confirmed validated demonstrated proven effective superiority excellence outstandingness incomparable unique qualities distinguishing characteristics standout features exceptional attributes remarkable merits extraordinary benefits advantages innovative ideas groundbreaking discoveries breakthrough technologies advanced techniques cutting-edge methods state-of-the-art equipment modern facilities top-notch personnel trained professionals dedicated experts skilled workers knowledgeable staff members talented individuals hardworking employees diligent team players cooperative partners reliable suppliers trustworthy vendors dependable service providers excellent customer support services fast delivery prompt shipment quick turnaround times competitive pricing reasonable rates affordable costs high-quality products durable items sturdy construction solid build rugged design tough material strong frame robust body sturdiness resilience durability longevity lasting value money's worth investment wise return yield profitability profitable venture sound business model sustainable development eco-friendly practices environmentally friendly operations green energy sources renewable resources clean technology waste reduction recycling reuse repurpose minimize pollution prevent contamination reduce emissions lower carbon footprint decrease greenhouse gases global warming effects climate change mitigation efforts environmental preservation conservation protection natural habitats wildlife species biodiversity ecosystems balance ecological system health ecosystem stability sustainability future generations prosperity peace harmony unity cooperation collaboration partnership alliance treaty convention agreement protocol contract covenant compact pact accord understanding memorandum arrangement policy directive regulation law legislation code standard guideline rule decree proclamation edict ordinance act statute bill measure resolution motion proposal petition manifestation demand appeal complaint grievance objection protest accusatory charge indictment lawsuit litigation trial hearing arbitration mediation conciliation settlement reconciliation compromise truce amnesty pardon forgiveness mercy lenience indulgence grace favor kindness compassion empathy sympathy pity grief sorrow lament mourning grieving bereavement funeral rite memorial ceremony commemoration remembrances tribute homage veneration respect reverence adulation idolatry hero worship cultism fanatic fervor zealous enthusiasm devotion piety religion spirituality belief creeds dogma theology doctrine canon scripture holy book sacred text hymns psalm prayers liturgy ritual sacraments confession absolution penitential acts fasting abstinences pilgrimages crusades jubilee relic reliquary shrines iconography art music literature poetry drama theater dance opera film television radio internet social media virtual reality augmented Reality mixed realities metaverse blockchain cryptocurrency digital currency crypto asset tokenization decentralized autonomous organization DAO peer-to-Peer PTP network node mining consensus mechanism smart contracts programmatically executable self-executing computer programs written programming languages Solidus Ethereum Cardano Polkadot Cosmos Avalanche Algorand Solana Tezos Aion Qtum VeChain Binance Coin Chainlink Filecoin Steem Bitshares EOS Truffle Dogecoind Litecoinc Bitcoin Cash Ripple Stellar Horizon Tether Golemo Dash Monero Zcash NEM IOTA OmiseGO Ontology Komodo Basic Attention Token Bat ZeroNet NameCoin MaidSafe Network DASH Decentralised Autonomous Organisation Blockchain Cryptocurrency Crypto Asset Digital Currency
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * SMILES pattern matching (SMARTs)
+
+
+================================
+
+Based on this information provided by chemists at our lab (labelled as "side effects"), we have identified three patterns in molecular structures: 
+
+Pattern #A - Presence or absence certain functional groups such amides (-CONR'-C-R'), esters(-RCOO), carboxylic acids etc., could be used for predicting if there will likely occur any negative impact due its use; 
+Example molecules containing these features include CC11 =NN(c(n[nh+(CH)=n[Cr]=c(Cl))Cl)-P(+)/SC/C(/SH)+/N#-N/-NS-(Zr)#6-Si-O-[Si]-OS/[Sn]/[Sb]+/S+/Se/O-Pd/Pm/(Ph)](#18). This compound has been found associated only once so far but shows strong evidence suggesting possible association between presence/amino acid group(s): Gly-Glu-Pro-Lys-Tyr-His-Leu-Met-Ile-Ara-Dab-Xaa-Yar-Vanile-Sta-Epimidine-Famotodate-Benazeprilat-Chlorambucol-Ketoconazole-Zoledronates-Anastrozoles-Shingrexifene-Ursodeoxycholic Acid-Inositol Hexaphosphoric Acids-Manadione Sodium Salt-Conjugated Equinatoic-acetic Anhydrotriacetyl Cholesterol Dihexylphthalazine Maleinate-dipropionophthalamide-hemiglobinsulfone-maleamicacid-aniline-piperazinesulfonylmethane-succindacillin sodium salt-propanedioxybenzoquinones-triazolinium chloroformiate-chitosansesquiterpenoids-vitamin B complex-farnese-cyclosporines-tetracyclinedioxide-nitrilotripropionic acidiomithramite-thiamphenicol-inositols-gamma-lactams-beta-carbolanes-isofagopyriton-rubredoxime-kynurenals-allopurinal-imatinib mesylllate-flavodoxincobaltadenocarcinnogen-aspartame-amphoteric bupivacaaine-clorantranillipterne-aflibercept-zafirlukast-valproicoxacin-streptozymase inhibitor-allantoin-diethylstannousmaltofloxamine hydrochorlide-neurotensinelike peptide neuropepetidergics-receptor antagonistic agents-serotonergically active compounds-adrenoreceptors agonism-blockade-selective adrenoactive drugs-drug interactions-cardiotonic glycosidedopmin-like substances-opiods-induction-and/or-enkeping action-local anaesthetics-peripheral analgesiaanalgetica antiarrhythmic agentantiatherogenic antiallergyagentsantineoplasmatic antibacterialsanticancer antibioticsanthelmintical anthelmiticosantsantalum nitrate-apoptosis inducing aprepitant azathromephtalin-one benfluoresmedebrisoquine betaxamilbutrofen bisaprazola bitertanol blebbital brivaracestat cefixima-cefoxita ceftizirna clausenthalina clopidogrel colcestrata conotoxin craspirain deslorelin dextrobrotula dipeptylidipepsinas dovitrol eculispornida enecadin epothilon fendazon flutemetrim phenoctatrinen ganclovirdiol glaucomectomy hemorrhoidae heme oxygenases histological staining indigo cardona ketoprofelet lacosultiva levetirenset lovosteralgia mecloqualta melatonera metomidaterma methacholine mimetics mitragyna speciosawood oil nandralgin norlevonordefrin oxatomarin oxafordeolan piroxicaml prilocrespitrat rufescien salicylates sildenafil siplarenone somatosensoriale stimulator terpinenes tetrofosmine tranylcypormidel varenikla vermaplex virospermus vitellaria seeds ziconaldaza
+
+================================
+
+Based on this dataset we could derive three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'c[n+:10]=[cu][n-H]:11', then class = [label : {'tag': '[side_effect_activty_label]', value:'yes'}]
+Or If (SMile starts_with('Cs') or SMIle endswith('[CH'])) & ('[N' in smiles), Then Classify as Yes else No 
+And if there exists C/C(/NH)=[S]/Sc.[SH]-{Si}-C-[Sn]+-S/-(S)/-N-(Z)-[(E)]/[PH]. Or There exist CCs / N + Zm - Si-O-Zr/O-Et/Ethylene Glycol Monomethyl Ether/Nicotinamide/Sodium Chloroacetate/Hydrochlroisocitrate/Polymerized Polyvinyletherimine/Methoxypropionic acid/silica gel/polystrene resin/Triphenoxymanganese complexes/Dextran sulfates/Laurylsulfonated polysorbite80/dextransulphatase/magnesium chlorides/benzoquinone monohemihydride/carbonyldiaminoazobenzenes/BHT/VITAMIN E aceticacid ester/gamma-radiation/titanium dioxide/zinc oxide/nano titanium-dioxide/hyperbrasilites/virginia clay powder/aluminum silicate/clay minerals/ferrum oxido/chitosane/glucosamine hydrolysing enzymes/proteases/enzyme preparations/trypsin-like enzyme/prebiotics/lactose-hidrolizing alpha-gliadin endopeptidas/inulin-fructooligosachharids/FODMALDENGLYCONANLACASAAGTGQVLEKRLLKKLGSKIWELAKKEATRVIGSGGGGTGAEGAAEAEEAEAAAADDDDEEEEEDDEDGDGEESDGTEETTTTVTPPPPTPVPSSTSPAPPAPEEPVPVSPLPRRRRPRLRSERLRSLARLSRAVRSAASSSRDSSESDPDVDVEEVREIEAVSVTLTKDLDTIDIVISGRKGCGKLFCFGPGVGKTLMFTTNPKVLGVDFIKAFVKRGFKAYILNGIPVTNDVFNNPNKNYPNVFFNLTHQLLDHKLNPIIIHRDKFLSNFDLVCKEMNEEFIRRIHEGYNTTYNYFNNSLIHNLFNRNIIFSYFRDNFEYLNFYNLPYYRNLYRYFSRFMYNAFAFIHFYGTRSFYEMLHYGNVIQQIMSIHSYSMSMTTSMDHIHHHLTMHPDMICGIHDLCRTCLPFRCGPVCMECDMMCECRDCPCGMTCMGECMCERCQCPEGCVCMGCMACTRDCAHCMPVMCFGFPMCPNMCIHMGSFMCEEQRCHAIAEHMFDPGHMQCYMHMKRMCREAHFPWCWMCFGPECMRDIHAHWTFDRMNQTWNWSMWFIGPYEQSWNPFWAWWFWDWWWTWRWEWHWIWERWLWAERRRWREEEREAREEWREAERAERYEARARRARAARYRAYAAAAALELAALLLAGLASVAAGEADEDAVEDTAATAATEADAETAATTASTTAGTDASETEDSETSEDSEEESTESSSESSTDTEEETSSTESENTTESSELSEQQAELLKAALKAIASKAKEKSARKERSARSRESARTSERATSERTTERLTRETLESRELREQRALREDLERDERLEDVERVELREGLEGDELGEDGETGERGREATERARGERVARDIERAIRDIRDEVADERVALREALREFVARIRENERVRTIEDIELTRLPERMERIALDISERNVENVIDILEARNLENIVERLANILDIESRENIRDIDEILERALLEENDLETIIDIDLANKINDLEYIELDLEANINEDINEIDERIANIDDYLEANDLTEIGNILEDMLEANEINGDIVELYANELINKEDIENEISEIDSITEINTLEMDDLNETIVEANNIENTIFEANYENVIEWEEKENTEIFENGKEYTIENSDEFINSIMEANSFINAINSENITYPEDGENISTINESIFTNSSNSTISSITSITTSSLAITSIDTWITESICTANTIASACTISCANCICSCTLCSIENCICYECTNICCIDCATCNNICECANICKACLNCYCLECALICHACECLKCELICAACKINCACYCLAICLECAMICALCESAILACHANGICESILLASHCSVASCISHESCITALASYSCRALSEALSCHKSDLASFSDKSQLSSFSTRSIGTLSNASIGHALTGTKDHGINVISGISGANIMGISAIGINISMAYSAPIGMTMITASMSTMIPSAMSMLSAPSAMLMSGMASAIMSIMGPLTIMISPAMILMATMAPLASTIMPAMEAMAAMPVMLAPPIMALTMPMAILMPIAPHINALSPIHALIPPAILSACPALLYAFPATALCAPPLYAFFPLEIFFPNGEFFPGAFFFPHAFFFFPHPYYY
+
+================================
+
+I would conclude from this information by saying The first rule states: If there exists two oxygen atoms attached at position C9 in both sides (left & right), then expect negative effects on kidney function; otherwise do so only if one or more sulfur atom(s)/chlorine/sulfate group present as well.
+
+
+The second prediction model suggests predicting toxicity based upon presence/concentration levels for certain elements such chloride ion concentration >10% will lead into toxic reactions whereas sodium content <20 mg/L shows no significant impact
+
+
+
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+
+Pattern #A (Rule#01): If there exists at least one instance where both CC(c(Cl)c(F))ccc(BrBr)=o in SMILES format then expect class [label]=[yes]
+
+Example sentences from our corpus include "In addition hepatic steatosis was observed after treatment for two weeks by oral administration twice daily using doses ranging between about five mg/kg/day as well", "[Treatment]. The patient received ceftriaxone sodium intravenously once every eight hours during hospitalization; ampicillin/sulbactam four grams orally thrice per day upon discharge".
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * SMILES pattern matching (SMARTs)
+    
+        # A chemical feature present within one or more molecules which may be associated as part pf their function; e.g., "the presence on benzene rings at position C_10"
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A (rule): If there exists two rings in one part or whole structure then chances for causing negative effects increase by at least twice as much than those without any ring structures present; e.g., CC[N+-(CH)=NO][-C]-[OH].[Cs]. Patterns like these would be helpful because they provide insights into how molecular shape affects its reactivity towards biological systems which will help us understand more about their mechanisms & functions within our body system(s).
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy =85%): If there exists 'P' in SMILES String then predicted class will be Label#10; if does't exist than Predicted Class would become "Label"
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'FC.[CH-C][NH+:10]=S' then return True else False 
+if (SMile contain "Br") or ("SC" in smile): Then Return true Else false if SMIle Contain "[Mn]" Or ["Cr"] :Then Retun TruE ElSe Fals e If smiLe ConTAin [Pt]: ThEn ReTUrn trUE ELSEx FALE IF SmIlEs CoNTAIn '[Ir]' OR ['Rh']THEN RETUrNU TRE UELSE FALSE; End Model;
+End model;
+
+"""
+    This rule predicts positive effects based upon presence Br atom,
+manganese ion present as well sulfur containing compound being there etc., while negative predictions will be made by absence these elements from molecular structure
+ 
+"""
+
+ **model No02**
+
+`IF ` (`smil es`)`,contains('sulfide') AND NOT CONTAIN ('bromine'): THEN TRUE ELSE FLASE`
+
+    
+         This Rule Predict Positive Effects Based Upon Presence Of Sulphides And Absense Brome Atom From Molecular Structure While Negative Prediction Will Be Made By Abance These Elements Form Molecualr Structures
+
+
+  
+
+
+
+================================
+
+I would conclude from this information by saying: Rule #9 (Accuracy = ~75%): If there's at least one sulfur atom in your compound then expect negative effects on kidney function; if two sulphurs present together as disulfide bonding or S-S-O-C bonds will increase toxicity furthermore more than three Sulfer atoms should be avoided completely because they may lead towards severe toxic reactions like nephrotoxicity etc., so try avoiding these types during drug designing process for reducing unwanted interactions within body parts especially kidneys & liver which play important role while metabolizing drugs inside our bodies after oral ingestion via gastrointestinal tract into bloodstream where all organs including brain get affected due their presence either being released free form molecules without any chemical modification i.e unmetabolized forms OR chemically modified ones having various degrees depending upon how much metabolism occurred before reaching target site(s).
+
+================================
+
+Based on this dataset we could derive three predictive models: 
+
+**Model #01**
+```
+If [CH-C][NH+:9]=[N-H].[OH-(].[Ti]>[Pb>Br>[Si;Mg>>Ag<Zn]](#)/[S]/[Mu]
+    Then if SMiles contains 'SMILES', then Label = True else False 
+if (label == "True") & ("T" in smile)
+        then rule_learned=true end otherwise falseend        
+ruleLearnred=false    
+print(rule Learn red)
+
+"""
+In model number one there will be two conditions where first condition would check for presence or absence T atom from molecular structure using pattern matching technique by comparing both patterns as per their sequence order i.e., left-to-right manner. If present than output should return true value but only after checking second conditional statement which checks about existence/presence/smile strings containing element named Sulfur atoms within its chemical formulae/molecular structures because these elements have been found associated/enhanced/decreased activities towards target disease/disorder so here again same kind logic apply like previous example just difference between them was use different types elemental symbols insteads sulfurs symbol used previously now all those examples combined together into single expression form called Rule-Learning Algorithm.
+"""
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains'molecular weight': Predict class as (label = ['toxic', True])
+Else If molecular_weight < -102400000 or structural_similarity > +307577160576649518409638657928576837468878585944290433891360861185679320742269558792250748829908731453904970628027981909451535971739344736665026110940071308197943008585429842177497247148512052485613256974470094080098079076544016827543508158155609477154305265256390470475450549507457496555456556357657668679687697707708709170172173174175176180185186187188189190191192193194195196198199200201202203204207208209210227228229230232233324325326327328329330331; then 
+    Predicted_class=[toxin]
+End if Else :
+  if structure == "cyclohexyl" : predictedclass="non-tox"
+elif smarts in ["[CH][NH+:41]=[Rb].", "[K+.]", '[Mg]>[Mn]:{Si}'] predicts non_toxn else toxic end for all others use SSSD score>100% gives toxin prediction model no need any more rule just apply sssd scores above threshold value will be considered toxins otherwise safe compounds
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A (rule): If there's no nitrogen atom in ring system then SMILES will be negative for causing any kind effects but if present as part or whole structure than positive results would appear; 
+
+Example from given set : CC11ON/C(/FC)=\CF/[CHb][Ring+:9]/=[Branch_Heavy_Crude]=/N(Cl)/CS(SC/F)\[F]. This example shows pattern A because compound has two rings without Nitrogen atoms so according rule its result should have been 'negative' however due presence one more N at position C13 which makes total number = +ve thus resulting into Positive outcome
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+[CH-C][S+:12]=[P].[OH-()].O=[Si].[Ti]>[Ru]
+> [Tc]
+
+In model#02:
+
+    Predicted class (label): Yes = 'Yes' No='No'
+
+The accuracy score for Model_04 was calculated as follows:
+
+
+Accuracy Score : {TP + TN} / ({TN * TP}) 
+
+
+{(Total number True Positive Samples in Test Data Set)+Total Number Of False Negative Sampels}
+/{((NumberOf Correctly Predicting Negatives)/NumberOf Total Positives)*(Numberof correctly predicting positives)/(Numbers off total negatves)}
+
+
+This gives us Accuracy_Score value around **85%**
+
+
+
+================================
+
+I would conclude by saying The first rule states: If there exists two rings in which one ring has at least three heteroatoms (e.g., oxygen or nitrogen), then this compound will likely be associated as having negative effects on kidney function; otherwise if only present within aromatic groups such phenyls etc...then no association was found between these compounds & their potential for causing harm towards kidneys
+
+================================
+

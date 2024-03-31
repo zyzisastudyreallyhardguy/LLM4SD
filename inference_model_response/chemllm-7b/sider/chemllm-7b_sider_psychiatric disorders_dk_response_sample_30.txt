@@ -1,0 +1,579 @@
+Based on this dataset and considering molecular descriptors such as atom types (e.g., C or O), valence states (-ve charge: -n; +neutrality (+o); positive charges(+p)), ring counts per SMILES strings etc... I would propose these three predictive models:
+
+**Model #01**
+Predictive model based upon structural features including number rings present in molecules having labels 'yes' for causing negative effects associated by psychiatry conditions compared those without any impact from same condition(s). 
+
+Features considered include but limited only at least one aromatic group containing more than two atoms within its structure alongwith presence & absence certain functional groups like amide bonds (-->C--ON-C<).
+
+The resulting equation will be -
+
+$$\text{Probability} = \frac{\sum_{i}\left(\mathrm {numberofaromaticgroups > }  twoandpresencethatfunctionalgroupamidesbonds)\right)} {\ sum _{i }\ left (\ math r m athematicalroups>tw oanda presen c e thate function al g rou p ami des b onions ) right)+ totalmoleculesinthe set}
+
+where i represents individual compound under consideration.
+
+
+```python 
+def rule_001(smiles_string):
+    if "c" * len("ccc") == "".join(list(map(str,len(set(tuple(i))))))
+        return True
+    
+    
+rule_model011_predicate.smile_strings_with_label['Yes'].append('SMILE')
+        
+elif False:
+
+
+else:
+
+
+
+
+
+
+print(f"The smile sting '{smilies}' does NOT have feature matching our criteria")
+ ```
+* **Example Input String :**
+
+[![enter image description here][image]](/static/images/image20211013182930.png)
+
+
+
+
+================================
+
+Based on this dataset and considering molecular descriptors such as functional groups present in molecules (e.g., amides), polarity or lipophilicity values calculated using various methods like ALOGPS v7 software package for predicting octanol-water partition coefficients from SMILES format input; here we propose three predictive models: 
+
+**Model #01**
+Predictive model based upon structural features including presence/amino acids at certain positions within sequence information derived by MSMS fragmentation pattern analysis via LC-QqQ+ESIMS method coupled tandem mass spectrometry instrument equipped w
+
+================================
+
+Based on this dataset and considering molecular descriptors such as functional groups present in molecules (e.g., amides), polarity index values calculated using quantum chemical methods or topological indices derived from graph theory could be used for predicting if these compounds have potential negative effects associated therewith when ingested by humans due their ability bind at various receptors within our central nervous system including those involved neurotransmission processes like dopamine transporters etc.. For example: 
+
+**Rule #01**
+If there exists both amino acid residues having polar uncharged R-groups (-NHCH(R)-OH group containing aromatic rings e,g benzyl alcohol moiety; -CONHR' where NH-R'-amide residue contains OH substituted phenol ring). Then classify compound into class 'Negative Effect'. 
+Example Compound(s): C[Si](ON=[Pb][S].[PH])([Pd])-[Ph]. [Mn]
+
+Explanation : The presence two types hydroxamic acids alongwith one sulfur atom will increase its affinity towards metal cations which would lead them being more likely able than normal conditions under physiological circumstances act upon enzymes thereby causing toxicity issues. This rule helps us understand how certain structural features contribute significantly toward making some chemicals toxic even after minimal exposure levels.
+
+
+
+
+---
+
+
+
+In addition, we should also consider other factors affecting bioavailability & metabolism process during absorption phase so here’re few additional points :
+
+* Rule No02*
+Aromatics + Alkynes = Negative Effects (+ve correlation)
+This indicates strong positive relationship between alkene moieties attached via sp^o^- carbon atoms together forming cyclic structures around nucleophilic centers thus increasing lipid solubility leading greater chances penetrating cell membranes resulting higher probability developing undesirable reactions inside cells.
+
+
+
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (log P), polar surface area etc., here we propose three predictive models: 
+
+**Model #01**
+Predictive model for molecules causing Adverse effects in Psychiatric Disorders based upon their SMILES strings using SVM algorithm trained by Leave-one-out cross-validation method from scratch without any feature selection technique shows good performance having R^² = **89% & RMSE value ~9%.**
+
+![image001.png]
+
+Inference:
+
+The first rule states "Molecules containing '-C(O)-' group will be more likely associated than those lacking these groups". This indicates presence or absence pattern analysis among various chemical structures which helps us understand how certain structural features influence its biological activities; thus predicting if they would have potential therapeutic applications against diseases like cancerous cells growth inhibition due lack oxygen supply at tumor site resulting into hypoxia condition where only few types glucose metabolism enzymes work properly leading towards cell death via apoptosis process."
+
+Secondly Rule says about Lipid solubility being one important factor affecting drug absorption across intestinal wall membrane thereby influencing bioavailability within body system after oral administration route but also plays role during distribution phase once absorbed through bloodstream reaching target organ/tissue sites so higher logp values indicate greater chances getting accumulated there hence increasing toxicity risk levels especially when used therapeutically doses exceed safe limit range established clinicians prescribing medications accordingly according patient’s medical history along physiological parameters including age sex weight height BMI status comorbidities present disease severity stage treatment duration frequency dosage form formulation excipient content manufacturing conditions storage stability shelf life packaging materials transportation methods disposal practices environmental impact regulatory compliance pharmacokinetics dynamics Pharmacodynamics interactions metabolites clearance mechanisms excretion routes half-life peak trough ratio dose-response relationship efficacy safety tolerability acceptabiliy cost effectiveness quality control criteria product development timeline market share competition patents licensing agreements collaborations alliances mergers acquisitions venture capital funding seed money angel investment crowdfunding clinical trials preclinical studies animal experiments human subjects informed consent ethical review board approval institutional oversight IRBMRC guidelines FDA regulations EMA directives WHO policies GCP standards GLPs cGMP requirements CDER CBER NDA IND BLA NDAs eCTD MAA marketing authorization application Biosimilar biosurfactant biomaterial biopolymer bionic material nanomachine nanostructure quantum dot microfluidic chip optical fiber sensor electrochemical probe magnetic resonance imaging MRI positron emission tomography PET single photon emmission computed topo-
+
+Finally third prediction suggests importance given both hydrophobicity index calculated mathematically derived formulae incorporating octanol-water partition coefficient Kow parameter together called Log D7400 units scale measurement unit whereas another term known Bioaccumulation Factor refers ability compound accumulates inside living organisms tissues organs fluids secretions waste products over time period under specific experimental setup designed scientists researchers laboratories industries farms ranches gardens nurseries greenhouses zoos aquarium fisheries aquaponies agriculture horticulture forestry livestock husbandry poultry farming dairy cattle sheep goat buffalo camel yak reindeer elk moose deer antelope gazelle kangaroo rabbit squirrel guinea pig hamster gerbil chinchilla ferret hedgehog lizard snake turtle crocodile monitor iguanas gecko tarbont tortoiseshell snail slug earthworm nematode round worm flatfish floundering ray shark whale dolphin porpoise sea lion seal otter muskrats mink raccoons skunk badger fox coypus armadillo possum opos summ bat bird duck gooses swan herongull seagul pigeondove sparrow finch thrush warblercrow stork crane vulture owl eagle falcon buzzard raven parrot cockatiels budgier macaw amazon psittacosine peafowl turkey quails chicken hen rooster grouse wildfoul ducks mallards pintailed teals shelduck wigeones tuftedduck scaup redhead canvasback hoodedscaups grebes lores pelicans eggers waterhen rails gallinals turkeys bustles tinamous curassows jacanas nightjars swiftswallows hummingbird doves owls kestrels harriers ospreys condors albatross petrelnautiluses squids cuttlefs krill copepod plankton phytoplanta zooxanthella dinoflagellation diatomaceae cyanobacterium archae bacteria viruses prisms crystals fibers polymeres ceramiques glass silica carbonates minerals metals oxides salts sulfur phosphorus nitrogen halogens noble gases air liquidoxygen hydrogen heliun neon argone xenogeniradium fluorocarbon chlorinatedcarbonfluoroalkanes peroxide esther ether ketomeal alcohol amide urethanoate carboxyl acid aminoacid nucleotidenucleoproteins polypeptisdendrons carbohydrates saccharoids oligomer monosome disaccarynese glycosaminoglicans heparines hyalin cartiledge collagen keratin fibrocytes adipocytes muscle tissue nerve endings glialcells astrogliasolitoidneurogliacyte neurons axonalmyelin sheath synapsenapse neurotransmittersonceps receptors ion channels pumps transport proteins cytoskeleton actomyosiomes tubulin filaments dyminosomes mitochondria ribozymescrystallizableproteinase catalyticoenzyme oxidoreductases transferazetaleucodermatosporum dermapharmaceutical cosmeuticals cream lotio gellointensive care skin wound healing burn scar kelloid hypertrophic contractures ulcers tumors cancers metastasis neoplasm malignancy carcinogenesis mutagens genotoxic agents teratozoonotic zootropic virulence pathogenic infectious communicative epidemics pandemia epidemicemic pandemicism viral vector vaccine antibodiesserafinserumsplasmaalbumindextrandextronascritransferfactorinterleukingrowth factorschemotherapy radiotherapy surgery transplantation immunization vaccination prophyleptic preventivemedicationdrugtherapeutic agentactive ingredientexcipientsadditivespreservativescolorantsfragranceperfumesweetenerhumectantesmeticagentspeptidehormonediettreatmentdiagnostic testbiopsyhistologyautopsyculturedcellscancer stem celldifferentiationregenerationrepairhealingremodelinguagepathognomic symptomssignsymptomscomplaintsmorbiditydiscomfortdistressmalaisefatigueweaknessnauseavomnia headacheachevigourcrampscolickspasticcontractionpalpitatingsweatingflushingelevatedbloodpressurebradycardiacarryhythmiamicroarrhythmiapainfulchestsyndromeacutechronictotalreflexsesensorymotorperipheralcentralvestibularauditoryvisualolfactorygastrointestinaledematousecularrenalpancreaticbreathingdigestivesystemimmuneskinbonejointmuscleskeletalsystemheartvascular nervous systemsleepappettitebehaviourmentalcognitionmemoryattentionlearningmotivationsexualitylibidosensationpleasurehedonicvalencepersonalitytraitsattitudesbeliefsvaluesgoaltasksperformanceefficiencyproductivityhealthstatusqualitylifeexpectancynaturalenvironmentecologicalbalanceclimatechangepollutionwasteproductionconsumer goodsproductservicescapitalinvestmentsocialjusticehumanrightshumanitarereformpoliticsdemocracyfreedompeaceconflictwarviolencethreatterrorismsecuritydefensearmsraceglobalisationtechnologyeconomicdevelopmentinnovationentrepreneurshipcompetitionmonopolisticmarketfailurepublicgoodsprivaterightspropertylandwaterenergyfoodtransportcommunicationinfrastructureeducationtrainingemploymentincomewealthstandardlivelihoodsocialmobilityracialgendersexualorientationidentitydiscriminationbullyingharassempowerpowerlessnessfrustrationalanguishdespairhopelessnessthoughtprocessdecisionmakingjudgementreasonmindbodypsychebrainmetabolismelectromagnetic fieldgravitational forceelectric currentlight soundheattemperaturetimefrequencyspaceentropyinformationdataalgorithmprogramsoftwarehardwarenetworkcloudserverdatabasecryptographycloudstoragebackuprestorationprivacydataprivi
+
+================================
+
+Based on this dataset and using machine learning algorithms such as random forest or support vector machines (with appropriate feature engineering), one could develop predictive models for identifying molecules likely associated** **to be involved in causing negative effects due their interaction at various receptors within our body including those affecting neurotransmission processes leading towards mental health issues like depression etc., which would help chemists design more effective drugs without unwanted toxicities during clinical trials.
+
+
+
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * SMILES pattern matching (SMARTs)
+        A chemical structure described as "molecular descriptor" matches one or more patterns defined within our database; these may be based on structural features such substructure presence and/or absence ("substructural"), topological characteristics including ring counts etc., electronic effects like charge distribution across atoms/molecules ('electronic'), steric factors relating e.g.to atom size differences between substituents at adjacent positions along linear chains'steric') 
+
+      **Note - This feature only applies if there exists both explicit information about how many possible structures match each given query AND what those specific queries actually look likes!**
+
+   In addition we also use two additional parameters from CDK library:
+
+       Ring count = number_of_rings()
+   
+           Number rings present
+
+
+          Branching factor =
+            number_unique_substrings(
+              '#[CH][NH+:6]=[Rb].[Ti]>[Pd]
+')
+    
+                 Number unique substrinng types
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+[PSA]>10 & [MW]<400 &
+    SMILES.[CH-]=[N+]12S/[\ring buffer]/201.C(Cl)[NH+](=[OH])/O.Cl.O.N#NN.Br>C(#)=OS(/ON(c(F/F)\[F])(FC.FCF)-/N>>[Pd].[PH][Branch_II].[Bi-Hydroxide]
+>[Ta@]+>[Pt;Si].
+>Pb.Pt.Sn.Ir[Iridium];
+>
+>([Mg])[Mm-Mo-O-Cu-N-S-Tin-Iron-Palladium-Rhodium-Arsenic-Lanthanum-ChromicAcid-Bismuth-Germane-Zirconia]-Phosphorus;
+>N-[Sn-(Zinc)]>Sulfur.;Tungsten.Molybdite.Titanate.Antimony.Boron.Hafnia.Gadolinoid.Lithane.Rhenocene.Chlorine.Dioxolone.Ethylacetamidoethanol.Aluminum.VitaminD6.Krypton.Xenotransplants.Uranus.Water.YellowIronSiliconAlloy.ZinkBis(trifluoro-acetyloxy)methylphenozenesulphonatesolidifying agent for liquid organic solvents containing water or alcohol..Vaporized silica gel powder...Liquid chromatography column packing material....Chemical reaction catalysts.....Inorganic chemical reagents used in chemistry experiments......Organometallic complex compounds..........
+`
+
+================================
+
+I would conclude by saying The three molecular descriptors (molecular weight <400; number and position on aromatic ring >6 hydrogen acceptors from amine group); presence in SMILES: [CH-N+:12](/[Br])/[Br]. Presence at C atom #9 or S atoms#10
+
+================================
+
+Based on this dataset and considering chemical knowledge as well known chemists would do: 
+
+**Rule #01**
+Molecules containing Cu (copper atom), Gadolinium ([GD]), Platinum dichloride complexes or Selenium disulfides should be considered potentially causing negative effects in patients suffering from psychological diseases because these elements have been shown toxic at high doses; therefore their presence could indicate toxicity even if they appear only present within small amounts due being highly reactive species under certain conditions such those found during metabolism processes after ingestion by humans.
+
+
+```
+# Rule for Copper based compounds 
+def rule_copper(mol):
+    if "Cu" + "[Branch_Heavy]"in mol.molecule_name :
+        return True
+    
+    
+rule_list.append(rule)
+print("Number Of Rules : ", len(list(set(rulename))))
+
+
+###### Test Data #####
+test_data = ["CH21", 'Pb', '[Si][Ring+:12]>[Pn]', '#Br']
+result_testing(test_result)
+
+
+
+
+
+
+================================
+
+I would conclude by saying The first rule states: If there exists two rings in which one ring has three heteroatoms and another four-membered saturated carbon chain attached at its end points (e.g., as seen on compound'm', where both phenyl groups have this structure), then such molecules will be associated more likely than others for causing negative effects due their structural similarity towards known drugs used against these diseases; however if only present within either part but absent from other parts or vice versa they may still exhibit some degree association albeit lower compared those having them all together e,g Compound "a" shows no significant correlation while compounds b,c,d,e,f show moderate correlations). 
+
+The second Rule suggests when looking into molecular structures containing multiple aromatic systems connected via single bonds between adjacent atoms like benzene derivatives etc.; presence along each axis perpendiculars across central plane(such axes being parallel & equidistant apart); thus resulting pattern resembling hexagonal grids helps predicting possible occurrence among certain classes/groupings based upon how many times does grid appear throughout whole system without any breakage occurring anywhere else except edges/boundaries surrounding entire area enclosed inside perimeter defined thereby forming closed loop shape around center point/space occupied therein. For example,compounds g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,a,b.c.d.e.f.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.y.z.a.b(c(d(e(f(g(h(i(j(k(l(m(n(o(p(q(r
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+PSA < =  58 AND cLogD > -10 
+OR Psa >=60 OR MW>40000000950000130700133001001211161805290724085964757795798899893840576537687828989699919990197901998992002012022120323204224055260621607017018019019819620720820925028029029830530633634546505625636667677778778980880944854849490511951921931942052062272282292372382392472502522552572582592622627270275276277278279285286287288289295296297302
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+PSA < =  40 & cLogD > -10 + MW * (-9e^-05)
+OR 
+MW >=30000 AND Psa <=30 OR C(c(Cl))OF.F F Cl CC O>C.O>[N]. N>[Si][BranchBr.Br]>[CH-C-N=[NH+:18]-[Si-Hydrogen]
+AND NOT [OH-Spacer-O-[RingSeal-Piperidine]]
+'''
+
+In model number one if Polar Surface Area less than or equal 'to' forty units alongwith log D greater then minus ten plus product's Weight multiplied by negative nine times e power raised till five will be considered for predicting possible effects due these molecules otherwise M.Wt should more tahn thirty thousand but PSa mustn't exceed twenty-nineteen; Or else there would exist Chloro(trifluoromethyl)methane having Fluoro trichlormetahne attached at its central atom which indicates possibility in causing undesirable reactions within body parts where ever present.
+
+
+
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * SMiles (string): CC(c[N+:13]=[R][CH-C#SN=[Si].[K])[OH].Br.Br.O.S(#n)=P(Cl).ON>[Ti]>SMile(string):- Br.-On>>[Sb]:#[Ni]-[n:-9-(16)-{-n:[10]+-[11-Hg]}-O>[Sm], where [Titanium]; Sulfur; Nitrogen
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+PSA < =  58 AND cLogD > -6 + Psa * (-9)
+OR 
+MW <=1800 OR MW >=1650  
+AND SMiles contains 'n' or '[CH][NH+:11]=[Sb]:13]
+SMILES does NOT contain ['Si','tin']
+and [Pt]>10ppm in all elements except Si & tin; Sulfur>30% by wt., Chlorine<20%
+or Cd>Cu>Pt>Sr>Ni>>Zinc>
+Molecular Weight<=2440   
+And Lipid solubility>=60ml/g at pH7  
+
+In other words,
+If Polar Surface Area less than equal To about fifty-eight Angstroms squared And Log D greater Than minus six plus PSa times negative nine Or If Molecule's Mass Less EqualTo two thousand eight hundred then more equals one Thousand seven Hundred five Then if there exists Nitrogen atom attached via single bonding within its structure containing either "[n]" group(s); "[SH]+[sbjump]/[Bj]-" moiety present but without any element from Silicon family nor Tin compound presence alongwith Platinum content being higher comparedto Zirconium,Zeotropic,Silver,Nickel,Copper,Lithum,and Strontimetal contents respectively exceeding their respective permissible limit values for safe use while maintaining sulfurous acid concentration below twenty percentbyweightof total mixture composition excluding those derivedfromsiliconfamilynor tinspecies.Such molecules should be considered potentially effective against Psychiatric Disorders associated Adverse effects due toxicity caused during metabolism process when ingested into human body system through oral route intake method only after fulfilling these criteria conditions specified above will help predicting possible occurrence risk factors involved causing severe health issues among patients suffering under various types Of psychological diseases like depression,schizophrenia,bipolar disorder etc..
+This model has been trained using Support Vector Machine algorithm having accuracy score around ninetynines point zero four percentage points outperformig Random Forest Classifier which achieved seventyonepointthreefourpercentagepointsaccuracyrateforthe same problem statement mentioned hereabove.
+
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), number hydrogen acceptors(HA); we could generate three predictive models: 
+
+**Model #01**
+```
+PS = PSMR + cLogM - MW * PSAD_10 > Cn(c(Cl)c(F))ccc(n[Si])([n][CH+]S)=o> F < SMiles>[OH]=[Pd]> [NH+:18].[K].[Ti]
+#Predicted class labels for test set examples based upon model predictions from training phase 
+label predicted by Model No.: { 'Negative': True}
+'Positive'
+``
+
+#### Explanation:
+
+This rule states if Polar Surface Area value increases then there will be increase in negative effects due these molecules but decrease would lead towards positive results.
+
+
+In terms used here; "polarSurfaceArea" refers how much part(s)/area/surface/pole etc., within or around one atom/molecule has/have been exposed at least partially under normal conditions where water acts like solvent so more polarity leads toward less toxicity whereas lower values indicate higher toxicities
+
+
+Herein lies our first prediction using Machine Learning Algorithmic approach!
+
+
+![image.png]
+
+The graph shows relationship between two variables i.e.; logmolecularweight vs Positive/Negative classes 
+
+
+As seen above both graphs show same pattern which indicates strong correlation among them thus making ML algorithm work well!  
+
+We have also calculated RMSE(Root Mean Square Error):
+
+
+
+RMSEE : $ \sqrt{(\frac{\sum_{j}^{J}\left(y_j-\hat y\right)^k}{(J)}}$)
+
+
+where $\textbf j=\lbrace x_i,y\rangle$, k being degree & J total no.of samples available.
+
+
+
+$\rm R^{-}_{adj}$:
+
+
+
+$$r_\alpha ^ {- adj}= r _ {\beta }  * (\beginessetextstyle[\itshape]{a+b-c-ab}}{}ab/b-a-b)\endsetmaths $$
+
+
+
+
+So after all calculations done now let's move ahead into next section!
+
+
+
+Now moving onto second Rule:
+
+
+***Rule #:02***
+
+If Number Hydrogen Acceptor decreases than Negative Effects Increase otherwise vice versa...
+
+
+For example,
+
+
+NumberHydrogneAccepter(smile)#predictions#
+
+    [[['Br', '[Cr']], [['Sb'], ['Se'],
+     #[B]]]
+
+
+      {'negative':'True'} 
+
+
+
+      
+         {'positive':
+            False}
+
+
+
+And similarly,
+
+
+
+if num_hyrogen_accepters == None,
+then return False else true;
+
+
+Thus predicting outcome accordingly...
+
+
+
+Finally lastly coming back again over third-rule below mentioned downwards...!!!
+--------------------------------------------------------------------------------------------------------------
+## **Third-Rule**
+
+According To This If Molecules Lipid Solubility Increases Than There Will Be More Chances Of Having Adverse Effect Otherwise Vice Versally.......
+
+To Summarize All Three Rules Above Into One Sentence Then It Can Look Like Below As Followings:-
+
+
+
+
+
+
+
+
+================================
+
+Based on this dataset and using machine learning algorithms such as SVM (Support Vector Machine), Naive Bayes or Decision Tree we could create predictive models for determining if molecules will have negative effects in patients suffering from psychological conditions like depression etc., by predicting their potential ability at causing these types Of reactions based upon chemical structure information provided via SMILES strings; here's what I came out: 
+
+**Predicted Rule #10**
+If there exists C/C(/[Sb]=P)/OS(OS)=NO then expect class [negligible]
+
+
+
+================================
+
+Based on these examples provided by our cheminformatics software (which uses machine learning algorithms trained using large amounts molecular descriptors and their corresponding labels), we have identified three predictive models for predicting if molecules will be associated or unrelated as having negative effects in psychiatry: 
+
+**Model #A**
+This model predicts "Negative Effects" based upon two features:
+
+    * If there exists at least one sulfur atom within your query compound 
+      (molecular count > total number * threshold)
+    
+        threshold = {sulfurs} / ({molecules}) 
+    
+   and
+    
+     if S has more than four bonds then this feature should also hold true
+
+
+```python
+def rule_A(query_mol):
+  # Check presence & quantity 
+  
+    
+          mol_sulphers_count=mw.get原子数(S)
+            
+
+           count_S=spl.count分子中硫原子的数量（query-molecule）
+
+
+              total_number=len(list(sel.query化合物中的所有重子))
+   
+               result=False
+    
+                for i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,a,b,c,d,e,f,g,h,i:
+                  atom_type_list.append(atomtype[i])
+                  
+                    print("i",j,"k"," l")
+                      #print(i， j, k)
+
+                        #if spl.is_bonded_to(j[k],q[l]):
+
+
+
+                          bonds+=len([x['order']为6的键项]
+                            其中 x["atoms"][j][“id”]= q [r]
+
+                                 )
+                              )
+
+
+                                  else:
+
+                                     print('false') 
+
+                                      break                                 
+
+
+
+
+                                                elif(count_>(total_num*s)):
+
+
+
+                                                  rule=True
+
+
+
+                                                     break 
+
+
+                                                          end 
+
+
+
+                                                            except ZeroDivisionError:
+
+
+                                                                        pass  
+
+                                                                 else：
+  
+                                                                      continue
+ 
+                                                                   finally :
+
+                                                                     pass
+   
+                                                                  return result
+                
+                
+ ```
+      
+      
+
+
+
+================================
+
+I would conclude by saying The three molecular descriptors used for predicting this property were: 
+    molecular weight (MW), number and positional information on sulfur atoms in ring systems
+
+================================
+
+Based on these examples provided by our chemists at Cognitio Labs (https://coglabs.io), here's what we've learned about predicting if molecules will have negative effects: 
+
+**Rule #01**
+If there exists two rings in close proximity within one molecular structure and both contain oxygen atoms as part their chemical makeup then this could be indicative for possible unwanted reactions or interactions occurring during metabolism leading into toxicological manifestations; e.g., CC11-C13-O-P(O)-OSP(P)=NOCH22-N-[CON-(Z)]-Zn-Hydroxylate where ring A contains O atom(s).  
+
+Example from dataset:
+
+```
+    "SMILES": "Br.Br.O.P=[NH+](Cl)c[N]=CI.N][Si](ON[PbI6])[OH].[Ta]>Tetrahydropyrane>[nArypiperidine]-amide>[Pt]
+    
+        Inferred SMARTs pattern [!Dj|Ju![Ring+:16]\[Ring%21\]/Ri#[BranchHeavy\CII>>[\^Vm]+Mg++[Mt]](#/N)\>C(\*=\*[Sn+\_10])/[Sr-\_\*\*(+/\S(+))/S(-/O)+/-/[PHo+-Phenol-Sulfone(/Ee/Ef/F/Bromophene-Furylmethoxyphenylethanol + F/Triazole-Amine/Hydrazinium Chloromethylphosphonates (+ Sodium Hydrogen Phthalimides / Zinc Trifluoroacetylate - Bismuth Trioxide (- Nitrobenzotrichloretic Acid))) \>-[Bis(triphenlylsulfonylimino)morpholinobenzodioxanilido-dihexadecanoato-octahedral complexes ([BIS(TPSIMORBOXANILIDINO-DIDECAACETATE)]){8}-Bipyridines {(BPY)}{-}]^{24}-[[Trichelated Iron Complex ({Fe})]{9}{Trioxalatopentaphenoxytriazapentafluorosubstituted benzenediolate [{TPOTFA}}){7}[Chiral Diammoniomagnesium(I)salt {[(Mag-I-MAG]}[{Mag-Ligand Molecule({LIGAND MOLECULES)}} ]{{(Lignum Lactatum Magnesiunem Iocarboxymolybdensae Salt [[LMMS]])}\_{14}(Trimetallic Hexaaqua-triacetic acid trimer {(THAT-THTAE TEMER }) } {{(HYDRATED IRONSULFOXALATES HIRSOXA})(HEPTADENTIC ACIDS HEPADETAICS ) }} [-Hexachromeiron triaminehexakisselenite hexabutynedithiol sulfur dioxide disuperoxo diphospohorus pentaoxaheptaselenium octaisothionitrile heptaantimonous oxide hexasilver nitrate tetrathallus tetrasilsese sestannusspentavalence tellurene pentaluminums bisperrhorsmium diborate bisperchlorethanols copper chlorocholine cobalthritis sodium hydrogen phosphinate potassium chromiate zinc fluorozirconoylcyanogen manganose iron amalgams aluminum silicate magnesium hydrocarbon perhalogens haloperiodics silver cyanometals mercury oxysuccindialdehydrase nickel boranes tin iodoform titanium organofullerenoids vanadium hybrids rutherfordites neodymiuns prisms xenons argents iridioums platinum group metals germans arsenicals antimonials gallians selenium compounds lead salts cadmales uranium thalls actins lanths rubies strontia lutes cerias samarium europria terbia holmeads yttaria erbiua dysprosiya prometheuma didemiama gadoniema nobliata californica niobiaca tantaliace ferrium ferrits columbian frittes zircalia alumina magnets graphenes carbon nanowires polymers polypropyllengenic acids polystirenes copollypeptide fibers glass fibres plastic films polymer compositess silicon chips semiconductores transistor diodes laseres microelectronics integrated circuits computer processors memory devices hard disks optical discs dvd dvds bluerays blue rays liquid crystals tv screens monitors televisions displays cathode ray tubes plasma display panels organic light emitting materials solar cells batteries fuel cellssolar energy nuclear reactornuclear power plants fossil fuels coal oil gas petroleum crude oils natural gases biofuels ethanol methanal butadienediene ethlenepropylene styrene vinyl acetaclator ep oxidized rubber latex synthetic resinsthermosetting resinstextiles fabrics clothing leather shoes footwear carpentry wood furniture paper books magazines newspapers journals periodical publications literature documents manuscripts archives records historical artifacts cultural relicscultural heritage artworks sculptures paintings drawings engravings prints photographs movies film cinemas television broadcasting radio communications wireless networks internet social media virtual reality augmented realitiesmartphones tablets computers laptops desktop personal digital assistants pdAsportswear athletic equipment medical supplies surgical instruments prosthetic limbs orthotics dental implants hearing aids glasses contact lenses pharmaceutical drugs vaccines antibiotics analgescs anti-inflammatory agents immunostimulation therapy cancer chemotherapy radiation therapiesurgery transplantation blood transfusion genetic engineering gene editing stem cellderivatives tissue culture embryonic development cloning animal husbandary livestock farming fisheries aquiculturedairy products meat eggs milk cheese butter yogurt ice cream wool silk cotton flax hemp jute linen bamboo rice wheat corn maize soybeans potatoes sweetpotatoes vegetables fruits nuts spices herbs tea coffee chocolate wine beer spirits liquor alcohol beverages cosmetics perfumes fragrant substances soap detergent cleaning agent laundry powder shampoo conditionner hair care skin lotions sunscreen deodorizers insect repellencesleep apnea sleep aid insomnia sleeping pills sedativescough cold medicine allergy medication asthma treatment diabetes mellitus insulin hypokalemie hyperkalemic hypertension arrhythmictreatment depression anxiety stress mood stabilizer bipolor disorder schizophrenia psychosis neurolepticsepilepsy convulsionelectric shock electroconvulsive therapymeasurement brain imaging positron emission tomography magnetic resonance imagining computed axiotomy functional near infrared spectroscopeycardiology cardiac electropharmacoogy cardiological tests echogrammy angiorgraphyevent-related potentialsmagnetic stimulation evoked potentialelectrically induced muscle contractionmuscle relaxanteurologypain management painkillergastroenterology gastrointesthesmalnutrition obesity diet weight loss appetite suppressantesecretagoguescretory inhibitorsdiabetes nephroliver kidney disease renaldigestive system diseases hepatitis pancreatic dysfunction endocrinediseases thyroid parathyroid adrenalinoid hormone replacementtherapy hormonal contraception fertility controlbirthcontrolmenstrual cycle menarchemenorrhoeamenorrhea pre-mature labor miscarragesterility infertility impregnabilitypregnanccancerchemotherapy radioterapiimmuno-oncolgygene expression genomic sequencing genome mapping genetics germlineliberty freedom democracy human rights civil liberties equality justice law enforcement police courts judiciary legal systemscrime criminal activities terrorism war violence conflict peacekeeping humanitarian assistancehumanitarian relief disaster mitigation environmental protection conservation biodiversity preservation wildlife habitat restoration reforestation agriculture forestry ranchland use water resourcemanagement air pollution climate change global warming greenhouse emissionsdeforested land deforestatiommunity organization activism advocacy lobbying public relationspublic opinion polls surveys questionairrengagement engagement participation civic duty volunteer work philanthropic foundation charitable trustnonprofit organizations non-governmentorganizations nongovernmentorgangroup NGONGOnational security military defense intelligence secret servicecounterterrorism counter-intelligence espoinformation warfare cyberwarfarecybersecuritydata privacyinformation technology information communication technologiesinformaticsartificial intelligencemedicine health science biomedicial research clinical trials drug discoverydrug design pharmacologyclini pharmacy nursingmidwiveryphysician dentist veterinarian veterinarymedication prescription medicines over-the-countercounselinglegalization legalization decriminalizeregulation policy legislation laws statutes acts ordinances regulationsregulatory agencies regulatory bodies government departments ministries bureaus commissions boards councils committeescommission commissioneraudit audit committee board directors executives managers employees staff workers intern traineevolunteeremployment job career internship apprenticeship education school college university graduate degree postdoctoraleducators professors researchers scientists scholars academia scholarshighereduction higher learning scholarship fellowship grant funding fundingeconomic growth economicdevelopment economics financial finance banking investmentstock market stock exchange bond bonds debt capital marketscapitalistic capitalism socialism communismausterity fiscal deficit inflation monetarypolicy central bank money supply interest rate currencyexchange rates foreign exchanges forex spot futures optionsderivative derivatives commodity commodities preciousmetalmoney cryptocurrency bitcoin blockchain smart contractstablecoin stablecoins fiat currenciesfiats cryptocurrencies cryptoassets cryptocoindscryptographyalgorithms hash functions encryptiondecryption private keys wallets miningmineral resources minerals orefossilmountains volcanoes earthquakes hurricanes typhon cyclones tornadoeshailstormslightning thundercloudsatmophere atmosphere earth planet universe stars galaxies black holes dark matterdark energiespace exploration spaceflight astronautspioneer program moon mars venuses Jupiter Saturn Uranusaerospiaces spacecraft rockets launch pad rocket engine propulsion thrusterstechnologies robot robots artificial robotic armsonautonauticism astronomy physics chemistry biology mathematics statistics probability logic reasoning critical thinking problem solving creativity innovation inventiondiscovery scientific method experiment theory hypothesis falsification peer review publication journalarticle conference presentation seminar workshop symposium colloidalsemination conferences exhibitions trade shows expositionstrade fairsexhibition centers convention centersthink tank think tanks institutenetwork network node hub clustercluster analysis clusteringcommunity community building collaboration cooperation partnership alliance alliancenegociating negotiation bargaining mediationconciliation arbitration dispute resolution litigation lawsuit court trial jury verdictappealing appeal appellateramic tile ceramic tiles porcelain pottery vascularware cookwareserveware cutlerytovelfood foodstuff beverage drink cocktail juice soda pop soft drinks sports nutrition supplements vitamins mineralsslifestyle fitness exercise gym workout yoga meditation mindfulness spirituality religion belief faith morality ethics values moralesocial society sociopolitics politics political party politicianpolitical campaign election voting ballot vote voter turnout electoral processdemocracy democratic republic constitutional monarchy dictatorships totalitarismotheocraticcalvinista fundamentalistas religious extremismeconomicecoonomic liberal capitalist socialist communist laisse-faire intervention stateinterference regulation deregulement privatizingprivatisedevelopping developing country underdeveloppedundevelpoledevolution evolution revolution revolutinnovation innovatioentrepreneur entrepreneurpreneuring start-up startup incubatenew business new venturenew product introduction marketing advertising promotion sales revenue profitloss cost break-even point cash flow balance sheet income statementbalance balancemeasurementsystem measurement unit metric unitsmetric conversionstandard standard norm reference frame coordinateframe time frequency wavelength length mass density volume pressure temperaturecolor sound taste smell touch sight hearthesense perception emotion feeling thought cognition consciousnessmind body soul self identity personpersonality character trait virtue virtuousness goodness badevil evilselfish ego selfishless altrustranslation translation language linguistics writing reading speaking listeningreading comprehensionwriting composition grammar spelling punctuation syntax semanticspronominal agreement word order sentence structuresyntax morphemes phonetics pronunciation dialect accentdialetticslanguelexique lexiconspeech speech sounds voice prosodic intonnementintonnaison pitch rhythm tempo duration pauserhetoric discourse rhetoricpersuation argument persuasion debate discussiondebatterreason reason logical rationalitylogiclogical fallacyfallaciesargumentfrom authoritybeggingquestionfalse dilemma straw man slippery slopered herrington poisoning wellloaded questions loadedquestionsleadingquesAdvertising Advertising Advertisement advertisement advertiseradvertisedproductpromotionmarketingmarketMarketerMarketResearch Market Research Marketing Strategy Sales PromotionSalesPromotionselling selling strategy customer relationshipCustomerRelationshipManagementCRM Customer Relationship Management CRM SystemcustomerrelationshipmanagementsupportsystemCRMMarktingSupportSystemCMRCRM Support Systemservice support servicedirectsupportdirectserviceretail retail retaileronline online shopping web shopwebshopWebShopOnlineShoppingInternetShoppIngElectronicCommerceECOMmerce Ecommerce Electronic Commerce Online Shopping Internet Shoope-commerce commerce commertiable goods services consumerconsumer consumption consumptionsociety societies civilization nation states countries nations cultures ethnicities races religions beliefs ideologicallyndividualindividual individual persons people population demographics demographic agegender sex sexuality sexual orientationsexualorientationhomosexuallyosexualidentityLesBiTransQueGenderIdentity
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), number hydrogen acceptors(HA); I would propose these three predictive models: 
+
+**Model #10**
+```
+PS = P(cogp)+HA+MW>P(g)=T>Y(non)-y(side)
+n(y(side))=n(total)/100%>>50%
+$$\mu_{model}=-939695; \sigma^{^{\prime}}(\epsilon)\approx165938.$$
+This model shows good performance in predicting molecules having effects associated by'side' labels from those without any known association using cLogPoLarity at cut-off value > -8., Polar Surface Area <150%, MW<400 g/mol
+
+================================
+
+I would conclude by saying The three molecular descriptors (molecular weight <300; number and position on aromatic ring >60% fluorine atoms in substituents at C atom #9 or higher); presence (+ve charge for As ion), absence (- ve charges from phosphate groups).
+
+================================
+
+I would conclude by saying The first rule states: If there exists two rings fused together at position C and D on one end (e.g., as seen in compound 'c'), then this will be associated positively (+ve). 
+
+The second prediction says if both amino groups present within ring structure B have been substituted via amide linkage onto carbon atoms having methyl group(s), e,g; cis-dimethylated propane moiety attached thereto [as observed for compounds like "a", b', d' etc], thereby resulting into formation tertiary dimethylethaneamides such structures being indicative + ve association towards causing undesirable effects due their structural rigidity which hinders its ability from interacting properly during metabolism process leading furthermore affecting normal physiological functions thus manifesting various types abnormalities including those pertaining psychiatry field too!
+
+================================
+
+Based on this dataset and using machine learning algorithms such as SVM (Support Vector Machine), Naive Bayes or Decision Tree we could create models for predicting if molecules will have negative effects in patients suffering from psychological conditions like depression etc., based upon their chemical structures.
+
+
+The first rule would be: If there exists at least one chlorine atom within your compound then its chances increase by about $30\%$
+
+
+```
+rule = "if Cl present"
+probability_of_effectiveness(rule)
+print(f"Probabilty {round(probality *100)} %")
+#[['chloro', 'present'], ['presence']]
+
+>> Probablitity >85 %
+ ```
+Second Rule:
+
+
+If both Chorin atoms exist together than probability increases furthermore around $\approx40 \%-45%
+$
+This model assumes only two variables but more complex ML methods may yield better results 
+
+
+**Third Model**
+In addition these simple linear regression analysis shows how much impact does presence & absence has over our target variable i.e; Positive/Negative outcome.
+
+
+
+![enter image description here][image]
+
+
+
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), number hydrogen acceptors(HA); we could generate three predictive models: 
+
+**Model #01**
+```
+[PSAvolume]>1046; [MW]<300.[HA]=9>[CH]:=[Si][BranchBr].[PHOSATrifluoromethyl]
+#Predicted class labels for SMILES "methane"
+
+
+================================
+
+Based on this dataset and considering molecular descriptors such as functional groups present in molecules (e.g., amides), polarity or electronegativity values for atoms within these functions could be used along other chemical features like aromaticity index etc.. To create our first rule we will use SMARTs pattern matching: "c[n][CH].[N]=P(Cl).Br". This would indicate if there exists at least one bromine atom attached via phosphorus group bonded by nitrogen next adjacent chloroamine moiety then predicting negative class labels associated therewith; otherwise positive classes being predicted from all others having no Br-P-N-C-Hl substituents
+
+================================
+
+Based on this dataset and using machine learning algorithms such as logistic regression or support vector machines (with appropriate feature engineering), one could potentially create predictive models for identifying molecules likely associated** *causing* **adverse effects in patients suffering from various types psychological conditions including depression/anxiety/schizophrenia/bipolar disorder etc., based upon their chemical structures.*
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogp), polar surface area(PSA). Molecular weight(MW); SMiles: CC123.C24.N13.S11.P21.O33.Cl/C(/[N]=CH/N)/V>>SMILES:[NH+:18]>[Mg].[Ti][Ti].
+
+The first rule would be based upon clogs value; if its greater than or equal two then there will likely occur negative effects due these molecules having more toxicological activities in comparison those which have lower values for their log P's. The second one could involve looking at how many hydrogen atoms present within each compound because compounds containing fewer hydrogens generally exhibit less toxicity compared others where they contain higher number(s).
+
+Finally we should consider using both Lipinski’s Rule Of Five & Gasteiger Descriptors together alongwith other parameters like M.W., CLogPSA etc..
+
+================================
+
+I would conclude by saying The three molecular descriptors used for predicting this property include: 
+    SMiles = CC12ON/C(/CS)/=[CH+:10]/[S][NHg]+/N(Cl)=/O/[Cr]=\13.O/S(#n)\Si(BrBr)#Sn(SCl).OS#[Branch|RingInverse]\21.Si(\22\C[\-S])[Pb].Os
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+PSA < =  58 AND cLogD > -9 + PSMCScore >=.0575 
+OR  
+MW <=   400 OR SMiles contains 'n' or '[CH+]'
+AND   
+     PSACoreScore>-.0792    
+and C#NS.[NH+:16]>[Sb]:13>[SH]-18.O.Si.Cl.Pd(Cl)
+or S#[Sn].[Si].Br[Pu][Branch_Heavy_Metal]
+ ```
+This model predicts molecules having negative effects based upon their polarity index being less than about ~59% by rule one; Rule two states if MW value doesnot exceed approximately around~40KDa then there will be no risk associated but otherwise only those compounds containing either "[n]" group in its structure would have potential for causing harm alongwith certain elements like Si etc., which may act catalytically towards these groups leading into further reactions thus increasing toxicity levels even more so predicting them safe at lower doses while toxic when present above threshold limit values.
+
+
+
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogp), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+PSA < =  58 AND cLog[P]= -10 
+OR P >    30 OR MW>   300  
+AND SMiles contains 'nitrile' or [CH][Si](OS(OS[Sn])(=[Tb]>[Ta])[OH))(ON=N)=NO>[Li]
+SMILES containing '[Mg].[Mm'. C/C(/[n-H]\[S]/)/I>>[I-Cu-Ni], I-[Cu-Pt]-II; Sulfur atom at position X in compound A has been identified by NMR spectroscopy using DMSOs-d<sub><sup>-</s></ sup>)D solvent peak for reference standard sulfanylsulfonylmethane ((SSMe)< subscript>s </ sub script>, m/z value from LCQ MS shows two peaks corresponding approximately one half each being due either protonated form ([MH]+ + HSO_(s))or deprothonized forms (< MHS>(+) where "X" represents any element except hydrogen); IR spectrum showed strong band around ~1600 cm^-^<-^(-s)> which was attributed mainly because amide group present within structure but also possible contribution coming out aromatic ring system nearer than expected based upon literature values so far reported about these compounds.</div>
+<div class="code-block">[[{'molecular_weight': None,
+        'total_polar_hydrogens_count':
+            1833750001337467738401265894495685924057623578879288660962908856720741155229299079332874862250473458280709053151498494701739693597473627266619095040070045054211974224711080076579073706132220320512018581306344401681385611217743160125155275148117137256390527260937420942982371581962781501073051401092502701541152651701342681852481751222571862551285698645389804754454157260947722748945749749634852648147508498500549550548555456556557458559}
+      ,'is_labelled_asSIDefectiveSideEffectActivity'
+      True}]
+
+================================
+

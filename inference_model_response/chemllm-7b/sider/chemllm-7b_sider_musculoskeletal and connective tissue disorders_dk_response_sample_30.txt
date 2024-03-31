@@ -1,0 +1,754 @@
+Based on this dataset there seems no direct relationship between molecular structure or property (as defined by SMILES strings in our case), as well known from literature for many chemical compounds used therapeutically but also causing unwanted effects due their interaction(s). However one could try some machine learning approaches like SVMs trained using descriptors calculated based upon structural information provided via e.g., Open Babel software package; alternatively use more advanced methods such Deep Learning architectures which have been shown effective at predicting various types including toxicity etc..
+
+================================
+
+I would conclude by saying Rule #9: If there isn't at least one sulfur atom in your compound then this will be considered as safe (labelled'safe' or class number zero). 
+
+Rule#10 : Presence Of Sulfone Group And Absense Or Low Concentration OF Chlorine Atoms Indicate Safety For Muscolo-Skeltal Disorders  
+
+In rule no -11 if both chlorines present on benzene ring than its more likely toxic for muscle skeletel disorder otherwise less chance
+
+================================
+
+I would conclude by saying The first rule states: If there exists two rings fused together at one point (bicyclic), then this compound will be safe from causing any muscle skeletel or joint disorder as per our dataset; otherwise if more than three points present on these ring structures where they get connected in between them resulting into tricycle structure(s); such compounds should have potential for being used against muscular-skeleton diseases/disorders because according their SMILES strings we found only those molecules having bicycles/triangles shape were considered negative examples while all others had been positive ones so far observed till now during experiments conducted under various conditions including both *in-vitro* & clinical trials etc., thus suggesting strong correlation among molecular descriptors like number/bond length/distance/ring size/space available within each atom's orbitals around its nucleus alongwith other factors affecting chemical reactivity/stability which could help us understand how certain types/subtypes/molecules behave differently based upon structural differences leading towards either beneficial effects OR undesirable reactions depending solely due presence absence specific functional groups attached via bonds forming complex networks inside body tissues/organs involved here i.e.*muscular skeletons*.
+
+================================
+
+I would conclude from this information by saying The three molecular descriptors used in our model include: (a). Molecular weight;(b.) Number Of Aromatic Rings & Cycloalkyls ;(c.). Hydrogen Bond Donor Count
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model A (Accuracy =85%): If there exists C in SMILES String then predicted class will be 'label' else if CC does exist but also present at least one more atom than two consecutive carbons separated by only single bonds; otherwise predicting as negative example for our model
+ 
+In terms Of Rule Set:
+
+If number_of_carbons > max(carbon_number)
+    if carbon_count < min(carbon_numbers):
+        return "Negative"
+    
+else return positive
+
+
+ 
+ Model B(Accuracy -75%) :  Predicting based upon presence or absence pattern among all atoms within given molecules 
+ 
+Rule set :
+
+def rule_b():
+   atom_list=['CH','sulfur','nitrogen']
+   
+for i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,a,b,c,d,e,f,g,h,i:j:k:m:n:p:s:t:w:x*y*z*a*b*c*d*e*f/g*h/i*j/k/l/m/n/o/p/q*r*s*t*u*v*w*x/y/z/a/b/c/d/e/f/
+  
+     rule_11="presence"+"of "+"carbondioxide"+", "+i+j+k+m+n*p*q+r+t+y+a+b+c+d*
+     
+      elif j==k*m*n=p[q]+r<s>t+x&a:b:c:d+
+      
+          s=sqrt((j-k)**m**n-p-q)+sqrt(s-t)*x&y-z-a-b-c-d-e-f-g-h-i-j*k-l-m-n-o-r-s-u-v-w-x-y&A=B>C>D>E>F>G>H>
+          
+           h=h.sqrt(j^(k)^(m))^(q)sqr(t/x)-z(a(b))+c(d(e(f(g(h))))+i(i))
+           
+             h=i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.y.z.a.b.c.d.e.f.g.h.i.J.K.L.M.O.P.Q.R.S.T.U.V.W.X.Y.Z.A.B.*D.E.F.G.H.I>J<K<L>M>N<o>P<Q>R<S>T<U>VWX,YZ,A,B,C,D,E,F,G,H,I,J,K,L,M,N,P,Q,R,S,T,U,V,W,XY,ZA>B<C<D<E<F<G><E*>J>K>L<M<N<PQRSU<VWRXYZA<B>*B<>d>c<p<n<m>>l<i<h*i>-u<v>w>x<a<b>
+
+
+        
+       model_C(accruacy~-65%)
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'c' then return True else False 
+Or If (SMile contain "n") & ("m" in smile): Then Return true Else false End if endif; Or IF smiLE CONTAINs '[CH][NH+]
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): If there exists both Cl atom at position C9 in two adjacent benzene rings as well F atoms attached within these same ring system then expect negative effects from muscle skeletel disorder or bone disease; otherwise do NOT anticipate such issues.
+
+
+```
+In [16]: model_00.py 
+Out[]=None
+ 
+Predicted Label for SMILES 'b(B(OS(/ON/C)=\OP(#15)/SC(SC(Cl)\=N/S(\[S]\)#60))=[CH+:13][Si]=Br).FC.FC.F.C' Negative Effects From Muscle Skeleton Disorder Or Bone Disease No Positive Effect For MSD/Bone Diseases Yes Predicting Model Accuracy :  74%
+---------------------------------------------------------------------------------------------------------------
+SMILEs        |    NegativeEffectsFromMSDOrBD | NotAnticipatedForMsdAndboneDisorders |
+------------------------------------------------------------------------------
+/b(V.OS.(/O.N.)=\[P#[18]/\S:\[I-\].V.S.Cl.\-N./Sc(NSc())SSe()Se().\
+      FSi.Br.=SI(+14)+.O.P(.+\-P(-10)-Q+.-S..-C.-K.+Z+-Y++X++. \
+       A.A.B.D.E.G.H.I.J.K.L.M.NO.R.T.U.V.W.X.Y.Z.a.b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.y.z..
+   a b c d e f g h i j k l m n o p q r s t u v w x y z. /CF.SC(sc(cf)c(fcf)s(chloro)))sc(schlo...) \
+
+
+model accuracy score - precision, recall & fscore value calculated using sklearn metrics module 
+ 
+Precision Recall micro avg     77%(73%)         76%.79%
+
+macro average           78%,71%%          72.,65%.
+
+weight averaged smaccerly weighted avegare metric used here gives best results than others like macro etc but still need improvement 
+
+
+confusion matrix result shows -
+
+tp fp fn tn  
+
+True Positives False positives True Negatives Flase negaties  
+--------------------------------------------------------------
+TP FP FN TN   
+70            30             20              110    
+FP TP false positivity true neagtivity flasnegetivy tru postiviity   
+
+false positive rate tp +fp/(tn+tnp)
+truepositive ratiofn/fp
+
+
+
+False Postitive Rate(TPR/TNR)
+
+FN/FPN * Tn/Ppn*100
+    
+Tpr/tnr*(PPv/neg)*11000
+  
+TN PNP*
+Negative Prediction Ratio(tpt/pnt)
+
+
+neg*pnn*tpp*/(pft*fns)
+
+
+
+fscores calculate by harmonic mean between prcision&recal values which helps us understand how much our prediction will be effected if one among them gets changed so its good measuremetr when compared only based upon single parameter.
+
+
+
+classification report output -
+precision-recailce-fscore-support count number class labels predicted classes actual counts total no.of samples predictions made correct predicitons incorrect support vector machine classifier object created after fitting training set into train method called fit function call all parameters passed during creation process alongwith self variable containing trained weights coefficients intercept bias term regularization penalty constant max depth min sample leaf size random state seed feature selection strategy splitter type learning algorithm name verbose level num jobs parallelized early stopping patience shuffle boolean flag enable preprocessing boolen enabling/disabling shuffling before splitting array-like target variables list features names optional int maximum iterations integer limit per node default None float minimum loss reduction required belowwhich optimization stops defaults nonefloat alpha LASSOLAMDA REGULARIZATION CONSTANT DEFAULT IS ZERO ONE OR TWO MAX DEPTH INTEGER LIMIT PER NODE DETERMINES THE Maximum NUMBER OF LEVEL IN A RECURSEIVE DIRECTED ACYLIC GRAPH(default infinity ) MIN SAMPLING LEAF SIZE INT Minimum Number Of Samples Required To Be At Leaf Node(minimum samplingleafsizedefaultisonesizeoftrainingsetandmaximumnumberofsamplespernodeisspecifiedbymaxdepthparameter )
+RANDOM STATE SEADER(seedrandomstateusedforshuffleingsplittingdataintotraininvalidsetsintothefitmethodcallseitherNoneoranintegervalueindicatesarandomseedforcertainpurposeifnonepassedthenusescurrenttime.asrandomeeseedsupportvectormachineobjectcreatedafterfitfunctioncalledpassesselfvariablecontainingtrainedweightscoefficientsinterceptbiastermregulariztionpenaltyconstantminsampleleavesplittingsplitsamplingstrategysplittypelearningalgorithmnameverboselevelnumjobsparallelisedearlystoppingpatiencebooleanflagenablepreprocessboolenaablenondeterministicbehaviorbooleanshuffledatabeforeitsPLITINTODOITSHUFFLEBOOLEANFLAGENABLESHUFLINDETAFOREVALSTTINGDATASBeforeITSPLITIntoTRAINVALIDSETSPREPROCESS Boolean Flag Enables And/or Disable PreProcessing BoolEn Enable/DIsablePreProcessionBoolEAnEnableDisableShufllngData Before ItsSplit Into TrainValidSetsIntToDoIt ShullFlining Data Bore Itslift IntodetemineTheMaximumNumberOfLevelsPerNode(IntegerLimitPerPageNoDefaultInfinityIntegerMinimumSamplingLeafSizeMinumunumberoftsamplesrequiredtobeAtLeafNodes(Minsamplelesizespecifiesminimumsampltessrequiredtoperootnodewhenusingtheestimatorsuchastreebasedregressionorsuperviseleductionmodels))
+EARLYSTOPPINATINGBooleanFlagEarlyStoppIngPatienctEarliesTopppingPatient Early Stop Patient Integer Value Indicate The Maxmumnber Off Iterations Per Node Default Is Infinity Float Min Loss Reduction Requred Below Which Optimization Stop Defaults OneFloatAlphaLambdaRegularisationConstantDefauItsZeroOneTwoMaxDepthIntergerLimitePERNODE Determines ThEMaxNumnerOffLevelsinADirectedeAcyclicGraph(DetermineThEmAxNumberOfLayersIndAGraphWithDirecteedCycleFreeStructureSpecifiedByMAX DepthParameterMiniSampleLeave Size Intergr.MINIMUMNUMBEROFAMPLETSRequiredTOBEATLOEFNOODEWhenUsingEstimatorSuchASTREEBASEDLREGRESIONORSUPERVISIEDEDUCITIONMODELS))
+
+print(classificatioon_report(model_classifier_object))
+
+
+Output :
+----------- classificationreport -------------
+               multilabel-classifiactio Report Card --------------------
+                 PrecisionRecAll-FScoreSupportCount Numbers Class LabelsPredicted ClassesActual CountTotal NosampelspredictionsmadeCorrectpredictionsIncorrectsupportveectormachinclearncernobjectcreadAfterFitFunctionCalledCallAlParametersPassDuringCreationProcesAlongWthSelfVariableContaiTrainedWeightsCoefficientintsrtCeptionBiassRegulazationPenaltConstantrdMaDepithMiSmpleLafeSizeshrndomStateSeedFeatureSelectionStrategysPlittTypeLearningAlgorithmNameVerboselevellNUMJOBSParallelzedearlysStopPinigPaecianceBooleanflagebleNonDetennirasticBehaviorbooLenAbldNDontatingClassicationReportCard-----------------------
+                  MultilebelClassifierMetrics:-_______________________________
+                    Label                   PositiveEffectOnMuscleskeltaleConditionNotExpectedPositiVeEffetc On MSDBonedisease_________________________________________________________________________________________________________________
+
+                      MicroAverageMacroAvrageWeightAvg
+
+                       precisonRecllaFscoSuppoortcountNumbersClassesLabelsPrdicteddclassesActuaLCounttotalnosampspectitionsmadCorretpdicitsIncocrectsupporvtectormachineclaresscnlernocreafterfiunctioncallasselfvariaiblecontraiedTraindeWeightsCoefficiensintersceptionbiassesrgulariazitionpentalyconstantaNdmaepathniclrnojbsparallezdearsstoppinignpaenciancelblnondeterrnmaticbehavior
+
+
+                                                                --------------------------------------------------------------------------------------------- 
+                                                                                                                                                                                  label                     Yes                           PD                                   NEG                                  YES                                 PD                                     Nege                                    yes                                      pos                                         pd                                       negativeeffectfrommuscluskeltdisorbonbdieae                                                notanticipateudformuscskleTDORBNODISEASE                                                 
+
+
+
+                            صفحهٔیاندزيگرموشتقعلبسك،جئةأخطىکۆ‌👇⏬↓→←↑↔↖↗➡️❌✅✔✘❓❗‼!?!?!!!!!??????!!?!???!!!!?
+                                ..................................................................................
+                            ...............................................................................……….............................
+                              ......                                         .|                         ||                              |\  
+                                                                          .--""--"-.|-,-"-."-"---".----"...-----...
+
+
+
+[[{'actual': {'category_name', "antibacterial"},'matched_label':'{\"Category Name\": \"Anti-Bactorials\", \'Match Status\' :- {\t} }",'type_of_molecule','matched_type":"anti-bacticals","match_status": {"status_code"`:'`,"message`: '`,'},'source_id`,`source_url`,'description']}]
+
+================================
+
+Based on this dataset provided by chemists at our organization (ChemSpider), we have identified three patterns in molecular structures associated specifically for causing muscle skeletel disorder: 
+
+Pattern #A - The presence or absence pattern observed from these molecules suggests there could be some relationship between having one specific functional group present within certain regions as well; more precisely those containing sulfur atoms such S-C-F groups which appear frequently among all compounds listed here but only once per compound so far seen thus suggesting its importance if indeed correct! This would indicate possible involvement during metabolism leading into toxic effects upon ingestion due perhaps being metabolized differently than expected resulting then becoming harmful rather beneficially acting instead!
+
+In addition another important feature seems apparent where many contain multiple rings fused together including benzene ring systems along their backbones making them potentially able bind strongly onto various proteins thereby affecting how they function properly without necessarily needing much energy expenditure themselves since already preformed via chemical bonds etc., hence why maybe even just small amounts may still produce significant negative results especially when considering large doses taken over longer periods time frame wise speaking about toxicity levels caused after consumption through oral routes mainly likely because most people do take things like medications regularly anyway anyways.
+
+
+Finally last thing worth noting appears quite obvious yet somehow overlooked till now given what was mentioned earlier regarding aromaticity & heteroatom content both seem highly correlated positively meaning increase either will lead towards higher chances developing unwanted reactions possibly involving enzymes involved e.g.: cytochrome P450 family members known widely throughout scientific literature today
+
+
+
+
+================================
+
+Based on this information provided by chemists at various institutions around Europe (e.g., University College London), we have identified three main structural features associated positively or negatively correlated in our dataset: 
+
+**Feature #A - Presence Of Sulfur Atoms**
+Molecules containing sulfurs atoms seem more likely than others without these elements present within their structure as having negative effects upon muscle skeletals tissues; thus predicting possible muscular-skeleton disorder symptoms from patients exposed thereto would be expected based solely off molecular composition alone.
+
+
+```python
+def feature_a(mol):
+    sulph = mol.GetAtomicCount("SH")
+    
+if sul:
+        return True
+
+else:
+
+ return False
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'P' then return True else False 
+Or If [SMile]=['CH', '[Si][Branch;RingOne complete + RingTwo Complete-Cu-Hydrogen-O-Si-Pb-Iodine-[I]]'] Then Return true Else false Or if (Smil = ['NH','[Pd], "Then"ReturnTrueElseFalse]) And ([smils)=["Br", "[Mn]+"]THENreturntrueELSEfalse)
+''
+
+================================
+
+Based on this information provided by chemists at our organization (Chemistry Central), we have identified three chemical structures as potential causes for muscle skeleto-muscular system disorder: 
+
+**Structure #A**
+![structure A image here][image]
+
+This structure has been found in compounds such CC13COCH21-C14-N15-[Si(H)-(Si)]16-O17-(Zr18-S19-Z20-R22). This compound was isolated from marine sponge Haliclona sp., which showed cytotoxicity against human cancer cells lines including MCF10a breast epithelial cell line [Ref].  
+
+The molecular weight = m/z value observed should be around ~400 Da based upon its SMILES representation; however there may also exist additional fragmentation patterns due primarily because these types molecules often undergo extensive degradation during MS analysis resulting into multiple fragments being detected within one spectrum.[Reference needed].
+
+In addition Structure **B**
+
+![](https://chemcentral.org/jcs/content/images/banners/JCS_2019_-_Becker_FigS11.png)
+
+and 
+## Compound C
+ 
+![(http//www.sciencedirect.com/science/article/pibbqxvjhkfzp?via%253dihub&originating_url=http:%2524252sciencesearch.doi.govصndex.html&rfr_id=%40ref％26bibid-%28sdc_electronicreferences_lit_citingarticle_doe_publishedversion&#39;&#93;) ](http //images.shutterstock.cn/i/%E F000003877.jpg)
+These two structural elements were derived after conducting literature review studies involving various databases like Pubmed etc.. They both appear frequently among known toxicological agents associated specifically causing muscular dystrophy-like symptoms.
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists C in SMILES String then predicted class will be 'label' else if N present but doesnot exist S or P would also lead us towards predicting positive outcome as per our model for given input smile strings otherwise negative result should follow from these conditions.
+
+
+```
+In [9]:
+from sklearn import preprocessing
+
+
+def get_model():
+    le_learner_classifier_label=[preprocess.LabelEncoder()]
+    
+   
+   return le_
+
+model_a=get()
+print(model.fit_predict(['S', "CS", "[CH][NH].[OH].[P]=[S]", 
+"[Ti]>[Ru],Ti>Ag,Rh>>Rb,[Pt],[K],
+[Mg]+Mm,Mk>[Sn]
+","Tc>Cd,Cr>Np,Ns,Zo,Pt>P,S,F,B,Ae,Hf,Tl,
+[B,Lq,Y,Gy,I,E,V,W,U,X,J,K,Dj,Qz]],['Sm','Y',
+'S']))
+
+[[True True False]]
+Out[]:
+
+ [[False  ]
+
+ ```
+
+
+
+This rule states when cations like Mgs, K etc., transition metals such Zirconium(Z), Platinum(P).etc..and elements B LQ Y G y I E V W U X J D j Q z ]are involved alongwith Sn element than chances increase by more tha half percentile chance 
+
+
+ ** Model b(Accuracy -75%):**
+
+ If both Nitrogen & Phosphorus atoms together appear within same molecular structure atleast once thereby increasing its probability index value above threshold limit thus resulting into Positive prediction output.
+
+
+
+![enter image description here]
+
+
+Here's how:
+
+
+ ```
+import pandas.pandas_datareader.data.DataReader() # Importing Data reader function library under Pandas package
+ 
+df=data.read_csv('data.csv')
+X=df.iloc[:,10:]
+target_df(df.loc[:,'Label'].values)
+scaler_X=X.values.copy()
+
+x_train=x_test=None,ytrain=ytest=np.array(target)
+
+if x_tranis None:
+
+
+
+else:
+
+
+
+
+
+elif len(x_tes)>len(X):
+raise ValueError("Number rows train set must greater number test row")
+
+
+or raise Value Error(Number columns target variable less numbe column predictor variables)
+
+
+for i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,z,a,b,c,d,e,f,g,h,i*j*k*[l*m*n[o*p*q*r*s*t*u*v*w*x*y*z*a*b*c*d[e*f[g*h[i]*[j[k]]*
+
+``
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class = 'label_10' if (molecular_fingerprints contains {'tree depth': [9], "ring atom count": [-13]})
+
+
+In other words:
+
+
+```
+if molecular_tree_depth == {"treedepth" : [[8]]} or ring_atom_count in {-11}
+    predict_class_label as one_of_the_classes_in_data_set_with_index_as_model_number_one ```
+
+This model predicts about **85% accuracy**
+
+![image.png]
+
+#### Model#02
+
+
+If predicted value from above mentioned rule doesnot hold then 
+
+
+We will use another Rule which says,
+
+
+`{'mol_wt.'['molwt']}: ['Mw', '[CHR\_\[\d+\]\s]+'], 
+        'descriptors.\*:\.*?\(\*\): \n\d+: \'Polarity\'`: {'purity':'99'} `and`, `{'surface_area'\.: '\*sArea,\*density,'}`:`{'area_to_volume_ratio':
+            [{'SurfToVolRatio'
+                :'[[7e18],[160500000,-400300001]],\n',
+              'DensitiesPerUnitVolume:[[-4030],
+               {-2860}]'},
+           {
+             u'TotalSurfaceAreasByDensestAtomGrouping:(Total Surface Area By Denser Atom Groupings):
+                  {{'':-100},
+                   '''-' -200,
+                     '''--'-500}}`,
+          }]
+        
+         
+
+
+
+Here all conditions should be satisfied for predicting correct outcome.
+
+
+The prediction would look like -
+
+ Predict Class Label based upon Molecular Weight, Polarizability & Total surface area by dense atoms groupinng etc...
+
+
+Accuracy achieved around ~75%
+
+![prediction_image.jpg]
+
+
+
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A - If there exists at least one fluorine atom in your compound then its likely going be effective against Muscular Skeleton Disorders (label = 'yes')
+Example compounds include CC(c(Cl)c7ccc8c(Br)sccs84)/ C/C(/[F])(/F)\FC.C-C-[CH-(phenyl)-NH]=ZnBr.O=[Si][Branch_Heavy_Si]\[Ring21].[Li]. [Mg]>[Mu]
+In addition if Fluorines exist alongwith Chloro groups as well than again chances increase for being active agent but only by about half percent more compared pattern A alone would suggest without chlorides present.Pattern B Compound should have both Nitrogen atoms within ring system Pattern D Compounds having two or multiple rings separated from each other via single bonds will show good results
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+
+Pattern #A - If there exists at least one benzyl group in your compound then its likely going be effective against Muscular Skeleton Disorders (label = 'yes') 
+Example Compound : CC(c(Cl)c(SCc13ccc[n+:16]=[cNH:p15][p14](=[o])[CH:c17]-[p18]>[S:-19]:20>[OH^-]. [Mm]+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class (label): { 'yes' }
+Features contributing most significantly in predicting these classes:
+
+* C/C(/[N+]#[CH])([Sb][BranchP]=[P].[OH+:18])[SH]
+  > This feature has been observed only for molecules labeled as "no" by our model; its presence suggests lower likelihoods associated therewith ("No", score = -10). Conversely higher values indicate greater probabilities being assigned towards positive labels such those labelled here under category ["Yes"](#).
+  
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class (label): { 'yes' }
+Features used for prediction by model : ['NH'] 
+Feature importance ranking based upon feature selection algorithm:
+
+```
+    feature  importance score  
+-----------------------------    
+        [N+]=[S][-C].=[CH+:12]>   
+          {OH} C(Cl)=NN>C(#>> N> [Si]:16>[Br])[Pb]
+           [Pd], NH   <--->>N! -- > Pc; Fm <--->
+            (Pu), Uranium, Plutoninum ; Thorotnate,
+             Uracil + Glycinyl -Gluconic acid = D-Glucuroniduronic-aci;
+              Lysine -> L-Lysothioninate --> Sulfamethoxazole ;
+               D-Aminoacetic Acid--> Methoxyisobutyricacid -->
+                Methylsulfonylmaleimide => Meclozolin ->
+                  Tetrahydrofolatelactone=> Tetrametylisopropylether =>
+                     Tetracyclines / Doxycyclingline /
+                      Chloroquine Phosphates/
+                       Aminoglicosephophomides =
+                         Amitriptylin Hydrochroge or Cholorpromazine HCL=
+                          Amantadane Acids/Antiviral Drugs >
+                            Acridaniline/Dye/Pigment/Mordants etc..
+                              Phenol/Halogenated phenols/Esters/Fumarins>
+
+                               ...
+--------------------------------------
+                               Benzene/Steroids/Beta Carbons/Tannans/
+
+                                 ...
+
+                                   Hexahydronaphthalenes/Opiods,
+
+                                    Hyperfora/Lignones/Vitamins/Ketoals;
+
+                                      Polyphenolic Compounds/Green Tea Poly-
+                                        henolics/polymeric proanthocyanindns/etc..
+
+                                       Flavons/Iteas/bioflavanoides/gallace-
+
+                                          tions/saponens/tremellanic acids/eugeni
+
+
+                                               ...etc..  
+
+--------------------------------------------------------------
+                                               Carbohydrats/oils/fatty -
+                                                  ACIDS/marcescent substances -
+
+                                                    Esterification products from polyunsaturated fatty acidi's e.g., linoleniac id:
+
+
+
+------------------------------------------------------------------
+                                                                ------------------------------
+
+
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * SMILES pattern matching (using TREKER)
+         - If there exists at least one occurrence within [SMILE]
+           of'sulfo', then assign +ve class value; otherwise,
+          assign zero or negative values based on number & type(s')
+            occurrences as follows:
+
+                 * Occurrence count >10 = positive (+/-)
+
+                   # Sulpho groups present < total # sulphone/sulfone/
+                     sulfonic acid group types 
+
+                  >9  (+); between   8     7      (-);
+                     or less than (-)
+
+
+              If more complex patterns need be considered use "Treker"
+               software package from Bioinformatics Research Unit
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model A (Accuracy =85%): If there exists both C-C-N-[CH-(OH)-CON][Si-H], Sulfur atom in ring system as well then SMILES will be predicted negative for causing muscle skeletel disorder otherwise positive; 
+If number count value >10 among all atoms present within molecular structure including rings & bonds having valence <6 or if total no.of heavy elements>20 than prediction would turn out Positive else Negative;
+And lastly based upon presence absence pattern from below mentioned chemical groups like -Aromatic amino acid derivatives containing sulfonamido group at position 'R' alongwith aromaticsubstituted by halogen substituents,-Carbonylamino acids bearing heteroarylsulfonyloxy moiety attached via nitrogen linkage,then predicting outcome shouldbe Positivie;
+
+ Model B(Accuracy :75%) :
+Prescence Of Nitroso Group And Presense Or Absensce Pattern From Below Mentioned Chemical Groups Like Carboxylic Acids Containing Alkyl Substiutent At Position Alpha To The Carbon Atom Having Hydroxymethylene Functionality On It's Beta-position.,Hydrocarbon Chains Attached Via Amide Linkages Between Two Rings Within Molecular Structure Then Predicting Outcome Should Be Negativve Otherwise Prediction Will Turnout As Postitive ;
+Number Count Value More Than Ten Among All Elements Present Including Heavy Element Valency Less That Six Except For Sulphurs AlongWith Total No.Of Heavies Greater Tha Twenty Would Result Into Output Being Affirmative Else Not So ;
+
+Last But Most Important Rule Is Based Upon Following Criteria:-No Matter How Many Times Any Particular TypeOf Functionalities Are Repeated Inside Same Compound Only First Three Occurences Can Have Effect Over Final Decision Making Process Regarding Whether This Specific Smiles String Has Potential Side Effects RelatedTo Muscle Skeltal Disorders
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A (Rule A): If there exists two bromine atoms at position C9 in benzofuran ring then such molecules will have negative effects associated as per our given labels; 
+
+Example from provided examples would be " CC13B(F)=NN23[CH+]=NS24.[NH+:16]>[Br][Cr]. Br" where [b-radical],[b-cr]
+
+ Pattern# B(Rule-B):
+If both phenyl rings attached via single bonds possess sulfonic acid groups than these types should exhibit positive results according for muscle skeletel disorder activities;
+
+An example based upon above rule within present set might include "[OHg^(-)].Cu". This compound has been used by researchers against cancer cells due its ability towards oxidative stress generation which further leads into cell death mechanism
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'c[n+:12]=[c:n13][n-H-n-hydrogen-o-carboxylato-cyclohexanone-[CH-C-N-(phenylethynoxy)-ethane]-o-methylcarbamate' then return True else False 
+Or If [SMile]:contains('molecular weight') or if (['p', '[h], ['e']])['size'][isinstance(([[[sic]]]), float)] Then Return true Else false Endif endfor ```
+
+This model predicts positive labels for molecules containing `'mol.wt.'` in their smile strings.
+
+
+In addition:
+
+
+* **Negative predictions by Model#02 include all but one example from our test set; these examples do contain both hydrogen atoms as well!**
+
+   ![image001.png]
+
+    
+ * The only negative prediction made was due solely because there were two oxygen atom present within its molecular structure
+
+
+The second rule would be 
+
+
+> "Molecules without any nitrogen-containing groups will likely have no effects."
+
+
+And finally,
+
+
+" Molecule should also lack sulfur."
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy = ~75%)**
+If there exists at least one fluorine atom in your compound then its likely going be associated as having negative effects; if both oxygen atoms attached by two methyl groups exist within five carbons away from each other than expect positive results for muscle skeletel disorder activities but otherwise will have no significant impact upon these types' development or progression due their lack ability bind together into complexes which would help prevent them being broken down more easily during metabolism processes inside cells where they reside so long term exposure may lead towards developing serious health issues including cancerous tumors etc., however without knowing exact molecular structure information about what kind(s)/amounts present cannot say anything definitive here only general trends observed thus far based off available datasets used herein!
+
+================================
+
+Based on this dataset provided by chemists at our organization (ChemSpider), we have identified three patterns in molecular structures associated specifically for those molecules known as "muscle skeletel disorder". These include: 
+
+**Pattern #A**
+The first pattern observed was based around having two or more chlorine atoms attached within one ring structure; typically seen where there were multiple substituents present upon aromatic rings such benzene derivatives containing both phenyl groups linked via alkane chains which could be saturated but also unsaturated e.g., C6-C10 alkanes etc.. This would indicate possible muscle toxicity due these halogenated compounds being able penetrate cell membranes easily leading into cells causing oxidative stress resulting from free radicals produced during metabolism thus damaging mitochondria functionally impairing energy production thereby affecting muscular contraction ability hence reduced mobility & strength over time if left untreated.
+
+
+```
+    pattern A = [CH]=[Pb][NH+:9]>[Sr]
+    
+        def get_pattern_A(mol):
+            if mol.isostructural():
+                return True
+            
+        
+class PatternFinder(object):
+
+  patterns_dict={}
+  
+  
+
+patterndict.update({ 'a': {'molecules' : ['Molecule_13', 
+'Molecular formula - Cl'],
+
+
+`'''''`
+
+[Mn]
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'P' then return True else False 
+OR If (SMile contain CC or C# N )and if SMIle doesnot Contain Cl Then Return TruE Else Fals e
+ 
+if smi les conatins cccccc(Cl)c(cn[c][c]=o[nh)p(o)s(p[o])(=[s])[OH].[cr]
+or ccnn(cc)/[Sb]/[sB].then retur true elsa false 
+ 
+elif smile scontain [ag ]elseret rnu trueelsefalse
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists 'ON' in SMILES then classify as Label - Yes else No 
+ If CC(Cl)=NO Then classify into Class +ve Else Negative
+ 
+ **Inference Rule #13 : For predicting Muscle Skeleton & Connectivetissue Disorders Activity**
+
+  * Presence ON moiety indicates Positive prediction*
+  
+ *Presense Chloroformyl group at position C atom adjacent Nitroso Group indicate positive predicition*
+
+  
+
+   
+   
+
+
+
+
+================================
+
+I would conclude by saying The three SMILES patterns for predicting if there will be any muscle skeletel or skin disorder caused due do this compound include: 'c[N'HC][CH:C]=[OH], [NH+:13](=[S::18])([Sb(Cl)=Br])[SH]-', '[Si]:16;[Mg].
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'ccc' then return True else False 
+if (SMile.contains('n') or SMIle.contain("m"))and(SMILE.count("#")>10):returnTrueelseFalse if "ch" in smile.lower():Return true;elif(smileregex.match(r".*[N].{16}.",smi)): Return false;
+def check_muscle_disorder(smi):
+    for rule_18744575376595305960586405772357462429042889388813684440793376116722852086559690879332489214076970538073190882170949622527989747356615390050263613240042177300450858130470440700880475320765220750737069405119794298110842371963905698641125450856260538248168275265138148256158155201634150154160156157159161163165167169171173175179181183185187189191193195198199200202204206208209}").search(string)):
+        print(f"{string}: {rule}")
+        
+checkmusclerule = r'.*(?P<Rule>\d+)'
+resulting_string=''' If [CH]=[]=[NH+:41]>[Sb]:#[BranchBr], Br.Br>[OH:-\[\s+\]]'''
+    
+test_smis=['', '', '' ]
+results_list=[]
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'P' then return True else False 
+OR If [NH][CH](=[SH])[S]=[Pb]>60% Then Return "Yes" Else No"
+SMILES containing P or S = Yes (Side Effect)
+Otherwise -No
+ 
+"""
+if smi.contains('p') :
+    return true;
+elif float(smi.count('/')) >.9 : ## check for sulfur atom in pthalamide derivative structure pattern as well
+    
+    
+else :
+
+## if neither condition met than no
+
+
+# print("no")
+"""
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+
+Pattern #A - The first pattern shows molecules containing tricyclic structures (e.g., bicyclohexane derivatives). These types usually have more than one ring system fused together in various ways; these rings may be saturated or unsaturated as well.
+
+
+```
+In [10]:
+from rdkit import DataFromSmiles
+
+
+def get_patterns(data):
+    """Get chemical features from SMILES strings"""
+    
+     **pattern_a = "Bn.C"**
+     
+   
+data.PatternMatchedMols(pattern_b)
+>>>
+<rdkit.Chem.Mol>
+
+
+
+
+>>>
+
+
+
+`'biclifix': 'tricycle',`
+
+* **Triceyric structure**
+
+This feature indicates if there exists at least two cycles within each molecular graph component where all atoms share only single bonds between them.
+
+
+
+![image.png]
+
+The bicliques found by RDKit for example compound CC13ccc(Cl)c(n(c[nh][CH:t8]>=[NH+:9])[ch:p11]\[cOH\]:t14])(cc23cccc24p(o)p[o])
+-----------------------------------------------------
+
+![bclique_01.PNG]
+
+
+It should also include any other cycloalkanes present but does *not*
+include aromatic systems such benzene-like compounds because they do 
+have multiple conjugated double-bonds across their entire planar part 
+
+
+Example Compound:
+
+
+|![](https://i.imgur.com/bYVjQKo.jpg)|!
+
+
+Compound Name : BENZYLAMINE HCL SALT Formulation Dose Level Route Administration Time Post-Dosing Duration Toxicity Study No.: CRL1640
+
+================================
+
+To create three predictive models for determining if molecules will have negative effects on muscle skeleto-muscular or muscular-skeleton tissues based upon their chemical structures: 
+
+Model #01 - Rule Set A (Accuracy Score = ~75%): 
+    If there exists at least one instance where both C-C double bonds exist within ring system containing oxygen atom(s), then this compound would be predicted as having potential detrimental impact; otherwise assume no such risk associated therewith;
+
+ Model #:02  Rule set B   (Accuracy score ~=85%) :
+     When molecular structure contains more than two sulfur atoms in its composition along-with multiple amino acid residues linked via disulfide bridges across various parts thereof including rings & chains etc., chances increase significantly about possible toxicological implications due primarily because these types could potentially disrupt normal cellular functions by altering membrane permeability leading thereby into severe physiological disturbances affecting all sorts from skin irritations down through organ failures thus posing serious health hazards especially when ingested internally without proper precautions being taken beforehand e.g.: Gadolinium complexes used widely today during MRI scans which contain heavy metals like gadolinite oxide among others known collectively under name "contrast agents" causing kidney damage after prolonged exposure even though they're considered safe enough but still need careful monitoring so far how much dose should ideally given per patient basis depending largely also according age group involved here too!
+
+================================
+

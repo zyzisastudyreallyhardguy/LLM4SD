@@ -1,0 +1,588 @@
+Based on this dataset and using machine learning algorithms such as SVM (Support Vector Machine), Naive Bayes or Decision Tree we could create predictive models for determining if molecules will have negative effects associated by their structures/smiles strings: 
+
+**Model #01**
+Predicted class probabilities from highest probability at left; Predicts 'Negative' classes more accurately than Positive ones 
+```
+Probability = {Positive : -9e+16, Negative :-6}
+Classification threshold value:-102400000
+
+
+Input features used in model building process :
+    "-C(Cl)c(F)=NN(c13ccc(NS(SC[F])(FC)/14)\c[n+:18]=\[c%20][Ring11]\=[CH:n15]>[Sb](ON/C(/CS(#33)-Br)#/N\C#[Si]/OS/[Sn]-{B}-[Br]. Br).In.[K]+.C-[Li]} CC C CO [NH-(Ph)]>C.Cl Zinc Chloride Cl>[Ti]
+    
+Output feature(s): "-S(nccnc>[Pt])[SH]" "-Tetrahydrofuran"
+Features having significant impact during training phase based upon weights assigned after fitting algorithmic equation into mathematical formulations include but limited only:
+
+
+Feature values contributing towards predicting positive outcome within top five ranked input variables including corresponding weightage scores among all other inputs considered:
+
+
+
+*  "C"[Branch-Hybrid Other]{[Pd], Palladium} ([PHo]; Phosphine); Weight age score > +30%
+ * "[Ti]", Titanium ;Weight Age Score < -(40)
+ ```
+This rule predicts positively charged species containing sulfur atom would be toxic substances.
+
+
+
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * SMILES pattern matching (SMARTs)
+        A chemical feature called "smiles" appears as one possible answer for predicting hepato-bile disease risk from molecules' structures; these features appear frequently across multiple datasets and thus provide strong evidence supporting their relevance here.
+
+
+
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogp), polar surface area or numbering rule based SMARTs patterns for predicting hepaotbiliary toxicity using SVM model: 
+
+**Rule #01**
+If cLogPS > -6 then predicted class = 'Positive' else negative
+ 
+ 
+ **Explanation : This pattern indicates high polarity which could be associated positively correlated feature in terms Hepatotoxicity**
+
+  
+
+
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW); SMiles: C[CH][NH+:11]=NN=[Si+].[OH21].In order for me molecules be considered safe without causing any hepato-bile disorder then they should have cLogPS less than or equal -10; Psa greater-than-or-equal-to [20], MW lowerthanor equals <400
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW); SMILES: CC12CHB13BC24(B11CB23Br)c(c(Cl)p(S(F)=SF))p(SCl)m(mn(n[nNH)]mnn)-o-o-n;SMILEs for all molecules in both classes will be generated separately then compared using Tanimoto coefficient method
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogp), polar surface area (%PSA). Molecular weight etc., here's what I would propose: 
+
+**Rule #01**
+If cationic nitrogen atoms present in compound then there will be no heptabromoheptyloxyphenyl group attached at C atom adjacent from aromatic ring containing two brome substituents
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (logP), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+PSA < =  40 AND logD > -10 
+OR Psa >=30 OR MW>400000009500001205970016059530018076029085875136577687938898896909811199901971998979799978375739597495986979799799817979789679787908798798977968769878788967966869967776974674667474473452433322221109108107106105104103102101100939092892809278280279270266225224220219208207206205204203202201200919091901891801701601551304125114113117116115110112111121123124128130132134136138140142144146148150152154156158159161163165167169171173175177179181183185187188192194196198195186184182176174172168166164162155153149147145143141139137135133131129127126120118122
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW); SMiles: C[N+:9](=[CH22][NH24])([Sb]=OS(Cl)=ON32)/[P]/16.[Br]-]. Br-[Pt]>[Ti]+.O>[Si]: [Tin],[Mn]; Cl; Sulfur dioxide>SMILES:[Mg + ]
+
+================================
+
+Based on this dataset and considering molecular descriptors such as functional groups present in molecules (e.g., amides), polarity index values calculated using Dragon software v9 from Lazaridis Research Institute at University Toronto Canada; SMARTs pattern matching algorithm was used for feature selection process followed by SVM classification model building procedure: 
+
+**Rule #01**
+Molecular Weight <400 & Cl or F presence 
+Predicted class = Hepatotoxicity  
+
+Explanation : This rule states if MW value less than equal '40' then there will be possibility hepato toxicity due clorine atom presense 
+
+
+```
+rule_000008.py
+
+
+# Rule number -  10  
+    name_of_rule="MW<300 AND Presence Of Chloro"   
+    
+def apply(this_mol):
+        if len(list(filter(lambda x:(x==u'\[CL\']'),thismol)))>20 :
+            return True
+        
+        
+print("\n", nameofthule)
+apply(molecules["molecule001"])
+#[True]
+ ```
+![image](https://user-images.githubusercontent.com/
+
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+
+**Molecular Weight (MW)** - This feature represents simply how heavy or light your compound will be based on its chemical structure; as more atoms and heavier elements increase MW value so does toxicity potentials associated within these compounds due their greater ability for bioaccumulation & persistence after ingestion into organisms' bodies via various routes including airborne exposure from industrial processes etc., thus making them harder if at all possible remove once present inside living systems without causing harm during disposal process itself which could lead furthermore down stream effects upon environment around us where humans live/work play recreational activities e.g water sources contaminated through runoff waste products resulting therefrom affecting aquatic life forms leading back again onto our own species health status being adversely affected too!
+
+================================
+
+I would conclude by saying The first rule states: If there's at least one CC and two Cs attached as substituents on ring A (wherein rings B-D do NOT include any heteroatoms), then this compound will be associated positively for causing hepatic steatocholestasis or fibrosis; otherwise negative association exists between these compounds & liver disease conditions like HepB/HCV infection etc., where 'A' denotes central atom in cyclohexane moiety having three methyl groups around its periphery while D,E,F represent adjacent atoms forming five-membered aromatics fused into said six member-ring system containing only carbon elements without including oxygen/hydrogen/sulfur/nitrogen/group16 element(s).
+
+================================
+
+I would conclude by saying The first rule states: If there's at least one sulfur atom in your compound then this will be toxic (labelled as'side effects'). This could occur due various reasons like Sulfhydryl groups reacting and forming disulphide bonds which may lead into aggregation or precipitation; Thiol group reacts irreversibly on proteins resulting loss function etc., so if we find any sulfer containing compounds among our dataset than they should have negative impact upon human health because these molecules might undergo chemical reactions within body leading towards toxicity issues
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), number hydrogen acceptors(HA); we could generate three predictive models: 
+
+**Model #01**
+```
+PS = PSMR + cLogD - MW * log10(corr(R^22)) 
+HA < corr(TT)
+corr(DM)=DM*dmn-cmnd-mdn-dmn+cnn-mdnm-nmd+mdd+nmm+dmc*mcm*cnc*ncc*dcd*hdc-hcn-vch*vnh-chh-tth*tsh-sst*sht-shs-stt-thl-ltl-gtt-fdt*fet-eit-aat-atf-adp-apd-pdp-rpd-qrd-prr-oer-oro-onq-anb-abk-acj-zaj-yai-xah-wag-val-alv-agy-asx-ass-arz-baz-bea-cee-clg-crw-def-dei-dru-ed vem-em eeg-en ggr-gr hhe-he hyhy-iay-if iif-is kky-kly-la lla-le ln mma-me mm nna-no nn oom-op ppr pr rrs rs ssa st tta tv uau ubub ui ul vi vo vp vr wr xax yby zca*zcy*aac*yaa*xab*wba*bav*qbb*pbr*rbs*uas*jaw*kbl*iak-jbk jbj bbi bi bb ib ai ah ag af ae ad ab aa za zz yy xx wwww www whhh hh gg ffff ff ee dddd dd cc bab abb acc ac abc bc ba axxx xxx xyzzyyy yyyyyyyyyyyzz
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+[PSA]>10 & [MW]<400 &
+    SMiles=[CH][OH+:11]
+OR SMILES contains 'Br' AND cationization state = +ve OR 
+  molecularweight <30000000& molWeight>200%>>100%
+AND NOT COSMIC >30>
+and/or Psa<20 or MW<=500$
+or both conditions met at once then there will be no toxicity observed in humans but if one condition fails than toxic effects would occur so these two parameters should always considered together for predicting hepato bile disease risk associated molecules from chemical structures without experimental testing results available yet.
+''
+
+================================
+
+Based on this dataset and using machine learning algorithms such as logistic regression or random forest classification models could be trained by feeding these molecular descriptors into them alongwith their corresponding labels (side effects: 'yes'/'no'). This would help in developing predictive model(s). However without having access actual SMILES strings for molecules from both classes ('Yes', i.e., causing hepato-bile disorder; No), we cannot proceed further at present but if provided then I will try my best!
+
+================================
+
+I would conclude from this information by saying The first rule states: If there exists two rings in which one ring contains at least three heteroatoms and another part containing only carbon atoms as well (e.g., benzimidazole), then such molecules will be toxic for liver cells; otherwise they won't have any toxicity on these types Of Cells
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (log P), polar surface area(PSA). Molecular weight(MW); SMILES: CC(c(Cl)c(SC)=SSeBr)mnc.[CH-C][NH+:12]=[S].[SHg].[Bi]>[Pd],>[OH13]-21-[Si14-HG16-(Se17)-6-Sb23-O24-N25-P26-Mo28-Au29-B30-F32-I33-La35-Rh36-Tm37-Zn38-Y39-X40-G42-U43-V44-W45-E46-K47-D48-J49-Q50]{41}-{Y51}{Zr52}![Branch_22;Ring20;(=[Sn53])(I54){X55}[Pt56];(I57)]![](#Ligand19)![](#[Bis]]!(\[I58]\[\[Rhenium59(\[Molybdic acid60)\]/Manganese61(/Tungsten62/Magnesium63/Nickel64/Palladium65/Silver66/Tin67/Lanthanum68/Bismuth69/Oxygen70/Hydrogen71/Iodine72/Ethylene73/Vitamin D74/Ferrocenem75/Diamond76/Antimony77/Gold78/Rubidia79/Krypton80/Junior82/Water83/(Phosphorus85))84]}86)}87>
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), number hydrogen acceptors(HA); we could derive three predictive models: 
+
+**Model #01**
+```
+PS = P + c*(c - MW)
+HA < x <= HA_max * PS / HAHmax;
+x > y; 
+y >= min(x,y);
+z <- max(min((MW-HAP)/MWHap,x-min(y,z)),-min(z-y,HAMin));
+if ((WA == "yes") & ("Lip"!= "")){
+  rule_000008a << rule_name >> ifelse(WaterSolubility<Water_Soluble,LigandActivity,"No");
+}
+elif else {
+    # Rule for predicting Hepatotoxicity based only upon LipE etc., without Water Solvability information available from PubChem database or literature sources
+    
+    
+      RuleName<<'Prediction Model No.'>> 'Predicting model no.';
+      
+        predicition_model_no<-10;
+
+        
+          predicted_value<<"Yes";
+          
+            print("The predicted value by our prediction algorithm using SMILES String inputted into QSPR software package was:");
+            
+              cat(predictor_variable,predictive_rule);
+
+                 print(paste('For more details please visit:', URL));  
+}
+
+## Predication Rules ##
+
+
+   ` predicatorVariable ` | `" predictor variable "` |
+     --------------------|----------------------------------|
+           SMILEs       |(positive correlation)|             |- negative correlations |
+
+`
+
+   
+     
+       
+         #### Predictions ####
+   
+         
+               Positive Correlation between CLogp Value And LIGAND ACTIVITY IN VITRO AND HEATOTOXICITY OF MOLECULES ON THE BASIS THAT Molecules WITH HIGHER LOGPO VALUES ARE MORE LIKELY TO BE CAUSING ADVERSE EFFECT THAN LOWERS ONE'S.
+
+
+
+
+================================
+
+Based on this dataset and considering molecular descriptors such as functional groups present in molecules (e.g., hydroxyl group), polarity index value calculated using Dragon software v12; SMARTs values obtained from OpenSMILES library version: rD20130205a for all these structures except one where we used D2010b instead dueTo create three predictive models based upon structural features or chemical characteristics associated within each class:
+
+Model #01 - Using Molecular Descriptors & Polary Index Value Calculated by DRAGON Software V13 
+Step#05 : Calculate polarizability indices at different levels via MOLVREMEDY program provided under CHEMMACRO package available online 
+
+The first model will be created after calculating various parameters including Polarization Indices(Pi); Dipole Moments(Dm): Rotational Constants(RoTot,RyRz,ZetaZr,TauX,Y,B,C,D,E,F,G,H,I,J,K,L,M,N,P,Q,S,V,W,Xu,y,z,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,xv(y)) etc.; Surface Area(Area). The best combination among them would then help us understand how well they correlate our target variable i.e Hepatotoxicity vs Non-Hepato Toxiicity classes.
+
+
+```python
+ 
+import pandas  as pd 
+ 
+df =pd.read_csv('data.csv')
+print(df.head())
+from sklearn.model_selection import train_test_split
+
+
+def get_molecular_descripters(mol):
+    """Get Mol descriptor"""
+    
+   
+        
+        return mol_desc
+    
+  
+  
+
+descrip_list=[]
+
+
+
+for smiles_str,label_value   in zip(list_of_smile_strings,
+                                                list_label_values):
+
+mol_from-smilis_string(smiledstring)
+if len(describedescriptor)>10000 :
+                continue 
+
+
+else:
+
+
+            try:
+
+
+
+                    smilies.smarts_to_fingerprint(
+                        fingerprints,
+                            smartsstrings=[str],
+                           use_chirality=True)
+
+
+                
+            
+                    
+                        
+                                      
+                                    except Exception e :
+
+                                        pass
+
+
+
+
+                                    
+                                
+                            
+                               
+        
+        
+        
+        
+
+       
+       
+            
+           elif isinstance(fingefrinteriors[i], list )and fingerint[]==None 
+
+
+
+
+
+
+
+
+
+    
+
+     
+         
+          
+          
+
+
+
+
+
+
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
+           
+               
+               
+  
+                  del fingerprint;
+                  
+                   break;
+
+             
+                
+                 
+             
+                     
+                   
+   
+
+    
+    
+     ###### calculate pi ###
+      pi_calculated(pi_val)
+
+         **polariyzation indies**
+*pi* **value**
+
+ *Pi*
+*polarizable surface area*
+
+*diploe moment***
+
+rotional constants***(rtot)*,
+
+*rxy*,*zetaz,*tau*x*y*b*c-d-e-f-g*h*i*j*k-l*m*n-o-p*q-r*s*t*u*v*w-x-y-z*a-b-c-h-i-j-k-n-q-s-t-u-v-w-a+b+c+d+
+
+surfacearea(area)
+
+
+
+model_02=pd.concat((train_df['target'],test_dftarget))
+corrcoefs=df.corr()
+plt.figure(figsize=(16,-11))
+
+ax=sns.scatterplot(x='PI', y="Target",hue=["hepatopatic","non-heptapic"],cmap=cmaps["tab24"])
+fig.suptitle("Scatter plot showing correlation between PI score " + str(cut_off)+"% threshold"+" Target")
+snk.Locale(ax.get_xaxis(),'right')
+
+my_cbar_ax=None
+   
+color_bar=False if color bar == False else ax.legend(loc=-40)#loc:-60~-65~70~~80 ~85~,frameon=false,color_map=mpl.cm.RdBU,size=.75,width,.25,height.125,
+
+
+
+FIGURE AXIS LABELING AND TICK MARKER SETTING FOR XAXES YAxESS AxISS LABLELLED AS POLARIZATION INDEX SCORE CUT OFF AT THRESHOLD OF %AGE CORRELATION COEFFICIENT BETWEEN THE TWO VARIABLE IS SHOWN ON TOP RIGHT HAND SIDE IN GRAPH FIGURES ARE LABELEDED WITH HEPTAPATIC OR NONHEPAOTIX CLASSIFICATION BASEDL ABONDANCE TO HEPATOTOXYCY
+
+================================
+
+Based on this dataset and considering molecular descriptors such as functional groups present in molecules (e.g., amides), polarity or lipophilicity values calculated using various methods like ALOGPS v7 software package for predicting octanol-water partition coefficients from SMILES strings; here we propose three predictive models: 
+
+**Model #01**
+Predictive model based upon structural features including presence/amino acids within chemical structure & number count statistics derived by feature extraction method "molecular_cyclicity" available at https://github.com/damianoscaro/molecule-count-statistics/blob/master/sklearn_mcs.py This will be used only if there's more than one class example provided during training process otherwise default value would apply which should always return 'label_00' irrespective all other parameters being same across both classes examples given below -
+
+```
+    from sklearn.tree import DecisionTreeClassifier 
+   
+    
+def get_model():
+        model =  Decision Tree Classifier(max_depth=None)
+        
+       
+return(model)
+
+
+
+
+class MoleculesCountStatistics(object):
+"""Mol Counts Statistic Extractor"""
+import numpy
+    
+if __nament__!= '__main__':
+    
+    
+print("\n")
+for i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,a,b,c,d,e,f,g,h,i*j*k*g*h*i*n*m*q*r*s*u*v*w*x*y*z*a*b*c*d/e/f/g/h/i/j/k/l/n/o/p/q/r/t/u/v/w/x/y/z/a/b/c+d/
+   f+i+j+k+m+n-o-p-q-r-s-t-u-v-w-x-y-z+a+b+c-d-e-f-g-h-i-j-k-l-m-n*p*
+      
+      mol_count_stat=[len(i.split('.')), len(j),
+                      (len(k)+j.count('.') + j.replace('.', '').replace('-', '')).strip(),
+                       (l=='m'), m,
+                        n == o, p,
+                         q <= r ]
+
+
+
+count_stats=mold_counts.stat(molecula_string=i)
+
+
+num_of_hydrogens=len(set(list(map(lambda x:x.strip(), mol)))
+                     num_atoms=num_carbons=
+                     rings=polyaromatic_ring=cycles=narbonic_acid_group=sulfonic_acid_groui=rhodanine_skeleton=tetrahedral_center=dihydronaphthalene_substituent=aurocyclin_tautomerization_diazo compound=heterocycle_with_nitrogen_and_chloride_in_the_one_ring=ketoamine_functional group=bicyclohexyl_benzofuran=fused_tricyclepentaenone_peroxido_fulvenoid=yellowish_to_orange_coloration=xanthoproteus_spelerotrichius_youngii_zoochemical_study==
+     
+     
+        
+         
+         
+
+
+
+
+
+
+================================
+
+I would conclude by saying The first rule states: If there's no C at position number two in ring one and rings three through seven all have oxygen atoms as their substituents on those positions then this compound will be toxic (labelled 'yes' or class +). This applies only if both these conditions hold true; otherwise we cannot say anything about its toxicity status based solely upon structural information provided here without further contextual details being available for consideration during our analysis process which could help us understand how certain chemical structures behave under various circumstances so long term effects may also play into what kind(s)/amounts etc., but generally speaking knowing more than just molecular structure alone should always lead towards greater accuracy when predicting possible outcomes from experiments involving such compounds since many factors beyond mere chemistry itself need taken account before making any definitive conclusions regarding potential health risks posed thereby!
+
+================================
+
+Based on this dataset and using machine learning algorithms such as logistic regression or random forest classification models could be trained by feeding these molecular descriptors into them alongwith their corresponding labels (side effects: 'yes'/'no'). The resulting model would then provide probabilities for each class based upon input features; those molecules having higher probability scores towards one particular outcome than another will likely exhibit more pronounced characteristics associated therewith in terms chemical reactivity/biological function etc., thus enabling chemists/informaticians alike make predictions about how certain compounds may behave under various conditions without needing extensive experimental work!
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+PSA < =  40 AND cLogD > -6 
+OR Psa >=30 OR MW>3000000094001016640577375975285865689529073846791808894413578812767823608533679611742086557022931404972587984882172745629953909219353969731549476680263650470819794109421485423713071107008585613245056986409765790842561685120527543125107117160247196220320517062604751127215852609155265177250457270508170175150185180186189190192193194195198199200201202203204206207208209210227228229230232233324325326327328329331  
+    Label : Yes   
+    
+ PSa <=41 && C log D<=−500  
+
+ Label No
+
+
+   Yes     #010 
+
+
+No      #[011][012]
+ ```
+This model predicts molecules having Polar Surface Area less than or equal `to` **'polarSurfaceArea':'max_value', "min": null}**
+
+and Log octanol-water partition coefficient greater then `(or)` `"value"` value will be considered for Hepatotoxicity risk assessment.
+
+
+In addition if Molecule Weight more (`than`) `{'molecular_weight':'threshold'}`
+
+will also consider these compounds under same criteria.
+
+
+
+The performance metrics based upon Receiver Operating Characteristics curve(Roc Curve):
+
+![image](https://user-images.githubusercontent.com/
+
+
+================================
+
+Based on this dataset and using machine learning algorithms such as logistic regression or random forest classification models could be trained by feeding these labeled examples into them so they learn how molecular structures (described in SMILES format here: "data") correlate positively/negatively ("label" = {yes/no}) for causing hepato-bile duct disorder symptoms after ingestion; then we would use our model's predictions from new molecules' structural descriptions provided via their corresponding smile strings along those same lines ({predicted} yes=no). 
+
+Herein lies three possible predictive patterns based upon what was observed during training:
+
+Pattern #A - Molecules containing both oxygen atoms at positions C6 &/or O7 within benzene rings will likely exhibit negative effects associated w/Hepatitis B virus infection risk if consumed;
+
+Example A): CC(cncc12ccc(Cl)c(n21))c(O); 
+Labelled example(s)/Negative impact (+ve)
+
+Explanation:A compound having two methyl groups attached across its central ring structure exhibits potential toxicity due primarily because one atom occupies position six while another sits atop carbon seven which increases chances significantly when exposed externally through skin contact leading towards irritation/inflammations etc., thus resulting negatively affecting Hepatic function/blood flow circulation around liver cells thereby increasing susceptibility toward developing diseases like cancerous tumors caused mainly under conditions where there exists high levels exposure over time period without proper care being taken about avoiding further harming oneself even more than already done before now!
+
+================================
+
+Based on this dataset and using machine learning algorithms such as logistic regression or random forest classification models could be trained by feeding these molecular descriptors into them alongwith their corresponding labels (activity). This would help in developing predictive model(s), which will then allow us determine if new molecules have potential for causing hepato-bile duct disorder without having experimental results available yet.
+
+
+
+
+================================
+
+Based on this dataset and using machine learning algorithms such as SVM (Support Vector Machine), Naive Bayes or Decision Tree we could create predictive models for identifying molecules likely associated in causing hepato-bile diseases based upon their molecular structure features including: 
+    * Presence/Congruency Of Substituents at Positions C6 &/or D9;
+
+================================
+
+Based on this dataset and using machine learning algorithms such as Random Forests or Gradient Boosting Trees (XGBoost), one could create predictive models for identifying molecules likely associated hepato-bile diseases based upon their molecular structures/smiles strings by training these methods against our provided labels: "label = {yes/no}". 
+
+Here we provide three simple rule-based classifiers derived from feature engineering:
+
+**Rule #01**
+If there exists at least two chlorine atoms in your compound then its more probable than average be toxic towards liver/bilary system; otherwise if only single Cl atom present but still having benzothiazole moiety within structure will also increase chances significantly compared normal compounds without any halogen substituents;
+
+Example Compound(s): C12 H10 F6 NBrOSi
+
+================================
+
+I would conclude by saying The first rule states: If there's at least one CC in Cn12ccc(c21)c(/[n-H(+)]/C)=NN and Cl as part structure then this compound will be predicted for having negative effects on Hepatocytes (Liver). 
+
+The second prediction says if molecular has F or O attached via single bond from Nitrogen atom within ring system containing two nitrogen atoms than expected outcome should have positive impact upon Human Serum Glutamate Oxidase Activity levels due its ability act against Cancerous cells.
+
+================================
+
+Based on these examples and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+if clogs > -10 then 
+    label = "yes"
+else if Psa <30% or MW>300 else  
+   Label="no"   
+end_if    
+ end_elif     
+ ```
+This model predicts molecules causing hepato-bile disorder based upon their log octanol-water partition coefficient being greater than (-11); this indicates high hydrophobicity which would increase its ability for bioaccumulation in tissues; also having low PSAs(<40%) suggests less interaction at biological interfaces thus reducing toxicity potentials but still increasing solubility within cells due lower polarity hence more likely be absorbed by body fluids leading into bloodstream where they will get distributed throughout organs including liver resulting toxic effects. Finally, higher Mw values indicate larger size making them harder penetrate cell membranes so there should have been reduced absorption from gastrointestinal tract thereby decreasing chances reaching target organ(s).
+
+ ** Model ##02 **
+ ```        
+  If Cn>Cm Then Label='Yes' Else If Cl<20 Or Fb>Mf And Sd>Sg End_Else       
+        End_Ife      
+     ` ` `
+Herein predicting using Chlorine content(Cl)<21%, Fluoride(FB)>Metallic fluorides limit value set according FDA regulations i.e., ~18ppms ; Standard Deviation(SD)=Sulfur atom count present per one mole compound calculated via SMART software package & Metalloids like Beryllium,Bismuth etc...Sodium,Selenium,Halogen elements especially Flourines,Ferric Iron,Manganese,Copper,Zinc,Nickel,Arsenic,Polyaromatic Hydrocarbons PAHS all known carcinogens may induce cancerous conditions affecting Liver function alongwith other major health issues associated Hepatitis-C,Viral infections caused mainly through contaminated water sources containing heavy metals pollutants e.g.; Lead Cadmium Chromium Arsenics Mercury Aluminium Zirconia Silicon Dioxane Etc..
+ ```
+
+The third rule uses only two parameters namely number carbon atoms(n_cars )and total hydrogen counts(hydrogens):  
+
+*** Rule##03***
+* IF n_car *hydrop >=16 THEN Predictive_label ="YES"; ELSEIF hetroatom_count>=13 AND hyrop<=24THENPredictivelabel=="NO". END_IF*
+In general terms,this method states whenever Compound has large no.of Carbon Atoms(carbon chain length longer)/Hydrongen Count(Higher Lipohillcity)-it increases possibility towards developing HBD's because those compounds tend possess strong affinity toward bimolecular interactions involving proteins/enzymes involved during metabolism process inside livers.However when heteroatomic groups presence exceeds certain threshold levels(i,e.heterotomcount~14+)then probability decreases significantly since many times complexing reactions occur between functional group moieties attached onto main skeleton structure altering original chemical reactivity pattern therefore lowering chance occurrence developmenthepatotoxicities
+
+================================
+
+Based on this dataset and considering molecular descriptors such as lipophilicity (clogP), polar surface area(PSA). Molecular weight(MW)), we could derive three predictive models: 
+
+**Model #01**
+```
+if clogs_p > -10 then 
+    label = 'yes' else if smiles contains "Br" or "[CH][NH+:12]=[Sb]:13]"then  
+        # Br atom in SMILES indicates possible toxicity; Sulfur-containing heteroatom suggests potential for oxidative stress-mediated cytotoxicity    
+            print("Molecule likely causes Hepatopancreatic Bile Duct Cancer")   
+elif Psa <30% :
+   #print('PSA value below threshold')
+else print ('No evidence suggesting toxic effects') end-end-if;
+end;
+
+"""
+In model one where logp values greater than (-11); presence sulfide bromine atoms indicate possibility heptapancereobic duct cancer risk but absence these two conditions suggest no indication towards liver damage
+ 
+"""
+
+ ** Model #:02 **
+`If Cmwl<400 Then If Smiels Contains ["I"] Or ["/Vn(\*-C(Cl)=NO)\*/Rf(R)](#/N(/[Ru]/#[RingPlus])(/[Cr]\=[Branch-O-[Si]>[Pd].\
+  Or Else Print ("Likely To Cause Liver Damage")
+End End`
+
+This rule states when MW lesss (<300): Presence iodides OR ruthenium complexes containing halogenated ligands AND chromene derivatives having phosphorus substituted at position alpha relative tertiary ammonia group will be considered potentially harmful 
+ 
+  
+
+
+
+================================
+

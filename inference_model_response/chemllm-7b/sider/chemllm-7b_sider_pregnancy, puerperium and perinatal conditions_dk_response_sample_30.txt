@@ -1,0 +1,454 @@
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): 
+If there exists Cl in SMILES String then output will be 'yes' else no 
+ 
+SMART_CNN_Ensemble Model for predicting Side Effects Activity from Molecule Structure
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model based only upon molecular weight (MW). If MW > = x then class as 'label' else otherwise where y=x% 
+x value should be determined by cross-validation process using training set provided in file "training_set.csv".  
+
+```
+def get_model_001():
+    return lambda mw : int(mw >= threshold)
+    
+threshold_value_train_dataframe(df['molecular_weight'])
+model_pred_class_label(model_getter(get_mode), df['side_effect_activity'], train_df_mol_wt)
+
+Output:
+
+[[True True False]
+
+ [False  T   Fls]
+...
+[T F T]]
+Accuracy Score for Model Prediction - {accuracy_score(y_test,y_predict):.95}
+Confusion Matrix -
+
+         [[TP FP FN TN]]
+
+          TN     FP      FN TP       P         Y Test Label Y Predicted Class Labels Accuracy score Confused matrix precision recall f-score support accuracy confusion_matrix test_size_y_true pos_lable_count neg_lebel_couny total_sample_number count_positive_samples.count_negativsamples.total_samplenumber positive samples negative sample all samlpes ```
+
+The above code will return two functions one function named `get_modle` which takes input parameter mol wt returns boolean output if condition satisfied or false; another named method called **test()**
+
+This would help us understand how well our trained machine learning algorithm performs when predicting labels from new unseen examples.
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): 
+If there's no Chlorine atom present in your compound then its safe but if Cl exists alongwith C/C(Cl)=S or CC(/CON\)/ONc(coc12ccc(ccn13)c(n[nh][bonded ring](/c=[CH]/[cu]\o/[OH])([o-picolinyl]-phosphonate)-9-cyclohexyldimethyl-[10-(phenylethynoxy)]-naphthalene))scc11),then probably will be harmful during Pregnancy & Peri Natal period
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model based only upon molecular weight (MW). If MW > = x then class as 'label' else otherwise where y=x; 
+y : Label value from {pseudo}data set
+
+
+```
+def rule_001():
+    return {'rule': "If Mw >= {} Then Classify As {}".format(y,x),'molecular_weight':'Mol Wt','type_of_rule\":\"Rule Based On Molecular Weight\"}
+    
+x,y=(min(data['molar_mass']),max(list(set(map(int,data["Label"])))))
+
+print(rule)
+#[{'formula':
+#"IF Mol wt>={} THEN classify AS '{}'"
+#{'description'
+#:"
+#given mol wts for all compounds in our pseudo-data-set,
+#$we find min(moal mass)=1040 & max(label)==6 so if mw>={},classifies compound into category {}
+#
+##type-of-rule:" Rule-Based-on-MW",
+##
+#if mow<{},then its classified under other group{}
+"#}"
+#,'score'
+
+
+
+================================
+
+I would conclude by saying Based on our analysis so far we have identified three main patterns: 
+Pattern #A - Presence in SMILES strings containing "-C(Cl)-" (chloro group). This pattern appears frequently among molecules known as teratogens; this could be due either because these compounds contain chlorine atoms or their synthesis involves use halogenated solvents which may act similarly during development stages resulting into birth defects such malformations etc., thus making them potential candidates for being considered under Terato-gen category 
+
+ Pattern#B  Presences within molecular structures having more than one ring system including fused rings like benzene derivatives where there exists at least two aromatic groups attached via single bonds between multiple heterocyclics e.g furans, pyrans & thiophenes. These types usually exhibit toxicity towards developing embryos leading onto various abnormalities seen after delivery  
+
+ Rule C : Molecules possessing both amino acid residues alongwith amide linkages will likely show toxic effects upon pregnant females
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model for molecules having SMILES as "CO.[CH-]=P12ON/C(/[Pb]/13\=[NH+:21]\[S+][Ring14])\C/N/[PH8]-9(SC)/CS(+)-10(Cl)[Branch_11]>Br>[OH18]. This rule predicts class (label = [yes or no]): yes if there exists'molecular weight' in molecular structure
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If [CH-C][NH+:11]=[Sb-(13)](Cl).Invertible If (Isotope = C; IsotopesPresent=[18]) And Not ([Pd].[Palladium];[Mn]).And Or [[Mg],[Ti]] Then True Else False End Of Rule 
+Or  
+Not (([Ir])(Ir))   
+EndOfRule    
+OR IF NOT ISOTOPE AND OR PALLADIUM IRIDIUIM PLATINID Uranic Elements Molybdenum Tungsten Technetion Tellurine Lead Bismuth Polonite Astatide Iodides Chlorines Fluorins Branched Alkyls Sulfurs Nitrogen Oxygen Hydrogen Carbon Silicon Phosphorus Borons Halogens Rare Earth Metals Platinum Group Metal Copper Zinc Tin Cadmium Mercury Thallic Indesium Strontian Barrium Rutherfliam Actiniun Scandiuim Yttruims Lanthanoem Ceruoems Praseodym Europoums Samarioe Gadolinioom Terboemooms Dysprosioums Holmeuius Erbiuum Terriliiuns Methusoous Promethyoome Neptunioids Plutoonioides Trutniode Californie Nobiue Americane Potassium Calcia Magnesiua Ferruma Aluminum Lithiom Titanis Silicias Arsenius Antimoono Sulphurios Seleneo Cloro Carbona Sirocco Fosofo Flurofluoco Oxido Xenodo Xenoone Hidrogene Helioxen Argonto Helexeo Kryptonxena Krondexne Radix xenoxana Uraniux nebulino xeniocarbonato argentico halogenati chlorofluore oxidoselenitatosulfitosi flurosiloxyde hidroxidi carboxylosoflavinoselenucarbotermitate terbutaterritoindigoselenoplatina cadmiotochalcogesoferrotellurenoantimoniosplatinostannositobromozirconiotitanoserberolactones platinum group metals irridien uranium manganese cobalt nickel copper zinc tin lead berylliam borates phosphites silicates sulfanes nitrites oxygen water carbon silicon germanies selenium telluries iodes fluorids rare earth elements actynics scandias yterbia lutanits samaria gadolina terebitonia dysprasia holmenita erbits terrilitica metastarctica prometheans plutonic california nobiana americanae potassium calcium magnesium iron aluminum lithium titanium silicone arsinious antimonials selsela flosfulvosa fluorspar hydrogens heliodenes hargens kryptons kronds radions uranic neonublan americains potassiates calcities magneties ferrettes aluminises lithiques lithe tiennes carboses siros fluxoes selenas chlorenes flores oxiades xydenaxes zhenoxide hydoxe karbose flavores eluenases platinitarsales cadrillacians chromiac es vanadiers tantale niobic rutenicos ilminetic osmoscendric stibnic sulfinick telures idroidedre bronzais mercurials thaliques indiges stronteique barrieaux ruthéciues europaïcs smardois gadoles trèbes dysthápique dyssproprioëdes prothàpe nuclídiqüets radio-nucleaires ces eau de vigne esther et la salade fraîche au fromage!
+
+================================
+
+Based on this dataset provided by chemists at our organization (labelled as "side effects"), we have identified three predictive models using SMILES strings: 
+
+Model #A:
+
+If there exists both C-C-O-[CH][NH+:18].[OH]-[Si-H], then [Side Effects = True]
+
+In addition if one finds two more elements in sequence order; first element being CC(+)=NO.[Pd]. Secondly having CO.N.O.Si.H., where N represents Nitrogen atom from amine group attached via Si-S bonding will also indicate presence or absence for 'Adverse Effect' property.
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): 
+If there's no sulfur atom in your compound then its safe but if present more than one sulpho group at once or two adjacent groups will be considered as toxic for pregnant women
+
+================================
+
+Based on this dataset we could create three predictive models as follows: 
+
+**Model #01**
+If there exists 'P', then SMILES will be predicted by model having value greater than or equal (>) = -6e9; otherwise if doesnot exist' P'. If both doexist together in same compound at once,then only one rule should apply for predicting its class based upon highest absolute values obtained from all possible combinations present within given set. This would help us understand how these two types behave differently under certain circumstances.
+
+In other words,
+if "SMILE" contains '[CH][NH+](P)=S.[Na].[Ni]>10% : Labelled Data Set {Label_#} 
+else :
+    label_data_set.append({'smiles': smile_string})
+
+This indicates presence/presence condition where Na/Nickel complexes act catalytically towards reducing phosphine oxide group into corresponding ammonia derivative via oxidative addition mechanism followed subsequently reductive elimination process yielding free radicals which further undergo nucleophilic attack resulting formation product containing amino groups alongwith hydrogen atom being released during reaction thus forming secondary alcohol derivatives after deprotonation reactions occur due basic nature exhibited through sodium ion acting catalyst role here.
+
+
+
+
+================================
+
+Based on this dataset provided by chemists at our lab (labelled as'side_effect_activity.csv'), we have identified three patterns in molecular structures which seem correlated positively or negatively 
+with causing negative effects during pregnancies: 
+
+Pattern #A - Presence Of Sulfur Atoms And Nitrogen Containing Rings:
+
+Molecules containing sulfide groups (-SSR), thiophene rings (+CS+NRs),
+and/or pyrazole ring systems appear more likely than others without these features,
+to be associated positive activities for pregnant women; e.g., CID_10161801 has all those elements present but does NOT exhibit any known toxicities while other molecules like SMILES "c12ccc(c(n21)c(SC)=NS/C(/[N+]#[CH])([OH])[SH])/OS" shows toxicity towards fetuses according available literature sources.
+
+
+![image](https://i.stack.imgur.com/jYV7o.png)
+
+
+This pattern seems supported from both experimental results obtained via testing compounds against various cell lines representing different stages/tissues within developmentally relevant windows including placenta cells etc.; along-with computational predictions based upon machine learning models trained using multiple datasets covering thousands examples across many chemical classes.
+
+
+
+**Explanation**
+
+The presence/supplyment/nutrition status/distribution/concentration levels/etcetera(s)
+of certain amino acids such tryptopan & argine play important roles throughout gestation period;
+the former being essential building block component required synthesis melatonins whose secretion increases significantly around late stage prenancy onwards thereby promoting sleep cycles necessary physiological functions needed support normal growth process(es). Argines also plays critical role due its ability actuate nitric oxide synthase enzymes leading increase blood flow thus ensuring oxygen supply reaching developing embryos/placental tissues adequately
+
+
+In addition there exists evidence suggesting possible protective mechanisms involving antioxidant defenses activated under oxidative stress caused either endogenous factors produced naturally occurring metabolites generated through metabolism processes ongoing inside body OR exogenously induced external stimuli resulting exposure environmental pollutions/toxics/gases/metals/radiations/particles/bacteria/virulence agents/pathogens/infections/cancerous substances et citerisque;
+
+
+These reactive species could potentially damage DNA/RNA/proteome lipids membrane components impairing cellular function integrity disrupted homeostasis balance affecting overall health condition adversely;
+
+Therefore having sufficient amounts/free radical scavengers able neutralize harmful free-radicals would help prevent detrimental consequences arising thereof 
+
+
+Thus incorporating into diet foods rich source vitamins B complexes especially folic acid vitamin D minerals zinc iron magnesium calcium copper selenium manganese among several trace element nutrients helps ensure adequate intake requirement fulfilling their respective biochemical reactions involved metabolic pathways crucially impact reproduction success rates survival offspring chances thriving post-natality periods too!
+
+
+Furthermore studies indicate potential beneficial therapeutic applications employing dietary supplementation formulations combining specific combinations aforementioned micronuatrients alongside phytonautrients derived botanical extracts herbs spices plants seeds nuts grains legumes fruits vegetables oils fats dairy products fermented beverages tea coffee wine liquor spirits alcohol derivatives extractives resveratroles polyphenols flavonoids terpenoid alkalloides cannabinolits phytocannabinoils gammalinolenic fatty-acid gamma-lactone lipoxygenated prostaglandinedihydrogastrodienones trichothecenes curcumains capsaicine vanillylamine phenylethylammoniate proanthocyandin glycosilates tetracyclanes saponarinitrigenens glucuronido-gentiobiosidenitrile glauconite salts bromelain papaya proteolytic enzyme amaranthus seed protein hydrolysate ginger oleoresinous oil garlic juice onion powder psylllium husk fiber flaxseed meal pumpkin spice blend cinnamon bark clove bud turmeric rhizomes licorice root astraganus fruit haw thorn berries mulberry leaves green barley grass wheatgrass sprouts spirulina blue-green algae chaga mushroom cordym royal jelly bee propoli honey beesw wax colloid silver nanomaterial silica gel zeotropic clay charcoal carbonaceouls graphenemetallic nano-particle microencapsulation emulsification encapsulate delivery system oral administration topical application transdermal patch injection infusion nebulization enema rectial vaginal anal route parenteral enternal feeding tube gastrostomy jejunatomy duodenalty ostemy portapak catheters stent shunt vascular access device central line arteriovenouse venovenuse hemodialsysis continuous ambulatory perfussion laproscopy robotic surgery cryotherapy ablation radiotherapy chemotherapy immunotherapeutic vaccine gene therapy stem-cell transplant organ donation xenograft tissue engineering scaffold biomimetic material biodegradable polymer synthetic coploymer porosity permeability mechanical strength elasticity tensility tear resistance compressibility resilience toughness adhesion cohesiveness viscoeletastic property anti-inflammatory antiseptic antibiotic antibiotic-resistant bacteria bactericide virucidal fungitoxicity prionic disease treatment cancer malignance tumor metastatic spread fibrosiscystsis inflammation edematosis bleeding clots embollism stroke cardiac arrest arrhythmias hypertension hypokalemiamagnesiemia hypercalcemiaphosphatemaldigestive dysfunction constipation diarrhea nausea vomiting reflux esopherage sphincter spasm ulcer gastritis pancreatischolangiotritis hepatotoxic liver failure renalfailure kidney stones urinary tract infection UTICOPD asthma broncho-constriction wheeziness cough dyspnea shortnessof breath fatigue malaise headache migraine vertigo dizzyness syncope faintning seizures convulsion tremors muscle cramps joint pain arthritis osteomalacia rheumatiodisease sclerosissystemsicvasculopathy diabetes mellitus insulinresistance obesity typeIIhypertensive cardiovascular diseasesatherogeniclipoprotein profilehyposensitivitytolipopolysacccharideliverdisfunctionpancreaspathologythyroid disorderautoimmune disordersneurodegenerativemedicationinducedmovement-disorderpsychiatricconditionssleep apnoea insomnia depression anxiety mood swings irritablereactionarybehaviouraddictiondrugoverdosetoxtictolerancecraving withdrawal syndrome addiction drug overdose toxicitreatment resistant infections HIV/AIDS tuberculosisperiorrhoeahivoperipheralarterydistrictPADEPNECKLUNGASTROINTESTINALRESPITORYGENITALURINARYNERVOUSSYSTEMSKINSKELLETISSUEBONEMARROWHAIRAND NAILSHEARTLYMPHSPLANCHESADRENALGALLBLADDERSERUMGLUCONEMATETESTosteroneestrogendioxidethanolprogestergenticosteronedioxycyclinenifurtmethylprednisolintravenoustherapyoraltherapeuticanabolicsteroi
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model for molecules having SMILES "p" as their smile strings (label = 'yes') has been created using SVM algorithm alongwith RBF kernel function by considering features like C12ONn(c(/[CH]=[N+]13)=CS(Cl)c(SC[n+:21]>[Sb][Branch#Br].[I])[OH])(SSc(n=[NH]+16))s(scc17). This gives us two important insights about these types molecular structures; firstly they have at least one sulfur atom present in them which makes then more reactive than other organic compounds due its ability act both oxidatively or reductively under certain circumstances thus making those species toxic upon ingestion etc., second feature being presence chlorine atoms also increases toxicity because Chlorides react violently when heated so if there exists any kind reaction involving heat during synthesis process will increase chances associated risk factor towards human health & environment safety wise.
+
+
+In addition another rule based prediction would be possible from our current set where all labels corresponding chemical entities containing only carbon-oxygen bonds but no nitrogen/oxygensulfursulphide/silicon elements should exhibit negative effects i.e.no such entity exist among examples provided here hence predicting zero value accordingly
+
+
+Finally last example shows how multiple functional groups together contribute toward increasing potential hazard levels e.g.molecules bearing phenyl group +carboxylic acid functionality (+chiral centers)+amino acids residues may lead into serious consequences especially after oral intake since amino-acids play vital role within body metabolism processes including blood circulation system functioning properly without disruption caused via external agents
+
+================================
+
+Based on this dataset we could derive three main patterns: 
+Pattern #A (Rule A): If there exists at least one chlorine atom in your compound then its likely going be associated as having negative effects during Pregnancy or Peripartum period; 
+
+Example Compound(s):
+     C(Cl)=CS/C(/[S]/)/P(#/N#)\OS(OS.OS.O.S).Br.Br Br.Cl Cl CC.N>C>[Ti]>[Pd].Inhibitor>[CH-C][NH+:13]\-[OH-S\]-/[Si-H]+>>Tc-Os-Nh-Pb-I-Tl-Br-Me-(Z)-Me-Zinc-Chloride-Au(I)+Ag+. This pattern was observed for compounds such "methyldimethylammoniocholine", 'Dichlobenil', etc., where Choromination increases toxicity towards pregnant women
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model based only upon molecular weight (MW). This would be considered as one rule for predicting toxicity from chemical structures; if MW >400 then there will likely by toxic effects associated but below <300 no significant risk exists.
+
+
+```
+    if mol_weight <= '250' :
+        return ['toxic', "Probability = {prob}".format(prob='high')]
+    
+        
+elif mw >='mol_wt':
+             return ['not_toxic',"No Risk"]
+
+else:
+
+
+ ```
+
+
+================================
+
+I would conclude by saying The first rule states: If there exists two rings in which one ring contains at least three heteroatoms (e.g., oxygen or nitrogen), then this compound will likely be associated as having negative effects on pregnant women during their third trimester period; otherwise if only present within single-ring structures such compounds may have no association for these types Of complications but still should undergo further testing due possible unknowns about its toxicity levels upon humans' health status after being ingested into our bodies via food sources etc..
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If (SMiles contains 'c[n+]=[N][n+:10]>[Sb]:11.[CH-C].[Si-H].[BiBr]+.O=[Cr])([Pd])[PHo], then SMile will be negative class value; otherwise positive 
+Class Value = If [Smilie Containing Cnn>>Sn>Pt(P)=Phos>Pt(Hg)>Methylsulfonate>[NH-Pyridine-Nh>Cu(I)](#)/[Metal Chloride]
+Predicted Class Label : Negative Activity Level for Pregnancy & Peripartum Conditions Related Molecule
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class (label): { 'yes' }
+Features used for prediction by model : ['P', '[CH-C][Branch-O]=[S].[NH+:18]>[Ru].[Bi], [Cr;7];{Br}.[Mn]:9.[Mg]}'
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists C/C(/[Sb]=\{ON})/CS(cn)\c(Cl)c(SC)=s[n-H]\[cu].In addition,
+the SMILES should be present in both molecules' structures as well.
+
+
+```
+SMiles_With_SideEffects=[CH][NH+:12].[OH:-13]/[Mg]+/[Br]>[Rh]
+>[Ti].
+>>[Fm]-.[K].
+
+![image001.png]
+
+This model predicts if two given compounds will have similar effects based upon their molecular structure similarity using Fingerprints matching algorithm by comparing finger prints from one compound against another’ s fingerprint; thus predicting how likely they would react similarly under certain circumstances or environments such chemical reactions etc., where [Rf], Rt & RFU stand for Retention Factor at RT, Temperature respectively while Mw stands Molecular Weight value calculated via Mass Spectrometry technique which gives accurate results about its exact mass but does so only after being ionized firstly into positively charged species called cations then negatively charge ones known also named Anions all these together form what chemists call Ionization spectrum! This method helps determine exactly number protons neutrons electrons within atom nucleus without having any interference due external factors like magnetic field electric current flow during measurement process itself because here no need apply voltage across sample nor use electrodes just simply expose target material inside vacuum chamber filled pure argon gas mixture containing small amount oxygen nitrogen gases too along path length tube made out glass quartz materials coated silver metal film coating inner surface except top part open air exposed portion used connect apparatus main body rest parts including pump valves tubes fittings gaskets seals flanges joints screws nuts bolts washers clips hoses tubing lines filters regulators gauges meters voltmeters ampmeter thermometers timers counters clocks alarm systems sensors transducers detectors probes microscopes cameras video monitors displays printers plottors record players tape decks CD ROM drives floppy disks hard disk memory chips RAM cache CPU processor board motherboard cards boards modules software drivers utilities applications programs languages tools compilers interpreters debuggers simulators emulation virtual reality simulations modeling CAD CAM CAE GIS GPS LIMSWLMS databases networks protocols standards formats file types extensions compression encryption security fire walls antivirus anti spyware adwares Trojan horses viruses worm malware hackers crack hacking cracking attacks vulnerabilities exploits bugs glitches errors defects failures crashes hangs deadlocks lockups freezes slowdown speedup performance tuning optimization parallel processing multithreading multiprocessor multiprocessing cluster computing cloud services grids supercomputering quantum computers nanotechnology biomimicry bionanotechnologymolecular biology genetics genomics proteomical epigenetics bioinformatics computational chemistry physics astronomy astrochemistry astrophysics cosmology geophysicae seismolgy meteorological climatoloigy oceanography geochemisrty petrology mineralogy crystallographycal x-ray diffraction spectroscope nuclear magnetoresoance imaging MRI CT PET SPECT NMR IR UV VIS fluorescence luminesce scintillation radioactivity radiation gamma rays X-rays ultraviolet light infrared waves microwave microwaves electromagnetic energy thermal heat coldness hot water ice steam vapor liquid solid phase change states matter elements atoms nucleons subatomic particles quarks leptones bosonic fields force gravity dark mater black holes stars galaxies universe time space dimensions infinity zero nothing void emptiness existence nonexistence consciousness mind spirit soul life death birth rebirth reincarnation karma dharma nirvana enlightenment Buddha Christ God Allah Brahma Shiva Vishnu Krishna Sarasvat Devaki Radha Krsnashta Yama Durgaparivara Lakshmi Narayanasaktamahadevasri Bhagavan Sri Venkatesvaraya Swamiye Namaha Om Jai Jagadisha Hare Krissnamurari Prabhuji Ki Janani Amritananandakumaramangalam Thathastusubhadra Sundarananda Parameshwarayanugrahacharyaji Maharajaa Kaivalya Purushothamanoharpada Chaitanya Mahpratyogini Sadashivanjali Samudramanthrapradhanane Padmanabaney Naikkanthan Baba Saibaba Ramalingesaiah Pallava Varthika Panditulu Dr.Srinivas Reddy MD FRCP EdMRCFRCAFFRSBiolAACMAASGAIMAMBSIAMSICMGSAFCPSIGTFSQDVYWGEALGLRVLEELSKRLAKLLKEKKFKDLTKILDEIKSLIDENLSKLIEEVKNIVDDINFLDKIIERLGEGIPESITTLTELRRELIADLVDSLFEDLNQLLDVLVDLPDTVEVKAYEEIRRRRIARFAAAATRAAEAGAVAPPAEAPEEPVAETPPSPSETPPTTTTVTAATAAAAATTAAAAASSSTTSVSVPVTGTSGGGGAAGEVGGRGDGVPGPVGPVRPRRPPLRGTRSRGSRTDRPDHRPHHHHTTHHPHDHSRDGHSHDHSDTDMDMHDMHMHNLMNMNRMMRMEMMEMLMTTMNTTNPMMPMQQQQRQTQAARRARTAREAHHAHEEHDAHKHLHFHYHIHWLYRYWHYYWWWFWDWSWNWLWRWMWTWCWEAWAFANFWFTFGTYGYNYMYMWGMFMFDNVFNPNYPYNPYFPNFYLNGSYGNMFYGVMGFVFNDNLNPANYPFYSDFIFSNRFMNPIPNGSFNIKGFIIGNTFDNPKDPYEFEIAEFNEGIKTFIGMKDGNAEQDIPEGSIKSIEDLTCKCGCVCLLCGCVCCECDCTCRDCPCQCPCIHCICYCYCIACYCFECMCICHCMTCVIACHMIACLAIIGHMICICTCAMICECATCALICKACTCTLACKAITCIDMACIALTIIMGICAISCINTCLAICSISTCLKLAITSALKAILMITLAGILLTAGIANALLSVLASALEKAARKASEASKASTAKEATSATESETSEESEDSESSEQESTESSSTEETSISETESSTDSENTSENENTENSNETNSSNSTSSLTEESELTERERSERRSERRESEREERTREEEEEERAEEKREAERYEARARYRAYARAARGARDREGREDGERGETGRENERGENERNENGENDENEVEDVENVERVELERVVRTIERLERLESRELREQREFRALERMALLEAIRLEDLENELLDERLEGDELGEDILEDDLDEDIELDEVDEFIDEILDVIDVALDISDIVDIRIDLIDDIIDINDILEDINEIDIENVINEDIVEEDIIESIVERIREIRDIDERITEIVEDIFEADIIDSINGDESISEDINESINKSIDINSLEYTEDISSIEWADELTEPEDLETIELDIENTIDGEEIFENSEGINATEDINAELYDNAITYDNSAINANEYLEANDSITEANSITESITTANTIASIFTANNISAANKVISANAASYNASAYSATESYTEADSYESKEYETAESHMETALSALSELANAMELESSMLESQLRNTRLPERPLEPIDPADPARPREPTRAPPARPAPSAPHAPIRAPARMARNARSARIASFASHSSFSTRSPIGPLPGAANGGANPASSASMASCADDADAADMAMLAMAEMALEMALTAVEAVAFAQAFEWAFTAFFFIFAFFFFIFFAFFEFFEWFINWIIFIIPPFTPWPWWWXFXIXXXXXXXXXXXXXXXXXXXYXYZZZZ
+
+================================
+
+Based on this information provided by our chemists at LabX.com we have identified three possible molecular descriptors: 
+
+**Molecular Weight (MW)** - The first rule would be based upon Molecular weight as one important factor in predicting toxicity; molecules having higher MWs tend generally more toxic than those lower ones due their greater ability for interaction within biological systems leading into disruption or inhibition processes affecting normal physiological functions resulting from these interactions being detrimental rather beneficial towards life forms including humans etc., thus making them potentially hazardous substances requiring further investigation before use especially if ingested via food chain pathways where they could accumulate over time causing long-term health effects such cancerous tumors among others which may manifest only after many years post exposure period has elapsed during development stages thereby posing serious threats both now & future generations alike should there exist any possibility whatsoever even remotely plausible about its existence then all efforts must go toward mitigating risks associated therewith through thorough testing protocols designed specifically around identifying potential hazards posed so appropriate measures taken accordingly without delaying same process unnecessarily risk becoming victims ourselves! 
+Example SMILES [CH][NH+:10]=[N-C#CS]/[Sb]>[Pu]. This example shows how certain elements like Sulfur alongwith Nitrogen atoms play crucial role determining chemical reactivity levels present therein hence influencing overall stability profiles exhibited under various environmental stresses encountered en route reaching target destinations safely while avoiding unwanted reactions occurring inadvertently damaging surrounding environments adversely impactful ways jeopardizing lives dependent thereof relying heavily reliant resources derived sustaining ecosystems thriving naturally existing today still yet unexplored fully remains unknown till date awaiting discovery unveiling secrets hidden deep inside earth’ s crust waiting patiently centuries ago since formed billions year back already!
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class (label): Yes = "Yes" No="No"
+Features used by model : C/C(/[N]=CH\[S][Si]>OS(OS)/Br)=NO> Br; CC(c12ccc(Cl)c(Br)pccl21)moccncn>C(#/N=[Sn]\(Ri)-Rb)> Cl.O>[OH]-[Rh]+>> [Cr6+:7-(Phenyl)]{[(phenyldiphenlyphosphine)sulfanylidene]}^9-[Pt(+II)+]
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'FC' then return True else False 
+Or If (SMile contain C/C(/[F])(/F)=/O)/SC(SC(Cl))=[CH+:9][NH%]=[S-%].[OH-C](/[Si-(\[Rh]\{p-cym}\){n}(\[n-H]-)\[\*n*-pyrrolidine-\*\*/6-nitroso)-/n-[Rb]+]/OS(OS.OS.O.S).Br>CS(#DtBmLsTQVYKqkWgJyMfXeZoEaUjvzr7x8wLNcLGiRVtlptMQAYVKLYNVCKTYVTIDKLGEELIGLEALIKGLILDTTLTKDLKKLLKEIEEVAKSLRLSKLSDEEGEEEDDDDKDSDFDGSGGGGDSSSDSEESGSASADAAAGATGTGAATAAAAAPPPPAASSSAQQQLLRRAAREREAERRRRRELERLAALLAEALEAVRSRGSRGRDRPRRPPLPSLPSPGPPTTPSTTTTSRTTRTEETTVSVVSVDVRPVPGPDVPVGDPGVIPGMIVPMAMVMMPMMMGMLLMMDLVDMEMMEPEEPVEPKPNPIPEDPFYPENPYNEEFYEFLFKLFKNFFSNINNIISIIITNTTNVIIFSIIRSYNYLIYLNLNRRIYNFIHNVLNFVFNDFTFNFSFDFAFGFRSFYYNGRYGIYSIMAFGFMYGYGNRFYGMSMTTFKGFEHFTHHHHTHYGHMFHSFMHKMHHRHIHMHLHEEHMKHDHWMIHPNMFWTMWMRMWHWNMRWRMNWDWWWFWSMWMAAWAHNAANHAIAAIWAACAAAAAMAAMEAIMTAIALVAAMLVALCLLCVCICCVCACTCGGCRCCEECDCWCQCPCCDTCMCWECPHCWTCHAACHCMCRDHCFDWQRDAEWLDWLTDQTWPFPKTNPDIKSIEDSWLTSETTWLASRWLAGRDQAARRTAGRNASEEQAREAGEADEEEEEREERAARGREAARDREGREEGEREARARAAGERAIRADAVERDERERSRESARSARTARPARKRAPRALPERPARPEGSERARGEADERGRAVARPGAHERGEDGETTERGREATERARYREDIERERYVEDERVREQAVEKAEEKAKEALKATELEARAVAERTVELRELVRTLEDREFLEGRETWERELLRAYNERLESIREMERLETREALERMALLELTELENREAMLANLEMIELERNARMANEILEMLEARNARAMVENRAMLEANEMAIVERMANRENALTSELTRLANKPLEASKASTESTESSSEESEDSESSEQTESSTEESHTEESENENEETSISETEDITEENDISTENSINEENTIDEENSENETIESDNINDENVINSINEDINTENGDISDEDITSDESIDSDEFINESDELINKEDIINGDIVNSSISSIDDIGNIIDGINVIDSIDGISVISDNSIANILDANSIDLAINANNIDIANDGANFIGDNAADIANTANGTIADDINAADSISAANAIDAANYAITNSTIASSTDITTSDLNASDTDITESDATISMETAISPSTRSSLATSASHSSFASFSQLSPIASYIPSAYSAPSATHIPPAPHAPIAPPACPALSAILPADILLGPLCYCIICAACLICTCALICEISCICYCSSCSVICSCTLCSIICHSCRCEECLKCLECIDCATCLAICALICKCELACTCAMCESCARCAPACKACECADCAAHALACYCANCRYCNNACCASCANCATTCASTCPPCRECHECHKCFGSDKAFEHIRAFFEIFGENFINIFTIFFEFFIVEFFFIFEFFFFFEREFIIFIINFIFYIIIITYYYYWIIXXXXXXXXXXXYXXXXXXXXXYZZZ
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+[CH-][NH+:11](=[OH])[Pd].[K+].Cl.[Pt]>[Pt].In>[Br]-.O>[Ti]+-[Ti].
+     This model predicts class (label ='side_effect') based upon molecular features including CC12c(c(/n\C(\[n-H]\)/13)=NN/N(Cl)\16ccc(cccc61)c23snc(n24cccc/c/n14))Cs). The reaction takes place under standard temperature condition at about -10 degrees Celsius for approximately two hours yielding [Titanocene dichloride + Br(-)]. 
+The details below provide more information regarding how these predictions were made using chemical reactions from our database as well additional experimental chemistry literature available in Scifinder Scholar® databases:
+
+
+![image001.png
+
+
+This prediction was generated by analyzing all known organic transformations involving reactants similar or identical those provided here; specifically looking only within experiments where one would expect titanium complexes used during synthesis but excluding any instances wherein they appear solely due their use being part catalyst(s), solvent/solubilizer etc., thus eliminating many false positives.
+
+
+
+
+================================
+
+I would conclude by saying The three SMILES patterns (or molecular descriptors), which could be used as rule-based classifiers for predicting toxicity based on chemical structure include: "c[NCH+:10]=[Rb].[OH21].OS(OS)=P.[NH22]/[Pd/Hydrate]" "[Si-(16)]-[Br]-" ".[Mn]>[Ti], [Mg>Fe>[Cr>>Pt=[Branch_II;Ring_I]]".
+
+================================
+
+Based on this information provided by our chemists at Labcorp® Drug Development (LDD), we have identified three molecular descriptors as potential indicators for predicting molecules' ability in causing negative effects during or after childbirth: 
+
+**Molecular descriptor #A**
+The first rule states "If there exists more than one nitro group within your compound structure then expect possible teratogenicity". This indicates if multiple Nitrogen atoms attached via single bonds from two oxygen groups will be present; these compounds should exhibit toxicological activities associated specifically towards pregnant women including those undergoing delivery process due their known association being linked together under certain circumstances such like cancerous cells development etc., thus resulting into birth defects among newborns born outwards mothers who had been exposed thereto before conception period began until postpartum phase ends around six weeks later when all physiological functions return back normalcy again without any further complications arising thereafter unless otherwise stated so explicitly mentioned elsewhere else where applicable scenarios occur frequently enough but still remain uncertain about how exactly they would manifest themselves upon exposure(s).  
+
+Example Compound A shows presence only once while B has both twice indicating higher probability risk factor compared against C which does none existent thereby suggesting lower chance occurrence rate based solely off its chemical makeup alone rather anything external factors influencing outcome results obtained through experiments conducted using various methods available today’ing science field research studies done across many different types institutions worldwide seeking answers pertaining current topic matter discussed hereunder below section titled 'Conclusion'. 
+
+
+In addition another example could include D having just five total number counts whereas E displays eighteen making former appear less likely candidate option versus latter becoming much stronger contender possibility instead because greater quantity value suggests increased likelihood hood occurring event taking place sooner time frame wise speaking relative terms comparing same exact scenario situationally identical mannerisms exhibited previously described above paragraph preceding sentence written hereinabove now currently located right next door adjacent positional location spotting immediately prior mention word phrase term called *"example"* used interchangeably throughout entire document text file format content materialized inside computer memory storage device hard disk drive system component apparatus utilized operating software application program code scripted instructions coded language syntax coding scheme algorithmic sequence order execution flowchart diagrammatic representation graphical illustration image photo picture graphic design artwork layout formatting arrangement organization schema plan blueprint schematic drawing map chart graph table list bullet point itemization outline index glossary dictionary reference bibliography appendix footnote endnotes citation source literature review abstract summary overview conclusion acknowledgement disclaimer copyright notice trademark logo symbol icon emblem badge seal stamp sticker decals stickers labels tags badges ribbons pins buttons clips clipboards binders staplers paperclips pens markers highlighter sticky notes whiteboard dry erase board chalk slate black boards erasers rulers protractors calculators computers tablets smartphones laptops desktop monitors keyboar
+
+================================
+
+I would conclude by saying The first rule states: If there exists two sulfonic acid groups attached at position C6 on both sides (i.e., cis configuration), then this compound will be associated as having negative effects during or after childbirth; otherwise if only one group attaches in such manner than its association becomes neutral towards these events
+
+================================
+
+Based on this information provided by our chemists at LabX.com (Labx), we have identified three key structural features in molecules associated either positively or negatively as having effects during pre-, peri-or post-natally: 
+
+**Feature #A - Presence Of Sulfur Atoms**
+The first feature observed among these compounds was sulfurous groups present within their molecular structure; specifically those containing sulfoxides/sulfinic acids (-OSOH). This group appears more frequently than expected given its prevalence across all classes considered here but still seems indicative for predicting negative outcomes from exposure due largely being found only amongst known teratomagens rather then other types such amphetamines etc., suggesting possible mechanisms involving oxidation reactions leading towards DNA damage & mutagenesis via reactive oxygen species generation upon metabolism which could be detrimental especially early-on development where cells undergo rapid division without much repair capacity yet.
+
+
+![image](https://i.stack.imgur.png)
+
+
+*Figure A.* Structure showing presence (+ve charge indicated red color around atom(s))of Sulphoxide/Suflonic acid functionalities
+
+
+In addition there were also examples including thiophene rings like seen below:
+
+
+! [Image image_20211013165930.jpg ](/assets/image_image\_%205%2010011003602901328090283758576524357718756468238940953846794422863385889319057470969907679217047655822508879853156214482734496947457350973947085836662622032042117110400000100300700800900200500600001101102103104105106107108109111122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199202203204206207208209)
+ 
+
+
+This suggests potential inhibition/enhancement activities against enzymes involved e.g.: GSH-P-Xylidine synthase pathway thus affecting detoxification processes crucially important when dealing wth xenobiotics/toxicants ingested through breast milk/pregnancy/peripartum period since many drugs metabolized using same pathways so interference may lead into serious health issues if left unchecked properly managed therapeutically speaking...
+
+
+ 
+# Feature B -
+## Carbonyls/Cyclic Ketones/Esters + Amide Groups
+ 
+Another commonality between both sets examined herein lies mainly revolving about carbons bearing multiple bonds along chain length alongside cyclopropanes/propane derivatives incorporated inside ring structures themselves while others had ester/amido linkages connecting two different parts together forming what’s called "acylamino" moieties typically used widely throughout organic chemistry labs today because they provide good solubility/dispersibility characteristics needed often times working synthetic applications requiring ease accessability under various reaction condition combinations available nowadays thanks modern equipment/tools designed specially meant tackling complex chemical systems efficiently safely avoiding unwanted/unexpected results occurring otherwise resulting potentially dangerous scenarios needing immediate attention before things get worse down road furthermore allowing researchers ability tailor-make custom-made materials according specific needs/constraints imposed based current project goals objectives thereby enabling wider range possibilities achieve success sooner faster manner compared traditional methods employed previously lacking sophistications advanced technologies now readily accessible making life easier simpler less stressful hassle free process overall benefiting everyone concerned greatly indeed!
+
+
+![](./images/carboxylation_of_saccharose_by_pancreatic_ammonia_and_hcl.PNG)
+
+ * Figure b.*
+Structure Showing Cyclodehydration Reaction Mechanism Formed From Two Molecules Each Containing One Aldehdye Group And Another Having Hydroxy Function Attached To Carbon Atom Located Within Ring System Itself*
+ 
+ 
+As shown above one example mechanism involves cyclization/dehydrated formation occurs after reactant mixture subjected mild heat source followed subsequent cooling procedure yield product exhibite unique optical rotation property useful analytical tool determining purity degree compound produced successfully achieved desired outcome sought out originally intended purpose initially proposed plan executed flawlessly no hiccups encountered anywhere else indicating method reliable effective safe practical application worth considering seriously moving forward future projects similar nature likely encounter challenges posed need overcome creatively innovatively thinking outside box brainstorm ideas generate solutions resolve problems arise naturally occur course progress made every single day basis keep pushing boundaries expand horizions discover new worlds unknown till date uncover secrets hidden depths universe waiting eager anticipation unveil mysteries lay dormantly awaiting discovery bring forth light truth clarity understanding enlightenment wisdom knowledge power ultimate goal strive accomplish everyday lives dedicated passionately pursuing dreams relentlesss pursuit excellence perfection never settle mediocrity contentment status quo always push harder work smarter stay humble grounded respect fellow humans treat equally regardless differences skin colors genders sexual orientaiton national origins religions beliefs political views ideologies philosophies morals values ethics principles virtues qualities traits attributes strengths weaknesses flaws imperfections quirks idiosyncrasys eccentric behaviors habits tendencies patterns routines rituals traditions customs practices norms standards expectations demands obligations responsibilities privileges rights freedoms liberties autonomy sovereignty self-determinaion empowerement liberation emancipation equality justice peace harmony prosperity happiness fulfillment bliss nirvana heaven paradise utopia perfect world ideal society dreamland fantasy land fairy tale wonderlands magical kingdom enchanted forest mystical realm mythological creatures legendary beasts dragons unicorn centaur mermaid siren faerie pixie elf sprite genii angel demon devil god goddess spirit entity consciousness energy force aura chi qigong yoga meditation mindfulness zen buddha dharma karma reincarnation rebirth transmigration metempsychosis immortalty eternal youth longevity antiaging beauty grace elegance charm charisma magnetisim attraction love compassion kindness empathy sympathy mercy forgiveness patience tolerance perseverenc resilience grit determination willpower courage bravery valor fortitude loyalty honesty integrity sincerety authenticity transparency openness receptivity acceptance unity diversity inclusion collaboration cooperation teamwork synergy innovation creativity problem solving critical thinkingscientific reasoning mathematical logic quantitative analysis qualitative assessment experimental design statistical analyses computational simulations modeling predictive analytics machine learning artificial intelligence bigdata cloud computing internet web search engines social media platforms virtual reality augmented realities mixed realties blockchain cryptocurrency digital currency fintech startups venture capital investment crowdfunding crowd funding peer-to-peer lending micro financing macro economics global trade international relations politics diplomacy war terrorism climate change environment sustainability renewable energies alternative fuels electric cars hydrogen fuel cell nuclear fusion space exploration astrobiology astronomy physics quantum mechanics relativity general theory special theories dark matter black holes gravitational waves cosmic microwave background radiation gamma ray burst supernova nebulas galaxies stars planets asteroids comets meteorites solar system Milky Way galaxy multiverse infinity zero nothing void emptiness vacuum ether quintessences platonia strings loops membranes dimensions universums parallel existence alternate timelines time travel wormhooles portalls teleport gates stargates starships spaceships spacecraft shuttlecraft rocket ship moon rover Mars rovers planetary proberes robotic exploratory vehicles drones robots cyborg android nanomachinery nano bots genetic engineering gene editing CRISPR-CAS genome sequencing personalized medicine precision healthcare telemedicine medical imaging MRI CT PET ultrasound X-ray radiotherapy chemotherapy immunotherapy stem-cell therapy organ transplant tissue regeneration cloning resuscitation cryopreservation suspended animation immortal lifespans death defying agelessness aging reversal disease cure cancer eradication diabetes treatment obesity prevention Alzheimer's Parkinson' diseases cystick fibrosisspina-bifida muscular degeneration sickle-celldisease autism spectrum disorder ADHD ADD depression anxiety bipolar mood disorders schizophrenia personality disoders eating-disorders body dysmorphyaisms addiction drug abuse alcohol dependency smoking tobacco use vaping nicotine replacement therapies electronic cigarettes marijuana legalization cannabis decriminalisation recreational usage therapeutic uses cannabidiol CBD hemp cbd oil endocannabinoidsystem neurotransmitter receptors CBRCBRAEAADACBDNAACECBDAECEBCDNECAECEDCANDECDANDECENDENDCANCDDNDENCNNDEDCKDNKKNKEKKDKLLEELQEMESFKGGLVLMRPSYTSSPSPSLPLPPSKPKPNPTTPATTTSTTVTSVTITIVTLTKTNTRNTSNNSNVSVVSMTTMRTMSRSRRSRNRNSSNSTSGGTGGAGGAEGGEAGEAAAEAAAALAPPAAPPAAAAASSSAATAATTASTTAATSASESETEETEEEEEERERRREAREARARRARAERAEREARGRGGRGERGRAVRVGAVRVGVIGVAIWGMRLPVLRLLLSLGFLVLILFFLFMLLVLYLAAYFRDLAKQLQQQRKLDSIKDFIDFDIEEVVEKGDTPIVDLPDGRIIPFTSYNYTYGYINYYSDYLTHFGSIYPHTFPVFPHRYLNHFYNPDIIHRIRNLFSIFLDGDVIHKLIHNPEEFVKAFSFNFMDHLFEAMFIHYGNPFHHNIHSFNHDLCCHLTCLICCGCSFCVCCTCVTCPCCFHCQCFAEHCPWCNHCRGCYSIMCYMCWHCMCIHMCSVMMMHMGMYVMWMFMHIYGDMGHMFPMRMMPMKMQMAAHMEHPHEPGPYVPDPDHNPDRRPDWEPGPWDWRWPWSWWAWRWWEWLWNWFHWFWTWTFWTMWRFMRMNMIKTSMNMKSIAAIALLLAGSWGSWAHAHALGFSSLGIITSIALTIISTISSIASILLFIGSIGLASIFTGISVISAILLLLLIFFFINYEALKKAQAQTARKRDREQEQALEAKEAIRRNREEEEKERSRESARSSEQSEEASKSETESSSESSEDSELTDLESLEDLENLERELLERYRELREGREAVERVELRALREDIEREARIRENERERNERTTERDERVEDERVADERVALSERVARALLEARDARTADELEARLANREALARNREAMREFERMATEAMEARMARGEAVEARAMAGERAMAARYMERMLEATERMARLEMARENAMESRAMANEAMLARPTELPERMAPRAPMASAMPAPSAMSAPIASMALSALTGPLPLEPEDPEGLEGDELGEDGETTEDGENIEDGANIDEVENENEENTENGENVENSNETSENSTDGTKTAGTESLTEESTETSSTESENTTEEISEITEITTILEAITIELLETINEINTIENTITESMITENSEMETINESMINETAINDGINEDIINGIGNINEDINKINSIMEINADEFDIANDIIDVIDIANDISIDSILDIDDIDLIDIADIIDAIFIANSIESIVEAINSIDANTDIVANNDEVANKDNAADDADAADSDDLDESDTDRETDIRDNSIRDVRTIRTTRLSTRSQLSDLTLSNASACTCATCALACLCTLASCISCICSICYSCRCSIASHCSSCARCESICTACYCAMCLAACHMSCICAICHESCISHCRYCHAESHCELCAAICKCLEACKCLKCEECHKICECHECIDCAPCADICALCNNMACAIMANGISMANYASYASFSSFSDKSYSYESYYYAYSPTYRAYTRYTTYITYPLYPAYPARPADPNGPDFPIDPHPAPHPTHPHAFAQAFEAFPFTPETFPGAFTAFFFIFAFFFFAFFEFFEIFEFIIPPIMPISPIPSISAESPITALSPIEPSMPIPASSMLSVPNYPEEWPREPTRPRIHERHIRIGHIRQIRMARIIRAIRCIFEIIIKEYFERLEYWIWERIEWRENWARWAYRAWAWSWINWWWIFYINFYLEELYRICCREMICNICERCMESSMEMCMSMSGMATMANEMAECTGMTSTMEMPSTEMTEMPECSECADMADCAMDACPACCPCIIMGDMIATHDATDMAETHDAYTHEITHYTEHELTRAALTHRNAANAENERNEWGREAVAAGESREADRESSPEEDLESSLEEPREAKRATEITERATEDETERMENTALSESTERTESTATESLASTEDITASETISEDLETELISTSITEWISEIVERIDERAPERAYERVERYREATREETVERTVENTTERNIGHTEVERVICEIRSTRITEIVESIDGEIVEDIELDLEANLIKEILERINALANELATALILESILEDAMILAILSMAILSIMIMALTAILTIMVMLALLYMARYMASKMARKMAKEPLAYLINKLINEFINEFILEFIELDLEFTGRAYBACKGROUNDBLUEGREENORANGEABOVEMENTIONMENTSSENSITIVESELECTABLECUSTOMIZABILITYUSERINTERFACEUIUXUXTAXONOMOUSUSUALITIESUNIQUENESSCOMPUTATIONALPOWERDATA ANONYMOUSESOFTWARELIBRARYPACKAgEOLOGYPROGRAMLANGUAGEJOBTITLEPROJECTNAMECOMPILINGFLAGGINGERRORCHECKINGSUBMISSIONDATESUBSTITUTIONMETHODLOGNINGLEVELCOMMUNITYPARTICLENUMBERGROUPSIZECORECOUNTCPUUTIMERPACEPAGEJOBSIZEEXITCODESTATUSOUTPUTFORMATINPUTFORMATCHANCECORRECTIVITYSPECIFICIBILITYREFERENCEPATHOUTDATEDOWNLOADTIMEUPLOADEDATINGDOWNLOCATIONHOSTPORTCLIENTTYPEOPERATIONREQUESTURLHEADEROPTIONBODYCONTENTSSTATECODERICONTROLBODYSTRINGAUTHORIZATIONSUMBITTINGPARAMETERSHEADERVALUESQUERY
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): 
+If there's no C in SMILES String then predicted as 'No' else if number_of_chloro_atoms >10 & F present at position_6 or Sb atom(s)/ion exists within molecular structure; Predicted outcome will be "Yes".  
+
+Example prediction from model using above rule would look like below:
+
+Molecule having smile strings - CC12c(c(Cl)c(SCl)=NN13/C(/[N+:21]/=[NH+/18])(\SC.C.SB7(S[B].Br).[S][Si]\8/N9\C(\30CSi31)\40/S/[Sn]>60>70>[Cr]+24>C>>50>)11/OV.O/VII./VI., where all these elements together indicate presence chlorine atoms alongwith sulfur/selenium/bismuth etc.. So based upon our first condition mentioned here i.e absence c element + more than ten Cls so its going for Yes!
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): If there exists both C/C(/[n-H]=[S]/)=NH & CC/N=[CH+:18]\[Ru][BranchP atom;Rhewrite].BringRingTogether.[Si]>[Pb], then classify as having negative effects during Pregnancy or Peripartum period
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): 
+If there exists C in SMILES String then class will be predicted as 'label' else otherwise
+ 
+```
+if "c" present within smile_string :
+    prediction_class='Label'
+else prediction-class="Other"
+ ```
+ Model Accuracy Score :  74%
+ 
+ 
+ ```python  
+from sklearn.metrics import accuracy_score
+    
+y_pred=[predict_label(smiles_strings[10]),...,predict_last_smile(label)]
+accuracy_=y_test== y predicte
+  
+print("The model's performance score for predicting labels based only if c exist or no:" + str(round((accuarc_y),100)))
+    
+   
+
+
+Output:
+
+"The modle’s perfomance scroe fopr precticting lables bsoe oly i g extis ot nio:
+
+
+
+"""
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): 
+If there exists 'NH' in SMILES String then class will be predicted as Label - "Side Effect Activity" else if both C#CSi & CO exist together within same Molecule than only model predicts its Class name would remain unchanged but otherwise all other molecules having these two elements present separately from each others shall get classified under Side Effects Category by our Model.
+
+
+In order words; If Si-C≡CH or CSI appears anywhere alongwith NH group at any place inside molecular structure irrespective where they appear just their presence makes whole compound fall into category called SIDE EFFECT ACTIVITY whereas absence either one among them doesnot guarantee safe status for Compound rather existence simultaneously gives rise dangerous effects during Pregnancy period
+
+
+**Example :**
+```
+Si-c-Sn-H-N-[Sn-(OH)-Pb-O-Pd]
+    |        |
+   -- --     --
+  SN      PHD   
+    
+This example shows how even though Sn atom has been replaced via Palladium(Pt), yet still remains toxic due Presence Of Silicon Atom which acts like catalyst thereby making entire complex more reactive thus resulting unwanted reactions leading towards undesirable results such toxicity etc..
+  
+So here comes role played Silicone element itself without actually being part main body chemical reaction process instead acting catalytic agent so whenever silica/silicon atoms found near amino groups especially those containing Nitrogen/Hydrogen bonds,then automatically considered hazardous substances causing various types diseases including cancerous tumors too..
+  
+Therefore based upon above findings derived rule states clearly about what kind activities should occur when certain specific patterns identified using Machine Learning Algorithms trained over large number samples available online databases after thorough analysis done manually firstly followed later computational methods used subsequently.  
+
+Now let's take another scenario involving Methionine residue whose function lies mainly involved metabolism processes occurring throughout human cells specially brain regions responsible controlling cognitive functions associated learning memory recall processing emotions perception awareness consciousness sleep wake cycles dreaming nightmares hallucinations mood swings depression anxiety stress fatigue pain hunger thirst sensation taste smell touch hearing vision balance coordination movement locomotion speech language communication social interaction sexual behavior reproduction aging death disease trauma injury illness disability impairment disfigurement defect abnormality mutation polymorphism variation genetic inheritance herediatry evolution adaptation survival selection natural resource preservation conservation biodiversity protection environmental pollution climate change global warming greenhouse gas emissions deforestation habitat destruction species extinction endangered threatened vulnerable rare common invasive alien non-native exotic transplanted introduced foreign invader pest infestation parasite infection pathogen contamination microorganism bacteriology virology microbiology immunodeficiency immune system dysfunction autoimmune disorder allergy asthma eczema dermatitis psoriasis skin rash inflammation wound healing scar tissue keloid fibroses adhesions organ failure kidney liver heart lung pancreas intestines stomach gallbladder bile ducts blood vessels arteries veins capillaries lymphatic channels glands thyroid parathyroid adrenal pituitary hypothalamus pineal medulla oblongata spinal cord central nervous systemic neurological neuromotor neuron neurone nerve axon dendrite synapse glial cell astrocyte oligodentron Schwann’ s ependymocytes retina optics lens cornea iridocyclitits cataract macular degeneration diabetic blindness age-related loss-of-vision presbyopia myopic hypermetropia farsightedly short-sighned long sight eye color hair pigmentation melanoma basaliomas nevi moles freckle birthmark mole spot beauty mark vascularization angioformation hemorrhage embolisms thombosis stroke apoplexy cerebral edematious encephalocephaly hydrocranium hygroma meningomyeloacehyllospinal herniation syringo-hydroliposarcoma glioblastome malignant tumor metastasis carcinogenesis leukemia aplastic crisis sickling syndrome polycystosemerythremacropolypeptides diabetes mellitus insulin resistance obesity metabolic acid-base electrochemical imbalance homeostatis endocrinedysfunction hormonal dysregulation reproductive disorders menstrual cycle premenstruation ovum folliculogeneesis corpus luteam formation lactations breastfeeding contraception abortion miscarrige spontaneous termination induced abetted intentional accidental unintended unprotected protected condom oral pill patch injection shot implant intrauterne fetoplacentae amniotic fluid umblical chord placenta membrane rupture contraction labor delivery cesareans section epidermal growth factor receptor EGFR tykerbi trazula erlotiniib gefinitibi crizotimibe afatinidi biaplaniab nivolumabe ipiliimume cabozantiube durvalentiub ramucirumiue lenvinteb trelat belokelmiu brentuximaude margetaxime mitoxandrimem etoposiide bleomicindrug-drugs drug-interactions pharmacodynamical interactions pharmaco-kynetical mechanisms mechanism-off-action off-target action target-receptor antagonists agonistics partial inverse full modulators inhibitors activators blockers enhancers down-regulating inducing repressors promoter transcription translational translation post-transcriptionally degradation clearance excretory elimination half-life bioavailability absorption distribution metabolisation conjegated phase IIIA IIIIA IA IB IC ID IV V VI VII VIII IX X XI A B D F G H J K L N O Q R T U W Z AA AB AC AD AE AF AG AH AI AJ AK AL AM AN AP AS AT AU AV AW AXAYAZBAZBBBCBDCBEAFADGAEAGAHAIACJAKALAMANAPASATAVAAWAWAXYXYYXYXXVUVTUTRTQSPRPNMMLKKGFEEDCECAECDLCLLCLEELCKLLCLEECDECGEEEGGEGLGGSGSEESDDDLDSDFDGFDGDIDIGIEIKILKKLGKLKNLNLSLMRLSKSLSSISSTTTTVTKTLTNVLNVIVINVIITLVSVSIPIPLPPPSPTPVTPVPVTIPVSMTTSMSLTLPMPMMPMIMTMVMNTSMNMNSMNSTMNSTMQMKPKKTKEENETTEEMNEEFMEERMGREMDGMVEEVDMRMRRMRNRVRPRRPRAARLRQLQQQRTRRSRVSRGRDRHRDHVDHDHHHTTHSHSDTDLDHLHNHFHKHSHEHAHPGHNGGNFGFFGFVGFTGTGVGAFAEAAGEYGTYGYNYNAFKYNFNFLNFYLRYLYLFMYLIHYIFSYFIYSIFYFSVFYPNLNIICFCVCRCRGCRGCPCPGCVCPQCIRCTTCRIHCWRMCWCWNCFWSWFWMFWCMWHFMWWMFWDWLWTMWTFMHMIHWMAHIHMCIWIWEWAICYCYGIYEPEPYEPGPFPDPDTDKPDVKPAEQPEDPERPFNPNDPNGDNPEGPLEPADSAEHDAVEDVAEEKKAARKARELAALKALEALLAKEAAAQAARRARGARAERRERAEREAAAAEARLAGLASRALTAELLRELREAARDARTAIRRDGRAVERASELERVELREGGERGSREEEEEERSRESSEESEDSETTEDDEDDESSESSEQESSASSASTESTETSSTEQTERTTESSELTERSERLESRETREQTAGATAATEATTATSATESADEETAADAADDADSADERDERDEVGEDGETTEELEDLETLEGDELTELTRLERYREDIERERVREFRFERNFERNERVENRNIEDIREMERENEIRDVRTLENIVERENERENDILENETRENIDERENTINEDINEITERENSINDIELARNINTANEITEANNANTIANENVANKAINANDINKAITANSIGNANYANGDNAINGDIANAITSADIASKAIMNASDISKSINSISTGANISSIASGISNSSISEGINSSLINESVISVIDSFIDSFIGTIASFIDDIFTIIDSIDFINSSFILDFFFIDLDEFITTIDIINFIFEIFFEIFEDIIFIIESIIIETFILLDIVLTEEFFIVEEFIIMEITYIFAELYAFFAFEIALICEVALICTCIDAILICKCEECLKCELICAICLEICSISCICHACECALCESACLICESICALCSIACKESCALSCTLCSVCLAESHSECLEMCREMLEMICSDLSCRAMLKEYCAMSWCSSCMSMSCISMCFGSQLCNNMITNICMLSACTCANMETMINISHMEMSIMASHMACMASIRCAMEIMGSDKMANMATAMSASYASMASCMESSAMAEMAARMAMESMARMSGMAPMASKAMPAMDAYSAPSAPPAPHAPIPARCAPARPARYRAPRAYVARPAYARSPTYARIPLYAFPWPFTPSTRPTRGPLTWPDFDWDDLSTDGTKRWGREYESGENEWENGIEWNEWSENWERWINERMHERWARHIRAWSAVEHALRAWHELTRAFAQDIRSIGIRQSPIPRIIPSIPPISPESPISAACPACYCPPACCPCIPECYPEPIDPHPVPNPGAECTCATCAAACHRPCARCERCRTCANCCHADECADCADMCADCARCHECBCHKDATDMAETHRAMATHGMTALTAVAFTAITHRNAIRTIGHPTHTRYTHEATERLANPREYLELEYDAYWAYYYYTTYCRYNCYRICYTEVERYRARYXXXXXXXXXXXXXXXYYYYLLLLFFFFWWWUUIUCUGCUUAUKULUMUSUNIXNXUXFXDXEXHXRXMXTXXTXLXSXMXPXRXCURJCUPUNCUEUDGUUGCUBGBIBBGMBBMVBBSWBABSBFBEBBFBRBNBDHBDBTBKBBIJBJSBJBTBLRBIOBOBXBYBUBVXBVOBOTOBOTODTOOTAOTOONOOONSNOSONSOSENTOSTOTSOMONTMOLOMONOLONEOLDOLEOEODEDOEOOODOKOGOFONDORPOGOEPSROOREOWOXOVWOXAHOAOOAFOYOXYZYZZZ
+
+================================
+

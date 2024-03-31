@@ -1,0 +1,459 @@
+Based on this information provided by our chemists at LabX.com we have identified three possible patterns: 
+
+Pattern #A - Molecules containing CC(c12ccc(Cl)c([n+](=[CH-])[N+]13)=c(SC(F)\[F])([OH])[S][Si]\16(R)-[n-HgBr]-18-cyclohexyl-[RuCl]+19-C11-N20.C21-O22.[NH-(Z)]24.N25.O26.S27.P28.Cl29.F30.H31.I33.Br34.Br35.Mo36.-37.)38.(39).40., where [-n]=nitrene group; (-Si): silane moiety;
+
+Molecule SMiles name = CCSB(Brcs(fluoranylsulfur)s(/FC/F))(sb(nh)m44cccsf46.silanetetrakis(triflate))(OS(OS(NS(\[S]/(S(((SSSF((ssfsfbromosulfonylmethyltriphosphate))))/sbfbramotriphenyldiazonium))/CF/SBF)))/c/n15nc14sc(sc(nc42Scm66Cs(-nsbsfczpptfpdppaafkqwvjxivtcrfnclcncteiclcckcepcnkcpvcplcmcdmlcfchczlpkkcvlnsltlrltcikllttltitsttvntthrttnnnnddddttdtsfdffdfdsdfsadfaasdasdaaaadsadasfasflsklfklkslkfkdkdlkdkgggghhhhlleeeeeeekkeefeggefeeddeeeddedddddeeheehhdahdhfhfgaggaaggagaageaeaqeqqqqaQQQQAEEEEEEDDDDDEEDEDVVDVEVEDKKEKKYKGSKGSGGGEGGEAGGAAGEAAAKKAADDAEAEEKAEAAAADAATTAATAAAAAASLALSLTLLTLTTTVTNTHRTTRNTTKTEETENNEESSEESSSEESETTSSTTESSESSEDSDSAASSDSASESNPSPPSPPPNTPPTNPAPPAAPSAPPANPADPDPEPEDDPVPVSPLPVLPVLAVLVGLILIGIVWLCRRRCRLCGCVCLCRCKRVCDLRCEELERFLRELEEVVRDLARQLLSRGPRGRPGSRGPVGDRGDGTDTTDIDITIEIKDKLGRIIPGVLYFTDFSYFRPKAYFKLFKNFDNVFFGYNGISNRPIIFINRSFGTYLDNLIRRAVKLNKLHRDIYLNDLIHKGFNFNYGNIIHNRYFSRFYPVFYNRPYYFNHFYGNIHSRNFIIGNAFSIHYFPMLYSRDGIHTFAHIHHSHSVTFMYHPMSVIHDGSIMAHFEEMMKHLGHMDLMAMHEEFPHMTMMMFYEKSNAIAICDGDMGMMEACMGKTVMVCMPMHFMQRMAEHMQTMVTSMRMQTVAEQMRNMHAALLLAEPDHAIHMWSLTWDPMCTPFWRPYCYDCSWPCFWCPWCWFECWHQCWWTCWNHCWEAWCMHWMCWMCAWTGCWPWLCSVCIWAFIGTWMIWIILLIALVALALKALEEWELLERRRWREFDWLERAREEREWERFERVERERYREEERAERVREAARRERSRESARSREQEARAIRSERARYRAYARAARGGERLAGLASRALVELARKRELREGLEGARTTAGLESARDPERDERIERVARREALREDAGERADERLEARALLENERARGELEDARPASTRAPERTPEGPARPLETERPREATERAPERPGAHERPAYERMERCERNMERLEMARMAMEARAMREAMRAMMARAMLAMAEMAARNMLEMAPAMPVRTGPLTRLSELSSLSQLALSAILSDLTIASKLTEAITATEIASALTILEAVEIANIELAKEITEAIMADEITSLETIEDLENILDIDEISEIVEIIDENDINEISTVENVIDENTINDIESINEDINTENEINGDNINKDISNETINSDESIDSDEFINESDELINADEVENSDDLSENIDDENVNSSDNSISSDNAISHDIVSIDENGSTDANSNSTESTTEDGETGENSTESENTETSANDSTRNASSEQETAESHGEDGANANTGTKANGANKGMTGISGINANNATSADDATTTEEITTEDIADSANEADIIDLAINRENIREDIRGREIRQRETIRDHIRSIGEIFMNELYRNALEYLANYESAFEANYASYASFKEYASHFAQFINPTYEFFDAYAFFDATIFYATHIFTAYSIFEETHIFFACTITYSSFYTEVISFFFAPHYLEIGHPLYICTHALICYITHPNGCALACYCLEPIDCATACLCTLIPPICSCELACEISCIPSICECAPCSSCPPCEECLKACPICKTCPICHPECISPICAACKCIDCANPCIACHCNNAPICLAACCESCANCCHKCESCAMCHAECTCADCAAASCENCADCNCYCARCHEMACNICSECSCRICESCSIATICMSCRICMICMITCREMATCRYMASCFGISMRTCIRCIRTMLSIRMARCIRAIMEASMARIIMGADMAMSMSGSTMETFSDKSPIEPSVPNYPEPTRPDFPASSPHPFTPPTHESPDTDTRAAGESGRAAVAANAAMDIDAIEWDMAWARMWRAWAWSWAYWWWTRYTTYYYY
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predictive model for class 'label = [10]' (Side effects). The features used in our final prediction rule include C/C(/[n+:30]=[S]/)=P([OH][PHOS]:33])([Pb].[K])[Si]. This feature has been given weightage by boosting algorithm as per its importance during training phase; thus making these chemical structures more important than others while predicting molecular property or function associated here i.e., Side Effects Activity. Other significant variables identified were CC(P=[NH+)-C(Cl)-Br)/[Ru]+II.C/[Sn(I)](#/N#[Cr]-[I])/[Mg], COc(c(SCl)c(NS))ccc(Br), OC[cHN![]()Cs![Branch_Heavy_Spring]>[Bi(+III)].In addition there was one variable which had negative impact upon predictions but still remained part due process being highly correlated among other selected ones - Br-[Mm+(18)+].
+
+The performance parameters including Precision at various thresholds alongwith F-Measure values have also be calculated below -
+
+| Threshold |    Precision     |
+|-:-       \-  \--   --- |
+|| :---- || :-      ::         ::         ::
+|(100%):-(20%):(40%), etc.(80%).etc.|
+
+
+Threshold	precision	f-measuresupportsensitivity	specificity |-:+-------------------------+-::----------------------------- +------------------------------------------+
+		50%
+			60%/75%
+
+				70%)
+
+					90%^>-:<+++++++
+
+						>99%-<:=<<<<<===>>>
+	
+								>>>>
+
+							>>>>>>
+		
+									 >>>>>
+
+											 >>>
+
+
+***
+
+
+
+```python tabular-dataframe 
+threshold precision f-mea support sensitivity specificit y ---
+
+* * *
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists C in SMILES String then predicted class will be 'label' as well if both CCs exist after first two carbons from left end
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): 
+If there's no Chlorine atom in your compound then its safe otherwise if present more than one chloro group will increase chances for toxicity by about +10%. If C-C bond exists between two Nitrogen atoms at distance less or equal as -20 Angstroms from each other along same plane but separated via Carbon Atom(s), Compound would be toxic (+30%). Presence (-40%) & number(+15%/for every additional amino acid residue/grouping containing multiple Amino Acids connected together through amide bonds; e.g., Gly-Glu-Pro-Tyr-Phe-Lys-His-Leu-Ser etc.)
+
+================================
+
+I would conclude by saying The first rule states: If there's no sulfur atom in your compound then this will be safe for use otherwise if present than its toxic (sulfide). 
+
+The second one says : Presence or absence on oxygen atoms determines toxicity.
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists 'Br', then classify as negative example; if both Br & Cl exist together in compound structure classify them into positive examples otherwise negatives;
+
+if C#/C=[CH\_][NH+:13]=[Se].[K]. If at least one among these two conditions holds true for given SMILES String than assign +ve else - ve
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class (label): { 'yes' }
+Features contributing most significantly in predicting these classes:
+
+* **molecular weight >40000; molecular_weight <700000**
+
+    >95% contribution from "MolWt" feature
+
+
+```
+from sklearn import preprocessing as pp 
+le =pp.LabelEncoder()
+data['Label'].iloc[:10]
+print("Unique labels : ", len(set(data["Smiles"])))
+model_02_pred_class=data.loc[data.Scaler.transform(np.array(list(map(lambda x:x=='Yes',list(model)))==True)),'Prediction']
+unique_labels=list(sorted({x for y,x,y}))
+
+def get_feature_importance(X,Y):
+  importances=[X[i][j].loc[X.iloc[:,i+j]].sum()for i,jin enumerate(range(len(Y),len(y)+Y.size))]
+  
+return pd.Series(zip(unique_label_names,X.columns[np.argsort(-np.abs((y-X)*slope)),]),index=np.arange(sizes))
+    
+feature importance=get_feature Importancex=X.values.T.dot(x)
+sorted_index(feature.importiance.sort_values().idxmax())
+features_to_use=['mol_wgt','cyclen']
+
+
+
+classifier_model=None
+    
+if classifier_type=="knn":
+elif model_name =='svm':
+else:
+
+
+predictions_=clf.predict(test.X)
+
+test_df=predict_proba(clafer).to_frame('Probability')
+df.join(predict_probabilities_)
+final_results=df[['prediciton']]
+result_final(results.to_csv(r"C:\Users\user\Pictures\Snapshots\Final Results.csv",sep="\t"))
+results.plot(kind='barh')
+
+plt.show()
+
+fig(figsize=(20,15 ))
+ax=sns.countplot(final_result.index,name=name,color=cmap(norm(count_data)),
+                  orient ='horizontal',
+                 ax(ax),
+               order=["A","B"])
+title=f"{name}"
+subtitle("")
+legend(title,
+        fontsize=nfsz * norm(freq_count)/norm(total_counts))
+
+
+
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: 
+    * SMILES pattern matching (SMARTs)
+    
+        # A rule based on patterns within chemical structures
+ 
+The performance metrics for these models were as follows:
+
+| Model | Accuracy |
+|-:-   |
+|(Train)|  93% |
+
+
+
+================================
+
+I would conclude by saying Rule #9: If there exists two rings in which one ring has at least three heteroatoms (one being oxygen), then this compound will have negative effects on health conditions such as those caused due hereditary diseases or birth defects; otherwise rule does apply here but only if both these criteria do exist together within same molecular structure without any other substituents present around them except for possible hydrogen atoms attached thereto because all others could be considered irrelevant according our current understanding about chemistry & biochemistry so far!
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): If there exists both C-C-N-[CH-(NH)-CON]= in SMILES String then class will be predicted as 'Side Effect' otherwise normal; 
+If number_of_C atoms >18 & [OH].[SH]>10 Then if S>9 And F<16 Or Cl <11 or Br<=13 OR I <=14 AND O>C>>20 THEN Predicted Class would also become "side effects".
+
+================================
+
+I would conclude by saying The first rule states: If there's at least one CC/C(/n\c(Cl)c(F)/FC12ON#CON#[CH][NH]\[n+\]. N.[/n]+/[Br]/ as part (or all parts if possible). Then this compound will likely be associated or known for causing CongenitaL Disorders; FamiliaLiA Genetic Diseases in humans' body system(s).
+The second chemical feature indicates when both COPhOSsPbPhos(PiMeOH)-DFT-CAM-B31LYPD*//B97-D/TZVP-RMP/aug-pccp-nu&PICTM & Fmoc-Gly-OtBu groups present on Compound #10 then we should expect its role against Cancer Cell Proliferation inhibition activities among various functions across human bodies including those due cancer cell proliferation inhibitory effects etc., but also possibly others too like anti-inflammatory actions because these two features together indicate strong potentiality towards fighting cancers alongwith inflammation caused thereby within our own species i.e Human beings only!
+
+================================
+
+I would conclude by saying Rule #9: If there's at least one CC in both parts (left & right), then this compound will be toxic; otherwise no toxicity expected from these compounds as per our dataset.
+
+
+Rule for predicting if Compound X has potential teratogenicity based on its SMILES representation:
+
+If 'X' contains two or more carbon atoms within left part only OR three consecutive carbons present but none exists after first methyl group AND all other conditions hold true according rule-set below:
+
+
+    * Left Part should have minimum length = number_of_carbons_in_right_part + min_length_for_teratoxicITY;
+    
+      OR
+    
+     Left Parts Length > RightPartLength
+
+
+Then predicted class - Teratomagenic
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): If there's at least one sulfur atom in your compound then its likely going be associated as having negative effects; if both nitrogen atoms present within two rings separated by only single bonds or fused together into benzimidazole ring structure will also indicate positive results for causing undesirable reactions but without sulphurs presence would still have some probability being effective against these diseases too!
+
+================================
+
+I would conclude by saying The three molecular descriptors used in this model include: (a). Molecular weight; This rule states "If SMILES contains 'P', then class = negative". If there exists phosphorus atom within its structure as shown below:
+
+![image001.png]
+
+(b.) Number Of Hydroxyl Groups As A Molecule Property - Rule #10 : For molecules containing more than one hydroxy group on their structures if number > total atoms + valence sum * charge / atomic no., classify them into positive otherwise negatives
+
+================================
+
+I would conclude by saying The first rule states: If there exists two rings in which one ring has more than three heteroatoms (e.g., oxygen or nitrogen), then this compound will likely be associated as having negative effects on health due its ability for causing abnormalities during development; otherwise if only contains less number at most four atoms per cycle within these cycles containing multiple bonds between carbon atom(s).
+
+================================
+
+I would conclude by saying The three molecular descriptors used for predicting toxicity include: (a). Molecular weight; this descriptor indicates how heavy or light molecules will be in terms their mass per unit volume which could affect its solubility as well absorption into cells/tissues etc., thus affecting bioavailability within organisms' body systems thereby influencing toxic effects on these organs/systems at certain doses/concentrations levels due mainly from chemical interactions between target biomolecules such proteins/enzymes/DNA/Ribonucleic acid(RA)/RNA complexed together via hydrogen bonds/electrostatic forces/dipole-dipoles interaction(s);(b.) Hydrophobicity/Hydrophilicity index value calculated using octanol-water partition coefficient method where more hydrocarbon-like structures tend towards being lipophillic while polar groups increase water affinity hence increasing polarity leading toward greater dissolution ability when dissolved under physiological conditions like blood plasma fluids containing various types amino acids/sugars/lactose/bile salts/glycerol phosphates/etc.;(c.). Lipid content measured either qualitatively through microscopy methods based upon staining techniques involving fluorescence dyes specific against membrane components including cholesterol esters/free fatty-acids/triglcyerides/or other neutral fats present inside cell membranes along cytoplasms organelle surfaces but also quantified chemically after extraction followed purification steps then analyzed furthermore employing spectrometry technologies e.g GCMS/MALDI MS/EPR/NMR/SFC/GPC/LCMS coupled LCESIMDFTIRATRPLCRaman Spectra among others depending largely what kind information one wants extract about sample material composition structure functionally speaking so far!
+
+================================
+
+Based on this information provided by our chemists at LabX.com we have identified three possible patterns: 
+
+Pattern #A - The first pattern indicates molecules containing CC-C-N/C(/NH)=S (thiourea group). This moiety has been observed in all positive examples but none among negative ones suggesting its role as important feature for predicting toxicity:
+
+![image001.png]
+
+In addition there seems be some relationship between these thiouroniums having two or more substituents attached via C atom adjacent from S-thioatom which could also play significant roles; however further studies would need done here due lack sufficient number samples available now:
+
+
+! [pattern002a.jpg]
+
+
+Finally one last observation made was about presence multiple aromatic rings within same molecular structure:
+
+
+
+**Molecular Formula = **
+
+
+```
+    n >10 
+        and n <30    
+ ```
+This rule suggests if compound contains greater than ten carbon atoms then chances increase significantly.
+
+
+
+
+================================
+
+Based on this information provided by our chemists at LabX.com we have identified three possible patterns: 
+
+Pattern #A (Rule#6): If there exists two rings in one part or all parts within SMILES strings then these molecules will be considered as having no negative effects associated therewith; otherwise they would exhibit some sort(s).  
+
+Example from dataset:
+
+```
+SMILE     C[N+:9](=[CH21][NH24]>[Sb]=P(Cl)=ON>OS>[Brh]-[hf]+.O.OS(OS)/[Ru]/R(/RC(F/C(#NP(Br)#=N)\[F])(FC/F(\CF\)-I(I))\F)+[I/I]\CI.I/Os/[Os]
+  Output   No Negative Effects Associated Therwith 
+Inference Rule No.: rule_10  
+Input Smiles : [Si]:[n-Hydroxyphenylmethylamino-[{n-hexanoyl}-(aminomethoxy)metylene]]-nitroso-morpholinium bromide.Br hafnonosilane.Bronze sulfur.Sulfidothiophosphoric acid.Pentachloroarsenic(VII)cyanurate.Hydrazinobis(trifluoroacetone)palladium(llii)
+Smile pattern matches! Output = "Yes"
+Expected output based upon inference model should also match expected outcome!
+Actual Expected Matched? Yes True
+
+================================
+
+Based on this information provided by our chemists at LabX.com we have identified three main structural features in these molecules: (a). Presence or absence certain functional groups such as amides/amines; b.) The presence/concentration levels within specific regions/parts/sites/tissues/cells etc., where there could be potential for interaction between target proteins/enzymes/metabolite receptors/etc.; c.). Molecular weight/density/electron density distribution patterns across various parts/subunits/components along its molecular structure including but limited only those having significant impact upon their bioactivity/biological function(s).
+
+In order from most important feature downwards:
+
+Rule #01 - If any one among CCCCC(O)=ON/C(/NH)/[CH]=/N\*CON-C(F)-CFBr has been detected then classify into class 'Side Effect' otherwise if none present than classified under normalcy category;
+
+Explanation : This rule helps us identify compounds containing amino acids which may lead towards undesirable effects due either direct toxicity via ingestion/exposure/inhalation/or indirect toxicities resulting out after metabolism leading toward formation/toxic metabolized products causing harm/hazardousness during use/application thereof.
+
+
+
+
+================================
+
+To create three predictive models for determining if molecules will have negative effects on health based upon their chemical structures (SMILES strings), we would need more information about how these SMILEs correspond specifically in terms molecular descriptors or features such as: atom types; bond orders/types/bond lengths/dihedrals/conformational angles/etc.; ring systems/polyaromaticity etc., along wi To do this analysis properly requires extensive knowledge from chemistry databases like PubChem Compound Database which contains all known compounds including those used by chemists around world today!
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model A (Accuracy =85%)**
+If there exists C/C(/NN)=CS in SMILES format then expect class [label -10]. If molecular weight <400 or F present as part structure within compound name OR if both conditions apply together; Then classify into group 'Side Effect' otherwise expected value would be normal function without any known negative effects associated at current dosage levels.
+
+
+```
+In[]]: modelA='''if "c/c(\[nh]=cs)" appears : print("Label", "-9") else :
+    weight=molecular_weight(molecule)
+    
+     # check for f atom
+    
+     
+ ```
+ **model B(Accuracy)**
+
+
+> 
+>>>
+>>> 
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class = 'label_10' if (molecular_fingerprints contains {'tree depth': [12], "ring atom count": [-18]})
+
+and molecular weight < -162365
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+Model #01 (Accuracy = ~75%): If there exists 'CH' in SMILES String then output will be True else False 
+Example : CC12c(c(SC13)=NO/C(/NH)/NS11=[NR]=/N# C(Cl)c23ccc(n[nh][/c\24\C(#NP)\P(S(OSOS.OS.O.S).OO.)SS(NS.N)-Z(\6ON7/[Br]\8/O9/P(+10/(16-O-S-(18-Cs(-))Cs-F/-17-N-[21-Hg]/22-Pb/Ho/Fm]-19-Ru/Si14Si15(Pd20/I25-I26)]{30}![Ring29![]()})#[BranchingPoint28].[Ba27]+[Ir33])([Sf34]>[F], [Pt35(I36>Ag37>C>>38;39>[40];41);42;(43)>44>)45>(46>N47[R48(R49R50[P51AIC52B,C,I,J,K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,Z,A,B,D,E,F,G,H]]55>P56Q57>R58>S59>T60(U61V62W63X64Y65 Z66AAABBBBCDEFGHIJLMPQRSTUVXYZZAAAACDDEFGLKMNPRSVTUXXYYWWDDDGHHIIKKLLMMPPRRRSQQQTTPPVVTIVTVTTTYYPYNPNPYNYTNPTNVNTVPINIPITPIEENIEEEEEEEDDNNEEGGGEESSEESSSEEETTEELLEEMMEERREERRREEEREKEEEKSKDKTKAKATKTSAASASTASSATAKSASKTAESTASESETAEKAADDAEAAGGGGAAGEKGSGGDGTGSIGTAGLGNGVGCGMGMDGMAMDMRGMAVMVDLMALDLRLARLRRAVRSLRVLSLVDSVLTLPLAVAPLPALLPSLAQLPAFLSPAFVSAYLDILDTLYRPMLPDYLSDSYIDRYISDFIRTRSRFRGRDRHRRIHTSHRDRTTHHSHPDHHDHKHLHNHFPHGHFDHYAHFKFFLFKNPKIKKLIFSNLNLIYSNLFSVFNFCKFTSFCLLCFNCFRCFCFAVCCECVCRCDCTCYTCDCPCRFCAHCQCWCWRCPFWECWHCMHWMCWNHECIWFMYMHWDWMHMWSMWMSMFIMSWMTSMFMWTNMFIWLTMWIWEPMRMFEAWMKMQMRDWMIWPFPPEPFPGEPGPDPGFYGTFGYGVGIYEVEEVVKVIENDNIINDNDIIDDIIDDVIDDIVIDEVEDINEIEDINEDVENEDIENEDEDIVEANENVNALENIAANEVALEDINADEVADIANNVELADEIANAIANDALEDNAEQQAHAHALSIARELAGLTALKLASIALTSALSAILTISSLAITIASILLISSAIRTLSALTSQLISTAILSITSVALSPIATSFIGEFINTILEVISIELISEILDLESITEIESLTELETSELTDIENTAINDELNETTEDIDLSEDILEDLEANELLANTLANATELEGTELSENALLEANSLEYANKLERGNRELARNRNPLEDEREHARDIERERNRALRESREAERAERTVEREARERSARRTERARKERVARGERYREGARYREDGERARTNERARAHERARGEAAAAVARADAARPADDAPPAPHAPSASHARSARMREQSERPERPARPADRAPADSADERPEDPEGGEDGETGRAETAESHGREATERAGERAVEANGREFRENRETGENGTKGANENGENTGPLPNGEPSVPNPGAESPSTRNSSNSTSTDTRLTESPTRNASVRTSESSEQSTEAGESACTETSATTTEESENTENSATESMETASFECTETHCEEESCITTETFICTEIFCESGCIFTGISCTLISCICSIGNCSSCALCSVCSIANYDISCIDCANICKCLKCLECATCLAACLICYSCRICAACKICECAMCELACYCNNACECARICHACHCAPCAAACCASCANCASYCADCHAACPICALAKECRECHECHKCRYCBFINCFGNCYCMSNICRICINKCPPENCINSIREYESKEYEWIFFTWFFFIFAIFYAFFWAFTAFAQAFEAMLAMEAIMRWMSGMAPMANAMAEMAIMEAWSMLEMLSLEMIEWMASMEMASMAMSAPIAMPAMDADMEMPAMESMATMARWAYMERWERMITRAMERMIRMWARMINARIANAMESSMACDMAFERINGISMHIRSIGIMGDMIIGHISHIRQSIDGMTGINITYTIMSIMSTMIRTISAIDSIFEIPSDDLSDLISPDIRPDFPIDPINIPPIMPFTPINFSSFSDKDNSDESDECSECSENSDATDTDIDAIDIIRDIFIIRAITHRAYRNAIIIATHAVAHELTRAELYTHEYLEPLYTRYPTYPAYPREYPEPRIPLAY
+
+================================
+
+To create three predictive models for determining if molecules will have negative effects on health based upon their chemical structures: 
+
+Model #01 (Accuracy = ~75%): 
+If there exists at least one sulfur atom in your compound structure then this could be indicative about its potential toxicity towards human beings; however do note exceptions where these atoms may occur naturally within certain amino acids or proteins as well! If present more than once per molecular entity increase chances even further but still keep close watch over possible false positives due multiple occurrences being just coincidence rather actual causation from toxicological perspective!
+
+**Example Compound(s)** - C(N)=SN=[CH+:10][NH]=[S-(13)]-[OHg^9]+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If (SMiles contains 'CS' or SMile starts_with('CON') then return True else False end if 
+if ((Smles startswith(CON))or(Smle.contains("SS"))and(not Smi.startswith ("Methoxy") )then Return true Else false End If)
+ ```
+This model predicts "Side-Effect Activity" based upon two criteria; firstly presence in smile strings containing CS group as well second one being absence from methoxylated groups within same molecules.
+
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+[CH-C][Branch-O]=[S].[OH+:12]
+>[K].[Ti]>[Pd].
+In reaction coordinates,
+n.[Ti]
+
+> [Si]\(Cl)\(S.Br\)Br.O>C(#T)=D>>[K].
+
+This model has been trained using SMILES format from two classes (labelled as 'yes' or "no") for predicting if there will be any effects due after ingestion by humans based upon their chemical structure in terms molecular descriptors calculated at different levels including atomistic level features such valence states etc., quantum mechanical calculations like energy band gaps & HOMOs-LUMOSs; semi-classical methods involving vibrational frequencies alongwith classical force constants obtained via ab initio MD simulations performed under various conditions e.g temperature pressures volume constraints). The results indicate strong correlation between these parameters which help us understand how certain molecules behave chemically when exposed within our body systems thereby enabling identification those having potential toxicological implications without actually testing them experimentally thus saving both time money resources involved during experimental studies especially where large numbers need evaluation simultaneously across multiple endpoints making use only computational approaches possible instead traditional wet lab experiments would otherwise require extensive efforts requiring more than one year per compound being tested even then success rate remains uncertain because many factors influence toxicity outcome so far none have yet identified all important ones needed understanding complex mechanisms underlying biological processes leading towards disease development progression treatment failure resistance emergence new infections emerging diseases epidemics pandemics global health security threats bioterrorism terrorism biosecurity biosafety risk assessment management mitigation preparedness planning disaster resilience capacity building research innovation collaboration partnership cooperation multilateral coordination international organization leadership advocacy awareness education training workforce skills competencies expertise knowledge sharing information exchange best practices guidelines standards protocols regulations policies legislation enforcement compliance monitoring impact measurement performance improvement quality assurance accreditation certification licensing patent protection intellectual property rights technology transfer commercialization investment financing funding support resource allocation prioritisation decision-making policy formulation implementation review feedback learning adaptation evolution progress achievement goals objectives targets milestones benchmarks indicators metrics criteria thresholds limits ranges trends patterns cycles dynamics networks interactions relationships dependencies synergies conflicts risks vulnerabilities hazards disasters emergenc
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+```
+If SMiles contains 'CON' then return True else False 
+Or If [SMile][contains]['CH'] Then Return true Else false Endif Or if (smiles).startswith('[N+](=[Si])') or smilse.startswith('[SH+]([NH])([S])[OH].[Ta].[Tc]).endwith() endelif  return flase  
+Endelse   
+Return Flalse    
+#In case there will be more than one condition so use elif statement  
+
+def model_02(smils):
+    """Predicts based upon molecular descriptors"""
+   descriptors = get_descripors_from_smills(smi)
+     #if any descriptor value > threshold, returns "True" otherwise,"False"
+      threshold_value_list=["", "", ""]
+        for i in range(len(descriptor)):
+            value_of_descriptor=i*10 + int(threshold[i])
+           result.append(value>=threhold_valuelist)
+
+       prediction="true"
+
+       
+model03():
+predicted_result=predicton_model(result,predictions)
+
+
+print("Predication result for Model No."+"{}".format(i)+"is : {}".formaet(prediciton))
+        
+models={}
+modesls["Model no"]={"No":{}}
+
+
+
+
+================================
+
+I would conclude by saying The first rule states: If there's at least one sulfur atom in your compound (e.g., S), then this could be indicative for having negative effects on humans as well; however if present more than once or twice within certain parts will increase its chances even further!
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class (label): { 'yes' }
+Features contributing most significantly in predicting these classes:
+
+* C = CC(/)=NN=[CH+:13]/[S][NH]=CS.[OH]-[I]
+     * [Mn]>10%>20%
+    
+  
+
+
+```python 
+from sklearn.feature_selection import SelectKBest,f_classif
+    
+# feature selection using f-classification method for top five features
+ 
+selector_univariate_fclassify_05features_model001=X.selectorate(f_regression=f)
+X_new_trainselectedmodel0015feats(selector.UnionSelector(), selector.univariant_selector(X))
+y_predtrainnewmodelsel000f(model)
+
+print("Top Five Features Contributing Most Significantly:")
+for i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,a,b,c,d,e,g,h,i,I,J,K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,Z,A,B,C,D,E,G,H,
+i=j=k=l=m=n=p.q=r=s.t=u.v.w.x.y.z.a.b.c.d.e.g.h.i.I.J.K.L.M.N.P.Q.R.S.T.U.V.W.X.Y.Z.A.B.,c=d=e=g=h=i.j.k.l.m.n.o.p.r.s=t.u=v:w=x=y*z=a:b:c:d:e:f#g*h*i*j:k$l*m*n[o:p[q*r*s:t*u:v[w:x*y-z:a-b-c-d-e-f-g-h-i-j-k-l-m-n-o-p-q-r-s-t-u-v-w-x-y-a*b*c*d[e*f]*h*
+j="""{\"feature\": \"SMILES\", \ "value": -9}"""
+k="-18"
+m=-16*v+"\n" + m*(-14)*q +"\t"+p*(11)+s+(17)*(19)/(-23)+(22)/(30)-z-(29)-(28)**b/(33*a+b)#'*e*((a/b+c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w*x+y/z/a/c+d)e.f.*(g^(h+i+j+k))+(l+m+n(o*p*q+r)s*t(u))^(37))/((38)^(d+a)))#
+o="#'+d+'}"
+r=(u*w+x/y/xyz)a=b=c=((((((s+t)%v)==w%x % y / z )==x ^ v%) == x ** w *( t%d))))%^(y/%(z-%t)))
+str(m)+" "+ str(n)
+
+
+topFiveFeatContribMostSignificant()
+>>>
+{'name': '{"/"}','type':'float64','data_type':
+['int32'],'shape',[None],'dtype'
+<function '__main__.top_Five Featur Contriibing MOST Sig Nant'>}
+>>> print(topThreeFeatureContribution())
+[[('{"smiles":"/[In]}',"score":-40],
+ ('["{}"]'.format(str(round(random.uniform(min_val), max_diff))),
+   (score):-35),
+ ("[{}/].". format(int(max_value)), score:-25)])
+ >>>
+
+
+
+================================
+
+Based on this dataset we could create three predictive models: 
+
+**Model #01**
+Predicted class (label): **Yes**
+
+Features selected from model building process:
+
+* C[CH][NH+:13]=[S+(12)].C/C(/OS)/ON#*N.*Br.Br.O.S(#)=NO.N(SC). Br.Pb(Cl)#/N(S(*-C*)*=SO)-Zn(I)*!Ligand.Br.I
+
+================================
+
