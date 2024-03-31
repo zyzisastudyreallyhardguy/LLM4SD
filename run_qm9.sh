@@ -1,6 +1,6 @@
 ############################################################################################################
 # Code for the paper: Large Language Models for Scientific Synthesis, Inference and Explanation
-# Code Authors: Yizhen Zheng, HuanYee Koh, Jiaxin Ju
+# Code Authors: Yizhen Zheng, Huan Yee Koh, Jiaxin Ju
 # https://github.com/zyzisastudyreallyhardguy/LLM4SD/tree/main
 #
 # * Please install packages in requirment.txt before running this file
@@ -52,5 +52,4 @@ for subtask in "${QM9_SUBTASK[@]}"; do
     
     python code_gen_and_eval.py --dataset qm9 --subtask ${subtask} --model ${MODEL} --knowledge_type "all" --list_num 50 \
                                 --api_key ${API_KEY} --output_dir "llm4sd_results" --code_gen_folder "llm4sd_code_generation"
-  done
 done

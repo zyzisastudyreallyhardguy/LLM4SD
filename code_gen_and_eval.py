@@ -34,7 +34,7 @@ parser.add_argument('--knowledge_type', type=str, default='all', help='synthesiz
 parser.add_argument('--list_num', type=int, default=30, help='number of sample lists (30/50) for inference')
 parser.add_argument('--output_dir', type=str, default='eval_result', help='output folder')
 parser.add_argument('--code_gen_folder', type=str, default='code_generation_repo')
-parser.add_argument('api_key', type=str, default='', help='openai key')
+parser.add_argument('--api_key', type=str, default='', help='openai key')
 args = parser.parse_args()
 
 prompt = '''Question: Please generate the following rules to code like the following examples. You can define function name by yourself. Please ensure the code is executable! Each rule can have multiple functions! Don't make mistakes like ''rdkit.Chem.rdMolDescriptors' has no attribute 'CalXXX'. Don't skip rules! All functions have to return numbers and takes one argument mol!:
