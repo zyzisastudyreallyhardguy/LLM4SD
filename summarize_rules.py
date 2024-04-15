@@ -5,7 +5,7 @@ import os
 import argparse
 
 
-def query(message, api_key, model="gpt-4-1106-preview"):
+def query(message, api_key, model="gpt-4-turbo"):
     openai.api_key = api_key
     while True:
         try:
@@ -22,7 +22,7 @@ def query(message, api_key, model="gpt-4-1106-preview"):
             continue
 
 
-def num_tokens_from_message(path_string, model='gpt-4-1106-preview'):
+def num_tokens_from_message(path_string, model='gpt-4-turbo'):
     """Returns the number of tokens used by a list of messages."""
     messages = [{"role": "user", "content": path_string}]
     try:
@@ -45,7 +45,7 @@ def num_tokens_from_message(path_string, model='gpt-4-1106-preview'):
     return num_tokens
 
 
-def get_token_limit(model='gpt-4-1106-preview'):
+def get_token_limit(model='gpt-4-turbo'):
     """Returns the token limitation of provided model"""
     if model in ['gpt-4', 'gpt-4-0613']:
         num_tokens_limit = 8192 -1500 # 1500 for response
@@ -53,14 +53,14 @@ def get_token_limit(model='gpt-4-1106-preview'):
         num_tokens_limit = 16384 -1500
     elif model in ['gpt-3.5-turbo', 'gpt-3.5-turbo-0613', 'text-davinci-003', 'text-davinci-002']:
         num_tokens_limit = 4096 -1500
-    elif model == "gpt-4-1106-preview":
+    elif model == "gpt-4-turbo":
         num_tokens_limit = 128000 -1500
     else:
         raise NotImplementedError(f"""get_token_limit() is not implemented for model {model}.""")
     return num_tokens_limit
 
 
-def split_rules_list(rule_list, token_limit, model='gpt-4-1106-preview'):
+def split_rules_list(rule_list, token_limit, model='gpt-4-turbo'):
     """
     Split the rule list into several lists, each list can be fed into the model.
     """
@@ -84,7 +84,7 @@ def split_rules_list(rule_list, token_limit, model='gpt-4-1106-preview'):
     return output_list
 
 
-def split_response_list(content_list, summarize_prompt, model='gpt-4-1106-preview'):
+def split_response_list(content_list, summarize_prompt, model='gpt-4-turbo'):
     token_limitation = get_token_limit(model)  # Get input token limitation for current model
     all_rules_content = '\n'.join(content_list)
     formatted_all_response = summarize_prompt.format_map({'instruction': all_rules_content.strip()})
@@ -129,7 +129,7 @@ def main():
     for rule_list in splitted_response_list:
         rule_content = '\n'.join(rule_list)
         input_content = summarize_prompt.format_map({'instruction': rule_content.strip()})
-        response = query(input_content, args.api_key, model='gpt-4-1106-preview')
+        response = query(input_content, args.api_key, model='gpt-4-turbo')
         response_list.extend(response.split('\n'))
     
     output_folder = os.path.join(args.output_folder, args.input_model_folder, args.dataset)

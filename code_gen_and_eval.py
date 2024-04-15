@@ -96,7 +96,7 @@ def auto_gen_code(prompt):
     while True:
         try:
             response = openai.ChatCompletion.create(
-                model="gpt-4",
+                model="gpt-4-turbo",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=2000,
                 temperature=0.1,
