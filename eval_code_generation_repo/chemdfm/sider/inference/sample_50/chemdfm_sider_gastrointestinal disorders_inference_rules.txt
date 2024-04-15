@@ -1,0 +1,125 @@
+def rule1_toxic_functional_groups(mol):
+    # Define queries for chlorinated aromatic rings, heavy metals, and reactive epoxides
+    chloro_query = Chem.MolFromSmarts('c1cc(Cl)ccc1Cl')  # Dichlorobenzene pattern
+    heavy_metal_query = Chem.MolFromSmarts('[Hg,Pb,Cd,As]')  # Common heavy metals
+    epoxide_query = Chem.MolFromSmarts('C1OC1')  # Epoxide pattern
+
+    # Check for the presence of these toxic functional groups in the molecule
+    has_chloro = mol.HasSubstructMatch(chloro_query)
+    has_heavy_metal = mol.HasSubstructMatch(heavy_metal_query)
+    has_epoxide = mol.HasSubstructMatch(epoxide_query)
+
+    # Return 1 if any toxic group is found, otherwise return 0
+    if has_chloro or has_heavy_metal or has_epoxide:
+        return 1
+    else:
+        return 0
+
+
+def rule2_lipophilicity_charge(mol):
+    # Calculate lipophilicity (logP)
+    logP = Descriptors.MolLogP(mol)
+    # Calculate total formal charge
+    total_charge = Chem.GetFormalCharge(mol)
+
+def rule3_chemical_classes(mol):
+    try:
+        # Example: Check for corticosteroids (simple steroidal structure) and antibiotics (beta-lactam)
+        steroid_query = rdqueries.HasSubstructMatch(Chem.MolFromSmarts('C1CCC2C1(CCCC2)C'))  # Basic steroid backbone
+        beta_lactam_query = rdqueries.HasSubstructMatch(Chem.MolFromSmarts('C1C(=O)N(C)C1'))  # Beta-lactam ring
+
+        # Check if the molecule matches the queries
+        is_steroid = mol.HasSubstructMatch(Chem.MolFromSmarts('C1CCC2C1(CCCC2)C'))
+        is_beta_lactam = mol.HasSubstructMatch(Chem.MolFromSmarts('C1C(=O)N(C)C1'))
+
+        # Return 1 if either condition is met, otherwise 0
+        if is_steroid or is_beta_lactam:
+            return 1
+        else:
+            return 0
+    except:
+        # In case of any error, return 0 as specified
+        return 0
+
+
+def rule4_acidic_groups(mol):
+    try:
+        # Define queries for carboxylic acids and phenols
+        carboxylic_acid_query = Chem.MolFromSmarts('C(=O)O')  # Carboxylic acid pattern
+        phenol_query = Chem.MolFromSmarts('c1ccccc1O')  # Phenol pattern
+
+        # Check for the presence of carboxylic acids and phenols in the molecule
+        num_carboxylic_acids = len(mol.GetSubstructMatches(carboxylic_acid_query))
+        num_phenols = len(mol.GetSubstructMatches(phenol_query))
+
+        # Return the total count of acidic groups
+        return num_carboxylic_acids + num_phenols
+    except:
+        # In case of any error, return 0 (as per the requirement to not raise errors)
+        return 0
+
+
+def rule5_solubility_index(mol):
+    # Using logP as a proxy for solubility; lower logP can indicate higher solubility
+    logP = Descriptors.MolLogP(mol)
+    # Using molecular weight as another factor; higher molecular weight can decrease solubility
+    mol_weight = Descriptors.MolWt(mol)
+    # Normalize and combine these factors into a single solubility index
+    solubility_index = (100 - mol_weight / 10) + (10 - logP)
+    return solubility_index
+
+def rule6_absorption_gi_irritation(mol):
+    # Molecular weight impacts absorption rate
+    mol_weight = Descriptors.MolWt(mol)
+    # LogP impacts lipophilicity, affecting absorption and irritation
+    logP = Descriptors.MolLogP(mol)
+    # Combine these into an index; higher values might indicate higher risk
+    absorption_irritation_index = mol_weight / 100 + logP
+    return absorption_irritation_index
+
+def rule7_reactivity(mol):
+    # Counting functional groups that might indicate reactivity
+    num_alkyl_chains = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[C;X4]')))
+    num_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]')))
+    num_aromatic_systems = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1')))
+    # Summing up the counts as a simple measure of reactivity
+    reactivity_score = num_alkyl_chains + num_acids + num_aromatic_systems
+    return reactivity_score
+
+def rule8_stability(mol):
+    # Example: Count ester groups as they can hydrolyze
+    ester_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetDegree() == 2)
+    return ester_count
+
+def rule9_aromatic_amines(mol):
+    # Count aromatic nitrogens which might indicate aromatic amines
+    aromatic_nitrogen_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and atom.GetIsAromatic())
+    return aromatic_nitrogen_count
+
+def rule9_aryl_sulfides(mol):
+    # Count aryl sulfides
+    aryl_sulfide_count = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.SINGLE and 
+                             ((bond.GetBeginAtom().GetSymbol() == 'S' and bond.GetEndAtom().GetIsAromatic()) or 
+                              (bond.GetEndAtom().GetSymbol() == 'S' and bond.GetBeginAtom().GetIsAromatic())))
+    return aryl_sulfide_count
+
+def rule10_bulky_groups(mol):
+    # Example: Count tert-butyl groups
+    tert_butyl_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetDegree() == 4)
+    return tert_butyl_count
+
+def rule11_hydrophilicity(mol):
+    # Calculate LogP and return negative (more negative is more hydrophilic)
+    logP = Descriptors.MolLogP(mol)
+    return -logP
+
+def rule11_small_mw(mol):
+    # Calculate molecular weight and check if it's below a threshold (e.g., 500 Da)
+    mw = Descriptors.MolWt(mol)
+    return 1 if mw < 500 else 0
+
+def rule11_no_reactive_groups(mol):
+    # Example: Count aldehyde groups
+    aldehyde_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and 
+                         any(n.GetSymbol() == 'O' and n.GetDegree() == 1 for n in atom.GetNeighbors()))
+    return 0 if aldehyde_count > 0 else 1

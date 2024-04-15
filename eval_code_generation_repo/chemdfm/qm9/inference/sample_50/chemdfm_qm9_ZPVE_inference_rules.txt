@@ -1,0 +1,17 @@
+def rule1_multiple_bonds(mol):
+    # Count double and triple bonds
+    double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE)
+    triple_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.TRIPLE)
+    return double_bonds + triple_bonds
+
+def rule2_aromatic_rings(mol):
+    # Count aromatic rings
+    aromatic_rings = len(Chem.GetSymmSSSR(mol))
+    return aromatic_rings
+
+def rule3_charged_or_polar_groups(mol):
+    # Count charged atoms and polar functional groups
+    charged_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() != 0)
+    # Polar functional groups often contain oxygen or nitrogen atoms
+    polar_groups = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['O', 'N'])
+    return charged_atoms + polar_groups

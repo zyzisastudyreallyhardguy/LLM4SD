@@ -1,0 +1,26 @@
+def rule1_aromatic_rings(mol):
+    aromatic_rings = 0
+    ssr = Chem.GetSymmSSSR(mol)  # Get the smallest set of smallest rings
+    for ring in ssr:
+        if mol.GetRingInfo().IsAromatic(ring):
+            aromatic_rings += 1
+    return aromatic_rings
+
+def rule2_multiple_bonds(mol):
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() in (Chem.BondType.DOUBLE, Chem.BondType.TRIPLE):
+            begin_atom = bond.GetBeginAtom()
+            end_atom = bond.GetEndAtom()
+            if not (begin_atom.GetHybridization() == Chem.HybridizationType.SP3 and end_atom.GetHybridization() == Chem.HybridizationType.SP3):
+                if {'C', 'N'} not in {begin_atom.GetSymbol(), end_atom.GetSymbol()}:
+                    count += 1
+    return count
+
+def rule3_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetIsAromatic():
+            if any([neighbor.GetSymbol() == 'C' and neighbor.GetIsAromatic() for neighbor in atom.GetNeighbors()]):
+                aromatic_amines += 1
+    return aromatic_amines

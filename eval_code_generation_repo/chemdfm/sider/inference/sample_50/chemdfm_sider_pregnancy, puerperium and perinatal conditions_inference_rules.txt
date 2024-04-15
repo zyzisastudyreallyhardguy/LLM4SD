@@ -1,0 +1,80 @@
+def rule1_aromatic_systems(mol):
+    aromatic_count = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            aromatic_count += 1
+    return aromatic_count
+
+def rule2_lipophilic_moieties(mol):
+    logP = Descriptors.MolLogP(mol)
+    return logP
+
+def rule3_reactive_groups(mol):
+    reactive_groups = 0
+    # Count specific atoms or groups like chlorines, alkylating groups
+    reactive_groups += len(mol.GetSubstructMatches(Chem.MolFromSmarts("[Cl]")))  # Chlorines
+    reactive_groups += len(mol.GetSubstructMatches(Chem.MolFromSmarts("[Br]")))  # Bromines
+    reactive_groups += len(mol.GetSubstructMatches(Chem.MolFromSmarts("[O-]")))  # Oxide ions
+    return reactive_groups
+
+def rule4_heavy_metals(mol):
+    heavy_metal_count = 0
+    # List of atomic numbers for heavy metals of interest
+    heavy_metals = [56, 24, 34]  # Barium (Ba), Chromium (Cr), Selenium (Se)
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in heavy_metals:
+            heavy_metal_count += 1
+    return heavy_metal_count
+
+def rule5_nitrile_benzene_aromatic_heterocycles(mol):
+    # Count nitrile groups
+    nitrile_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetIsAromatic() and len(atom.GetNeighbors()) == 1)
+
+def rule6_aromatic_fused_heterocycles(mol):
+    # Define SMARTS pattern for aromatic rings fused to five-membered heterocycles with alkyl or aryl groups on nitrogen
+    fused_pattern = Chem.MolFromSmarts('c2ccccc2[nX3]1ccccc1')
+    count_fused = len(mol.GetSubstructMatches(fused_pattern))
+    return count_fused
+
+def rule7_long_carbon_chains(mol):
+    # Define SMARTS pattern for carbon chains with double or triple bonds
+    carbon_chain_pattern = Chem.MolFromSmarts('C#CC#C')
+    double_bond_pattern = Chem.MolFromSmarts('C=CC=C')
+
+def rule8_persistence(mol):
+    # Example of persistence: LogP (octanol-water partition coefficient)
+    return Descriptors.MolLogP(mol)
+
+def rule8_lipophilicity(mol):
+    # Lipophilicity can also be estimated using LogP
+    return Descriptors.MolLogP(mol)
+
+def rule9_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule9_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule9_tpsa(mol):
+    # Total polar surface area as a proxy for solubility and barrier crossing
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule10_halogen_atoms(mol):
+    # Counting halogens: Chlorine (Cl) and Bromine (Br)
+    halogens = ['Cl', 'Br']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule10_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule10_double_bonds(mol):
+    # Counting double bonds
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            count += 1
+    return count

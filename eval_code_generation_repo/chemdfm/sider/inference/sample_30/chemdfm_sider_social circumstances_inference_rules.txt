@@ -1,0 +1,67 @@
+def contains_substructure(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return -1  # Return -1 if the necessary arguments are not provided
+
+
+def rule1_planar_tricyclic(mol):
+    # SMARTS for planar tricyclic structures (generic example)
+    smarts = 'c1ccccc1c2ccccc2c3ccccc3'
+    return contains_substructure(mol, smarts)
+
+def rule1_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule1_halogens(mol):
+    # SMARTS for halogens (F, Cl, Br, I)
+    smarts = '[F,Cl,Br,I]'
+    return contains_substructure(mol, smarts)
+
+def rule1_heavy_metals(mol):
+    # SMARTS for common heavy metals
+    smarts = '[Cu,Zn,Fe,Co,Ni,Cd,Hg,Pb]'
+    return contains_substructure(mol, smarts)
+
+def rule2_reactive_groups(mol):
+    # SMARTS for reactive groups like alkylating agents or epoxides
+    smarts = '[CX4][OX2][CX4]'  # Example for epoxides
+    return contains_substructure(mol, smarts)
+
+def rule2_strong_binding(mol):
+    # Placeholder function: actual implementation would require more specific information
+    return 0  # Returning 0 as a placeholder
+
+def rule3_high_lipophilicity(mol):
+    logp = Descriptors.MolLogP(mol)
+    return logp > 3  # Example threshold for high lipophilicity
+
+def rule3_complex_structures(mol):
+    # Placeholder for complexity, here using molecular weight as a proxy
+    mw = Descriptors.MolWt(mol)
+    return mw > 500  # Example threshold for complexity
+
+def rule3_specific_groups(mol):
+    # SMARTS for aromatic amines
+    smarts_aromatic_amines = 'c1ccccc1N'
+    # SMARTS for unsaturated fatty acid chains
+    smarts_unsaturated_fatty_acids = 'O=C-C=C'
+    return contains_substructure(mol, smarts_aromatic_amines) or contains_substructure(mol, smarts_unsaturated_fatty_acids)
+
+def rule4_molecule_complexity(mol):
+    num_aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    molecular_weight = Descriptors.MolWt(mol)
+    logp = Crippen.MolLogP(mol)
+    return num_aromatic_rings + molecular_weight + logp
+
+def rule5_functional_groups(mol):
+    num_amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2,H1,H0]')))
+    num_alcohols = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H]')))
+    num_carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[OH]')))
+    num_double_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=C')))
+    return num_amines + num_alcohols + num_carboxylic_acids + num_double_bonds
+
+def rule6_similarity_toxins(mol):
+    # This is a placeholder function; actual implementation would require a database of known toxins
+    # and a method to calculate structural similarity
+    # For demonstration, let's assume a simple count of halogens as a proxy for potential toxicity
+    num_halogens = rdMolDescriptors.CalcNumHBD(mol)
+    return num_halogens

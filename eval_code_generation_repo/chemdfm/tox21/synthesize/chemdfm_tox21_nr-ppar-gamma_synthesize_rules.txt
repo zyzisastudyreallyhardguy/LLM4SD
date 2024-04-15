@@ -1,0 +1,80 @@
+def rule1_calculate_logp(mol):
+    return Crippen.MolLogP(mol)
+
+def rule2_calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_check_aromaticity(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    return aromatic_count
+
+def rule4_number_rotatable_bonds(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+def rule5_identify_functional_groups(mol):
+    patt = Chem.MolFromSmarts('C(=O)[O;H1,H2]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def calculate_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def check_planarity(mol):
+    # Check if the molecule has at least one conformer
+    if mol.GetNumConformers() == 0:
+        return 0  # Return 0 if no conformers are present
+
+
+def count_ring_systems(mol):
+    return len(Chem.GetSymmSSSR(mol))
+
+def count_chiral_centers(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetChiralTag() != Chem.rdchem.ChiralType.CHI_UNSPECIFIED)
+
+def count_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def count_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+
+def count_halogens(mol):
+    halogens = {9, 17, 35, 53, 85}  # F, Cl, Br, I, At atomic numbers
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in halogens)
+
+def count_oxygen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')
+
+
+
+def rule16_identify_carbonyl_groups(mol):
+    patt = Chem.MolFromSmarts('C=O')  # SMARTS pattern for carbonyl group
+    matches = mol.GetSubstructMatches(patt)
+    return int(len(matches) > 0)
+
+def rule17_count_cc_double_bonds(mol):
+    patt = Chem.MolFromSmarts('C=C')  # SMARTS pattern for carbon-carbon double bond
+    matches = mol.GetSubstructMatches(patt)
+    return len(matches)
+
+def rule18_count_co_double_bonds(mol):
+    patt = Chem.MolFromSmarts('C=O')  # SMARTS pattern for carbon-oxygen double bond
+    matches = mol.GetSubstructMatches(patt)
+    return len(matches)
+
+def rule19_identify_amines(mol):
+    patt = Chem.MolFromSmarts('N')  # SMARTS pattern for amines (general nitrogen)
+    matches = mol.GetSubstructMatches(patt)
+    return int(len(matches) > 0)
+
+def rule20_count_cn_bonds(mol):
+    patt = Chem.MolFromSmarts('C-N')  # SMARTS pattern for carbon-nitrogen single bond
+    matches = mol.GetSubstructMatches(patt)
+    return len(matches)

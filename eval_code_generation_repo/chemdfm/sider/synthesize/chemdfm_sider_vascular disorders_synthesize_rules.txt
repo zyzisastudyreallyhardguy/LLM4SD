@@ -1,0 +1,96 @@
+def rule1_calculate_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def rule2_aromatic_rings(mol):
+    aromatic_rings = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            aromatic_rings += 1
+    return aromatic_rings
+
+def rule3_molecular_size(mol):
+    return mol.GetNumAtoms()
+
+def rule4_unsaturated_bonds(mol):
+    unsaturated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() != Chem.rdchem.BondType.SINGLE:
+            unsaturated_bonds += 1
+    return unsaturated_bonds
+
+def rule5_reactive_groups(mol):
+    # Example: Count carbonyl groups (C=O)
+    carbonyl_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetAtomicNum() == 8 and mol.GetBondBetweenAtoms(atom.GetIdx(), neighbor.GetIdx()).GetBondType() == Chem.rdchem.BondType.DOUBLE:
+                    carbonyl_count += 1
+    return carbonyl_count
+
+def rule6_chiral_centers(mol):
+    chiral_centers = sum(1 for atom in mol.GetAtoms() if atom.GetChiralTag() != Chem.rdchem.ChiralType.CHI_UNSPECIFIED)
+    return chiral_centers
+
+def rule7_formal_charge(mol):
+    total_charge = Chem.GetFormalCharge(mol)
+    return total_charge
+
+def rule8_pka_values(mol):
+    # Placeholder values for demonstration purposes
+    # In practice, you would use a more accurate method to calculate these values
+    try:
+        # Using a simple count of specific atoms as a rough proxy for acidic and basic groups
+        num_acidic = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')  # Example: count oxygen atoms as a proxy for acidic groups
+        num_basic = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')  # Example: count nitrogen atoms as a proxy for basic groups
+    except Exception:
+        # In case of any error during processing, return 0
+        return 0
+    return num_acidic + num_basic
+
+
+def rule9_polar_surface_area(mol):
+    psa = rdMolDescriptors.CalcTPSA(mol)
+    return psa
+
+def rule10_bioaccumulation_potential(mol):
+    logP = Crippen.MolLogP(mol)
+    return logP
+
+def rule11_ionizable_species(mol):
+    ionizable = rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    return ionizable
+
+def rule12_solubility(mol):
+    logP = Crippen.MolLogP(mol)
+    logS = -1.0 * logP  # Simplified estimation: inverse of logP
+    return logS
+
+def rule13_reactivity_with_dna(mol):
+    # Placeholder: number of potential electrophilic centers
+    electrophilic_centers = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [7, 8, 16])  # N, O, S
+    return electrophilic_centers
+
+def rule14_reactive_metabolites(mol):
+    # Placeholder: count of metabolic hotspots
+    metabolic_hotspots = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [15, 16])  # P, S
+    return metabolic_hotspots
+
+def rule15_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def rule16_metabolic_activation(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule17_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule18_cyp450_inhibition(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule19_protein_binding(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule20_genotoxicity(mol):
+    nitro_substruct = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(nitro_substruct))

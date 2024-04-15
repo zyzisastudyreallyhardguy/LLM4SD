@@ -1,0 +1,48 @@
+def count_double_bonds(mol):
+    double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            double_bonds += 1
+    return double_bonds
+
+def molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def count_basic_nitrogens(mol):
+    basic_nitrogens = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7:  # Nitrogen's atomic number is 7
+            if atom.GetTotalNumHs() > 0:  # Basic nitrogen typically has hydrogen(s) attached
+                basic_nitrogens += 1
+    return basic_nitrogens
+
+def rule4_amino_or_nitrogen_rings(mol):
+    amino_groups = rdMolDescriptors.CalcNumAromaticRings(mol)
+    nitrogen_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+    return amino_groups + nitrogen_atoms
+
+def rule5_complex_architectures(mol):
+    ring_count = rdMolDescriptors.CalcNumRings(mol)
+    return ring_count
+
+def rule6_oxygen_atoms(mol):
+    oxygen_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')
+    return oxygen_atoms
+
+def rule7_heavy_atoms(mol):
+    heavy_atoms = rdMolDescriptors.CalcNumHeavyAtoms(mol)
+    return heavy_atoms
+
+def rule8_polarity_or_ionizable(mol):
+    num_ionic_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() in [1.5, 4.0])
+    num_polar_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() in [Chem.BondType.DATIVEONE, Chem.BondType.DATIVE])
+    return num_ionic_bonds + num_polar_bonds
+
+def rule9_aromatic_heteroatoms(mol):
+    aromatic_count = len(mol.GetAromaticAtoms())
+    heteroatom_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() not in [1, 6])
+    return aromatic_count + heteroatom_count
+
+def rule10_stereocenters_chiral(mol):
+    chiral_centers = Chem.FindMolChiralCenters(mol, includeUnassigned=True)
+    return len(chiral_centers)

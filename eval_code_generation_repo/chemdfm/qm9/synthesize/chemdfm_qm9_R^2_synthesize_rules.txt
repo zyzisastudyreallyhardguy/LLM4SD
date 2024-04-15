@@ -1,0 +1,105 @@
+def rule1_molecular_size(mol):
+    return mol.GetNumAtoms()
+
+def rule2_electronegativity_effect(mol):
+    electronegative_atoms = ['O', 'N', 'F', 'Cl', 'Br', 'I']  # Common electronegative atoms
+    count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in electronegative_atoms)
+    return count
+
+def rule3_polarity(mol):
+    polar_bonds = ['O', 'N', 'F', 'Cl', 'Br', 'I']  # Atoms typically involved in polar bonds
+    count = sum(1 for bond in mol.GetBonds() if bond.GetBeginAtom().GetSymbol() in polar_bonds or bond.GetEndAtom().GetSymbol() in polar_bonds)
+    return count
+
+def rule4_multiple_bonds(mol):
+    multiple_bond_count = sum(1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE)
+    return multiple_bond_count
+
+def rule5_planarity(mol):
+    try:
+        from rdkit.Chem import AllChem
+        AllChem.Compute2DCoords(mol)
+        conf = mol.GetConformer()
+        z_coords = [conf.GetAtomPosition(i).z for i in range(mol.GetNumAtoms())]
+        max_z = max(z_coords)
+        min_z = min(z_coords)
+        return max_z - min_z  # A measure of non-planarity; smaller values indicate more planar structures
+    except:
+        return float('inf')  # Return a large number if unable to compute
+
+def rule6_aromatic_extent(mol):
+    aromatic_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetIsAromatic())
+    return aromatic_atoms
+
+def rule7_alkyl_groups_size(mol):
+    alkyl_groups = sum(1 for atom in mol.GetAtoms() if atom.GetHybridization() == rdchem.HybridizationType.SP3 and atom.GetAtomicNum() == 6)
+    return alkyl_groups
+
+def rule8_cyclic_extent(mol):
+    ring_count = mol.GetRingInfo().NumRings()
+    return -ring_count
+
+def rule9_chiral_centers(mol):
+    chiral_centers = sum(1 for atom in mol.GetAtoms() if atom.HasProp('_ChiralityPossible'))
+    return chiral_centers
+
+def rule10_functional_groups(mol):
+    functional_groups = rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)
+    return functional_groups
+
+def rule11_hydrogen_bonding(mol):
+    h_bond_donors = rdMolDescriptors.CalcNumHBD(mol)
+    h_bond_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return h_bond_donors + h_bond_acceptors
+
+def rule12_heavy_atoms(mol):
+    heavy_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() > 1)
+    return heavy_atoms
+
+def rule13_molecular_shape(mol):
+    branching_points = sum(1 for atom in mol.GetAtoms() if len(atom.GetNeighbors()) > 2)
+    return -branching_points
+
+def rule14_conjugated_systems(mol):
+    conjugated_bonds = sum(1 for bond in mol.GetBonds() if bond.GetIsConjugated())
+    return conjugated_bonds
+
+def rule15_formal_charge(mol):
+    total_charge = sum(atom.GetFormalCharge() for atom in mol.GetAtoms())
+    return total_charge
+
+def rule16_ring_count(mol):
+    return Chem.GetSSSR(mol)  # Get the number of smallest set of smallest rings
+
+def rule17_multiple_bonds(mol):
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() != Chem.rdchem.BondType.SINGLE:
+            count += 1
+    return count
+
+def rule18_heteroatom_count(mol):
+    heteroatoms = [atom for atom in mol.GetAtoms() if atom.GetAtomicNum() not in (1, 6)]  # Non-H and non-C atoms
+    return len(heteroatoms)
+
+def rule19_cyclic_acetal_ketal(mol):
+    # This is a simplified version and may need more specific SMARTS patterns for real-world applications
+    acetal_ketal_smarts = '[O;R][C;R][O;R]'
+    pattern = Chem.MolFromSmarts(acetal_ketal_smarts)
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule20_vdw_radii_sum(mol):
+    # Approximate van der Waals radii in Angstroms for common elements
+    vdw_radii = {
+        1: 1.20,  # Hydrogen
+        6: 1.70,  # Carbon
+        7: 1.55,  # Nitrogen
+        8: 1.52,  # Oxygen
+        9: 1.47,  # Fluorine
+        15: 1.80,  # Phosphorus
+        16: 1.80,  # Sulfur
+        17: 1.75,  # Chlorine
+    }
+    total_vdw_radius = sum(vdw_radii.get(atom.GetAtomicNum(), 1.5) for atom in mol.GetAtoms())  # Default to 1.5 if not listed
+    return total_vdw_radius

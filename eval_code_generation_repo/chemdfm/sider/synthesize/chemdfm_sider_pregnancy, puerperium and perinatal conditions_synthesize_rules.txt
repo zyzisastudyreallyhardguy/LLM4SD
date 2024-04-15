@@ -1,0 +1,84 @@
+def rule1_calculate_logp(mol):
+    return Crippen.MolLogP(mol)
+
+def rule2_calculate_logd(mol, pH=7.4):
+    # LogD at a specific pH can be approximated by adjusting LogP based on ionizable groups
+    # This is a simplified approximation
+    try:
+        logp = Crippen.MolLogP(mol)
+        # Count acidic and basic groups
+        num_acidic = rdMolDescriptors.CalcNumAcidicGroups(mol)
+        num_basic = rdMolDescriptors.CalcNumBasicGroups(mol)
+        # Adjust LogP to approximate LogD
+        logd = logp - (num_acidic * 0.75) + (num_basic * 0.75)
+        return logd
+    except Exception:
+        return 0  # Return 0 in case of any error as per the requirement to not raise errors
+
+
+def rule3_count_aromatic_rings(mol):
+    aromatic_rings = 0
+    sssr = Chem.GetSymmSSSR(mol)
+    for ring in sssr:
+        if mol.GetRingInfo().IsAromatic(ring):
+            aromatic_rings += 1
+    return aromatic_rings
+
+def rule4_count_hb_donors(mol):
+    return Descriptors.NumHDonors(mol)
+
+def rule5_count_hb_acceptors(mol):
+    return Descriptors.NumHAcceptors(mol)
+
+def count_polar_groups(mol):
+    polar_groups = ['O', 'N', 'S', 'P', 'F', 'Cl', 'Br', 'I']
+    count = sum(atom.GetSymbol() in polar_groups for atom in mol.GetAtoms())
+    return count
+
+def count_cc_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and 
+               bond.GetBeginAtom().GetSymbol() == 'C' and bond.GetEndAtom().GetSymbol() == 'C')
+
+def count_cc_triple_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE and 
+               bond.GetBeginAtom().GetSymbol() == 'C' and bond.GetEndAtom().GetSymbol() == 'C')
+
+def count_nn_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBeginAtom().GetSymbol() == 'N' and bond.GetEndAtom().GetSymbol() == 'N')
+
+def count_no_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if (bond.GetBeginAtom().GetSymbol() == 'N' and bond.GetEndAtom().GetSymbol() == 'O') or 
+               (bond.GetBeginAtom().GetSymbol() == 'O' and bond.GetEndAtom().GetSymbol() == 'N'))
+
+def count_oo_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBeginAtom().GetSymbol() == 'O' and bond.GetEndAtom().GetSymbol() == 'O')
+
+def count_ss_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBeginAtom().GetSymbol() == 'S' and bond.GetEndAtom().GetSymbol() == 'S')
+
+def count_so_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if (bond.GetBeginAtom().GetSymbol() == 'S' and bond.GetEndAtom().GetSymbol() == 'O') or 
+               (bond.GetBeginAtom().GetSymbol() == 'O' and bond.GetEndAtom().GetSymbol() == 'S'))
+
+def count_sn_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if (bond.GetBeginAtom().GetSymbol() == 'S' and bond.GetEndAtom().GetSymbol() == 'N') or 
+               (bond.GetBeginAtom().GetSymbol() == 'N' and bond.GetEndAtom().GetSymbol() == 'S'))
+
+def rule15_count_CS_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if {bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()} == {'C', 'S'})
+
+def rule16_count_CO_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if {bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()} == {'C', 'O'})
+
+def rule17_count_CN_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if {bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()} == {'C', 'N'})
+
+def rule18_count_CH_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if {bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()} == {'C', 'H'})
+
+def rule19_count_CHalogen_bonds(mol):
+    halogens = {'F', 'Cl', 'Br', 'I'}
+    return sum(1 for bond in mol.GetBonds() if bond.GetBeginAtom().GetSymbol() == 'C' and bond.GetEndAtom().GetSymbol() in halogens or bond.GetEndAtom().GetSymbol() == 'C' and bond.GetBeginAtom().GetSymbol() in halogens)
+
+def rule20_molecular_mass(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)

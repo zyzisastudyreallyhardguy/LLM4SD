@@ -1,0 +1,101 @@
+def rule1_calculate_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def rule2_basic_nitrogens(mol):
+    basic_nitrogens = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and (atom.GetFormalCharge() > 0 or atom.GetHybridization() == Chem.HybridizationType.SP2):
+            basic_nitrogens += 1
+    return basic_nitrogens
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_solubility(mol):
+    logS = Descriptors.MolLogP(mol) - 0.01 * Descriptors.TPSA(mol)
+    return logS
+
+def rule5_flexibility(mol):
+    rotatable_bonds = Descriptors.NumRotatableBonds(mol)
+    return rotatable_bonds
+
+def rule6_metabolic_liabilities(mol):
+    # Example: Counting the number of potential metabolic sites such as esters or amides
+    esters = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    amides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N')))
+    return esters + amides
+
+def rule7_reactivity(mol):
+    # Placeholder for reactivity; typically requires quantum chemical calculations
+    return 0  # This should be replaced with actual computation using appropriate software
+
+def rule8_amphipathic(mol):
+    # Example: Calculate logP (octanol-water partition coefficient)
+    logP = Descriptors.MolLogP(mol)
+    return 1 if logP > 1 and logP < 10 else 0  # Amphipathic if logP is between 1 and 10
+
+def rule9_psa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule10_hiv_protease_sites(mol):
+    # Example: Count specific peptide bonds susceptible to HIV protease
+    cleavage_sites = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N[C@H](C=O)')))
+    return cleavage_sites
+
+def rule11_pdt_properties(mol):
+    # Example: Calculate molecular weight as a simple proxy for PDT
+    mw = Descriptors.MolWt(mol)
+    return 1 if mw < 500 else 0  # Suitable for PDT if molecular weight is less than 500
+
+def rule12_hb_donors_acceptors(mol):
+    donors = rdMolDescriptors.CalcNumHBD(mol)
+    acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return donors + acceptors
+
+def rule13_chemical_stability(mol):
+    # Placeholder: Stability often requires experimental data or specific predictive models
+    return 0  # This should be replaced with actual computation or data
+
+def rule14_hiv_interactive_groups(mol):
+    # Example: Count specific functional groups, e.g., sulfonamides
+    sulfonamides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    return sulfonamides
+
+def rule15_calculate_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule16_synthetic_accessibility(mol):
+    try:
+        return QED.qed(mol)
+    except Exception:
+        return 0  # Return 0 or any other default value in case of an error
+
+
+def rule17_cyp450_interactions(mol):
+    # Placeholder for CYP450 interaction analysis
+    return 0  # Returning 0 as a placeholder
+
+def rule18_rule_of_five_violations(mol):
+    mw = rdMolDescriptors.CalcExactMolWt(mol)
+    logp = rdMolDescriptors.CalcCrippenDescriptors(mol)[0]  # First element is logP
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+    hba = rdMolDescriptors.CalcNumHBA(mol)
+    violations = 0
+    if mw > 500:
+        violations += 1
+    if logp > 5:
+        violations += 1
+    if hbd > 5:
+        violations += 1
+    if hba > 10:
+        violations += 1
+    return violations
+
+
+def rule19_hiv_binding_affinity(mol):
+    # Placeholder for HIV binding affinity
+    return 0  # Returning 0 as a placeholder
+
+def rule20_calculate_logd(mol, pH=7.4):
+    from rdkit.Chem import rdMolDescriptors
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0] - (0.014 * pH)  # Simplified LogD calculation

@@ -1,0 +1,105 @@
+def contains_substructure(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return -1  # Return -1 if the required arguments are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return -1  # Return -1 if the SMARTS string is invalid
+    return int(mol.HasSubstructMatch(substructure))
+
+
+def rule1_azo_groups(mol):
+    # Azo group (-N=N-)
+    return contains_substructure(mol, "N=N")
+
+def rule1_bulky_aromatics(mol):
+    # Bulky aromatic moieties (example: naphthalene as a simple bulky aromatic)
+    return contains_substructure(mol, "c1ccc2ccccc2c1")
+
+def rule1_halogens(mol):
+    # Halogens, particularly chlorine
+    return contains_substructure(mol, "[Cl]")
+
+def rule2_aromatic_amines(mol):
+    # Aromatic amines
+    return contains_substructure(mol, "c1ccccc1N")
+
+def rule2_halogenated_aromatics(mol):
+    # Halogenated aromatic compounds
+    return contains_substructure(mol, "c1c(Cl,Br)cccc1")
+
+def rule2_aromatic_ketones(mol):
+    # Aromatic ketone groups
+    return contains_substructure(mol, "c1ccccc1C(=O)")
+
+def rule3_alkylating_agents(mol):
+    # Alkylating agents (example: simple alkyl halide)
+    return contains_substructure(mol, "CX")
+
+def rule3_epoxides(mol):
+    # Epoxides
+    return contains_substructure(mol, "C1OC1")
+
+def rule3_acylating_agents(mol):
+    # Acylating agents (example: acyl chloride)
+    return contains_substructure(mol, "C(=O)Cl")
+
+def rule4_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule4_logp(mol):
+    return Crippen.MolLogP(mol)
+
+def rule5_toxicity_markers(mol):
+    # Placeholder for database lookup or predictive model output
+    return 0  # This should be replaced with actual implementation
+
+def rule6_long_carbon_chains(mol):
+    # Counting number of carbon chains longer than a certain threshold (e.g., 6 carbons)
+    long_chains = 0
+    sssr = Chem.GetSymmSSSR(mol)  # Get the smallest set of smallest rings
+    for ring in sssr:
+        # Check if the ring is aliphatic
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() == False for idx in ring):
+            # Check the length of the ring
+            if len(ring) > 6:
+                long_chains += 1
+    return long_chains
+
+
+def rule6_aromatic_halogen_rings(mol):
+    # Count aromatic rings with halogen substituents
+    aromatic_halogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [9, 17, 35, 53]:  # F, Cl, Br, I
+            if any([mol.GetBondBetweenAtoms(atom.GetIdx(), nbr.GetIdx()).GetIsAromatic() for nbr in atom.GetNeighbors()]):
+                aromatic_halogen_count += 1
+    return aromatic_halogen_count
+
+def rule6_sulfonic_acid_groups(mol):
+    # Count sulfonic acid groups (SO3H)
+    sulfonic_acid_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 16:  # Sulfur
+            if any([nbr.GetAtomicNum() == 8 for nbr in atom.GetNeighbors()]):  # Oxygen neighbors
+                sulfonic_acid_count += 1
+    return sulfonic_acid_count
+
+def rule6_amino_groups(mol):
+    # Count amino groups (NH2)
+    amino_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7:  # Nitrogen
+            if len([nbr for nbr in atom.GetNeighbors() if nbr.GetAtomicNum() == 1]) == 2:  # Two hydrogen neighbors
+                amino_count += 1
+    return amino_count
+
+def rule6_heavy_metals(mol):
+    # Count heavy metals
+    heavy_metal_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [24, 25, 26, 27, 28, 29, 30, 48, 80]:  # Common heavy metals (Cr, Mn, Fe, Co, Ni, Cu, Zn, Cd, Hg)
+            heavy_metal_count += 1
+    return heavy_metal_count

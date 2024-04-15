@@ -1,0 +1,83 @@
+def rule1_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetIsAromatic():  # Nitrogen in an aromatic ring
+            if any(n.GetAtomicNum() == 6 and n.GetIsAromatic() for n in atom.GetNeighbors()):  # Connected to an aromatic carbon
+                aromatic_amines += 1
+    return aromatic_amines
+
+def rule2_carbonyl_groups(mol):
+    carbonyl_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon
+            if any(n.GetAtomicNum() == 8 and n.GetHybridization() == Chem.HybridizationType.SP2 for n in atom.GetNeighbors()):  # Double bonded to Oxygen
+                carbonyl_count += 1
+    return carbonyl_count
+
+def rule3_heteroarenes(mol):
+    heteroarene_count = 0
+    patterns = ['c1cccs1', 'c1ccco1', 'c1cc[nH]c1']  # Thiophene, Furan, Pyrrole
+    for pattern in patterns:
+        substructure = Chem.MolFromSmarts(pattern)
+        heteroarene_count += len(mol.GetSubstructMatches(substructure))
+    return heteroarene_count
+
+def rule4_heavy_metals(mol):
+    heavy_metals = ['Mn', 'Tc', 'Fe']
+    metal_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in heavy_metals:
+            metal_count += 1
+    return metal_count
+
+def rule5_acetate_presence(mol):
+    acetate = Chem.MolFromSmarts("CC(=O)[O-]")
+    return len(mol.GetSubstructMatches(acetate))
+
+
+def rule5_phosphate_presence(mol):
+    phosphate = Chem.MolFromSmarts("P(=O)(O)(O)(O)")
+    if mol is None:
+        return 0
+    return len(mol.GetSubstructMatches(phosphate))
+
+
+def rule6_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_total_charge(mol):
+    return Chem.GetFormalCharge(mol)
+
+
+
+def rule8_epoxides_presence(mol):
+    epoxide = Chem.MolFromSmarts("C1OC1")
+    return len(mol.GetSubstructMatches(epoxide))
+
+
+def rule8_chloroacetyl_presence(mol):
+    chloroacetyl = Chem.MolFromSmarts("CC(=O)Cl")
+    return len(mol.GetSubstructMatches(chloroacetyl))
+
+
+def rule9_enzyme_inhibition(mol):
+    # Example: Count the number of potential enzyme binding groups (e.g., hydroxyl, carboxyl)
+    hydroxyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+    carboxyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O-]')))
+    return hydroxyl_count + carboxyl_count
+
+def rule10_metabolite_similarity(mol):
+    # Example: Count the number of groups that are typically modified in metabolites (e.g., methyl groups)
+    methyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CH3]')))
+    return methyl_count
+
+def rule11_positive_charge(mol):
+    # Calculate the net positive charge of the molecule
+    positive_charge = 0
+    for atom in mol.GetAtoms():
+        if atom.GetFormalCharge() > 0:
+            positive_charge += atom.GetFormalCharge()
+    return positive_charge

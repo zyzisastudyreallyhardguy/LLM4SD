@@ -1,0 +1,78 @@
+def rule1_calculate_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def rule2_reactive_groups(mol):
+    # Example: Check for nitro groups
+    nitro_substruct = Chem.MolFromSmarts('[NX2](=O)[O-]')
+    return int(mol.HasSubstructMatch(nitro_substruct))
+
+def rule3_drug_likeness(mol):
+    try:
+        return int(QED.qed(mol) > 0.5)  # Using QED as a proxy for drug-likeness, threshold can be adjusted
+    except:
+        return 0  # Return 0 if there's any error in calculating QED
+
+
+def rule4_metabolic_stability(mol):
+    # Example: Check for esters (commonly hydrolyzed)
+    ester_substruct = Chem.MolFromSmarts('C(=O)O')
+    return int(not mol.HasSubstructMatch(ester_substruct))
+
+def rule5_cyp_inhibition(mol):
+    # Example: Check for common CYP3A4 inhibitors (e.g., benzimidazole)
+    benzimidazole_substruct = Chem.MolFromSmarts('n1c2ccccc2nc1')
+    return int(mol.HasSubstructMatch(benzimidazole_substruct))
+
+def rule6_acid_base_character(mol):
+    return int(Descriptors.MolLogP(mol) < 0)  # Simplified proxy: negative logP might indicate acidic character
+
+def rule7_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule8_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule8_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule9_evaluate_solubility(mol):
+    return int(Descriptors.MolLogP(mol) < 3)  # Simplified proxy: lower logP might indicate higher solubility
+
+def rule10_drug_scaffold(mol):
+    return int(mol.HasSubstructMatch(Chem.MolFromSmarts('c1ccccc1')))  # Checks for benzene ring
+
+def rule11_predict_logD(mol):
+    return Descriptors.MolLogP(mol)  # Simplified, actual logD would depend on dissociation at given pH
+
+def rule12_reactive_intermediates(mol):
+    return int(mol.HasSubstructMatch(Chem.MolFromSmarts('C1OC1')))  # Checks for epoxide ring
+
+def rule13_toxicity_risk(mol):
+    return int(mol.HasSubstructMatch(Chem.MolFromSmarts('[N+](=O)[O-]')))  # Checks for nitro groups
+
+def rule14_predict_metabolites(mol):
+    return 1  # Placeholder value, actual prediction would be complex
+
+def rule15_molecular_flexibility(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_ionization_state_basic(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule16_ionization_state_acidic(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule17_predict_drug_targets(mol):
+    # Placeholder function, in real scenarios, this would involve complex models or databases
+    return 0  # Returning 0 as a placeholder
+
+def rule18_reactive_endpoints(mol):
+    # Example: count of nitro groups (a simple proxy for reactivity)
+    nitro_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[N+](=O)[O-]")))
+    return nitro_groups
+
+def rule19_excretion_rate(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule20_predict_drug_clearance(mol):
+    return Crippen.MolLogP(mol)

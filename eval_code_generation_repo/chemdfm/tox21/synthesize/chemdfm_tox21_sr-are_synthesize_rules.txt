@@ -1,0 +1,82 @@
+def tox21_sr_are_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def tox21_sr_are_logp(mol):
+    return Descriptors.MolLogP(mol)
+
+def tox21_sr_are_reactive_groups(mol):
+    nitro_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    return nitro_groups
+
+def tox21_sr_are_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def tox21_sr_are_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def tox21_sr_are_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule7_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule8_metabolic_soft_spots(mol):
+    patt1 = Chem.MolFromSmarts('C(=O)O')  # ester
+    patt2 = Chem.MolFromSmarts('C(=O)N')  # amide
+    return len(mol.GetSubstructMatches(patt1)) + len(mol.GetSubstructMatches(patt2))
+
+def rule9_swsi(mol):
+    polar_groups = Chem.MolFromSmarts('[O,N,S,F,Cl,Br,I]')  # common polar atoms
+    return len(mol.GetSubstructMatches(polar_groups))
+
+def rule10_ring_assemblies(mol):
+    return len(Chem.GetSymmSSSR(mol))  # Get count of smallest set of smallest rings
+
+def rule11_reactive_aromatic_amines(mol):
+    aromatic_amines = Chem.MolFromSmarts('n[H]')  # aromatic nitrogen with hydrogen
+    return len(mol.GetSubstructMatches(aromatic_amines))
+
+def rule12_reactive_acyl_groups(mol):
+    acyl_groups = Chem.MolFromSmarts('C(=O)[C,c,O,N]')  # acyl group pattern
+    return len(mol.GetSubstructMatches(acyl_groups))
+
+def rule13_reactive_carbonyl_groups(mol):
+    carbonyl_groups = Chem.MolFromSmarts('C=O')  # carbonyl group
+    return len(mol.GetSubstructMatches(carbonyl_groups))
+
+def rule14_reactive_olefinic_double_bonds(mol):
+    olefinic_bonds = Chem.MolFromSmarts('C=C')  # double bond between carbons
+    return len(mol.GetSubstructMatches(olefinic_bonds))
+
+def count_substructures(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the necessary arguments are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return 0  # Return 0 if the SMARTS string is invalid
+    return len(mol.GetSubstructMatches(substructure))
+
+
+def rule15_aryl_halides(mol):
+    aryl_halides_smarts = '[cX2]1[cX2][cX2][cX2][cX2][cX2]1'  # X2 represents halogen atoms on aromatic ring
+    return count_substructures(mol, aryl_halides_smarts)
+
+def rule16_carboxylic_acids(mol):
+    carboxylic_acids_smarts = 'C(=O)O'
+    return count_substructures(mol, carboxylic_acids_smarts)
+
+def rule17_epoxides(mol):
+    epoxides_smarts = 'C1OC1'
+    return count_substructures(mol, epoxides_smarts)
+
+def rule18_alcohols(mol):
+    alcohols_smarts = '[OH]'
+    return count_substructures(mol, alcohols_smarts)
+
+def rule19_aldehydes(mol):
+    aldehydes_smarts = 'C=O'
+    return count_substructures(mol, aldehydes_smarts)
+
+def rule20_ketones(mol):
+    ketones_smarts = 'CC(=O)C'
+    return count_substructures(mol, ketones_smarts)

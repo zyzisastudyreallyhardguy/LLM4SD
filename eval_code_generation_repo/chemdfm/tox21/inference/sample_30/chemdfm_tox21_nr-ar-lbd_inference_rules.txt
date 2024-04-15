@@ -1,0 +1,62 @@
+def rule1_halogens_and_boron(mol):
+    halogens = ['Cl', 'Br', 'I']
+    halogen_count = sum(mol.GetAtomWithIdx(i).GetSymbol() in halogens for i in range(mol.GetNumAtoms()))
+    boron_count = sum(mol.GetAtomWithIdx(i).GetSymbol() == 'B' for i in range(mol.GetNumAtoms()))
+    return halogen_count + boron_count
+
+def rule2_unsaturated_esters_and_ethers(mol):
+    ester_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O[C,c]')))
+    ether_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)O')))
+    return ester_count + ether_count
+
+def rule3_aromatic_amines_and_amides(mol):
+    aromatic_amine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('cNC')))
+    amide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N')))
+    return aromatic_amine_count + amide_count
+
+def rule4_benzene_amino_nitroso(mol):
+    benzene_amino_nitroso_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1[N+](=O)[O-]')))
+    trisubstituted_carbon_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(C)(C)(C)')))
+    return benzene_amino_nitroso_count + trisubstituted_carbon_count
+
+def rule5_carbonyl_aromatic_nitroso(mol):
+    nitroso_substituted = False
+    carbonyl_near_aromatic = False
+
+def rule6_thiol_benzene_substituted(mol):
+    thiol_attached = False
+
+def rule7_aromatic_halogens(mol):
+    halogen_count = 0
+
+def rule8_disruptive_molecules(mol):
+    # Placeholder for actual implementation, which would require specific criteria
+    # Here we return a dummy value
+    return 0  # This should be replaced with actual logic based on the molecule
+
+def rule9_ionizable_groups(mol):
+    # Using Lipinski's rule of five descriptors as a proxy for ionizable groups
+    num_hba = rdMolDescriptors.CalcNumLipinskiHBA(mol)  # Hydrogen bond acceptors can be a proxy for basic groups
+    num_hbd = rdMolDescriptors.CalcNumLipinskiHBD(mol)  # Hydrogen bond donors can be a proxy for acidic groups
+    return num_hba + num_hbd
+
+
+def rule9_molecular_chains(mol):
+    # Estimating molecular flexibility which might indicate fitting into receptors
+    num_rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return num_rotatable_bonds
+
+def rule10_reactive_groups(mol):
+    # Counting aldehyde groups as an example of reactive groups
+    aldehyde_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetDegree() == 2 and any(n.GetSymbol() == 'O' and n.GetDegree() == 1 for n in atom.GetNeighbors()))
+    return aldehyde_count
+
+def rule10_complex_systems(mol):
+    # Counting aromatic rings as an indicator of complex conjugated systems
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+def rule11_hormone_receptor_interaction(mol):
+    # Counting aromatic compounds which might interact with hormone receptors
+    aromatic_compounds = rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+    return aromatic_compounds

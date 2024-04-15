@@ -1,0 +1,76 @@
+def rule1_aromatic_amine_groups(mol):
+    aromatic_amines = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetIsAromatic())
+    return aromatic_amines
+
+def rule1_fused_aromatic_rings(mol):
+    ssr = Chem.GetSymmSSSR(mol)
+    fused_rings = sum(1 for ring in ssr if any(mol.GetBondBetweenAtoms(i, j).GetIsAromatic() for i, j in zip(ring, ring[1:] + ring[:1])))
+    return fused_rings
+
+def rule2_aromatic_amines(mol):
+    aromatic_amines = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetIsAromatic())
+    return aromatic_amines
+
+def rule2_halogen_groups(mol):
+    halogens = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53, 85])
+    return halogens
+
+def rule2_ketones(mol):
+    ketones = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and atom.GetNeighbors() and all(n.GetAtomicNum() == 6 for n in atom.GetNeighbors()))
+    return ketones
+
+def rule2_aldehydes(mol):
+    aldehydes = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and len(atom.GetNeighbors()) == 1 and atom.GetNeighbors()[0].GetAtomicNum() == 6)
+    return aldehydes
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule4_multiple_bonds(mol):
+    multiple_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() in [Chem.BondType.DOUBLE, Chem.BondType.TRIPLE])
+    return multiple_bonds
+
+def rule4_disulfides(mol):
+    disulfides = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.SINGLE and bond.GetBeginAtom().GetAtomicNum() == 16 and bond.GetEndAtom().GetAtomicNum() == 16)
+    return disulfides
+
+def rule5_halogen_heavy_metal_count(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    heavy_metals = ['Hg', 'Pb', 'Cd']  # Example heavy metals, list can be extended
+    count = sum(mol.GetAtomWithIdx(i).GetSymbol() in halogens for i in range(mol.GetNumAtoms()))
+    count += sum(mol.GetAtomWithIdx(i).GetSymbol() in heavy_metals for i in range(mol.GetNumAtoms()))
+    return count
+
+def rule6_positive_charge(mol):
+    return Chem.GetFormalCharge(mol)
+
+def rule6_lipophilicity(mol):
+    return Crippen.MolLogP(mol)
+
+def rule7_structural_similarity(mol):
+    # This is a placeholder; actual implementation would require a database of known allergens/toxins
+    # and a method to compute similarity (e.g., fingerprint comparison)
+    return 0  # Returning 0 as a placeholder
+
+def rule8_long_chains(mol):
+    # Counting carbon chains of length 6 or more as an example
+    chains = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.SINGLE and \
+           bond.GetBeginAtom().GetSymbol() == 'C' and bond.GetEndAtom().GetSymbol() == 'C':
+            chains += 1
+    return chains
+
+def rule8_polyaromatic_hydrocarbons(mol):
+    try:
+        # Get the smallest set of smallest rings (SSSR)
+        rings = Chem.GetSymmSSSR(mol)
+        # Count aromatic rings
+        aromatic_rings = sum(1 for ring in rings if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring))
+        return aromatic_rings
+    except Exception:
+        return 0  # Return 0 in case of any error
+

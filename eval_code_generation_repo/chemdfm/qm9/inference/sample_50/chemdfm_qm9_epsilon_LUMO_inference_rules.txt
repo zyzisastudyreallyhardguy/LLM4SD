@@ -1,0 +1,102 @@
+def rule1_lumo_negative(mol):
+    # Approximate by calculating the lowest unoccupied molecular orbital energy (LUMO)
+    # Using quantum chemical descriptors from RDKit
+    try:
+        AllChem.ComputeGasteigerCharges(mol)
+        lumo = min(atom.GetDoubleProp('_GasteigerCharge') for atom in mol.GetAtoms())
+        return lumo
+    except Exception as e:
+        print(f"Error in computing LUMO: {e}")
+        return None
+
+def rule2_lumo_positive(mol):
+    # Similar to Rule 1 but focusing on the highest value
+    try:
+        AllChem.ComputeGasteigerCharges(mol)
+        lumo = max(atom.GetDoubleProp('_GasteigerCharge') for atom in mol.GetAtoms())
+        return lumo
+    except Exception as e:
+        print(f"Error in computing LUMO: {e}")
+        return None
+
+def rule3_conjugation_and_aromatics(mol):
+    # Count aromatic rings and conjugated systems
+    aromatic_rings = len(Chem.GetSymmSSSR(mol))
+    conjugated_bonds = sum(1 for bond in mol.GetBonds() if bond.GetIsConjugated())
+    return aromatic_rings + conjugated_bonds
+
+def rule4_electron_withdrawing_groups(mol):
+    # Count groups like carbonyls, nitriles, or halogens
+    ewg_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [9, 17, 35, 53]:  # Halogens F, Cl, Br, I
+            ewg_count += 1
+        elif atom.GetAtomicNum() == 7:  # Nitrogen (for nitriles)
+            if any(n.GetAtomicNum() == 6 and n.GetHybridization() == Chem.HybridizationType.SP for n in atom.GetNeighbors()):
+                ewg_count += 1
+        elif atom.GetAtomicNum() == 6:  # Carbon (for carbonyls)
+            if any(n.GetAtomicNum() == 8 and n.GetHybridization() == Chem.HybridizationType.SP2 for n in atom.GetNeighbors()):
+                ewg_count += 1
+    return ewg_count
+
+def rule5_unsaturation(mol):
+    num_double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    num_triple_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE)
+    return num_double_bonds + num_triple_bonds
+
+def rule6_positively_charged_species(mol):
+    positive_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetFormalCharge() > 0:
+            positive_count += 1
+    return positive_count
+
+def rule7_aromatic_conjugation(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    return aromatic_count
+
+def calculate_lumo_energy(mol):
+    """ Calculate the LUMO energy of the molecule using PySCF. """
+    try:
+        # Convert RDKit molecule to SMILES
+        smiles = Chem.MolToSmiles(mol)
+        
+        # Convert SMILES to molecule format for PySCF
+        mol_pyscf = gto.M(atom=";".join(["H 0 0 0", "H 0 0 0.74"]), basis='sto3g')  # Example for H2 molecule
+        mol_pyscf.verbose = 0  # Silence the output
+        
+        # Setup and run HF calculation
+        mf = mol_pyscf.RHF().run()
+        
+        # Get the molecular orbital energies
+        mo_energy = mf.mo_energy
+        
+        # Assuming LUMO is the first unoccupied molecular orbital
+        num_electrons = mol_pyscf.nelectron
+        lumo_index = num_electrons // 2  # Integer division
+        lumo_energy = mo_energy[lumo_index] if lumo_index < len(mo_energy) else 0
+        
+        return lumo_energy
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return 0  # Return 0 in case of any error as per the requirement
+
+
+    # Perform Hartree-Fock calculation
+    mf = scf.RHF(mol_pyscf)
+    mf.kernel()
+
+    # Get molecular orbital energies (in Hartree), and convert to eV
+    mo_energies = mf.mo_energy * 27.2114  # Conversion factor from Hartree to eV
+    lumo_energy = min(e for e in mo_energies if e > mf.mo_energy[mf.mo_occ.argmax()])
+
+    return lumo_energy
+
+def rule8_lumo_heteroatoms(mol):
+    return calculate_lumo_energy(mol)
+
+def rule9_lumo_electron_acceptors(mol):
+    return calculate_lumo_energy(mol)
+
+def rule10_lumo_electron_withdrawing(mol):
+    return calculate_lumo_energy(mol)

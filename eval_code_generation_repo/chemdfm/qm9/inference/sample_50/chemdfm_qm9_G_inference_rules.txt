@@ -1,0 +1,111 @@
+def rule1_unsaturated_bonds(mol):
+    unsat_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.BondType.DOUBLE or bond.GetBondType() == Chem.BondType.TRIPLE:
+            unsat_bonds += 1
+    return unsat_bonds
+
+def rule2_positively_charged_nitrogen(mol):
+    pos_nitrogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0:
+            pos_nitrogen_count += 1
+    return pos_nitrogen_count
+
+def rule3_hydroxyl_carboxylic(mol):
+    hydroxyl_count = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    carboxylic_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon
+            if any(n.GetAtomicNum() == 8 for n in atom.GetNeighbors()):  # Oxygen neighbor
+                carboxylic_count += 1
+    return hydroxyl_count + carboxylic_count
+
+def rule4_multiple_rings(mol):
+    ring_info = mol.GetRingInfo()
+    return len(ring_info.AtomRings())  # Number of distinct ring systems
+
+def rule5_nitrogen_groups(mol):
+    nitrogen_group_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7:  # Nitrogen
+            nitrogen_group_count += 1
+    return nitrogen_group_count
+
+def rule6_complex_rings_or_multiple_bonds(mol):
+    # Counting number of rings with more than 6 members or multiple bonds
+    num_complex_rings = sum(1 for ring in mol.GetRingInfo().AtomRings() if len(ring) > 6)
+    num_multiple_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.BondType.SINGLE)
+    return num_complex_rings + num_multiple_bonds
+
+def rule7_multiple_amino_groups(mol):
+    # Counting amino groups (NH2)
+    amino_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and len(atom.GetNeighbors()) == 2 and all(neighbor.GetSymbol() == 'H' for neighbor in atom.GetNeighbors()))
+    return amino_count
+
+def rule8_aromatic_amines(mol):
+    # Count aromatic amines
+    aromatic_amine_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetIsAromatic():
+            if any(neighbor.GetIsAromatic() for neighbor in atom.GetNeighbors()):
+                aromatic_amine_count += 1
+    return aromatic_amine_count
+
+def rule9_double_or_triple_bonds(mol):
+    # Count double or triple bonds
+    double_triple_bond_count = sum(1 for bond in mol.GetBonds() if bond.GetBondType() in [Chem.BondType.DOUBLE, Chem.BondType.TRIPLE])
+    return double_triple_bond_count
+
+def rule10_negatively_charged_species(mol):
+    negatively_charged = ['[O-]', '[S-]']  # Common negatively charged oxygen and sulfur
+    count = sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) for smarts in negatively_charged)
+    return count
+
+def rule11_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule11_conjugated_systems(mol):
+    # Initialize count of conjugated bonds
+    conjugated_bond_count = 0
+
+    # Iterate through each bond in the molecule
+    for bond in mol.GetBonds():
+        # Check if the bond is conjugated
+        if bond.GetIsConjugated():
+            conjugated_bond_count += 1
+
+    return conjugated_bond_count
+
+
+def rule12_charged_species(mol):
+    cations = ['[N+]', '[P+]', '[S+]', '[O+]']  # Common cations
+    anions = ['[O-]', '[S-]']  # Common anions
+    cation_count = sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) for smarts in cations)
+    anion_count = sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) for smarts in anions)
+    return cation_count + anion_count
+
+def rule13_oxygen_groups(mol):
+    if mol is None:
+        return 0  # Return 0 if the input molecule is None
+
+    oxygen_groups = ['[OX2H]', '[OX1=O]', '[OX2H1]']  # Hydroxyl, carbonyl, and ether groups
+    count = 0
+    for smarts in oxygen_groups:
+        query_mol = Chem.MolFromSmarts(smarts)
+        if query_mol is not None:
+            count += len(mol.GetSubstructMatches(query_mol))
+        else:
+            return 0  # Return 0 if any SMARTS pattern is invalid
+
+    return count
+
+
+def rule14_saturated_bonds(mol):
+    saturated_bonds = Chem.MolFromSmarts('[CX4]!@[CX4]')  # Single bonds between sp3 carbons
+    return len(mol.GetSubstructMatches(saturated_bonds))
+
+def rule14_simpler_structures(mol):
+    # Counting single bonds as a proxy for simpler structures
+    single_bonds = Chem.MolFromSmarts('[*]!@[*]')
+    return len(mol.GetSubstructMatches(single_bonds))

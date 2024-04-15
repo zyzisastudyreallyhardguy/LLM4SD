@@ -1,0 +1,49 @@
+
+
+
+
+
+
+def rule4_heavy_atoms(mol):
+    iodine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[I]")))  # SMARTS for iodine
+    bromine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[Br]")))  # SMARTS for bromine
+    return iodine_count + bromine_count
+
+def rule5_aromatic_rings(mol):
+    aromatic_count = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_count
+
+def rule5_double_bonds(mol):
+    double_bond_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("*=*")))  # SMARTS for double bonds
+    return double_bond_count
+
+def rule6_polar_groups(mol):
+    polar_count = 0
+    polar_groups = ["[F]", "[Cl]", "[Br]", "[I]", "[N+]", "[O-]"]  # List of SMARTS for some common polar groups
+    for group in polar_groups:
+        polar_count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return polar_count
+
+def rule7_aromatic_fused_rings(mol):
+    aromatic_rings = 0
+    ri = mol.GetRingInfo()
+    for ring in ri.BondRings():
+        if all(mol.GetBondWithIdx(bond_idx).GetIsAromatic() for bond_idx in ring):
+            aromatic_rings += 1
+    # Check if there are fused aromatic rings
+    fused_aromatic = aromatic_rings > 1
+    return int(fused_aromatic)
+
+def rule8_positively_charged_nitrogen(mol):
+    positive_nitrogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0:
+            positive_nitrogen_count += 1
+    return positive_nitrogen_count
+
+def rule9_multiple_chlorine_atoms(mol):
+    chlorine_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 17:  # Chlorine's atomic number
+            chlorine_count += 1
+    return chlorine_count

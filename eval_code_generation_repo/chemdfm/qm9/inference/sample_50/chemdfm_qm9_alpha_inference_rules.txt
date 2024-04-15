@@ -1,0 +1,13 @@
+def rule1_positively_charged_nitrogen(mol):
+    positively_charged_n_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0:  # Nitrogen atoms with positive charge
+            positively_charged_n_count += 1
+    return positively_charged_n_count
+
+
+
+def rule3_complexity_and_stereocenters(mol):
+    ring_count = rdMolDescriptors.CalcNumRings(mol)
+    stereocenters_count = len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+    return ring_count + stereocenters_count

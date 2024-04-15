@@ -1,0 +1,103 @@
+def count_aromatic_halides(mol, halides=None):
+    if halides is None:
+        halides = ['F', 'Cl', 'Br', 'I']  # Default halides if not provided
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetIsAromatic() and atom.GetSymbol() in halides:
+            count += 1
+    return count
+
+
+def rule1_halogenated_aromatics(mol):
+    # Define halogens typically involved in aromatic halogenation
+    halogens = ['Cl', 'Br']
+    return count_aromatic_halides(mol, halogens)
+
+def rule2_aromatic_amines(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetIsAromatic() and atom.GetSymbol() == 'N' and atom.GetTotalNumHs() > 0:
+            count += 1
+    return count
+
+def rule3_functional_groups(mol):
+    # Manually count nitro groups
+    nitro_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetFormalCharge() == 0:
+            oxygen_neighbors = [n for n in atom.GetNeighbors() if n.GetSymbol() == 'O' and n.GetFormalCharge() == 0]
+            if len(oxygen_neighbors) == 2 and all(n.GetTotalNumHs() == 0 for n in oxygen_neighbors):
+                nitro_count += 1
+
+    # Count ketone groups
+    ketone_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            oxygen_neighbors = [n for n in atom.GetNeighbors() if n.GetSymbol() == 'O' and n.GetTotalNumHs() == 0]
+            if len(oxygen_neighbors) == 1 and oxygen_neighbors[0].GetTotalNumHs() == 0:
+                ketone_count += 1
+
+    # Count acid chloride groups
+    acid_chloride_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'Cl':
+            carbon_neighbors = [n for n in atom.GetNeighbors() if n.GetSymbol() == 'C']
+            for carbon in carbon_neighbors:
+                if any(nn.GetSymbol() == 'O' and nn.GetTotalNumHs() == 0 for nn in carbon.GetNeighbors()):
+                    acid_chloride_count += 1
+
+    return nitro_count + ketone_count + acid_chloride_count
+
+
+def rule4_aromatic_system(mol):
+    aromatic_rings = 0
+    ssr = Chem.GetSymmSSSR(mol)  # Get smallest set of smallest rings
+    for ring in ssr:
+        if mol.GetRingInfo().IsAromatic(ring):
+            aromatic_rings += 1
+    return aromatic_rings
+
+def rule5_unsaturated_fatty_acid_chains(mol):
+    unsaturated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and \
+           (bond.GetBeginAtom().GetAtomicNum() == 6 or bond.GetEndAtom().GetAtomicNum() == 6):  # Carbon atoms
+            unsaturated_bonds += 1
+    return unsaturated_bonds
+
+def rule6_positively_charged_nitrogen(mol):
+    positive_nitrogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0:  # Nitrogen atoms
+            positive_nitrogen_count += 1
+    return positive_nitrogen_count
+
+def rule7_halogen_proximity(mol):
+    try:
+        # Find aromatic rings
+        aromatic_rings = sum(
+            1 for ring in mol.GetRingInfo().AtomRings() 
+            if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring)
+        )
+        return aromatic_rings
+    except Exception:
+        return 0  # Return 0 in case of any error as the function cannot raise errors
+
+
+def rule8_polar_functionalities(mol):
+    num_alcohols = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 8 and atom.GetTotalNumHs() == 1:  # Check if the atom is oxygen with one hydrogen
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetAtomicNum() == 6 and not neighbor.GetIsAromatic():  # Check if the neighbor is a non-aromatic carbon
+                    num_alcohols += 1
+                    break  # Break after finding one valid aliphatic carbon to avoid counting the same OH group multiple times
+    return num_alcohols
+
+
+def rule9_lipophilicity_and_bbb(mol):
+    logP = Descriptors.MolLogP(mol)
+    if logP > 3.0:  # Threshold for lipophilicity indicating potential to cross the blood-brain barrier
+        return 1
+    else:
+        return 0

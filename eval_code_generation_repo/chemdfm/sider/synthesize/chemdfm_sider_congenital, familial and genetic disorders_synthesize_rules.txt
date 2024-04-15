@@ -1,0 +1,102 @@
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def calculate_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+def calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+
+def rule7_count_nitrogen_atoms(mol):
+    # Count the number of nitrogen atoms in the molecule
+    # Nitrogen has an atomic number of 7
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7)
+
+
+
+
+def rule9_count_sulfur_atoms(mol):
+    try:
+        # Count atoms with atomic number 16 (sulfur)
+        return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16)
+    except Exception:
+        # In case of any error, return 0 as the function cannot raise errors
+        return 0
+
+
+
+
+def rule11_count_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE)
+
+def rule12_count_triple_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.TRIPLE)
+
+def rule13_count_tertiary_carbons(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) == 3)
+
+def rule14_count_carbonyl_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and any(n.GetAtomicNum() == 8 and mol.GetBondBetweenAtoms(atom.GetIdx(), n.GetIdx()).GetBondType() == Chem.BondType.DOUBLE for n in atom.GetNeighbors()))
+
+def rule15_amino_groups(mol):
+    amino_smarts = "[NX3;H2,H1;!$(NC=O)]"
+    amino = Chem.MolFromSmarts(amino_smarts)
+    return len(mol.GetSubstructMatches(amino))
+
+def rule16_thiocarbonyl_groups(mol):
+    thiocarbonyl_smarts = "[#6]=[#16]"
+    thiocarbonyl = Chem.MolFromSmarts(thiocarbonyl_smarts)
+    return len(mol.GetSubstructMatches(thiocarbonyl))
+
+def rule17_epoxides(mol):
+    epoxide_smarts = "C1OC1"
+    epoxide = Chem.MolFromSmarts(epoxide_smarts)
+    return len(mol.GetSubstructMatches(epoxide))
+
+def rule18_strained_rings(mol):
+    # Strained rings typically refer to small rings, e.g., three-membered rings
+    three_membered_ring_smarts = "[R3]"
+    three_membered_ring = Chem.MolFromSmarts(three_membered_ring_smarts)
+    return len(mol.GetSubstructMatches(three_membered_ring))
+
+def rule19_unstable_isomers(mol):
+    nitro_smarts = "[N+](=O)[O-]"
+    nitro = Chem.MolFromSmarts(nitro_smarts)
+    return len(mol.GetSubstructMatches(nitro))
+
+def rule20_reactive_functional_groups(mol):
+    if mol is None:
+        return 0  # Return 0 if the input molecule is None
+
+    # Define individual SMARTS patterns for different reactive functional groups
+    smarts_patterns = [
+        "[CX3H1](=O)[#6]",  # Ketones (specifically methyl ketone)
+        "[C1OC1]",          # Epoxides
+        "[N3]"              # Azides
+    ]
+
+    # Convert SMARTS patterns to RDKit molecule objects
+    smarts_molecules = [Chem.MolFromSmarts(pattern) for pattern in smarts_patterns]
+
+    # Initialize count of matches
+    count_matches = 0
+
+    # Loop through each SMARTS molecule and count matches in the input molecule
+    for smarts_mol in smarts_molecules:
+        if smarts_mol is not None:
+            matches = mol.GetSubstructMatches(smarts_mol)
+            count_matches += len(matches)
+
+    return count_matches
+

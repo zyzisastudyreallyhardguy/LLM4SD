@@ -1,0 +1,59 @@
+def rule1_aromatic_systems(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    double_bonds = sum([1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+    return aromatic_rings + double_bonds
+
+def rule1_extended_conjugation(mol):
+    conjugated_bonds = sum([1 for bond in mol.GetBonds() if bond.GetIsConjugated()])
+    return conjugated_bonds
+
+def rule2_aromatic_amines(mol):
+    aromatic_amines = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetIsAromatic()])
+    return aromatic_amines
+
+def rule2_long_hydrocarbon_chains(mol):
+    long_chains = sum([1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.SINGLE and bond.GetBeginAtom().GetAtomicNum() == 6 and bond.GetEndAtom().GetAtomicNum() == 6])
+    return long_chains
+
+def rule2_proximity_aromatic_amine(mol):
+    proximity_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetIsAromatic():
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetIsAromatic():
+                    proximity_count += 1
+    return proximity_count
+
+def rule3_high_charge_groups(mol):
+    charged_groups = sum([atom.GetFormalCharge() for atom in mol.GetAtoms() if abs(atom.GetFormalCharge()) > 0])
+    return charged_groups
+
+def rule3_heavy_metal_ions(mol):
+    heavy_metals = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() > 20])  # Atomic numbers greater than 20 for heavy metals
+    return heavy_metals
+
+def rule4_halogens_metals_conjugated(mol):
+    num_halogens = rdMolDescriptors.CalcNumHBD(mol)
+    num_metals = sum([atom.GetAtomicNum() in [13, 49, 50, 81, 82, 83, 48, 80, 47, 79, 78, 77, 46, 45, 44, 76, 75, 74, 28, 27, 26, 25, 24, 42, 41, 40, 30, 29, 12, 11] for atom in mol.GetAtoms()])
+    num_conjugated_bonds = sum([bond.GetIsConjugated() for bond in mol.GetBonds()])
+    return num_halogens + num_metals + num_conjugated_bonds
+
+def rule5_reactive_groups(mol):
+    num_unsaturated_bonds = sum([1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE])
+    num_aromatic_halogens = sum([atom.GetAtomicNum() in [9, 17, 35, 53] for atom in mol.GetAtoms() if atom.GetIsAromatic()])
+    num_conjugated_double_bonds = sum([bond.GetIsConjugated() and bond.GetBondType() == Chem.rdchem.BondType.DOUBLE for bond in mol.GetBonds()])
+    num_nitriles = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C#N")))
+    num_carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C(=O)O")))
+    return num_unsaturated_bonds + num_aromatic_halogens + num_conjugated_double_bonds + num_nitriles + num_carboxylic_acids
+
+def rule6_complex_structures(mol):
+    if mol is None:
+        return 0  # Return 0 or some other number indicating an error in a non-exception way
+
+    num_heavy_metals = sum(atom.GetAtomicNum() > 20 for atom in mol.GetAtoms())
+    num_halogenated_aromatics = sum(atom.GetAtomicNum() in [9, 17, 35, 53] and atom.GetIsAromatic() for atom in mol.GetAtoms())
+
+    # Assuming the function should return a number, you might want to define what number to return.
+    # For example, you could return the sum of the counts:
+    return num_heavy_metals + num_halogenated_aromatics
+

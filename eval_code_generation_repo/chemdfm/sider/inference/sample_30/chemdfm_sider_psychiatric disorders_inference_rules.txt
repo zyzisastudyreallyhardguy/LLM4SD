@@ -1,0 +1,72 @@
+def rule1_contains_heavy_metals(mol):
+    heavy_metals = ['Gd', 'Hg', 'Pb', 'Cd', 'As', 'Se']  # Example heavy metals
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in heavy_metals:
+            count += 1
+    return count
+
+def rule2_aromatic_amino_acids(mol):
+    aromatic_aa_smarts = ['c1ccc2c(c1)c(c[nH]2)CC(N)C(=O)O',  # Tryptophan
+                          'c1cc(ccc1C(C(=O)O)N)O']           # Tyrosine
+    count = 0
+    for smarts in aromatic_aa_smarts:
+        substructure = Chem.MolFromSmarts(smarts)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule3_multiple_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule4_smiles_psychiatric_relevance(mol):
+    # This is a placeholder function as the actual implementation would require a database or labeling system
+    # that identifies molecules with a specific label. Here, we return a dummy value.
+    return 1  # Assuming all input molecules are relevant to psychiatric disorders for this example
+
+def rule5_phosphate_groups(mol):
+    # Count phosphate groups (P(=O)(O)(O))
+    phosphate_smarts = '[PX4](=[OX1])([OX2])[OX2]'
+    phosphate = len(mol.GetSubstructMatches(Chem.MolFromSmarts(phosphate_smarts)))
+    return phosphate
+
+def rule5_aromatic_rings(mol):
+    # Count aromatic rings
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+def rule5_double_bonds(mol):
+    # Count double bonds
+    double_bonds = rdMolDescriptors.CalcNumUnspecifiedAtomStereoCenters(mol)
+    return double_bonds
+
+def rule6_heavy_atoms(mol):
+    heavy_atoms_list = ['Ag', 'Pb', 'Cd', 'Hg', 'As']
+    heavy_atoms_count = sum([mol.GetNumAtoms(atom.GetSymbol() in heavy_atoms_list) for atom in mol.GetAtoms()])
+    return heavy_atoms_count
+
+def rule7_aromatic_amines(mol):
+    # Aromatic amines
+    aromatic_amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c[nH]')))
+    return aromatic_amines
+
+def rule7_acrylamides(mol):
+    # Acrylamides
+    acrylamide_smarts = 'C=CN(C)C=O'
+    acrylamides = len(mol.GetSubstructMatches(Chem.MolFromSmarts(acrylamide_smarts)))
+    return acrylamides
+
+def rule7_organic_peroxides(mol):
+    # Organic peroxides
+    organic_peroxides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('OO')))
+    return organic_peroxides
+
+def rule8_molecular_weight_and_complexity(mol):
+    # High molecular weight and complexity
+    molecular_weight = Descriptors.MolWt(mol)
+    complexity = Descriptors.NumValenceElectrons(mol)
+    return molecular_weight + complexity

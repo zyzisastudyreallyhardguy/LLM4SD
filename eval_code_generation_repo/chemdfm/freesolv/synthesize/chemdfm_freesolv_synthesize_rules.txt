@@ -1,0 +1,124 @@
+def rule_freesolv_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule_freesolv_polar_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() in [1.5, 2.0])
+
+def rule_freesolv_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule_freesolv_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule_freesolv_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule_freesolv_molar_refractivity(mol):
+    try:
+        molar_refractivity = rdMolDescriptors.CalcMolMR(mol)
+    except AttributeError:
+        # As per the requirement, the function should not raise errors, only return a number.
+        # Returning a default value or an indicative value like -1 to signify an error.
+        molar_refractivity = -1
+    return molar_refractivity
+
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calc_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def calc_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def calc_num_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == rdchem.BondType.DOUBLE)
+
+def calc_num_triangles(mol):
+    try:
+        # Get all rings in the molecule
+        ring_info = mol.GetRingInfo()
+        # Get the list of all rings, each ring is represented as a tuple of atom indices
+        rings = ring_info.AtomRings()
+        # Count rings of size 3 (triangles)
+        num_triangles = sum(1 for ring in rings if len(ring) == 3)
+        return num_triangles
+    except Exception:
+        # In case of any error, return 0 as the function cannot raise errors
+        return 0
+
+
+def calc_num_tetrads(mol):
+    try:
+        # Get ring information from the molecule
+        ring_info = mol.GetRingInfo()
+        # Get all rings and filter by size 4
+        num_tetrads = sum(1 for ring in ring_info.BondRings() if len(ring) == 4)
+    except Exception:
+        # In case of any error, return 0 (as the function cannot raise errors)
+        num_tetrads = 0
+    return num_tetrads
+
+
+def calc_num_pentads(mol):
+    # Get all rings in the molecule
+    sssr = Chem.GetSymmSSSR(mol)
+    # Count rings of size 5
+    num_pentads = sum(1 for ring in sssr if len(ring) == 5)
+    return num_pentads
+
+
+def calc_molecular_surface_area(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def calc_molecular_volume(mol):
+    try:
+        return rdMolDescriptors.CalcExactMolWt(mol)
+    except Exception:
+        return 0  # Return 0 if there is any error
+
+
+def calc_shape_index(mol):
+    return rdMolDescriptors.CalcKappa1(mol)
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_complexity(mol):
+    return Descriptors.MolWt(mol)
+
+def calculate_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def calculate_rigid_subunits(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def calculate_flexible_subunits(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def calculate_molecular_flexibility(mol):
+    total_bonds = mol.GetNumBonds()
+    if total_bonds == 0:
+        return 0
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return rotatable_bonds / total_bonds
+
+def calculate_functional_groups(mol):
+    functional_group_patterns = [
+        '[CX3](=O)[OX2H1]',  # Carboxylic acid
+        '[NX3;H2,H1;!$(NC=O)]',  # Primary and secondary amines
+        '[OX2H]',  # Hydroxyl groups
+        '[nH]',  # Pyrrole-like nitrogen
+        '[SH]',  # Thiol groups
+    ]
+    count = 0
+    for pattern in functional_group_patterns:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(pattern)))
+    return count

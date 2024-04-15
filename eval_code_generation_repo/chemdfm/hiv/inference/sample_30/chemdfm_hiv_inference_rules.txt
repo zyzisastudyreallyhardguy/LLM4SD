@@ -1,0 +1,69 @@
+def rule1_aromatic_amides(mol):
+    # Count aromatic amides
+    pattern = Chem.MolFromSmarts('C(=O)Nc1ccccc1')  # SMARTS pattern for aromatic amide
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule2_amides(mol):
+    # Count amides
+    pattern = Chem.MolFromSmarts('C(=O)N')  # SMARTS pattern for amide
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule3_halogens(mol):
+    # Count bromine and iodine atoms
+    bromine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[Br]')))
+    iodine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[I]')))
+    return bromine_count + iodine_count
+
+def rule4_nitrogen_heterocycles(mol):
+    # Count pyrimidines and imidazoles
+    pyrimidine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('n1cccncc1')))  # SMARTS for pyrimidine
+    imidazole_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('n1cc[nH]c1')))  # SMARTS for imidazole
+    return pyrimidine_count + imidazole_count
+
+def rule5_hydroxylamines_amides_acids(mol):
+    # Count hydroxylamines, amides, and carboxylic acids
+    hydroxylamine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N(O)O')))  # SMARTS for hydroxylamine
+    amide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N')))  # SMARTS for amide
+    carboxylic_acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))  # SMARTS for carboxylic acid
+    return hydroxylamine_count + amide_count + carboxylic_acid_count
+
+def rule6_aromatic_rings(mol):
+    # Count the number of aromatic rings
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_molecular_weight(mol):
+    # Calculate the molecular weight
+    return Descriptors.MolWt(mol)
+
+def rule7_logP(mol):
+    # Calculate the logP (a measure of lipophilicity)
+    return Descriptors.MolLogP(mol)
+
+def rule8_charged_groups(mol):
+    # Count positively and negatively charged groups
+    pos_charge = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    neg_charge = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    return pos_charge + neg_charge
+
+def rule8_hydrogen_bonding(mol):
+    # Hydrogen bonding capabilities
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+    hba = rdMolDescriptors.CalcNumHBA(mol)
+    return hbd + hba
+
+def rule8_aromatic_rings(mol):
+    # Count aromatic rings again for this rule
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule9_logP(mol):
+    # Calculate logP again for this rule
+    return Descriptors.MolLogP(mol)
+
+def rule9_solubility(mol):
+    # Solubility can be approximated by inverse of logP (simplistic approach)
+    return 1 / Descriptors.MolLogP(mol) if Descriptors.MolLogP(mol) != 0 else 0
+
+def rule10_structural_motifs(mol):
+    # Check for specific structural motif "CC(C)C"
+    motif = Chem.MolFromSmarts("CC(C)C")  # SMARTS pattern for the motif
+    return len(mol.GetSubstructMatches(motif))

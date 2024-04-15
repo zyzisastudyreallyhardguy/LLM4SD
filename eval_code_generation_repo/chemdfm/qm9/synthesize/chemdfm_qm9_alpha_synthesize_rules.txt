@@ -1,0 +1,111 @@
+def rule1_multiple_bonds_polarizability(mol):
+    num_multiple_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE)
+    return num_multiple_bonds
+
+def rule2_aromatic_polarizability(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    return aromatic_count
+
+def rule3_halogens_polarizability(mol):
+    halogen_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53, 85])  # F, Cl, Br, I, At
+    return halogen_count
+
+def rule4_size_polarizability(mol):
+    return mol.GetNumAtoms()
+
+def rule5_branching_polarizability(mol):
+    branching_points = sum(1 for atom in mol.GetAtoms() if len(atom.GetNeighbors()) > 2)
+    return branching_points
+
+def rule6_double_bonds(mol):
+    double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE)
+    return double_bonds
+
+def rule7_unsaturated_fatty_acids(mol):
+    unsaturated_count = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE and 
+                             bond.IsInRing() == False)
+    return unsaturated_count
+
+def rule8_cations(mol):
+    charge = Chem.GetFormalCharge(mol)
+    return 1 if charge > 0 else 0
+
+def rule9_anions(mol):
+    charge = Chem.GetFormalCharge(mol)
+    return -1 * charge if charge < 0 else 0
+
+def rule10_conjugated_pi(mol):
+    conjugated_bonds = sum(1 for bond in mol.GetBonds() if bond.GetIsConjugated())
+    return conjugated_bonds
+
+def rule11_lone_pairs(mol):
+    lone_pairs = sum(atom.GetNumImplicitHs() for atom in mol.GetAtoms())
+    return lone_pairs
+
+def rule12_multiple_conjugated_pi(mol):
+    conjugated_systems = sum(1 for bond in mol.GetBonds() if bond.GetIsConjugated() and bond.GetBondType() != Chem.BondType.SINGLE)
+    return conjugated_systems
+
+def rule13_delocalized_electrons(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+def rule14_bulky_substituents(mol):
+    bulky_substituents = sum(1 for atom in mol.GetAtoms() if atom.GetDegree() > 3)
+    return -bulky_substituents
+
+def max_electronegativity_difference(mol):
+    # Define a dictionary with electronegativity values for some common elements
+    electronegativity_dict = {
+        1: 2.20,  # Hydrogen
+        6: 2.55,  # Carbon
+        7: 3.04,  # Nitrogen
+        8: 3.44,  # Oxygen
+        9: 3.98,  # Fluorine
+        17: 3.16,  # Chlorine
+        35: 2.96,  # Bromine
+        53: 2.66,  # Iodine
+        # Add more elements as needed
+    }
+
+    # Extract electronegativities for atoms in the molecule
+    electronegativities = [
+        electronegativity_dict.get(atom.GetAtomicNum(), 0) for atom in mol.GetAtoms()
+    ]
+
+    # Check if the list is empty or contains only zeros
+    if not electronegativities or all(e == 0 for e in electronegativities):
+        return 0
+
+    # Calculate and return the difference between the maximum and minimum electronegativity values
+    return max(electronegativities) - min(electronegativities)
+
+
+def rule15_electronegativity_difference(mol):
+    return max_electronegativity_difference(mol)
+
+def rule16_dipole_moment(mol):
+    try:
+        # Calculate Crippen descriptors which include logP and MR (molar refractivity)
+        # MR can be used as a rough approximation of the dipole moment
+        logP, MR = rdMolDescriptors.CalcCrippenDescriptors(mol)
+        return MR
+    except:
+        # In case of any error, return 0 as the function cannot raise errors
+        return 0
+
+
+def rule17_molar_refraction(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[1]  # Returns tuple (logP, MR)
+
+def rule18_heat_of_formation(mol):
+    # This is a placeholder value as RDKit does not provide heat of formation calculation
+    return 0
+
+def rule19_enthalpy_of_vaporization(mol):
+    # This is a placeholder value as RDKit does not provide enthalpy of vaporization calculation
+    return 0
+
+def rule20_boiling_point(mol):
+    # This is a placeholder value as RDKit does not provide boiling point calculation
+    return 0

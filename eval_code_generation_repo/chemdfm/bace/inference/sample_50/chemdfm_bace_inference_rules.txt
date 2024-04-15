@@ -1,0 +1,52 @@
+def count_substructures(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the required arguments are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return 0  # Return 0 if the SMARTS string is invalid
+    return len(mol.GetSubstructMatches(substructure))
+
+
+def rule1_aromatic_amino_groups(mol):
+    # SMARTS for aromatic amino groups
+    aromatic_amino_smarts = "[nX2]1ccccc1"
+    return count_substructures(mol, aromatic_amino_smarts)
+
+def rule2_aromatic_amide_and_amino_groups(mol):
+    # SMARTS for aromatic amide groups
+    aromatic_amide_smarts = "[NX3][CX3](=O)[cX3]:[c]"
+    aromatic_amino_smarts = "[nX2]1ccccc1"
+    count_amide = count_substructures(mol, aromatic_amide_smarts)
+    count_amino = count_substructures(mol, aromatic_amino_smarts)
+    return count_amide + count_amino
+
+def rule3_aromatic_ether_or_sulfonamide_groups(mol):
+    # SMARTS for aromatic ethers and sulfonamide groups
+    aromatic_ether_smarts = "[OX2]c1ccccc1"
+    sulfonamide_smarts = "S(=O)(=O)(N)"
+    count_ether = count_substructures(mol, aromatic_ether_smarts)
+    count_sulfonamide = count_substructures(mol, sulfonamide_smarts)
+    return count_ether + count_sulfonamide
+
+def rule4_carboxamide_alkyl_chain(mol):
+    # Check for carboxamide (CONH2) at the C-terminus of a long alkyl chain
+    smarts = '[CX4][CX4][CX4][CX4][CX4][CX4][CX4][CX4][CX4][CX4]C(=O)N'
+    pattern = Chem.MolFromSmarts(smarts)
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule5_bulky_hydrophobic_aromatic_amine(mol):
+    # Check for bulky hydrophobic groups linked to aromatic amines
+    smarts = '[cX3]([cX3])([cX3])N'
+    pattern = Chem.MolFromSmarts(smarts)
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_aromatic_amides_amines_near_acid(mol):
+    # Check for aromatic amides or amines near a carboxylic acid group
+    smarts_amide = 'cC(=O)N'
+    smarts_amine = 'cN'
+    smarts_acid = 'C(=O)O'
+    pattern_amide = Chem.MolFromSmarts(smarts_amide)
+    pattern_amine = Chem.MolFromSmarts(smarts_amine)
+    pattern_acid = Chem.MolFromSmarts(smarts_acid)

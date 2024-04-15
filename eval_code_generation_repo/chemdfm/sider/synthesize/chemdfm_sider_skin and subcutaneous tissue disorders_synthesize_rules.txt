@@ -1,0 +1,72 @@
+def calc_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def calc_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def calc_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def calc_num_unsaturated_bonds(mol):
+    unsaturated_bond_count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE or bond.GetBondType() == Chem.rdchem.BondType.TRIPLE:
+            unsaturated_bond_count += 1
+    return unsaturated_bond_count
+
+
+def calc_num_chlorine_atoms(mol):
+    # Count the number of chlorine atoms in the molecule
+    num_chlorine = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+    return num_chlorine
+
+
+def calc_num_nitro_groups(mol):
+    try:
+        # Define the SMARTS pattern for nitro groups
+        nitro_smarts = '[NX3](=O)[O-]'
+        nitro_pattern = Chem.MolFromSmarts(nitro_smarts)
+        
+        # Find all matches of the nitro pattern in the molecule
+        matches = mol.GetSubstructMatches(nitro_pattern)
+        
+        # Return the number of nitro groups found
+        return len(matches)
+    except Exception:
+        # In case of any error, return 0 as the function cannot raise errors
+        return 0
+
+
+
+
+
+
+
+
+def calc_num_thiol_groups(mol):
+    num_thiol_groups = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 16:  # Sulfur atom
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetAtomicNum() == 1:  # Hydrogen atom
+                    num_thiol_groups += 1
+                    break  # Only count one thiol group per sulfur atom
+    return num_thiol_groups
+
+
+def calc_num_olefinic_double_bonds(mol):
+    olefinic_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and not bond.IsInRing():
+            begin_atom = bond.GetBeginAtom()
+            end_atom = bond.GetEndAtom()
+            if begin_atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2 and end_atom.GetHybridization() == Chem.rdchem.HybridizationType.SP2:
+                olefinic_bonds += 1
+    return olefinic_bonds
+
+
+def calc_num_aromatic_double_bonds(mol):
+    return rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+
+def calc_num_aromatic_single_bonds(mol):
+    return rdMolDescriptors.CalcNumAromaticHeterocycles(mol)

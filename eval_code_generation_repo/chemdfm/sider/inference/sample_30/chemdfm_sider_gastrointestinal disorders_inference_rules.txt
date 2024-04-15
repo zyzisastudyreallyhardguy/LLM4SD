@@ -1,0 +1,93 @@
+def rule1_reactive_groups(mol):
+    if mol is None:
+        return 0  # Return 0 if the molecule object is not valid
+
+    try:
+        # Count specific functional groups known for reactivity
+        num_epoxides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C1OC1')))  # Epoxide
+        num_carbonyls = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3]=[OX1]')))  # General carbonyl
+        num_aldehydes = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')))  # Aldehyde
+        num_ketones = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[#6]')))  # Ketone
+
+        # Sum up all reactive groups found
+        total_reactive_groups = num_epoxides + num_carbonyls + num_aldehydes + num_ketones
+        return total_reactive_groups
+    except Exception as e:
+        return 0  # Return 0 in case of any error during processing
+
+
+def rule2_aromatic_and_unsaturated(mol):
+    # Correct SMARTS for aromatic amines (assuming 'n' should be '[nH]' for aromatic nitrogen)
+    aromatic_amine_smarts = '[nH]'
+    aromatic_amine_mol = Chem.MolFromSmarts(aromatic_amine_smarts)
+    if aromatic_amine_mol:
+        num_aromatic_amines = len(mol.GetSubstructMatches(aromatic_amine_mol))
+    else:
+        num_aromatic_amines = 0
+
+    # Correct SMARTS for halogenated aromatics (assuming 'cX' should be 'c[F,Cl,Br,I]' for halogenated carbon)
+    halogenated_aromatic_smarts = 'c[F,Cl,Br,I]'
+    halogenated_aromatic_mol = Chem.MolFromSmarts(halogenated_aromatic_smarts)
+    if halogenated_aromatic_mol:
+        num_halogenated_aromatics = len(mol.GetSubstructMatches(halogenated_aromatic_mol))
+    else:
+        num_halogenated_aromatics = 0
+
+    # Calculate unsaturated bonds by counting double and triple bonds
+    num_unsaturated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.BondType.DOUBLE or bond.GetBondType() == Chem.BondType.TRIPLE:
+            num_unsaturated_bonds += 1
+
+    # Return the sum of all counts
+    return num_aromatic_amines + num_halogenated_aromatics + num_unsaturated_bonds
+
+
+def rule3_polar_ionizable(mol):
+    try:
+        # Carboxylic acids
+        num_carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+        
+        # Halogens: fluorine, chlorine, bromine, iodine
+        halogen_smarts = '[F,Cl,Br,I]'  # SMARTS pattern for halogens
+        num_halides = len(mol.GetSubstructMatches(Chem.MolFromSmarts(halogen_smarts)))
+        
+        return num_carboxylic_acids + num_halides
+    except:
+        return 0  # Return 0 in case of any error as per the requirement to not raise errors
+
+
+def rule4_structural_features(mol):
+    num_rings = rdMolDescriptors.CalcNumRings(mol)  # Multiple ring systems
+    logP = Descriptors.MolLogP(mol)  # Lipophilicity
+    num_aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)  # Aromatic systems
+    high_lipophilicity = 1 if logP > 3 else 0
+    return num_rings + high_lipophilicity + num_aromatic_rings
+
+def rule5_solubility(mol):
+    logS = Descriptors.MolLogP(mol) - (0.01 * Descriptors.MolWt(mol))
+    return logS
+
+def rule5_lipophilicity(mol):
+    return Crippen.MolLogP(mol)
+
+def rule5_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_complexity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule6_shape(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule7_metabolism(mol):
+    # Placeholder for metabolic reactivity; real implementation would require more complex models
+    return rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+
+def rule8_toxic_functionalities(mol):
+    toxic_elements = ['Cl', 'Br', 'I', 'As', 'Hg', 'Pb']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in toxic_elements:
+            count += 1
+    return count

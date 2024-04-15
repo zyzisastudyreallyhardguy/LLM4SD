@@ -1,0 +1,98 @@
+def rule1_calc_logp(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_calc_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule3_calc_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+
+def rule4_calc_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_calc_heteroatoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule6_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_ring_systems(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule8_functional_groups(mol):
+    functional_groups = {
+        'carboxylic_acid': Chem.MolFromSmarts('C(=O)O'),
+        'amine': Chem.MolFromSmarts('N'),
+        'alcohol': Chem.MolFromSmarts('O'),
+    }
+    count = 0
+    for fg in functional_groups.values():
+        count += len(mol.GetSubstructMatches(fg))
+    return count
+
+def rule9_electrophilic_centers(mol):
+    electrophilic_centers = Chem.MolFromSmarts('[CX3]=[OX1]')
+    return len(mol.GetSubstructMatches(electrophilic_centers))
+
+def rule10_nucleophilic_centers(mol):
+    nucleophilic_centers = Chem.MolFromSmarts('[NX3,NX2]')
+    return len(mol.GetSubstructMatches(nucleophilic_centers))
+
+def rule11_reactive_sites(mol):
+    if mol is None:
+        return 0  # Return 0 if the input molecule is None
+
+    # Corrected SMARTS pattern
+    # Ensure each subpattern is correctly defined and separated
+    # [OX2r3]1[CR0][CR0]1 - Matches a three-membered ring with an oxygen
+    # [NX2r3]1[CR0][CR0]1 - Matches a three-membered ring with a nitrogen
+    # [NX2]=[CX1]=[OX1] - Matches a nitrile oxide structure
+    # Note: Ensure ring closure numbers do not overlap incorrectly between different parts of the pattern
+    smarts_pattern = '([O;r3]1[C;r0][C;r0]1) | ([N;r3]1[C;r0][C;r0]1) | ([N]=[C]=[O])'
+    pattern = Chem.MolFromSmarts(smarts_pattern)
+
+    if pattern is None:
+        return 0  # Return 0 if the SMARTS pattern is invalid
+
+    # Find matches of the pattern in the molecule
+    matches = mol.GetSubstructMatches(pattern)
+
+
+def rule12_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule13_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule14_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule15_metabolic_soft_spots(mol):
+    # Placeholder logic, should be replaced with actual computation
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6])  # Example: count carbon atoms
+
+def rule16_reactive_metabolites(mol):
+    # Placeholder logic, should be replaced with actual computation
+    return len([atom for atom in mol.GetAtoms() if atom.GetIsAromatic()])  # Example: count aromatic atoms
+
+def rule17_carcinogenic_metabolites(mol):
+    # Placeholder logic, should be replaced with actual computation
+    return len([bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE])  # Example: count double bonds
+
+def rule18_genotoxic_metabolites(mol):
+    # Placeholder logic, should be replaced with actual computation
+    return len([atom for atom in mol.GetAtoms() if atom.GetFormalCharge() != 0])  # Example: count charged atoms
+
+def rule19_CYP450_binding_sites(mol):
+    # Placeholder logic, should be replaced with actual computation
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 or atom.GetAtomicNum() == 8])  # Example: count N and O atoms
+
+def rule20_transporters(mol):
+    # Placeholder logic, should be replaced with actual computation
+    return len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16])  # Example: count sulfur atoms

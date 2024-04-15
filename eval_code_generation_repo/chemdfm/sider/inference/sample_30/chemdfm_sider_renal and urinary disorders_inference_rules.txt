@@ -1,0 +1,34 @@
+def contains_aromatic_amines(mol):
+    aromatic_amines = ['n', 'N']  # Common aromatic amine atoms in SMILES notation
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in aromatic_amines and atom.GetIsAromatic():
+            return True
+    return False
+
+def rule1_aromatic_amines(mol):
+    if contains_aromatic_amines(mol):
+        return 1  # Presence of aromatic amines
+    else:
+        return 0  # No aromatic amines
+
+def rule2_complex_structure(mol):
+    num_atoms = mol.GetNumAtoms()
+    num_rings = rdMolDescriptors.CalcNumRings(mol)
+    if num_atoms > 50 or num_rings > 3:
+        return 1  # Complex structure
+    else:
+        return 0  # Not complex
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule83746_halogen_count(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count

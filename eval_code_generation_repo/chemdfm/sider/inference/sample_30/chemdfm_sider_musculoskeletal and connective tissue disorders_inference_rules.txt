@@ -1,0 +1,46 @@
+def rule1_aromatic_rings_and_substituents(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    halogen_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53])  # F, Cl, Br, I
+    return aromatic_count + halogen_count
+
+def rule2_halogens_and_aromatic_halides(mol):
+    halogen_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53])  # F, Cl, Br, I
+    aromatic_halide_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53] and any(mol.GetAtomWithIdx(n).GetIsAromatic() for n in atom.GetNeighbors()))
+    return halogen_count + aromatic_halide_count
+
+def rule3_reactive_and_unstable_molecules(mol):
+    # Example criteria: count of nitro groups (NO2) and aldehydes (CHO)
+    nitro_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and any(n.GetAtomicNum() == 8 for n in atom.GetNeighbors()))  # Nitrogen with an Oxygen neighbor
+    aldehyde_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and any(n.GetAtomicNum() == 8 and n.GetTotalDegree() == 1 for n in atom.GetNeighbors()))  # Carbon with a single bonded Oxygen
+    return nitro_count + aldehyde_count
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_metal_containing(mol):
+    metals = ['Li', 'Be', 'Na', 'Mg', 'Al', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in metals:
+            count += 1
+    return count
+
+def rule5_toxic_functional_groups(mol):
+    smarts_patterns = {
+        'nitro_groups': '[NX3](=O)[OX2]',  # Nitro group
+        'organic_peroxides': '[OX2][OX2]',  # Peroxide group
+        'conjugated_systems': 'c1ccccc1'    # Aromatic ring as a proxy for conjugation
+    }
+    count = 0
+    for pattern in smarts_patterns.values():
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(pattern)))
+    return count

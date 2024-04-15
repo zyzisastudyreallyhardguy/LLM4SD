@@ -1,0 +1,109 @@
+def rule1_multiple_bonds(mol):
+    num_double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    num_triple_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE)
+    return num_double_bonds + 2 * num_triple_bonds
+
+def rule2_unsaturated_bonds(mol):
+    num_unsaturated_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() in [Chem.rdchem.BondType.DOUBLE, Chem.rdchem.BondType.TRIPLE])
+    return num_unsaturated_bonds
+
+def rule3_aromatic_compounds(mol):
+    ring_info = mol.GetRingInfo()
+    for atom in mol.GetAtoms():
+        if ring_info.IsAtomInRingOfSize(atom.GetIdx(), 6):
+            return 1
+    return 0
+
+
+def rule4_carbon_atoms(mol):
+    num_carbon_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+    return num_carbon_atoms
+
+def rule5_alcohols_carboxylic_acids(mol):
+    num_alcohols = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetDegree() == 1)
+    num_carboxylic_acids = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetDegree() == 2)
+    return num_alcohols + num_carboxylic_acids
+
+def rule6_alkylbenzenes(mol):
+    if mol.HasSubstructMatch(Chem.MolFromSmarts('c1ccccc1')):
+        return 1  # Presence of benzene ring
+    return 0
+
+def rule7_alkyl_halides(mol):
+    halides = ['[F]', '[Cl]', '[Br]', '[I]']
+    for halide in halides:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(halide)):
+            return 1  # Presence of halide
+    return 0
+
+def rule8_alkyl_ether(mol):
+    if mol.HasSubstructMatch(Chem.MolFromSmarts('[OX2H0]')):
+        return 1  # Presence of ether oxygen
+    return 0
+
+def rule9_strong_h_bonds(mol):
+    num_h_donors = rdMolDescriptors.CalcNumHBD(mol)
+    if num_h_donors > 2:
+        return 1  # Strong hydrogen bond potential
+    return 0
+
+def rule10_multiple_functional_groups(mol):
+    functional_groups = [
+        '[OX2H]', '[NX3;H2,H1;!$(NC=O)]', 'c1ccccc1', '[F,Cl,Br,I]'
+    ]
+    count = 0
+    for group in functional_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            count += 1
+    return count  # Number of functional groups
+
+def rule11_electron_withdrawing_groups(mol):
+    ewg_smarts = ['[CX3](=O)[OX2H1]', '[CX3](=O)[OX1H0]', '[SX4](=O)=O']
+    for ewg in ewg_smarts:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(ewg)):
+            return 1  # Presence of electron-withdrawing group
+    return 0
+
+def rule12_electron_donating_groups(mol):
+    edg_smarts = ['[NH2]', '[OH]', '[O-]', '[N+](=O)[O-]']
+    for edg in edg_smarts:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(edg)):
+            return 1  # Presence of electron-donating group
+    return 0
+
+def rule13_aromatic_substituents(mol):
+    if mol.HasSubstructMatch(Chem.MolFromSmarts('c1([F,Cl,Br,I])cccc1')):
+        return 1  # Presence of halogen substituents on aromatic ring
+    return 0
+
+def rule14_halogen_presence(mol):
+    halogens = ['[F]', '[Cl]', '[Br]', '[I]']
+    for halogen in halogens:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(halogen)):
+            return 1  # Presence of halogen
+    return 0
+
+def rule15_cyclic_structures(mol):
+    return Chem.GetSSSR(mol)  # Returns the number of rings in the molecule
+
+def rule16_conjugated_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetIsConjugated() and bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+
+def rule17_unsymmetrical(mol):
+    # A simple approach to check symmetry: compare the molecule to its reverse
+    return 1 if mol.HasSubstructMatch(mol) and not mol.HasSubstructMatch(Chem.MolFromSmiles(Chem.MolToSmiles(mol)[::-1])) else 0
+
+def rule18_high_energy_bonds(mol):
+    # Counting number of triple bonds as an example of high-energy bonds
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE)
+
+def rule19_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule20_steric_hindrance(mol):
+    # Counting number of tertiary and quaternary carbons as a proxy for steric hindrance
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) >= 3:
+            count += 1
+    return count

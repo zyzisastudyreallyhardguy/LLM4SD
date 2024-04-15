@@ -1,0 +1,42 @@
+def rule1_toxicity_or_estrogen_activity(mol):
+    # This is a hypothetical function since RDKit does not directly calculate toxicity or receptor activity.
+    # Assuming a placeholder function that returns 1 if conditions are met.
+    return 1 if some_hypothetical_condition(mol) else 0
+
+def rule2_high_mw_or_logp(mol):
+    mw = Descriptors.MolWt(mol)
+    logp = Crippen.MolLogP(mol)
+    return 1 if (mw > 1000 or logp > 4) else 0
+
+def rule3_charged_molecules(mol):
+    charge = Chem.GetFormalCharge(mol)
+    has_aromatic = any(ring.GetIsAromatic() for ring in mol.GetRingInfo().AtomRings())
+    has_sulfate = any(atom.GetSymbol() == 'S' and atom.GetOxidationState() == -2 for atom in mol.GetAtoms())
+    return 1 if (charge != 0 and (has_aromatic or has_sulfate)) else 0
+
+def rule4_halogen_heavy_metal_toxicity(mol):
+    halogens_in_aromatic = any(atom.GetSymbol() in ['Cl', 'Br'] and mol.GetAtomWithIdx(atom.GetIdx()).GetIsAromatic() for atom in mol.GetAtoms())
+    heavy_metals = any(atom.GetSymbol() in ['Ni', 'Cr', 'Pb'] for atom in mol.GetAtoms())
+    return 1 if (halogens_in_aromatic or heavy_metals) else 0
+
+def rule5_carboxylic_acid_halogen(mol):
+    carboxylic_acid = any(atom.GetSymbol() == 'C' and len(atom.GetNeighbors()) == 4 and any(neighbor.GetSymbol() == 'O' for neighbor in atom.GetNeighbors()) for atom in mol.GetAtoms())
+    halogen_count = sum(atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'] for atom in mol.GetAtoms())
+    return 1 if (carboxylic_acid or halogen_count > 1) else 0
+
+def rule6_high_molecular_weight(mol):
+    return 1 if Descriptors.MolWt(mol) >= 300 else 0
+
+def rule7_lipophilicity_bbb(mol):
+    logp = Crippen.MolLogP(mol)
+    # Placeholder for BBB crossing, as RDKit does not directly provide this.
+    bbb_crossing = some_hypothetical_bbb_function(mol)
+    return 1 if (logp > 1 and bbb_crossing) else 0
+
+def some_hypothetical_condition(mol):
+    # Implement your condition here
+    return False
+
+def some_hypothetical_bbb_function(mol):
+    # Implement your BBB crossing logic here
+    return False

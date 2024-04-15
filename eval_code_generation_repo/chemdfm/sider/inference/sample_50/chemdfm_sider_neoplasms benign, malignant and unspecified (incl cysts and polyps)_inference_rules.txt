@@ -1,0 +1,71 @@
+def rule1_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetIsAromatic():  # Nitrogen in aromatic ring
+            if any(neighbor.GetAtomicNum() == 6 for neighbor in atom.GetNeighbors()):  # Connected to Carbon
+                aromatic_amines += 1
+    return aromatic_amines
+
+def rule1_epoxides(mol):
+    epoxides = 0
+    patt = Chem.MolFromSmarts('C1OC1')  # SMILES pattern for epoxide
+    epoxides += len(mol.GetSubstructMatches(patt))
+    return epoxides
+
+def rule1_large_molecular_weight(mol):
+    mw = Descriptors.MolWt(mol)
+    return mw
+
+def rule2_high_logp(mol):
+    logp = Descriptors.MolLogP(mol)
+    return logp
+
+def rule2_molecular_flexibility(mol):
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return rotatable_bonds
+
+def rule3_structural_similarity(mol):
+    # Placeholder for structural similarity score
+    # In practice, this would involve comparing `mol` to a database of known toxicants
+    # or using a machine learning model trained to recognize similar toxic structures.
+    similarity_score = 0  # This should be replaced with actual computation
+    return similarity_score
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule4_positive_charges(mol):
+    return Chem.GetFormalCharge(mol)
+
+def rule4_bulky_complex(mol):
+    return Descriptors.MolWt(mol)  # Using molecular weight as a proxy for bulkiness/complexity
+
+def rule5_reactive_groups(mol):
+    # Count specific reactive groups; here we use a simple example of carbonyl groups
+    patt = Chem.MolFromSmarts('[CX3]=[OX1]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule5_complex_structure(mol):
+    return Descriptors.MolWt(mol)  # Using molecular weight as a proxy for complexity
+
+def rule6_reactive_oxygen_species(mol):
+    # Example: count peroxides as a proxy
+    patt = Chem.MolFromSmarts('[OX2][OX2]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule6_hydrophobic_regions(mol):
+    return Lipinski.NumHAcceptors(mol)
+
+
+def rule6_heavy_metals_halogen(mol):
+    patt = Chem.MolFromSmarts('[F,Cl,Br,I]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule7_planar_aromatic_systems(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_multiple_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol) > 1  # Returns True if more than one aromatic ring
+
+def rule7_charged_species(mol):
+    return Chem.GetFormalCharge(mol) != 0  # Returns True if there is a net charge

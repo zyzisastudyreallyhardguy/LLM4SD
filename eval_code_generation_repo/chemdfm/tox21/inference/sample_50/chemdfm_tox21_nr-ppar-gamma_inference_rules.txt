@@ -1,0 +1,96 @@
+def rule1_aromatic_halogens(mol):
+    aromatic_halogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [9, 17, 35, 53, 85]:  # F, Cl, Br, I, At
+            if any(neighbor.GetIsAromatic() for neighbor in atom.GetNeighbors()):
+                aromatic_halogen_count += 1
+    return aromatic_halogen_count
+
+def rule2_mercury_cysteine(mol):
+    mercury_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'Hg':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'S':
+                    for n_neighbor in neighbor.GetNeighbors():
+                        if n_neighbor.GetSymbol() == 'C' and 'C(=O)' in [n.GetSymbol() for n in n_neighbor.GetNeighbors()]:
+                            mercury_count += 1
+    return mercury_count
+
+def rule3_bulky_substituents(mol):
+    bulky_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetIsAromatic():
+            if len(atom.GetNeighbors()) > 3:  # More than the typical number for aromatic atoms
+                bulky_count += 1
+    return bulky_count
+
+def rule4_carbonyl_aromatic(mol):
+    # Count carbonyl groups (C=O) attached to aromatic rings
+    carbonyl_count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            start_atom = bond.GetBeginAtom()
+            end_atom = bond.GetEndAtom()
+            if (start_atom.GetSymbol() == 'C' and end_atom.GetSymbol() == 'O') or (start_atom.GetSymbol() == 'O' and end_atom.GetSymbol() == 'C'):
+                if start_atom.IsInRing() and end_atom.IsInRing():
+                    carbonyl_count += 1
+    return carbonyl_count
+
+def rule5_aromatic_amines_nitro_groups(mol):
+    aromatic_amine_count = 0
+    nitro_group_count = 0
+
+def rule6_long_chains_or_complex(mol):
+    # Count the number of carbons in long chains; this is a simple proxy for long hydrocarbon chains
+    long_chain_threshold = 6  # Define what you consider as a 'long' chain
+    n_carbons = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+    return 1 if n_carbons >= long_chain_threshold else 0
+
+def rule6_complex_structures(mol):
+    # Check for multiple ring systems or long side chains
+    ring_info = mol.GetRingInfo()
+    num_rings = ring_info.NumRings()
+    return num_rings
+
+def rule7_specific_functional_groups(mol):
+    # Define SMARTS patterns for ether, ester, amide, and thiol groups
+    smarts_patterns = {
+        'ether': '[R][O][R]',
+        'ester': '[R][C](=[O])[O][R]',
+        'amide': '[R][C](=[O])[N]([R])[R]',
+        'thiol': '[R][S][H]'
+    }
+    count = 0
+    for pattern in smarts_patterns.values():
+        substructure = Chem.MolFromSmarts(pattern)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule8_redox_groups(mol):
+    # Define SMARTS patterns for organic phosphates and sulfides
+    smarts_patterns = {
+        'organic_phosphate': '[P](=[O])([O][R])[O][R]',
+        'sulfide': '[R][S][R]'
+    }
+    count = 0
+    for pattern in smarts_patterns.values():
+        substructure = Chem.MolFromSmarts(pattern)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule9_hydrophilic_groups(mol):
+    # Counting the number of oxygen, nitrogen, and sulfur atoms
+    num_oxygen = sum([1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O'])
+    num_nitrogen = sum([1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N'])
+    num_sulfur = sum([1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S'])
+    return num_oxygen + num_nitrogen + num_sulfur
+
+def rule10_long_aliphatic_chains(mol):
+    # Searching for long aliphatic chains
+    # This is a simple heuristic: count the number of carbons in the longest carbon chain
+    # We use SMARTS pattern to find aliphatic chains of carbons
+    smarts_pattern = '[C]-[C]-[C]-[C]-[C]-[C]-[C]'
+    long_chain = Chem.MolFromSmarts(smarts_pattern)
+    matches = mol.GetSubstructMatches(long_chain)
+    return len(matches)

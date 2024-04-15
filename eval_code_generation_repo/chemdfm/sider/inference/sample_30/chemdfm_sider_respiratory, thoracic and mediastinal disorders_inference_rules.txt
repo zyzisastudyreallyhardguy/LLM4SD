@@ -1,0 +1,63 @@
+def rule1_heavy_metals(mol):
+    toxic_elements = ['Tl', 'Gd']  # Thallium (Tl), Gadolinium (Gd)
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in toxic_elements:
+            count += 1
+    return count
+
+def rule2_reactive_groups(mol):
+    # Define SMARTS patterns for reactive groups
+    reactive_smarts = {
+        'halogens': '[Cl,Br,I]',  # Chlorine, Bromine, Iodine
+        'aldehydes': '[CX3H1](=O)[#6]',  # Aldehyde
+        'ketones': '[CX3](=O)[#6]',  # Ketone
+        'carboxylic_acids': '[CX3](=O)[OX2H1]',  # Carboxylic acid
+        'aromatic_amines': '[nX2]1cccc1'  # Aromatic amine
+    }
+    count = 0
+    for name, smarts in reactive_smarts.items():
+        substructure = Chem.MolFromSmarts(smarts)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule3_aromatic_conjugated(mol):
+    aromatic_count = rdMolDescriptors.CalcNumAromaticRings(mol)
+    conjugated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetIsConjugated():
+            conjugated_bonds += 1
+    return aromatic_count + conjugated_bonds
+
+
+def rule4_complexity_size(mol):
+    molecular_weight = Descriptors.MolWt(mol)
+    aromatic_rings = Lipinski.NumAromaticRings(mol)
+    return molecular_weight + aromatic_rings
+
+
+
+def rule5_basic_acidic_groups(mol):
+    # SMARTS patterns for the functional groups
+    basic_amino = "[NX3;H2,H1;!$(NC=O)]"
+    guanidinium = "C(=[NH2])N([H])N([H])"
+    alcohols = "[OX2H]"
+    carboxylic_acids = "C(=O)[OH]"
+    sulfonic_acids = "S(=O)(=O)[OH]"
+
+def rule6_bulky_complex(mol):
+    # Using molecular weight and ring count as proxies for bulkiness and complexity
+    weight = Descriptors.MolWt(mol)
+    ring_count = rdMolDescriptors.CalcNumRings(mol)
+    return weight + ring_count
+
+def rule7_toxic_groups(mol):
+    # SMARTS patterns for toxic functional groups
+    aromatic_amines = "n[H]"
+    halogenated_aromatics = "cX"
+    toxic_metals = "[Hg,As,Sb,Bi,Tl,Pb,Te]"  # Example metals, can be adjusted
+
+def rule8_unsaturated_structures(mol):
+    # SMARTS for olefinic and acetylene groups
+    olefinic = "C=C"
+    acetylene = "C#C"

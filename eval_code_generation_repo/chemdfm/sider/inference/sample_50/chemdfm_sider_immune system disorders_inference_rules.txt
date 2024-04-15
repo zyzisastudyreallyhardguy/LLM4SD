@@ -1,0 +1,24 @@
+def rule1_aromatic_amine(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetIsAromatic():  # Nitrogen in an aromatic ring
+            if any(neighbor.GetAtomicNum() == 6 and neighbor.GetIsAromatic() for neighbor in atom.GetNeighbors()):
+                aromatic_amines += 1
+    return aromatic_amines
+
+def rule2_halogens(mol):
+    halogens_count = 0
+    halogens = [9, 17, 35, 53, 85]  # F, Cl, Br, I, At atomic numbers
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in halogens:
+            halogens_count += 1
+    return halogens_count
+
+def rule3_metals(mol):
+    metal_count = 0
+    # Common metals in organic compounds and their complexes
+    metals = list(range(21, 31)) + list(range(39, 49)) + list(range(72, 81)) + [13, 25, 26, 27, 28, 29, 30, 44, 45, 46, 47, 48, 77, 78, 79, 80]
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in metals:
+            metal_count += 1
+    return metal_count

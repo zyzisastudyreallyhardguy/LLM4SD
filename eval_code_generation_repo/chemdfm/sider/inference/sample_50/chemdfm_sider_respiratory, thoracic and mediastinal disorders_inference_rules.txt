@@ -1,0 +1,124 @@
+def count_substructures(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the necessary arguments are not provided
+    pattern = Chem.MolFromSmarts(smarts)
+    if pattern is None:
+        return 0  # Return 0 if the SMARTS pattern is invalid
+    return len(mol.GetSubstructMatches(pattern))
+
+
+def rule1_aromatic_heterocyclic(mol):
+    # Aromatic amines
+    aromatic_amines = count_substructures(mol, "[nX2]1cccc1")  # Generic aromatic amine
+    # Aromatic hydrocarbons
+    aromatic_hydrocarbons = count_substructures(mol, "c1ccccc1")  # Benzene
+    # Cyclic ketones
+    cyclic_ketones = count_substructures(mol, "[CX3]=[OX1][CX4R2]")  # Generic cyclic ketone
+    # Carboxylic acids
+    carboxylic_acids = count_substructures(mol, "C(=O)O")  # Generic carboxylic acid
+    # Nitrogen in heterocycles like imidazole or pyridine
+    imidazole = count_substructures(mol, "n1cc[nH]c1")  # Imidazole
+    pyridine = count_substructures(mol, "n1ccccc1")  # Pyridine
+
+    return aromatic_amines + aromatic_hydrocarbons + cyclic_ketones + carboxylic_acids + imidazole + pyridine
+
+def rule2_functional_groups(mol):
+    # Guanidine
+    guanidine = count_substructures(mol, "C(=N)(N)N")  # Guanidine
+    # Organic heterocycles with oxygen
+    heterocycles_with_oxygen = count_substructures(mol, "[OX2]1cccc1")  # Furan
+    # Formal charges on nitrogen
+    formal_charged_nitrogen = count_substructures(mol, "[N+](=O)[O-]")  # Nitro group
+
+    return guanidine + heterocycles_with_oxygen + formal_charged_nitrogen
+
+def rule3_structural_classes(mol):
+    # Helper function to count substructures
+    def count_substructures(mol, smarts):
+        substructure = Chem.MolFromSmarts(smarts)
+        return len(mol.GetSubstructMatches(substructure))
+
+    # Multiple aromatic rings
+    multiple_aromatic_rings = count_substructures(mol, "c1ccccc1c2ccccc2")  # Naphthalene
+    # Long carbon chains
+    long_carbon_chains = count_substructures(mol, "CCCCC")  # Pentane or longer
+
+    # Double bonds: count aliphatic double bonds
+    double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and not bond.GetIsAromatic())
+
+    # Conjugated systems
+    conjugated_systems = Chem.rdMolDescriptors.CalcNumAromaticRings(mol)
+    # Organic cations
+    organic_cations = count_substructures(mol, "[N+](C)(C)C")  # Trimethylammonium
+
+    # Example return, adjust based on your needs
+    return multiple_aromatic_rings + long_carbon_chains + double_bonds + conjugated_systems + organic_cations
+
+
+    return multiple_aromatic_rings + long_carbon_chains + double_bonds + conjugated_systems + organic_cations
+
+def rule4_charged_species(mol):
+    return Chem.GetFormalCharge(mol)
+
+def rule4_polar_molecules(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule4_metal_chelating_groups(mol):
+    # Example: Check for common metal chelating groups such as carboxylates or hydroxamates
+    smarts = '[O,N;!H0]-[CX3](=O)[O,N;!H0]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule4_hydroxamic_acid_groups(mol):
+    smarts = '[NX3,NX4+][CX3](=O)[OX2H]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule4_high_lipophilicity(mol):
+    return 1 if Crippen.MolLogP(mol) > 3 else 0
+
+def rule5_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']  # List of halogen atom symbols
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+
+def rule5_phosphate_groups(mol):
+    smarts = '[P](=O)([O-])[O-]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule5_cyano_groups(mol):
+    smarts = '[C]#N'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule5_positively_charged_nitrogen(mol):
+    smarts = '[N+](=O)[O-]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule5_alkylating_agents(mol):
+    smarts = '[CX4][Cl,Br,I,F]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule5_aromatic_ether(mol):
+    smarts = '[O][c]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule6_specific_moieties(mol):
+    # Example: Check for moieties like sulfonamides or carbamates
+    smarts = 'S(=O)(=O)[NH2]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule6_high_logP(mol):
+    return 1 if Crippen.MolLogP(mol) > 5 else 0
+
+def rule6_complex_molecular_framework(mol):
+    return 1 if mol.GetNumHeavyAtoms() > 50 else 0

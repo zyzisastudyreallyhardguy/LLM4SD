@@ -1,0 +1,76 @@
+def epsilon_HOMO_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def epsilon_HOMO_num_bonds(mol):
+    return mol.GetNumBonds()
+
+def epsilon_HOMO_num_ring_atoms(mol):
+    return sum(len(ring) for ring in mol.GetRingInfo().AtomRings())
+
+def epsilon_HOMO_num_double_bonds(mol):
+    double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            double_bonds += 1
+    return double_bonds
+
+def epsilon_HOMO_num_conjugated_bonds(mol):
+    conjugated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetIsConjugated():
+            conjugated_bonds += 1
+    return conjugated_bonds
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_halogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHeteroatoms(mol) - rdMolDescriptors.CalcNumHBD(mol) - rdMolDescriptors.CalcNumHBA(mol)
+
+def rule9_hydroxy_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[OX2H]")))
+
+def rule10_methyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[CX3H3]")))
+
+def rule11_amino_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[NX3;H2,H1;!$(NC=O)]")))
+
+def rule12_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("[CX3]=[OX1]")))
+
+def rule13_oxygen_atoms(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule14_nitrogen_atoms(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def count_atoms(mol, atomic_num=None):
+    if atomic_num is None:
+        return 0  # Return 0 if no atomic number is specified
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == atomic_num)
+
+
+def rule15_homo_energy_sulfur(mol):
+    # Sulfur atomic number is 16
+    return count_atoms(mol, 16)
+
+def rule16_homo_energy_phosphorus(mol):
+    # Phosphorus atomic number is 15
+    return count_atoms(mol, 15)
+
+def rule17_homo_energy_fluorine(mol):
+    # Fluorine atomic number is 9
+    return count_atoms(mol, 9)
+
+def rule18_homo_energy_chlorine(mol):
+    # Chlorine atomic number is 17
+    return count_atoms(mol, 17)
+
+def rule19_homo_energy_bromine(mol):
+    # Bromine atomic number is 35
+    return count_atoms(mol, 35)
+
+def rule20_homo_energy_iodine(mol):
+    # Iodine atomic number is 53
+    return count_atoms(mol, 53)

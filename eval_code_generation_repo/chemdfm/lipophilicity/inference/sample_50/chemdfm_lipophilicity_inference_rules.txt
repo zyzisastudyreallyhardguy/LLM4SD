@@ -1,0 +1,24 @@
+def rule1_aromatic_rings(mol):
+    aromatic_count = len([ring for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    halogen_count = len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]])  # F, Cl, Br, I
+    return aromatic_count + halogen_count
+
+def rule2_logD(mol):
+    logP = Crippen.MolLogP(mol)
+    return logP
+
+def rule3_functional_groups(mol):
+    amide_count = rdMolDescriptors.CalcNumAmideBonds(mol)
+    halogen_count = len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53]])  # F, Cl, Br, I
+    aromatic_amine_count = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetIsAromatic()])  # Nitrogen in aromatic ring
+    return amide_count + halogen_count + aromatic_amine_count
+
+def rule4_polar_groups(mol):
+    hydroxyl_count = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    carboxyl_count = len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) == 3 and any(n.GetAtomicNum() == 8 for n in atom.GetNeighbors())])  # Carbon with three neighbors, one being oxygen
+    return hydroxyl_count + carboxyl_count
+
+def rule5_molecular_weight_complexity(mol):
+    molecular_weight = Descriptors.MolWt(mol)
+    complexity = Descriptors.NumValenceElectrons(mol)
+    return molecular_weight + complexity

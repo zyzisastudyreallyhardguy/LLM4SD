@@ -1,0 +1,95 @@
+def sider_blood_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def sider_blood_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def sider_blood_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def sider_blood_reactive_groups(mol):
+    # Example: Check for nitro groups (NO2)
+    nitro = Chem.MolFromSmarts('[NX2](=O)[OX2]')
+    return len(mol.GetSubstructMatches(nitro))
+
+def sider_blood_octanol_water_partition(mol):
+    return Crippen.MolLogP(mol)
+
+def sider_blood_molar_refractivity(mol):
+    try:
+        return rdMolDescriptors.CalcExactMolMR(mol)
+    except Exception:
+        return 0  # Return 0 in case of any error, as per the requirement to not raise errors
+
+
+def rule7_aromatic_rings(mol):
+    aromatic_rings = sum([1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    return aromatic_rings
+
+def rule8_molecular_mass(mol):
+    return Descriptors.MolWt(mol)
+
+def rule9_topical_sensitization(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule10_atom_centered_radicals(mol):
+    return sum([atom.GetNumRadicalElectrons() for atom in mol.GetAtoms()])
+
+def rule11_vdw_surface_area(mol):
+    return rdMolDescriptors.CalcLabuteASA(mol)
+
+def rule12_shake_groups(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule13_neurotoxic_groups(mol):
+    # Example: Counting carbonyl groups as a proxy
+    carbonyl_count = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetTotalDegree() == 3])
+    return carbonyl_count
+
+def rule14_reactive_metabolites(mol):
+    # Example: Counting epoxide groups as a proxy
+    epoxide_count = sum([1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.THREECENTER and bond.IsInRing()])
+    return epoxide_count
+
+def rule15_long_chain_fatty_acids(mol):
+    # Assuming long-chain fatty acids are carboxylic acids with a long aliphatic chain (more than 12 carbons)
+    long_chain_fatty_acids = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon atom
+            if len([neigh for neigh in atom.GetNeighbors() if neigh.GetAtomicNum() == 6]) >= 12:
+                long_chain_fatty_acids += 1
+    return long_chain_fatty_acids
+
+def rule16_molecular_complexity(mol):
+    # Using BertzCT index as a measure of molecular complexity
+    try:
+        return rdMolDescriptors.BertzCT(mol)
+    except Exception:
+        return 0  # Return 0 in case of any error as per the requirement to not raise errors
+
+
+def rule17_hydrophilic_groups(mol):
+    # Counting groups like -OH, -NH2, -COOH
+    hydrophilic_groups = 0
+    patt = Chem.MolFromSmarts('[OX2H,OX1H0-,NX3,NX4+,CX3](=O)')
+    hydrophilic_groups += len(mol.GetSubstructMatches(patt))
+    return hydrophilic_groups
+
+def rule18_solubility_in_water(mol):
+    # Using logP as a proxy for solubility; more negative logP implies higher solubility
+    logP = Crippen.MolLogP(mol)
+    solubility = -logP  # Simplified assumption
+    return solubility
+
+def rule19_dna_binding_groups(mol):
+    # Example DNA binding groups: aromatic rings, amine groups
+    dna_binding_groups = 0
+    aromatic_patt = Chem.MolFromSmarts('c1ccccc1')
+    amine_patt = Chem.MolFromSmarts('N')
+    dna_binding_groups += len(mol.GetSubstructMatches(aromatic_patt))
+    dna_binding_groups += len(mol.GetSubstructMatches(amine_patt))
+    return dna_binding_groups
+
+def rule20_molecular_flexibility(mol):
+    # Using the number of rotatable bonds as a measure of flexibility
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

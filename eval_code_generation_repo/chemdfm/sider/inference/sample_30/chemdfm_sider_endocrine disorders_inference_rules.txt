@@ -1,0 +1,88 @@
+def rule1_presence_of_halogens(mol):
+    halogens = ['Cl', 'Br', 'I']  # List of halogen atom symbols we are interested in
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule2_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule3_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule3_count_functional_groups(mol):
+    # Example functional groups: carboxyl (-COOH) and hydroxyl (-OH)
+    smarts_carboxyl = '[CX3](=O)[OX2H1]'
+    smarts_hydroxyl = '[OX2H]'
+    carboxyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_carboxyl)))
+    hydroxyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_hydroxyl)))
+    return carboxyl_count + hydroxyl_count
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_reactive_functional_groups(mol):
+    # Counting aldehydes, ketones, and esters
+    aldehyde_query = Chem.MolFromSmarts('C=O')  # Aldehyde SMARTS pattern might need adjustment
+    ketone_query = Chem.MolFromSmarts('CC(=O)C')
+    ester_query = Chem.MolFromSmarts('C(=O)O')
+
+    # Count matches in the molecule
+    aldehyde_count = len(mol.GetSubstructMatches(aldehyde_query))
+    ketone_count = len(mol.GetSubstructMatches(ketone_query))
+    ester_count = len(mol.GetSubstructMatches(ester_query))
+
+    # Sum of all reactive groups
+    total_reactive_groups = aldehyde_count + ketone_count + ester_count
+
+    return total_reactive_groups
+
+
+def rule5_heavy_metals(mol):
+    # Define heavy metals as elements with atomic number greater than 20 (Calcium)
+    heavy_metal_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() > 20:
+            heavy_metal_count += 1
+    return heavy_metal_count
+
+def rule6_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_water_solubility(mol):
+    # Using a simple estimation: more polar surface area suggests lower solubility
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_unsaturated_and_stereocenters(mol):
+    unsaturated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.BondType.DOUBLE or bond.GetBondType() == Chem.BondType.TRIPLE:
+            unsaturated_bonds += 1
+    stereocenters = len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+    return unsaturated_bonds + stereocenters
+
+def rule8_structural_similarity_to_toxic(mol, toxic_smiles_list=None):
+    from rdkit import Chem, DataStructs
+    from rdkit.Chem import AllChem
+
+    # Check if the list is empty or None, and return 0 in such cases
+    if not toxic_smiles_list:
+        return 0
+
+    max_similarity = 0
+    mol_fp = AllChem.GetMorganFingerprint(mol, 2)
+    for toxic_smiles in toxic_smiles_list:
+        toxic_mol = Chem.MolFromSmiles(toxic_smiles)
+        if toxic_mol is None:  # Check if the molecule conversion was successful
+            continue  # Skip this molecule if conversion failed
+        toxic_fp = AllChem.GetMorganFingerprint(toxic_mol, 2)
+        similarity = DataStructs.TanimotoSimilarity(mol_fp, toxic_fp)
+        if similarity > max_similarity:
+            max_similarity = similarity
+    return max_similarity
+

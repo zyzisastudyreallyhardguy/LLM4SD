@@ -1,0 +1,94 @@
+def rule1_calculate_logp(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule4_calculate_halogens(mol):
+    # Halogen atomic numbers: F(9), Cl(17), Br(35), I(53), At(85)
+    halogen_atomic_numbers = {9, 17, 35, 53, 85}
+    halogen_count = 0
+
+    # Iterate over all atoms in the molecule
+    for atom in mol.GetAtoms():
+        # Check if the atom is a halogen by comparing atomic numbers
+        if atom.GetAtomicNum() in halogen_atomic_numbers:
+            halogen_count += 1
+
+    return halogen_count
+
+
+def rule5_calculate_oxygen_atoms(mol):
+    # Count the number of oxygen atoms in the molecule
+    num_oxygen_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')
+    return num_oxygen_atoms
+
+
+def rule6_count_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule7_count_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+
+def rule8_count_ring_fusions(mol):
+    ssr = Chem.GetSymmSSSR(mol)  # Get symmetrical smallest set of smallest rings
+    return len([ring for ring in ssr if mol.GetRingInfo().NumBondRings(bond.GetIdx()) > 1 for bond in ring])
+
+def rule9_count_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule10_molecular_complexity(mol):
+    return rdMolDescriptors.CalcChi0n(mol)  # Using Chi0n as a measure of molecular complexity
+
+def rule11_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule12_formal_charge(mol):
+    return Chem.GetFormalCharge(mol)
+
+def rule13_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule14_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule15_topological_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule16_carcinogenic_groups(mol):
+    # Example: Count specific substructures known to be carcinogenic
+    carcinogenic_smarts = ['[nH]1cccc1', 'O=C1C=CC(=O)C=C1']  # Hypothetical SMARTS patterns for carcinogens
+    carcinogenic_substructures = [Chem.MolFromSmarts(smarts) for smarts in carcinogenic_smarts]
+    count = sum(mol.HasSubstructMatch(substruct) for substruct in carcinogenic_substructures)
+    return count
+
+def rule17_reactive_functional_groups(mol):
+    # Example: Count groups like aldehydes, epoxides, etc.
+    reactive_smarts = ['C=O', 'C1OC1']  # Hypothetical SMARTS for reactive groups
+    reactive_substructures = [Chem.MolFromSmarts(smarts) for smarts in reactive_smarts]
+    count = sum(mol.HasSubstructMatch(substruct) for substruct in reactive_substructures)
+    return count
+
+def rule18_metabolites(mol):
+    # Placeholder for metabolite calculation
+    return 0  # Placeholder value
+
+def rule19_structural_analogues(mol):
+    # Placeholder for structural analogue calculation
+    return 0  # Placeholder value
+
+def rule20_drug_like_properties(mol):
+    # Example: Count properties like Lipinski's rule of five
+    properties_count = 0
+    if rdMolDescriptors.CalcNumHBD(mol) <= 5:
+        properties_count += 1
+    if rdMolDescriptors.CalcNumHBA(mol) <= 10:
+        properties_count += 1
+    if rdMolDescriptors.CalcExactMolWt(mol) < 500:
+        properties_count += 1
+    if rdMolDescriptors.CalcCrippenDescriptors(mol)[0] < 5:  # LogP value
+        properties_count += 1
+    return properties_count

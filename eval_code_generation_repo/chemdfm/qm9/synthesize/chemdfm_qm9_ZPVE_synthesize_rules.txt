@@ -1,0 +1,73 @@
+def rule1_more_atoms_higher_zpve(mol):
+    return mol.GetNumAtoms()
+
+def rule2_increased_molar_mass_higher_zpve(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_higher_frequency_modes_higher_zpve(mol):
+    # Placeholder for vibrational frequency calculation
+    # Assuming a simple function that counts number of bonds as a proxy (not accurate)
+    return mol.GetNumBonds()
+
+def rule4_nonpolar_higher_zpve(mol):
+    # Using TPSA (Topological Polar Surface Area) as a proxy for polarity
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    # Assuming nonpolar molecules have lower TPSA, return negative TPSA as higher values indicate nonpolarity
+    return -tpsa
+
+def rule5_larger_molecules_higher_zpve(mol):
+    # Using molecular volume as a proxy for size
+    return Descriptors.MolMR(mol)  # Molar refractivity approximates volume
+
+def rule6_connectivity(mol):
+    return sum(len(atom.GetNeighbors()) for atom in mol.GetAtoms())
+
+def rule7_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == rdchem.BondType.DOUBLE)
+
+def rule8_aromaticity(mol):
+    return sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+
+def rule9_branching(mol):
+    return sum(1 for atom in mol.GetAtoms() if len(atom.GetNeighbors()) > 2)
+
+def rule10_heteroatoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() not in (1, 6))  # Non-H, non-C atoms
+
+def rule11_alkynes(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == rdchem.BondType.TRIPLE)
+
+def rule12_cyclic_structures(mol):
+    return len(mol.GetRingInfo().AtomRings())
+
+def rule13_symmetry(mol):
+    # Using a simple symmetry descriptor based on the number of unique atom types
+    atom_types = [atom.GetSymbol() for atom in mol.GetAtoms()]
+    unique_atom_types = set(atom_types)
+    return len(atom_types) / len(unique_atom_types) if unique_atom_types else 0
+
+def rule14_covalent_bonds(mol):
+    return mol.GetNumBonds()  # Assuming all bonds in the molecule are covalent
+
+def rule15_van_der_Waals_surface(mol):
+    return rdMolDescriptors.CalcLabuteASA(mol)
+
+def rule16_electronegativity(mol):
+    electronegativity_sum = sum([atom.GetAtomicNum() ** 0.5 for atom in mol.GetAtoms()])  # Simplified model
+    return electronegativity_sum
+
+def rule17_charge_delocalization(mol):
+    # Using the number of aromatic rings as a proxy for charge delocalization
+    return len(Chem.GetSymmSSSR(mol))
+
+def rule18_cohesive_energy(mol):
+    # Placeholder: return a constant value, real implementation would need solvent data
+    return 1.0
+
+def rule19_temperature_effect(mol):
+    # Placeholder: return a constant value, real implementation would need temperature data
+    return 298.15  # Standard room temperature in Kelvin
+
+def rule20_pressure_effect(mol):
+    # Placeholder: return a constant value, real implementation would need pressure data
+    return 1.0  # Standard atmospheric pressure in atm

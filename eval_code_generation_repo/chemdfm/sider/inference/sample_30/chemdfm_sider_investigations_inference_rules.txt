@@ -1,0 +1,55 @@
+def rule1_aromatic_rings(mol):
+    aromatic_rings = len([ring for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    return aromatic_rings
+
+def rule2_halogens(mol):
+    num_halogens = sum([mol.GetAtomWithIdx(i).GetAtomicNum() in [9, 17, 35, 53] for i in range(mol.GetNumAtoms())])
+    return num_halogens
+
+def rule3_toxic_groups(mol):
+    # This is a simplified check for a specific toxic group (e.g., -SO2Cl)
+    smarts = '[S](=[O])(=[O])[Cl]'  # SMARTS pattern for a sulfonyl chloride group
+    toxic_group = Chem.MolFromSmarts(smarts)
+    num_toxic_groups = len(mol.GetSubstructMatches(toxic_group))
+    return num_toxic_groups
+
+def rule4_structural_complexity(mol):
+    num_rings = rdMolDescriptors.CalcNumRings(mol)
+    num_double_bonds = sum([1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+    complexity_score = num_rings + num_double_bonds  # Simplified complexity score
+    return complexity_score
+
+def rule5_polar_groups(mol):
+    num_positive_charges = sum([atom.GetFormalCharge() > 0 for atom in mol.GetAtoms()])
+    num_amine_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2,H1,H0;!$(NC=O)]')))  # Primary, secondary, tertiary amines
+    polar_score = num_positive_charges + num_amine_groups
+    return polar_score
+
+def rule6_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def rule7_bio_mimic(mol):
+    # Placeholder logic: count occurrences of specific functional groups known to mimic hormones
+    # Example: count phenol groups as a simplistic approach
+    phenol_smarts = "[OH]c1ccccc1"
+    phenol = Chem.MolFromSmarts(phenol_smarts)
+    return len(mol.GetSubstructMatches(phenol))
+
+def rule8_reactive_groups(mol):
+    # Example: count carbonyl groups as a proxy for electrophilic sites
+    carbonyl_smarts = "[CX3]=[OX1]"
+    carbonyl = Chem.MolFromSmarts(carbonyl_smarts)
+    return len(mol.GetSubstructMatches(carbonyl))
+
+def rule9_logP(mol):
+    # Using logP as a proxy for ability to cross lipid membranes
+    return Crippen.MolLogP(mol)
+
+def rule10_toxic_groups(mol):
+    # Example: count halogens as a simplistic approach for potential toxicity
+    halogen_smarts = "[F,Cl,Br,I]"
+    halogen = Chem.MolFromSmarts(halogen_smarts)
+    return len(mol.GetSubstructMatches(halogen))

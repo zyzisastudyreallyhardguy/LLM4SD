@@ -1,0 +1,116 @@
+def rule1_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetIsAromatic():  # Nitrogen in an aromatic ring
+            if any(neighbor.GetAtomicNum() == 6 for neighbor in atom.GetNeighbors()):  # Connected to a carbon
+                aromatic_amines += 1
+    return aromatic_amines
+
+def rule2_heterotricyclic(mol):
+    sssr = Chem.GetSymmSSSR(mol)  # Get smallest set of smallest rings
+    heterotricyclic_count = 0
+    for ring in sssr:
+        if len(ring) == 3:  # Check if the ring is a tricycle
+            heteroatoms = sum(1 for idx in ring if mol.GetAtomWithIdx(idx).GetAtomicNum() != 6)
+            if heteroatoms > 0:  # At least one heteroatom
+                heterotricyclic_count += 1
+    return heterotricyclic_count
+
+def rule3_carboxylic_acids(mol):
+    carboxylic_acids = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon
+            oxygens = [neighbor for neighbor in atom.GetNeighbors() if neighbor.GetAtomicNum() == 8]
+            if len(oxygens) == 2 and all(neighbor.GetTotalNumHs() == 1 for neighbor in oxygens):
+                carboxylic_acids += 1
+    return carboxylic_acids
+
+def rule4_alkylating_groups(mol):
+    # Count specific substructures that represent alkylating groups
+    chloroethyl = Chem.MolFromSmarts('CCCl')  # Simplified representation for chloroethyl
+    nitrogen_mustard = Chem.MolFromSmarts('N(CCCl)CCCl')  # Simplified representation for nitrogen mustard
+    count_chloroethyl = len(mol.GetSubstructMatches(chloroethyl))
+    count_nitrogen_mustard = len(mol.GetSubstructMatches(nitrogen_mustard))
+    return count_chloroethyl + count_nitrogen_mustard
+
+def rule5_hydrophobic_aromatic(mol):
+    # Count aromatic rings
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    # Estimate positive charges (assuming nitrogen groups might carry a positive charge)
+    positive_charges = rdMolDescriptors.CalcNumAmideBonds(mol)
+    return aromatic_rings + positive_charges
+
+def rule6_halogens_heavy_metals(mol):
+    try:
+        # Manually count halogens: F, Cl, Br, I
+        halogens_smarts = '[F,Cl,Br,I]'
+        halogen_pattern = Chem.MolFromSmarts(halogens_smarts)
+        halogens = len(mol.GetSubstructMatches(halogen_pattern))
+        return halogens
+    except Exception:
+        return 0  # Return 0 in case of any error
+
+
+def rule7_reactive_intermediates(mol):
+    # Ensure the molecule is an RDKit molecule object
+    if not isinstance(mol, Chem.Mol):
+        return 0
+
+    # Correct and validate SMARTS patterns
+    nitrosamines_smarts = '[N-N=O]'  # Simplified representation for nitrosamines
+    aldehydes_smarts = '[CXH1]=O'  # General representation for aldehydes
+    epoxides_smarts = 'C1OC1'  # Three-membered cyclic ethers (epoxides)
+
+    # Create molecule objects from SMARTS patterns
+    nitrosamines = Chem.MolFromSmarts(nitrosamines_smarts)
+    aldehydes = Chem.MolFromSmarts(aldehydes_smarts)
+    epoxides = Chem.MolFromSmarts(epoxides_smarts)
+
+    # Initialize counts
+    count_nitrosamines = 0
+    count_aldehydes = 0
+    count_epoxides = 0
+
+    # Check if the SMARTS patterns were correctly converted to molecule objects
+    if nitrosamines:
+        count_nitrosamines = len(mol.GetSubstructMatches(nitrosamines))
+    if aldehydes:
+        count_aldehydes = len(mol.GetSubstructMatches(aldehydes))
+    if epoxides:
+        count_epoxides = len(mol.GetSubstructMatches(epoxides))
+
+    # Return the total count of matches
+    return count_nitrosamines + count_aldehydes + count_epoxides
+
+
+def rule8_structural_complexity(mol):
+    # Using molecular weight as a proxy for molecular size
+    return Descriptors.MolWt(mol)
+
+def rule8_topological_polar_surface_area(mol):
+    # TPSA as a measure of complexity related to functional groups
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule9_aromatic_count(mol):
+    # Counting the number of aromatic rings
+    return len(Chem.GetSymmSSSR(mol))
+
+def rule9_functional_group_count(mol):
+    # Estimating the number of functional groups by counting specific atom types
+    functional_groups = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [8, 16, 7, 15]:  # Oxygen, Sulfur, Nitrogen, Phosphorus
+            functional_groups += 1
+    return functional_groups
+
+def rule10_lipophilicity(mol):
+    # Calculating logP value
+    return Crippen.MolLogP(mol)
+
+def rule10_solubility(mol):
+    # Using TPSA as a proxy for solubility; higher TPSA generally indicates better solubility
+    return -rdMolDescriptors.CalcTPSA(mol)
+
+def rule10_molecular_stability(mol):
+    # Using the number of rotatable bonds as a proxy for molecular stability
+    return -rdMolDescriptors.CalcNumRotatableBonds(mol)

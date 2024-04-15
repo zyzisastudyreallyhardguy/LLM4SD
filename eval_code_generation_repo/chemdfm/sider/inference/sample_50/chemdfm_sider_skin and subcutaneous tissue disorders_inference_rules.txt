@@ -1,0 +1,64 @@
+def count_substructures(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the necessary arguments are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return 0  # Return 0 if the SMARTS string is invalid
+    return len(mol.GetSubstructMatches(substructure))
+
+
+def rule1_functional_groups(mol):
+    # SMARTS patterns for quinolines, common amino acid side chains, and a generic metal coordination
+    quinoline_smarts = "n1ccc2ccccc2c1"  # quinoline
+    amino_acid_smarts = "[NX3,NX4+][CX4H]([*])[CX3](=[OX1])[O,N]"  # generic amino acid residue
+
+def rule5_halogens_presence(mol):
+    num_halogens = sum([mol.GetAtomWithIdx(i).GetAtomicNum() in [9, 17, 35, 53] for i in range(mol.GetNumAtoms())])
+    return num_halogens
+
+def rule6_positive_charge(mol):
+    positive_charge = sum([atom.GetFormalCharge() > 0 for atom in mol.GetAtoms()])
+    return positive_charge
+
+def rule6_aromaticity(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+def rule7_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7:  # Nitrogen
+            if atom.GetIsAromatic():
+                if any([mol.GetBondBetweenAtoms(atom.GetIdx(), nbr.GetIdx()).GetIsAromatic() for nbr in atom.GetNeighbors() if nbr.GetAtomicNum() == 6]):
+                    aromatic_amines += 1
+    return aromatic_amines
+
+def rule8_halogenated_double_bonds(mol):
+    # Counting halogenated double bonds (e.g., C=Cl)
+    halogens = ['Cl', 'Br', 'F', 'I']
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            begin_atom = bond.GetBeginAtom()
+            end_atom = bond.GetEndAtom()
+            if (begin_atom.GetSymbol() in halogens and end_atom.GetSymbol() == 'C') or \
+               (end_atom.GetSymbol() in halogens and begin_atom.GetSymbol() == 'C'):
+                count += 1
+    return count
+
+def rule9_heavy_atoms(mol):
+    # Counting occurrences of heavy atoms (e.g., Ag, Pb)
+    heavy_atoms = ['Ag', 'Pb']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in heavy_atoms:
+            count += 1
+    return count
+
+def rule10_polar_heavily_charged(mol):
+    # Calculate the total polar surface area and total formal charge
+    polar_surface_area = rdMolDescriptors.CalcTPSA(mol)
+    total_charge = sum(atom.GetFormalCharge() for atom in mol.GetAtoms())
+    # Heavily charged is subjective, here we consider any non-zero total charge as heavily charged
+    heavily_charged = 1 if total_charge != 0 else 0
+    return polar_surface_area + heavily_charged

@@ -1,0 +1,86 @@
+def rule1_calculate_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def rule2_basic_amino_groups(mol):
+    basic_nitrogens = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and (atom.GetHybridization() == Chem.HybridizationType.SP2 or atom.GetHybridization() == Chem.HybridizationType.SP3):
+            if any(n.GetAtomicNum() == 1 for n in atom.GetNeighbors()):  # Check for attached hydrogens
+                basic_nitrogens += 1
+    return basic_nitrogens
+
+def rule3_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_rotatable_bonds(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+def rule5_hydrogen_bond_donors(mol):
+    return Descriptors.NumHDonors(mol)
+
+def rule5_hydrogen_bond_acceptors(mol):
+    return Descriptors.NumHAcceptors(mol)
+
+def rule6_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+def rule7_aromatic_rings(mol):
+    return len([ring for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+
+def rule8_carboxylic_acid_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and any(neighbor.GetSymbol() == 'O' and neighbor.GetTotalNumHs() == 1 for neighbor in atom.GetNeighbors()))
+
+def rule9_overall_charge(mol):
+    return Chem.GetFormalCharge(mol)
+
+def rule10_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule11_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12_topological_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_presence_of_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule14_metal_binding_groups(mol):
+    metal_binding_groups = ['COO', 'C=O', 'PO', 'SO', 'SH']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'S' or atom.GetSymbol() == 'P':
+            count += 1
+        elif atom.GetSymbol() == 'C':
+            if any(neighbor.GetSymbol() == 'O' for neighbor in atom.GetNeighbors()):
+                count += 1
+    return count
+
+def rule15_reactive_groups(mol):
+    # Example: Counting carbonyl groups (C=O) as reactive functional groups
+    patt = Chem.MolFromSmarts('C=O')  # SMARTS pattern for carbonyl group
+    return len(mol.GetSubstructMatches(patt))
+
+def rule16_shape_stereochemistry(mol):
+    # Example: Counting chiral centers
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule17_bioisosteres(mol):
+    # Example: Counting sulfonamide groups as a bioisostere
+    patt = Chem.MolFromSmarts('S(=O)(=O)N')  # SMARTS pattern for sulfonamide
+    return len(mol.GetSubstructMatches(patt))
+
+def rule18_hb_acceptors_donors(mol):
+    # Sum of hydrogen bond acceptors and donors
+    hb_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    hb_donors = rdMolDescriptors.CalcNumHBD(mol)
+    return hb_acceptors + hb_donors
+
+def rule19_ring_systems(mol):
+    # Count number of ring systems
+    return len(Chem.GetSymmSSSR(mol))
+
+def rule20_solubility(mol):
+    # Example: Using logP as a proxy for solubility
+    return Crippen.MolLogP(mol)

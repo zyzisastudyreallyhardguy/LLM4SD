@@ -1,0 +1,93 @@
+def rule1_aromatic_or_heterocyclic(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    heterocyclic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if any(mol.GetAtomWithIdx(idx).GetAtomicNum() not in (6, 1) for idx in ring))
+    return aromatic_count + heterocyclic_count
+
+def rule2_reactive_groups(mol):
+    halogens = sum(mol.GetAtomWithIdx(i).GetAtomicNum() in (9, 17, 35, 53, 85) for i in range(mol.GetNumAtoms()))  # F, Cl, Br, I, At
+    alcohols = rdMolDescriptors.CalcNumAliphaticRings(mol)
+    amines = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetHybridization() == Chem.HybridizationType.SP3)
+    carboxylic_acids = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and any(n.GetAtomicNum() == 8 for n in atom.GetNeighbors()))
+    return halogens + alcohols + amines + carboxylic_acids
+
+def rule3_large_complex(mol):
+    molecular_weight = Descriptors.MolWt(mol)
+    size = mol.GetNumAtoms()
+    return molecular_weight + size
+
+def rule4_halogen_content(mol):
+    halogen_count = sum(mol.GetAtomWithIdx(i).GetAtomicNum() in (9, 17, 35, 53, 85) for i in range(mol.GetNumAtoms()))  # F, Cl, Br, I, At
+    return halogen_count
+
+def rule5_polar_surface_area(mol):
+    """Calculate the polar surface area which correlates with the polarity of the molecule."""
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_formal_charge(mol):
+    """Calculate the total formal charge of the molecule."""
+    return Chem.rdmolops.GetFormalCharge(mol)
+
+def rule6_halogenated_compounds(mol):
+    """Count the number of halogen atoms in the molecule."""
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = sum(atom.GetSymbol() in halogens for atom in mol.GetAtoms())
+    return count
+
+def rule6_heavy_metals(mol):
+    """Count the number of heavy metal atoms in the molecule."""
+    heavy_metals = ['Hg', 'Pb', 'Cd', 'As', 'Se', 'Tl']
+    count = sum(atom.GetSymbol() in heavy_metals for atom in mol.GetAtoms())
+    return count
+
+def rule6_organic_peroxides(mol):
+    """Detect the presence of organic peroxide groups (-O-O-) in the molecule."""
+    smarts = '[OX2]O[OX2]'
+    peroxide_substruct = Chem.MolFromSmarts(smarts)
+    count = len(mol.GetSubstructMatches(peroxide_substruct))
+    return count
+
+
+
+def rule8_charged_groups(mol):
+    # Counting positively and negatively charged atoms
+    positive_charge = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+    negative_charge = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() < 0)
+    return positive_charge + negative_charge
+
+def rule8_hydrophobic_regions(mol):
+    # Using logP as a proxy for hydrophobicity, high logP indicates large hydrophobic regions
+    logP = Crippen.MolLogP(mol)
+    return logP
+
+def rule9_adme_properties(mol):
+    # Using TPSA (Topological Polar Surface Area) as a proxy for ADME properties
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    return tpsa
+
+def rule10_reactivity(mol):
+    # Ensure the input is a valid RDKit Mol object
+    if not isinstance(mol, Chem.Mol):
+        return 0  # Return 0 if the input is not a valid Mol object
+
+    # Counting multiple bonds (double, triple, etc.)
+    multiple_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.BondType.SINGLE)
+
+    return multiple_bonds
+
+
+def rule11_mimicry(mol):
+    # Assuming 'mol' is an RDKit molecule object
+    num_peptide_bonds = 0
+    for bond in mol.GetBonds():
+        # Check if bond is a single bond which is typical for amides
+        if bond.GetBondType() == Chem.BondType.SINGLE:
+            # Check if the bond is between a nitrogen and a carbon which is typical for amides
+            start_atom = bond.GetBeginAtom()
+            end_atom = bond.GetEndAtom()
+            if (start_atom.GetAtomicNum() == 7 and end_atom.GetAtomicNum() == 6) or \
+               (start_atom.GetAtomicNum() == 6 and end_atom.GetAtomicNum() == 7):
+                # Further check if the carbon is part of a carbonyl group (C=O)
+                if any(n.GetAtomicNum() == 8 and n.GetBondTypeWithAtom(end_atom) == Chem.BondType.DOUBLE for n in end_atom.GetNeighbors()):
+                    num_peptide_bonds += 1
+    return num_peptide_bonds
+

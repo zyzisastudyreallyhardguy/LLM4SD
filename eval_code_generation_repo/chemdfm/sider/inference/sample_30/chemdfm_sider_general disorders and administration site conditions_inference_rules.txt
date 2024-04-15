@@ -1,0 +1,49 @@
+def rule1_heavy_metals(mol):
+    # Count heavy metals
+    heavy_metals = ['As', 'Hg', 'Pb', 'Cd', 'Fe', 'Ni', 'Cu']
+    count = sum(atom.GetSymbol() in heavy_metals for atom in mol.GetAtoms())
+    return count
+
+def rule1_reactive_groups(mol):
+    # Check for epoxides and ketones
+    smarts_epoxides = '[OX2r3]'
+    smarts_ketones = '[#6][CX3]=[OX1]'
+    epoxides = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_epoxides)))
+    ketones = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_ketones)))
+    return epoxides + ketones
+
+def rule2_unsaturated_bonds(mol):
+    # Count unsaturated bonds (double or triple bonds)
+    unsaturated_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() in (Chem.rdchem.BondType.DOUBLE, Chem.rdchem.BondType.TRIPLE))
+    return unsaturated_bonds
+
+def rule3_properties(mol):
+    # High molecular weight, hydrophobicity, or positive charge
+    mw = Descriptors.MolWt(mol)
+    logp = Descriptors.MolLogP(mol)
+    positive_charge = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+    return mw, logp, positive_charge
+
+
+
+def rule5_bio_interference(mol):
+    # Example: Calculate topological polar surface area (TPSA) which can indicate molecule's ability to bind with proteins
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule6_lipophilicity(mol):
+    # Example: Calculate the octanol-water partition coefficient (logP), a measure of lipophilicity
+    return Crippen.MolLogP(mol)
+
+def rule6_ros_potential(mol):
+    # Example: Counting the number of nitro groups which can be involved in ROS formation
+    nitro_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetSmarts() == '[N+](=O)[O-]')
+    return nitro_count
+
+def rule7_aromatic_rings(mol):
+    # Example: Count the number of fused aromatic rings
+    return len(mol.GetRingInfo().AtomRings())
+
+def rule7_multiple_double_bonds(mol):
+    # Example: Count the number of double bonds
+    double_bond_count = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    return double_bond_count

@@ -1,0 +1,21 @@
+def rule1_amino_guanidinium(mol):
+    # Count amino groups
+    amino_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and atom.GetTotalNumHs() >= 2)
+
+def rule2_carbonyl_groups(mol):
+    # Count carbonyl groups
+    carbonyl_count = sum(1 for bond in mol.GetBonds() 
+                         if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE 
+                         and ((bond.GetBeginAtom().GetSymbol() == 'C' and bond.GetEndAtom().GetSymbol() == 'O') 
+                              or (bond.GetBeginAtom().GetSymbol() == 'O' and bond.GetEndAtom().GetSymbol() == 'C')))
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_double_bonds_aromatic_rings(mol):
+    num_double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE)
+    num_aromatic_rings = len(Chem.GetSymmSSSR(mol))  # GetSymmSSSR finds the smallest set of smallest rings
+    return num_double_bonds + num_aromatic_rings

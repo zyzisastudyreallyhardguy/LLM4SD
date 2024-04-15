@@ -1,0 +1,106 @@
+def rule_bbbp_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule_bbbp_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule_bbbp_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule_bbbp_hydrophilic_centers(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol)
+
+def rule_bbbp_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule_bbbp_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_calculate_TPSA(mol):
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    return tpsa
+
+def rule8_ionizable_groups(mol):
+    # Example of ionizable groups: carboxylic acids, amines
+    # This is a simplified version and might need more specific implementation based on chemistry knowledge
+    pattern = Chem.MolFromSmarts("[CX3](=O)[OX2H1]")  # Carboxylic acids
+    count = len(mol.GetSubstructMatches(pattern))
+    pattern2 = Chem.MolFromSmarts("[NX3;H2,H1;!$(NC=O)]")  # Amines
+    count += len(mol.GetSubstructMatches(pattern2))
+    return count
+
+def rule9_hydrophilic_groups(mol):
+    # Example hydrophilic groups: alcohols, amines
+    pattern = Chem.MolFromSmarts("[OX2H]")  # Alcohols
+    count = len(mol.GetSubstructMatches(pattern))
+    pattern2 = Chem.MolFromSmarts("[NX3;H2,H1;!$(NC=O)]")  # Amines
+    count += len(mol.GetSubstructMatches(pattern2))
+    return count
+
+def rule10_lipophilic_groups(mol):
+    # Example lipophilic groups: alkyl chains
+    pattern = Chem.MolFromSmarts("[CX4]")  # Alkyl chains
+    count = len(mol.GetSubstructMatches(pattern))
+    return count
+
+def rule11_steroids(mol):
+    # Steroid (simplified): four fused rings three 6-membered and one 5-membered
+    pattern = Chem.MolFromSmarts("C1CCC2C3CCC4=CC(=O)CCC4(C)C3CCC2(C)C1")  # Steroid backbone
+    count = len(mol.GetSubstructMatches(pattern))
+    return count
+
+def rule12_peptides(mol):
+    # Peptide bond: -CO-NH-
+    pattern = Chem.MolFromSmarts("[CX3](=O)[NX3H]")  # Peptide bond
+    count = len(mol.GetSubstructMatches(pattern))
+    return count
+
+def rule13_carbohydrates(mol):
+    # Carbohydrate (simplified): ring with multiple -OH groups
+    pattern = Chem.MolFromSmarts("C1(O)C(O)C(O)C(O)C(O)C1(O)")  # Simplified carbohydrate
+    count = len(mol.GetSubstructMatches(pattern))
+    return count
+
+def rule14_proteins(mol):
+    # Proteins are large molecules; here we check for long chains of peptides
+    # This is a very simplified check and not accurate for real protein detection
+    pattern = Chem.MolFromSmarts("[CX3](=O)[NX3H]")  # Peptide bond
+    count = len(mol.GetSubstructMatches(pattern))
+    return count if count > 10 else 0  # Assuming a protein has more than 10 peptide bonds
+
+def rule15_fatty_acids(mol):
+    # Fatty acids are typically carboxylic acids often found in long chains.
+    # We look for the COOH group (carboxyl group).
+    pattern = Chem.MolFromSmarts('O=C(O)C')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule16_alcohols(mol):
+    # Alcohols have an OH group attached to a saturated carbon (C).
+    pattern = Chem.MolFromSmarts('[CX4][OX2H]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule17_aldehydes(mol):
+    # Aldehydes have a CHO group.
+    pattern = Chem.MolFromSmarts('[CX3H1](=O)[#6]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule18_ketones(mol):
+    # Ketones have a C=O group where the carbon is not at the end of the chain.
+    pattern = Chem.MolFromSmarts('[#6][CX3](=O)[#6]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule19_amines(mol):
+    # Amines have a nitrogen atom attached to at least one carbon.
+    pattern = Chem.MolFromSmarts('[NX3;H2,H1,H0;!$(NC=O)]')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule20_esters(mol):
+    # Esters have a COO group.
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)

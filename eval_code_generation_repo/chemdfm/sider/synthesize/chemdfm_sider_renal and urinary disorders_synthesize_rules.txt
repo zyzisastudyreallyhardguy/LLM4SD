@@ -1,0 +1,106 @@
+def rule1_calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_acidic_basic_groups(mol):
+    acidic_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['C', 'S'] and atom.GetFormalCharge() < 0)
+    basic_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'O'] and atom.GetFormalCharge() > 0)
+    return acidic_count + basic_count
+
+def rule3_thiol_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and atom.GetDegree() == 2)
+
+def rule4_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule4_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule5_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule6_check_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = sum(mol.GetAtomWithIdx(i).GetSymbol() in halogens for i in range(mol.GetNumAtoms()))
+    return count
+
+def rule7_check_aromatic_rings(mol):
+    return len([ring for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+
+def rule8_ring_nitrogens(mol):
+    count = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        count += sum(mol.GetAtomWithIdx(idx).GetSymbol() == 'N' for idx in ring)
+    return count
+
+def rule9_unsaturated_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE)
+
+def rule10_check_amines(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetTotalNumHs() > 0:
+            count += 1
+    return count
+
+def rule11_check_alcohols(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'O' and atom.GetTotalNumHs() > 0:
+            count += 1
+    return count
+
+def rule12_check_carboxylic_acids(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            oxygens = [neighbor for neighbor in atom.GetNeighbors() if neighbor.GetSymbol() == 'O']
+            if len(oxygens) == 2 and all(neighbor.GetTotalNumHs() for neighbor in oxygens):
+                count += 1
+    return count
+
+def rule13_check_aldehydes(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            if any(neighbor.GetSymbol() == 'O' and neighbor.GetTotalNumHs() == 1 for neighbor in atom.GetNeighbors()):
+                count += 1
+    return count
+
+def rule14_check_ketones(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            oxygens = [neighbor for neighbor in atom.GetNeighbors() if neighbor.GetSymbol() == 'O' and neighbor.GetTotalNumHs() == 0]
+            if len(oxygens) == 1:
+                count += 1
+    return count
+
+def rule15_check_esters(mol):
+    ester_smarts = "[#6][CX3](=O)[OX2H0][#6]"
+    ester_pattern = Chem.MolFromSmarts(ester_smarts)
+    return len(mol.GetSubstructMatches(ester_pattern))
+
+def rule16_check_ethers(mol):
+    ether_smarts = "[#6]-O-[#6]"
+    ether_pattern = Chem.MolFromSmarts(ether_smarts)
+    return len(mol.GetSubstructMatches(ether_pattern))
+
+def rule17_check_sulfides(mol):
+    sulfide_smarts = "[#6]-S-[#6]"
+    sulfide_pattern = Chem.MolFromSmarts(sulfide_smarts)
+    return len(mol.GetSubstructMatches(sulfide_pattern))
+
+def rule18_check_phenols(mol):
+    phenol_smarts = "c1ccccc1O"
+    phenol_pattern = Chem.MolFromSmarts(phenol_smarts)
+    return len(mol.GetSubstructMatches(phenol_pattern))
+
+
+
+def rule20_count_bromine_atoms(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 35:
+            count += 1
+    return count
+

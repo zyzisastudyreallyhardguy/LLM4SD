@@ -1,0 +1,34 @@
+def rule1_aromatic_rings(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    return aromatic_count
+
+def rule2_chlorine_atoms(mol):
+    chlorine_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+    return chlorine_count
+
+def rule3_polar_groups_aromatic(mol):
+    polar_groups_count = 0
+    aromatic_rings = rule1_aromatic_rings(mol)
+    if aromatic_rings > 0:
+        polar_groups_count += sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'O', 'F', 'Cl', 'Br', 'I'])
+    return polar_groups_count
+
+def rule4_hydrophobic_groups(mol):
+    # Counting the number of carbons which are not part of any functional group (simple hydrophobic groups)
+    hydrophobic_carbons = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetDegree() == 1)
+    return hydrophobic_carbons
+
+def rule5_multiple_bonds(mol):
+    # Counting the number of double or triple bonds
+    multiple_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() in (Chem.rdchem.BondType.DOUBLE, Chem.rdchem.BondType.TRIPLE))
+    return multiple_bonds
+
+def rule6_alkyl_groups(mol):
+    # Counting alkyl groups (considering methyl, ethyl, propyl as simple examples)
+    alkyl_groups = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon atom
+            hydrogen_count = sum(1 for neighbor in atom.GetNeighbors() if neighbor.GetAtomicNum() == 1)
+            if hydrogen_count > 1:  # More than one hydrogen indicates a simple alkyl group
+                alkyl_groups += 1
+    return alkyl_groups

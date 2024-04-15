@@ -1,0 +1,115 @@
+def rule1_calculate_logP(mol):
+    return Crippen.MolLogP(mol)
+
+
+
+def rule3_count_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule4_check_thiophene(mol):
+    thiophene_smarts = 'c1ccsc1'
+    thiophene = Chem.MolFromSmarts(thiophene_smarts)
+    return 1 if mol.HasSubstructMatch(thiophene) else 0
+
+def rule5_count_ring_systems(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule6_multiple_bonds_between_heavy_atoms(mol):
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() != Chem.rdchem.BondType.SINGLE and not (bond.GetBeginAtom().IsHydrogen() or bond.GetEndAtom().IsHydrogen()):
+            count += 1
+    return count
+
+def calculate_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def check_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetIsAromatic():  # Nitrogen in aromatic ring
+            if any(neighbor.GetAtomicNum() == 1 for neighbor in atom.GetNeighbors()):  # Has hydrogen attached
+                aromatic_amines += 1
+    return aromatic_amines
+
+def count_aromatic_rings(mol):
+    return len([ring for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+
+def check_carbonyl_groups(mol):
+    carbonyl_count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            begin_atom = bond.GetBeginAtom()
+            end_atom = bond.GetEndAtom()
+            if {begin_atom.GetAtomicNum(), end_atom.GetAtomicNum()} == {6, 8}:  # Carbon and Oxygen
+                carbonyl_count += 1
+    return carbonyl_count
+
+def calculate_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def check_aromatic_ethers(mol):
+    aromatic_ethers = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.SINGLE:
+            begin_atom = bond.GetBeginAtom()
+            end_atom = bond.GetEndAtom()
+            if {begin_atom.GetAtomicNum(), end_atom.GetAtomicNum()} == {6, 8} and begin_atom.GetIsAromatic() and end_atom.GetIsAromatic():
+                aromatic_ethers += 1
+    return aromatic_ethers
+
+def count_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7)
+
+def check_aromatic_alcohols(mol):
+    aromatic_alcohols = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 8 and atom.GetIsAromatic():  # Oxygen in aromatic ring
+            if any(neighbor.GetAtomicNum() == 1 for neighbor in atom.GetNeighbors()):  # Has hydrogen attached
+                aromatic_alcohols += 1
+    return aromatic_alcohols
+
+def calculate_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule16_aromatic_ketones(mol):
+    if mol is None:
+        return 0  # Return 0 if the input molecule is None
+
+    # Correct SMARTS pattern for an aromatic ketone
+    # This pattern looks for a carbonyl group (C=O) where the carbon is sp2 hybridized
+    # and directly connected to an aromatic ring.
+    # '[c]' indicates an aromatic carbon, and '(=O)' specifies the ketone group.
+    aromatic_ketone_query = Chem.MolFromSmarts('[c]C(=O)')
+
+    if aromatic_ketone_query is None:
+        return 0  # Return 0 if the SMARTS pattern is incorrect
+
+    # Find substructures that match the pattern
+    matches = mol.GetSubstructMatches(aromatic_ketone_query)
+
+    # Return the number of matches
+    return len(matches)
+
+
+def rule17_count_oxygen_atoms(mol):
+    # Count the number of oxygen atoms in the molecule
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')
+
+
+
+
+def rule19_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule20_aromatic_esters(mol):
+    aromatic_ester_query = Chem.MolFromSmarts('[$([CX3](=O)[OX2][CX3]):a]')
+    if mol is None or aromatic_ester_query is None:
+        return 0
+    return len(mol.GetSubstructMatches(aromatic_ester_query))
+

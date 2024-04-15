@@ -1,0 +1,80 @@
+def sider_gi_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def sider_gi_acidic_groups(mol):
+    # Counting carboxylic acids (COOH) and sulfonic acids (SO3H)
+    smarts_acidic = '[CX3](=O)[OX2H1]'
+    acidic_pattern = Chem.MolFromSmarts(smarts_acidic)
+    count_acidic = len(mol.GetSubstructMatches(acidic_pattern))
+    return count_acidic
+
+def sider_gi_reactive_sites(mol):
+    # Example: Counting epoxides, aldehydes, and isocyanates as reactive sites
+    smarts_reactive = '[OX2r3]', '[CX3H1](=O)[#6]', '[NX1]=[CX2]=[OX1]'
+    reactive_counts = sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) for smarts in smarts_reactive)
+    return reactive_counts
+
+def sider_gi_molar_refractivity(mol):
+    return Crippen.MolMR(mol)
+
+def sider_gi_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def sider_gi_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule7_specific_functionalities(mol):
+    patt = Chem.MolFromSmarts('C(=O)O')  # SMARTS pattern for carboxyl group
+    return len(mol.GetSubstructMatches(patt))
+
+def rule8_solubility_gi_tract(mol):
+    return Crippen.MolLogP(mol)
+
+def rule9_metabolic_soft_spots(mol):
+    patt = Chem.MolFromSmarts('[CH2][OX2H,OX1-]')  # SMARTS for alcohols and ethers
+    return len(mol.GetSubstructMatches(patt))
+
+def rule10_redox_potential(mol):
+    patt = Chem.MolFromSmarts('[N+](=O)[O-]')  # SMARTS for nitro group
+    return len(mol.GetSubstructMatches(patt))
+
+def rule11_electrophilic_centers(mol):
+    patt = Chem.MolFromSmarts('C=O')  # SMARTS for carbonyl group
+    return len(mol.GetSubstructMatches(patt))
+
+def rule12_hydrogen_bonding_capacity(mol):
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+    hba = rdMolDescriptors.CalcNumHBA(mol)
+    return hbd + hba
+
+def rule13_molecular_flexibility(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule14_transport_proteins(mol):
+    # Placeholder: return a fixed value as this requires biological context
+    return 0
+
+def rule15_molecular_flexibility(mol):
+    # Using the number of rotatable bonds as a measure of flexibility
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule16_nucleophilic_centers(mol):
+    # Counting nitrogen and oxygen atoms as common nucleophiles
+    nucleophiles = ['N', 'O']
+    return sum(atom.GetSymbol() in nucleophiles for atom in mol.GetAtoms())
+
+def rule17_logP(mol):
+    # Using Crippen's method to calculate logP
+    return Crippen.MolLogP(mol)
+
+def rule18_molecular_shape(mol):
+    # Using the number of heavy atoms as a simple proxy for molecular shape complexity
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule19_molecular_complexity(mol):
+    # Using BertzCT index to evaluate molecular complexity
+    return Descriptors.BertzCT(mol)
+
+def rule20_ionic_species(mol):
+    # Counting charged atoms (both positive and negative)
+    return sum(atom.GetFormalCharge() != 0 for atom in mol.GetAtoms())

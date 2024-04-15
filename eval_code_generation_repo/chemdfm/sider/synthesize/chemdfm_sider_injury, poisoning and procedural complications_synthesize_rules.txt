@@ -1,0 +1,96 @@
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def calculate_formal_charge(mol):
+    return Chem.GetFormalCharge(mol)
+
+def calculate_sum_oxidation_states(mol):
+    return sum(atom.GetFormalCharge() for atom in mol.GetAtoms())
+
+def calculate_num_aromatic_rings(mol):
+    return len(Chem.GetSymmSSSR(mol))
+
+def rule7_count_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = sum([mol.GetNumAtoms(atom.GetSymbol() in halogens) for atom in mol.GetAtoms()])
+    return count
+
+def rule8_count_nitro_groups(mol):
+    nitro_count = sum([1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and 'NO2' in [x.GetSmarts() for x in Chem.FindMolChiralCenters(mol, includeUnassigned=True)]])
+    return nitro_count
+
+def rule9_count_unstable_single_bonds(mol):
+    unstable_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.SINGLE:
+            if 'O' in [bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]:
+                unstable_bonds += 1
+    return unstable_bonds
+
+def rule10_count_lone_pairs(mol):
+    lone_pairs = 0
+    for atom in mol.GetAtoms():
+        lone_pairs += atom.GetTotalNumHs(includeNeighbors=True)
+    return lone_pairs
+
+def rule11_count_chiral_centers(mol):
+    chiral_centers = len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+    return chiral_centers
+
+def rule12_count_conjugated_double_bonds(mol):
+    conjugated_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and bond.GetIsConjugated():
+            conjugated_double_bonds += 1
+    return conjugated_double_bonds
+
+def rule13_count_fused_rings(mol):
+    ssr = Chem.GetSymmSSSR(mol)
+    fused_rings = len(ssr) - len(Chem.GetSSSR(mol))
+    return fused_rings
+
+def rule14_count_functional_groups(mol):
+    functional_groups = 0
+    patt = Chem.MolFromSmarts('[CX3](=O)[OX2H1]')
+    functional_groups += len(mol.GetSubstructMatches(patt))
+    return functional_groups
+
+def rule15_unsaturated_bonds(mol):
+    unsat_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() != Chem.rdchem.BondType.SINGLE:
+            unsat_bonds += 1
+    return unsat_bonds
+
+def rule16_branches(mol):
+    # Branches are typically any atom with degree more than 2
+    branches = sum(1 for atom in mol.GetAtoms() if atom.GetDegree() > 2)
+    return branches
+
+def rule17_branched_chains(mol):
+    # Branched chains are counted as chains with branching points
+    branched_chains = sum(1 for atom in mol.GetAtoms() if atom.GetDegree() > 2)
+    return branched_chains
+
+def rule18_molecular_complexity(mol):
+    complexity = rdMolDescriptors.CalcNumRotatableBonds(mol) + rule16_branches(mol)
+    return complexity
+
+def rule19_skin_irritation(mol):
+    # Placeholder calculation: using number of aromatic rings as a proxy
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+def rule20_carcinogenicity(mol):
+    # Placeholder calculation: using molecular weight as a proxy
+    mol_weight = Descriptors.MolWt(mol)
+    return mol_weight if mol_weight > 300 else 0  # Example condition

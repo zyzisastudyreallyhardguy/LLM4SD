@@ -1,0 +1,117 @@
+def rule1_more_bonds(mol):
+    return mol.GetNumBonds()
+
+def rule2_multiple_double_bonds(mol):
+    double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    return double_bonds
+
+def rule3_unsaturated_rings(mol):
+    unsaturated_rings = 0
+    sssr = Chem.GetSymmSSSR(mol)
+    for ring in sssr:
+        if any(mol.GetBondBetweenAtoms(ring[i], ring[(i+1) % len(ring)]).GetBondType() != Chem.rdchem.BondType.SINGLE for i in range(len(ring))):
+            unsaturated_rings += 1
+    return unsaturated_rings
+
+def rule4_aromatic_rings(mol):
+    aromatic_rings = sum(1 for ring in Chem.GetSymmSSSR(mol) if mol.GetRingInfo().IsAromatic(ring))
+    return aromatic_rings
+
+def rule5_branched_chains(mol):
+    atom_degrees = [mol.GetAtomWithIdx(i).GetDegree() for i in range(mol.GetNumAtoms())]
+    branches = sum(1 for degree in atom_degrees if degree > 2)
+    return branches
+
+def rule6_chiral_centers(mol):
+    chiral_centers = sum(1 for atom in mol.GetAtoms() if atom.GetChiralTag() != Chem.rdchem.ChiralType.CHI_UNSPECIFIED)
+    return chiral_centers
+
+def rule7_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule8_polar_groups(mol):
+    polar_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [7, 8, 16])  # N, O, S are common polar atoms
+    return polar_count
+
+def rule9_surface_area(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule10_boiling_point(mol):
+    return Crippen.MolLogP(mol)  # Using logP as a proxy for boiling point
+
+def rule11_entropy(mol):
+    return Descriptors.NumRotatableBonds(mol)  # Using rotatable bonds as a proxy for entropy
+
+def rule12_delocalized_electrons(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    return aromatic_count
+
+def rule13_lone_pairs(mol):
+    lone_pairs = sum(atom.GetTotalNumHs(includeNeighbors=True) for atom in mol.GetAtoms() if atom.GetAtomicNum() in [7, 8, 16])
+    return lone_pairs
+
+def rule14_positive_charge(mol):
+    positive_charge = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+    return positive_charge
+
+def rule15_negative_formal_charge(mol):
+    return Chem.GetFormalCharge(mol)
+
+def rule16_dipole_moment(mol):
+    try:
+        # Ensure the molecule has 3D coordinates
+        if not mol.GetNumConformers():
+            AllChem.EmbedMolecule(mol)
+        AllChem.MMFFOptimizeMolecule(mol)
+        
+        # Calculate the dipole moment
+        dipole_moment = CalcMolDipoleMoment(mol)
+        return dipole_moment
+    except:
+        # In case of any failure, return 0 as the dipole moment
+        return 0.0
+
+
+def rule17_ionization_energy(mol):
+    # Ensure the molecule is in a sanitizable state
+    if mol is None:
+        return 0
+    if not mol.GetNumAtoms():
+        return 0  # Return 0 for empty molecules
+
+    # Embed the molecule in 3D space
+    try:
+        AllChem.EmbedMolecule(mol)
+        # Optimize the molecule using the MMFF94 force field
+        AllChem.MMFFOptimizeMolecule(mol)
+    except:
+        return 0  # Return 0 if embedding or optimization fails
+
+    # Placeholder for electronic property calculation
+    # Since RDKit does not calculate HOMO/LUMO or ionization energies directly,
+    # you would typically need to use another tool or method here.
+    # For demonstration, let's assume we calculate a mock property:
+    try:
+        # Mock calculation: sum of atomic numbers as a stand-in for some property
+        property_value = sum(atom.GetAtomicNum() for atom in mol.GetAtoms())
+        return property_value
+    except:
+        return 0  # Return 0 if any error occurs in property calculation
+
+    # Note: Replace the above mock calculation with a call to a quantum chemistry tool
+    # or another method that can compute the desired electronic properties.
+
+
+def rule18_electronegativity(mol):
+    electronegativities = {
+        'H': 2.20, 'C': 2.55, 'N': 3.04, 'O': 3.44, 'F': 3.98,  # Example values
+        # Add more elements as needed
+    }
+    total_electronegativity = sum(electronegativities.get(atom.GetSymbol(), 0) for atom in mol.GetAtoms())
+    return total_electronegativity / mol.GetNumAtoms()
+
+def rule19_chemical_reactivity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule20_heat_of_formation(mol):
+    return Descriptors.MolWt(mol)

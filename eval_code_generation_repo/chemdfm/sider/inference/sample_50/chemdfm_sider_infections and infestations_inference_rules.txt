@@ -1,0 +1,60 @@
+def contains_heavy_metals(mol):
+    heavy_metals = {'Au', 'Pt', 'As', 'Ra'}  # Symbols for gold, platinum, arsenic, radium
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in heavy_metals:
+            return 1
+    return 0
+
+def rule1_heavy_metals(mol):
+    return contains_heavy_metals(mol)
+
+def aromatic_halogens_or_phosphorothioates(mol):
+    halogens = {'Cl', 'I', 'F'}
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens and atom.GetIsAromatic():
+            count += 1
+        # Check for phosphorothioate groups (P=S)
+        if atom.GetSymbol() == 'P':
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'S' and mol.GetBondBetweenAtoms(atom.GetIdx(), neighbor.GetIdx()).GetBondType() == Chem.BondType.DOUBLE:
+                    count += 1
+    return count
+
+def rule2_aromatic_halogens_phosphorothioates(mol):
+    return aromatic_halogens_or_phosphorothioates(mol)
+
+def complex_structure_evaluation(mol):
+    score = 0
+    score += rdMolDescriptors.CalcNumAromaticRings(mol)
+    score += len(Chem.GetSymmSSSR(mol))  # Count of rings
+    score += rdMolDescriptors.CalcNumRotatableBonds(mol)
+    score += len([atom for atom in mol.GetAtoms() if atom.GetChiralTag() != Chem.ChiralType.CHI_UNSPECIFIED])
+    toxic_groups = {'N(=O)=O', 'O[O]', 'P(=O)(O)(O)O'}  # NO2, Peroxides, Organophosphates
+    for group in toxic_groups:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(group)):
+            score += 1
+    return score
+
+def rule3_complex_structures_toxic_groups(mol):
+    return complex_structure_evaluation(mol)
+
+def rule4_conjugation_and_reactivity(mol):
+    # Calculate the number of conjugated bonds
+    conjugated_bonds = sum(1 for bond in mol.GetBonds() if bond.GetIsConjugated())
+    # Calculate the proximity of reactive groups to double bonds
+    reactive_groups_near_double_bonds = sum(1 for atom in mol.GetAtoms() if atom.GetDegree() > 2 and any(bond.GetBondType() == Chem.rdchem.BondType.DOUBLE for bond in atom.GetBonds()))
+    return conjugated_bonds + reactive_groups_near_double_bonds
+
+def rule5_lipophilicity(mol):
+    # Calculate logP value
+    logP = Crippen.MolLogP(mol)
+    return logP
+
+def rule5_solubility(mol):
+    # Estimate solubility using logS (here approximated by inverse of logP for simplicity)
+    logP = Crippen.MolLogP(mol)
+    logS = -logP
+    return logS
+
+

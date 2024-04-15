@@ -1,0 +1,78 @@
+def rule1_reactive_groups(mol):
+    aldehyde_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')))
+    ketone_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6][CX3](=O)[#6]')))
+    acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]')))
+    epoxide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C1OC1')))
+    return aldehyde_count + ketone_count + acid_count + epoxide_count
+
+def rule2_aromatic_amines_amides(mol):
+    aromatic_amine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('cnc')))
+    amide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6][CX3](=O)[NX3]')))
+    return aromatic_amine_count + amide_count
+
+def rule3_unsaturation_planarity_rings(mol):
+    try:
+        # Calculate the number of aromatic and aliphatic rings
+        aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+        aliphatic_rings = rdMolDescriptors.CalcNumAliphaticRings(mol)
+        total_rings = aromatic_rings + aliphatic_rings
+        return total_rings
+    except Exception:
+        # In case of any error, return 0 as the function cannot raise errors
+        return 0
+
+
+def rule4_heavy_metals(mol):
+    # Define a list of heavy metals and metal ions of concern
+    heavy_metals = ['Hg', 'Pb', 'Gd', 'Sr']
+    count = 0
+    for metal in heavy_metals:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(f'[{metal}]')))
+    return count
+
+
+def rule5_large_complex_structures(mol):
+    try:
+        # Ensure the molecule is a valid RDKit molecule object
+        if mol is None or not isinstance(mol, Chem.Mol):
+            return 0  # Return 0 if the input is not a valid molecule
+
+        # Count of heavy atoms
+        heavy_atom_count = Descriptors.HeavyAtomCount(mol)
+        return heavy_atom_count
+    except Exception:
+        return 0  # Return 0 in case of any error during processing
+
+
+def rule6_reactive_groups(mol):
+    smarts_peroxide = '[O-][O-]'
+    smarts_alkylating = '[CX4][Cl,Br,I,F]'
+    peroxide = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_peroxide)))
+    alkylating = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_alkylating)))
+    return peroxide + alkylating
+
+def rule7_polar_amphiphilic(mol):
+    polar_groups = rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    logP = Descriptors.MolLogP(mol)
+    # Simple check for amphiphilicity: polar groups and logP > 1
+    amphiphilic = 1 if polar_groups > 3 and logP > 1 else 0
+    return polar_groups + amphiphilic
+
+def rule8_chemical_classes(mol):
+    smarts_phosphorodiamide = '[P](=[O])([N])[N]'
+    smarts_nitrogen_mustard = '[N](C)(C)Cl'
+    phosphorodiamide = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_phosphorodiamide)))
+    nitrogen_mustard = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_nitrogen_mustard)))
+    return phosphorodiamide + nitrogen_mustard
+
+def rule9_electronic_structure(mol):
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return rotatable_bonds + aromatic_rings
+
+def rule10_bioaccumulation(mol):
+    logP = Descriptors.MolLogP(mol)
+    molecular_weight = Descriptors.MolWt(mol)
+    # Simple criteria for bioaccumulation potential
+    bioaccumulation = 1 if logP > 3 and molecular_weight > 500 else 0
+    return bioaccumulation

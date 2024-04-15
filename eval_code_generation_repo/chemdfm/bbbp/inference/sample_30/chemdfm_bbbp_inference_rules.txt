@@ -1,0 +1,19 @@
+def rule1_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetIsAromatic():  # Nitrogen atom in an aromatic ring
+            if any([neighbor.GetAtomicNum() == 1 for neighbor in atom.GetNeighbors()]):  # Check for hydrogen neighbors
+                aromatic_amines += 1
+    return 1 if aromatic_amines > 0 else 0
+
+def rule2_planar_rigid_structure(mol):
+    num_rings = rdMolDescriptors.CalcNumRings(mol)
+    num_carbonyl = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and any(n.GetAtomicNum() == 8 for n in atom.GetNeighbors())])
+    num_hydroxyl = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and any(n.GetAtomicNum() == 1 for n in atom.GetNeighbors())])
+    is_planar = rdMolDescriptors.CalcNumAtomStereoCenters(mol) == 0
+    return 1 if num_rings > 0 and (num_carbonyl > 0 or num_hydroxyl > 0) and is_planar else 0
+
+def rule3_multiple_ring_systems(mol):
+    num_aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    num_heterocycles = rdMolDescriptors.CalcNumHeterocycles(mol)
+    return 1 if num_aromatic_rings > 0 and num_heterocycles > 0 else 0

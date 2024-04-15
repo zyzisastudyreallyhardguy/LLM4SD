@@ -1,0 +1,98 @@
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_hbonds_to_receptors(mol):
+    donors = rdMolDescriptors.CalcNumHBD(mol)
+    acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return donors + acceptors
+
+def rule5_neurotoxic_groups(mol):
+    # Placeholder for actual neurotoxic group check
+    return 0  # Returning 0 as a placeholder
+
+def rule6_molecular_size(mol):
+    return mol.GetNumAtoms()
+
+def rule7_structural_similarity_to_toxins(mol):
+    # Placeholder for actual similarity check
+    return 0  # Returning 0 as a placeholder
+
+def rule7_bbb_crossing(mol):
+    # Using logP as a proxy for BBB permeability; higher logP often indicates better BBB penetration
+    return Crippen.MolLogP(mol)
+
+def rule8_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule9_metabolic_stability(mol):
+    # Using number of likely metabolic sites (soft spots) as a proxy for metabolic stability
+    return rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def rule10_reactive_groups(mol):
+    # Example: Counting carbonyl groups as a simple proxy for reactivity
+    carbonyl_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetTotalDegree() == 3)
+    return carbonyl_count
+
+def rule11_receptor_binding(mol):
+    # Using molecular weight as a simple proxy; larger molecules might have more binding interactions
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule12_solubility(mol):
+    # Using logS as a proxy for solubility; calculated using Wildman-Crippen method
+    return Crippen.MolLogP(mol) - rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_reactive_intermediates(mol):
+    # Counting potential sites for reactive intermediates such as epoxides or quinones
+    epoxide_count = sum(1 for bond in mol.GetBonds() if bond.GetBondTypeAsDouble() == 1.5)
+    return epoxide_count
+
+def rule14_structural_complexity(mol):
+    # Using the number of rings and stereo centers as a measure of complexity
+    ring_count = rdMolDescriptors.CalcNumRings(mol)
+    chiral_centers = len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+    return ring_count + chiral_centers
+
+def rule15_oxidative_stress(mol):
+    # Count the number of oxygen atoms in the molecule
+    num_oxygen_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O')
+    return num_oxygen_atoms
+
+
+def rule16_unsaturated_bonds(mol):
+    unsaturated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE or bond.GetBondType() == Chem.rdchem.BondType.TRIPLE:
+            unsaturated_bonds += 1
+    return unsaturated_bonds
+
+def rule17_ion_channels(mol):
+    positive = 0
+    negative = 0
+    for atom in mol.GetAtoms():
+        charge = atom.GetFormalCharge()
+        if charge > 0:
+            positive += 1
+        elif charge < 0:
+            negative += 1
+    return positive + negative
+
+
+def rule18_known_allergens(mol):
+    # Placeholder: checking for presence of sulfonamide group as an example allergen
+    smarts = '[#16](=[#8])(=[#8])-[#7]'
+    pattern = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule19_bind_proteins(mol):
+    # Placeholder: number of aromatic rings might loosely correlate with protein binding potential
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule20_molecular_flexibility(mol):
+    # Counting rotatable bonds as a measure of flexibility
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)

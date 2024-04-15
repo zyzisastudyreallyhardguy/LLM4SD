@@ -1,0 +1,72 @@
+def rule1_hydroxyl_or_carboxylic_acid_groups(mol):
+    # Count hydroxyl groups
+    num_hydroxyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H]')))
+    # Count carboxylic acid groups
+    num_carboxylic_acid = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[OH]')))
+    return num_hydroxyl + num_carboxylic_acid
+
+def rule2_aromatic_rings(mol):
+    # Count aromatic rings
+    aromatic_rings = len(Chem.GetSymmSSSR(mol))
+    return aromatic_rings
+
+def rule3_halogenated_aromatic_rings(mol):
+    # Count halogenated aromatic rings
+    halogenated_aromatic_rings = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[cX1,cX2,cX3,cX4]')))
+    return halogenated_aromatic_rings
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_halogen_aromatics(mol):
+    aromatic_halogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [9, 17, 35, 53]:  # F, Cl, Br, I
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetIsAromatic():
+                    aromatic_halogen_count += 1
+    return aromatic_halogen_count
+
+def rule4_long_hydrocarbon_chains(mol):
+    # Convert the molecule to a graph
+    mol_graph = Chem.rdmolops.GetMolFrags(mol, asMols=True, sanitizeFrags=False)
+    longest_chain = 0
+    for fragment in mol_graph:
+        # Check each fragment if it is aliphatic
+        if fragment.GetRingInfo().NumRings() == 0:
+            # Use the MolToSmiles function to find the longest continuous chain of carbons
+            smiles = Chem.MolToSmiles(fragment, isomericSmiles=False)
+            # Split the SMILES string by non-carbon elements and ring closures
+            carbon_chains = [s for s in smiles.split() if 'C' in s and all(c in 'C()' for c in s)]
+            # Find the longest chain
+            for chain in carbon_chains:
+                chain_length = len(chain.replace('(', '').replace(')', ''))
+                if chain_length > longest_chain:
+                    longest_chain = chain_length
+    return longest_chain
+
+
+def rule5_electron_withdrawing_groups(mol):
+    ewg_count = 0
+    edg_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 or atom.GetAtomicNum() == 8:  # N or O
+            if any(n.GetAtomicNum() == 6 for n in atom.GetNeighbors()):  # bonded to C
+                ewg_count += 1
+        elif atom.GetAtomicNum() == 6:  # Carbon
+            if any(n.GetAtomicNum() in [7, 8] for n in atom.GetNeighbors()):  # bonded to N or O
+                edg_count += 1
+    return ewg_count - edg_count  # Higher values indicate more EWGs relative to EDGs
+
+def rule6_polar_groups_esol(mol):
+    # Calculate ESOL value using RDKit
+    esol_value = Descriptors.MolLogP(mol)
+    return esol_value
+
+def rule7_complexity_esol(mol):
+    # Calculate ESOL value using RDKit
+    esol_value = Descriptors.MolLogP(mol)
+    return esol_value

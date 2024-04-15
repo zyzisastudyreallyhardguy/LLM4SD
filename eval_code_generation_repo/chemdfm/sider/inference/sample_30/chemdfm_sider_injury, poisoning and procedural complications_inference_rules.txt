@@ -1,0 +1,49 @@
+def rule1_aromatic_or_multiple_rings(mol):
+    aromatic_count = sum([1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    ring_count = mol.GetRingInfo().NumRings()
+    return aromatic_count + ring_count
+
+def rule2_specific_functional_groups(mol):
+    functional_groups = {
+        'alkyl_halide': 'CX',
+        'epoxide': 'C1OC1',
+        'carbonyl': '[CX3]=[OX1]',
+        'heavy_metal': '[Hg,As,Sb,Bi,Cd,Pb,Tl]',
+    }
+    count = 0
+    for fg_smarts in functional_groups.values():
+        fg_mol = Chem.MolFromSmarts(fg_smarts)
+        if fg_mol is not None:
+            count += len(mol.GetSubstructMatches(fg_mol))
+    return count
+
+
+def rule3_non_biodegradable_complex(mol):
+    # Placeholder for complexity, using molecular weight as a proxy
+    return 1 if Descriptors.MolWt(mol) > 500 else 0
+
+def rule4_highly_lipophilic(mol):
+    logp = Crippen.MolLogP(mol)
+    return 1 if logp > 5 else 0
+
+def rule5_high_affinity_binding(mol):
+    # Placeholder for binding affinity, using number of hydrogen bond donors and acceptors as a proxy
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+    hba = rdMolDescriptors.CalcNumHBA(mol)
+    return hbd + hba
+
+def rule6_reactive_groups(mol):
+    reactive_groups = {
+        'alcohol': Chem.MolFromSmarts('CO'),
+        'aldehyde': Chem.MolFromSmarts('CC=O'),
+        'ketone': Chem.MolFromSmarts('CC(=O)C'),
+        'ester': Chem.MolFromSmarts('COC=O'),
+    }
+    count = 0
+    for rg in reactive_groups.values():
+        count += len(mol.GetSubstructMatches(rg))
+    return count
+
+def rule7_organic_peroxides(mol):
+    peroxide = Chem.MolFromSmarts('COO')
+    return len(mol.GetSubstructMatches(peroxide))

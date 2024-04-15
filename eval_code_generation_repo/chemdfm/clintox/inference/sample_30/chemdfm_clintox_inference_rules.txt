@@ -1,0 +1,17 @@
+def rule1_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetIsAromatic():  # Nitrogen in aromatic ring
+            if any(neighbor.GetAtomicNum() == 6 for neighbor in atom.GetNeighbors()):  # Connected to Carbon
+                aromatic_amines += 1
+    return aromatic_amines
+
+def rule2_chlorine_atoms(mol):
+    chlorine_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 17:  # Chlorine's atomic number
+            chlorine_count += 1
+    return chlorine_count
+
+def rule3_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)

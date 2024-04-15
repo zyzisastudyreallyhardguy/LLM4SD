@@ -1,0 +1,63 @@
+def rule1_halogen_in_aromatic(mol):
+    aromatic_halogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetIsAromatic() and atom.GetSymbol() in ['Cl', 'Br', 'I', 'F']:
+            aromatic_halogen_count += 1
+    return aromatic_halogen_count
+
+def rule2_multiple_aromatic_rings(mol):
+    ssr = Chem.GetSymmSSSR(mol)  # Get symmetrically unique ring systems
+    aromatic_ring_count = sum(1 for ring in ssr if mol.GetRingInfo().IsAromatic(ring))
+    return aromatic_ring_count
+
+def rule3_polar_ionic_groups(mol):
+    # Count specific functional groups that are typically polar or ionic
+    num_OH = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[OH]")))
+    num_NH2 = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[NH2]")))
+    num_SO3H = len(mol.GetSubstructMatches(Chem.MolFromSmarts("S(=O)(=O)O")))
+    num_COOH = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C(=O)O")))
+
+def rule4_high_lipophilicity(mol):
+    # Calculate the log P value of the molecule
+    logP = rdMolDescriptors.CalcCrippenDescriptors(mol)[0]  # Index 0 is logP
+    return logP
+
+def rule5_toxic_functional_groups(mol):
+    # Define SMARTS patterns for toxic functional groups
+    toxic_smarts = {
+        'epoxides': '[OX2r3]',  # Epoxide (three-membered ring with one oxygen)
+        'ethers': '[OD2]([#6])[#6]',  # Ether (oxygen connected to two carbons)
+        'carboxylic_acids': 'C(=O)[OH]',  # Carboxylic acid
+        'alcohols': '[OH;X2;v2]'  # Alcohols (excluding phenols)
+    }
+
+def rule6_structural_similarity(mol, known_toxicants=None):
+    from rdkit import DataStructs
+    from rdkit.Chem import AllChem
+
+    # Check if the inputs are valid
+    if mol is None or known_toxicants is None or not known_toxicants:
+        return 0  # Return 0 indicating error, no similarity, or no toxicants provided
+
+    max_similarity = 0.0
+    try:
+        # Generate fingerprint for the molecule
+        mol_fp = AllChem.GetMorganFingerprintAsBitVect(mol, 2)
+
+        # Compare with known toxicants
+        for toxicant in known_toxicants:
+            try:
+                toxicant_fp = AllChem.GetMorganFingerprintAsBitVect(toxicant, 2)
+                similarity = DataStructs.FingerprintSimilarity(mol_fp, toxicant_fp)
+                if similarity > max_similarity:
+                    max_similarity = similarity
+            except Exception:
+                # Handle any exception that might occur during fingerprint generation or similarity calculation
+                continue
+
+    except Exception:
+        # Handle any exception that might occur during the main molecule's fingerprint generation
+        return 0
+
+    return max_similarity
+

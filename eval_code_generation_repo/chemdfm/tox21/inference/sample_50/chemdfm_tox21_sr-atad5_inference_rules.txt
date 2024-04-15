@@ -1,0 +1,86 @@
+def count_substructures(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the necessary arguments are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return 0  # Return 0 if the SMARTS string is invalid
+    return len(mol.GetSubstructMatches(substructure))
+
+
+def rule1_alkylating_arylating_agents(mol):
+    # SMARTS patterns for chloroethyl groups and aromatic amines
+    chloroethyl_smarts = "[Cl]CC"
+    aromatic_amine_smarts = "c1ccccc1N"
+    count = count_substructures(mol, chloroethyl_smarts) + count_substructures(mol, aromatic_amine_smarts)
+    return count
+
+def rule2_heavy_metals_metalloids(mol):
+    # SMARTS patterns for lead (Pb), mercury (Hg), and arsenic (As)
+    heavy_metals_smarts = "[Pb,Hg,As]"
+    count = count_substructures(mol, heavy_metals_smarts)
+    return count
+
+def rule3_redox_free_radicals(mol):
+    # SMARTS patterns for aromatic hydrocarbons, organic peroxides, and nitro compounds
+    aromatic_hydrocarbons_smarts = "c1ccccc1"
+    organic_peroxides_smarts = "OO"
+    nitro_compounds_smarts = "N(=O)=O"
+    count = (count_substructures(mol, aromatic_hydrocarbons_smarts) +
+             count_substructures(mol, organic_peroxides_smarts) +
+             count_substructures(mol, nitro_compounds_smarts))
+    return count
+
+def rule4_structural_toxicity_indicators(mol):
+    # SMARTS pattern for positively charged nitrogen, benzene fused to five-membered ring with O and N, aromatic ring with Cl
+    pos_nitrogen_smarts = "[N+]"
+    benzene_fused_smarts = "c1cc2c(cc1)oc(n2)"
+    aromatic_cl_smarts = "c1cc(ccc1)Cl"
+    count = (count_substructures(mol, pos_nitrogen_smarts) +
+             count_substructures(mol, benzene_fused_smarts) +
+             count_substructures(mol, aromatic_cl_smarts))
+    return count
+
+def count_substructures(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the necessary arguments are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return 0  # Return 0 if the SMARTS string is invalid
+    return len(mol.GetSubstructMatches(substructure))
+
+
+def rule5_halogenated_aromatics(mol):
+    # SMARTS for halogenated aromatic rings
+    halogenated_aromatics_smarts = "[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1-[F,Cl,Br,I]"
+    return count_substructures(mol, halogenated_aromatics_smarts)
+
+def rule5_multiple_aromatic_rings(mol):
+    # Counting aromatic rings
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_hydrophobic_alkyl_chains(mol):
+    # SMARTS for hydrophobic alkyl chains
+    alkyl_chains_smarts = "[CX4H2,CX4H3,CX4H]([CX4H2,CX4H3,CX4H])"
+    return count_substructures(mol, alkyl_chains_smarts)
+
+def rule6_aromatic_amines_toxicity(mol):
+    # SMARTS for aromatic amines in para position to a nitro group
+    para_nitro_smarts = "c1(ccc(cc1)[N+](=O)[O-])N"
+    # SMARTS for chlorine substituents in meta or para positions
+    chlorine_meta_para_smarts = "c1(ccc(cc1)Cl)N"
+    return count_substructures(mol, para_nitro_smarts) + count_substructures(mol, chlorine_meta_para_smarts)
+
+def rule7_reactive_electrophiles(mol):
+    # SMARTS for aldehydes, ketones, and electrophilic aromatic compounds
+    electrophiles_smarts = "[CX3H1](=O)[#6];[CX3](=O)[#6];c1ccccc1[N+](=O)[O-]"
+    return count_substructures(mol, electrophiles_smarts)
+
+def rule8_chlorinated_aromatics(mol):
+    # SMARTS for chlorinated aromatic compounds
+    chlorinated_aromatics_smarts = "c1cc(ccc1Cl)Cl"
+    return count_substructures(mol, chlorinated_aromatics_smarts)
+
+def rule8_toxic_functional_groups(mol):
+    # SMARTS for aromatic amines and other toxic functional groups
+    toxic_groups_smarts = "c1ccccc1N;c1ccccc1[N+](=O)[O-]"
+    return count_substructures(mol, toxic_groups_smarts)

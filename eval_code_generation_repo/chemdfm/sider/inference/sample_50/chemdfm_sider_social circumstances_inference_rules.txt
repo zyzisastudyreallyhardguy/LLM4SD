@@ -1,0 +1,87 @@
+def rule1_toxic_groups(mol):
+    toxic_elements = ['Pb', 'Hg']  # Lead (Pb), Mercury (Hg)
+    toxic_count = sum(mol.HasSubstructMatch(Chem.MolFromSmarts("[{}]".format(element))) for element in toxic_elements)
+    aromatic_amines = mol.GetSubstructMatches(Chem.MolFromSmarts("n1ccccc1"))  # Aromatic amines
+    formaldehyde = mol.GetSubstructMatches(Chem.MolFromSmarts("C=O"))  # Formaldehyde
+    return toxic_count + len(aromatic_amines) + len(formaldehyde)
+
+def rule2_lipophilicity_and_mw(mol):
+    mw = Descriptors.MolWt(mol)
+    logp = Crippen.MolLogP(mol)
+    high_lipophilicity = 1 if logp > 5 else 0  # Threshold for high lipophilicity
+    high_mw = 1 if mw > 500 else 0  # Threshold for high molecular weight
+    return high_lipophilicity + high_mw
+
+def rule3_unsaturated_and_aromatic(mol):
+    try:
+        # Correctly create a molecule object from SMARTS pattern for unsaturated bonds
+        unsaturated_bonds_smarts = Chem.MolFromSmarts("*=,*")
+        if unsaturated_bonds_smarts is None:
+            return 0  # Return 0 if the SMARTS pattern is incorrect
+
+        # Find matches for unsaturated bonds in the molecule
+        unsaturated_bonds = mol.GetSubstructMatches(unsaturated_bonds_smarts)
+
+        # Get aromatic rings count using the symmetrically unique ring systems
+        aromatic_rings = len(Chem.GetSymmSSSR(mol))
+
+        # Return the sum of unsaturated bonds and aromatic rings
+        return len(unsaturated_bonds) + aromatic_rings
+    except:
+        # In case of any error, return 0
+        return 0
+
+
+def rule4_reactive_groups(mol):
+    alcohols = mol.GetSubstructMatches(Chem.MolFromSmarts("O[H]"))
+    amines = mol.GetSubstructMatches(Chem.MolFromSmarts("N"))
+    carboxylic_acids = mol.GetSubstructMatches(Chem.MolFromSmarts("C(=O)O"))
+    thiols = mol.GetSubstructMatches(Chem.MolFromSmarts("S[H]"))
+    return len(alcohols) + len(amines) + len(carboxylic_acids) + len(thiols)
+
+def rule5_ring_conjugation(mol):
+    # Ensure the input is a valid RDKit molecule object
+    if not isinstance(mol, Chem.Mol):
+        return 0  # Return 0 if the input is not a valid molecule object
+
+    # Find rings in the molecule
+    ring_info = mol.GetRingInfo()
+    rings = ring_info.BondRings()
+
+    # Check for conjugation in the rings
+    conjugated_ring_count = 0
+    for ring in rings:
+        is_conjugated_ring = True
+        for bond_idx in ring:
+            bond = mol.GetBondWithIdx(bond_idx)
+            if not (bond.GetIsConjugated() and bond.GetBondType() != Chem.BondType.SINGLE):
+                is_conjugated_ring = False
+                break
+        if is_conjugated_ring:
+            conjugated_ring_count += 1
+
+    return conjugated_ring_count
+
+
+def rule6_charge_solubility(mol):
+    # Calculate the total formal charge of the molecule
+    total_charge = Chem.GetFormalCharge(mol)
+    # Calculate the logP (octanol-water partition coefficient), a measure of solubility
+    logP = Descriptors.MolLogP(mol)
+    return abs(total_charge) + abs(logP)
+
+def rule7_toxic_motifs(mol):
+    # Example toxic substructure: Nitro group
+    nitro_smarts = '[N+](=O)[O-]'
+    nitro = Chem.MolFromSmarts(nitro_smarts)
+    nitro_count = len(mol.GetSubstructMatches(nitro))
+    return nitro_count
+
+def rule8_physicochemical_properties(mol):
+    # Calculate molecular weight as a proxy for size
+    mol_weight = Descriptors.MolWt(mol)
+    # Calculate the number of rotatable bonds as a proxy for molecular flexibility/stability
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    # Calculate TPSA (Topological Polar Surface Area) as a measure of polarity
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    return mol_weight + rotatable_bonds + tpsa

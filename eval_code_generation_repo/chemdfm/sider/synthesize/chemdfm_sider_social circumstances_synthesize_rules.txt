@@ -1,0 +1,94 @@
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+def rule_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule_chlorine_atoms(mol):
+    # Initialize a counter for chlorine atoms
+    chlorine_count = 0
+
+    # Iterate over all atoms in the molecule
+    for atom in mol.GetAtoms():
+        # Check if the atom is chlorine (atomic number 17)
+        if atom.GetAtomicNum() == 17:
+            chlorine_count += 1
+
+    return chlorine_count
+
+
+def rule7_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+
+def rule8_lone_pairs(mol):
+    lone_pairs = 0
+    for atom in mol.GetAtoms():
+        lone_pairs += (atom.GetExplicitValence() - atom.GetTotalDegree() - atom.GetFormalCharge())
+    return lone_pairs
+
+def rule9_ring_structures(mol):
+    return len(Chem.GetSymmSSSR(mol))
+
+def rule10_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(atom.GetSymbol() in halogens for atom in mol.GetAtoms())
+
+def rule11_nitro_groups(mol):
+    return sum(1 for _ in mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule12_heavy_metals(mol):
+    heavy_metals = ['As', 'Cd', 'Hg', 'Pb', 'Cr', 'Tl', 'Ni', 'Cu']
+    return sum(atom.GetSymbol() in heavy_metals for atom in mol.GetAtoms())
+
+def rule13_unsubstituted_C_C(mol):
+    c_c_double = Chem.MolFromSmarts('C=C')
+    return len(mol.GetSubstructMatches(c_c_double, uniquify=True))
+
+def rule14_unsubstituted_NH2(mol):
+    nh2 = Chem.MolFromSmarts('[NX3H2]')
+    return len(mol.GetSubstructMatches(nh2, uniquify=True))
+
+def count_substructure(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the necessary arguments are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return 0  # Return 0 if the SMARTS string is invalid
+    return len(mol.GetSubstructMatches(substructure))
+
+
+def rule15_unsubstituted_OH(mol):
+    return count_substructure(mol, "[OH0]")
+
+def rule16_unsubstituted_CCO(mol):
+    return count_substructure(mol, "CCO")
+
+def rule17_unsubstituted_COOH(mol):
+    return count_substructure(mol, "C(=O)O[H0]")
+
+def rule18_unsubstituted_PIII(mol):
+    return count_substructure(mol, "[PX3]")
+
+def rule19_unsubstituted_As(mol):
+    return count_substructure(mol, "[AsH2]")
+
+def rule20_unsubstituted_S(mol):
+    return count_substructure(mol, "[SH0]")

@@ -1,0 +1,73 @@
+def count_substructures(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the necessary arguments are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return 0  # Return 0 if the SMARTS string is invalid
+    return len(mol.GetSubstructMatches(substructure))
+
+
+def rule1_aromatic_amide_groups(mol):
+    # SMARTS for aromatic amide groups
+    aromatic_amide_smarts = "[#6]C(=O)Nc1ccccc1"
+    return count_substructures(mol, aromatic_amide_smarts)
+
+def rule2_aromatic_amines(mol):
+    # SMARTS for aromatic amines
+    aromatic_amine_smarts = "c1(ccccc1)N"
+    return count_substructures(mol, aromatic_amine_smarts)
+
+def rule3_thiophene_presence(mol):
+    thiophene_smarts = "s1cccc1"  # SMARTS pattern for thiophene
+    thiophene = Chem.MolFromSmarts(thiophene_smarts)
+    return len(mol.GetSubstructMatches(thiophene))
+
+def rule4_halogenated_aromatics(mol):
+    halogenated_aromatic_smarts = "[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1[X]"  # X is a halogen (F, Cl, Br, I)
+    halogenated_aromatic = Chem.MolFromSmarts(halogenated_aromatic_smarts)
+    return len(mol.GetSubstructMatches(halogenated_aromatic))
+
+def rule5_nitrogen_heterocycles(mol):
+    try:
+        # Correctly format the SMARTS string for multiple patterns using logical OR
+        nitrogen_heterocycles_smarts = "[n]1cccc1|[n]1ccccc1"
+        nitrogen_heterocycles = Chem.MolFromSmarts(nitrogen_heterocycles_smarts)
+        
+        if nitrogen_heterocycles is None:
+            return 0  # Return 0 if the SMARTS string is still incorrect
+        
+        # Find matches of the pattern in the molecule
+        matches = mol.GetSubstructMatches(nitrogen_heterocycles)
+        
+        # Return the number of matches
+        return len(matches)
+    except Exception:
+        return 0  # Return 0 in case of any other errors
+
+
+def rule6_organic_heterobicyclic(mol):
+    organic_heterobicyclic_smarts = "n1c2ccccc2[nH]c1=O"  # SMARTS for benzimidazoles and imidazoles
+    organic_heterobicyclic = Chem.MolFromSmarts(organic_heterobicyclic_smarts)
+    return len(mol.GetSubstructMatches(organic_heterobicyclic))
+
+def rule7_carbonyl_aromatic_amide(mol):
+    # Count carbonyl groups (C=O)
+    num_carbonyl = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetDegree() == 3 and any(n.GetSymbol() == 'O' and n.GetDegree() == 1 for n in atom.GetNeighbors()))
+    return num_carbonyl
+
+
+def rule8_aromatic_ether_ester(mol):
+    num_aromatic_ether = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.AROMATIC and 'O' in [bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()])
+    num_ester = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and any(n.GetSymbol() == 'O' for n in atom.GetNeighbors()) and atom.GetTotalNumBonds() == 4)
+    return num_aromatic_ether + num_ester
+
+def rule9_amino_amide_carboxylic(mol):
+    num_amino = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N':
+            # Check if the nitrogen is part of an amide group
+            # Amide group: C(=O)N
+            if any(n.GetSymbol() == 'C' and any(nn.GetSymbol() == 'O' and nn.GetBondType() == Chem.rdchem.BondType.DOUBLE for nn in n.GetNeighbors()) for n in atom.GetNeighbors()):
+                num_amino += 1
+    return num_amino
+

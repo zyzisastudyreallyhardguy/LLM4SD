@@ -1,0 +1,137 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_number_of_bonds(mol):
+    return mol.GetNumBonds()
+
+def rule3_nature_of_bonds(mol):
+    bond_types = {}
+    for bond in mol.GetBonds():
+        bond_type = str(bond.GetBondType())
+        if bond_type in bond_types:
+            bond_types[bond_type] += 1
+        else:
+            bond_types[bond_type] = 1
+    return bond_types
+
+def rule4_polarity(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule5_number_of_functional_groups(mol):
+    # Example functional group: hydroxyl groups
+    patt = Chem.MolFromSmarts('O[H]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule6_average_electronegativity(mol):
+    electronegativities = {
+        1: 2.20,  # H
+        6: 2.55,  # C
+        7: 3.04,  # N
+        8: 3.44,  # O
+        9: 3.98,  # F
+        # Add more elements as needed
+    }
+    total_electronegativity = 0
+    num_atoms = 0
+    for atom in mol.GetAtoms():
+        num_atoms += 1
+        total_electronegativity += electronegativities.get(atom.GetAtomicNum(), 0)
+    if num_atoms == 0:
+        return 0
+    return total_electronegativity / num_atoms
+
+def rule7_molecular_shape(mol):
+    # Ensure the molecule has at least one conformer
+    if mol.GetNumConformers() == 0:
+        # Attempt to generate a 3D conformer
+        success = AllChem.EmbedMolecule(mol)
+        if success == -1:  # Check if conformer generation was unsuccessful
+            return 0  # Return 0 or another appropriate number if conformer generation fails
+
+    # Assuming the function needs to return some property of the molecule
+    # For example, return the number of atoms if conformer generation is successful
+    return mol.GetNumAtoms()
+
+
+def rule8_chiral_centers(mol):
+    chiral_centers = Chem.FindMolChiralCenters(mol, includeUnassigned=True)
+    return len(chiral_centers)
+
+def rule9_planarity(mol):
+    try:
+        conf = mol.GetConformer()
+        pmis = rdMolTransforms.ComputePrincipalMomentsOfInertia(conf)
+        # Threshold for planarity can be adjusted
+        if pmis[0] < 0.1 and (pmis[1] / pmis[2]) < 1.2:
+            return 1  # planar
+    except:
+        pass
+    return 0  # not planar
+
+
+def rule10_aromaticity(mol):
+    aromatic_rings = len([ring for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    return aromatic_rings
+
+def rule11_hydrogen_bonds(mol):
+    h_donors = rdMolDescriptors.CalcNumHBD(mol)
+    h_acceptors = rdMolDescriptors.CalcNumHBA(mol)
+    return h_donors + h_acceptors
+
+def rule12_charge_delocalization(mol):
+    conjugated_bonds = sum([bond.GetIsConjugated() for bond in mol.GetBonds()])
+    return conjugated_bonds
+
+def rule13_conjugated_pi_electrons(mol):
+    pi_electrons = 0
+    for bond in mol.GetBonds():
+        if bond.GetIsConjugated():
+            pi_electrons += 2  # Simplified assumption: each conjugated bond contributes 2 pi-electrons
+    return pi_electrons
+
+def rule14_acidity_basicity(mol):
+    try:
+        # Ensure the RDKit module is correctly imported and used
+        carboxyl_smarts = "C(=O)OH"
+        amine_smarts = "N"
+        
+        # Convert SMARTS to molecule objects
+        carboxyl_mol = Chem.MolFromSmarts(carboxyl_smarts)
+        amine_mol = Chem.MolFromSmarts(amine_smarts)
+        
+        # Check if the molecule objects are created successfully
+        if carboxyl_mol is None or amine_mol is None:
+            return 0  # Return 0 if there's an issue with SMARTS conversion
+        
+        # Get the number of substructures matching the SMARTS
+        num_acidic = len(mol.GetSubstructMatches(carboxyl_mol))
+        num_basic = len(mol.GetSubstructMatches(amine_mol))
+        
+        return num_acidic - num_basic
+    except Exception:
+        # Return 0 in case of any other exceptions
+        return 0
+
+
+def rule15_partition_coefficient(mol):
+    return Crippen.MolLogP(mol)
+
+def rule16_solubility_in_water(mol):
+    logP = Crippen.MolLogP(mol)
+    logS = -logP  # Simplified estimation: logS = -logP
+    return logS
+
+def rule17_reactive_nature(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule18_stability_of_radicals(mol):
+    radical_electrons = sum([atom.GetNumRadicalElectrons() for atom in mol.GetAtoms()])
+    return radical_electrons
+
+def rule19_reaction_with_nucleophiles(mol):
+    electrophilic_index = Descriptors.NumValenceElectrons(mol) / Descriptors.HeavyAtomCount(mol)
+    return electrophilic_index
+
+def rule20_reaction_with_electrophiles(mol):
+    nucleophilic_index = Descriptors.TPSA(mol) / Descriptors.HeavyAtomCount(mol)
+    return nucleophilic_index

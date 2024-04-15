@@ -1,0 +1,42 @@
+def count_atoms(mol, atomic_numbers=None):
+    if atomic_numbers is None:
+        atomic_numbers = []
+    return sum(atom.GetAtomicNum() in atomic_numbers for atom in mol.GetAtoms())
+
+
+def rule1_halogens_heavy_metals(mol):
+    # Halogens (F, Cl, Br, I) atomic numbers: 9, 17, 35, 53
+    # Heavy metals (As, Cd, Hg, Pb) atomic numbers: 33, 48, 80, 82
+    halogens = [9, 17, 35, 53]
+    heavy_metals = [33, 48, 80, 82]
+    count = count_atoms(mol, halogens + heavy_metals)
+    return count
+
+def rule2_aromatic_nitrogen_compounds(mol):
+    # Aromatic amines (general check for nitrogen in aromatic rings)
+    aromatic_nitrogens = sum(atom.GetAtomicNum() == 7 and atom.GetIsAromatic() for atom in mol.GetAtoms())
+    # Benzylic amines (carbon next to aromatic ring with NH2)
+    benzylic_amines = sum(atom.GetAtomicNum() == 7 and any(neighbor.GetIsAromatic() for neighbor in atom.GetNeighbors()) for atom in mol.GetAtoms())
+    return aromatic_nitrogens + benzylic_amines
+
+def rule3_reactive_groups(mol):
+    # SMARTS pattern for ketones (C=O with carbon groups on both sides)
+    ketone_smarts = '[#6][CX3](=O)[#6]'
+    ketones = len(mol.GetSubstructMatches(Chem.MolFromSmarts(ketone_smarts)))
+
+    # SMARTS pattern for aldehydes (C=O at the end of carbon chain)
+    aldehyde_smarts = '[CX3H1](=O)[#6]'
+    aldehydes = len(mol.GetSubstructMatches(Chem.MolFromSmarts(aldehyde_smarts)))
+
+    # Count organophosphates by looking for phosphorus atoms
+    organophosphates = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 15)
+
+    # Count aromatic rings
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+
+    # SMARTS pattern for alkenes (C=C)
+    alkene_smarts = '[CX3]=[CX3]'
+    alkenes = len(mol.GetSubstructMatches(Chem.MolFromSmarts(alkene_smarts)))
+
+    return ketones + aldehydes + organophosphates + aromatic_rings + alkenes
+

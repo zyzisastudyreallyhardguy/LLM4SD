@@ -1,0 +1,47 @@
+def rule1_halogens(mol):
+    halogens = ['Cl', 'Br']
+    count = sum(mol.GetAtomWithIdx(i).GetSymbol() in halogens for i in range(mol.GetNumAtoms()))
+    return count
+
+def rule2_aromatic_amino_groups(mol):
+    amino_groups = mol.GetSubstructMatches(Chem.MolFromSmarts('cN'))
+    return len(amino_groups)
+
+def rule3_electron_deficient_double_bonds(mol):
+    electron_deficient = mol.GetSubstructMatches(Chem.MolFromSmarts('c=[N,O,S]'))
+    return len(electron_deficient)
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_unsaturated_bonds(mol):
+    unsaturated = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE or bond.GetBondType() == Chem.BondType.TRIPLE)
+    return unsaturated
+
+def rule6_toxic_functional_groups(mol):
+    # Ensure the SMARTS pattern is correctly defined and the molecule object is created
+    toxic_smarts = '[N+](=O)[O-]'  # Corrected SMARTS pattern for nitro group
+    toxic_group_mol = Chem.MolFromSmarts(toxic_smarts)
+
+    # Check if the SMARTS pattern was correctly converted to a molecule object
+    if toxic_group_mol is None:
+        return 0  # Return 0 if the pattern is invalid or conversion failed
+
+    # Find matches of the toxic group in the given molecule
+    matches = mol.GetSubstructMatches(toxic_group_mol)
+
+    # Return the number of matches found
+    return len(matches)
+
+
+def rule7_halogenated_aromatic_rings(mol):
+    halogenated_aromatic = mol.GetSubstructMatches(Chem.MolFromSmarts('c[F,Cl,Br,I]'))
+    return len(halogenated_aromatic)
+
+def rule9_high_halogens_in_benzene(mol):
+    benzene_halogen = mol.GetSubstructMatches(Chem.MolFromSmarts('c1([F,Cl,Br,I])c([F,Cl,Br,I])c([F,Cl,Br,I])c([F,Cl,Br,I])c([F,Cl,Br,I])c1([F,Cl,Br,I])'))
+    return len(benzene_halogen) > 7
+
+def rule10_michael_acceptor_groups(mol):
+    michael_acceptors = mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3]=[CX3][CX1-]'))
+    return len(michael_acceptors)

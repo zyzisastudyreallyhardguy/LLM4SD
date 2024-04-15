@@ -1,0 +1,59 @@
+def rule1_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetIsAromatic():  # Nitrogen in an aromatic ring
+            if any(n.GetAtomicNum() == 1 for n in atom.GetNeighbors()):  # Check for bonded Hydrogen
+                aromatic_amines += 1
+    return aromatic_amines
+
+def rule2_halogenated_systems(mol):
+    halogens = [9, 17, 35, 53]  # F, Cl, Br, I atomic numbers
+    halogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in halogens:
+            halogen_count += 1
+    return halogen_count
+
+def rule3_aromatic_fused_olefinic(mol):
+    fused_aromatic_olefinic_count = 0
+    ssr = Chem.GetSymmSSSR(mol)  # Get smallest set of smallest rings
+    for ring in ssr:
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            # Check if any atom in the ring is double bonded to a non-ring atom
+            for idx in ring:
+                atom = mol.GetAtomWithIdx(idx)
+                for neighbor in atom.GetNeighbors():
+                    if neighbor.GetIdx() not in ring and neighbor.GetHybridization() == Chem.rdchem.HybridizationType.SP2:
+                        fused_aromatic_olefinic_count += 1
+                        break
+    return fused_aromatic_olefinic_count
+
+def rule4_double_bonds(mol):
+    bonds = mol.GetBonds()
+    double_bond_count = sum(1 for bond in bonds if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    return double_bond_count
+
+def rule4_aromatic_rings(mol):
+    aromatic_ring_count = len(Chem.GetSymmSSSR(mol))
+    return aromatic_ring_count
+
+def rule5_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_cyanide_groups(mol):
+    cyanide_smarts = "[C]#N"
+    cyanide = Chem.MolFromSmarts(cyanide_smarts)
+    count_cyanide = len(mol.GetSubstructMatches(cyanide))
+    return count_cyanide
+
+def rule6_heavy_metals(mol):
+    heavy_metals = ['[Hg]', '[Pb]', '[Cd]', '[As]', '[Se]']
+    count_heavy_metals = sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(metal))) for metal in heavy_metals)
+    return count_heavy_metals
+
+def rule6_multiple_ring_systems(mol):
+    ring_info = mol.GetRingInfo()
+    return ring_info.NumRings()

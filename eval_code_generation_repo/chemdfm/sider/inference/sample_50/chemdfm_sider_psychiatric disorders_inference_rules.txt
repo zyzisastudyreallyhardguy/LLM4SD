@@ -1,0 +1,82 @@
+def contains_heavy_metals(mol):
+    heavy_metals = {'Hg', 'Pb', 'Cd'}
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() in heavy_metals:
+            return 1
+    return 0
+
+def contains_reactive_groups(mol):
+    smarts_patterns = {
+        'epoxide': '[OX2r3]',  # Epoxide (three-membered ring containing an oxygen)
+        'carbonyl': '[CX3]=[OX1]',  # Carbonyl group
+        'aromatic_amine': '[nX2]1cccc1'  # Aromatic amine
+    }
+    for pattern in smarts_patterns.values():
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(pattern)):
+            return 1
+    return 0
+
+def molecular_complexity(mol):
+    try:
+        mw = Descriptors.MolWt(mol)
+        num_rings = rdMolDescriptors.CalcNumRings(mol)
+        # Assuming complexity is defined as the product of molecular weight and number of rings
+        complexity = mw * num_rings
+    except Exception:
+        # If any error occurs, return a default number, e.g., 0
+        complexity = 0
+    return complexity
+
+
+def contains_halogens(mol):
+    halogens = {'Cl', 'Br', 'F', 'I'}
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() in halogens:
+            return 1
+    return 0
+
+def rule5_aromatic_electronegative(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring))
+    electronegative_substituents = sum(mol.GetAtomWithIdx(i).GetAtomicNum() in [7, 9, 17, 35, 53] for i in range(mol.GetNumAtoms()))  # N, F, Cl, Br, I
+    return aromatic_count + electronegative_substituents
+
+def rule6_reactive_groups(mol):
+    # List of SMARTS for reactive groups: alkylating agents (example: epoxides), acylating agents (example: acid chlorides), strong oxidizers (example: peroxides)
+    smarts_reactive_groups = [
+        '[OX2r3]',  # Epoxide
+        '[CX3](=O)[Cl]',  # Acid chloride
+        '[O-][O+]=O'  # Peroxide
+    ]
+    count = 0
+    for smarts in smarts_reactive_groups:
+        substructure = Chem.MolFromSmarts(smarts)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule7_complex_alkyl_chains(mol):
+    # Count carbon atoms in long chains
+    long_chain_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) > 1)
+    # Count halogenated carbons
+    halogenated_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and any(neighbor.GetAtomicNum() in [9, 17, 35, 53] for neighbor in atom.GetNeighbors()))
+    return long_chain_count + halogenated_count
+
+def rule8_ionic_polar_groups(mol):
+    # Count sulfonic acids (SO3H groups) and quaternary ammonium (N+(C)(C)(C)(C))
+    sulfonic_acid_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and atom.GetTotalValence() == 6)
+    quaternary_ammonium_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and atom.GetFormalCharge() == 1 and len(atom.GetNeighbors()) == 4)
+    return sulfonic_acid_count + quaternary_ammonium_count
+
+def rule9_high_lipophilicity(mol):
+    # Calculate the octanol-water partition coefficient (logP)
+    logP = Descriptors.MolLogP(mol)
+    # Consider high lipophilicity as logP > 5
+    return 1 if logP > 5 else 0
+
+def rule10_biologically_active_moieties(mol):
+    # Example: Count certain steroids or peptides
+    # This is a placeholder for counting specific groups; real implementation may require SMARTS patterns
+    # For demonstration, let's count the number of steroid-like structures (arbitrary example)
+    steroid_like_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and len(atom.GetNeighbors()) == 4)
+    return steroid_like_count

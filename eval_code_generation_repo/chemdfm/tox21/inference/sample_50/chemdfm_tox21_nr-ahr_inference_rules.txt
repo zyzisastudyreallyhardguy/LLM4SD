@@ -1,0 +1,64 @@
+def rule1_aryl_hydrocarbon_activity(mol):
+    aromatic_halogen_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [17, 35]:  # Chlorine (17), Bromine (35)
+            if atom.GetIsAromatic():
+                aromatic_halogen_count += 1
+    return aromatic_halogen_count
+
+def rule2_carcinogenic_potential(mol):
+    carcinogenic_like_structures = 0
+    smarts_patterns = ['[NX3](C)(C)C', '[c]1ccccc1[N+](=O)[O-]']  # Example SMARTS for nitrogen mustards, aromatic amines
+    for pattern in smarts_patterns:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(pattern)):
+            carcinogenic_like_structures += 1
+    return carcinogenic_like_structures
+
+def rule3_genotoxic_potential(mol):
+    genotoxic_groups_count = 0
+    smarts_patterns = ['[c]1ccccc1[N+](=O)[O-]', '[c]1ccccc1Cl']  # Example SMARTS for aromatic amines, chlorinated aromatics
+    for pattern in smarts_patterns:
+        if mol.HasSubstructMatch(Chem.MolFromSmarts(pattern)):
+            genotoxic_groups_count += 1
+    return genotoxic_groups_count
+
+def rule4_heavy_metal_content(mol):
+    heavy_metal_count = 0
+    heavy_metals = [80, 33, 82, 48]  # Mercury (80), Arsenic (33), Lead (82), Cadmium (48)
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in heavy_metals:
+            heavy_metal_count += 1
+    return heavy_metal_count
+
+def rule5_halogenated_aromatics(mol):
+    halogenated_aromatic_count = 0
+    bromine_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 35:  # Bromine
+            bromine_count += 1
+        if atom.GetAtomicNum() in [9, 17, 35, 53] and atom.GetIsAromatic():  # Fluorine (9), Chlorine (17), Bromine (35), Iodine (53)
+            halogenated_aromatic_count += 1
+    return halogenated_aromatic_count + (bromine_count > 1)
+
+def rule6_toxic_functional_groups(mol):
+    sulfone_smarts = "[#16](=[O])(=[O])"
+    nitrobenzene_smarts = "c1ccccc1[N+](=O)[O-]"
+    alkylating_group_smarts = "[N](C(Cl)Cl)C(Cl)Cl"
+
+def rule7_molecular_properties(mol):
+    positive_nitrogen = "[N+]"
+    large_hydrophobic_region = Crippen.MolLogP(mol)  # Using logP as a proxy for hydrophobicity
+
+def rule8_nuclear_receptor_signaling(mol):
+    aryl_hydrocarbon_receptor_smarts = "c1ccc2c(c1)ccc1c2ccc2c3ccccc3ccc21"  # Example of a PAH structure
+    receptor_binding_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(aryl_hydrocarbon_receptor_smarts)))
+    return receptor_binding_count
+
+def rule9_high_kow(mol):
+    logP = Crippen.MolLogP(mol)
+    return logP  # High logP indicates high Kow
+
+def rule10_aromatic_rings(mol):
+    halogenated_aromatic_smarts = "c1cc([F,Cl,Br,I])ccc1"
+    halogenated_aromatic_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(halogenated_aromatic_smarts)))
+    return halogenated_aromatic_count

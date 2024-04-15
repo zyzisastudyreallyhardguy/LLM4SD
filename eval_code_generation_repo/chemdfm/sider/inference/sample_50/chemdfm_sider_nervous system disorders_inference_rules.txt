@@ -1,0 +1,117 @@
+def rule1_neurotoxin_similarity(mol):
+    # This is a placeholder for a similarity check, which would typically require a database of known neurotoxins
+    # For demonstration, let's assume a simple check for a benzene ring, often found in various drugs
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule2_neurotoxic_groups(mol):
+    # Check for presence of heavy metals or reactive groups like epoxides or carbonyls
+    heavy_metals = sum([mol.HasSubstructMatch(Chem.MolFromSmarts(smarts)) for smarts in ['[Hg]', '[Pb]', '[Cd]']])
+    epoxides = rdMolDescriptors.CalcNumAliphaticRings(mol)  # Simplified check for epoxides
+    carbonyls = Fragments.fr_ketone(mol) + Fragments.fr_aldehyde(mol)
+    return heavy_metals + epoxides + carbonyls
+
+def rule3_neurotransmission_interference(mol):
+    # Check for structures that might block acetylcholine receptors or sodium channels
+    # This is a simplified check for esters and amides which might mimic acetylcholine
+    esters = Fragments.fr_ester(mol)
+    amides = Fragments.fr_amide(mol)
+    return esters + amides
+
+def rule4_reactive_groups(mol):
+    # Check for aldehydes, ketones, or epoxides
+    aldehydes = Fragments.fr_aldehyde(mol)
+    ketones = Fragments.fr_ketone(mol)
+    epoxides = rdMolDescriptors.CalcNumAliphaticRings(mol)  # Simplified check for epoxides
+    return aldehydes + ketones + epoxides
+
+def rule5_polarity_charge(mol):
+    # Calculate the total polar surface area which is a good indicator of molecule's ability to interact via polarity
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule6_nervous_system_toxicity_patterns(mol):
+    # Define SMARTS patterns for nitrile, chloroacetamide, and specific solvents
+    nitrile_smarts = '[NX1]#[CX2]'
+    chloroacetamide_smarts = 'ClCC(=O)N'
+    # Check for the presence of these patterns
+    nitrile = len(mol.GetSubstructMatches(Chem.MolFromSmarts(nitrile_smarts)))
+    chloroacetamide = len(mol.GetSubstructMatches(Chem.MolFromSmarts(chloroacetamide_smarts)))
+    # Return the count of patterns found
+    return nitrile + chloroacetamide
+
+def rule7_neurotransmitter_inhibitors(mol):
+    # Example SMARTS for acetylcholine esterase inhibitor (simplified example)
+    ache_inhibitor_smarts = 'O=C(OCC)C1=CC=CC=C1'
+    # Check for the presence of this pattern
+    ache_inhibitors = len(mol.GetSubstructMatches(Chem.MolFromSmarts(ache_inhibitor_smarts)))
+    return ache_inhibitors
+
+
+
+def rule9_aromatic_amines(mol):
+    aromatic_amine_query = Chem.MolFromSmarts("Nc1ccccc1")
+    return len(mol.GetSubstructMatches(aromatic_amine_query))
+
+
+def rule9_organic_sulfides(mol):
+    organic_sulfide_query = Chem.MolFromSmarts("[#16]-[#6]")
+    return len(mol.GetSubstructMatches(organic_sulfide_query))
+
+
+def rule9_metal_complexes(mol):
+    metal_query = Chem.MolFromSmarts("[Li,Na,K,Ca,Mg,Al,Zn,Fe,Cu,Mn]")
+    if metal_query is None:
+        return 0
+    return len(mol.GetSubstructMatches(metal_query))
+
+
+def rule9_organic_cations(mol):
+    organic_cation_query = Chem.MolFromSmarts("[N+](=O)(O)[O-]")
+    if mol is None or organic_cation_query is None:
+        return 0
+    return len(mol.GetSubstructMatches(organic_cation_query))
+
+
+def rule10_heavy_atom_count(mol):
+    return Descriptors.HeavyAtomCount(mol)
+
+def rule10_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule10_logp(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule11_neurotoxic_similarity(mol):
+    # Placeholder for actual similarity calculation, which would require a database of neurotoxic compounds
+    return 0  # This should be replaced with a real similarity score
+
+def rule11_bbb_crossing(mol):
+    # Placeholder for BBB crossing prediction
+    return 0  # This should be replaced with a real prediction model
+
+def rule11_toxic_moieties(mol):
+    toxic_moieties_query = Chem.MolFromSmarts("C(=O)N")  # Example: amides
+    if mol is None or toxic_moieties_query is None:
+        return 0
+    return len(mol.GetSubstructMatches(toxic_moieties_query))
+
+
+def rule12_amine_groups(mol):
+    amine_query = Chem.MolFromSmarts("N")
+    return len(mol.GetSubstructMatches(amine_query))
+
+
+def rule12_alcohol_groups(mol):
+    alcohol_query = Chem.MolFromSmarts("O")
+    return len(mol.GetSubstructMatches(alcohol_query))
+
+
+def rule12_thiol_groups(mol):
+    thiol_query = Chem.MolFromSmarts("[#16H]")
+    if mol is None or thiol_query is None:
+        return 0
+    return len(mol.GetSubstructMatches(thiol_query))
+
+
+def rule12_complex_structure(mol):
+    # Placeholder for complex structure assessment
+    return 0  # This should be replaced with a real complexity measure

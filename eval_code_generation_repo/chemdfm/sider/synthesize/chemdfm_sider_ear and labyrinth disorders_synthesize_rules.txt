@@ -1,0 +1,103 @@
+def sider_ear_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def sider_ear_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+def sider_ear_unsaturated_fatty_acid(mol):
+    # Placeholder: count double bonds in carbon chains
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            if bond.GetBeginAtom().GetAtomicNum() == 6 and bond.GetEndAtom().GetAtomicNum() == 6:
+                count += 1
+    return count
+
+def sider_ear_aromatic_rings(mol):
+    return Lipinski.NumAromaticRings(mol)
+
+def sider_ear_halogens(mol):
+    halogens = [9, 17, 35, 53]  # Atomic numbers for F, Cl, Br, I
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in halogens:
+            count += 1
+    return count
+
+def sider_ear_heterocyclic_rings(mol):
+    count = 0
+    ring_info = mol.GetRingInfo()
+    for ring in ring_info.BondRings():
+        if any(mol.GetBondWithIdx(idx).GetBondType() != Chem.rdchem.BondType.AROMATIC for idx in ring):
+            if any(mol.GetAtomWithIdx(mol.GetBondWithIdx(idx).GetBeginAtomIdx()).GetAtomicNum() != 6 or
+                   mol.GetAtomWithIdx(mol.GetBondWithIdx(idx).GetEndAtomIdx()).GetAtomicNum() != 6 for idx in ring):
+                count += 1
+    return count
+
+def rule7_check_carbonyl_groups(mol):
+    patt = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule8_check_amino_groups(mol):
+    patt = Chem.MolFromSmarts('N[H2]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule9_check_thiol_groups(mol):
+    patt = Chem.MolFromSmarts('[#16H]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule10_check_phenolic_hydroxy_groups(mol):
+    patt = Chem.MolFromSmarts('cO')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule11_check_alcohol_groups(mol):
+    patt = Chem.MolFromSmarts('[CX4]O')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule12_check_ether_groups(mol):
+    patt = Chem.MolFromSmarts('[OD2]([#6])[#6]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule13_check_acetal_groups(mol):
+    patt = Chem.MolFromSmarts('[CX4]([OX2R][#6])([OX2R][#6])')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule14_check_ketone_groups(mol):
+    patt = Chem.MolFromSmarts('[#6][CX3](=O)[#6]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule15_check_aldehyde(mol):
+    aldehyde_smarts = "[CX3H1](=O)[#6]"
+    aldehyde = Chem.MolFromSmarts(aldehyde_smarts)
+    return len(mol.GetSubstructMatches(aldehyde))
+
+def rule16_check_ester(mol):
+    ester_smarts = "[CX3](=O)[OX2H0][CX3]"
+    ester = Chem.MolFromSmarts(ester_smarts)
+    return len(mol.GetSubstructMatches(ester))
+
+def rule17_check_acidic(mol):
+    acidic_smarts = "[CX3](=O)[OX2H1]"
+    acidic = Chem.MolFromSmarts(acidic_smarts)
+    return len(mol.GetSubstructMatches(acidic))
+
+def rule18_check_basic(mol):
+    basic_smarts = "[NX3;H2,H1;!$(NC=O)]"
+    basic = Chem.MolFromSmarts(basic_smarts)
+    return len(mol.GetSubstructMatches(basic))
+
+def rule19_tanimoto_combo(mol1, mol2):
+    if mol1 is None or mol2 is None:
+        return 0  # Return 0 or some other default value when inputs are not provided correctly
+
+def rule19_tanimoto_combo(mol1=None, mol2=None):
+    if mol1 is None or mol2 is None:
+        return 0  # Return 0 or some other default value when inputs are not provided correctly
+
+
+def rule20_abbreviated_molecular_formula(mol):
+    try:
+        return rdMD.CalcMolFormula(mol)
+    except:
+        return 0  # Return 0 or any other appropriate default value in case of an error
+

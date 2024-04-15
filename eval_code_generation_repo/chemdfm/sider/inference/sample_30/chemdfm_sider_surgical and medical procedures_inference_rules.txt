@@ -1,0 +1,68 @@
+def has_epoxide(mol):
+    smarts = "[OX2r3]"  # SMARTS pattern for epoxide
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) > 0
+
+def has_carbonyl(mol):
+    smarts = "[CX3]=[OX1]"  # SMARTS pattern for carbonyl groups
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) > 0
+
+def has_alkyl_halide(mol):
+    smarts = "[CX4][F,Cl,Br,I]"  # SMARTS pattern for alkyl halides
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) > 0
+
+def has_aromatic_amine(mol):
+    smarts = "n[H]"  # SMARTS pattern for aromatic amines
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) > 0
+
+def has_aromatic_ketone(mol):
+    smarts = "c1ccccc1C=O"  # Corrected SMARTS pattern for aromatic ketones
+    pattern = Chem.MolFromSmarts(smarts)
+    if pattern is None:
+        return 0  # Return 0 if the pattern is not valid
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches) > 0  # Return 1 if matches are found, otherwise 0
+
+
+def has_halogen(mol):
+    smarts = "[F,Cl,Br,I]"  # SMARTS pattern for halogens
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) > 0
+
+def rule1_reactive_functional_groups(mol):
+    return int(has_epoxide(mol) or has_carbonyl(mol) or has_alkyl_halide(mol) or has_aromatic_amine(mol) or has_aromatic_ketone(mol) or has_halogen(mol))
+
+def rule2_specific_structural_motifs(mol):
+    # Example of a specific structural motif: aromatic ring
+    smarts = "c1ccccc1"  # SMARTS pattern for benzene (aromatic ring)
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts)))
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_lipophilicity(mol):
+    # LogP is a common measure of lipophilicity
+    return Descriptors.MolLogP(mol)
+
+def rule3_metal_complex_presence(mol):
+    # Counting metal atoms (e.g., Gallium Ga+3)
+    # Assuming the presence of Ga is a proxy for metal complexes
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Ga')
+
+def rule4_toxicity_potential(mol):
+    # This is a placeholder function; actual implementation would require a database of toxic compounds
+    # and a method to compare molecular similarity or predict metabolic pathways.
+    # Here, we'll use a simple heuristic based on the presence of certain toxic functional groups
+    # Example: Assume presence of a nitro group (NO2) increases toxicity potential
+    nitro_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and 'NO2' in atom.GetSmarts())
+    return nitro_count
+
+def rule5_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule5_ring_count(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule5_aromatic_ring_count(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)

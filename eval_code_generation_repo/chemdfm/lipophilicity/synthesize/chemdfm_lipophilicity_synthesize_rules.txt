@@ -1,0 +1,125 @@
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_logD(mol):
+    return Crippen.MolLogP(mol)
+
+def calculate_hbd(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def calculate_hba(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def calculate_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def calculate_psa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def count_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+
+def count_stereocenters(mol):
+    chiral_centers = Chem.FindMolChiralCenters(mol, includeUnassigned=True)
+    return len(chiral_centers)
+
+def count_tertiary_amino_groups(mol):
+    tertiary_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and len(atom.GetNeighbors()) == 3:  # Nitrogen with three neighbors
+            if all(neighbor.GetAtomicNum() == 6 for neighbor in atom.GetNeighbors()):  # All neighbors are carbons
+                tertiary_amines += 1
+    return tertiary_amines
+
+def count_carboxylic_acid_groups(mol):
+    carboxylic_acids = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon
+            if any(neighbor.GetAtomicNum() == 8 and neighbor.GetTotalDegree() == 2 for neighbor in atom.GetNeighbors()):  # Oxygen double bonded
+                if any(neighbor.GetAtomicNum() == 8 and len(neighbor.GetNeighbors()) == 2 for neighbor in atom.GetNeighbors()):  # Hydroxyl group
+                    carboxylic_acids += 1
+    return carboxylic_acids
+
+def count_amino_groups(mol):
+    amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and len(atom.GetNeighbors()) < 3:  # Nitrogen with less than three bonds
+            amines += 1
+    return amines
+
+def count_thiol_groups(mol):
+    thiols = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 16 and len(atom.GetNeighbors()) == 1:  # Sulfur with one neighbor
+            thiols += 1
+    return thiols
+
+def count_pyridine_groups(mol):
+    pyridines = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if len(ring) == 6:  # Check for six-membered rings
+            if all(mol.GetAtomWithIdx(idx).GetAtomicNum() == 7 for idx in ring):  # Check if all are nitrogen
+                pyridines += 1
+    return pyridines
+
+def count_sulfonamide_groups(mol):
+    sulfonamides = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 16:  # Sulfur
+            if any(neighbor.GetAtomicNum() == 7 for neighbor in atom.GetNeighbors()):  # Nitrogen neighbor
+                sulfonamides += 1
+    return sulfonamides
+
+def count_ether_groups(mol):
+    ethers = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.SINGLE:
+            atoms = [bond.GetBeginAtom(), bond.GetEndAtom()]
+            if all(atom.GetAtomicNum() == 8 for atom in atoms):  # Both atoms are oxygen
+                ethers += 1
+    return ethers
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def count_ketone_groups(mol):
+    ketone_smarts = "[#6]=[O]"  # Simple SMARTS pattern for ketone
+    ketone_pattern = Chem.MolFromSmarts(ketone_smarts)
+    return len(mol.GetSubstructMatches(ketone_pattern))
+
+def count_ester_groups(mol):
+    ester_smarts = "C(=O)O"  # SMARTS pattern for ester
+    ester_pattern = Chem.MolFromSmarts(ester_smarts)
+    return len(mol.GetSubstructMatches(ester_pattern))
+
+def count_halogen_atoms(mol):
+    halogen_smarts = "[F,Cl,Br,I]"  # SMARTS pattern for halogens
+    halogen_pattern = Chem.MolFromSmarts(halogen_smarts)
+    return len(mol.GetSubstructMatches(halogen_pattern))
+
+def count_unsubstituted_carbons(mol):
+    unsubstituted_carbon_smarts = "[CH4]"  # SMARTS pattern for methane-like carbon
+    unsubstituted_carbon_pattern = Chem.MolFromSmarts(unsubstituted_carbon_smarts)
+    return len(mol.GetSubstructMatches(unsubstituted_carbon_pattern))
+
+def count_alkyl_chain_carbons(mol):
+    alkyl_chain_smarts = "[CX4]"  # SMARTS pattern for sp3 hybridized carbon
+    alkyl_chain_pattern = Chem.MolFromSmarts(alkyl_chain_smarts)
+    return len(mol.GetSubstructMatches(alkyl_chain_pattern))
+
+def count_cyclic_carbons(mol):
+    cyclic_carbon_smarts = "[C;R]"  # SMARTS pattern for carbon in a ring
+    cyclic_carbon_pattern = Chem.MolFromSmarts(cyclic_carbon_smarts)
+    return len(mol.GetSubstructMatches(cyclic_carbon_pattern))

@@ -1,0 +1,26 @@
+def contains_substructure(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return -1  # Return -1 to indicate an error due to missing arguments
+    try:
+        substructure = Chem.MolFromSmarts(smarts)
+        if substructure is None:
+            return -1  # Return -1 if the SMARTS string is invalid
+        return int(mol.HasSubstructMatch(substructure))
+    except Exception:
+        return -1  # Return -1 in case of any other exceptions
+
+
+def rule1_aromatic_amines_with_chloro(mol):
+    # SMARTS pattern for aromatic amine with chloro substituents
+    smarts = 'c1(ccc(cc1)Cl)N'
+    return 1 if contains_substructure(mol, smarts) else 0
+
+def rule2_carbonyl_on_benzene_with_amino(mol):
+    # SMARTS pattern for carbonyl groups attached to benzene rings with amino groups
+    smarts = 'c1(ccc(cc1)C(=O))N'
+    return 1 if contains_substructure(mol, smarts) else 0
+
+def rule3_aromatic_amines_with_ring_chloro(mol):
+    # SMARTS pattern for aromatic amines with any ring having chloro substituents
+    smarts = 'c1(ccc(cc1)N)C2C(Cl)CCCC2'
+    return 1 if contains_substructure(mol, smarts) else 0

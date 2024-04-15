@@ -1,0 +1,28 @@
+def rule1_positively_charged_nitrogen(mol):
+    positively_charged_nitrogens = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0:
+            positively_charged_nitrogens += 1
+    return positively_charged_nitrogens
+
+def rule1_aromatic_structures(mol):
+    return sum([1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+
+def rule2_aromatic_rings(mol):
+    aromatic_rings = 0
+    ssr = Chem.GetSymmSSSR(mol)
+    for ring in ssr:
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            aromatic_rings += 1
+    return aromatic_rings
+
+def rule3_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule3_multiple_aromatic_rings(mol):
+    aromatic_ring_count = 0
+    ssr = Chem.GetSymmSSSR(mol)
+    for ring in ssr:
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            aromatic_ring_count += 1
+    return aromatic_ring_count if aromatic_ring_count > 1 else 0

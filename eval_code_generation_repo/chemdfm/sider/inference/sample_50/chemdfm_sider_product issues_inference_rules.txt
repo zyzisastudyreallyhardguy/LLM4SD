@@ -1,0 +1,115 @@
+def count_substructures(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the necessary arguments are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return 0  # Return 0 if the SMARTS string is invalid
+    return len(mol.GetSubstructMatches(substructure))
+
+
+def rule1_formaldehyde_groups(mol):
+    # SMARTS for formaldehyde groups and similar aldehyde groups
+    formaldehyde_smarts = '[CX3H1](=O)[#6]'
+    return count_substructures(mol, formaldehyde_smarts)
+
+def rule2_aromatic_amines(mol):
+    # SMARTS for aromatic amines
+    aromatic_amines_smarts = 'c[nX3]'
+    return count_substructures(mol, aromatic_amines_smarts)
+
+def rule3_heavy_metals(mol):
+    # List of atomic numbers for heavy metals of concern
+    heavy_metals_atomic_numbers = [80, 82, 48]  # Mercury (Hg), Lead (Pb), Cadmium (Cd)
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in heavy_metals_atomic_numbers:
+            count += 1
+    return count
+
+def rule4_aromatic_systems(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    electron_withdrawing_groups = sum([mol.HasSubstructMatch(Chem.MolFromSmarts(s)) for s in ['C(=O)[O,N]', 'C(F)(F)(F)', 'C(Cl)(Cl)(Cl)', 'C#N']])
+    return aromatic_rings + electron_withdrawing_groups
+
+def rule5_reactivity_features(mol):
+    if mol is None:
+        return 0  # Return 0 if the molecule is not defined
+
+    try:
+        # Ensure that mol is a proper RDKit molecule object
+        if not isinstance(mol, Chem.Mol):
+            return 0  # Return 0 if mol is not a valid RDKit Mol object
+
+        # Count double bonds
+        double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE)
+        return double_bonds
+    except Exception as e:
+        # If any other unexpected error occurs, return 0
+        return 0
+
+
+def rule6_halogen_presence(mol):
+    # Define atomic numbers for halogens: F(9), Cl(17), Br(35), I(53)
+    halogen_atomic_numbers = {9, 17, 35, 53}
+    halogen_count = 0
+
+    # Iterate over all atoms in the molecule
+    for atom in mol.GetAtoms():
+        # Check if the atom is a halogen by comparing atomic numbers
+        if atom.GetAtomicNum() in halogen_atomic_numbers:
+            halogen_count += 1
+
+    return halogen_count
+
+
+def rule7_cyclic_heterocyclic_aromatics(mol):
+    try:
+        # Ensure the input is a valid RDKit molecule
+        if not isinstance(mol, Chem.Mol):
+            return 0  # Return 0 if the input is not a valid RDKit molecule object
+        
+        # Calculate the number of aromatic rings
+        aromatic_cycles = rdMolDescriptors.CalcNumAromaticRings(mol)
+        return aromatic_cycles
+    except Exception:
+        return 0  # Return 0 in case of any error
+
+
+def rule8_DNA_interference(mol):
+    # Example: Check for intercalating structures typically aromatic and planar
+    # Count aromatic rings as a proxy for potential DNA intercalation
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_protein_interference(mol):
+    # Example: Check for potential kinase inhibitors
+    # Count number of heteroatoms as a proxy for kinase inhibition potential
+    return rdMolDescriptors.CalcNumHeteroatoms(mol)
+
+def rule8_cell_signal_interference(mol):
+    # Example: Check for structures similar to known signaling pathway inhibitors
+    # Count sulfur atoms which are often found in kinase inhibitors
+    count_sulfur = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+    return count_sulfur
+
+
+def rule9_lipophilicity(mol):
+    # Calculate LogP (octanol-water partition coefficient)
+    return Descriptors.MolLogP(mol)
+
+def rule9_molecular_weight(mol):
+    # Calculate molecular weight
+    return Descriptors.MolWt(mol)
+
+def rule10_reactive_oxygen_species(mol):
+    # Example: Check for peroxide formation potential
+    # Count peroxide-like groups (e.g., -O-O-)
+    smarts = '[O-O]'
+    peroxide_like = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(peroxide_like))
+
+def rule10_radical_formation(mol):
+    # Example: Check for quinone-like structures which can form radicals
+    # Count quinone-like groups
+    smarts = 'O=C1C=CC(=O)C=C1'  # Quinone structure
+    quinone_like = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(quinone_like))

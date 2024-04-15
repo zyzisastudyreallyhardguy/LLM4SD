@@ -1,0 +1,47 @@
+def rule1_aromatic_amino_groups(mol):
+    # Count the number of phenol and aniline groups
+    phenol_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("c1ccccc1O")))
+    aniline_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("c1ccccc1N")))
+    return phenol_count + aniline_count
+
+def rule2_molecular_weight(mol):
+    mw = Descriptors.MolWt(mol)
+    return 1 if mw < 500 else 0
+
+def rule3_hydrophobic_hydrophilic(mol):
+    logP = Descriptors.MolLogP(mol)
+    hba = rdMolDescriptors.CalcNumHBA(mol)
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+    # Check for presence of both hydrophobic (logP > 1) and hydrophilic (hba + hbd > 1) properties
+    return 1 if logP > 1 and (hba + hbd) > 1 else 0
+
+def rule4_heterocyclic_structures(mol):
+    benzene_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("c1ccccc1")))
+    thiophene_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("c1ccsc1")))
+    return benzene_count + thiophene_count
+
+def rule5_planar_pi_electrons(mol):
+    # Using RDKit to check if the molecule is planar can be complex and may require
+    # conformational analysis or checking for absence of stereochemistry as a simple proxy.
+    # Here, we use a simple estimation by checking the count of SP2 hybridized carbons.
+    sp2_count = sum(1 for atom in mol.GetAtoms() if atom.GetHybridization() == Chem.HybridizationType.SP2)
+    return sp2_count
+
+def rule6_low_polar_surface_area(mol):
+    # Calculate the Topological Polar Surface Area (TPSA)
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    return tpsa
+
+def rule7_halogen_on_aromatics(mol):
+    # Count halogens (F, Cl, Br, I) on aromatic rings
+    halogen_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53] and atom.GetIsAromatic())
+    return halogen_count
+
+def rule8_no_bulky_polar_groups(mol):
+    # This can be a complex rule to implement directly. As a proxy, we might consider
+    # the molecular weight and the number of rotatable bonds as indicators of bulkiness.
+    # For polarity, we might use the number of nitrogen and oxygen atoms.
+    heavy_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() > 35)
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    polar_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [7, 8, 15, 16])
+    return heavy_atoms + rotatable_bonds + polar_atoms

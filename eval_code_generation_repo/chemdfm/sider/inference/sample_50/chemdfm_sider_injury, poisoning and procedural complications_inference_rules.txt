@@ -1,0 +1,31 @@
+def rule1_aromatic_rings(mol):
+    """Count the number of aromatic rings in the molecule."""
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule1_reactive_groups(mol):
+    """Count specific reactive functional groups, e.g., nitro groups."""
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and atom.GetFormalCharge() != 0)
+
+def rule1_molecular_weight(mol):
+    """Calculate the molecular weight of the molecule."""
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule2_positively_charged_heterocycles(mol):
+    """Count the number of positively charged heterocyclic rings."""
+    return sum(1 for ring in mol.GetRingInfo().AtomRings() if any(mol.GetAtomWithIdx(idx).GetFormalCharge() > 0 for idx in ring))
+
+def rule2_halogen_substituents(mol):
+    """Count the number of halogen atoms in the molecule."""
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+
+def rule3_unsaturated_bonds(mol):
+    """Count the number of unsaturated (double or triple) bonds."""
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() in [Chem.BondType.DOUBLE, Chem.BondType.TRIPLE])
+
+def rule3_heavy_atoms(mol):
+    """Count the number of heavy atoms (e.g., halogens)."""
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+
+def rule3_fused_rings(mol):
+    """Count the number of fused rings."""
+    return rdMolDescriptors.CalcNumAromaticRings(mol)  # This is a simplification

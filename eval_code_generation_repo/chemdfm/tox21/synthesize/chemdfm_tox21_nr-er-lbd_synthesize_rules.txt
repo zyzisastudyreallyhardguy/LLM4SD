@@ -1,0 +1,119 @@
+def calc_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def calc_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def calc_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def calc_num_hydroxyl_groups(mol):
+    return rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+def calc_num_ketone_groups(mol):
+    # Ketones are typically carbonyl groups (C=O) where the carbon is not at the end of the chain
+    # We count the number of carbonyl (C=O) that are not part of carboxylic acids or esters
+    ketones = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon atom
+            if any(n.GetAtomicNum() == 8 for n in atom.GetNeighbors()):  # Oxygen neighbor
+                # Check if it's a ketone (C=O with carbon not in a carboxylic acid or ester)
+                if atom.GetDegree() == 3 and all(n.GetAtomicNum() != 8 or n.GetDegree() != 1 for n in atom.GetNeighbors()):
+                    ketones += 1
+    return ketones
+
+def calc_num_amine_groups(mol):
+    amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7:  # Nitrogen atom
+            if atom.GetHybridization() == Chem.HybridizationType.SP3:
+                if 1 <= len([n for n in atom.GetNeighbors() if n.GetAtomicNum() == 1]) <= 2:
+                    amines += 1
+    return amines
+
+def rule7_count_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = sum([mol.GetAtomWithIdx(i).GetSymbol() in halogens for i in range(mol.GetNumAtoms())])
+    return count
+
+def rule8_count_double_bonds(mol):
+    double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            double_bonds += 1
+    return double_bonds
+
+def rule9_count_atoms(mol):
+    return mol.GetNumAtoms()
+
+def rule10_count_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule11_calculate_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule12_calculate_complexity(mol):
+    try:
+        complexity = rdMolDescriptors.CalcBertzCT(mol)
+    except Exception:
+        complexity = 0  # Return 0 if there is any error in calculation
+    return complexity
+
+
+def rule13_count_chiral_centers(mol):
+    chiral_centers = 0
+    for atom in mol.GetAtoms():
+        if atom.GetChiralTag() != Chem.rdchem.ChiralType.CHI_UNSPECIFIED:
+            chiral_centers += 1
+    return chiral_centers
+
+def rule15_conjugated_pi_systems(mol):
+    # Ensure the SMARTS pattern is correct and valid
+    smarts_pattern = '[$([c,C]:[c,C])=,#]'
+
+    # Create a molecule object from the SMARTS pattern
+    query_mol = Chem.MolFromSmarts(smarts_pattern)
+    if query_mol is None:
+        return 0  # Return 0 if the pattern is invalid
+
+    # Get the number of substructure matches
+    return len(mol.GetSubstructMatches(query_mol))
+
+
+def rule16_functional_groups(mol):
+    functional_groups = [
+        ('C=O', 'Carbonyl group'),  # Carbonyl group
+        ('[OH]', 'Hydroxyl group'),  # Hydroxyl group (corrected SMARTS)
+        ('[NH2]', 'Amino group'),  # Amino group (corrected SMARTS)
+        ('[SH]', 'Thiol group'),  # Thiol group (corrected SMARTS)
+        ('[COOH]', 'Carboxylic acid')  # Carboxylic acid (corrected SMARTS)
+    ]
+    count = 0
+    for smarts, name in functional_groups:
+        pattern = Chem.MolFromSmarts(smarts)
+        if pattern is not None:
+            count += len(mol.GetSubstructMatches(pattern))
+        else:
+            print(f"Warning: Failed to create molecule pattern for {name}")
+    return count
+
+
+def rule17_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule18_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule19_ring_assemblies(mol):
+    return len(mol.GetRingInfo().AtomRings())
+
+def rule20_ring_assembly_patterns(mol):
+    ring_patterns = [
+        Chem.MolFromSmarts('[R1]'),  # Single ring
+        Chem.MolFromSmarts('[R2]'),  # Two fused rings
+        Chem.MolFromSmarts('[R3]')   # Three fused rings
+    ]
+    count = 0
+    for rp in ring_patterns:
+        count += len(mol.GetSubstructMatches(rp))
+    return count

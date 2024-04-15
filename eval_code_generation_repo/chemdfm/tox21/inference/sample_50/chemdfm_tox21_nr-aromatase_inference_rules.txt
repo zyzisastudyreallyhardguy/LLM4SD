@@ -1,0 +1,58 @@
+def rule1_halogen_aromatics(mol):
+    halogens = ['F', 'Cl', 'Br']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens and atom.GetIsAromatic():
+            count += 1
+    return count
+
+def rule2_aromatic_amines_detrimental_groups(mol):
+    detrimental_groups = ['NO2', 'Cl', 'Br', 'F']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetIsAromatic():
+            neighbors = atom.GetNeighbors()
+            for neighbor in neighbors:
+                if neighbor.GetSymbol() in detrimental_groups:
+                    count += 1
+    return count
+
+def rule3_aromatic_or_conjugated(mol):
+    aromatic_count = len(mol.GetAromaticAtoms())
+    conjugated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetIsConjugated():
+            conjugated_bonds += 1
+    return aromatic_count + conjugated_bonds
+
+def rule4_aromatase_inhibitors(mol):
+    # This is a simplified proxy: counting steroid-like or polycyclic structures
+    ring_info = mol.GetRingInfo()
+    num_rings = ring_info.NumRings()
+    large_rings = 0
+    for i in range(num_rings):
+        if ring_info.IsAtomInRingOfSize(i, 6) or ring_info.IsAtomInRingOfSize(i, 5):
+            large_rings += 1
+    return large_rings
+
+def rule5_reactive_groups(mol):
+    aldehyde = Chem.MolFromSmarts('C=O')
+    carbonyl = Chem.MolFromSmarts('[#6][CX3]=[OX1]')
+    epoxide = Chem.MolFromSmarts('C1OC1')
+    count = len(mol.GetSubstructMatches(aldehyde)) + len(mol.GetSubstructMatches(carbonyl)) + len(mol.GetSubstructMatches(epoxide))
+    return count
+
+def rule6_high_logP(mol):
+    logP = Descriptors.MolLogP(mol)
+    return logP
+
+def rule7_heavy_metals(mol):
+    heavy_metals = Chem.MolFromSmarts('[Pb,Hg,Cd]')
+    count = len(mol.GetSubstructMatches(heavy_metals))
+    return count
+
+def rule8_toxic_groups(mol):
+    organophosphate = Chem.MolFromSmarts('P(=O)(O*)O*')
+    nitro = Chem.MolFromSmarts('[NX3](=O)[OX2]')
+    count = len(mol.GetSubstructMatches(organophosphate)) + len(mol.GetSubstructMatches(nitro))
+    return count

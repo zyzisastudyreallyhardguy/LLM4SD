@@ -1,0 +1,93 @@
+def rule1_calc_logp(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_calc_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_calc_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule4_calc_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule5_calc_hydroxyl_groups(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'O':
+            if any(n.GetSymbol() == 'H' for n in atom.GetNeighbors()):
+                count += 1
+    return count
+
+def rule6_count_ketones(mol):
+    if mol is None:
+        return 0
+    # SMARTS pattern for ketone (carbonyl group with two alkyl groups)
+    ketone_smarts = '[#6][CX3](=O)[#6]'
+    ketone_pattern = Chem.MolFromSmarts(ketone_smarts)
+    # Count the number of matches in the molecule
+    num_ketones = len(mol.GetSubstructMatches(ketone_pattern))
+    return num_ketones
+
+
+def rule7_count_amines(mol):
+    return Fragments.fr_NH2(mol) + Fragments.fr_NH1(mol) + Fragments.fr_NH0(mol)
+
+def rule8_count_carboxylic_acids(mol):
+    return Fragments.fr_COO(mol)
+
+def rule9_count_aldehydes(mol):
+    # SMARTS pattern for aldehyde group
+    aldehyde_smarts = '[CX3H1](=O)[#6]'
+    aldehyde_query = Chem.MolFromSmarts(aldehyde_smarts)
+    count = len(mol.GetSubstructMatches(aldehyde_query))
+    return count
+
+
+def rule10_count_ethers(mol):
+    return Fragments.fr_ether(mol)
+
+def rule11_count_thiophenes(mol):
+    return Fragments.fr_thiophene(mol)
+
+def rule12_count_furans(mol):
+    return Fragments.fr_furan(mol)
+
+def rule13_count_pyridines(mol):
+    return Fragments.fr_pyridine(mol)
+
+
+
+def rule15_count_piperidines(mol):
+    piperidine_smarts = "[NH1]1CCCCC1"
+    piperidine = Chem.MolFromSmarts(piperidine_smarts)
+    return len(mol.GetSubstructMatches(piperidine))
+
+def rule16_count_morpholines(mol):
+    morpholine_smarts = "O1CCNCC1"
+    morpholine = Chem.MolFromSmarts(morpholine_smarts)
+    return len(mol.GetSubstructMatches(morpholine))
+
+def rule17_count_amides(mol):
+    amide_smarts = "[NX3][CX3](=O)[#6]"
+    amide = Chem.MolFromSmarts(amide_smarts)
+    return len(mol.GetSubstructMatches(amide))
+
+def rule18_count_esters(mol):
+    ester_smarts = "O=C(OCC)C"
+    ester = Chem.MolFromSmarts(ester_smarts)
+    return len(mol.GetSubstructMatches(ester))
+
+def rule19_count_quinuclidines(mol):
+    quinuclidine_smarts = "N1CC[C@H]2CC[C@@H]1C2"
+    quinuclidine = Chem.MolFromSmarts(quinuclidine_smarts)
+    return len(mol.GetSubstructMatches(quinuclidine))
+
+def rule20_count_tetrahydropyridines(mol):
+    tetrahydropyridine_smarts = "[nH]1CCCCC1"
+    tetrahydropyridine = Chem.MolFromSmarts(tetrahydropyridine_smarts)
+    return len(mol.GetSubstructMatches(tetrahydropyridine))

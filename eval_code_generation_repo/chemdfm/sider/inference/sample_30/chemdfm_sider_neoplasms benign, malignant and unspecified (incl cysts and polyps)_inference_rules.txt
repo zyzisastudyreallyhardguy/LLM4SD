@@ -1,0 +1,61 @@
+def rule1_toxic_functional_groups(mol):
+    # Example functional groups: alkylating agents, epoxides, carbonyls
+    # This is a simplified example that checks for epoxides and carbonyls
+    smarts_epoxide = '[OX2r3]'  # Epoxide (three-membered ring containing oxygen)
+    smarts_carbonyl = '[CX3]=[OX1]'  # Carbonyl group
+    epoxide = Chem.MolFromSmarts(smarts_epoxide)
+    carbonyl = Chem.MolFromSmarts(smarts_carbonyl)
+    count_epoxides = len(mol.GetSubstructMatches(epoxide))
+    count_carbonyls = len(mol.GetSubstructMatches(carbonyl))
+    return count_epoxides + count_carbonyls
+
+def rule2_physical_properties(mol):
+    logP = Crippen.MolLogP(mol)
+    mw = Descriptors.MolWt(mol)
+    charge = Chem.GetFormalCharge(mol)
+    # Example thresholds might be logP > 5, mw > 500, charge > 1
+    return (logP > 5) + (mw > 500) + (charge > 1)
+
+def rule3_structural_similarity(mol):
+    # Example: multiple aromatic rings, halogens, reactive groups
+    aromatic_count = len(mol.GetAromaticAtoms())
+    halogen_smarts = '[F,Cl,Br,I]'  # Halogens
+    halogen = Chem.MolFromSmarts(halogen_smarts)
+    count_halogens = len(mol.GetSubstructMatches(halogen))
+    return aromatic_count + count_halogens
+
+def rule4_molecular_interactions(mol):
+    # Example: binding affinity to a key enzyme or receptor
+    # Placeholder for actual interaction calculation
+    # This function should ideally interface with a docking simulation or similar
+    return 0  # Placeholder value
+
+def rule5_ml_prediction(mol):
+    # Placeholder for a machine learning model prediction
+    # This function should ideally load a trained model and make a prediction based on the molecule
+    return 0  # Placeholder value
+
+def rule6_aromatic_features(mol):
+    aromatic_amines = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetIsAromatic())
+    aromatic_sulfides = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16 and atom.GetIsAromatic())
+    aromatic_bonds = sum(1 for bond in mol.GetBonds() if bond.GetIsAromatic() and bond.GetBondType() != Chem.rdchem.BondType.SINGLE)
+    return aromatic_amines + aromatic_sulfides + aromatic_bonds
+
+def rule7_specific_structures(mol):
+    thiocarbonyl = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16 and any(n.GetAtomicNum() == 6 for n in atom.GetNeighbors()))
+    disulfide_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and all(atom.GetAtomicNum() == 16 for atom in (bond.GetBeginAtom(), bond.GetEndAtom())))
+    pos_charged_nitrogen = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0 and any(n.GetIsAromatic() for n in atom.GetNeighbors()))
+    return thiocarbonyl + disulfide_bonds + pos_charged_nitrogen
+
+def rule8_pharmacokinetics(mol):
+    return Descriptors.MolWt(mol)  # Using molecular weight as a simple proxy
+
+def rule9_toxin_mimicry(mol):
+    fused_benzene_heteroarenes = sum(1 for ring in mol.GetRingInfo().AtomRings() if len(ring) > 6 and any(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring))
+    pos_charged_cations = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0)
+    return fused_benzene_heteroarenes + pos_charged_cations
+
+def rule10_adverse_effects(mol):
+    high_mol_weight = 1 if Descriptors.MolWt(mol) > 500 else 0  # Threshold for high molecular weight
+    metal_chelators = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [12, 25, 26, 29])  # Example metals: Mg, Mn, Fe, Cu
+    return high_mol_weight + metal_chelators

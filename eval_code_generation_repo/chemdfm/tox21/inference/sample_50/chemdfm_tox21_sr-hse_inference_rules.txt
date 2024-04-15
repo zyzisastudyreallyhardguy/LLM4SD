@@ -1,0 +1,52 @@
+def rule1_halogens_heavy_metals(mol):
+    halogens = ['Cl', 'Br', 'I']
+    heavy_metals = ['Hg', 'Pb']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens or atom.GetSymbol() in heavy_metals:
+            count += 1
+    return count
+
+def rule2_molecular_complexity(mol):
+    mw = Descriptors.MolWt(mol)  # Molecular weight
+    ring_count = rdMolDescriptors.CalcNumRings(mol)  # Number of rings
+    atom_count = mol.GetNumAtoms()  # Number of atoms
+    return mw + ring_count + atom_count
+
+def rule3_functional_groups(mol):
+    aromatic_count = len(mol.GetAromaticAtoms())  # Number of aromatic atoms
+    double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE)
+    nitro_groups = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetTotalNumHs() == 1)
+    return aromatic_count + double_bonds + nitro_groups
+
+def rule4_lipophilicity(mol):
+    logp = Descriptors.MolLogP(mol)  # LogP value
+    return logp
+
+def rule5_enzyme_inhibitors(mol):
+    # Example SMARTS for enzyme inhibitor features (e.g., a common pharmacophore)
+    enzyme_inhibitor_smarts = '[NX3,NX4+][CX4H]([*])[CX3](=[OX1])[OX2H,OX1-]'
+    pattern = Chem.MolFromSmarts(enzyme_inhibitor_smarts)
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule6_carcinogenic(mol):
+    # Example SMARTS for carcinogenic features (e.g., benzene ring)
+    carcinogenic_smarts = 'c1ccccc1'
+    pattern = Chem.MolFromSmarts(carcinogenic_smarts)
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule7_toxic_motifs(mol):
+    # Example SMARTS for toxic motifs (e.g., halogenated anilines)
+    toxic_motifs_smarts = 'c1cc(c(cc1[N+](=O)[O-])Cl)Cl'
+    pattern = Chem.MolFromSmarts(toxic_motifs_smarts)
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)
+
+def rule8_difficult_metabolism(mol):
+    # Example SMARTS for complex macrocycles
+    complex_macrocycle_smarts = '[R2][R2][R2][R2][R2][R2][R2][R2][R2][R2]'
+    pattern = Chem.MolFromSmarts(complex_macrocycle_smarts)
+    matches = mol.GetSubstructMatches(pattern)
+    return len(matches)

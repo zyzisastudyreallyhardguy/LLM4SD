@@ -1,0 +1,128 @@
+def epsilon_LUMO_halogen_substituents(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = sum(mol.GetAtomWithIdx(i).GetSymbol() in halogens for i in range(mol.GetNumAtoms()))
+    return count
+
+def epsilon_LUMO_electron_donating_groups(mol):
+    # Common electron-donating groups (simplified version)
+    edg_smarts = ['[O-]', '[N+]', '[NH2]', '[OH]', '[OR]', '[NR2]', '[NR3]']
+    count = sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) for smarts in edg_smarts)
+    return count
+
+def epsilon_LUMO_conjugated_systems(mol):
+    # Counting the number of conjugated bonds
+    count = sum(bond.GetIsConjugated() for bond in mol.GetBonds())
+    return count
+
+def epsilon_LUMO_aromatic_rings(mol):
+    count = len(Chem.GetSymmSSSR(mol))
+    return count
+
+def epsilon_LUMO_double_bonds(mol):
+    count = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    return count
+
+def rule6_ring_fusions(mol):
+    try:
+        # Get ring information from the molecule
+        ring_info = mol.GetRingInfo()
+        # Get atom indices for each ring
+        rings = ring_info.AtomRings()
+        # Create a set to keep track of unique fused ring systems
+        fused_rings = set()
+
+        # Iterate over each ring
+        for ring in rings:
+            # Convert current ring to a set of atoms
+            ring_set = set(ring)
+            # Check if this ring shares common atoms with another ring
+            # indicating a fused system
+            is_fused = False
+            for fr in fused_rings.copy():
+                if not fr.isdisjoint(ring_set):
+                    # If there is an overlap, merge the sets and mark as fused
+                    fused_rings.remove(fr)
+                    fused_rings.add(fr.union(ring_set))
+                    is_fused = True
+                    break
+            if not is_fused:
+                # If no overlap, add this ring as a new entry
+                fused_rings.add(ring_set)
+
+        # The number of unique fused ring systems
+        return len(fused_rings)
+    except Exception:
+        # In case of any error, return 0 as per the requirement
+        return 0
+
+
+def rule7_alkyl_chain_length(mol):
+    # This is a placeholder for actual alkyl chain length calculation
+    # Here we count the number of carbons not in a ring as a proxy
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and not mol.GetRingInfo().IsAtomInRingOfSize(atom.GetIdx(), 3))
+
+def rule8_substituent_size(mol):
+    # Placeholder: count of non-hydrogen substituents
+    return sum(len(atom.GetNeighbors()) - 1 for atom in mol.GetAtoms() if atom.GetSymbol() != 'H')
+
+def rule9_lone_pairs_heteroatoms(mol):
+    # Approximation by counting O, N, S atoms
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'O', 'S'])
+
+def rule10_formal_charge(mol):
+    return sum(atom.GetFormalCharge() for atom in mol.GetAtoms())
+
+def rule11_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule12_dipole_moment(mol):
+    return Descriptors.MolLogP(mol)  # Using logP as a proxy for polarity
+
+def rule13_ground_state_multiplicity(mol):
+    # Placeholder: count radical electrons as a proxy
+    return sum(atom.GetNumRadicalElectrons() for atom in mol.GetAtoms())
+
+def rule14_sigma_bonds(mol):
+    # Count single bonds
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.SINGLE)
+
+def rule15_pi_bonds_lumo(mol):
+    pi_electrons = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            pi_electrons += 2  # Assuming each double bond contributes 2 pi electrons
+        elif bond.GetIsAromatic():
+            pi_electrons += 2  # Assuming each aromatic bond contributes 2 pi electrons
+    return pi_electrons
+
+
+def rule16_heteroatoms_lumo(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() not in (6, 1))  # Carbon and Hydrogen are not heteroatoms
+
+def rule17_chiral_centers_lumo(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule18_functional_groups_lumo(mol):
+    # Example functional groups: OH, NH2, COOH, etc.
+    patt1 = Chem.MolFromSmarts('[OH]')
+    patt2 = Chem.MolFromSmarts('[NH2]')
+    patt3 = Chem.MolFromSmarts('[CX3](=O)[OX2H1]')
+
+    # Count the number of each pattern in the molecule
+    count1 = len(mol.GetSubstructMatches(patt1))
+    count2 = len(mol.GetSubstructMatches(patt2))
+    count3 = len(mol.GetSubstructMatches(patt3))
+
+    # Return the total count of all functional groups
+    return count1 + count2 + count3
+
+
+def rule19_aromatic_withdrawing_lumo(mol):
+    # Example withdrawing groups: NO2, CN
+    patt = Chem.MolFromSmarts('a-[NX2](=O)=O')  # Nitro group on aromatic ring
+    return len(mol.GetSubstructMatches(patt))
+
+def rule20_aromatic_donating_lumo(mol):
+    # Example donating groups: NH2, OCH3
+    patt = Chem.MolFromSmarts('a-[NH2]')  # Amino group on aromatic ring
+    return len(mol.GetSubstructMatches(patt))

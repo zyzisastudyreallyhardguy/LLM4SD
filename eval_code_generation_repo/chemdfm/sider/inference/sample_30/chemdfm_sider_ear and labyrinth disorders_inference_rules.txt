@@ -1,0 +1,52 @@
+def rule1_detect_reactive_groups(mol):
+    # Count aldehydes (CHO)
+    aldehyde_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')))
+    # Count ketones (C=O)
+    ketone_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[#6]')))
+    # Count carboxylic acids (COOH)
+    acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]')))
+    # Count halogens (F, Cl, Br, I)
+    halogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+    return aldehyde_count + ketone_count + acid_count + halogen_count
+
+
+def rule2_detect_complex_structures(mol):
+    # Count aromatic rings
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    # Check for charged groups
+    charged_groups = rdMolDescriptors.CalcNumAtomStereoCenters(mol)  # Approximation for example
+    # Heavy metals are not directly countable via RDKit default functions, so this is a placeholder
+    heavy_metals = 0  # Placeholder, real implementation would require additional checks
+    return aromatic_rings + charged_groups + heavy_metals
+
+def rule3_detect_risky_structures(mol):
+    # Count conjugated systems (this is a simplification)
+    conjugated_bonds = sum([bond.GetIsConjugated() for bond in mol.GetBonds()])
+    # Count double bonds
+    double_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[*]=[*]')))
+    # Count cyclic structures
+    cyclic_structures = rdMolDescriptors.CalcNumRings(mol)
+    return conjugated_bonds + double_bonds + cyclic_structures
+
+def rule4_toxic_groups(mol):
+    nitro_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))  # Nitro group
+    sulfide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16X2H]')))  # Sulfide group
+    phosphate_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[PX4](=O)(O)(O)(O)')))  # Phosphate group
+    return nitro_count + sulfide_count + phosphate_count
+
+def rule5_lipophilicity(mol):
+    logP = Crippen.MolLogP(mol)  # Octanol-water partition coefficient (logP)
+    return logP
+
+def rule5_charge_distribution(mol):
+    formal_charge = Chem.GetFormalCharge(mol)  # Total formal charge of the molecule
+    return formal_charge
+
+def rule6_aromatic_amines(mol):
+    aromatic_amine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c[nH]')))  # Aromatic amines
+    return aromatic_amine_count
+
+def rule6_polycyclic_systems(mol):
+    sssr = Chem.GetSymmSSSR(mol)  # Smallest Set of Smallest Rings
+    polycyclic_count = sum(1 for ring in sssr if len(ring) > 6)  # Count rings larger than 6 members
+    return polycyclic_count

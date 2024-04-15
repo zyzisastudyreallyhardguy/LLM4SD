@@ -1,0 +1,47 @@
+def rule1_aromatic_amines_phenols(mol):
+    aromatic_amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts("n1ccccc1")))  # Aromatic amines
+    phenols = len(mol.GetSubstructMatches(Chem.MolFromSmarts("c1ccccc1O")))  # Phenols
+    return aromatic_amines + phenols
+
+def rule2_halogens_chlorine(mol):
+    halogens = rdMolDescriptors.CalcNumHBD(mol)  # Counts halogens
+    chlorine = len(mol.GetSubstructMatches(Chem.MolFromSmarts("Cl")))  # Counts chlorine atoms
+    return halogens + chlorine
+
+def rule3_aromatic_complex(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    complexity = Descriptors.FpDensityMorgan1(mol)  # A measure of structural complexity
+    return aromatic_rings * complexity
+
+def rule4_sulfides_sulfoxides(mol):
+    sulfides = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#16]-[#6]")))  # Organic sulfides
+    sulfoxides = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[#16](=O)-[#6]")))  # Sulfoxides
+    return sulfides + sulfoxides
+
+def rule5_carboxylic_acids_alcohols(mol):
+    carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C(=O)O")))  # Carboxylic acids
+    alcohols = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[OH]")))  # Alcohols
+    return carboxylic_acids + alcohols
+
+def rule6_amino_acids_ionizable(mol):
+    try:
+        # Correct SMARTS for amino acids (generic L-amino acids)
+        amino_acids_smarts = "N[C@H](C)C(=O)O"
+        amino_acids_mol = Chem.MolFromSmarts(amino_acids_smarts)
+        amino_acids = len(mol.GetSubstructMatches(amino_acids_mol)) if amino_acids_mol else 0
+
+        # Correct SMARTS for ionizable groups (amine and carboxylate groups)
+        ionizable_groups_smarts = "[NH3+;X3,X4+],[C(=O)[O-]]"
+        ionizable_groups_mol = Chem.MolFromSmarts(ionizable_groups_smarts)
+        ionizable_groups = len(mol.GetSubstructMatches(ionizable_groups_mol)) if ionizable_groups_mol else 0
+
+        return amino_acids + ionizable_groups
+    except Exception as e:
+        # Since the function cannot raise errors, we return a default value in case of any exception
+        return 0
+
+
+def rule7_reactive_groups(mol):
+    alkylating_agents = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[CX4;H2,H1,H0][F,Cl,Br,I]")))  # Alkyl halides
+    free_radicals = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[C,c][O,o][C,c]")))  # Potential free radical sites
+    return alkylating_agents + free_radicals

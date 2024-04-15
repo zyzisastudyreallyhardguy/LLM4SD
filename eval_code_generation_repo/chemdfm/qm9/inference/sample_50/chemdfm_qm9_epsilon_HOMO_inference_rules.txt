@@ -1,0 +1,59 @@
+def count_aromatic_rings(mol):
+    """
+    Counts the number of aromatic rings in the molecule.
+    """
+    aromatic_rings = 0
+    ring_info = mol.GetRingInfo()
+    for ring in ring_info.BondRings():
+        if all(mol.GetBondWithIdx(idx).GetIsAromatic() for idx in ring):
+            aromatic_rings += 1
+    return aromatic_rings
+
+def rule1_homo_aromatic_rings(mol):
+    """
+    Evaluates if the molecule has multiple aromatic rings.
+    Returns 1 if true, otherwise 0.
+    """
+    num_aromatic_rings = count_aromatic_rings(mol)
+    return 1 if num_aromatic_rings > 1 else 0
+
+def count_electron_withdrawing_groups(mol):
+    """
+    Counts electron-withdrawing groups such as nitriles, ketones, or halogens.
+    """
+    ewg_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [9, 17, 35, 53]:  # Fluorine, Chlorine, Bromine, Iodine
+            ewg_count += 1
+        elif atom.GetAtomicNum() == 7:  # Nitrogen
+            if any(n.GetAtomicNum() == 6 for n in atom.GetNeighbors()):  # Check for nitrile group (C#N)
+                ewg_count += 1
+        elif atom.GetAtomicNum() == 6:  # Carbon
+            if any(n.GetAtomicNum() == 8 for n in atom.GetNeighbors() if n.GetHybridization() == Chem.HybridizationType.SP2):  # Check for ketone group (C=O)
+                ewg_count += 1
+    return ewg_count
+
+def rule2_homo_electron_withdrawing_groups(mol):
+    """
+    Evaluates if the molecule has electron-withdrawing groups.
+    Returns 1 if true, otherwise 0.
+    """
+    num_ewg = count_electron_withdrawing_groups(mol)
+    return 1 if num_ewg > 0 else 0
+
+def rule55302_hb_donors1232143(mol):
+    """Calculate the number of hydrogen bond donors in the molecule."""
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    """Calculate the number of hydrogen bond acceptors in the molecule."""
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule3_heteroatoms_in_rings_or_bonds(mol):
+    """Count heteroatoms (N, O, S) in rings or near multiple bonds."""
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [7, 8, 16]:  # Atomic numbers for N, O, S
+            if atom.IsInRing() or any([bond.GetBondType().name in ['DOUBLE', 'TRIPLE'] for bond in atom.GetBonds()]):
+                count += 1
+    return count

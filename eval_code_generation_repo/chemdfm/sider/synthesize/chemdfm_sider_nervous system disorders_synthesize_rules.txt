@@ -1,0 +1,91 @@
+def rule1_calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3a_calculate_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3b_calculate_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_calculate_chlorine_atoms(mol):
+    # Count the number of chlorine atoms in the molecule
+    num_chlorine_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+    return num_chlorine_atoms
+
+
+def rule6_count_nitro_groups(mol):
+    nitro_smarts = "[N+](=O)[O-]"
+    nitro_groups = mol.GetSubstructMatches(Chem.MolFromSmarts(nitro_smarts))
+    return len(nitro_groups)
+
+def rule7_count_amino_groups(mol):
+    amino_smarts = "[NX3;H2,H1;!$(NC=O)]"
+    amino_groups = mol.GetSubstructMatches(Chem.MolFromSmarts(amino_smarts))
+    return len(amino_groups)
+
+def rule8_count_carbonyl_groups(mol):
+    carbonyl_smarts = "[CX3]=[OX1]"
+    carbonyl_groups = mol.GetSubstructMatches(Chem.MolFromSmarts(carbonyl_smarts))
+    return len(carbonyl_groups)
+
+def rule9_count_thiol_groups(mol):
+    thiol_smarts = "[#16X2H]"
+    thiol_groups = mol.GetSubstructMatches(Chem.MolFromSmarts(thiol_smarts))
+    return len(thiol_groups)
+
+def rule10_count_oxygen_atoms(mol):
+    # Count the number of oxygen atoms in the molecule
+    num_oxygen_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8)
+    return num_oxygen_atoms
+
+
+def rule11_count_sulfur_atoms(mol):
+    # Count the number of sulfur atoms (atomic number 16) in the molecule
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16)
+
+
+def rule12_count_double_bonds(mol):
+    double_bonds = [bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE]
+    return len(double_bonds)
+
+def rule13_count_triple_bonds(mol):
+    triple_bonds = [bond for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE]
+    return len(triple_bonds)
+
+def rule14_count_heteroatoms(mol):
+    heteroatoms = [atom for atom in mol.GetAtoms() if not atom.GetAtomicNum() in (1, 6)]
+    return len(heteroatoms)
+
+def rule15_calculate_psa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule16_calculate_reactive_groups(mol):
+    patt = Chem.MolFromSmarts('[CX3](=O)[OX2H1]')  # Carboxyl group
+    count_carboxyl = len(mol.GetSubstructMatches(patt))
+    patt2 = Chem.MolFromSmarts('[OX2H]')  # Hydroxyl group
+    count_hydroxyl = len(mol.GetSubstructMatches(patt2))
+    return count_carboxyl + count_hydroxyl
+
+def rule17_calculate_pka(mol):
+    # Placeholder: RDKit does not support pKa calculation directly.
+    # You might need to integrate with other tools like ChemAxon's Marvin or use data-driven models.
+    return 0.0
+
+def rule18_calculate_kow(mol):
+    return Crippen.MolLogP(mol)
+
+def rule19_calculate_henry_constant(mol):
+    # Placeholder: RDKit does not support Henry's law constant calculation directly.
+    # This might require experimental data or other specialized software.
+    return 0.0
+
+def rule20_calculate_bcf(mol):
+    # Placeholder: RDKit does not support BCF calculation directly.
+    # This might require QSAR models or other estimation methods.
+    return 0.0

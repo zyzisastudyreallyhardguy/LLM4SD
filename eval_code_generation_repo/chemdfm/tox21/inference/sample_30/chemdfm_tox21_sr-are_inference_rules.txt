@@ -1,0 +1,50 @@
+def rule1_halogens(mol):
+    num_bromine = len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'Br'])
+    num_chlorine = len([atom for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl'])
+    return num_bromine + num_chlorine
+
+def rule2_aromatic_halogens(mol):
+    aromatic_rings = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            if any(mol.GetAtomWithIdx(idx).GetSymbol() in ['Cl', 'Br'] for idx in ring):
+                aromatic_rings += 1
+    return aromatic_rings
+
+def rule3_functional_groups(mol):
+    nitro_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    amide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3][CX3](=O)')))
+    carbonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3]=[OX1]')))
+    return nitro_count + amide_count + carbonyl_count
+
+def rule4_aromatic_amine_alkyl_halide(mol):
+    aromatic_amine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c[nH]')))
+    alkyl_halide = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX4][F,Cl,Br,I]')))
+    return aromatic_amine + alkyl_halide
+
+def rule5_fluorine_phenyl(mol):
+    fluorine_phenyl = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            fluorine_count = sum(mol.GetAtomWithIdx(idx).GetSymbol() == 'F' for idx in ring)
+            if fluorine_count > 1:
+                fluorine_phenyl += 1
+    return fluorine_phenyl
+
+def rule6_spirocyclitol_toxicity(mol):
+    # Spirocyclitol moiety detection is complex and not directly available in RDKit.
+    # This is a placeholder for a function that would ideally detect this moiety.
+    # For demonstration, let's assume we have a SMARTS pattern for spirocyclitol (this is hypothetical).
+    spirocyclitol_smarts = "C1(C2)(C3)C(O)C(O)C(O)C1(O)C23"  # Hypothetical SMARTS, not real
+    spirocyclitol = Chem.MolFromSmarts(spirocyclitol_smarts)
+    return len(mol.GetSubstructMatches(spirocyclitol))
+
+def rule7_aromatic_amines_toxicity(mol):
+    # Aromatic amines with halogens
+    aromatic_amines_halogen_smarts = "[NX3]c1ccccc1[X]"  # Simplified SMARTS pattern
+    aromatic_amines_halogen = Chem.MolFromSmarts(aromatic_amines_halogen_smarts)
+    return len(mol.GetSubstructMatches(aromatic_amines_halogen))
+
+
+
+

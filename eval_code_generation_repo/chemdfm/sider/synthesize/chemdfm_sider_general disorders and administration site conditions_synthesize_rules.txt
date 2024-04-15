@@ -1,0 +1,97 @@
+def rule_logP_skin_irritation(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule_molecular_weight_general_toxicity(mol):
+    return Descriptors.MolWt(mol)
+
+def rule_hb_donors_skin_sensitization(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule_ring_systems_neurotoxicity(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule_aromatic_rings_genotoxicity(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule_halogens_carcinogenicity(mol):
+    try:
+        # Calculate the total number of heteroatoms in the molecule
+        num_heteroatoms = rdMolDescriptors.CalcNumHeteroatoms(mol)
+        return num_heteroatoms
+    except Exception:
+        # In case of any error, return 0 as the function cannot raise errors
+        return 0
+
+
+def rule7_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+
+def rule8_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_functional_groups(mol):
+    functional_group_patterns = [
+        '[CX3](=O)[OX2H1]',  # Carboxylic acid
+        '[NX3;H2,H1;!$(NC=O)]',  # Primary and secondary amines
+        '[OX2H]',  # Hydroxyl groups
+        '[nH]',  # Heteroaromatic nitrogens
+        '[SH]'  # Thiol groups
+    ]
+    count = 0
+    for pattern in functional_group_patterns:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(pattern)))
+    return count
+
+def rule10_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule11_solubility(mol):
+    return Crippen.MolLogP(mol)
+
+def rule12_logD(mol, pH=7.4):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0] - (0.76 * pH)
+
+def rule13_molecular_flexibility(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule14_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def calculate_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def calculate_formal_charge(mol):
+    return Chem.rdmolops.GetFormalCharge(mol)
+
+def calculate_ionization_potential(mol):
+    # Placeholder function, as RDKit does not provide ionization potential calculation.
+    # Typically, quantum chemical calculations or experimental data are needed.
+    return 0  # Returning 0 as a placeholder.
+
+def calculate_electronegativity(mol):
+    # Placeholder function, as RDKit does not provide electronegativity calculation.
+    # Electronegativity is typically calculated from atomic contributions.
+    return 0  # Returning 0 as a placeholder.
+
+def calculate_vdw_volume(mol):
+    # Since there's no direct van der Waals volume calculator in RDKit, we use TPSA as an example descriptor.
+    # Please replace this with an appropriate calculation or descriptor as needed.
+    try:
+        volume = rdMolDescriptors.CalcTPSA(mol)
+    except Exception:
+        volume = 0  # Return 0 if any error occurs
+    return volume
+
+def calculate_vdw_volume(mol):
+    try:
+        # Using molecular weight as a rough proxy for size/volume
+        weight = Descriptors.MolWt(mol)
+    except Exception:
+        weight = 0  # Return 0 if any error occurs
+    return weight
+
+
+def calculate_melting_point(mol):
+    # Placeholder function, as RDKit does not provide melting point calculation.
+    # Melting points are typically determined experimentally.
+    return 0  # Returning 0 as a placeholder.

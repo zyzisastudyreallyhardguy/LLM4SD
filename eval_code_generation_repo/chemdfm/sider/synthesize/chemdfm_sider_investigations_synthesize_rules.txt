@@ -1,0 +1,94 @@
+def rule1_calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_calculate_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule4_calculate_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule5_calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule6_unsaturated_bonds(mol):
+    unsat_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE)
+    return unsat_bonds
+
+def rule7_chlorine_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+
+def rule8_nitro_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule9_amino_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+
+def rule10_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3]=[OX1]')))
+
+def rule11_thiol_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16H]')))
+
+def rule12_phenolic_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1cc(ccc1O)')))
+
+def rule13_olefinic_bonds(mol):
+    olefinic_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and 
+                         set([bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]) <= set(['C']))
+    return olefinic_bonds
+
+def rule14_acetylenic_bonds(mol):
+    acetylenic_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE)
+    return acetylenic_bonds
+
+def rule15_ring_double_bonds(mol):
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and bond.IsInRing():
+            count += 1
+    return count
+
+def rule16_tertiary_amino_groups(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and len(atom.GetNeighbors()) == 3:  # Nitrogen with three neighbors
+            if all(neigh.GetAtomicNum() == 6 for neigh in atom.GetNeighbors()):  # All neighbors are carbons
+                count += 1
+    return count
+
+def rule17_primary_amino_groups(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and len(atom.GetNeighbors()) == 1:  # Nitrogen with one neighbor
+            if atom.GetNeighbors()[0].GetAtomicNum() == 6:  # The neighbor is carbon
+                count += 1
+    return count
+
+def rule18_secondary_amino_groups(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and len(atom.GetNeighbors()) == 2:  # Nitrogen with two neighbors
+            if all(neigh.GetAtomicNum() == 6 for neigh in atom.GetNeighbors()):  # Both neighbors are carbons
+                count += 1
+    return count
+
+def rule19_carboxylic_acid_groups(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon
+            oxygens = [neigh for neigh in atom.GetNeighbors() if neigh.GetAtomicNum() == 8]
+            if len(oxygens) == 2 and any(oxy.GetTotalNumHs() == 1 for oxy in oxygens):
+                count += 1
+    return count
+
+def rule20_ester_groups(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon
+            oxygens = [neigh for neigh in atom.GetNeighbors() if neigh.GetAtomicNum() == 8]
+            if len(oxygens) == 2 and all(oxy.GetTotalNumHs() == 0 for oxy in oxygens):
+                count += 1
+    return count

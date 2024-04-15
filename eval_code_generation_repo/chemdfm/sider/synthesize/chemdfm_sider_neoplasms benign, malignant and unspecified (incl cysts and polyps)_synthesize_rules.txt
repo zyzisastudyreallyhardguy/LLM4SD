@@ -1,0 +1,94 @@
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_logp(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]
+
+def calculate_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+
+
+def calculate_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def calculate_num_hbd(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def calculate_num_hba(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule_topological_psa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule_ring_assemblies(mol):
+    return len(Chem.GetSymmSSSR(mol))
+
+def rule_functionality_count(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetDegree() > 1)
+
+def rule_vdw_surface_area(mol):
+    return Descriptors.VSA_EState1(mol)
+
+def rule_molar_refractivity(mol):
+    return Crippen.MolMR(mol)
+
+def rule_molecular_complexity(mol):
+    return rdMolDescriptors.CalcChi0n(mol)
+
+def rule_functional_group_counts(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() > 1)
+
+def rule_formaldehyde_releases(mol):
+    # Assuming formaldehyde release is related to the presence of -CH2O groups
+    pattern = Chem.MolFromSmarts('[CH2][O]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule_calc_potential_metabolites(mol):
+    # Placeholder for actual metabolite calculation logic
+    return len(Chem.rdmolops.GetMolFrags(mol, asMols=True, sanitizeFrags=True))
+
+def rule_calc_reactive_sites(mol):
+    # Example: count carbonyl groups as reactive sites
+    patt = Chem.MolFromSmarts('[CX3]=[OX1]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule_calc_chloroformations(mol):
+    # Example: count chloro groups
+    patt = Chem.MolFromSmarts('[Cl]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule_calc_potential_electrophiles(mol):
+    # Example: count carbonyl carbon atoms
+    patt = Chem.MolFromSmarts('[CX3](=O)[#6]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule_calc_carcinogenic_compounds(mol):
+    # Placeholder for actual carcinogenicity prediction logic
+    # Example: check for benzene ring
+    patt = Chem.MolFromSmarts('c1ccccc1')
+    return 1 if mol.HasSubstructMatch(patt) else 0
+
+def rule_calc_toxic_compounds(mol):
+    # Placeholder for actual toxicity prediction logic
+    # Example: check for nitro groups
+    patt = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return 1 if mol.HasSubstructMatch(patt) else 0

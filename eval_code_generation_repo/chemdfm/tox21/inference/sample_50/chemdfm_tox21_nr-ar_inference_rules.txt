@@ -1,0 +1,46 @@
+def rule1_androgen_receptor_affinity(mol):
+    # This is a hypothetical function since actual binding affinity would require complex simulations or experimental data.
+    # For demonstration, we'll use a simple proxy: count of aromatic rings which might indicate higher planarity and potential π-π interactions.
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule2_chloride_content(mol):
+    # Count the number of chloride atoms in the molecule
+    chloride_count = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+    return chloride_count
+
+def rule3_partition_coefficient(mol):
+    # Use Crippen's method to estimate logP (octanol-water partition coefficient)
+    logP = Crippen.MolLogP(mol)
+    return logP
+
+def rule4_halogenation(mol):
+    halogens = ['Cl', 'Br']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetIsAromatic():
+                    count += 1
+    return count
+
+def rule5_aromatic_amines(mol):
+    amine_count = 0
+    aromatic_rings = mol.GetRingInfo().AtomRings()
+    for ring in aromatic_rings:
+        positions = set(ring)
+        for idx in positions:
+            atom = mol.GetAtomWithIdx(idx)
+            if atom.GetSymbol() == 'N' and atom.GetIsAromatic():
+                # Check para position
+                para_position = (idx + 2) % len(ring)  # Assuming the ring is a benzene ring
+                if para_position in positions:
+                    amine_count += 1
+    return amine_count
+
+def rule6_multifused_aromatic_rings(mol):
+    ssr = Chem.GetSymmSSSR(mol)
+    fused_rings = 0
+    for ringset in ssr:
+        if len(ringset) > 1:
+            fused_rings += 1
+    return fused_rings

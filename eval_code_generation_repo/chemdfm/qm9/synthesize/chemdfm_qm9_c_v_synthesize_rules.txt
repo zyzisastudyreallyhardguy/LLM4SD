@@ -1,0 +1,83 @@
+def rule1_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule2_organic_compound(mol):
+    # Assuming organic compounds contain C, H, N, or O
+    atoms = mol.GetAtoms()
+    for atom in atoms:
+        if atom.GetSymbol() in ['C', 'H', 'N', 'O']:
+            return 1  # Represents organic
+    return 0  # Represents inorganic
+
+def rule3_polarity(mol):
+    return Descriptors.NumValenceElectrons(mol)  # A proxy for polarity
+
+def rule4_size(mol):
+    return mol.GetNumAtoms()
+
+def rule5_multiple_bonds(mol):
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() != Chem.rdchem.BondType.SINGLE:
+            count += 1
+    return count
+
+def rule6_aromatic_heat_capacity(mol):
+    aromatic_count = sum([1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    return aromatic_count
+
+def rule7_hydrogen_rich_heat_capacity(mol):
+    hydrogen_count = sum([1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'H'])
+    return hydrogen_count
+
+def rule8_complex_structure_heat_capacity(mol):
+    complexity = rdMolDescriptors.CalcNumRotatableBonds(mol) + mol.GetNumBonds()
+    return complexity
+
+def rule9_unsaturated_bonds_heat_capacity(mol):
+    unsaturated_bonds = sum([1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE])
+    return unsaturated_bonds
+
+def rule10_surface_area_heat_capacity(mol):
+    surface_area = rdMolDescriptors.CalcTPSA(mol)
+    return surface_area
+
+def rule11_boiling_point_heat_capacity(mol):
+    boiling_point = Descriptors.TPSA(mol)
+    return boiling_point
+
+def rule12_heat_of_combustion_heat_capacity(mol):
+    heat_of_combustion = Descriptors.HeavyAtomMolWt(mol)
+    return heat_of_combustion
+
+def rule13_enthalpy_heat_capacity(mol):
+    enthalpy = Descriptors.MolWt(mol)  # Placeholder for actual enthalpy calculation
+    return enthalpy
+
+def rule14_melting_point_heat_capacity(mol):
+    melting_point = Descriptors.MolLogP(mol)
+    return melting_point
+
+def rule15_specific_heat_capacity(mol):
+    # Placeholder: Using molecular weight as a proxy for specific heat capacity
+    return Descriptors.MolWt(mol)
+
+def rule16_thermal_conductivity(mol):
+    # Placeholder: Using the number of rotatable bonds as a proxy for thermal conductivity
+    return Descriptors.NumRotatableBonds(mol)
+
+def rule17_heat_of_vaporization(mol):
+    # Placeholder: Using the topological polar surface area as a proxy
+    return Descriptors.TPSA(mol)
+
+def rule18_entropy(mol):
+    # Placeholder: Using the number of heavy atoms as a proxy for entropy
+    return Descriptors.HeavyAtomCount(mol)
+
+def rule19_free_energy(mol):
+    # Placeholder: Using the number of heteroatoms as a proxy for free energy
+    return Descriptors.NumHeteroatoms(mol)
+
+def rule20_degrees_of_freedom(mol):
+    # Placeholder: Using the number of rotatable bonds as a proxy for degrees of freedom
+    return Descriptors.NumRotatableBonds(mol)

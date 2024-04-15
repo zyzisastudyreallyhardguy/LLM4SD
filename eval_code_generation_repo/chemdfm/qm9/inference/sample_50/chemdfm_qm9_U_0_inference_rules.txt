@@ -1,0 +1,66 @@
+def rule1_multiple_nitrogens(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N')
+
+def rule2_sp3_nitrogens(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and atom.GetHybridization() == Chem.HybridizationType.SP3)
+
+def rule3_aromaticity(mol):
+    return sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+
+def rule4_heteroatoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['N', 'O', 'S'])
+
+def rule5_unsaturated_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() in [Chem.BondType.DOUBLE, Chem.BondType.TRIPLE])
+
+def rule6_bulky_groups_or_rings(mol):
+    return len(mol.GetRingInfo().AtomRings())
+
+def rule7_positively_charged_nitrogen(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and atom.GetFormalCharge() > 0)
+
+def rule8_sp2_carbon_next_to_pos_nitrogen(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetFormalCharge() > 0:
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetSymbol() == 'C' and neighbor.GetHybridization() == Chem.HybridizationType.SP2:
+                    count += 1
+    return count
+
+def rule9_sp3_carbon_next_to_pos_nitrogen(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetHybridization() == Chem.HybridizationType.SP3:
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetAtomicNum() == 7 and neighbor.GetFormalCharge() > 0:
+                    count += 1
+    return count
+
+def rule10_amino_or_positive_charge(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and (atom.GetTotalNumHs() > 0 or atom.GetFormalCharge() > 0):
+            count += 1
+    return count
+
+def rule11_complex_structures(mol):
+    return len(Chem.GetMolFrags(mol))  # Number of disconnected fragments
+
+def rule12_polar_groups(mol):
+    num_hydroxyl = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    num_carboxyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C(=O)O")))
+    num_amino = len(mol.GetSubstructMatches(Chem.MolFromSmarts("N")))
+    return num_hydroxyl + num_carboxyl + num_amino
+
+def rule13_higher_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule14_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("C=O")))
+
+def rule15_heterocyclic_rings(mol):
+    return sum(1 for ring in mol.GetRingInfo().AtomRings() if any(mol.GetAtomWithIdx(idx).GetAtomicNum() != 6 for idx in ring))
+
+def rule16_amino_group(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts("N")))

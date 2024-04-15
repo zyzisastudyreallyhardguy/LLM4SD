@@ -1,0 +1,87 @@
+def rule1_halogenated_aromatics(mol):
+    # Define the halogens and aromatic query
+    halogens = [17, 35]  # Chlorine (17), Bromine (35)
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetIsAromatic() and atom.GetAtomicNum() in halogens:
+            count += 1
+    return count
+
+
+
+
+
+
+def rule4_aromatic_rings_and_groups(mol):
+    try:
+        # Define SMARTS patterns for different groups
+        nitro_query = Chem.MolFromSmarts("[N+](=O)[O-]")
+        cyano_query = Chem.MolFromSmarts("C#N")
+        carbonyl_query = Chem.MolFromSmarts("C=O")
+        
+        # Count the number of aromatic rings
+        count_aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+        
+        # Count the number of substructures matching the defined SMARTS patterns
+        count_nitro = len(mol.GetSubstructMatches(nitro_query))
+        count_cyano = len(mol.GetSubstructMatches(cyano_query))
+        count_carbonyl = len(mol.GetSubstructMatches(carbonyl_query))
+        
+        # Sum up all counts
+        total_count = count_aromatic_rings + count_nitro + count_cyano + count_carbonyl
+        return total_count
+    except Exception:
+        # In case of any error, return 0
+        return 0
+
+
+def rule5_sulfides_sulfoxides(mol):
+    sulfide_query = rdqueries.SmartsQuery("[S]")
+    sulfoxide_query = rdqueries.SmartsQuery("[S](=O)")
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.HasQueryMatch(sulfide_query) or atom.HasQueryMatch(sulfoxide_query):
+            count += 1
+    return count
+
+def rule5_sulfides_sulfoxides(mol):
+    sulfide_query = Chem.MolFromSmarts("[S]")
+    sulfoxide_query = Chem.MolFromSmarts("[S](=O)")
+    count = 0
+    for atom in mol.GetAtoms():
+        if mol.HasSubstructMatch(sulfide_query) or mol.HasSubstructMatch(sulfoxide_query):
+            count += 1
+            break  # Assuming you want to count the molecule once if it matches either query
+    return count
+
+
+def rule6_polar_ionic_groups(mol):
+    # Counting carboxylic acids, amines, and phosphates
+    carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C(=O)O")))
+    amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts("N")))  # General amine
+    phosphates = len(mol.GetSubstructMatches(Chem.MolFromSmarts("P(=O)(O)(O)O")))
+    return carboxylic_acids + amines + phosphates
+
+def rule7_cellular_interference(mol):
+    # Example: Count potential DNA intercalators or mitochondrial disruptors
+    # Using aromatic rings as a proxy for potential DNA intercalators
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+def rule8_complex_structure(mol):
+    # Counting carbon chains longer than 6 and ring count
+    long_chains = len([atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) == 1])
+    ring_count = rdMolDescriptors.CalcNumRings(mol)
+    return long_chains + ring_count
+
+def rule9_molecular_properties(mol):
+    # Using molecular weight as a proxy for size and complexity
+    molecular_weight = Descriptors.MolWt(mol)
+    # Solubility can be approximated by the number of hydrophilic groups
+    hydrophilic_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[O,N]")))
+    return int(molecular_weight + hydrophilic_groups)
+
+def rule10_structural_elements(mol):
+    # Count electron-withdrawing groups near aromatic rings
+    ewg_near_aromatic = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[NX3,NX4+][cX3](=[OX1])[c]")))
+    return ewg_near_aromatic

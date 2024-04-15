@@ -1,0 +1,79 @@
+def rule1_calculate_logp(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_calculate_hbond_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule4_calculate_num_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule5_calculate_num_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule6_calculate_num_chlorines(mol):
+    num_chlorines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'Cl':
+            num_chlorines += 1
+    return num_chlorines
+
+def rule7_nitro_groups(mol):
+    try:
+        nitro_smarts = "[NX3](=O)=O"  # SMARTS pattern for nitro groups
+        nitro_pattern = Chem.MolFromSmarts(nitro_smarts)
+        matches = mol.GetSubstructMatches(nitro_pattern)
+        return len(matches)
+    except Exception:
+        return 0  # Return 0 if any error occurs
+
+
+def rule8_unsaturated_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE)
+
+def rule9_oxygen_nitrogen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['O', 'N'])
+
+def rule10_sulfur_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S')
+
+def rule11_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule12_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule13_molecular_complexity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol) + rdMolDescriptors.CalcNumHBA(mol) + rdMolDescriptors.CalcNumHBD(mol)
+
+def rule14_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule15_calculate_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule16_calculate_formal_charge(mol):
+    return Chem.rdmolops.GetFormalCharge(mol)
+
+def rule17_calculate_ionizable_groups(mol):
+    # Using Lipinski's rule of five descriptors as a proxy
+    # HBA (hydrogen bond acceptors) can be considered as a rough estimate for acidic groups
+    # HBD (hydrogen bond donors) can be considered as a rough estimate for basic groups
+    acidic_groups = rdMolDescriptors.CalcNumLipinskiHBA(mol)
+    basic_groups = rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    return acidic_groups + basic_groups
+
+
+def rule18_calculate_functional_groups(mol):
+    # Example: Count carbonyl groups as a proxy for functional group activity
+    patt = Chem.MolFromSmarts('C=O')  # Carbonyl group SMARTS pattern
+    return len(mol.GetSubstructMatches(patt))
+
+def rule19_calculate_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+def rule20_calculate_vdw_surface_area(mol):
+    return rdMolDescriptors.CalcLabuteASA(mol)

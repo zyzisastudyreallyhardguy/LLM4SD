@@ -1,0 +1,102 @@
+def rule1_aromatic_amines(mol):
+    aromatic_amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts("n1ccccc1")))  # Aromatic amine SMARTS
+    return aromatic_amines
+
+def rule1_formaldehydes(mol):
+    # Ensure the SMARTS pattern is correctly converted to a molecule object
+    query = Chem.MolFromSmarts("O=CH2")  # Formaldehyde SMARTS
+    if query is None:
+        return 0  # Return 0 if the SMARTS string is incorrect or cannot be parsed
+    formaldehydes = len(mol.GetSubstructMatches(query))
+    return formaldehydes
+
+
+def rule1_halogenated_aromatics(mol):
+    try:
+        # Define the SMARTS pattern for a halogenated aromatic ring
+        # X in SMARTS represents any halogen (F, Cl, Br, I)
+        halogen_smarts = "c1ccccc1[X]"  # Corrected SMARTS pattern
+        halogen_query = Chem.MolFromSmarts(halogen_smarts)
+        
+        if halogen_query is None:
+            return 0  # Return 0 if the SMARTS pattern is incorrect
+        
+        # Find matches of the halogenated aromatic pattern in the molecule
+        halogenated_aromatics = len(mol.GetSubstructMatches(halogen_query))
+        return halogenated_aromatics
+    except Exception:
+        return 0  # Return 0 in case of any other errors during execution
+
+
+def rule2_nitro_groups(mol):
+    nitro_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts("N(=O)=O")))  # Nitro group SMARTS
+    return nitro_groups
+
+def rule2_aldehydes(mol):
+    aldehydes = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C=O")))  # General aldehyde SMARTS
+    return aldehydes
+
+def rule2_aromatic_carbonyls(mol):
+    aromatic_carbonyls = len(mol.GetSubstructMatches(Chem.MolFromSmarts("c1ccccc1C=O")))  # Aromatic carbonyl SMARTS
+    return aromatic_carbonyls
+
+def rule3_logP(mol):
+    logP = Descriptors.MolLogP(mol)
+    return 1 if logP > 4 else 0
+
+def rule3_polar_surface_area(mol):
+    psa = rdMolDescriptors.CalcTPSA(mol)
+    return psa
+
+def rule4_alkylating_agents(mol):
+    alkyl_halides = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[CX4][F,Cl,Br,I]")))  # Alkyl halide SMARTS
+    return alkyl_halides
+
+def rule4_oxidizing_agents(mol):
+    peroxides = len(mol.GetSubstructMatches(Chem.MolFromSmarts("OO")))  # Peroxide SMARTS
+    return peroxides
+
+def rule4_reactive_metabolites(mol):
+    epoxides = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C1OC1")))  # Epoxide SMARTS
+    return epoxides
+
+def rule5_cationic_species(mol):
+    cationic_species = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[N+](=O)(O)[O-]")))  # Nitronium ion SMARTS
+    return cationic_species
+
+def rule6_heavy_metals(mol):
+    heavy_metal_atoms = ['Pt', 'Hg', 'Pb', 'Cd', 'As', 'Se', 'Sn']  # Example heavy metals
+    count = sum(atom.GetSymbol() in heavy_metal_atoms for atom in mol.GetAtoms())
+    return count
+
+def rule7_enzyme_inhibitors(mol):
+    # Example: Aromatase inhibitors often contain specific functional groups like triazole
+    # This is a simplified check for the presence of a triazole ring
+    smarts = '[nX2]1ncnc1'  # SMARTS pattern for triazole
+    triazole = Chem.MolFromSmarts(smarts)
+    count = len(mol.GetSubstructMatches(triazole))
+    return count
+
+def rule8_membrane_passage(mol):
+    # Example properties: molecular weight, logP (octanol-water partition coefficient)
+    mw = Descriptors.MolWt(mol)
+    logp = Descriptors.MolLogP(mol)
+    # Simplified scoring: higher weight and logP can indicate easier membrane passage
+    score = (mw > 500) + (logp > 5)  # Returns 0, 1, or 2
+    return score
+
+def rule9_target_binding(mol):
+    # Example: Check for potential binding to estrogen receptors
+    # This is a simplified check for phenolic groups, common in estrogenic compounds
+    smarts = 'c1cc(c(cc1)O)O'  # SMARTS pattern for a dihydroxybenzene group
+    phenol = Chem.MolFromSmarts(smarts)
+    count = len(mol.GetSubstructMatches(phenol))
+    return count
+
+def rule10_complexity_reactivity(mol):
+    # Example metrics: number of rings and rotatable bonds
+    num_rings = rdMolDescriptors.CalcNumRings(mol)
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    # Simplified scoring: more rings and rotatable bonds indicate higher complexity
+    score = (num_rings > 3) + (rotatable_bonds > 5)  # Returns 0, 1, or 2
+    return score

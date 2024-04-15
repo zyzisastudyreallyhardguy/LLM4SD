@@ -1,0 +1,98 @@
+def rule1_hormone_like_structures(mol):
+    # Example substructures for estrogen and testosterone
+    estrogen_smarts = 'Oc1ccccc1CC(O)C'
+    testosterone_smarts = 'CC12CCC3C(C1CCC2=O)CCC4=C3C=CC(=C4)O'
+    estrogen_pattern = Chem.MolFromSmarts(estrogen_smarts)
+    testosterone_pattern = Chem.MolFromSmarts(testosterone_smarts)
+
+def rule2_planar_aromatic_structures(mol):
+    # Count the number of aromatic rings
+    aromatic_rings = len(Chem.GetSymmSSSR(mol))
+    return aromatic_rings
+
+def rule3_reactive_groups(mol):
+    # Example reactive groups: aldehydes, epoxides
+    aldehyde_smarts = '[CX3H1](=O)[#6]'
+    epoxide_smarts = 'C1OC1'
+    aldehyde_pattern = Chem.MolFromSmarts(aldehyde_smarts)
+    epoxide_pattern = Chem.MolFromSmarts(epoxide_smarts)
+
+def rule4_selenium_groups(mol):
+    selenium_smarts = '[Se]=[Se]'
+    selenium_pattern = Chem.MolFromSmarts(selenium_smarts)
+
+def rule5_conjugated_systems(mol):
+    # Use SMARTS for conjugated systems (simplified example)
+    conjugated_smarts = 'c1ccccc1-c2ccccc2'
+    conjugated_pattern = Chem.MolFromSmarts(conjugated_smarts)
+
+def rule6_toxic_functional_groups(mol):
+    smarts_toxic_groups = [
+        '[CX4][F,Cl,Br,I]',  # alkyl halide
+        'c[F,Cl,Br,I]',      # aryl halide
+        '[P](=O)(O)(O)'      # organic phosphate
+    ]
+    count = 0
+    for smarts in smarts_toxic_groups:
+        substructure = Chem.MolFromSmarts(smarts)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule7_endocrine_disruptors(mol):
+    smarts_endocrine_groups = [
+        'c1ccccc1CC(=O)O',  # simple phenolic estrogen
+        'C1CCC2C1(CCC3C2CCC4C3(CCC(C4)O)C)',  # steroid backbone
+    ]
+    count = 0
+    for smarts in smarts_endocrine_groups:
+        substructure = Chem.MolFromSmarts(smarts)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule8_molecular_properties(mol):
+    mw = Descriptors.MolWt(mol)
+    logp = Crippen.MolLogP(mol)
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    # Simple scoring based on thresholds
+    score = 0
+    if mw > 500: score += 1
+    if logp > 5: score += 1
+    if tpsa < 20 or tpsa > 140: score += 1
+    return score
+
+def rule9_genetic_factors(mol):
+    # Placeholder function, as actual implementation would require genetic/epigenetic data
+    return 0
+
+def rule10_unsaturated_or_aromatic(mol):
+    aromatic_count = len([ring for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    unsaturated_count = sum([1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE])
+    return aromatic_count + unsaturated_count
+
+def rule11_aromatic_or_double_bonds(mol):
+    aromatic_count = sum([1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    double_bond_count = sum([1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE])
+    return aromatic_count + double_bond_count
+
+def rule12_halogens_presence(mol):
+    halogens = ['Cl', 'Br', 'F', 'I']
+    halogen_count = sum([mol.GetAtomWithIdx(i).GetSymbol() in halogens for i in range(mol.GetNumAtoms())])
+    return halogen_count
+
+def rule13_heavy_metals_or_functional_groups(mol):
+    heavy_metals = ['Hg', 'Pb', 'Cd']
+    metal_count = sum([mol.GetAtomWithIdx(i).GetSymbol() in heavy_metals for i in range(mol.GetNumAtoms())])
+    ester_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    ketone_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)C')))
+    return metal_count + ester_count + ketone_count
+
+def rule14_molecular_recognition(mol):
+    fused_aromatic_count = len(Chem.GetSymmSSSR(mol))  # Symmetrically reduced smallest set of smallest rings
+    halogen_count = rule12_halogens_presence(mol)
+    reactive_groups_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX4][OX1]')))  # Example for epoxides
+    return fused_aromatic_count + halogen_count + reactive_groups_count
+
+def rule15_heavy_metal_complexation(mol):
+    heavy_metals = ['Hg', 'Pb', 'Cd']
+    complexation_count = sum([mol.GetAtomWithIdx(i).GetSymbol() in heavy_metals for i in range(mol.GetNumAtoms())])
+    return complexation_count

@@ -1,0 +1,84 @@
+def rule1_aromatic_or_double_bonds(mol):
+    aromatic_count = len([ring for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    double_bond_count = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    return aromatic_count + double_bond_count
+
+def rule2_halogens(mol):
+    halogen_count = sum(atom.GetAtomicNum() in [9, 17, 35, 53, 85] for atom in mol.GetAtoms())  # F, Cl, Br, I, At
+    fluorine_count = sum(atom.GetAtomicNum() == 9 for atom in mol.GetAtoms())  # Fluorine
+    return halogen_count + fluorine_count
+
+def rule3_functional_groups(mol):
+    # Define SMARTS patterns for functional groups
+    amine_smarts = '[NX3;H2,H1;!$(NC=O)]'  # primary and secondary amines, excluding amides
+    carboxylic_acid_smarts = 'C(=O)O'  # carboxylic acids
+    alcohol_smarts = '[OX2H]'  # alcohols
+
+    # Create molecule objects from SMARTS patterns
+    amine_query = Chem.MolFromSmarts(amine_smarts)
+    carboxylic_acid_query = Chem.MolFromSmarts(carboxylic_acid_smarts)
+    alcohol_query = Chem.MolFromSmarts(alcohol_smarts)
+
+    # Count matches in the input molecule
+    amine_count = len(mol.GetSubstructMatches(amine_query))
+    carboxylic_acid_count = len(mol.GetSubstructMatches(carboxylic_acid_query))
+    alcohol_count = len(mol.GetSubstructMatches(alcohol_query))
+
+    # Return the sum of counts
+    return amine_count + carboxylic_acid_count + alcohol_count
+
+
+def rule4_complexity(mol):
+    molecular_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return molecular_weight + rotatable_bonds
+
+def rule5_charged_species(mol):
+    positive_charge = sum(atom.GetFormalCharge() > 0 for atom in mol.GetAtoms())
+    negative_charge = sum(atom.GetFormalCharge() < 0 for atom in mol.GetAtoms())
+    return positive_charge + negative_charge
+
+def rule6_heavy_metal_chelates(mol):
+    # Define a list of common heavy metals
+    heavy_metals = ['Cu', 'Fe', 'Zn', 'Ni', 'Co', 'Cr', 'Mn', 'Hg', 'Pb', 'Cd']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in heavy_metals:
+            count += 1
+    return count
+
+def rule7_reactive_groups(mol):
+    # Define SMARTS patterns for reactive groups
+    reactive_smarts = ['[CX3H1](=O)', '[CX3](=O)[#6]', 'C(=O)Cl', 'C1OC1']  # Aldehydes, Ketones, Acid Chlorides, Epoxides
+    count = 0
+    for smarts in reactive_smarts:
+        substructure = Chem.MolFromSmarts(smarts)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule8_toxin_allergen_resemblance(mol):
+    # Example: Check for specific toxic ring systems or substituents
+    toxic_smarts = ['c1ccccc1', 'O=C1CC1']  # Benzene, Cyclohexanone (as examples)
+    count = 0
+    for smarts in toxic_smarts:
+        substructure = Chem.MolFromSmarts(smarts)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule9_specific_functional_groups(mol):
+    # Define SMARTS for amides, carboxylic acids, and phosphates
+    functional_group_smarts = ['C(=O)N', 'C(=O)O', 'P(=O)(O)(O)']  # Amides, Carboxylic acids, Phosphates
+    count = 0
+    for smarts in functional_group_smarts:
+        substructure = Chem.MolFromSmarts(smarts)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule10_unusual_characteristics(mol):
+    # Example: Check for large molecular weight or high polar surface area as unusual characteristics
+    mw = Descriptors.MolWt(mol)
+    psa = rdMolDescriptors.CalcTPSA(mol)
+    unusual = 0
+    if mw > 500 or psa > 140:  # Thresholds can be adjusted based on known safe compound profiles
+        unusual = 1
+    return unusual

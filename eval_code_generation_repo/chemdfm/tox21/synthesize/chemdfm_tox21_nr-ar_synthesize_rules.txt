@@ -1,0 +1,69 @@
+def rule1_calculate_logp(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_calculate_hbond_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_calculate_hbond_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_chiral_centers(mol):
+    chiral_centers = sum(1 for atom in mol.GetAtoms() if atom.GetChiralTag() == rdchem.ChiralType.CHI_TETRAHEDRAL_CW or atom.GetChiralTag() == rdchem.ChiralType.CHI_TETRAHEDRAL_CCW)
+    return chiral_centers
+
+def rule6_functional_groups(mol):
+    # Example functional groups (can be extended)
+    patt_list = [Chem.MolFromSmarts('C(=O)O'),  # carboxylic acid
+                 Chem.MolFromSmarts('C=O'),     # ketone
+                 Chem.MolFromSmarts('N(=O)=O'), # nitro
+                 Chem.MolFromSmarts('O'),       # hydroxyl
+                 Chem.MolFromSmarts('N')]       # amine
+    return sum(len(mol.GetSubstructMatches(patt)) for patt in patt_list)
+
+def rule7_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule8_formal_charge(mol):
+    return Chem.GetFormalCharge(mol)
+
+def rule9_ionization_state(mol):
+    # Placeholder function, actual implementation would require pKa calculation and pH consideration
+    return 0
+
+def rule10_extinction_coefficient(mol):
+    # Placeholder function, actual implementation would require specific UV-Vis absorption data
+    return 0
+
+def rule11_topical_penetration(mol):
+    # Placeholder function, actual implementation would require specific skin permeability models
+    return 0
+
+def rule12_bbb_permeability(mol):
+    # Using molecular weight and logP as simple proxies for BBB permeability
+    mw = rdMolDescriptors.CalcExactMolWt(mol)
+    logp = Crippen.MolLogP(mol)
+    # Simplified criteria: generally, molecules with MW < 450 and logP between 1 and 5 are more likely to cross BBB
+    return 1 if (mw < 450 and 1 <= logp <= 5) else 0
+
+
+
+def rule14_metabolic_stability(mol):
+    # Using number of likely metabolic sites (e.g., soft nucleophilic sites) as a proxy
+    num_oxygen_nitrogen = rdMolDescriptors.CalcNumHeteroatoms(mol)
+    return num_oxygen_nitrogen
+
+def rule15_cytotoxicity(mol):
+    # Example: High polar surface area might indicate higher cytotoxicity
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    return tpsa
+
+def rule16_binding_affinity(mol):
+    # Example: Using number of rotatable bonds as a simple proxy for flexibility and potential binding affinity
+    num_rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return num_rotatable_bonds

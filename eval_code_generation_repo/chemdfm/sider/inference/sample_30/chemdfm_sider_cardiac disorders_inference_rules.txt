@@ -1,0 +1,23 @@
+def rule1_aromatic_rings(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    return aromatic_count
+
+def rule2_reactive_groups(mol):
+    # Count specific functional groups known for reactivity
+    smarts_patterns = {
+        'epoxide': '[OX2r3]',  # Epoxide
+        'aldehyde': '[CX3H1](=O)[#6]',  # Aldehyde
+        'ketone': '[CX3](=O)[#6]',  # Ketone
+        'acyl_chloride': '[CX3](=O)[Cl]'  # Acyl chloride
+    }
+    total_reactive_groups = 0
+    for pattern in smarts_patterns.values():
+        total_reactive_groups += len(mol.GetSubstructMatches(Chem.MolFromSmarts(pattern)))
+    return total_reactive_groups
+
+def rule3_large_complex_molecules(mol):
+    # Use molecular weight and count of functional groups as a proxy for complexity
+    molecular_weight = Descriptors.MolWt(mol)
+    functional_group_count = rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    complexity_score = molecular_weight + functional_group_count
+    return complexity_score

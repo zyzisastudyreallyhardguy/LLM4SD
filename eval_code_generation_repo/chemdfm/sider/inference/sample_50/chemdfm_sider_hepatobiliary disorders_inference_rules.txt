@@ -1,0 +1,37 @@
+def rule1_aromatic_heterocycles(mol):
+    aromatic_heterocycles = 0
+    ssr = Chem.GetSymmSSSR(mol)  # Get smallest set of smallest rings
+    for ring in ssr:
+        if ring.IsAromatic():
+            if any(atom.GetAtomicNum() != 6 for atom in mol.GetAtoms()):
+                aromatic_heterocycles += 1
+    return aromatic_heterocycles
+
+def rule2_heavy_metal_ions(mol):
+    heavy_metals = ['Hg', 'Pb', 'Cd', 'As', 'Cr', 'Tl', 'Bi', 'Sb']  # Example list of heavy metals
+    metal_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in heavy_metals:
+            metal_count += 1
+    return metal_count
+
+def rule3_reactive_groups(mol):
+    num_carbonyls = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')))
+    num_amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    num_alcohols = len(mol.GetSubstructMatches(Chem.MolFromSmarts('O[H]')))
+    return num_carbonyls + num_amines + num_alcohols
+
+def rule4_double_bonds_aromatics(mol):
+    num_double_bonds = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=C')))
+    num_aromatic_rings = len(Chem.GetSymmSSSR(mol))
+    return num_double_bonds + num_aromatic_rings
+
+def rule5_halogen_atoms(mol):
+    num_chlorine = len(mol.GetSubstructMatches(Chem.MolFromSmarts('Cl')))
+    num_other_halogens = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Br,I]')))
+    return num_chlorine + num_other_halogens
+
+def rule6_molecular_weight_complexity(mol):
+    molecular_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    num_rings = len(Chem.GetSymmSSSR(mol))
+    return molecular_weight + num_rings

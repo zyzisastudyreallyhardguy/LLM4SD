@@ -1,0 +1,83 @@
+def rule1_calculate_logp(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_calculate_hbd(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_calculate_mw(mol):
+    return Descriptors.MolWt(mol)
+
+def rule4_calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_calculate_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def rule6_nitro_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+
+def rule7_unsaturated_bonds(mol):
+    unsaturated_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.BondType.DOUBLE or bond.GetBondType() == Chem.BondType.TRIPLE:
+            unsaturated_bonds += 1
+    return unsaturated_bonds
+
+def rule8_carbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[O]')))
+
+def rule9_thiocarbonyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#6]=[S]')))
+
+def rule10_hydroxyl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2H]')))
+
+def rule11_amino_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3;H2,H1;!$(NC=O)]')))
+
+def rule12_sulfhydryl_groups(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[#16X2H]')))
+
+def rule13_organic_peroxides(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('[O-O]')))
+
+def rule14_epoxides(mol):
+    return len(mol.GetSubstructMatches(Chem.MolFromSmarts('C1OC1')))
+
+def count_substructures(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the necessary inputs are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return 0  # Return 0 if the SMARTS string is invalid
+    return len(mol.GetSubstructMatches(substructure))
+
+
+def rule15_carboxylic_acids(mol):
+    carboxylic_acid_smarts = "C(=O)O"
+    return count_substructures(mol, carboxylic_acid_smarts)
+
+def rule16_esters(mol):
+    ester_smarts = "C(=O)O[C,c]"
+    return count_substructures(mol, ester_smarts)
+
+def rule17_ketones(mol):
+    ketone_smarts = "C(=O)C"
+    return count_substructures(mol, ketone_smarts)
+
+def rule18_aldehydes(mol):
+    aldehyde_smarts = "C(=O)[H]"
+    return count_substructures(mol, aldehyde_smarts)
+
+def rule19_quaternary_ammonium(mol):
+    quaternary_ammonium_smarts = "[N+](C)(C)(C)(C)"
+    return count_substructures(mol, quaternary_ammonium_smarts)
+
+def rule20_nitrosamines(mol):
+    nitrosamine_smarts = "N-N=O"
+    return count_substructures(mol, nitrosamine_smarts)

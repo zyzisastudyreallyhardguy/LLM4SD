@@ -1,0 +1,90 @@
+def calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def calculate_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def calculate_double_bonds(mol):
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            count += 1
+    return count
+
+
+
+
+
+def rule8_count_sulfur_atoms(mol):
+    try:
+        # Initialize count
+        sulfur_count = 0
+        
+        # Iterate through all atoms in the molecule
+        for atom in mol.GetAtoms():
+            # Check if the atom is sulfur (atomic number 16)
+            if atom.GetAtomicNum() == 16:
+                sulfur_count += 1
+        
+        return sulfur_count
+    except:
+        # In case of any error, return 0 as the function cannot raise errors
+        return 0
+
+
+
+
+
+
+def rule11_count_iodine_atoms(mol):
+    iodine_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 53:
+            iodine_count += 1
+    return iodine_count
+
+
+def rule12_count_fluorine_atoms(mol):
+    # Count the number of fluorine atoms in the molecule
+    # Fluorine has an atomic number of 9
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 9)
+
+
+def rule13_count_cyano_groups(mol):
+    cyano_smarts = '[C]#[N]'
+    cyano = Chem.MolFromSmarts(cyano_smarts)
+    return len(mol.GetSubstructMatches(cyano))
+
+def rule14_count_amino_groups(mol):
+    amino_smarts = '[NX3;H2,H1,H0;!$(NC=O)]'
+    amino = Chem.MolFromSmarts(amino_smarts)
+    return len(mol.GetSubstructMatches(amino))
+
+def rule15_count_hydroxy_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetDegree() == 1)
+
+def rule16_count_methyl_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and atom.GetDegree() == 1 and len(atom.GetNeighbors()) == 1 and all(neighbor.GetSymbol() == 'H' for neighbor in atom.GetNeighbors()))
+
+def rule17_count_phenolic_hydroxy_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and atom.GetDegree() == 1 and any(neighbor.GetSymbol() == 'C' and neighbor.GetIsAromatic() for neighbor in atom.GetNeighbors()))
+
+def rule18_count_carboxy_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and any(neighbor.GetSymbol() == 'O' and len(neighbor.GetNeighbors()) == 1 for neighbor in atom.GetNeighbors()))
+
+def rule19_count_thiol_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and atom.GetDegree() == 1)
+
+def rule20_count_amino_acid_residues(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and any(neighbor.GetSymbol() == 'C' and any(sub_neighbor.GetSymbol() == 'O' for sub_neighbor in neighbor.GetNeighbors()) for neighbor in atom.GetNeighbors()))

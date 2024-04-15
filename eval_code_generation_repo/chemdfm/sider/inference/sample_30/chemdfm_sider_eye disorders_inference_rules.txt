@@ -1,0 +1,81 @@
+def rule1_toxic_moieties(mol):
+    toxic_elements = ['Hg', 'Gd']  # Mercury, Gadolinium
+    toxic_substructures = [
+        '[CX3H1](=O)',  # Aldehyde
+        'C1OC1',        # Epoxide
+        'N(CCCl)CCCl'   # Nitrogen mustard bond
+    ]
+    count = 0
+    # Check for toxic heavy metals
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in toxic_elements:
+            count += 1
+    # Check for specific toxic substructures
+    for smarts in toxic_substructures:
+        substructure = Chem.MolFromSmarts(smarts)
+        if mol.HasSubstructMatch(substructure):
+            count += 1
+    return count
+
+def rule2_structural_features(mol):
+    features_count = 0
+    # Aromatic rings with halogens
+    aromatic_with_halogen = Chem.MolFromSmarts('c[F,Cl,Br,I]')
+    features_count += len(mol.GetSubstructMatches(aromatic_with_halogen))
+    # Multiple chiral centers
+    chiral_centers = Chem.FindMolChiralCenters(mol, includeUnassigned=True)
+    if len(chiral_centers) > 1:
+        features_count += 1
+    # Extended conjugation (using number of aromatic rings as a proxy)
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    if aromatic_rings > 2:
+        features_count += 1
+    return features_count
+
+
+def rule3_physical_chemical_properties(mol):
+    score = 0
+    # Large molecules (using molecular weight as a proxy)
+    mw = Descriptors.MolWt(mol)
+    if mw > 500:
+        score += 1
+    # Hydrophobicity (using logP as a proxy)
+    logP = Crippen.MolLogP(mol)
+    if logP > 5:
+        score += 1
+    # Highly charged structures (using total formal charge as a proxy)
+    total_charge = Chem.GetFormalCharge(mol)
+    if abs(total_charge) > 1:
+        score += 1
+    return score
+
+def rule4_structural_similarity(mol):
+    # Calculate fingerprints for the input molecule
+    fp_mol = AllChem.GetMorganFingerprint(mol, 2)
+
+def rule5_reactive_groups(mol):
+    try:
+        # Define substructures for reactive groups
+        aromatic_amine = Chem.MolFromSmarts("n1ccccc1")
+        epoxide = Chem.MolFromSmarts("C1OC1")
+        carbonyl = Chem.MolFromSmarts("C=O")
+        halogen = rdqueries.AtomNumEqualsQueryAtom(9) | rdqueries.AtomNumEqualsQueryAtom(17) | rdqueries.AtomNumEqualsQueryAtom(35) | rdqueries.AtomNumEqualsQueryAtom(53)
+
+        # Example of how you might use these substructures to find matches in 'mol'
+        # This part of the code is just illustrative and may need to be adapted based on actual requirements
+        num_aromatic_amines = len(mol.GetSubstructMatches(aromatic_amine))
+        num_epoxides = len(mol.GetSubstructMatches(epoxide))
+        num_carbonyls = len(mol.GetSubstructMatches(carbonyl))
+        num_halogens = len(mol.GetSubstructMatches(halogen))
+
+        # Sum up all matches to return a total count of reactive groups
+        total_reactive_groups = num_aromatic_amines + num_epoxides + num_carbonyls + num_halogens
+        return total_reactive_groups
+    except Exception as e:
+        # Since the function cannot raise errors, return a special error code, e.g., -1
+        return -1
+
+
+def rule6_flexibility_stereoisomers(mol):
+    # Calculate number of rotatable bonds
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)

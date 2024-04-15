@@ -1,0 +1,15 @@
+def count_heteroatoms(mol):
+    heteroatoms = ['N', 'O', 'S']  # List of heteroatoms
+    count = sum(atom.GetSymbol() in heteroatoms for atom in mol.GetAtoms())
+    return count
+
+def count_aromatic_rings(mol):
+    aromatic_rings = len([ring for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    return aromatic_rings
+
+def count_charged_species(mol):
+    charged_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetFormalCharge() != 0:
+            charged_count += 1
+    return charged_count

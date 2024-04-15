@@ -1,0 +1,40 @@
+def rule1_aromatic_toxic_groups(mol):
+    # Count aromatic amines
+    aromatic_amines = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetIsAromatic())
+
+def rule2_size_complexity(mol):
+    # Calculate molecular weight as a proxy for size
+    mol_weight = Descriptors.MolWt(mol)
+
+def rule3_properties(mol):
+    # Calculate solubility approximation (logS)
+    logS = Crippen.MolLogP(mol)
+
+def rule4_functional_groups(mol):
+    try:
+        # Define substructure queries for carbonyl, carboxylic acids, and metal coordination complexes
+        carbonyl_query = Chem.MolFromSmarts("C=O")
+        carboxylic_acid_query = Chem.MolFromSmarts("C(=O)O")
+        # Metal coordination (example with a generic metal M)
+        metal_coordination_query = Chem.MolFromSmarts("[M](~O)(~O)(~O)(~O)")
+
+        # Count matches in the molecule
+        carbonyl_count = len(mol.GetSubstructMatches(carbonyl_query))
+        carboxylic_acid_count = len(mol.GetSubstructMatches(carboxylic_acid_query))
+        metal_coordination_count = len(mol.GetSubstructMatches(metal_coordination_query))
+
+        # Example logic to return a number based on counts
+        return carbonyl_count + carboxylic_acid_count + metal_coordination_count
+    except:
+        # Return 0 in case of any error as per the requirement
+        return 0
+
+
+def rule5_toxicity_prediction(mol):
+    # Placeholder for actual in silico or in vitro prediction methods
+    # Here we use a simple molecular weight heuristic for demonstration
+    return 1 if Descriptors.MolWt(mol) > 500 else 0
+
+
+
+

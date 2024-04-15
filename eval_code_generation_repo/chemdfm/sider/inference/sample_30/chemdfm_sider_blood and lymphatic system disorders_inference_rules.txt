@@ -1,0 +1,71 @@
+def rule1_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetIsAromatic():  # Nitrogen in an aromatic ring
+            if any(neighbor.GetAtomicNum() == 6 for neighbor in atom.GetNeighbors()):  # Connected to Carbon
+                aromatic_amines += 1
+    return aromatic_amines
+
+def rule2_halogens(mol):
+    halogens_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [17, 35]:  # Chlorine (17) or Bromine (35)
+            halogens_count += 1
+    return halogens_count
+
+def rule3_aromatic_rings(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings
+
+def rule4_reactive_groups(mol):
+    reactive_groups = 0
+    # Check for epoxides (three-membered rings containing an oxygen)
+    for ring in mol.GetRingInfo().AtomRings():
+        if len(ring) == 3 and any(mol.GetAtomWithIdx(idx).GetAtomicNum() == 8 for idx in ring):
+            reactive_groups += 1
+    # Check for alkylating agents (example: sulfonate esters) and acrylamides
+    # This is a simplified check and may need more specific substructure searches
+    smarts_patterns = ['[SX2](=O)(=O)[O-]', '[NX3][CX3]=[CX3]']  # Sulfonate esters, Acrylamides
+    for pattern in smarts_patterns:
+        substructure = Chem.MolFromSmarts(pattern)
+        if mol.HasSubstructMatch(substructure):
+            reactive_groups += 1
+    return reactive_groups
+
+def rule5_polar_groups(mol):
+    polar_groups = 0
+    # Count hydroxyl, carboxyl, amino, and amide groups
+    smarts_patterns = ['[OX2H]', '[CX3](=O)[OX2H1]', '[NX3;H2,H1;!$(NC=O)]', '[NX3][CX3](=[OX1])[NX3]']  # Hydroxyl, Carboxyl, Amino, Amide
+    for pattern in smarts_patterns:
+        substructure = Chem.MolFromSmarts(pattern)
+        polar_groups += len(mol.GetSubstructMatches(substructure))
+    return polar_groups
+
+def rule6_molecular_weight_complexity(mol):
+    # Calculate molecular weight
+    mol_weight = Descriptors.MolWt(mol)
+    # Calculate topological polar surface area as a proxy for complexity
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    return mol_weight + tpsa
+
+def rule7_metallic_radioactive(mol):
+    # Define a set of metallic and radioactive elements (simplified example)
+    metallic_elements = {'Li', 'Na', 'K', 'Ca', 'Fe', 'Cu', 'Ag', 'Au', 'U'}
+    count_metallic = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in metallic_elements:
+            count_metallic += 1
+    return count_metallic
+
+def rule8_unsaturated_bonds(mol):
+    # Count double bonds
+    double_bond_count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            double_bond_count += 1
+    return double_bond_count
+
+def rule9_structural_mimics(mol):
+    # Count aromatic rings as a proxy for planar structures with multiple aromatic rings
+    aromatic_ring_count = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_ring_count

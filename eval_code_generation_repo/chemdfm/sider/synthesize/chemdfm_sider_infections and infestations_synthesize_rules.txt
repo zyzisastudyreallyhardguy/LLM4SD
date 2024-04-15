@@ -1,0 +1,195 @@
+def rule1_calculate_logp(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_calculate_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule4_calculate_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule5_calculate_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule6_calculate_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule7_calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_calculate_aliphatic_rings(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol)
+
+def rule9_calculate_saturated_rings(mol):
+    return rdMolDescriptors.CalcNumSaturatedRings(mol)
+
+def rule10_calculate_nitrogen_atoms(mol):
+    try:
+        # Initialize nitrogen count
+        nitrogen_count = 0
+        
+        # Iterate over all atoms in the molecule
+        for atom in mol.GetAtoms():
+            # Check if the atom is a nitrogen atom
+            if atom.GetSymbol() == 'N':
+                nitrogen_count += 1
+        
+        return nitrogen_count
+    except:
+        # In case of any error, return 0 (as the function cannot raise errors)
+        return 0
+
+
+def rule11_calculate_oxygen_atoms(mol):
+    # Initialize count of oxygen atoms
+    oxygen_count = 0
+
+    # Iterate over all atoms in the molecule
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 8:  # Atomic number 8 corresponds to oxygen
+            oxygen_count += 1
+
+    return oxygen_count
+
+
+
+
+def rule13_calculate_chlorine_atoms(mol):
+    try:
+        # Convert the SMILES string to an RDKit molecule object
+        rdkit_mol = Chem.MolFromSmiles(mol)
+        if rdkit_mol is None:
+            return 0  # Return 0 if the molecule could not be parsed
+
+        # Count the number of chlorine atoms
+        num_chlorine = sum(1 for atom in rdkit_mol.GetAtoms() if atom.GetSymbol() == 'Cl')
+        return num_chlorine
+    except:
+        return 0  # Return 0 in case of any exceptions
+
+
+
+
+def rule15_calculate_phosphorus_atoms(mol):
+    try:
+        # Ensure the input is a valid RDKit molecule object
+        if not isinstance(mol, Chem.rdchem.Mol):
+            return 0
+        
+        # Count phosphorus atoms by iterating over all atoms in the molecule
+        # and checking if the atomic number corresponds to phosphorus (atomic number 15)
+        num_phosphorus_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 15)
+        return num_phosphorus_atoms
+    except:
+        # In case of any error, return 0 (as per the requirement to not raise errors)
+        return 0
+
+
+def rule16_calculate_ring_systems(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule17_calculate_sp3_carbons(mol):
+    return rdMolDescriptors.CalcFractionCSP3(mol)
+
+def rule18_calculate_sp2_carbons(mol):
+    return rdMolDescriptors.CalcNumAliphaticCarbocycles(mol)
+
+def rule19_calculate_sp_carbons(mol):
+    return rdMolDescriptors.CalcNumAliphaticHeterocycles(mol)
+
+def rule20_calculate_pi_electrons(mol):
+    pi_electrons = 0
+    # Iterate over all bonds in the molecule
+    for bond in mol.GetBonds():
+        # Check if the bond is a double bond or an aromatic bond
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE or bond.GetBondType() == Chem.rdchem.BondType.AROMATIC:
+            # Each double or aromatic bond contributes two pi electrons
+            pi_electrons += 2
+    return pi_electrons
+
+
+def rule6_molar_refractivity(mol):
+    return Crippen.MolMR(mol)
+
+def rule7_tpsa(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule8_reactive_groups(mol):
+    try:
+        # Example groups: aldehydes, ketones, alcohols, amines
+        aldehyde = Chem.MolFromSmarts('C=O')  # General aldehyde/ketone
+        ketone = Chem.MolFromSmarts('CC(=O)C')  # Ketone specific
+        alcohol = Chem.MolFromSmarts('CO')  # General alcohol
+        amine = Chem.MolFromSmarts('CN')  # General amine
+
+        # Count occurrences of each group in the molecule
+        count_aldehyde = len(mol.GetSubstructMatches(aldehyde))
+        count_ketone = len(mol.GetSubstructMatches(ketone))
+        count_alcohol = len(mol.GetSubstructMatches(alcohol))
+        count_amine = len(mol.GetSubstructMatches(amine))
+
+        # Sum up all counts
+        total_count = count_aldehyde + count_ketone + count_alcohol + count_amine
+
+        return total_count
+    except Exception:
+        # In case of any error, return 0
+        return 0
+
+
+def rule9_aromatic_rings(mol):
+    return len(Chem.GetSymmSSSR(mol))
+
+def rule10_halogenated_compounds(mol):
+    chloro = Chem.MolFromSmarts('Cl')
+    bromo = Chem.MolFromSmarts('Br')
+    count = len(mol.GetSubstructMatches(chloro)) + len(mol.GetSubstructMatches(bromo))
+    return count
+
+def rule11_nitro_compounds(mol):
+    nitro = Chem.MolFromSmarts('N(=O)=O')
+    return len(mol.GetSubstructMatches(nitro))
+
+def rule12_amino_compounds(mol):
+    amino = Chem.MolFromSmarts('N')
+    return len(mol.GetSubstructMatches(amino))
+
+def rule13_carbonyl_compounds(mol):
+    carbonyl = Chem.MolFromSmarts('C=O')
+    return len(mol.GetSubstructMatches(carbonyl))
+
+def rule14_heteroatoms(mol):
+    heteroatoms = Chem.MolFromSmarts('[!#6]')
+    return len(mol.GetSubstructMatches(heteroatoms))
+
+def count_elements(mol, atomic_numbers=None):
+    if atomic_numbers is None:
+        atomic_numbers = []
+    return sum(atom.GetAtomicNum() in atomic_numbers for atom in mol.GetAtoms())
+
+
+def rule15_organic_solvents(mol):
+    solvents_smarts = ['CCO', 'O=CCO', 'CC#N', 'C1CCOC1']  # Example solvents: ethanol, acetone, acetonitrile, THF
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(smarts)) for smarts in solvents_smarts)
+
+def rule16_heavy_metals(mol):
+    heavy_metal_atomic_numbers = [22, 23, 24, 25, 26, 27, 28, 29, 30, 42, 47, 48, 50, 51, 52, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83]  # Example heavy metals
+    return count_elements(mol, heavy_metal_atomic_numbers)
+
+def rule17_radionuclides(mol):
+    radionuclide_atomic_numbers = [84, 86, 88, 90, 91, 92, 93, 94, 95, 96]  # Example radionuclides: Polonium, Radon, Radium, Uranium, etc.
+    return count_elements(mol, radionuclide_atomic_numbers)
+
+def rule18_edcs(mol):
+    edc_smarts = ['C(=O)O', 'c1ccc(cc1)C(F)(F)F', 'c1ccccc1Cl']  # Example EDCs: Phthalates, PFCs, PCBs
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(smarts)) for smarts in edc_smarts)
+
+def rule19_genotoxic(mol):
+    genotoxic_smarts = ['O=C1NC=NC2=C1C(=O)N(C(=O)N2)', 'c1ccccc1N=Nc2ccccc2']  # Example genotoxic compounds: Nitrosamines, Aromatic amines
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(smarts)) for smarts in genotoxic_smarts)
+
+def rule20_allergens(mol):
+    allergen_smarts = ['C=C', 'C#C', 'C(=O)O']  # Example allergens: Alkenes, Alkynes, Carboxylic acids
+    return sum(mol.HasSubstructMatch(Chem.MolFromSmarts(smarts)) for smarts in allergen_smarts)

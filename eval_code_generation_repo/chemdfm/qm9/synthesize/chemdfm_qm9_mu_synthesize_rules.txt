@@ -1,0 +1,109 @@
+def rule1_multiple_bonds(mol):
+    num_multiple_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.BondType.SINGLE)
+    return num_multiple_bonds
+
+def rule2_polar_bonds(mol):
+    polar_bond_types = {Chem.BondType.SINGLE, Chem.BondType.DOUBLE, Chem.BondType.TRIPLE}
+    num_polar_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() in polar_bond_types and bond.GetIsAromatic() == False)
+    return num_polar_bonds
+
+def rule3_uneven_electron_distribution(mol):
+    num_asymmetric_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetTotalDegree() != atom.GetTotalValence())
+    return num_asymmetric_atoms
+
+def rule4_more_polar_bonds(mol):
+    # Reusing rule2_polar_bonds function to count polar bonds
+    return rule2_polar_bonds(mol)
+
+def rule5_electronegative_atoms(mol):
+    electronegative_elements = {'F', 'O', 'N', 'Cl', 'Br', 'I'}
+    num_electronegative_atoms = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in electronegative_elements)
+    return num_electronegative_atoms
+
+def rule6_branches_dipole(mol):
+    return rdMolDescriptors.CalcNumAliphaticRings(mol) + rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_unsymmetrical_shape(mol):
+    return 1 if rdMolDescriptors.CalcNumRotatableBonds(mol) > 2 else 0
+
+
+
+def rule9_lone_pairs(mol):
+    lone_pairs = 0
+    for atom in mol.GetAtoms():
+        lone_pairs += atom.GetTotalNumHs(includeNeighbors=True)
+    return lone_pairs
+
+def rule10_delocalized_electrons(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule11_multiple_lone_pairs(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetTotalNumHs(includeNeighbors=True) > 1:
+            count += 1
+    return count
+
+def rule12_straight_bonds(mol):
+    linear_count = 0
+    conf = mol.GetConformer()
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdchem.BondType.DOUBLE:
+            start_atom_idx = bond.GetBeginAtomIdx()
+            end_atom_idx = bond.GetEndAtomIdx()
+            angle = rdMolDescriptors.GetAngleDeg(conf, start_atom_idx, end_atom_idx)
+            if angle > 170:
+                linear_count += 1
+    return linear_count
+
+def rule13_polar_opposite_ends(mol):
+    polar_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() in [7, 8, 16]:  # Common polar atoms: N, O, S
+            polar_count += 1
+    return polar_count
+
+def rule14_polar_straight_line(mol):
+    polar_linear_count = 0
+    conf = mol.GetConformer()
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdchem.BondType.DOUBLE and bond.GetBeginAtom().GetAtomicNum() in [7, 8, 16] and bond.GetEndAtom().GetAtomicNum() in [7, 8, 16]:
+            start_atom_idx = bond.GetBeginAtomIdx()
+            end_atom_idx = bond.GetEndAtomIdx()
+            angle = rdMolDescriptors.GetAngleDeg(conf, start_atom_idx, end_atom_idx)
+            if angle > 170:
+                polar_linear_count += 1
+    return polar_linear_count
+
+def rule15_dipole_moment(mol):
+    # Using RDKit to estimate the dipole moment based on partial charges (Gasteiger Charges)
+    AllChem.ComputeGasteigerCharges(mol)
+    dipole_moment = 0.0
+    conf = mol.GetConformer()
+    for atom in mol.GetAtoms():
+        charge = float(atom.GetProp('_GasteigerCharge'))
+        pos = conf.GetAtomPosition(atom.GetIdx())
+        dipole_moment += charge * pos.Length()
+    return dipole_moment
+
+def rule16_molecular_size(mol):
+    # Using molecular weight as a proxy for size
+    return Descriptors.MolWt(mol)
+
+def rule17_polarisability(mol):
+    # Estimating polarisability using the number of heavy atoms as a simple proxy
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)
+
+def rule18_symmetry(mol):
+    # Using RDKit's symmetry number descriptor
+    return Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule19_intermolecular_forces(mol):
+    # Estimating intermolecular forces by calculating the number of hydrogen bond donors and acceptors
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+    hba = rdMolDescriptors.CalcNumHBA(mol)
+    return hbd + hba
+
+def rule20_boiling_point(mol):
+    # Estimating boiling point using the Labute ASA descriptor as a simple proxy
+    return Descriptors.LabuteASA(mol)

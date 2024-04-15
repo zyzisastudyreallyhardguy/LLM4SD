@@ -1,0 +1,63 @@
+def rule1_similarity_to_thalidomide(mol):
+    # For demonstration, we assume a fingerprint comparison with a predefined thalidomide fingerprint
+    thalidomide_smiles = "O=C1N(C(=O)C2=C1C=CC=C2)C3=CC=CC=C3"
+    thalidomide_mol = Chem.MolFromSmiles(thalidomide_smiles)
+    thalidomide_fp = Chem.RDKFingerprint(thalidomide_mol)
+
+def rule2_reactive_groups(mol):
+    # Example groups: aldehydes, epoxides
+    aldehyde_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("[CX3H1](=O)")))
+    epoxide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C1OC1")))
+    return aldehyde_count + epoxide_count
+
+def rule3_charged_or_polar_groups(mol):
+    # Counting groups such as carboxylates, amines, phosphates
+    carboxylate_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("C(=O)[O-]")))
+    amine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("N[H2]")))
+    phosphate_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts("P(=O)(O)(O)O")))
+    return carboxylate_count + amine_count + phosphate_count
+
+def rule4_aromatic_benzene(mol):
+    aromatic_rings = 0
+    ssr = Chem.GetSymmSSSR(mol)  # Get the smallest set of smallest rings
+    for ring in ssr:
+        if mol.GetRingInfo().IsAromatic(ring):
+            # Check if the ring contains exactly 6 members which is typical for benzene
+            if len(ring) == 6:
+                aromatic_rings += 1
+    return aromatic_rings
+
+def rule5_chlorine_count(mol):
+    chlorine_count = 0
+    atomic_numbers = [atom.GetAtomicNum() for atom in mol.GetAtoms()]
+    chlorine_count = atomic_numbers.count(17)  # Chlorine's atomic number is 17
+    return chlorine_count
+
+def rule6_molecular_weight(mol):
+    mol_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    return mol_weight
+
+def rule7_heavy_metals(mol):
+    heavy_metals = ['Pb', 'Hg', 'As']
+    count = sum(atom.GetSymbol() in heavy_metals for atom in mol.GetAtoms())
+    return count
+
+def rule8_aromatic_rings(mol):
+    aromatic_rings = len(Chem.GetSymmSSSR(mol))
+    return aromatic_rings
+
+def rule9_positively_charged(mol):
+    positive_charge = sum(atom.GetFormalCharge() > 0 for atom in mol.GetAtoms())
+    return positive_charge
+
+def rule10_structural_alerts(mol):
+    alerts = 0
+    substructures = {
+        'aromatic_amines': Chem.MolFromSmarts('n1ccccc1'),
+        'ketones': Chem.MolFromSmarts('[CX3](=O)[#6]'),
+        'nitro_compounds': Chem.MolFromSmarts('[NX3](=O)[O-]')
+    }
+    for key, smarts in substructures.items():
+        if mol.HasSubstructMatch(smarts):
+            alerts += 1
+    return alerts

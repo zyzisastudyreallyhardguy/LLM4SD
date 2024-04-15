@@ -1,0 +1,95 @@
+def rule1_aromatic_amine_groups(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAromaticAtoms():
+        if atom.GetAtomicNum() == 7:  # Nitrogen
+            if any(neighbor.GetIsAromatic() for neighbor in atom.GetNeighbors()):
+                aromatic_amines += 1
+    return aromatic_amines
+
+def rule2_aromatic_hydrophobic_groups(mol):
+    aromatic_count = len(mol.GetAromaticAtoms())
+    hydrophobic_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [6, 16])  # Carbon and Sulfur
+    return aromatic_count + hydrophobic_count
+
+def rule3_hydroxy_benzene_halogen(mol):
+    hydroxy_benzene = 0
+    halogens = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 8 and atom.GetNeighbors()[0].GetIsAromatic():  # Oxygen in hydroxy group
+            hydroxy_benzene += 1
+        if atom.GetAtomicNum() in [9, 17, 35, 53]:  # Fluorine, Chlorine, Bromine, Iodine
+            halogens += 1
+    return hydroxy_benzene + halogens
+
+def rule4_positively_charged_amino(mol):
+    positively_charged_amino = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0:  # Positively charged Nitrogen
+            if any(neighbor.GetIsAromatic() for neighbor in atom.GetNeighbors()):
+                positively_charged_amino += 1
+    return positively_charged_amino
+
+def rule5_bulky_groups(mol):
+    # Count aromatic rings
+    aromatic_rings = len(mol.GetRingInfo().AtomRings())
+    # Check for long alkyl chains (more than 6 carbons)
+    long_alkyl = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and len(atom.GetNeighbors()) == 1)
+    return aromatic_rings + long_alkyl
+
+
+
+def rule7_aromatic_heteroaromatic(mol):
+    # Define SMARTS patterns for furans, pyridines, and biphenyl groups
+    furans = Chem.MolFromSmarts('c1ccoc1')
+    pyridines = Chem.MolFromSmarts('n1ccccc1')
+    biphenyls = Chem.MolFromSmarts('c1ccccc1-c2ccccc2')
+    # Count matches
+    furan_count = len(mol.GetSubstructMatches(furans))
+    pyridine_count = len(mol.GetSubstructMatches(pyridines))
+    biphenyl_count = len(mol.GetSubstructMatches(biphenyls))
+    return furan_count + pyridine_count + biphenyl_count
+
+def rule8_aromatic_amides_bulky(mol):
+    # Define SMARTS pattern for aromatic amides
+    aromatic_amides = Chem.MolFromSmarts('c1(ccccc1)C(=O)N')
+    # Check for bulky groups like isopropyl or tert-butyl
+    isopropyl = Chem.MolFromSmarts('CC(C)N')
+    tert_butyl = Chem.MolFromSmarts('C(C)(C)(C)N')
+    # Count matches
+    aromatic_amide_count = len(mol.GetSubstructMatches(aromatic_amides))
+    isopropyl_count = len(mol.GetSubstructMatches(isopropyl))
+    tert_butyl_count = len(mol.GetSubstructMatches(tert_butyl))
+    return aromatic_amide_count + isopropyl_count + tert_butyl_count
+
+def rule9_aromatic_amino_acids(mol):
+    smarts_patterns = {
+        'Phe': 'c1ccc(cc1)CC(C(=O)O)N',
+        'Tyr': 'c1ccc(cc1)C(C(C(=O)O)N)O',
+        'Trp': 'c1ccc2c(c1)c(cn2)CC(C(=O)O)N'
+    }
+    count = 0
+    for smarts in smarts_patterns.values():
+        substructure = Chem.MolFromSmarts(smarts)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule10_fused_bicyclic_structure(mol):
+    smarts = '[R2]1[R2][R1][R1][R1][R1]1[R2][R2][NX3H2]'
+    substructure = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(substructure))
+
+def rule11_tertiary_amino_group(mol):
+    smarts = '[NX3](C)(C)C'
+    substructure = Chem.MolFromSmarts(smarts)
+    return len(mol.GetSubstructMatches(substructure))
+
+def rule12_halogenated_groups(mol):
+    smarts_patterns = {
+        'HalogenatedAnilines': '[NX3]c1ccc(cc1)[F,Cl,Br,I]',
+        'Thiophenes': 'c1ccsc1'
+    }
+    count = 0
+    for smarts in smarts_patterns.values():
+        substructure = Chem.MolFromSmarts(smarts)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count

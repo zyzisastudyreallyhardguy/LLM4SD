@@ -1,0 +1,50 @@
+def rule1_halogens_chlorine(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']  # List of halogen atom symbols
+    count = sum(mol.GetAtomWithIdx(i).GetSymbol() in halogens for i in range(mol.GetNumAtoms()))
+    return count  # Return the count of halogen atoms
+
+def rule2_aromatic_rings(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring))
+    return aromatic_count  # Return the count of aromatic rings
+
+def rule3_alkene_alkyne(mol):
+    alkene_count = 0
+    alkyne_count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and (bond.GetBeginAtom().GetHybridization() == Chem.rdchem.HybridizationType.SP2 or bond.GetEndAtom().GetHybridization() == Chem.rdchem.HybridizationType.SP2):
+            alkene_count += 1
+        elif bond.GetBondType() == Chem.rdchem.BondType.TRIPLE:
+            alkyne_count += 1
+    return alkene_count + alkyne_count  # Return the count of alkene and alkyne bonds
+
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule_unsaturation(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() in (Chem.rdchem.BondType.DOUBLE, Chem.rdchem.BondType.TRIPLE))
+
+def rule_polar_groups(mol):
+    polar_groups = ['O', 'N']  # Oxygen and Nitrogen typically indicate polar groups
+    return sum(atom.GetAtomicNum() in [8, 7] for atom in mol.GetAtoms())
+
+def rule_electron_withdrawing_groups(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 9 and atom.GetNeighbors():  # Fluorine
+            if any(n.GetAtomicNum() == 6 for n in atom.GetNeighbors()):  # Carbon neighbor
+                count += 1
+        if atom.GetAtomicNum() == 6:  # Carbon
+            if any(n.GetAtomicNum() == 8 for n in atom.GetNeighbors()):  # Oxygen neighbor
+                count += 1
+    return count
+
+def rule_hydrocarbon_chain_length(mol):
+    carbons = [atom for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6]
+    return len(carbons)
+
+def rule_hydrocarbon_branching(mol):
+    branching_points = sum(1 for atom in mol.GetAtoms() if atom.GetDegree() > 2)
+    return branching_points

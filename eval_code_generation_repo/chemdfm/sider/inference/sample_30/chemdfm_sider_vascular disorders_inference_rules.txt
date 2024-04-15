@@ -1,0 +1,96 @@
+def rule1_heavy_metal_cores(mol):
+    heavy_metals = ['[Pt]', '[Gd]']
+    count = 0
+    for metal in heavy_metals:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(metal)))
+    return count
+
+def rule2_aromatic_amino_acids(mol):
+    aromatic_aa_smarts = ['c1ccc2c(c1)c(c[nH]2)', 'c1cc(ccc1O)C(=O)O']  # Tryptophan, Tyrosine
+    count = 0
+    for aa in aromatic_aa_smarts:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(aa)))
+    return count
+
+def rule3_long_hydrocarbon_chains(mol):
+    # Define a SMARTS pattern for long hydrocarbon chains (e.g., chains with more than 6 carbons)
+    long_chain_smarts = 'CCCCCCC'
+    count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(long_chain_smarts)))
+    return count
+
+def rule4_reactive_functional_groups(mol):
+    reactive_groups_smarts = ['CC(=O)OCl', 'C1OC1', 'C(=O)Cl']  # Chloroacetate, Epoxide, Acid halide
+    count = 0
+    for group in reactive_groups_smarts:
+        count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(group)))
+    return count
+
+def rule5_large_complex_structures(mol):
+    # Using molecular weight and rotatable bonds as proxies for complexity
+    mw = Descriptors.MolWt(mol)
+    rotatable_bonds = Lipinski.NumRotatableBonds(mol)
+    # Define thresholds arbitrarily for example: MW > 500 and more than 10 rotatable bonds
+    if mw > 500 and rotatable_bonds > 10:
+        return 1
+    else:
+        return 0
+
+def rule6_planar_aromatic_and_flexible_chains(mol):
+    aromatic_rings = Lipinski.NumAromaticRings(mol)
+    rotatable_bonds = Descriptors.NumRotatableBonds(mol)
+    return aromatic_rings + rotatable_bonds
+
+def rule7_organic_cationic_and_guanidinium(mol):
+    cationic_count = sum([1 for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0])
+    aromatic_rings = Lipinski.NumAromaticRings(mol)
+    guanidinium_count = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and 'C(=N)(N)N' in Chem.MolToSmiles(atom.GetOwningMol())])
+    return cationic_count + aromatic_rings + guanidinium_count
+
+def rule8_double_bonds_and_large_aromatic_systems(mol):
+    double_bonds = sum([1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE and 'aromatic' in bond.GetSmarts()])
+    large_aromatic_systems = 1 if Lipinski.NumAromaticRings(mol) > 6 else 0
+    return double_bonds + large_aromatic_systems
+
+def rule9_aromatic_with_electronegative_substituents(mol):
+    electronegative_count = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53] and mol.GetAtomWithIdx(atom.GetIdx()).GetIsAromatic()])
+    return electronegative_count
+
+def rule10_aromatic_amines_phosphates_peroxides(mol):
+    aromatic_amines = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetIsAromatic()])
+    organic_phosphates = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 15 and 'P(=O)(O)(O)' in Chem.MolToSmiles(atom.GetOwningMol())])
+    organic_peroxides = sum([1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and 'O-O' in Chem.MolToSmiles(atom.GetOwningMol())])
+    return aromatic_amines + organic_phosphates + organic_peroxides
+
+def rule11_heavy_metals(mol):
+    heavy_metals = ['Pb', 'Hg', 'As']
+    count = sum(atom.GetSymbol() in heavy_metals for atom in mol.GetAtoms())
+    return count
+
+def rule12_functional_groups(mol):
+    smarts_patterns = {
+        'epoxides': '[O;R1][C;R1][C;R1]',
+        'alkynes': 'C#C',
+        'carbonyls': '[CX3]=[OX1]',
+        'aromatic_double_bonds': 'c=c'
+    }
+    total_count = 0
+    for pattern in smarts_patterns.values():
+        total_count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(pattern)))
+    return total_count
+
+def rule13_chiral_centers(mol):
+    chiral_centers = sum(1 for atom in mol.GetAtoms() if atom.GetChiralTag() != Chem.ChiralType.CHI_UNSPECIFIED)
+    return chiral_centers
+
+def rule14_physicochemical_properties(mol):
+    # Example properties: logP (lipophilicity), TPSA (polar surface area), and molecular weight
+    logP = Crippen.MolLogP(mol)
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    mw = Descriptors.MolWt(mol)
+    # This is a simplification: you might want to return these values separately or use them in a formula
+    return logP, tpsa, mw
+
+def rule15_halogen_presence(mol):
+    halogens = ['Cl', 'Br']
+    count = sum(atom.GetSymbol() in halogens for atom in mol.GetAtoms())
+    return count

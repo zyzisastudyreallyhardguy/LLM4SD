@@ -1,0 +1,151 @@
+def rule1_detect_alkylating_agents(mol):
+    # Example: Alkyl halides as potential alkylating agents
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 17 or atom.GetAtomicNum() == 35)  # Chlorine or Bromine
+
+def rule1_detect_metal_chelating_agents(mol):
+    # Example: Check for common chelating groups like carboxylates
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and len(atom.GetNeighbors()) > 1)  # Oxygen with more than one neighbor
+
+def rule1_detect_free_radical_generators(mol):
+    # Example: Peroxide groups as radical generators
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE and bond.GetBeginAtom().GetAtomicNum() == 8 and bond.GetEndAtom().GetAtomicNum() == 8)
+
+def rule2_neurotransmitter_analogues(mol):
+    try:
+        # Example: Check for structures similar to serotonin or dopamine
+        serotonin_smiles = "C1=CC2=C(C=C1O)C(=CN2)CCN"
+        dopamine_smiles = "C1=CC(=C(C=C1CCN)O)O"
+        serotonin = Chem.MolFromSmiles(serotonin_smiles)
+        dopamine = Chem.MolFromSmiles(dopamine_smiles)
+
+        # Convert input molecule SMILES to RDKit molecule object
+        input_mol = Chem.MolFromSmiles(mol)
+        if input_mol is None:
+            return 0  # Return 0 if the molecule is invalid
+
+        # Generate fingerprints for comparison
+        fp_serotonin = AllChem.GetMorganFingerprint(serotonin, 2)
+        fp_dopamine = AllChem.GetMorganFingerprint(dopamine, 2)
+        fp_input = AllChem.GetMorganFingerprint(input_mol, 2)
+
+        # Calculate similarity scores
+        similarity_to_serotonin = DataStructs.TanimotoSimilarity(fp_serotonin, fp_input)
+        similarity_to_dopamine = DataStructs.TanimotoSimilarity(fp_dopamine, fp_input)
+
+        # Define a threshold for considering a molecule as similar
+        threshold = 0.7
+
+        # Check if the input molecule is similar to either serotonin or dopamine
+        if similarity_to_serotonin >= threshold or similarity_to_dopamine >= threshold:
+            return 1  # Return 1 if similar
+        else:
+            return 0  # Return 0 if not similar
+    except Exception as e:
+        return 0  # Return 0 in case of any error
+
+
+
+
+def rule4_organophosphate_fluorine(mol):
+    # Count organophosphate groups and fluorine atoms
+    organophosphate_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 15 and any(n.GetAtomicNum() == 8 for n in atom.GetNeighbors()))  # Phosphorus atom bonded to Oxygen
+    fluorine_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 9)  # Fluorine atoms
+    return organophosphate_count + fluorine_count
+
+def rule5_reactive_groups(mol):
+    # Define SMARTS patterns for different functional groups
+    ketone_smarts = "[#6][CX3](=O)[#6]"  # Carbon double bonded to an oxygen and single bonded to two other carbons
+    aldehyde_smarts = "[CX3H1](=O)[#6]"  # Carbon double bonded to an oxygen and single bonded to a hydrogen and a carbon
+    alcohol_smarts = "[OX2H]"  # Oxygen single bonded to a carbon and a hydrogen (hydroxyl group)
+    carboxylic_acid_smarts = "C(=O)[OH]"  # Carboxylic acid group
+
+    # Create molecule patterns from SMARTS
+    ketone_pattern = Chem.MolFromSmarts(ketone_smarts)
+    aldehyde_pattern = Chem.MolFromSmarts(aldehyde_smarts)
+    alcohol_pattern = Chem.MolFromSmarts(alcohol_smarts)
+    carboxylic_acid_pattern = Chem.MolFromSmarts(carboxylic_acid_smarts)
+
+    # Count occurrences of each functional group
+    ketone_count = len(mol.GetSubstructMatches(ketone_pattern))
+    aldehyde_count = len(mol.GetSubstructMatches(aldehyde_pattern))
+    alcohol_count = len(mol.GetSubstructMatches(alcohol_pattern))
+    carboxylic_acid_count = len(mol.GetSubstructMatches(carboxylic_acid_pattern))
+
+    # Return the sum of all counts
+    return ketone_count + aldehyde_count + alcohol_count + carboxylic_acid_count
+
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule6_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE)
+
+def rule6_charged_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() != 0)
+
+def rule7_halogen_atoms(mol):
+    halogens = {'F', 'Cl', 'Br', 'I', 'At'}
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+
+def rule7_long_alkyl_chains(mol, min_length=6):
+    alkyl_chains = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'C':
+            neighbors = atom.GetNeighbors()
+            if all(neighbor.GetSymbol() == 'C' for neighbor in neighbors):
+                if len(neighbors) >= min_length:
+                    alkyl_chains += 1
+    return alkyl_chains
+
+def rule8_planar_ring_systems(mol):
+    return sum(1 for ring in mol.GetRingInfo().AtomRings() if len(ring) > 5)
+
+def rule8_conjugated_systems(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetIsConjugated())
+
+def rule8_aromatic_amines_amides(mol):
+    aromatic_amines = 0
+    aromatic_amides = 0
+
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetIsAromatic():
+            # Check if the nitrogen is part of an amine
+            if any(n.GetSymbol() == 'C' and n.GetIsAromatic() for n in atom.GetNeighbors()):
+                aromatic_amines += 1
+            # Check if the nitrogen is part of an amide
+            if any(n.GetSymbol() == 'C' and any(nn.GetSymbol() == 'O' for nn in n.GetNeighbors()) for n in atom.GetNeighbors()):
+                aromatic_amides += 1
+
+    # Assuming the function should return the total count of aromatic amines and amides
+    return aromatic_amines + aromatic_amides
+
+
+def rule9_solubility(mol):
+    logS = Descriptors.MolLogP(mol)  # Proxy for solubility
+    return logS
+
+def rule9_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule9_molecular_size_shape(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def rule10_metal_ions(mol):
+    metals = ['Li', 'Na', 'K', 'Ca', 'Mg', 'Fe', 'Cu', 'Zn', 'Ag', 'Au']
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in metals)
+
+def rule10_aromatic_ethers(mol):
+    aromatic_ethers = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.BondType.AROMATIC and 'O' in [bond.GetBeginAtom().GetSymbol(), bond.GetEndAtom().GetSymbol()]:
+            aromatic_ethers += 1
+    return aromatic_ethers
+
+def rule10_organic_acids(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and any(neighbor.GetSymbol() == 'O' and neighbor.GetFormalCharge() == -1 for neighbor in atom.GetNeighbors()))

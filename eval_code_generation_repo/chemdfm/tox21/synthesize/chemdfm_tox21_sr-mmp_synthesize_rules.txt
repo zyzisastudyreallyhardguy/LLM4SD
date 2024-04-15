@@ -1,0 +1,79 @@
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_logP(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]  # Returns logP value
+
+def calculate_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def calculate_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def calculate_formal_charge(mol):
+    return Chem.GetFormalCharge(mol)
+
+def rule7_chiral_centers(mol):
+    chiral_centers = sum(1 for atom in mol.GetAtoms() if atom.GetChiralTag() != Chem.rdchem.ChiralType.CHI_UNSPECIFIED)
+    return chiral_centers
+
+def rule8_conjugated_double_bonds(mol):
+    conjugated_double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetIsConjugated() and bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    return conjugated_double_bonds
+
+def rule9_halogens(mol):
+    halogens = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53, 85])  # F, Cl, Br, I, At
+    return halogens
+
+def rule10_lone_pairs(mol):
+    lone_pairs = sum((atom.GetAtomicNum() - atom.GetTotalDegree() - atom.GetFormalCharge()) // 2 for atom in mol.GetAtoms())
+    return lone_pairs
+
+def rule11_rotatable_bonds(mol):
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return rotatable_bonds
+
+def rule12_carbonyl_groups(mol):
+    carbonyl_groups = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and 
+                          {bond.GetBeginAtom().GetAtomicNum(), bond.GetEndAtom().GetAtomicNum()} == {6, 8})
+    return carbonyl_groups
+
+def rule13_amino_groups(mol):
+    amino_groups = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and 
+                       len([nbr for nbr in atom.GetNeighbors() if nbr.GetAtomicNum() == 1]) >= 2)
+    return amino_groups
+
+def rule14_thiol_groups(mol):
+    thiol_groups = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16 and 
+                       len([nbr for nbr in atom.GetNeighbors() if nbr.GetAtomicNum() == 1]) >= 1)
+    return thiol_groups
+
+def rule15_carboxylic_acid_count(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule16_alcohol_count(mol):
+    pattern = Chem.MolFromSmarts('[OH]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule17_ether_count(mol):
+    pattern = Chem.MolFromSmarts('O([R0][R0])')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule18_ester_count(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O[R0]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule19_ketone_count(mol):
+    pattern = Chem.MolFromSmarts('C(=O)[R0][R0]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule20_aldehyde_count(mol):
+    pattern = Chem.MolFromSmarts('C(=O)[H]')
+    return len(mol.GetSubstructMatches(pattern))

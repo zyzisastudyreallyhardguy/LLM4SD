@@ -1,0 +1,64 @@
+def count_atoms_with_property(mol, atomic_numbers=None):
+    if atomic_numbers is None:
+        atomic_numbers = []  # Default to an empty list if no atomic numbers are provided
+    return sum(atom.GetAtomicNum() in atomic_numbers for atom in mol.GetAtoms())
+
+
+
+
+def rule1_aromatic_strontium_amine_chlorinated(mol):
+    # Strontium ions (Sr, atomic number 38)
+    strontium_count = count_atoms_with_property(mol, [38])
+
+def rule2_halogen_carbonyl_nitro(mol):
+    # Halogens (F, Cl, Br, I atomic numbers: 9, 17, 35, 53)
+    halogen_count = count_atoms_with_property(mol, [9, 17, 35, 53])
+
+def rule3_estrogenic_activity(mol):
+    # Aromatic rings
+    aromatic_count = rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule4_heavy_metals(mol):
+    heavy_metals = ['Cd', 'Hg', 'Pb']  # Example heavy metals
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in heavy_metals:
+            return 1
+    return 0
+
+def rule4_charged_nitrogen_heterocycles(mol):
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetFormalCharge() > 0:
+            if any(ring for ring in Chem.GetSymmSSSR(mol) if atom.GetIdx() in ring):
+                return 1
+    return 0
+
+def rule4_sulfonamide_groups(mol):
+    patt = Chem.MolFromSmarts('S(=O)(=O)N')  # SMARTS pattern for sulfonamide group
+    return len(mol.GetSubstructMatches(patt))
+
+def rule5_bulky_lipophilic(mol):
+    molecular_weight = Descriptors.MolWt(mol)
+    logP = Descriptors.MolLogP(mol)
+    if molecular_weight > 500 and logP > 5:  # Thresholds for bulkiness and lipophilicity
+        return 1
+    return 0
+
+def rule6_benzoyl_trisubstituted_imidazole(mol):
+    patt = Chem.MolFromSmarts('c1(c(n(n1)C(=O)c2ccccc2)C)C')  # SMARTS for benzoyl group attached to trisubstituted imidazole
+    return len(mol.GetSubstructMatches(patt))
+
+def rule6_heavy_atoms(mol):
+    heavy_atoms = ['Si', 'P', 'S', 'Cl', 'Br', 'I']  # Example heavy atoms
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in heavy_atoms:
+            count += 1
+    return count
+
+def rule6_nitrogen_containing_groups(mol):
+    nitrogen_groups = ['N']  # Example nitrogen-containing groups
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in nitrogen_groups:
+            count += 1
+    return count

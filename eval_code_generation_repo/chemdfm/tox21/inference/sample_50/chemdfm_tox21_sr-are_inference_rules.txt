@@ -1,0 +1,65 @@
+def rule1_aromatic_amines_or_heterocycles(mol):
+    aromatic_amines = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetIsAromatic())
+    aromatic_heterocycles = sum(1 for ring in mol.GetRingInfo().AtomRings() if any(mol.GetAtomWithIdx(idx).GetAtomicNum() == 7 for idx in ring))
+    return aromatic_amines + aromatic_heterocycles
+
+def rule2_functional_groups(mol):
+    smarts_imine = '[CX3]=[NX2]'  # SMARTS pattern for imine
+    smarts_acylcholine = '[CX3]OC(=O)CC'  # SMARTS pattern for acylcholine
+    imine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_imine)))
+    acylcholine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_acylcholine)))
+    return imine_count + acylcholine_count
+
+def rule3_aromatic_hydrocarbons(mol):
+    benzene_smarts = 'c1ccccc1'
+    toluene_smarts = 'c1ccccc1C'
+    benzene_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(benzene_smarts)))
+    toluene_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(toluene_smarts)))
+    return benzene_count + toluene_count
+
+def rule4_toxic_groups(mol):
+    halogens = sum(atom.GetAtomicNum() in [9, 17, 35, 53, 85] for atom in mol.GetAtoms())  # F, Cl, Br, I, At
+    heavy_metals = sum(atom.GetAtomicNum() in [80, 82, 83] for atom in mol.GetAtoms())  # Hg, Pb, Bi
+    peroxides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[O-O]')))
+    return halogens + heavy_metals + peroxides
+
+def rule5_reactive_or_lipophilic(mol):
+    # Check for free radicals or carbenes (approximated by the presence of unpaired electrons or divalent carbon)
+    num_radicals = Descriptors.NumRadicalElectrons(mol)
+    # Calculate lipophilicity (logP)
+    logP = Descriptors.MolLogP(mol)
+    # High lipophilicity threshold (commonly logP > 5 is considered high)
+    high_lipophilicity = 1 if logP > 5 else 0
+    # Summing features indicating potential toxicity
+    return num_radicals + high_lipophilicity
+
+def rule6_strong_binding(mol):
+    try:
+        # Calculate lipophilicity
+        logP = Descriptors.MolLogP(mol)
+        return logP
+    except Exception:
+        # In case of any error, return a default number, e.g., 0
+        return 0
+
+
+def rule7_aromatic_toxicity(mol):
+    try:
+        # Ensure the input is a valid RDKit molecule object
+        if not isinstance(mol, Chem.rdchem.Mol):
+            return 0  # Return 0 if the input is not a valid molecule object
+
+        # Count aromatic rings
+        aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+        return aromatic_rings
+    except Exception:
+        return 0  # Return 0 in case of any error
+
+
+def rule8_complexity_and_heavy_atoms(mol):
+    # Count heavy atoms
+    heavy_atoms = rdMolDescriptors.CalcNumHeavyAtoms(mol)
+    # Check for long chains or complex systems
+    long_chains = 1 if heavy_atoms > 20 else 0  # Assuming long chains if more than 20 heavy atoms
+    # More than five heavy atoms and complex structure
+    return 1 if heavy_atoms > 5 and long_chains else 0

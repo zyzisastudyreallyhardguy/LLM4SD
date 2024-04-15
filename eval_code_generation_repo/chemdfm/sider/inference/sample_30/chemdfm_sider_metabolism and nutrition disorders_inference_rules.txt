@@ -1,0 +1,86 @@
+def rule1_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule1_double_bonds(mol):
+    aliphatic_double_bonds = 0
+    aromatic_double_bonds = 0
+
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+            if bond.GetIsAromatic():
+                aromatic_double_bonds += 1
+            elif not bond.GetIsAromatic():
+                aliphatic_double_bonds += 1
+
+    return aliphatic_double_bonds + aromatic_double_bonds
+
+
+def rule1_electrophilic_groups(mol):
+    # Counting specific electrophilic groups: aldehydes, ketones, acids
+    aldehyde_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')))
+    ketone_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[#6]')))
+    acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]')))
+    return aldehyde_count + ketone_count + acid_count
+
+def rule2_stereocenters(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule2_chiral_centers(mol):
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=False))
+
+def rule3_reactive_groups(mol):
+    # Ensure mol is an RDKit molecule object
+    if not isinstance(mol, Chem.Mol):
+        mol = Chem.MolFromSmiles(mol)
+
+    # Count epoxides
+    epoxide_smarts = 'C1OC1'
+    epoxide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(epoxide_smarts)))
+
+    # Count halogens (F, Cl, Br, I)
+    halogen_smarts = '[F,Cl,Br,I]'
+    halogen_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(halogen_smarts)))
+
+    # Count aldehydes
+    aldehyde_smarts = '[CX3H1](=O)[#6]'
+    aldehyde_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(aldehyde_smarts)))
+
+    # Count ketones
+    ketone_smarts = '[#6][CX3](=O)[#6]'
+    ketone_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(ketone_smarts)))
+
+    # Count carboxylic acids
+    acid_smarts = 'C(=O)O'
+    acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(acid_smarts)))
+
+    # Sum of all reactive groups
+    total_count = epoxide_count + halogen_count + aldehyde_count + ketone_count + acid_count
+
+    return total_count
+
+
+def rule4_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule4_rotatable_bonds(mol):
+    return Descriptors.NumRotatableBonds(mol)
+
+def rule5_structural_similarity(mol, known_toxicant_smiles="CCO"):
+    try:
+        known_toxicant = Chem.MolFromSmiles(known_toxicant_smiles)
+        if known_toxicant is None:
+            return 0  # Return 0 if the known toxicant SMILES is invalid
+
+        fp_toxicant = AllChem.GetMorganFingerprint(known_toxicant, 2)
+        fp_mol = AllChem.GetMorganFingerprint(mol, 2)
+        similarity = DataStructs.TanimotoSimilarity(fp_toxicant, fp_mol)
+        return similarity
+    except Exception:
+        return 0  # Return 0 in case of any other exceptions
+
+
+def rule6_reactive_groups(mol):
+    # Example reactive groups: aldehydes, epoxides, acid chlorides
+    aldehyde = Chem.MolFromSmarts('C=O')
+    epoxide = Chem.MolFromSmarts('C1OC1')
+    acid_chloride = Chem.MolFromSmarts('C(=O)Cl')

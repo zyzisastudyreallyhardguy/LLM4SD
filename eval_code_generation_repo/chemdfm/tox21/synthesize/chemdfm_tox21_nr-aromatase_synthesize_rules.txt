@@ -1,0 +1,90 @@
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def calculate_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def calculate_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_molecular_flexibility(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule8_functional_groups(mol):
+    # Example: Counting carboxyl groups as a simple case
+    patt = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule9_chiral_centers(mol):
+    chiral_centers = Chem.FindMolChiralCenters(mol, includeUnassigned=True)
+    return len(chiral_centers)
+
+def rule10_reactive_groups(mol):
+    # Example: Counting nitro groups
+    patt = Chem.MolFromSmarts('[N+](=O)[O-]')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule11_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule12_pKa(mol):
+    # Placeholder: RDKit does not directly calculate pKa; external tools are needed.
+    return 0  # This should be replaced with a call to a pKa calculation tool.
+
+def rule13_redox_potential(mol):
+    # Placeholder: Simplified estimation using molecular orbital theory might be needed.
+    return Crippen.MolLogP(mol)  # Using logP as a proxy; replace with appropriate method.
+
+def rule14_ionization_energy(mol):
+    # Placeholder: This typically requires quantum chemical calculations.
+    return Descriptors.MolWt(mol)  # Using molecular weight as a proxy; replace with appropriate method.
+
+def rule15_electron_affinity(mol):
+    # Electron affinity is not directly calculable with RDKit, using a placeholder
+    # Typically, this would require quantum chemical calculations or experimental data
+    return Descriptors.MolLogP(mol)  # Using logP as a rough proxy for electron affinity
+
+def rule16_molar_refractivity(mol):
+    try:
+        return rdMolDescriptors.CalcExactMolMR(mol)
+    except Exception:
+        return 0  # Return 0 if there is any error, as per the requirement to not raise errors.
+
+
+def rule17_global_hardness(mol):
+    # Global hardness is not directly calculable with RDKit, using a placeholder
+    # Typically calculated as (ionization potential - electron affinity) / 2
+    return (Descriptors.MolLogP(mol) - Descriptors.TPSA(mol)) / 2  # Simplified proxy
+
+def rule18_softness(mol):
+    # Softness is the inverse of hardness
+    hardness = rule17_global_hardness(mol)
+    return 1 / hardness if hardness != 0 else 0
+
+def rule19_electronegativity(mol):
+    # Electronegativity is not directly calculable with RDKit, using a placeholder
+    # A simple proxy could be the average of atomic electronegativities weighted by atom count
+    total_electronegativity = sum(atom.GetAtomicNum() for atom in mol.GetAtoms())
+    return total_electronegativity / mol.GetNumAtoms()
+
+def rule20_solubility(mol):
+    # Solubility is not directly calculable with RDKit, using a placeholder
+    # LogS can be estimated using Crippen’s logP and TPSA
+    logP = Descriptors.MolLogP(mol)
+    tpsa = Descriptors.TPSA(mol)
+    return -1.0 * logP + 0.5 * tpsa  # Simplified estimation formula

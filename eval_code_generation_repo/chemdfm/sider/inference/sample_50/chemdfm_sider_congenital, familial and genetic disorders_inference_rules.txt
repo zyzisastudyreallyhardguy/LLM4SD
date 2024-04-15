@@ -1,0 +1,53 @@
+def rule1_heavy_metal_radioactive(mol):
+    # List of common heavy metal and radioactive isotopes' atomic numbers
+    heavy_metal_atomic_numbers = {80, 82, 83, 84, 86, 88, 90, 92}  # Hg, Pb, Bi, Po, Rn, Ra, Th, U
+    count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in heavy_metal_atomic_numbers)
+    return count
+
+
+
+def rule3_quaternary_ammonium_guanidinium(mol):
+    quaternary_ammonium = Fragments.fr_quatN(mol)
+    guanidinium = Fragments.fr_guanido(mol)
+    return quaternary_ammonium + guanidinium
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_heterocyclic_rings(mol):
+    try:
+        thiophenes = Fragments.fr_thiophene(mol)
+        pyridines = Fragments.fr_pyridine(mol)
+        return thiophenes + pyridines
+    except AttributeError:
+        return 0
+
+
+def rule6_planarity(mol):
+    try:
+        num_planar_carbocycles = rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+        num_planar_heterocycles = rdMolDescriptors.CalcNumAromaticHeterocycles(mol)
+    except Exception:
+        return 0  # Return 0 in case of any error
+
+    return num_planar_carbocycles + num_planar_heterocycles
+
+
+def rule7_planar_ring_aromatic_structure(mol):
+    try:
+        # Calculate the number of aromatic rings
+        aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    except AttributeError:
+        # If the attribute does not exist, return 0 as the function cannot raise errors
+        return 0
+    return aromatic_rings
+
+
+def rule8_organic_cations_anions(mol):
+    try:
+        cations = Fragments.fr_quatN(mol)  # Quaternary nitrogen usually indicates a cation
+        anions = Fragments.fr_COO(mol) + Fragments.fr_Ar_OH(mol)  # Ester and aromatic hydroxyl groups
+    except Exception:
+        return 0  # Return 0 in case of any error
+    return cations + anions
+

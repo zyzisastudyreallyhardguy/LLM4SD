@@ -1,0 +1,100 @@
+def rule1_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule3_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule5_functional_groups(mol):
+    # This is a placeholder for actual functional group count; you might need to define what counts as a functional group
+    return len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+
+def rule6_chiral_centers(mol):
+    chiral_centers = sum(1 for atom in mol.GetAtoms() if atom.GetChiralTag() != Chem.ChiralType.CHI_UNSPECIFIED)
+    return chiral_centers
+
+def rule7_unsaturated_bonds(mol):
+    unsaturated_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() in (Chem.BondType.DOUBLE, Chem.BondType.TRIPLE))
+    return unsaturated_bonds
+
+def rule8_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_formal_charge(mol):
+    return Chem.GetFormalCharge(mol)
+
+def rule10_ionization_potential(mol):
+    # Placeholder function, as RDKit does not provide ionization potential directly
+    # Typically, this would be calculated using quantum chemical methods or approximations
+    return len(mol.GetAtoms())  # Simplistic placeholder
+
+def rule11_electronegativity(mol):
+    # Placeholder function, as RDKit does not provide electronegativity directly
+    # Typically, this would be calculated using group electronegativities or approximations
+    return sum(atom.GetAtomicNum() for atom in mol.GetAtoms())  # Simplistic placeholder
+
+def rule12_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule13_drug_likeness(mol):
+    # Placeholder function, as RDKit does not provide a drug likeness score directly
+    # Typically, this would be calculated using a combination of molecular properties
+    return Crippen.MolLogP(mol)  # Using logP as a simplistic proxy
+
+def rule14_lead_likeness(mol):
+    # Placeholder function, as RDKit does not provide a lead likeness score directly
+    # Typically, this would be calculated using a combination of molecular properties
+    mw = Descriptors.MolWt(mol)
+    logp = Crippen.MolLogP(mol)
+    hba = rdMolDescriptors.CalcNumHBA(mol)
+    hbd = rdMolDescriptors.CalcNumHBD(mol)
+    # Simple criteria for lead-likeness
+    if mw <= 350 and logp <= 3.5 and hba <= 7 and hbd <= 3:
+        return 1  # Meets lead-likeness criteria
+    else:
+        return 0  # Does not meet criteria
+
+def mock_complex_calculation(mol=None, factor=1):
+    if mol is None:
+        return 0  # Return 0 or some default value when mol is not provided
+    try:
+        return Descriptors.MolWt(mol) * factor
+    except Exception:
+        return 0  # Return 0 or some default value in case of any other error
+
+
+def rule15_molecular_complexity(mol):
+    # Using QED as a proxy for molecular complexity
+    try:
+        return QED.qed(mol)
+    except Exception:
+        return 0  # Return 0 or any other appropriate number if there's an error
+
+
+def rule16_drug_metabolites(mol):
+    # Simulating metabolite count by using the number of rotatable bonds
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule17_drug_targets(mol):
+    # Simulating target count by using the number of aromatic rings
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule18_drug_transporters(mol):
+    # Simulating transporter interaction potential by using logP
+    return Descriptors.MolLogP(mol)
+
+def rule19_drug_clearance(mol):
+    # Simulating clearance by using inverse of molecular weight
+    return 1 / Descriptors.MolWt(mol)
+
+def rule20_plasma_protein_binding(mol):
+    # Simulating plasma protein binding potential by using TPSA
+    return Descriptors.TPSA(mol)

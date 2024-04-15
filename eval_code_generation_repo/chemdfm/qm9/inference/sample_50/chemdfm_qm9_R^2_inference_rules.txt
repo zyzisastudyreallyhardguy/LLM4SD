@@ -1,0 +1,39 @@
+def rule1_aromatic_rings(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    return aromatic_count
+
+def rule2_unsaturated_bonds(mol):
+    unsaturated_count = sum(1 for bond in mol.GetBonds() if bond.GetBondType() in (Chem.BondType.DOUBLE, Chem.BondType.TRIPLE))
+    return unsaturated_count
+
+def rule3_charged_species(mol):
+    charged_count = sum(1 for atom in mol.GetAtoms() if atom.GetFormalCharge() != 0)
+    return charged_count
+
+def rule4_multiple_rings(mol):
+    ring_count = len(mol.GetRingInfo().AtomRings())
+    return ring_count
+
+def rule5_functional_groups(mol):
+    functional_group_count = rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+    return functional_group_count
+
+def rule6_amino_groups(mol):
+    amino_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetTotalNumHs() > 0)
+    return amino_count
+
+def rule7_basic_groups(mol):
+    basic_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 or (atom.GetAtomicNum() == 6 and atom.GetFormalCharge() > 0))
+    return basic_count
+
+def rule8_conjugated_systems(mol):
+    conjugated_count = sum(1 for bond in mol.GetBonds() if bond.GetIsConjugated())
+    return conjugated_count
+
+def rule9_polar_groups(mol):
+    polar_count = rdMolDescriptors.CalcNumHBD(mol) + rdMolDescriptors.CalcNumHBA(mol)
+    return polar_count
+
+def rule10_complex_structures(mol):
+    complex_count = rule2_unsaturated_bonds(mol) + rule4_multiple_rings(mol)
+    return complex_count

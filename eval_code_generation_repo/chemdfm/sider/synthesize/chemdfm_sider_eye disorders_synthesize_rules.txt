@@ -1,0 +1,116 @@
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def task1_calculate_logP(mol):
+    return rdMolDescriptors.CalcCrippenDescriptors(mol)[0]  # Returns logP value
+
+def task2_irritation_potential(mol):
+    # Example: Use a simple threshold on molecular weight as a proxy for irritation
+    return 1 if rdMolDescriptors.CalcExactMolWt(mol) > 200 else 0
+
+def task3_eyesensitizing_groups(mol):
+    # Example: Count carbonyl groups as a proxy for sensitizing groups
+    carbonyl_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetTotalDegree() == 3)
+    return carbonyl_count
+
+def task4_corrosivity(mol):
+    # Example: Use a simple model based on the presence of halogens
+    halogen_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() in [9, 17, 35, 53])  # F, Cl, Br, I
+    return halogen_count
+
+def task5_specific_eye_hazards(mol):
+    # Example: Count number of nitro groups
+    nitro_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    return nitro_count
+
+def task6_solubility(mol):
+    # Example: Use topological polar surface area as a proxy for solubility
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule7_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule7_heavy_atom_count(mol):
+    return Descriptors.HeavyAtomCount(mol)
+
+def rule8_reactive_groups(mol):
+    # Example: Counting carbonyl groups (C=O) as reactive groups
+    patt = Chem.MolFromSmarts('C=O')  # SMARTS pattern for carbonyl group
+    return len(mol.GetSubstructMatches(patt))
+
+def rule9_acidic_groups(mol):
+    # Counting carboxylic acids
+    patt = Chem.MolFromSmarts('C(=O)O')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule9_basic_groups(mol):
+    # Counting amines
+    patt = Chem.MolFromSmarts('N')
+    return len(mol.GetSubstructMatches(patt))
+
+def rule10_vapor_pressure(mol):
+    # Estimating vapor pressure using molecular weight as a proxy
+    return 1 / Descriptors.MolWt(mol)  # Simplified estimation
+
+def rule11_stability(mol):
+    try:
+        # Calculate the simplified stability index using molecular weight
+        stability_index = QED.properties(mol).MW / 100
+    except Exception:
+        # In case of any error, return a default value (e.g., 0)
+        stability_index = 0
+    return stability_index
+
+
+def rule12_carcinogenic_potential(mol):
+    # Placeholder for carcinogenic potential
+    return 0  # Simplified, actual implementation would require complex analysis
+
+def rule13_thiol_reactivity(mol):
+    # SMARTS pattern for alkyl halides (carbon bonded to F, Cl, Br, or I)
+    patt = Chem.MolFromSmarts('[CX4][F,Cl,Br,I]')
+    if patt is None:
+        return 0  # Return 0 if the pattern is not correctly formed
+    matches = mol.GetSubstructMatches(patt)
+    return len(matches)
+
+
+def rule14_hydrogen_bond_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule14_hydrogen_bond_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule15_binding_potential(mol):
+    # Example: Estimating binding potential by calculating molecular weight and logP
+    mol_weight = Descriptors.MolWt(mol)
+    logP = Descriptors.MolLogP(mol)
+    return mol_weight + logP
+
+def rule16_eye_clearance(mol):
+    # Simplified estimation using topological polar surface area (TPSA)
+    tpsa = rdMolDescriptors.CalcTPSA(mol)
+    return tpsa
+
+def rule17_metabolic_reactivity(mol):
+    # Estimation using number of potential metabolic sites (soft spots)
+    num_soft_spots = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return num_soft_spots
+
+def rule18_electronic_structure(mol):
+    # Estimation using molecular orbital calculations (HOMO/LUMO) - simplified to total charge
+    total_charge = Chem.GetFormalCharge(mol)
+    return total_charge
+
+def rule19_immune_response_potential(mol):
+    # Simplified estimation using molecular complexity
+    complexity = rdMolDescriptors.CalcNumRings(mol)
+    return complexity
+
+def rule20_eye_reactivity(mol):
+    # Estimation using number of reactive functional groups
+    num_aldehydes = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CXH1]=O')))
+    return num_aldehydes

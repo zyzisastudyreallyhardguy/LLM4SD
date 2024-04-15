@@ -1,0 +1,90 @@
+def rule1_aromatic_or_multiple_rings(mol):
+    aromatic_count = sum([1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic()])
+    return aromatic_count + len(mol.GetRingInfo().AtomRings())  # Count of aromatic rings + total ring count
+
+def rule2_halogens(mol):
+    halogen_atoms = ['F', 'Cl', 'Br', 'I']
+    halogen_count = sum([mol.GetAtomWithIdx(i).GetSymbol() in halogen_atoms for i in range(mol.GetNumAtoms())])
+    return halogen_count
+
+def rule3_polar_groups(mol):
+    polar_groups = ['[OH]', '[NH2]', '[NH]', 'C(=O)OH', 'C(=O)O', 'C(=O)N', 'S(=O)(=O)O', 'P(=O)(O)(O)']
+    polar_count = 0
+    for group in polar_groups:
+        substructure = Chem.MolFromSmarts(group)
+        if substructure is not None:
+            polar_count += len(mol.GetSubstructMatches(substructure))
+    return polar_count
+
+
+def rule4_nonpolar_groups(mol):
+    nonpolar_groups = ['C' * i for i in range(4, 11)]  # Chains from butyl to decyl
+    nonpolar_count = 0
+    for group in nonpolar_groups:
+        substructure = Chem.MolFromSmarts(group)
+        nonpolar_count += len(mol.GetSubstructMatches(substructure))
+    return nonpolar_count
+
+def rule5_charged_or_large_polar(mol):
+    charged_groups = ['[N+]', '[O-]', '[S-]', '[P+]', '[NH3+]', '[COO-]', '[SO3-]', '[PO3H-]']
+    charged_count = 0
+    for group in charged_groups:
+        substructure = Chem.MolFromSmarts(group)
+        charged_count += len(mol.GetSubstructMatches(substructure))
+    return charged_count
+
+def rule6_logD(mol):
+    # Using RDKit to estimate LogP which is a component of LogD
+    logP = Crippen.MolLogP(mol)
+    # Simplified assumption: LogD approximated by LogP at pH 7.4
+    # Note: Actual LogD calculation would require more specific solubility data
+    return logP
+
+def rule7_molecular_size(mol):
+    # Using molecular weight as a proxy for size
+    return Descriptors.MolWt(mol)
+
+def rule7_molecular_complexity(mol):
+    # Using number of rings and rotatable bonds as a measure of complexity
+    num_rings = rdMolDescriptors.CalcNumRings(mol)
+    num_rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return num_rings + num_rotatable_bonds
+
+def rule8_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_fluorine_atoms(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 9:  # Fluorine has atomic number 9
+            count += 1
+    return count
+
+
+def rule8_hydrocarbon_chains(mol):
+    # Counting carbon atoms not in rings as a proxy for hydrocarbon chains
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and not mol.GetAtomWithIdx(atom.GetIdx()).IsInRing())
+
+def rule9_amide_bonds(mol):
+    # Counting amide bonds (C(=O)N)
+    amide_bond_count = 0
+    for bond in mol.GetBonds():
+        begin_atom = bond.GetBeginAtom()
+        end_atom = bond.GetEndAtom()
+        if {begin_atom.GetAtomicNum(), end_atom.GetAtomicNum()} == {6, 7}:
+            if bond.GetBondType() == Chem.rdchem.BondType.SINGLE:
+                if (begin_atom.GetAtomicNum() == 6 and begin_atom.GetIsAromatic()) or (end_atom.GetAtomicNum() == 6 and end_atom.GetIsAromatic()):
+                    amide_bond_count += 1
+    return amide_bond_count
+
+def rule10_molecular_shape(mol):
+    # Using the number of heavy atoms as a proxy for size
+    return mol.GetNumHeavyAtoms()
+
+def rule10_molecular_compactness(mol):
+    # Using the ratio of heavy atoms to rotatable bonds as a measure of compactness
+    num_heavy_atoms = mol.GetNumHeavyAtoms()
+    num_rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    if num_rotatable_bonds == 0:
+        return num_heavy_atoms  # Avoid division by zero
+    return num_heavy_atoms / num_rotatable_bonds

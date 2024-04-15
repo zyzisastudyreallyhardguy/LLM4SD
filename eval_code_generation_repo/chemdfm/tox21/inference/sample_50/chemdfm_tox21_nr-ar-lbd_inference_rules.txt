@@ -1,0 +1,61 @@
+def rule1_halogens_aromatics(mol):
+    halogens = ['Cl', 'Br', 'I']
+    halogen_count = sum(mol.GetAtomWithIdx(i).GetSymbol() in halogens for i in range(mol.GetNumAtoms()))
+    aromatic_count = sum(mol.GetAtomWithIdx(i).IsInRing() and mol.GetAtomWithIdx(i).GetIsAromatic() for i in range(mol.GetNumAtoms()))
+    return halogen_count + aromatic_count
+
+def rule2_electrophilic_groups(mol):
+    ketone_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)C')))
+    aldehyde_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[#6]')))
+    acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    return ketone_count + aldehyde_count + acid_count
+
+def rule3_androgen_receptor_binding(mol):
+    # Placeholder for androgen receptor binding potential
+    # This would typically require more complex modeling or data
+    return 0  # Returning 0 as a placeholder
+
+def rule4_lipophilicity_multiple_bonds(mol):
+    try:
+        lipophilicity = Descriptors.MolLogP(mol)
+        double_bond_pattern = Chem.MolFromSmarts('=*')
+        if double_bond_pattern is not None:
+            double_bond_count = len(mol.GetSubstructMatches(double_bond_pattern))
+        else:
+            double_bond_count = 0  # If pattern creation fails, assume no double bonds
+        return lipophilicity + double_bond_count
+    except Exception:
+        return 0  # Return 0 if any other error occurs
+
+
+def rule5_polar_ionizable_groups(mol):
+    amine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('N')))
+    carboxylic_acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    sulfonamide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('S(=O)(=O)N')))
+    return amine_count + carboxylic_acid_count + sulfonamide_count
+
+def rule6_organosulfur_phosphate(mol):
+    sulfur_count = sum([1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S'])
+    phosphate_count = sum([1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'P' and atom.GetTotalValence() == 5])
+    return sulfur_count + phosphate_count
+
+def rule7_heavy_metals_reactive_species(mol):
+    heavy_metals = ['Pb', 'As']
+    metal_count = sum([1 for atom in mol.GetAtoms() if atom.GetSymbol() in heavy_metals])
+    return metal_count
+
+def rule8_functional_complexity(mol):
+    num_rings = rdMolDescriptors.CalcNumRings(mol)
+    num_conjugated_bonds = sum([1 for bond in mol.GetBonds() if bond.GetIsConjugated()])
+    return num_rings + num_conjugated_bonds
+
+def rule9_reactive_potential(mol):
+    positive_charges = sum([atom.GetFormalCharge() for atom in mol.GetAtoms() if atom.GetFormalCharge() > 0])
+    # Check for epoxides (three-membered rings containing an oxygen)
+    epoxide_count = sum([1 for ring in mol.GetRingInfo().AtomRings() if len(ring) == 3 and any(mol.GetAtomWithIdx(idx).GetSymbol() == 'O' for idx in ring)])
+    return positive_charges + epoxide_count
+
+def rule10_persistent_pollutants(mol):
+    # Example: Check for aromatic rings as a proxy for stability and potential persistence
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return aromatic_rings

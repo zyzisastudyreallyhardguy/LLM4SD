@@ -1,0 +1,100 @@
+def rule1_calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_check_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(f'[{x}]'))) for x in halogens)
+    return count
+
+
+def rule3_check_aromatic_amines(mol):
+    aromatic_amines = Chem.MolFromSmarts('n1ccccc1')
+    count = len(mol.GetSubstructMatches(aromatic_amines))
+    return count
+
+def rule4_calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_check_aromatic_ketones(mol):
+    aromatic_ketones = Chem.MolFromSmarts('C(=O)c1ccccc1')
+    count = len(mol.GetSubstructMatches(aromatic_ketones))
+    return count
+
+def rule6_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule7_aromatic_ethers(mol):
+    aromatic_ethers = len(mol.GetSubstructMatches(Chem.MolFromSmarts('Oc1ccccc1')))
+    return aromatic_ethers
+
+def rule8_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule9_aromatic_acids(mol):
+    aromatic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('c1ccccc1C(=O)O')))
+    return aromatic_acids
+
+def rule10_ring_systems(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule11_aromatic_esters(mol):
+    aromatic_esters = len(mol.GetSubstructMatches(Chem.MolFromSmarts('COc1ccccc1')))
+    return aromatic_esters
+
+def rule12_chiral_centers(mol):
+    chiral_centers = sum([1 for atom in mol.GetAtoms() if atom.GetChiralTag() != Chem.ChiralType.CHI_UNSPECIFIED])
+    return chiral_centers
+
+def rule13_aromatic_alcohols(mol):
+    aromatic_alcohols = len(mol.GetSubstructMatches(Chem.MolFromSmarts('Oc1cccc(c1)')))
+    return aromatic_alcohols
+
+def rule14_acidic_protons(mol):
+    # This is a placeholder using hydrogen bond acceptors as a rough proxy.
+    # You may need to implement specific logic for acidic protons.
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule14_acidic_protons(mol):
+    # Example to count carboxylic acid groups as acidic protons
+    carboxylic_acid_smarts = "[CX3](=O)[OX2H1]"
+    pattern = Chem.MolFromSmarts(carboxylic_acid_smarts)
+    count_acidic_protons = len(mol.GetSubstructMatches(pattern))
+    return count_acidic_protons
+
+
+def rule15_aromatic_amides(mol):
+    aromatic_amides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3][CX3](=O)[cX3]:[cX3]')))
+    return aromatic_amides
+
+def rule16_base_protons(mol):
+    try:
+        # Correct the SMARTS pattern and ensure it's a valid single string
+        smarts_pattern = '[NH2+],[NH3+]'  # This seems to be intended as two separate patterns
+        # Split the pattern and search for each separately
+        patterns = smarts_pattern.split(',')
+        base_protons = 0
+        for pattern in patterns:
+            query_mol = Chem.MolFromSmarts(pattern)
+            if query_mol is not None:
+                base_protons += len(mol.GetSubstructMatches(query_mol))
+        return base_protons
+    except Exception as e:
+        # Return 0 if any exception occurs, as per the requirement to not raise errors
+        return 0
+
+
+def rule17_aromatic_aldehydes(mol):
+    aromatic_aldehydes = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)[cX3]:[cX3]')))
+    return aromatic_aldehydes
+
+def rule18_formaldehyde_groups(mol):
+    formaldehyde_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C=O')))
+    return formaldehyde_groups
+
+def rule19_aromatic_epoxides(mol):
+    aromatic_epoxides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OX2r3][cX3r5]:[cX3r5]')))
+    return aromatic_epoxides
+
+def rule20_carbonyl_groups(mol):
+    carbonyl_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3]=[OX1]')))
+    return carbonyl_groups

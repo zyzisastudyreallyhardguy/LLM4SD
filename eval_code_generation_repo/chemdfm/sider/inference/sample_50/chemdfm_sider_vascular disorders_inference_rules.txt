@@ -1,0 +1,63 @@
+def rule1_aromatic_amines_phenols(mol):
+    # Corrected SMARTS patterns
+    aromatic_amine_query = Chem.MolFromSmarts('[nH]1cccc1')  # Query for aromatic amines
+    phenol_query = Chem.MolFromSmarts('c1ccccc1O')  # Query for phenols
+
+    # Check if the queries were created successfully
+    if aromatic_amine_query is None or phenol_query is None:
+        return 0  # Return 0 if there's an error in creating the queries
+
+    # Find matches in the molecule
+    aromatic_amine_matches = mol.GetSubstructMatches(aromatic_amine_query)
+    phenol_matches = mol.GetSubstructMatches(phenol_query)
+
+    # Count the number of matches
+    num_aromatic_amines = len(aromatic_amine_matches)
+    num_phenols = len(phenol_matches)
+
+    # Return the total number of matches
+    return num_aromatic_amines + num_phenols
+
+
+
+
+def rule3_complex_structures(mol):
+    ring_info = mol.GetRingInfo()
+    num_rings = ring_info.NumRings()
+    return num_rings if num_rings > 1 else 0  # Return number of rings if more than one
+
+
+
+def rule5_multiple_bonds_aromatic_rings(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    return aromatic_rings + double_bonds
+
+def rule6_long_chains_multiple_doubles(mol):
+    long_chains = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) == 2)
+    double_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    return long_chains + double_bonds
+
+def rule7_reactive_groups(mol):
+    smarts_epoxide = '[O1]1CC1'
+    smarts_carbonyl = '[CX3]=[OX1]'
+    epoxides = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_epoxide)))
+    carbonyls = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_carbonyl)))
+    return epoxides + carbonyls
+
+def rule8_physicochemical_properties(mol):
+    lipophilicity = Descriptors.MolLogP(mol)
+    molecular_weight = Descriptors.MolWt(mol)
+    return lipophilicity + molecular_weight
+
+def rule9_aromatic_amides_bulky_complex(mol):
+    smarts_aromatic_amide = '[NX3][CX3](=O)[c]'
+    aromatic_amides = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_aromatic_amide)))
+    bulky_groups = sum(1 for atom in mol.GetAtoms() if atom.GetDegree() >= 4)
+    return aromatic_amides + bulky_groups
+
+def rule10_charge_nitro_groups(mol):
+    total_charge = sum(atom.GetFormalCharge() for atom in mol.GetAtoms())
+    smarts_nitro = '[NX3](=O)=O'
+    nitro_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts_nitro)))
+    return abs(total_charge) + nitro_groups

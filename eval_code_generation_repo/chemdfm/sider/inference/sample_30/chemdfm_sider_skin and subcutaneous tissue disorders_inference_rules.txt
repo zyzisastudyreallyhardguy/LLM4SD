@@ -1,0 +1,75 @@
+def rule1_aromatic_rings(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    return aromatic_count
+
+def rule2_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    halogen_count = sum(atom.GetSymbol() in halogens for atom in mol.GetAtoms())
+    return halogen_count
+
+def rule3_specific_functional_groups(mol):
+    # Counting carboxylic acids, amines, amides, and epoxides
+    smarts_patterns = {
+        'carboxylic_acid': '[CX3](=O)[OX2H1]',
+        'amines': '[NX3;H2,H1,H0;!$(NC=O)]',
+        'amides': '[NX3][CX3](=O)',
+        'epoxides': 'O1CC1'
+    }
+    group_count = 0
+    for pattern in smarts_patterns.values():
+        group_count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(pattern)))
+    return group_count
+
+def rule4_high_molecular_weight_complex_structure(mol):
+    mw = Descriptors.MolWt(mol)
+    return mw
+
+def rule5_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule6_reactive_species(mol):
+    reactive_elements = {'As', 'Se', 'Cd', 'Hg', 'Pb', 'Fe', 'Cu', 'Zn', 'O'}  # Example set of elements
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in reactive_elements:
+            count += 1
+    return count
+
+def rule7_aromatic_amines(mol):
+    aromatic_amine_count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetIsAromatic():
+            if any(neighbor.GetSymbol() == 'C' and neighbor.GetIsAromatic() for neighbor in atom.GetNeighbors()):
+                aromatic_amine_count += 1
+    return aromatic_amine_count
+
+def rule8_heterotricyclic(mol):
+    try:
+        # Define a query for heterotricyclic compounds
+        hetero_atoms = rdqueries.AtomNumEqualsQueryAtom(7) | rdqueries.AtomNumEqualsQueryAtom(8) | rdqueries.AtomNumEqualsQueryAtom(16)
+        tricyclic_query = rdqueries.CombinedQueryAtom(hetero_atoms, minRingCount=3)
+
+        # Check if the molecule matches the query
+        if mol.HasSubstructMatch(tricyclic_query):
+            return 1
+        else:
+            return 0
+    except:
+        # Return 0 if any exception occurs
+        return 0
+
+
+def rule9_aromatic_esters(mol):
+    # Define SMARTS pattern for aromatic esters
+    aromatic_ester_smarts = '[#6]1:[#6]:[#6]:[#6]:[#6]:[#6]:1-[#6](=[#8])-[#8]'
+    aromatic_ester = Chem.MolFromSmarts(aromatic_ester_smarts)
+
+def rule10_molecular_size(mol):
+    # Calculate molecular weight as a proxy for size
+    mol_weight = Descriptors.MolWt(mol)
+    return mol_weight
+
+def rule10_formal_charge(mol):
+    # Calculate total formal charge of the molecule
+    total_charge = Chem.GetFormalCharge(mol)
+    return total_charge

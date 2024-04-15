@@ -1,0 +1,51 @@
+def rule1_aromatic_or_double_bonds(mol):
+    aromatic_count = sum(1 for ring in mol.GetRingInfo().AtomRings() if mol.GetAtomWithIdx(ring[0]).GetIsAromatic())
+    double_bond_count = sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+    return aromatic_count + double_bond_count
+
+def rule2_charged_groups(mol):
+    positive_nitrogen_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetFormalCharge() > 0)
+    negative_oxygen_count = sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and atom.GetFormalCharge() < 0)
+    return positive_nitrogen_count + negative_oxygen_count
+
+def rule3_surface_area_complexity(mol):
+    surface_area = rdMolDescriptors.CalcExactMolWt(mol)
+    complexity = mol.GetNumAtoms() + mol.GetNumBonds()
+    return surface_area + complexity
+
+def rule4_high_molecular_weight(mol):
+    return Descriptors.MolWt(mol)  # Returns the molecular weight of the molecule
+
+def rule4_num_rings(mol):
+    return rdMolDescriptors.CalcNumRings(mol)  # Returns the number of rings in the molecule
+
+def rule4_num_heavy_atoms(mol):
+    return rdMolDescriptors.CalcNumHeavyAtoms(mol)  # Returns the number of heavy atoms
+
+def rule5_amine_groups(mol):
+    pattern = Chem.MolFromSmarts('N')  # SMARTS pattern for amines
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule5_carboxylic_acids(mol):
+    pattern = Chem.MolFromSmarts('C(=O)O')  # SMARTS pattern for carboxylic acids
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule5_ketones(mol):
+    pattern = Chem.MolFromSmarts('C(=O)C')  # SMARTS pattern for ketones
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule6_saturated_molecules(mol):
+    return rdMolDescriptors.CalcNumSaturatedRings(mol)  # Counts saturated rings
+
+def rule6_lack_functional_groups(mol):
+    # This is a simple approximation by checking for a low count of common functional groups
+    amine_count = rule5_amine_groups(mol)
+    acid_count = rule5_carboxylic_acids(mol)
+    ketone_count = rule5_ketones(mol)
+    return 1 if (amine_count + acid_count + ketone_count) == 0 else 0
+
+def rule6_simple_structures(mol):
+    # Assuming simple structures have fewer than 3 rings and less than 10 heavy atoms
+    num_rings = rule4_num_rings(mol)
+    num_heavy_atoms = rule4_num_heavy_atoms(mol)
+    return 1 if num_rings < 3 and num_heavy_atoms < 10 else 0

@@ -1,0 +1,67 @@
+def rule1_reactive_groups(mol):
+    aldehyde_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3H1](=O)')))
+    ketone_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[#6]')))
+    acid_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    base_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3,NX4+][#6]')))
+    return aldehyde_count + ketone_count + acid_count + base_count
+
+def rule2_aromatic_structures(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    double_bonds = sum([1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.DOUBLE])
+    return aromatic_rings + double_bonds
+
+def rule3_surface_area_lipophilicity(mol):
+    tpsa = rdMolDescriptors.CalcTPSA(mol)  # Topological Polar Surface Area
+    logp = Descriptors.MolLogP(mol)  # Octanol-water partition coefficient
+    return tpsa + logp
+
+def rule4_target_binding(mol):
+    # This is a placeholder function as specific binding cannot be directly calculated without additional data
+    # Assuming a hypothetical function that returns number of potential binding sites
+    binding_sites = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[n,N,O,o]')))
+    return binding_sites
+
+def rule5_halogens_heavy_metals(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    heavy_metals = ['Hg', 'Pb', 'Cd', 'As', 'Cr', 'Ni', 'Cu']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens or atom.GetSymbol() in heavy_metals:
+            count += 1
+    return count
+
+def rule6_molecular_complexity(mol):
+    # Using molecular weight as a proxy for size and complexity
+    weight = Descriptors.MolWt(mol)
+    # Using the number of rings as a measure of structural complexity
+    num_rings = rdMolDescriptors.CalcNumRings(mol)
+    return weight + num_rings
+
+def rule7_toxic_groups(mol):
+    # Example: Checking for formaldehyde or asbestos-like structures
+    # For simplicity, we'll check for the presence of a formaldehyde group
+    # Asbestos is a mineral and not typically checked in molecular structures in cheminformatics
+    smarts_formaldehyde = '[CX3H1](=O)[H]'
+    formaldehyde = Chem.MolFromSmarts(smarts_formaldehyde)
+    count_formaldehyde = len(mol.GetSubstructMatches(formaldehyde))
+    return count_formaldehyde
+
+def rule8_impurity_interaction(mol):
+    # This is a placeholder function as RDKit does not directly calculate impurities.
+    # Typically, you would need a database of known impurities and their structures to compare.
+    # Here, we return a dummy value indicating no impurities detected.
+    return 0  # This should be replaced with actual impurity assessment logic.
+
+def rule9_structural_similarity(mol):
+    # This function would require a database of known drugs or toxins to compare against.
+    # Here, we use a dummy function to represent this rule.
+    # In practice, use RDKit's similarity search functions with a real database.
+    return 0  # This should be replaced with actual similarity assessment logic.
+
+def rule10_lipophilicity(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule10_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+

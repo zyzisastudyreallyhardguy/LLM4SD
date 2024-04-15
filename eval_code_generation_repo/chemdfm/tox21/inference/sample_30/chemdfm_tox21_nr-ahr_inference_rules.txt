@@ -1,0 +1,96 @@
+def rule1_halogens_on_aromatic(mol):
+    count = 0
+    aromatic_atoms = [atom for atom in mol.GetAtoms() if atom.GetIsAromatic()]
+    for atom in aromatic_atoms:
+        for neighbor in atom.GetNeighbors():
+            if neighbor.GetSymbol() in ['Cl', 'Br', 'I']:
+                count += 1
+    return count
+
+def rule2_functional_groups(mol):
+    nitro_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3](=O)=O')))
+    amino_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NX3H2]')))
+    carbonyl_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3](=O)[OX2H1]')))
+    return nitro_count + amino_count + carbonyl_count
+
+def rule3_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule4_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_fused_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticCarbocycles(mol)
+
+def rule6_unsaturated_bonds(mol):
+    unsaturated_bonds = [bond for bond in mol.GetBonds() if bond.GetBondType() in [Chem.rdchem.BondType.DOUBLE, Chem.rdchem.BondType.AROMATIC]]
+    return len(unsaturated_bonds)
+
+def rule7_structural_analogues(mol):
+    # Placeholder: return a fixed value as this requires external data
+    return 0
+
+def rule8_metabolite_toxicity(mol):
+    # Placeholder: return a fixed value as this requires knowledge about the parent compound
+    return 0
+
+
+
+def rule11_aromatic_chlorine(mol):
+    chloro_aromatics = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            if any(mol.GetAtomWithIdx(idx).GetSymbol() == 'Cl' for idx in ring):
+                chloro_aromatics += 1
+    return chloro_aromatics
+
+def rule12_carcinogenic_moieties(mol):
+    # Example moieties: thiophosphate (P(=S)(O)(O)) or aromatic amine (Aniline derivative)
+    thiophosphate_smarts = "[PX4](=[SX1])([OX2])([OX2])"
+    aromatic_amine_smarts = "c1ccccc1N"
+    thiophosphate_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(thiophosphate_smarts)))
+    aromatic_amine_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(aromatic_amine_smarts)))
+    return thiophosphate_count + aromatic_amine_count
+
+def rule13_aryl_hydrocarbon_receptor(mol):
+    # Example moiety: benzopyrene
+    benzopyrene_smarts = "c1cc2ccc3cccc4ccc(c1)c2c34"
+    benzopyrene_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts(benzopyrene_smarts)))
+    return benzopyrene_count
+
+def rule14_planar_aromatic_halogen(mol):
+    halogenated_aromatics = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            if any(mol.GetAtomWithIdx(idx).GetSymbol() in ['F', 'Cl', 'Br', 'I'] for idx in ring):
+                halogenated_aromatics += 1
+    return halogenated_aromatics
+
+def rule15_reactive_features(mol):
+    reactive_count = 0
+    sulfide_smarts = "[#16X2H0]"
+    phosphine_oxide_smarts = "[PX3](=O)"
+    organic_nitrogen_smarts = "[NX3,NX4+][CX4H]([*])[H]"
+    reactive_count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(sulfide_smarts)))
+    reactive_count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(phosphine_oxide_smarts)))
+    reactive_count += len(mol.GetSubstructMatches(Chem.MolFromSmarts(organic_nitrogen_smarts)))
+    return reactive_count
+
+def rule16_reactive_groups(mol):
+    try:
+        # Define SMARTS pattern for nitro groups
+        nitro_smarts = "[N+](=O)[O-]"
+        # Create a molecule object from the SMARTS pattern
+        nitro_pattern = Chem.MolFromSmarts(nitro_smarts)
+        # Get the count of substructures that match the nitro pattern in the molecule
+        nitro_count = len(mol.GetSubstructMatches(nitro_pattern))
+        return nitro_count
+    except Exception:
+        # In case of any error, return 0 as the function cannot raise errors
+        return 0
+
+
+def rule17_toxic_properties(mol):
+    # Placeholder for actual implementation, which would require specific substructure or property checks
+    # Here we assume a function that checks for these properties
+    return 0  # This should be replaced with actual checks

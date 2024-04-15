@@ -1,0 +1,104 @@
+def rule1_alternating_bonds(mol):
+    alternating_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.BondType.SINGLE:
+            if any(nb.GetBondType() == Chem.BondType.DOUBLE for nb in bond.GetBeginAtom().GetBonds()):
+                alternating_bonds += 1
+    return alternating_bonds
+
+def rule2_conjugated_systems(mol):
+    # Initialize count of conjugated pi bonds
+    conjugated_pi_bonds = 0
+
+    # Iterate over all bonds in the molecule
+    for bond in mol.GetBonds():
+        # Check if the bond is conjugated
+        if bond.GetIsConjugated():
+            # Check if the bond is a double bond (pi bond)
+            if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE:
+                conjugated_pi_bonds += 1
+
+    return conjugated_pi_bonds
+
+
+def rule3_aromatic_rings(mol):
+    return len(Chem.GetSymmSSSR(mol))  # GetSymmSSSR finds the smallest set of smallest rings
+
+def rule4_more_aromatic_rings(mol):
+    aromatic_rings = 0
+    sssr = Chem.GetSymmSSSR(mol)
+    for ring in sssr:
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            aromatic_rings += 1
+    return aromatic_rings
+
+def rule5_conjugated_double_bonds(mol):
+    conjugated_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.BondType.DOUBLE and bond.GetIsConjugated():
+            conjugated_double_bonds += 1
+    return conjugated_double_bonds
+
+def rule6_conjugated_single_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.BondType.SINGLE and bond.GetIsConjugated())
+
+def rule7_halogen_atoms(mol):
+    halogen_atoms = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I']:
+            halogen_atoms += 1
+    return halogen_atoms
+
+
+def rule8_hydroxy_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and atom.GetTotalNumHs() > 0)
+
+def rule9_methyl_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 6 and atom.GetTotalNumHs() == 3)
+
+
+
+def rule11_oxygen_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8)
+
+def rule12_sulfur_atoms(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 16)
+
+def rule13_carbonyl_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 8 and any(n.GetAtomicNum() == 6 for n in atom.GetNeighbors()))
+
+def rule14_amino_groups(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetAtomicNum() == 7 and atom.GetTotalNumHs() > 0)
+
+def count_substructures(mol=None, smarts=None):
+    if mol is None or smarts is None:
+        return 0  # Return 0 if the required arguments are not provided
+    substructure = Chem.MolFromSmarts(smarts)
+    if substructure is None:
+        return 0  # Return 0 if the SMARTS string is invalid
+    return len(mol.GetSubstructMatches(substructure))
+
+
+def rule15_cyano_groups(mol):
+    cyano_smarts = '[C-]#[N+]'  # SMARTS for cyano group
+    return count_substructures(mol, cyano_smarts)
+
+def rule16_ester_groups(mol):
+    ester_smarts = 'C(=O)O'  # SMARTS for ester group
+    return count_substructures(mol, ester_smarts)
+
+def rule17_ether_groups(mol):
+    ether_smarts = 'C-O-C'  # SMARTS for ether group
+    return count_substructures(mol, ether_smarts)
+
+def rule18_ketone_groups(mol):
+    ketone_smarts = 'C(=O)C'  # SMARTS for ketone group
+    return count_substructures(mol, ketone_smarts)
+
+def rule19_phenolic_hydroxy_groups(mol):
+    phenolic_hydroxy_smarts = 'c1cc(ccc1O)'  # SMARTS for phenolic hydroxy group
+    return count_substructures(mol, phenolic_hydroxy_smarts)
+
+def rule20_primary_amino_groups(mol):
+    primary_amino_smarts = 'N([H])([H])C'  # SMARTS for primary amino group
+    return count_substructures(mol, primary_amino_smarts)

@@ -1,0 +1,166 @@
+def rule1_hydrophobic_positive_charge(mol):
+    # Counting number of carbons as a proxy for hydrophobic tail length
+    num_carbons = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C')
+    # Calculating the positive charge
+    positive_charge = Chem.GetFormalCharge(mol)
+    # A simple metric: product of number of carbons and positive charge
+    return num_carbons * positive_charge
+
+def rule2_aromatic_rings(mol):
+    # Counting the number of aromatic rings
+    aromatic_rings = len(Chem.GetSymmSSSR(mol))
+    return aromatic_rings
+
+def rule3_halogens(mol):
+    # Counting the number of halogen atoms
+    halogens = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+    return halogens
+
+def rule4_heavy_metal_cores(mol):
+    # Counting the number of heavy metal atoms
+    heavy_metals = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['Pt', 'Gd'])
+    return heavy_metals
+
+def rule5_multiple_aromatic_rings(mol):
+    # Counting the number of aromatic rings
+    aromatic_rings = len(Chem.GetSymmSSSR(mol))
+    # Considering molecules with more than one aromatic ring
+    return aromatic_rings if aromatic_rings > 1 else 0
+
+def rule6_cc_double_bonds(mol):
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and \
+           bond.GetBeginAtom().GetSymbol() == 'C' and \
+           bond.GetEndAtom().GetSymbol() == 'C':
+            count += 1
+    return count
+
+def rule7_aromatic_amines(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetIsAromatic():
+            count += 1
+    return count
+
+def rule8_halogenated_aromatics(mol):
+    count = 0
+    halogens = ['F', 'Cl', 'Br', 'I']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetIsAromatic():
+                    count += 1
+                    break
+    return count
+
+def rule9_unsaturated_fatty_acids(mol):
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and \
+           bond.GetBeginAtom().GetSymbol() == 'C' and \
+           bond.GetEndAtom().GetSymbol() == 'C':
+            for atom in [bond.GetBeginAtom(), bond.GetEndAtom()]:
+                for neighbor in atom.GetNeighbors():
+                    if neighbor.GetSymbol() == 'O' and len(neighbor.GetNeighbors()) == 1:
+                        count += 1
+                        break
+    return count
+
+def rule10_heavy_molecules(mol):
+    mw = Descriptors.MolWt(mol)
+    return mw
+
+def rule11_toxic_groups(mol):
+    # Example: Counting benzene rings and checking for heavy metals
+    benzene_smarts = "c1ccccc1"
+    benzene_query = Chem.MolFromSmarts(benzene_smarts)
+    num_benzene_rings = len(mol.GetSubstructMatches(benzene_query))
+
+
+
+def rule13_psychoactive_effects(mol):
+    # Example: Counting known psychoactive motifs
+    psychoactive_smarts = "[NX3;H2,H1;!$(NC=O)]"  # Example SMARTS for tertiary amines
+    psychoactive_query = Chem.MolFromSmarts(psychoactive_smarts)
+    num_psychoactive_motifs = len(mol.GetSubstructMatches(psychoactive_query))
+
+def rule14_steroids(mol):
+    # Steroid core structure (simplified version)
+    steroid_smarts = "C1CCC2C1(CCC3C2CCC4C3(CCC(C4)O)C)C"
+    steroid_query = Chem.MolFromSmarts(steroid_smarts)
+    num_steroid_cores = len(mol.GetSubstructMatches(steroid_query))
+
+def rule15_structural_complexity(mol):
+    # Example metric: molecular weight as a proxy for complexity
+    molecular_weight = Descriptors.MolWt(mol)
+    return molecular_weight
+
+def rule16_reactive_groups(mol):
+    # Example reactive groups: aldehydes, epoxides, acid chlorides
+    # Using SMARTS patterns to identify these groups
+    reactive_smarts = ['[CX3H1](=O)[#6]', '[OX2r5]', '[CX3](=O)[Cl]']  # Aldehyde, Epoxide, Acid chloride
+    reactive_count = sum(len(mol.GetSubstructMatches(Chem.MolFromSmarts(smarts))) for smarts in reactive_smarts)
+    return reactive_count
+
+def rule17_binding_affinity(mol):
+    # Hypothetical function: higher number of aromatic rings and heteroatoms might indicate stronger binding affinity
+    num_aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    num_heteroatoms = rdMolDescriptors.CalcNumHeteroatoms(mol)
+    return num_aromatic_rings + num_heteroatoms
+
+def rule18_bulky_chains(mol):
+    # Using molecular weight as a proxy for bulkiness
+    molecular_weight = Descriptors.MolWt(mol)
+    # Threshold for considering a side chain as bulky might be set arbitrarily here, e.g., MW > 300
+    return 1 if molecular_weight > 300 else 0
+
+def rule19_halogens_heterotetracyclic(mol):
+    try:
+        # SMARTS pattern for halogens
+        halogens_smarts = '[F,Cl,Br,I]'
+        halogen_pattern = Chem.MolFromSmarts(halogens_smarts)
+        num_halogens = len(mol.GetSubstructMatches(halogen_pattern))
+        return num_halogens
+    except Exception:
+        return 0  # Return 0 in case of any error
+
+
+def rule20_peptide_linkages(mol):
+    # Peptide linkage SMARTS: -CO-NH-
+    peptide_linkage_smarts = '[CX3](=O)[NX3]'
+    num_peptide_linkages = len(mol.GetSubstructMatches(Chem.MolFromSmarts(peptide_linkage_smarts)))
+    return num_peptide_linkages
+
+def rule21_sulfur_charges(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'S' and atom.GetFormalCharge() != 0:
+            count += 1
+    return count
+
+def rule22_hazardous_classes(mol):
+    # This is a placeholder for actual hazardous class detection logic
+    # Here we just count nitro groups as an example of a hazardous group
+    nitro_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[N+](=O)[O-]')))
+    return nitro_count
+
+def rule23_reactive_groups(mol):
+    halogens_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[F,Cl,Br,I]')))
+    aromatic_amines_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('cnc')))
+    # Example of a reactive group: epoxide
+    epoxide_count = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C1OC1')))
+    return halogens_count + aromatic_amines_count + epoxide_count
+
+def rule24_heavy_metals(mol):
+    heavy_metals = ['Hg', 'Pb', 'Cd', 'As']  # Example heavy metals
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in heavy_metals:
+            count += 1
+    return count
+
+def rule25_hepatobiliary_risk(mol):
+    aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    carbonyl_groups = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3]=[OX1]')))
+    return aromatic_rings + carbonyl_groups

@@ -1,0 +1,63 @@
+
+
+    # Count occurrences
+    halogens = len(mol.GetAtomsMatchingQuery(halogen_query))
+    aromatics = len(mol.GetAtomsMatchingQuery(aromatic_query))
+    double_bonds = len(mol.GetBondsMatchingQuery(double_bond_query))
+    carbonyls = len(mol.GetAtomsMatchingQuery(carbonyl_query))
+
+    # Summing up all hazardous features
+    total_hazardous_features = halogens + aromatics + double_bonds + carbonyls
+    return total_hazardous_features
+
+def rule2_complex_structures(mol):
+    num_rings = rdMolDescriptors.CalcNumRings(mol)
+    num_chiral_centers = len(Chem.FindMolChiralCenters(mol, includeUnassigned=True))
+    num_functional_groups = rdMolDescriptors.CalcNumLipinskiHBA(mol) + rdMolDescriptors.CalcNumLipinskiHBD(mol)
+
+    # Complexity score could be a simple sum of these features
+    complexity_score = num_rings + num_chiral_centers + num_functional_groups
+    return complexity_score
+
+def rule3_similarity_to_toxins(mol):
+    # This is a placeholder function; in practice, you would compare `mol` to a database of known toxins
+    # Here, we check for aromatic amines and heavy metals
+    aromatic_amine_query = Chem.MolFromSmarts("n[H]")  # Simplified query for aromatic amines
+    heavy_metal_atomic_numbers = [80, 82, 83, 84]  # Hg, Pb, Bi, Po
+
+    # Assuming `mol` is an RDKit molecule object, check for matches
+    matches_aromatic_amines = mol.HasSubstructMatch(aromatic_amine_query)
+    matches_heavy_metals = any(atom.GetAtomicNum() in heavy_metal_atomic_numbers for atom in mol.GetAtoms())
+
+    if matches_aromatic_amines or matches_heavy_metals:
+        return 1
+    else:
+        return 0
+
+
+    aromatic_amines = len(mol.GetAtomsMatchingQuery(aromatic_amine_query))
+    heavy_metals = len(mol.GetAtomsMatchingQuery(heavy_metal_query))
+
+    # Summing up all toxic features
+    total_toxic_features = aromatic_amines + heavy_metals
+    return total_toxic_features
+
+def rule4_lipophilicity(mol):
+    # Calculate the logP value, which is a common measure of lipophilicity
+    return Descriptors.MolLogP(mol)
+
+def rule4_total_charge(mol):
+    # Calculate the total formal charge of the molecule
+    return Chem.GetFormalCharge(mol)
+
+def rule5_epoxides(mol):
+    # Detect epoxides (three-membered ether rings)
+    epoxide_smarts = "[OX2r3]"
+    epoxide = Chem.MolFromSmarts(epoxide_smarts)
+    return len(mol.GetSubstructMatches(epoxide))
+
+def rule5_aldehydes(mol):
+    # Detect aldehydes
+    aldehyde_smarts = "[CX3H1](=O)[#6]"
+    aldehyde = Chem.MolFromSmarts(aldehyde_smarts)
+    return len(mol.GetSubstructMatches(aldehyde))

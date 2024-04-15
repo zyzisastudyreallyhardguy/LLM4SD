@@ -1,0 +1,74 @@
+def rule1_calc_kow(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule2_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule3_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule4_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_log_pka(mol):
+    # Assuming the pKa is approximated by the acid dissociation constant (pKa)
+    # Here we use a simple estimation: pKa = -log10(10**(-MolLogP))
+    # This is a placeholder for demonstration as actual pKa calculation is complex and often requires experimental data or advanced calculations.
+    logP = Descriptors.MolLogP(mol)
+    pKa = -logP  # Simplified estimation for demonstration purposes
+    return pKa
+
+def rule6_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_double_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE)
+
+def rule8_triple_bonds(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.GetBondType() == Chem.rdchem.BondType.TRIPLE)
+
+def rule9_ring_ethers(mol):
+    return sum(1 for bond in mol.GetBonds() if bond.IsInRing() and bond.GetBondType() == Chem.rdchem.BondType.SINGLE and set([mol.GetAtomWithIdx(bond.GetBeginAtomIdx()).GetSymbol(), mol.GetAtomWithIdx(bond.GetEndAtomIdx()).GetSymbol()]) == {'C', 'O'})
+
+def rule10_carbonyls(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and any(n.GetSymbol() == 'O' and mol.GetBondBetweenAtoms(atom.GetIdx(), n.GetIdx()).GetBondType() == Chem.rdchem.BondType.DOUBLE for n in atom.GetNeighbors()))
+
+def rule11_amines(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and len([n for n in atom.GetNeighbors() if n.GetSymbol() == 'H']) >= 2)
+
+def rule12_thiols(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'S' and len([n for n in atom.GetNeighbors() if n.GetSymbol() == 'H']) == 1)
+
+def rule13_halogens(mol):
+    halogens = {'F', 'Cl', 'Br', 'I'}
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in halogens)
+
+def rule14_phenols(mol):
+    return sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'O' and any(n.GetSymbol() == 'C' and n.GetIsAromatic() for n in atom.GetNeighbors()) and len([n for n in atom.GetNeighbors() if n.GetSymbol() == 'H']) == 1)
+
+def rule15_calculate_enols(mol):
+    pattern = Chem.MolFromSmarts('O=C-O')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule16_calculate_epoxides(mol):
+    pattern = Chem.MolFromSmarts('C1OC1')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule17_calculate_strained_rings(mol):
+    ssr = Chem.GetSSSR(mol)
+    strained_rings = 0
+    for ring in ssr:
+        if len(ring) < 5:
+            strained_rings += 1
+    return strained_rings
+
+def rule18_calculate_alkenyl_groups(mol):
+    pattern = Chem.MolFromSmarts('C=CC')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule19_calculate_alkynyl_groups(mol):
+    pattern = Chem.MolFromSmarts('C#C')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule20_calculate_surface_area(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)

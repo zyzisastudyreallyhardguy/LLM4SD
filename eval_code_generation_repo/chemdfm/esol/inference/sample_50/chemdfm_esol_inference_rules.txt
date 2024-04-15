@@ -1,0 +1,89 @@
+def rule1_hydrophilic_groups(mol):
+    # Count hydrophilic functional groups
+    num_hydroxyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[OH]')))
+    num_amino = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NH2,NH,N]')))
+    num_carbonyl = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX3]=[OX1]')))
+    num_carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)O')))
+    num_amides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)N')))
+    num_alcohols = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[CX4;H1,H2][OX2H]')))
+    return num_hydroxyl + num_amino + num_carbonyl + num_carboxylic_acids + num_amides + num_alcohols
+
+def rule2_molecular_weight_complexity(mol):
+    # Calculate molecular weight and count aromatic rings
+    mol_weight = rdMolDescriptors.CalcExactMolWt(mol)
+    num_aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return mol_weight + num_aromatic_rings * 100  # Weighting aromatic rings more
+
+def rule3_polar_charged_groups(mol):
+    # Count polar or charged groups
+    num_amines = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[NH2,NH,N+]')))
+    num_carboxylic_acids = len(mol.GetSubstructMatches(Chem.MolFromSmarts('C(=O)[O-]')))
+    num_sulfides = len(mol.GetSubstructMatches(Chem.MolFromSmarts('[SX2]')))
+    return num_amines + num_carboxylic_acids + num_sulfides
+
+def rule4_aromatic_rings(mol):
+    # Count aromatic rings
+    num_aromatic_rings = rdMolDescriptors.CalcNumAromaticRings(mol)
+    return num_aromatic_rings
+
+def rule5_halogen_atoms(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = sum(mol.GetAtomWithIdx(i).GetSymbol() in halogens for i in range(mol.GetNumAtoms()))
+    return count
+
+def rule6_polar_groups(mol):
+    polar_groups = ['[OH]', '[NH]', 'C=O', '[#16]', '[#15]', '[#7]']  # Updated SMARTS patterns
+    substruct_count = 0
+    for group in polar_groups:
+        smarts = Chem.MolFromSmarts(group)
+        if smarts:  # Check if smarts is not None
+            substruct_count += len(mol.GetSubstructMatches(smarts))
+    return substruct_count
+
+
+def rule7_similar_groups(mol):
+    if mol is None:
+        return 0  # Return 0 if the input molecule is None
+
+    functional_groups = {
+        'OH': Chem.MolFromSmarts('O[H]'),
+        'NH2': Chem.MolFromSmarts('N[H]2'),
+        'COOH': Chem.MolFromSmarts('C(=O)O[H]'),
+        'SO3H': Chem.MolFromSmarts('S(=O)(=O)O[H]'),
+        'PO3H2': Chem.MolFromSmarts('P(=O)(O[H])(O[H])')
+    }
+
+    count = 0
+    for name, fg_mol in functional_groups.items():
+        if fg_mol is not None:  # Check if the molecule pattern was created successfully
+            matches = mol.GetSubstructMatches(fg_mol)
+            count += len(matches)
+        else:
+            print(f"Warning: SMARTS pattern for {name} did not create a valid molecule object.")
+
+    return count
+
+
+def rule8_long_nonpolar_chains(mol):
+    # Count the number of carbons in long nonpolar chains
+    # Assuming a 'long' chain here arbitrarily means more than 6 carbons in a sequence
+    long_chain_count = 0
+    for chain in Chem.FindAllPathsOfLengthN(mol, 7, useBonds=False):
+        if all(mol.GetAtomWithIdx(idx).GetSymbol() == 'C' for idx in chain):
+            long_chain_count += 1
+    return long_chain_count
+
+def rule9_unsaturated_or_conjugated_bonds(mol):
+    # Count the number of unsaturated (double or triple) bonds
+    unsaturated_bond_count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() in (Chem.rdchem.BondType.DOUBLE, Chem.rdchem.BondType.TRIPLE):
+            unsaturated_bond_count += 1
+    return unsaturated_bond_count
+
+def rule10_cyclic_or_branched_structures(mol):
+    # Count the number of ring structures
+    ring_count = mol.GetRingInfo().NumRings()
+    # Count the number of branching points (atoms with more than 2 neighbors)
+    branching_points = sum(1 for atom in mol.GetAtoms() if len(atom.GetNeighbors()) > 2)
+    return ring_count + branching_points

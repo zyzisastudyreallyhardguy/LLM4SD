@@ -1,0 +1,21 @@
+def rule1_chlorinated_benzenes(mol):
+    aromatic_rings = mol.GetRingInfo().AtomRings()
+    chlorinated_count = 0
+    for ring in aromatic_rings:
+        has_chlorine = any(mol.GetAtomWithIdx(idx).GetAtomicNum() == 17 for idx in ring)
+        if has_chlorine:
+            chlorinated_count += 1
+    return chlorinated_count
+
+def rule2_fused_rings(mol):
+    ssr = Chem.GetSymmSSSR(mol)
+    fused_rings = sum(1 for ring in ssr if len(ring) >= 3)
+    return fused_rings
+
+def rule3_carbonyl_and_sulfide(mol):
+    has_carbonyl = any(bond.IsInRing() and bond.GetBondType() == Chem.rdchem.BondType.DOUBLE 
+                       and mol.GetAtomWithIdx(bond.GetBeginAtomIdx()).GetAtomicNum() == 6 
+                       and mol.GetAtomWithIdx(bond.GetEndAtomIdx()).GetAtomicNum() == 8
+                       for bond in mol.GetBonds())
+    has_sulfide = any(atom.GetAtomicNum() == 16 for atom in mol.GetAtoms())
+    return int(has_carbonyl and has_sulfide)

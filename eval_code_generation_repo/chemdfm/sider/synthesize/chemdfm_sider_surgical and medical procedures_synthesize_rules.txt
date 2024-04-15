@@ -1,0 +1,111 @@
+def rule55302_hb_donors1232143(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def rule950021_hb_acceptor35749(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def calculate_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def calculate_TPSA(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def calculate_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def calculate_molar_refractivity(mol):
+    try:
+        return Descriptors.MolMR(mol)
+    except Exception:
+        return 0  # Return 0 or any appropriate default value in case of an error
+
+
+def rule7_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule8_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = sum(atom.GetAtomicNum() in [9, 17, 35, 53] for atom in mol.GetAtoms())
+    return count
+
+def rule9_lone_pairs(mol):
+    lone_pairs = {
+        7: 1,  # Nitrogen typically has 1 lone pair
+        8: 2,  # Oxygen typically has 2 lone pairs
+        16: 2, # Sulfur typically has 2 lone pairs
+    }
+    count = sum(lone_pairs.get(atom.GetAtomicNum(), 0) for atom in mol.GetAtoms())
+    return count
+
+def rule10_metals(mol):
+    metals = set(range(21, 31))  # Sc to Zn
+    metals.update(range(39, 49)) # Y to Cd
+    metals.update(range(72, 81)) # Hf to Tl
+    count = sum(atom.GetAtomicNum() in metals for atom in mol.GetAtoms())
+    return count
+
+def rule11_ring_assembly_flags(mol):
+    # Assuming ring assembly flags are counted as SSSR (Smallest Set of Smallest Rings)
+    return len(Chem.GetSymmSSSR(mol))
+
+
+
+def rule13_r_group_flags(mol):
+    # Placeholder for R-group detection, assuming R as any alkyl or aryl group
+    r_groups = [
+        Chem.MolFromSmarts('C[*]'),  # Generic R-group attached to carbon
+    ]
+    count = sum(len(mol.GetSubstructMatches(rg)) for rg in r_groups)
+    return count
+
+def rule14_tertiary_carbons(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) == 3:
+            count += 1
+    return count
+
+def rule15_primary_carbons(mol):
+    primary_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) == 1:
+            primary_carbons += 1
+    return primary_carbons
+
+def rule16_secondary_carbons(mol):
+    secondary_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) == 2:
+            secondary_carbons += 1
+    return secondary_carbons
+
+def rule17_quaternary_carbons(mol):
+    quaternary_carbons = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) == 4:
+            quaternary_carbons += 1
+    return quaternary_carbons
+
+def rule18_cc_double_bonds(mol):
+    cc_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdchem.BondType.DOUBLE and bond.GetBeginAtom().GetAtomicNum() == 6 and bond.GetEndAtom().GetAtomicNum() == 6:
+            cc_double_bonds += 1
+    return cc_double_bonds
+
+def rule19_cc_triple_bonds(mol):
+    cc_triple_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdchem.BondType.TRIPLE and bond.GetBeginAtom().GetAtomicNum() == 6 and bond.GetEndAtom().GetAtomicNum() == 6:
+            cc_triple_bonds += 1
+    return cc_triple_bonds
+
+def rule20_co_double_bonds(mol):
+    co_double_bonds = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == rdchem.BondType.DOUBLE and ((bond.GetBeginAtom().GetAtomicNum() == 6 and bond.GetEndAtom().GetAtomicNum() == 8) or (bond.GetBeginAtom().GetAtomicNum() == 8 and bond.GetEndAtom().GetAtomicNum() == 6)):
+            co_double_bonds += 1
+    return co_double_bonds

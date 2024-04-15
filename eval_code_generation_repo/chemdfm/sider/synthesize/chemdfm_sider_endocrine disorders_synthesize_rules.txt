@@ -1,0 +1,97 @@
+def sider_endocrine_logP(mol):
+    return Crippen.MolLogP(mol)
+
+def sider_endocrine_unsaturated_bonds(mol):
+    unsaturated = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() != Chem.rdchem.BondType.SINGLE:
+            unsaturated += 1
+    return unsaturated
+
+def sider_endocrine_aromatic_rings(mol):
+    return len(Chem.GetSymmSSSR(mol))
+
+def sider_endocrine_detect_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in halogens:
+            count += 1
+    return count
+
+def sider_endocrine_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def sider_endocrine_metal_chelators(mol):
+    chelating_groups = ['O', 'N', 'S']  # Common chelating atoms
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in chelating_groups:
+            count += 1
+    return count
+
+def rule7_endocrine_disruption_functionality(mol):
+    # Placeholder for actual functionality check; returns 0 as a dummy value
+    return 0
+
+def rule8_structural_similarity(mol):
+    # Placeholder for similarity check; returns 0 as a dummy value
+    return 0
+
+def rule9_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule10_functional_groups(mol):
+    # Placeholder for checking specific functional groups; returns 0 as a dummy value
+    return 0
+
+def rule11_planar_molecules(mol):
+    return int(mol.GetNumConformers() > 0 and all(Chem.rdMolTransforms.GetConeAngle(mol.GetConformer()) < 0.1 for _ in range(mol.GetNumAtoms())))
+
+def rule12_metal_ion_chelators(mol):
+    # Example: Check for common chelating groups like carboxylates or hydroxyls
+    pattern = Chem.MolFromSmarts('[O,N,S;H1,H0;!$(*n[O,N,S])]')
+    return len(mol.GetSubstructMatches(pattern))
+
+def rule13_rotatable_bonds(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol)
+
+def rule14_enzyme_inhibitors(mol):
+    # Placeholder for enzyme inhibitor detection; returns 0 as a dummy value
+    return 0
+
+def rule15_high_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def rule16_xenobiotic_metabolism(mol):
+    # Example functional groups: Cytochrome P450 metabolized moieties like benzene, phenol
+    smarts_patterns = ['c1ccccc1', 'c1ccc(cc1)O']  # benzene, phenol
+    count = 0
+    for pattern in smarts_patterns:
+        substructure = Chem.MolFromSmarts(pattern)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule17_reactive_electrophilic_centers(mol):
+    # Example electrophilic centers: carbonyl groups, Michael acceptors
+    smarts_patterns = ['C=O', 'C=C(C)C=O']  # carbonyl, Michael acceptor
+    count = 0
+    for pattern in smarts_patterns:
+        substructure = Chem.MolFromSmarts(pattern)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count
+
+def rule18_high_lipophilicity(mol):
+    return Crippen.MolLogP(mol)
+
+def rule19_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def rule20_oxidative_stress(mol):
+    # Example groups: quinones, peroxides
+    smarts_patterns = ['O1[CH1]=C[CH1]=C[CH1]=C1=O', 'OO']  # quinone, peroxide
+    count = 0
+    for pattern in smarts_patterns:
+        substructure = Chem.MolFromSmarts(pattern)
+        count += len(mol.GetSubstructMatches(substructure))
+    return count

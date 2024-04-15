@@ -1,0 +1,32 @@
+def rule1_heavily_modified_aromatics(mol):
+    aromatic_count = 0
+    for ring in mol.GetRingInfo().AtomRings():
+        if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring):
+            aromatic_count += 1
+
+    # Manually counting halogens
+    halogens = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+
+    # Counting carboxylic acids (COOH groups)
+    carboxylic_acids = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'C' and 
+                           any(neighbor.GetSymbol() == 'O' and len(neighbor.GetNeighbors()) == 1 for neighbor in atom.GetNeighbors()))
+
+    # Counting amines on aromatic rings
+    amines = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() == 'N' and atom.GetIsAromatic())
+
+    return aromatic_count + halogens + carboxylic_acids + amines
+
+
+def rule2_complex_structures(mol):
+    # Using molecular weight and rotatable bonds as proxies for complexity
+    molecular_weight = Descriptors.MolWt(mol)
+    rotatable_bonds = rdMolDescriptors.CalcNumRotatableBonds(mol)
+    return molecular_weight + rotatable_bonds
+
+def rule3_toxic_functional_groups(mol):
+    toxic_count = 0
+    # Manually count halogen atoms
+    halogens = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['F', 'Cl', 'Br', 'I'])
+    heavy_metals = sum(1 for atom in mol.GetAtoms() if atom.GetSymbol() in ['Hg', 'Pb'])
+    return halogens + heavy_metals
+

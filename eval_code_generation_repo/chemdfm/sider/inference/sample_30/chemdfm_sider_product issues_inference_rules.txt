@@ -1,0 +1,52 @@
+def rule1_aromatic_and_conjugation(mol):
+    try:
+        # Count aromatic rings using RDKit's GetSymmSSSR function which finds the smallest set of smallest rings
+        sssr = Chem.GetSymmSSSR(mol)
+        aromatic_rings = sum(1 for ring in sssr if all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring))
+        return aromatic_rings
+    except Exception:
+        # Return 0 if there is any error, as per the requirement to not raise errors
+        return 0
+
+
+def rule2_halogen_atoms(mol):
+    # Count halogen atoms (F, Cl, Br, I)
+    halogens = sum(atom.GetAtomicNum() in (9, 17, 35, 53) for atom in mol.GetAtoms())
+    return halogens
+
+def rule3_specific_functional_groups(mol):
+    # Count specific functional groups: carbonyls, epoxides, aldehydes, ketones
+    # Using SMARTS patterns to identify functional groups
+    carbonyl_smarts = '[CX3]=[OX1]'  # General carbonyl
+    epoxide_smarts = '[OX2r3]'       # Epoxide
+    aldehyde_smarts = '[CX3H1](=O)'  # Aldehyde
+    ketone_smarts = '[CX3](=O)[#6]'  # Ketone
+
+def rule4_heavy_metal_ions(mol):
+    # List of common heavy metal ions to check for
+    heavy_metals = ['Cu', 'Hg', 'Pb', 'Cd', 'As', 'Cr', 'Ni', 'Ag']
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in heavy_metals:
+            return 1  # Presence of heavy metal
+    return 0  # No heavy metals found
+
+def rule5_molecular_weight(mol):
+    return Descriptors.MolWt(mol)
+
+def rule5_molecular_complexity(mol):
+    return rdMolDescriptors.CalcNumRotatableBonds(mol) + mol.GetNumHeavyAtoms()
+
+def rule6_aromatic_amines(mol):
+    aromatic_amines = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() == 'N' and atom.GetIsAromatic():
+            aromatic_amines += 1
+    return aromatic_amines
+
+def rule6_metal_complexes(mol):
+    metal_atoms = ['Cu', 'Hg', 'Pb', 'Cd', 'As', 'Cr', 'Ni', 'Ag']
+    metal_complexes = 0
+    for atom in mol.GetAtoms():
+        if atom.GetSymbol() in metal_atoms:
+            metal_complexes += 1
+    return metal_complexes

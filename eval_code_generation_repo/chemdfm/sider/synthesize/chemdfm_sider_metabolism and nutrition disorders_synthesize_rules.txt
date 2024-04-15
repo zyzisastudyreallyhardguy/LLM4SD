@@ -1,0 +1,108 @@
+def calculate_logp(mol):
+    return Chem.Crippen.MolLogP(mol)
+
+def calculate_molecular_weight(mol):
+    return rdMolDescriptors.CalcExactMolWt(mol)
+
+def calculate_formal_charge(mol):
+    return Chem.rdmolops.GetFormalCharge(mol)
+
+def calculate_hb_donors(mol):
+    return rdMolDescriptors.CalcNumHBD(mol)
+
+def calculate_hb_acceptors(mol):
+    return rdMolDescriptors.CalcNumHBA(mol)
+
+def calculate_polar_surface_area(mol):
+    return rdMolDescriptors.CalcTPSA(mol)
+
+def calculate_aromatic_rings(mol):
+    return rdMolDescriptors.CalcNumAromaticRings(mol)
+
+def rule7_unsaturated_bonds(mol):
+    unsat_bonds = sum(1 for bond in mol.GetBonds() if bond.GetBondType() != Chem.rdchem.BondType.SINGLE)
+    return unsat_bonds
+
+def rule8_chiral_centers(mol):
+    chiral_centers = sum(1 for atom in mol.GetAtoms() if atom.GetChiralTag() != Chem.rdchem.ChiralType.CHI_UNSPECIFIED)
+    return chiral_centers
+
+def rule9_rotatable_bonds(mol):
+    return Lipinski.NumRotatableBonds(mol)
+
+def rule10_acidic_basic_groups(mol):
+    # Define SMARTS patterns for acidic and basic groups
+    acidic_smarts = "[CX3](=O)[OX2H1]"
+    basic_smarts = "[NX3;H2,H1;!$(NC=O)]"
+
+    # Create RDKit molecule objects from SMARTS patterns
+    acidic_query = Chem.MolFromSmarts(acidic_smarts)
+    basic_query = Chem.MolFromSmarts(basic_smarts)
+
+    # Count matches of the patterns in the input molecule
+    acidic_groups = len(mol.GetSubstructMatches(acidic_query))
+    basic_groups = len(mol.GetSubstructMatches(basic_query))
+
+    # Return the sum of acidic and basic groups
+    return acidic_groups + basic_groups
+
+
+def rule11_molar_refractivity(mol):
+    return Descriptors.MolMR(mol)
+
+def rule12_logP(mol):
+    return Descriptors.MolLogP(mol)
+
+def rule13_ring_systems(mol):
+    return rdMolDescriptors.CalcNumRings(mol)
+
+def rule14_surface_area_to_volume_ratio(mol):
+    if mol is None:
+        return 0
+    volume = rdMolDescriptors.CalcExactMolWt(mol)
+    if volume == 0:
+        return 0
+    surface_area = rdMolDescriptors.CalcTPSA(mol)
+    return surface_area / volume
+
+def rule15_count_halogens(mol):
+    halogens = ['F', 'Cl', 'Br', 'I']
+    count = sum([mol.GetNumAtoms(atom.GetAtomicNum() in halogens) for atom in mol.GetAtoms()])
+    return count
+
+def rule16_count_ring_assemblies(mol):
+    return len(Chem.GetSymmSSSR(mol))
+
+def rule17_count_conjugated_double_bonds(mol):
+    count = 0
+    for bond in mol.GetBonds():
+        if bond.GetBondType() == Chem.rdchem.BondType.DOUBLE and bond.GetIsConjugated():
+            count += 1
+    return count
+
+def rule18_count_tertiary_carbons(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6 and len(atom.GetNeighbors()) == 3:  # Carbon atoms with three neighbors
+            count += 1
+    return count
+
+def rule19_count_carbonyl_groups(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 6:  # Carbon
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetAtomicNum() == 8 and neighbor.GetTotalNumHs() == 0:  # Oxygen with no hydrogens
+                    if mol.GetBondBetweenAtoms(atom.GetIdx(), neighbor.GetIdx()).GetBondType() == Chem.rdchem.BondType.DOUBLE:
+                        count += 1
+    return count
+
+def rule20_count_hydroxy_groups(mol):
+    count = 0
+    for atom in mol.GetAtoms():
+        if atom.GetAtomicNum() == 8 and atom.GetTotalNumHs() == 1:  # Oxygen with one hydrogen
+            for neighbor in atom.GetNeighbors():
+                if neighbor.GetAtomicNum() == 6:  # Carbon
+                    if mol.GetBondBetweenAtoms(atom.GetIdx(), neighbor.GetIdx()).GetBondType() == Chem.rdchem.BondType.SINGLE:
+                        count += 1
+    return count
