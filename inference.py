@@ -2,8 +2,8 @@ import pandas as pd
 import argparse
 import random
 import copy
-from transformers import BitsAndBytesConfig
-from transformers import AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig, BitsAndBytesConfig
+from transformers import LlamaTokenizer, LlamaForCausalLM
 import transformers
 import torch
 import os
@@ -32,16 +32,29 @@ def get_hf_tokenizer_pipeline(model, is_8bit=False):
     elif model == "galactica-30b":
         hf_model = "GeorgiaTechResearchInstitute/galactica-30b-evol-instruct-70k"
         is_8bit = True
+    elif model == "chemllm-7b":
+        hf_model = "AI4Chem/ChemLLM-7B-Chat"
+    elif model == "chemdfm":
+        hf_model = "X-LANCE/ChemDFM-13B-v1.0"
     else:
         raise NotImplementedError(f"Cannot find Hugging Face tokenizer for model {model}.")
     model_kwargs = {}
     quantization_config = None
     if is_8bit:
         quantization_config = BitsAndBytesConfig(load_in_8bit=True, llm_int8_threshold=200.0,)
-    model_kwargs['quantization_config'] = quantization_config
-    tokenizer = AutoTokenizer.from_pretrained(hf_model, use_fast=False, padding_side="left", trust_remote_code=True,)
-    pipeline = transformers.pipeline("text-generation", model=hf_model, tokenizer=tokenizer, torch_dtype=torch.float16,
-                                     trust_remote_code=True, use_fast=False, device_map='auto', model_kwargs=model_kwargs,)
+    if model == "chemllm-7b":
+        pipeline = AutoModelForCausalLM.from_pretrained(hf_model, torch_dtype=torch.float16,
+                                                        device_map="auto", trust_remote_code=True)
+        tokenizer = AutoTokenizer.from_pretrained(hf_model,trust_remote_code=True)
+    elif model == "chemdfm":
+        tokenizer = LlamaTokenizer.from_pretrained(hf_model)
+        pipeline = LlamaForCausalLM.from_pretrained(hf_model, torch_dtype=torch.float16, device_map="auto")
+    else:
+        model_kwargs['quantization_config'] = quantization_config
+        tokenizer = AutoTokenizer.from_pretrained(hf_model, use_fast=False, padding_side="left", trust_remote_code=True)
+        pipeline = transformers.pipeline("text-generation", model=hf_model, tokenizer=tokenizer,
+                                         torch_dtype=torch.float16, trust_remote_code=True, use_fast=False,
+                                         device_map='auto', model_kwargs=model_kwargs)
     return tokenizer, pipeline
 
 
@@ -63,11 +76,15 @@ def get_token_limit(model, for_response=False):
     """Returns the token limitation of provided model"""
     model = model.lower()
     if for_response:  # For get response
-        if model in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b"]:
-            num_tokens_limit = 2048 
+        if model in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b", "chemdfm"]:
+            num_tokens_limit = 2048
+        elif model in ['chemllm-7b']:
+            num_tokens_limit = 4096
     else:  # For split input list
-        if model in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b"]:
+        if model in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b", "chemdfm"]:
             num_tokens_limit = round(2048*3/4)  # 1/4 part for the response, 512 tokens
+        elif model in ['chemllm-7b']:
+            num_tokens_limit = round(4096*3/4)
         else:
             raise NotImplementedError(f"""get_token_limit() is not implemented for model {model}.""")
     return num_tokens_limit
@@ -77,11 +94,13 @@ def get_system_prompt():
     # prompt format depends on the LLM, you can add the system prompt here
     model = args.model.lower()
     if model in ['falcon-7b', 'falcon-40b']:
-        system_prompt = ("{instruction}\n")
-    elif model in ["galactica-6.7b", "galactica-30b"]:
+        system_prompt = "{instruction}\n"
+    elif model in ["galactica-6.7b", "galactica-30b", "chemllm-7b"]:
         system_prompt = ("Below is an instruction that describes a task. "
                          "Write a response that appropriately completes the request.\n\n"
                          "### Instruction:\n{instruction}\n\n### Response:\n")
+    elif model in ["chemdfm"]:
+        system_prompt = "Human: {instruction}\nAssistant:"
     else:
         raise NotImplementedError(f"""No system prompt setting for the model: {model} .""")
     return system_prompt
@@ -124,29 +143,55 @@ def split_smile_list(smile_content_list, dk_prompt, tokenizer, list_num):
 
 
 def get_model_response(model, list_of_smile_label_lists, pipeline, dk_prompt, tokenizer):
-    input_list = [dk_prompt +'\n' + '\n'.join(s) for s in list_of_smile_label_lists]
+    input_list = [dk_prompt + '\n' + '\n'.join(s) for s in list_of_smile_label_lists]
     system_prompt = get_system_prompt()
     response_list = []
-    if model.lower() in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b"]:
+    if model.lower() in ['falcon-7b', 'falcon-40b', "galactica-6.7b", "galactica-30b", "chemllm-7b", "chemdfm"]:
         for smile_label in input_list:
             smile_prompt = system_prompt.format_map({'instruction': smile_label.strip()})
             len_smile_prompt = len(tokenizer.tokenize(smile_prompt))
             print(smile_prompt)
             max_new_token = get_token_limit(model, for_response=True) - len_smile_prompt
-            text_generator = pipeline(
-                smile_prompt,
-                min_new_tokens=0,
-                max_new_tokens=max_new_token,
-                do_sample=False,
-                num_beams=3,  # beam search
-                temperature=float(0.5),  # randomness/diversity
-                repetition_penalty=float(1.2),
-                renormalize_logits=True
-            )
-            generated_text = text_generator[0]['generated_text']
-            if model in ["galactica-6.7b", "galactica-30b"]:
+            if model in ['chemllm-7b']:
+                inputs = tokenizer(smile_prompt, return_tensors="pt").to("cuda")
+                generation_config = GenerationConfig(
+                                    do_sample=True,
+                                    top_k=1,
+                                    temperature=float(0.5),
+                                    max_new_tokens=max_new_token,
+                                    repetition_penalty=float(1.2),
+                                    pad_token_id=tokenizer.eos_token_id
+                                    )
+                outputs = pipeline.generate(**inputs, generation_config=generation_config)
+                generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+            elif model in ["chemdfm"]:
+                inputs = tokenizer(smile_prompt, return_tensors="pt").to("cuda")
+                generation_config = GenerationConfig(
+                                    do_sample=True,
+                                    top_k=20,
+                                    top_p=0.9,
+                                    temperature=0.9,
+                                    max_new_tokens=max_new_token,
+                                    repetition_penalty=1.05,
+                                    pad_token_id=tokenizer.eos_token_id
+                                    )
+                outputs = pipeline.generate(**inputs, generation_config=generation_config)
+                generated_text = tokenizer.batch_decode(outputs, skip_special_tokens=True)[0][len(smile_prompt):]
+            else:
+                text_generator = pipeline(
+                    smile_prompt,
+                    min_new_tokens=0,
+                    max_new_tokens=max_new_token,
+                    do_sample=False,
+                    num_beams=3,  # beam search
+                    temperature=float(0.5),  # randomness/diversity
+                    repetition_penalty=float(1.2),
+                    renormalize_logits=True
+                )
+                generated_text = text_generator[0]['generated_text']
+            if model in ["galactica-6.7b", "galactica-30b", "chemllm-7b"]:
                 generated_text = generated_text.split('### Response:\n')[1]
-            elif model in ['falcon-7b', 'falcon-40b']:
+            elif model in ['falcon-7b', 'falcon-40b', 'chemdfm']:
                 pass
             print(generated_text)
             response_list.append(generated_text)
