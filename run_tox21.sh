@@ -11,7 +11,9 @@
 
 API_KEY='' # OpenAI API key for gpt4 summarization and code generation
 
-MODEL="galactica-6.7b" # ("falcon-40b" "galactica-30b") Falcon-7B fails in tox21 tasks
+MODEL="galactica-6.7b" # ("falcon-40b" "galactica-30b" "chemdfm" "chemllm-7b") Falcon-7B fails in tox21 tasks
+# Generated content from "chemllm-7b" for inference.py may not meet the required standards for proceeding directly to Step 4.
+# It is strongly recommended that you thoroughly review the rules qualities before running step 4.
 
 TOX21_SUBTASK=("nr-ar-lbd" "nr-ahr" "nr-ar" "nr-aromatase" "nr-er" "nr-er-lbd" "nr-ppar-gamma"
                "sr-are" "sr-atad5" "sr-hse" "sr-mmp" "sr-p53")
