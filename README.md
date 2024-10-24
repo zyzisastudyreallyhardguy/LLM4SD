@@ -41,7 +41,7 @@ The inferred rules are stored under the data_knowledge folder.
 The summarized rules are stored under the summarized_inference_rules folder. --> The purpose of this step is to drop duplicate rules.
 
 👉: "**Automatic Code Generation & Evaluation**", this step will call python auto_gen_and_eval.py
-This step will automatically generate the code using GPT-4 and run experiments to get the model performance. Please note that, in practice, human experts would review the code before usage. However, even with automatic code generation and direct evaluation, the code achieves pretty much the same performance.
+This step will automatically generate the code using GPT-4 and run experiments to get the model performance. Human experts can review the code before usage. However, even with automatic code generation and direct evaluation, the code achieves pretty much the same performance.
 
 **📓Notes:** We have also provided **an advanced automatic code generation tool** based on the newly released **OpenAI Assistant**. If you are interested in trying the assistant version of code generation, please check out the "code_gen.py" and "eval.py" files in the folder "LLM4SD-gpt4-demo".
 
