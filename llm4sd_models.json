@@ -1,21 +1,23 @@
 {
     "bbbp": {
-        "n_estimators": 500,
-        "max_depth": null,
-        "min_samples_split": 20,
-        "bootstrap": true,
-        "class_weight": "balanced",
-        "criterion": "entropy",
-        "min_samples_leaf": 4
-    },
-    "clintox": {
-        "n_estimators": 400,
-        "max_depth": null,
-        "min_samples_split": 3,
+        "n_estimators": 700,
+        "max_depth": 41,
+        "min_samples_split": 6,
         "bootstrap": false,
         "class_weight": null,
         "criterion": "entropy",
-        "min_samples_leaf": 1,
+        "min_samples_leaf": 4,
+        "warm_start": true,
+        "max_features": "log2"
+    },
+    "clintox": {
+        "n_estimators": 200,
+        "max_depth": 4,
+        "min_samples_split": 6,
+        "bootstrap": false,
+        "class_weight": "balanced",
+        "criterion": "gini",
+        "min_samples_leaf": 3,
         "max_features": "sqrt",
         "warm_start": true
     },
@@ -37,7 +39,9 @@
         "class_weight": null,
         "criterion": "entropy",
         "min_samples_leaf": 1,
-        "n_jobs": -1
+        "max_features": "log2",
+        "warm_start": true,
+        "ccp_alpha": 0.0
     },
     "esol": {
         "n_estimators": 500,
@@ -56,13 +60,17 @@
         "n_jobs": -1
     },
     "freesolv": {
-        "n_estimators": 500,
+        "n_estimators": 100,
         "max_depth": null,
-        "criterion": "squared_error",
-        "min_samples_leaf": 1,
+        "min_samples_split": 7,
+        "min_samples_leaf": 2,
         "bootstrap": false,
+        "criterion": "friedman_mse", 
+        "max_features": 29,
         "n_jobs": -1,
-        "min_samples_split": 2
+        "max_leaf_nodes": 80,
+        "ccp_alpha": 0.002,
+        "warm_start": true
     },
     "tox21": {
         "nr-ar": {
