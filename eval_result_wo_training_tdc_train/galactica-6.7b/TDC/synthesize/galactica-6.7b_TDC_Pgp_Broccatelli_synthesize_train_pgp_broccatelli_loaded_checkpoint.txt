@@ -1,0 +1,16 @@
+dataset: TDC
+subtask: Pgp_Broccatelli
+model: galactica-6.7b
+knowledge_type: synthesize
+feature_backend: pgp_broccatelli
+eval_split: train
+num_bundles: 1
+
+seed=2	roc_auc=0.9968247378725743	macro_f1=0.9644428255204684	accuracy=0.9645390070921985	bundle=checkpoints/forest/TDC__Pgp_Broccatelli/galactica-6.7b__pgp_broccatelli__synthesize__seed_2.joblib
+
+average_train_roc_auc: 0.9968247378725743
+std_train_roc_auc: 0.0
+average_train_macro_f1: 0.9644428255204684
+std_train_macro_f1: 0.0
+average_train_accuracy: 0.9645390070921985
+std_train_accuracy: 0.0

@@ -1,0 +1,67 @@
+# 执行概要
+本报告基于权威文献和数据库总结了可能导致临床毒性失败的关键结构和物化学特征规则。结构警告包括苯胺（芳香胺）、硝酰基、α,β-不饱和羰基（Michael受体）、醌／邻苯二酚、环氧化物和烷基卤化物等易被生物活化为反应性代谢物的基团。物化属性方面，建议限制分子量（≤500）、亲脂性（cLogP≤5；理想<3），适当提高极性表面积（TPSA>75），并控制氢键供体/受体数量（HBD≤5, HBA≤10）、可旋转键数（≤10）等。过多芳香环（>3个）与研发风险增高相关。其它风险因素包括高基础性pKa（可能增加hERG风险）和金属螯合基团。我们将这些规则归纳为“Calculate”或“Check”起始的简明条目，并附上简要说明、阈值及主要文献来源。下表给出每条规则的描述与依据。
+
+```mermaid
+timeline
+    title 研究时间线
+    2018 : 文献回顾结构性警告
+    2020 : 收集反应性基团与PAINS等数据
+    2025 : 确定关键物化属性阈值
+    2026 : 综合规则并准备报告
+```
+
+## 毒性预警结构示意图
+*图示1. 环氧化物（oxirane）基团为典型反应性结构，会与生物分子发生烷基化而引发毒性。*
+
+*图示2. 利维诺芬（raloxifene）及其代谢物。其代谢物含有醌结构（红圈），易与细胞分子形成共价结合引发毒性。*
+
+## 毒性预测规则列表
+1. **Check nitroso group** – 含–N=O官能团可形成高反应性代谢物。【毒性后果】形成硝基/羟胺等反应中间体；**阈值:** 无特定要求。
+2. **Check aromatic amine (aniline)** – 芳香胺易被氧化成硝基或羟胺，引发毒性。【毒性后果】芳香胺N-羟基化/硝化后生成活性代谢物；**阈值:** 无特定要求。
+3. **Check α,β-unsaturated carbonyl** – α,β-不饱和羰基（Michael受体）为强亲电体，易发生共价加成。【毒性后果】可与蛋白质/DNA发生亲核攻击；**阈值:** 无特定要求。
+4. **Check quinone or catechol structures** – 醌/邻苯二酚易形成反应性醌代谢物。【毒性后果】醌/metabolite为强亲电体并可进行氧化还原循环产生活性氧；**阈值:** 无特定要求。
+5. **Check epoxide (oxirane) group** – 环氧化物官能团本身高度活泼。【毒性后果】作为亲电炔烯体可与氨基酸/核酸发生烷基化；**阈值:** 无特定要求。
+6. **Check alkyl halide (haloalkane)** – 烷基卤素（如–Cl, –Br）容易生成亲电物种。【毒性后果】可发生亲核取代生成烷基化反应中间体；**阈值:** 无特定要求（一般避免）。
+7. **Check aryl halide (aryl chloride)** – 芳香环卤素被视作hERG阻断子结构警告。【毒性后果】氯代芳香环常见于hERG抑制药物中；**阈值:** 无特定要求。
+8. **Check PAINS/promiscuity motifs** – 电负/亲电功能团和红氧活性片段常导致假阳性。【毒性后果】易产生非特异性蛋白/酶反应或氧化还原循环；**阈值:** 无特定要求。
+9. **Calculate MW** – 分子量越大（>500 Da）通常更难开发。【毒性后果】大分子化合物体内蓄积或与代谢酶相互作用增多；**阈值:** ≤500 Da。
+10. **Calculate cLogP (lipophilicity)** – 亲脂性过高增加毒性风险。【毒性后果】高脂溶性促使细胞膜富集并难以清除；**阈值:** ≤5（Lipinski规则）；最佳<3（3/75规则）。
+11. **Calculate TPSA** – 适当提高极性可降低毒性。【毒性后果】高TPSA（>75）通常与较低的毒性关联；**阈值:** >75 Å²（3/75规则）；另Veber规则建议≤140 Å²。
+12. **Calculate HBD/HBA count** – 过多H键供体/受体（>5/10）非药物理想。【毒性后果】可导致溶解性差或非特异性结合；**阈值:** HBD≤5，HBA≤10。
+13. **Calculate rotatable bonds** – 转动键过多（>10）降低可开发性。【毒性后果】会增加分子灵活度和非特异结合风险；**阈值:** ≤10。
+14. **Calculate aromatic ring count** – 芳香环过多（>3）关联高开发失败率。【毒性后果】过多芳香环增加脂溶性和疏水聚集；**阈值:** ≤3环。
+15. **Calculate basic pKa** – 强碱性（pKa高）化合物更多hERG风险。【毒性后果】高pKa导致离子化增强与hERG通道结合；**阈值:** 无固定限制（尽量控制<7）。
+16. **Calculate electrophilicity** – 高亲电性倾向产生反应性代谢产物。【毒性后果】强亲电性分子易与生物大分子发生共价结合；**阈值:** 无特定要求。
+17. **Check metal-chelating groups** – 如邻苯二酚、羟肟酸等可螯合金属。【毒性后果】可能抑制金属依赖酶（或干扰体外检测）；**阈值:** 无特定要求。
+18. **Calculate heavy atom count** – 重原子数太多通常无益。【毒性后果】过重的分子增加代谢负担；**阈值:** 无特定要求。
+19. **Calculate chiral center count** – 手性中心过多增加复杂度。【毒性后果】多对映体可能影响代谢和免疫原性；**阈值:** 无特定要求。
+20. **Calculate clearance/half-life** – 无固定阈值，但需留意极端值。【毒性后果】半衰期过长易蓄积，过短需高剂量；**阈值:** 无特定要求。
+21. **Calculate plasma protein binding** – 无固定阈值。【毒性后果】极高结合率影响药效和相互作用；**阈值:** 无特定要求。
+
+## 规则汇总表
+
+| 规则描述（英文） | 理由（简述） | 阈值 | 主要来源 |
+|-----------------------------|------------------------|------------|---------------------------------------------|
+| Check nitroso group | 生成活性代谢物 | 无特定要求 | |
+| Check aromatic amine (aniline) | 芳香胺易活化为毒性代谢物 | 无特定要求 | |
+| Check α,β-unsat carbonyl | Michael受体，易共价结合 | 无特定要求 | |
+| Check quinone/catechol | 生成醌代谢物并氧化还原循环 | 无特定要求 | |
+| Check epoxide (oxirane) | 强亲电原子团 | 无特定要求 | |
+| Check alkyl halide (haloalkane) | 潜在烷基化剂 | 无特定要求 | 化学常识（强亲电性） |
+| Check aryl chloride | 已知hERG阻断结构 | 无特定要求 | |
+| Check PAINS/promiscuity motifs | 假阳性/非特异性作用结构 | 无特定要求 | |
+| Calculate MW | 大分子难开发、易蓄积 | ≤500 Da | |
+| Calculate cLogP | 亲脂性高增加毒性风险 | ≤5 (Ro5)；**最好<3** | |
+| Calculate TPSA | 高极性降低毒性概率 | >75 Å² (3/75)；≤140 Å² (Veber) | |
+| Calculate HBD/HBA | 氢键过多影响溶解性和特异性 | HBD≤5, HBA≤10 | |
+| Calculate rotatable bonds | 转键过多降低稳定性 | ≤10 | |
+| Calculate aromatic rings | 芳香环≥4关联高开发失败 | ≤3 | |
+| Calculate basic pKa | 强碱性（高pKa）增加hERG风险 | 无特定要求 | |
+| Calculate electrophilicity | 高亲电性提示共价结合风险 | 无特定要求 | 理论预期 |
+| Check metal-chelating groups| 可能螯合金属、抑制金属酶 | 无特定要求 | |
+| Calculate heavy atom count | 过多重原子增加代谢负担 | 无特定要求 | 医化常识 |
+| Calculate chiral centers | 多中心提高复杂性 | 无特定要求 | 医化常识 |
+| Calculate clearance/half-life | 极端半衰期需谨慎 | 无特定要求 | 无发现明确阈值 |
+| Calculate plasma protein binding | 极端结合率影响分布和相互作用 | 无特定要求 | 无发现明确阈值 |
+
+以上规则均基于文献中统计或指导性研究提出的经验建议，为概念性参考。实际应用时应结合具体项目特点进行综合评估。

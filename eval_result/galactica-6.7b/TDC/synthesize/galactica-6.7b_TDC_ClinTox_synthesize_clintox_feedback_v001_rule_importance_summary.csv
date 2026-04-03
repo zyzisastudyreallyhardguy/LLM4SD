@@ -1,0 +1,67 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,mean_importance,std_importance,rank
+most_acidic_pka,Most acidic predicted pKa from the MolGpKa helper.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.13208910821264855,0.007552970954846655,1
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.13118584984301135,0.010793402420892202,2
+oxygen_nitrogen_count,Count of O and N atoms.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.11416205897419492,0.010478483654206313,3
+logp,Wildman-Crippen logP.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.08520672373444545,0.00592160756357035,4
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.05121824871900492,0.003503907990712592,5
+tpsa,Topological polar surface area.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.04940097432795352,0.004625007617949287,6
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.03252003661388545,0.0023243075257642315,7
+mol_weight,Molecular weight (Descriptors.MolWt).,clintox_feedback_v001,TDC,ClinTox,synthesize,0.026673412659667512,0.0034163763678292337,8
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,clintox_feedback_v001,TDC,ClinTox,synthesize,0.02570465021999816,0.0032201645049307163,9
+aromatic_ring_count,Aromatic ring count.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.025269944150781442,0.007022961199766226,10
+hba,Hydrogen bond acceptor count.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.023940215418844918,0.002449922438216522,11
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.023727326127049503,0.0008383454711049279,12
+charged_fraction_ph74,1 - neutral_fraction_ph74.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.022455433853871515,0.0023497477403159285,13
+heteroatom_count,Total heteroatom count.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.02200312080826867,0.003160883110072182,14
+heavy_atom_count,Heavy atom count.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0206837337084626,0.0010894264538188077,15
+unspecified_chiral_center_count,Count of unspecified atom stereo centers.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.020324316969294813,0.0015917771315285638,16
+most_basic_pka,Most basic predicted pKa from the MolGpKa helper.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.019638731986085105,0.0017422329274316836,17
+hbd,Hydrogen bond donor count.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.019634199644455043,0.002844085037888511,18
+ring_count,Total ring count.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.01943117776096816,0.0032746252294593883,19
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.01932466347639308,0.0014625007740341625,20
+rotatable_bonds,Rotatable bond count.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.01856649428241499,0.001104548272667526,21
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.01764637444623763,0.0022626264912817785,22
+chiral_center_count,Count of atom stereo centers.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.014485233862542796,0.0019207676191392465,23
+structural_alert_family_count,Number of distinct ClinTox-oriented structural alert families matched.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.013966463838141926,0.00214435958085812,24
+total_hbond_donors_acceptors,HBD + HBA total.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.013694929793094824,0.002159355030069949,25
+electrophilic_alert_count,Number of distinct electrophilic alert families matched.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.006578437134560644,0.0012010877883510643,26
+aromatic_amine_present,1 if an aromatic amine alert is present.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0050142379339059625,0.0012926898748350756,27
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",clintox_feedback_v001,TDC,ClinTox,synthesize,0.00418584392588696,0.0009390059213017049,28
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0036740325930094573,0.0007562379948251925,29
+quinone_or_catechol_present,1 if any quinone/catechol/hydroquinone alert is present.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0021172760773776555,0.0006204888216581059,30
+property_alert_count,Count of violated ClinTox physchem windows excluding pKa.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.002112325771811637,0.0007444265887257477,31
+quinone_or_catechol_alert_count,"Count of quinone, catechol, or hydroquinone redox-alert motifs.",clintox_feedback_v001,TDC,ClinTox,synthesize,0.0013649197246527003,0.0005963788677709569,32
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0013441526252838851,0.00031647171792364254,33
+aryl_halide_count,Count of halogens directly attached to aromatic atoms.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0008854215733834568,0.0002561851997423577,34
+hbd_le_5,Rule flag: HBD <= 5.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0008352539845690192,0.0004715083647223718,35
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",clintox_feedback_v001,TDC,ClinTox,synthesize,0.000821105236468948,0.00041384880883135213,36
+property_window_pass,1 if the main ClinTox physchem windows are all satisfied.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0007912582910963606,0.0004638206865483538,37
+electrophilic_alert_present,1 if any major electrophilic alert family is present.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0007768560937812393,0.0003746224330850803,38
+alkyl_halide_present,1 if an alkyl halide alert is present.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0007288722404477834,0.00036963141455233,39
+aryl_chloride_count,Count of chlorines directly attached to aromatic atoms.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0006340093141606367,0.0005906728363847619,40
+most_basic_pka_lt_7,Rule flag: most basic predicted pKa < 7.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0005740416332579029,0.00022296738184852502,41
+logp_lt_3,Rule flag: logP < 3.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0005000011539502275,0.00031583623622376337,42
+metal_chelator_alert_count,Count of conservative metal-chelating alerts from catechol and hydroxamic-acid motifs.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0004758640408799732,0.00028802463686783566,43
+aryl_halide_present,1 if an aryl halide alert is present.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.00046474047146932544,0.00029427510141619747,44
+pains_alert_count,Count of matched RDKit PAINS alerts.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0003927820407104176,0.000415648884710896,45
+basic_aryl_halide_risk_flag,Heuristic alert combining an aryl halide with predicted basic pKa >= 7.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.00037585952709210215,0.0002143906118535669,46
+pains_alert_present,1 if any RDKit PAINS alert was matched.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.00037017926083151155,0.00024886989999986796,47
+hba_le_10,Rule flag: HBA <= 10.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0003519977173215164,0.00038433546180086683,48
+metal_chelator_present,1 if a conservative metal-chelation alert is present.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.00033139925211100125,0.00019103848180358247,49
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.00030007374365496377,0.0005024490327798557,50
+aromatic_ring_count_le_3,Rule flag: aromatic ring count <= 3.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0002854084871272586,0.00019215934773781474,51
+most_basic_pka_ge_7,Rule flag: most basic predicted pKa >= 7.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.00022250892768894514,0.0001540077482003369,52
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0001503414639916274,0.00014115251239162844,53
+tpsa_le_140,Rule flag: TPSA <= 140.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0001462208632850694,0.00013963700109042638,54
+logp_le_5,Rule flag: logP <= 5.,clintox_feedback_v001,TDC,ClinTox,synthesize,6.708974838525953e-05,7.516074767278542e-05,55
+mw_le_500,Rule flag: molecular weight <= 500.,clintox_feedback_v001,TDC,ClinTox,synthesize,6.514386414116087e-05,7.24270596890038e-05,56
+catechol_ring_count,Count of aromatic rings with adjacent phenolic substituents.,clintox_feedback_v001,TDC,ClinTox,synthesize,6.0198852447903995e-05,8.262916103095876e-05,57
+tpsa_gt_75,Rule flag: TPSA > 75.,clintox_feedback_v001,TDC,ClinTox,synthesize,4.8722999540701596e-05,6.784961640529042e-05,58
+epoxide_present,1 if an epoxide ring is present.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0,0.0,59
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0,0.0,60
+hydroquinone_ring_count,Count of aromatic rings with para phenolic substituents.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0,0.0,61
+hydroxamic_acid_count,Count of hydroxamic-acid metal-chelation motifs.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0,0.0,62
+nitroso_group_count,Count of nitroso groups.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0,0.0,63
+nitroso_present,1 if a nitroso group is present.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0,0.0,64
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0,0.0,65
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,clintox_feedback_v001,TDC,ClinTox,synthesize,0.0,0.0,66

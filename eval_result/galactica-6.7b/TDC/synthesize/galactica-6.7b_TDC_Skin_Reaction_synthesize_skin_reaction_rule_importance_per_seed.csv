@@ -1,0 +1,441 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,seed,importance
+tpsa,Topological polar surface area.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.31282905759900603
+heavy_atom_count,Heavy atom count.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.08596619908773312
+molar_refractivity,Wildman-Crippen molar refractivity.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0591772428253313
+logp,Wildman-Crippen logP.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.05452403367517006
+fraction_csp3,Fraction of sp3 carbons.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.05333339879420587
+heteroatom_count,Total heteroatom count.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.040009822610744025
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.03865148633286153
+hbd,Hydrogen bond donor count.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.03839695770320464
+mol_weight,Molecular weight (Descriptors.MolWt).,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.03472412716461359
+rotatable_bonds,Rotatable bond count.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0342277699989546
+estimated_log_kp,Potts-Guy style estimated skin permeability logKp.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.034060305250518376
+estimated_kp_cm_per_h,Skin permeability estimate in cm/h derived from logKp.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.027554006139473463
+ring_count,Total ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.02417405324906247
+hba,Hydrogen bond acceptor count.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.021206323420642242
+halogen_atom_count,Total halogen atom count.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.016469120799474626
+direct_electrophile_site_count,Combined count of direct electrophilic or acylating alert sites.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.014382219796821898
+overall_alert_family_count,Number of distinct skin-sensitization alert families present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.011944661952687176
+aromatic_amine_count,Count of aniline-like aromatic amine substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.009870623976885986
+multiple_reactive_sites_flag,1 if two or more direct electrophilic sites are present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.009658984080043427
+nitro_group_count,Count of nitro groups.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.008465317004306229
+charged_atom_count,Number of atoms carrying non-zero formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.007132014281706094
+any_known_alert_present,1 if any structural skin-sensitization alert family is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.007047660493116634
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.006977984234386143
+chiral_center_count,Count of assigned or potential tetrahedral stereocenters.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.006699973677829062
+bioactivation_alert_family_count,Number of distinct bioactivation-oriented alert families present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.005989988453659698
+charged_species_flag,1 if any atom carries a non-zero formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0056823706485026005
+alkyl_halide_present,1 if an alkyl halide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.00509880509729526
+alkyl_halide_count,Count of sp3 carbon-halogen SN2 alkylation alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.004075152345415811
+aromatic_ring_count,Aromatic ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0032894015779524294
+negative_formal_atom_count,Number of atoms with negative formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0026101594662637975
+aromatic_amine_present,1 if an aromatic amine alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0025809266656190554
+positive_formal_atom_count,Number of atoms with positive formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0023151332588983876
+estimated_log_kp_ge_minus2p5,Rule flag: estimated logKp >= -2.5.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.001849736083577829
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0018405905497700806
+estimated_log_kp_ge_minus3,Rule flag: estimated logKp >= -3.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0014148145186084304
+nitroaromatic_present,1 if a nitro group is attached to an aromatic ring.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0013697717454992176
+leaving_group_present,1 if any strong leaving-group alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0008033951004728971
+aldehyde_count,Count of aldehyde alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0007845104620940087
+logp_in_1_4,Rule flag: 1 <= logP <= 4.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0007513822496124145
+schiff_base_carbonyl_present,1 if an aldehyde or unsaturated carbonyl alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0006227524617799337
+activated_aromatic_halide_count,Count of halogenated aromatic positions with same-ring electron-withdrawing activation.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0005514867320504963
+prehapten_alert_count,"Count of simple prehapten proxy alert families such as phenols, quinone-forming phenols, photoreactive chromophores, and PAHs.",skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0004932750888410647
+prehapten_alert_present,1 if any prehapten proxy alert family is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.00039300334530802355
+activated_aromatic_halide_present,1 if an activated aromatic halide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+acyl_halide_count,Count of acyl halide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+acyl_imidazole_count,Count of N-acyl imidazole-like acyl transfer alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+acylating_alert_count,Count of acylating or sulfuryl-transfer alert sites.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+acylating_alert_present,1 if any acylating alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+aldehyde_present,1 if an aldehyde alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+aliphatic_ring_count,Aliphatic ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+alkyl_sulfonate_count,Count of alkyl sulfonate ester leaving-group alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+alkyl_sulfonate_present,1 if an alkyl sulfonate alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+anhydride_count,Count of acid anhydride alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+aziridine_present,1 if an aziridine ring is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+disulfide_count,Count of disulfide motifs.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+epoxide_present,1 if an epoxide ring is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+formal_charge,Formal charge from the input graph.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+fused_aromatic_ring_count,Number of aromatic rings participating in fused aromatic systems.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+high_hba_flag,Rule flag: HBA > 10.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+high_hbd_flag,Rule flag: HBD > 5.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+high_polarity_low_uptake_flag,Rule flag: TPSA > 140 or HBD > 5 or HBA > 10.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+high_tpsa_flag,Rule flag: TPSA > 140.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+hydrazide_count,Count of hydrazide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+hydrazine_count,Count of hydrazine alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+hydrazine_hydrazide_present,1 if a hydrazine or hydrazide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic OH substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+leaving_group_count,Combined count of aromatic/alkyl halides and sulfonate/acyl leaving-group alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+logp_ge_5,Rule flag: logP >= 5.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+logp_le_0,Rule flag: logP <= 0.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl is present.",skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+mw_le_500,Rule flag: molecular weight <= 500.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+neutral_formal_charge_flag,1 if the formal charge is zero.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+pah_like_present,1 if a fused polyaromatic system is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+photoreactive_aromatic_carbonyl_count,Count of aromatic ketone chromophores such as benzophenone-like motifs.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+photoreactive_chromophore_present,1 if a photoreactive aromatic carbonyl chromophore is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+quaternary_ammonium_count,Count of quaternary ammonium atoms.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+quaternary_ammonium_present,1 if a quaternary ammonium atom is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+quinone_like_present,1 if a quinone-like ring system is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+quinone_like_ring_count,Count of conjugated cyclic dione or imine-dione quinone-like ring systems.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+schiff_base_carbonyl_count,Aldehydes plus unsaturated carbonyls that can form Schiff-base or related adducts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+thiol_count,Count of free thiol groups.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+thiol_disulfide_alert_count,Combined count of thiol and disulfide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+thiol_disulfide_present,1 if a thiol or disulfide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,0,0.0
+tpsa,Topological polar surface area.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.3250832457366648
+heavy_atom_count,Heavy atom count.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.08772282127938699
+fraction_csp3,Fraction of sp3 carbons.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.06042309037463605
+molar_refractivity,Wildman-Crippen molar refractivity.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.049564894436731496
+logp,Wildman-Crippen logP.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.04617480661649798
+hbd,Hydrogen bond donor count.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.043577231486033735
+heteroatom_count,Total heteroatom count.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.03995951742249
+rotatable_bonds,Rotatable bond count.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0381746748845002
+estimated_log_kp,Potts-Guy style estimated skin permeability logKp.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.03541891232457112
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.033999989756210235
+estimated_kp_cm_per_h,Skin permeability estimate in cm/h derived from logKp.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.029287957698313775
+ring_count,Total ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.027028666367669825
+hba,Hydrogen bond acceptor count.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.026413751159804467
+mol_weight,Molecular weight (Descriptors.MolWt).,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.024743166768898563
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.014102742345477464
+halogen_atom_count,Total halogen atom count.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.010349153053429304
+overall_alert_family_count,Number of distinct skin-sensitization alert families present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.010304824324797181
+aromatic_amine_count,Count of aniline-like aromatic amine substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.010192706760936702
+chiral_center_count,Count of assigned or potential tetrahedral stereocenters.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.009457745060685707
+any_known_alert_present,1 if any structural skin-sensitization alert family is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.009031163326910147
+aromatic_ring_count,Aromatic ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.008247196534425391
+charged_atom_count,Number of atoms carrying non-zero formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.008222237524691051
+multiple_reactive_sites_flag,1 if two or more direct electrophilic sites are present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.00786845177259234
+bioactivation_alert_family_count,Number of distinct bioactivation-oriented alert families present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.006673385349474444
+direct_electrophile_site_count,Combined count of direct electrophilic or acylating alert sites.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.00554828793148151
+nitro_group_count,Count of nitro groups.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0052312707755216206
+charged_species_flag,1 if any atom carries a non-zero formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.005182795699980237
+negative_formal_atom_count,Number of atoms with negative formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.003804414458832885
+nitroaromatic_present,1 if a nitro group is attached to an aromatic ring.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0035467606656027903
+aromatic_amine_present,1 if an aromatic amine alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.003094768555501377
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0023755889356493628
+leaving_group_count,Combined count of aromatic/alkyl halides and sulfonate/acyl leaving-group alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0021401211658261263
+alkyl_halide_present,1 if an alkyl halide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0012707504964549886
+aliphatic_ring_count,Aliphatic ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0010954847099172475
+alkyl_sulfonate_count,Count of alkyl sulfonate ester leaving-group alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0010927076860751006
+alkyl_halide_count,Count of sp3 carbon-halogen SN2 alkylation alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0010021831605792797
+logp_in_1_4,Rule flag: 1 <= logP <= 4.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0009864603232105152
+schiff_base_carbonyl_present,1 if an aldehyde or unsaturated carbonyl alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0007026380091275249
+leaving_group_present,1 if any strong leaving-group alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0006709181785701425
+prehapten_alert_present,1 if any prehapten proxy alert family is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.00012611112955816377
+aldehyde_count,Count of aldehyde alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,8.773493488130485e-05
+prehapten_alert_count,"Count of simple prehapten proxy alert families such as phenols, quinone-forming phenols, photoreactive chromophores, and PAHs.",skin_reaction,TDC,Skin_Reaction,synthesize,1,1.8670817400997314e-05
+activated_aromatic_halide_count,Count of halogenated aromatic positions with same-ring electron-withdrawing activation.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+activated_aromatic_halide_present,1 if an activated aromatic halide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+acyl_halide_count,Count of acyl halide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+acyl_imidazole_count,Count of N-acyl imidazole-like acyl transfer alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+acylating_alert_count,Count of acylating or sulfuryl-transfer alert sites.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+acylating_alert_present,1 if any acylating alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+aldehyde_present,1 if an aldehyde alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+alkyl_sulfonate_present,1 if an alkyl sulfonate alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+anhydride_count,Count of acid anhydride alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+aziridine_present,1 if an aziridine ring is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+disulfide_count,Count of disulfide motifs.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+epoxide_present,1 if an epoxide ring is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+estimated_log_kp_ge_minus2p5,Rule flag: estimated logKp >= -2.5.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+estimated_log_kp_ge_minus3,Rule flag: estimated logKp >= -3.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+formal_charge,Formal charge from the input graph.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+fused_aromatic_ring_count,Number of aromatic rings participating in fused aromatic systems.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+high_hba_flag,Rule flag: HBA > 10.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+high_hbd_flag,Rule flag: HBD > 5.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+high_polarity_low_uptake_flag,Rule flag: TPSA > 140 or HBD > 5 or HBA > 10.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+high_tpsa_flag,Rule flag: TPSA > 140.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+hydrazide_count,Count of hydrazide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+hydrazine_count,Count of hydrazine alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+hydrazine_hydrazide_present,1 if a hydrazine or hydrazide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic OH substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+logp_ge_5,Rule flag: logP >= 5.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+logp_le_0,Rule flag: logP <= 0.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl is present.",skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+mw_le_500,Rule flag: molecular weight <= 500.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+neutral_formal_charge_flag,1 if the formal charge is zero.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+pah_like_present,1 if a fused polyaromatic system is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+photoreactive_aromatic_carbonyl_count,Count of aromatic ketone chromophores such as benzophenone-like motifs.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+photoreactive_chromophore_present,1 if a photoreactive aromatic carbonyl chromophore is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+positive_formal_atom_count,Number of atoms with positive formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+quaternary_ammonium_count,Count of quaternary ammonium atoms.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+quaternary_ammonium_present,1 if a quaternary ammonium atom is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+quinone_like_present,1 if a quinone-like ring system is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+quinone_like_ring_count,Count of conjugated cyclic dione or imine-dione quinone-like ring systems.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+schiff_base_carbonyl_count,Aldehydes plus unsaturated carbonyls that can form Schiff-base or related adducts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+thiol_count,Count of free thiol groups.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+thiol_disulfide_alert_count,Combined count of thiol and disulfide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+thiol_disulfide_present,1 if a thiol or disulfide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,1,0.0
+tpsa,Topological polar surface area.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.30742904590747355
+heavy_atom_count,Heavy atom count.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.07882519070559005
+fraction_csp3,Fraction of sp3 carbons.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.06295809812818232
+molar_refractivity,Wildman-Crippen molar refractivity.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.05941458382501015
+heteroatom_count,Total heteroatom count.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.056328340990029785
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.044225847979833414
+logp,Wildman-Crippen logP.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.043949483830634406
+estimated_kp_cm_per_h,Skin permeability estimate in cm/h derived from logKp.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.038682195463952754
+estimated_log_kp,Potts-Guy style estimated skin permeability logKp.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.035375414904152754
+mol_weight,Molecular weight (Descriptors.MolWt).,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.031169297354952642
+hbd,Hydrogen bond donor count.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.031139970874735145
+rotatable_bonds,Rotatable bond count.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.029748442205522925
+hba,Hydrogen bond acceptor count.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.02525459342704859
+ring_count,Total ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.024825021775059866
+chiral_center_count,Count of assigned or potential tetrahedral stereocenters.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.013097542920350858
+aromatic_amine_count,Count of aniline-like aromatic amine substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.012126346787351017
+aromatic_ring_count,Aromatic ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.01146919544052557
+halogen_atom_count,Total halogen atom count.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.010948764983655516
+overall_alert_family_count,Number of distinct skin-sensitization alert families present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.008562152837808078
+any_known_alert_present,1 if any structural skin-sensitization alert family is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.008328185700909775
+direct_electrophile_site_count,Combined count of direct electrophilic or acylating alert sites.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.007694964188755422
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.006301447182653193
+charged_species_flag,1 if any atom carries a non-zero formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.005909705963384249
+negative_formal_atom_count,Number of atoms with negative formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0058961913920451805
+bioactivation_alert_family_count,Number of distinct bioactivation-oriented alert families present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.005792229861007831
+multiple_reactive_sites_flag,1 if two or more direct electrophilic sites are present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.004783686228038534
+positive_formal_atom_count,Number of atoms with positive formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0045489784704048665
+estimated_log_kp_ge_minus3,Rule flag: estimated logKp >= -3.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.004496276521933021
+aromatic_amine_present,1 if an aromatic amine alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.003819222022303478
+nitro_group_count,Count of nitro groups.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0036364513429943904
+alkyl_halide_present,1 if an alkyl halide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.003445554209688666
+alkyl_sulfonate_present,1 if an alkyl sulfonate alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.001153230319968166
+schiff_base_carbonyl_present,1 if an aldehyde or unsaturated carbonyl alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0010814722190533954
+nitroaromatic_present,1 if a nitro group is attached to an aromatic ring.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0010648846483393302
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0009409631123475945
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0008556334122192378
+charged_atom_count,Number of atoms carrying non-zero formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0008430903880920204
+prehapten_alert_present,1 if any prehapten proxy alert family is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0008004309525664582
+activated_aromatic_halide_present,1 if an activated aromatic halide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0006208840459502072
+schiff_base_carbonyl_count,Aldehydes plus unsaturated carbonyls that can form Schiff-base or related adducts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.000556341533966098
+leaving_group_count,Combined count of aromatic/alkyl halides and sulfonate/acyl leaving-group alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0005473632876706814
+aldehyde_present,1 if an aldehyde alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0004584267503622045
+prehapten_alert_count,"Count of simple prehapten proxy alert families such as phenols, quinone-forming phenols, photoreactive chromophores, and PAHs.",skin_reaction,TDC,Skin_Reaction,synthesize,2,0.00027211643079015196
+alkyl_halide_count,Count of sp3 carbon-halogen SN2 alkylation alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.00021653674448021733
+estimated_log_kp_ge_minus2p5,Rule flag: estimated logKp >= -2.5.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.00017066796077489464
+logp_le_0,Rule flag: logP <= 0.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.00016850065488197764
+aliphatic_ring_count,Aliphatic ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,2,6.703411254952131e-05
+activated_aromatic_halide_count,Count of halogenated aromatic positions with same-ring electron-withdrawing activation.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+acyl_halide_count,Count of acyl halide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+acyl_imidazole_count,Count of N-acyl imidazole-like acyl transfer alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+acylating_alert_count,Count of acylating or sulfuryl-transfer alert sites.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+acylating_alert_present,1 if any acylating alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+aldehyde_count,Count of aldehyde alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+alkyl_sulfonate_count,Count of alkyl sulfonate ester leaving-group alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+anhydride_count,Count of acid anhydride alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+aziridine_present,1 if an aziridine ring is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+disulfide_count,Count of disulfide motifs.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+epoxide_present,1 if an epoxide ring is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+formal_charge,Formal charge from the input graph.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+fused_aromatic_ring_count,Number of aromatic rings participating in fused aromatic systems.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+high_hba_flag,Rule flag: HBA > 10.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+high_hbd_flag,Rule flag: HBD > 5.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+high_polarity_low_uptake_flag,Rule flag: TPSA > 140 or HBD > 5 or HBA > 10.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+high_tpsa_flag,Rule flag: TPSA > 140.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+hydrazide_count,Count of hydrazide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+hydrazine_count,Count of hydrazine alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+hydrazine_hydrazide_present,1 if a hydrazine or hydrazide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic OH substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+leaving_group_present,1 if any strong leaving-group alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+logp_ge_5,Rule flag: logP >= 5.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+logp_in_1_4,Rule flag: 1 <= logP <= 4.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl is present.",skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+mw_le_500,Rule flag: molecular weight <= 500.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+neutral_formal_charge_flag,1 if the formal charge is zero.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+pah_like_present,1 if a fused polyaromatic system is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+photoreactive_aromatic_carbonyl_count,Count of aromatic ketone chromophores such as benzophenone-like motifs.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+photoreactive_chromophore_present,1 if a photoreactive aromatic carbonyl chromophore is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+quaternary_ammonium_count,Count of quaternary ammonium atoms.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+quaternary_ammonium_present,1 if a quaternary ammonium atom is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+quinone_like_present,1 if a quinone-like ring system is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+quinone_like_ring_count,Count of conjugated cyclic dione or imine-dione quinone-like ring systems.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+thiol_count,Count of free thiol groups.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+thiol_disulfide_alert_count,Combined count of thiol and disulfide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+thiol_disulfide_present,1 if a thiol or disulfide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,2,0.0
+tpsa,Topological polar surface area.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.30388529600882586
+heavy_atom_count,Heavy atom count.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.07336960014522498
+fraction_csp3,Fraction of sp3 carbons.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.05811208187498022
+molar_refractivity,Wildman-Crippen molar refractivity.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.05371476644466856
+rotatable_bonds,Rotatable bond count.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.04387409778389504
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.04120237545052957
+heteroatom_count,Total heteroatom count.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.03986236075363919
+estimated_log_kp,Potts-Guy style estimated skin permeability logKp.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.03739347714682235
+estimated_kp_cm_per_h,Skin permeability estimate in cm/h derived from logKp.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.03648858536895268
+hbd,Hydrogen bond donor count.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0361938222777135
+logp,Wildman-Crippen logP.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.03499736875981954
+mol_weight,Molecular weight (Descriptors.MolWt).,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.03180309209077721
+hba,Hydrogen bond acceptor count.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.02914609825608834
+ring_count,Total ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.024625698212555783
+aromatic_amine_count,Count of aniline-like aromatic amine substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.019189721283792066
+chiral_center_count,Count of assigned or potential tetrahedral stereocenters.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.018523632587818015
+overall_alert_family_count,Number of distinct skin-sensitization alert families present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.015989175262474457
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.012994180919422504
+halogen_atom_count,Total halogen atom count.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.010433194811888036
+any_known_alert_present,1 if any structural skin-sensitization alert family is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.009110806496312513
+direct_electrophile_site_count,Combined count of direct electrophilic or acylating alert sites.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.008615435653220085
+aromatic_ring_count,Aromatic ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.007841961859619918
+multiple_reactive_sites_flag,1 if two or more direct electrophilic sites are present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.007659083917632318
+negative_formal_atom_count,Number of atoms with negative formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.007111859244901812
+alkyl_halide_present,1 if an alkyl halide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.004485628694482462
+bioactivation_alert_family_count,Number of distinct bioactivation-oriented alert families present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.004280766255868914
+positive_formal_atom_count,Number of atoms with positive formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.003908781081419414
+charged_species_flag,1 if any atom carries a non-zero formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.003446444655792974
+leaving_group_count,Combined count of aromatic/alkyl halides and sulfonate/acyl leaving-group alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0028351356121159195
+aliphatic_ring_count,Aliphatic ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0024385757972399356
+charged_atom_count,Number of atoms carrying non-zero formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.002269145483601724
+leaving_group_present,1 if any strong leaving-group alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0017703483428774974
+nitro_group_count,Count of nitro groups.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0017206709017636367
+estimated_log_kp_ge_minus3,Rule flag: estimated logKp >= -3.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.001702476340776122
+aldehyde_present,1 if an aldehyde alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0015195965825326723
+schiff_base_carbonyl_present,1 if an aldehyde or unsaturated carbonyl alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.001318966795911551
+activated_aromatic_halide_present,1 if an activated aromatic halide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0011093889461230048
+schiff_base_carbonyl_count,Aldehydes plus unsaturated carbonyls that can form Schiff-base or related adducts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0010608699810975115
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0008484769222147894
+aromatic_amine_present,1 if an aromatic amine alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0008171335238778642
+alkyl_halide_count,Count of sp3 carbon-halogen SN2 alkylation alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0007210935881657377
+prehapten_alert_count,"Count of simple prehapten proxy alert families such as phenols, quinone-forming phenols, photoreactive chromophores, and PAHs.",skin_reaction,TDC,Skin_Reaction,synthesize,3,0.00045066673839037723
+aldehyde_count,Count of aldehyde alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.00030224875501078704
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",skin_reaction,TDC,Skin_Reaction,synthesize,3,0.00022901942577170095
+logp_in_1_4,Rule flag: 1 <= logP <= 4.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.00022268681832955634
+activated_aromatic_halide_count,Count of halogenated aromatic positions with same-ring electron-withdrawing activation.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0002135761965985196
+estimated_log_kp_ge_minus2p5,Rule flag: estimated logKp >= -2.5.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.00013444816824195567
+prehapten_alert_present,1 if any prehapten proxy alert family is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,5.608178022083438e-05
+acyl_halide_count,Count of acyl halide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+acyl_imidazole_count,Count of N-acyl imidazole-like acyl transfer alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+acylating_alert_count,Count of acylating or sulfuryl-transfer alert sites.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+acylating_alert_present,1 if any acylating alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+alkyl_sulfonate_count,Count of alkyl sulfonate ester leaving-group alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+alkyl_sulfonate_present,1 if an alkyl sulfonate alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+anhydride_count,Count of acid anhydride alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+aziridine_present,1 if an aziridine ring is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+disulfide_count,Count of disulfide motifs.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+epoxide_present,1 if an epoxide ring is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+formal_charge,Formal charge from the input graph.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+fused_aromatic_ring_count,Number of aromatic rings participating in fused aromatic systems.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+high_hba_flag,Rule flag: HBA > 10.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+high_hbd_flag,Rule flag: HBD > 5.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+high_polarity_low_uptake_flag,Rule flag: TPSA > 140 or HBD > 5 or HBA > 10.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+high_tpsa_flag,Rule flag: TPSA > 140.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+hydrazide_count,Count of hydrazide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+hydrazine_count,Count of hydrazine alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+hydrazine_hydrazide_present,1 if a hydrazine or hydrazide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic OH substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+logp_ge_5,Rule flag: logP >= 5.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+logp_le_0,Rule flag: logP <= 0.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl is present.",skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+mw_le_500,Rule flag: molecular weight <= 500.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+neutral_formal_charge_flag,1 if the formal charge is zero.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+nitroaromatic_present,1 if a nitro group is attached to an aromatic ring.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+pah_like_present,1 if a fused polyaromatic system is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+photoreactive_aromatic_carbonyl_count,Count of aromatic ketone chromophores such as benzophenone-like motifs.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+photoreactive_chromophore_present,1 if a photoreactive aromatic carbonyl chromophore is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+quaternary_ammonium_count,Count of quaternary ammonium atoms.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+quaternary_ammonium_present,1 if a quaternary ammonium atom is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+quinone_like_present,1 if a quinone-like ring system is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+quinone_like_ring_count,Count of conjugated cyclic dione or imine-dione quinone-like ring systems.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+thiol_count,Count of free thiol groups.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+thiol_disulfide_alert_count,Combined count of thiol and disulfide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+thiol_disulfide_present,1 if a thiol or disulfide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,3,0.0
+tpsa,Topological polar surface area.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.321069355160946
+heavy_atom_count,Heavy atom count.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.07639302734996689
+molar_refractivity,Wildman-Crippen molar refractivity.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.06480074107774711
+fraction_csp3,Fraction of sp3 carbons.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.05684488236299094
+logp,Wildman-Crippen logP.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0467341568492722
+mol_weight,Molecular weight (Descriptors.MolWt).,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.04104195380971499
+hbd,Hydrogen bond donor count.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.04021146573775817
+heteroatom_count,Total heteroatom count.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.03968889732492178
+rotatable_bonds,Rotatable bond count.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.03803078364912021
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.03542887983947919
+ring_count,Total ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.031188655450203634
+estimated_kp_cm_per_h,Skin permeability estimate in cm/h derived from logKp.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.02819631687905183
+hba,Hydrogen bond acceptor count.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.01927217820581315
+estimated_log_kp,Potts-Guy style estimated skin permeability logKp.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.017803473461379837
+overall_alert_family_count,Number of distinct skin-sensitization alert families present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.015833223909839714
+chiral_center_count,Count of assigned or potential tetrahedral stereocenters.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.014865985970642195
+halogen_atom_count,Total halogen atom count.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.012256787825515028
+aromatic_amine_count,Count of aniline-like aromatic amine substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.011541992416554696
+direct_electrophile_site_count,Combined count of direct electrophilic or acylating alert sites.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.010642963483236829
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.009448888845241941
+aromatic_ring_count,Aromatic ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.008583611467369683
+multiple_reactive_sites_flag,1 if two or more direct electrophilic sites are present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.007697410911580946
+any_known_alert_present,1 if any structural skin-sensitization alert family is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0071789341421949265
+bioactivation_alert_family_count,Number of distinct bioactivation-oriented alert families present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.006608424936560508
+aromatic_amine_present,1 if an aromatic amine alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.003996612566452187
+negative_formal_atom_count,Number of atoms with negative formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.003620680033789503
+charged_atom_count,Number of atoms carrying non-zero formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.003200638411758695
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.003158552312603324
+nitroaromatic_present,1 if a nitro group is attached to an aromatic ring.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.003124917746405783
+alkyl_halide_count,Count of sp3 carbon-halogen SN2 alkylation alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0027848590716361443
+alkyl_halide_present,1 if an alkyl halide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0023142940217302146
+charged_species_flag,1 if any atom carries a non-zero formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0018657883484600938
+nitro_group_count,Count of nitro groups.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0018214423986825645
+logp_in_1_4,Rule flag: 1 <= logP <= 4.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.001672754619131422
+positive_formal_atom_count,Number of atoms with positive formal charge.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0015779479882136725
+aliphatic_ring_count,Aliphatic ring count.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0015187873238494793
+schiff_base_carbonyl_count,Aldehydes plus unsaturated carbonyls that can form Schiff-base or related adducts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.001508868247607931
+estimated_log_kp_ge_minus2p5,Rule flag: estimated logKp >= -2.5.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0014554267154443382
+prehapten_alert_present,1 if any prehapten proxy alert family is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0013508310868270619
+leaving_group_present,1 if any strong leaving-group alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0010050411612061538
+leaving_group_count,Combined count of aromatic/alkyl halides and sulfonate/acyl leaving-group alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.000942461586343609
+schiff_base_carbonyl_present,1 if an aldehyde or unsaturated carbonyl alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0006218743146901461
+aldehyde_present,1 if an aldehyde alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0005878003224453117
+estimated_log_kp_ge_minus3,Rule flag: estimated logKp >= -3.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0002678812153172476
+prehapten_alert_count,"Count of simple prehapten proxy alert families such as phenols, quinone-forming phenols, photoreactive chromophores, and PAHs.",skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0001692388174399964
+activated_aromatic_halide_present,1 if an activated aromatic halide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,4.059448242714257e-05
+aldehyde_count,Count of aldehyde alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,2.9716140435427703e-05
+activated_aromatic_halide_count,Count of halogenated aromatic positions with same-ring electron-withdrawing activation.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+acyl_halide_count,Count of acyl halide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+acyl_imidazole_count,Count of N-acyl imidazole-like acyl transfer alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+acylating_alert_count,Count of acylating or sulfuryl-transfer alert sites.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+acylating_alert_present,1 if any acylating alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+alkyl_sulfonate_count,Count of alkyl sulfonate ester leaving-group alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+alkyl_sulfonate_present,1 if an alkyl sulfonate alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+anhydride_count,Count of acid anhydride alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+aziridine_present,1 if an aziridine ring is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+disulfide_count,Count of disulfide motifs.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+epoxide_present,1 if an epoxide ring is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+formal_charge,Formal charge from the input graph.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+fused_aromatic_ring_count,Number of aromatic rings participating in fused aromatic systems.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+high_hba_flag,Rule flag: HBA > 10.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+high_hbd_flag,Rule flag: HBD > 5.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+high_polarity_low_uptake_flag,Rule flag: TPSA > 140 or HBD > 5 or HBA > 10.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+high_tpsa_flag,Rule flag: TPSA > 140.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+hydrazide_count,Count of hydrazide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+hydrazine_count,Count of hydrazine alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+hydrazine_hydrazide_present,1 if a hydrazine or hydrazide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic OH substituents.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+logp_ge_5,Rule flag: logP >= 5.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+logp_le_0,Rule flag: logP <= 0.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl is present.",skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+mw_le_500,Rule flag: molecular weight <= 500.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+neutral_formal_charge_flag,1 if the formal charge is zero.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+pah_like_present,1 if a fused polyaromatic system is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+photoreactive_aromatic_carbonyl_count,Count of aromatic ketone chromophores such as benzophenone-like motifs.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+photoreactive_chromophore_present,1 if a photoreactive aromatic carbonyl chromophore is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+quaternary_ammonium_count,Count of quaternary ammonium atoms.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+quaternary_ammonium_present,1 if a quaternary ammonium atom is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+quinone_like_present,1 if a quinone-like ring system is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+quinone_like_ring_count,Count of conjugated cyclic dione or imine-dione quinone-like ring systems.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+thiol_count,Count of free thiol groups.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+thiol_disulfide_alert_count,Combined count of thiol and disulfide alerts.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0
+thiol_disulfide_present,1 if a thiol or disulfide alert is present.,skin_reaction,TDC,Skin_Reaction,synthesize,4,0.0

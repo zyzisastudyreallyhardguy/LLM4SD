@@ -53,10 +53,35 @@ A direct evaluation of the generated code of a specific task. You can run:
 python eval.py --dataset ${dataset} --subtask "{subtask_name}" --model ${model_name} --knowledge_type ${knowledge_type} [if evaluating inference code or combined code specify --num_samples ${number of responses during inference}]
 ```
 
+If you want to switch from the default RandomForest baseline to a linear baseline, add:
+```bash
+python eval.py ... --estimator linear
+```
+
+`eval.py` now also saves trained model bundles automatically under:
+```bash
+checkpoints/forest/<task_name>/
+checkpoints/linear/<task_name>/
+```
+Each bundle includes the trained sklearn model, the fitted preprocessing objects, the surviving training columns, and the feature-description mapping used for interpretation.
+
+If you want to change the root folder for saved bundles, add:
+```bash
+python eval.py ... --checkpoint_dir my_checkpoints
+```
+
 A direct evaluation of all generated code in all tasks. You can run:
 ```
 bash eval_code.sh
 ```
+
+### TreeSHAP Explanation for a Saved RandomForest
+After `eval.py` has saved a RandomForest bundle, you can explain a single SMILES with:
+```bash
+python tree_shap_explainer.py --bundle_path checkpoints/forest/<task_name>/<bundle>.joblib --smiles "CCO"
+```
+
+The explanation loader reuses the exact training-time surviving feature columns, imputer, and scaler, so the semantic feature names remain aligned with the actual model inputs.
 
 ## Architecture of LLM4SD
 

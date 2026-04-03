@@ -1,0 +1,32 @@
+{
+  "variant_backend": "bioavailability_ma_feedback_v001",
+  "parent_backend": "bioavailability_ma",
+  "base_backend": "bioavailability_ma",
+  "subtask": "Bioavailability_Ma",
+  "source_run_id": "bioavailability_ma_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/Bioavailability_Ma/bioavailability_ma_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "bioavailability_ma",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.8369051247703801,
+      "mean_train_roc_auc": 0.9556741949910554,
+      "mean_valid_macro_f1": 0.6835775571286048,
+      "mean_valid_roc_auc": 0.7266968325791855,
+      "mean_test_macro_f1": 0.6835775571286048,
+      "mean_test_roc_auc": 0.7266968325791855
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.8392220362671102,
+      "mean_train_roc_auc": 0.95616614490161,
+      "mean_valid_macro_f1": 0.6807019040460551,
+      "mean_valid_roc_auc": 0.7279034690799397,
+      "mean_test_macro_f1": 0.6807019040460551,
+      "mean_test_roc_auc": 0.7279034690799397
+    }
+  },
+  "feature_module": "bioavailability_ma_rule_features",
+  "created_at": "2026-04-02T03:26:31",
+  "updated_at": "2026-04-02T03:52:02"
+}

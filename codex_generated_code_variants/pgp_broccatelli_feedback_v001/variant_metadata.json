@@ -1,0 +1,32 @@
+{
+  "variant_backend": "pgp_broccatelli_feedback_v001",
+  "parent_backend": "pgp_broccatelli",
+  "base_backend": "pgp_broccatelli",
+  "subtask": "Pgp_Broccatelli",
+  "source_run_id": "pgp_broccatelli_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/Pgp_Broccatelli/pgp_broccatelli_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "pgp_broccatelli",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.9110184553802133,
+      "mean_train_roc_auc": 0.9756985857180525,
+      "mean_valid_macro_f1": 0.8275626616456163,
+      "mean_valid_roc_auc": 0.8677975848188615,
+      "mean_test_macro_f1": 0.8275626616456163,
+      "mean_test_roc_auc": 0.8677975848188615
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.8966045786136334,
+      "mean_train_roc_auc": 0.9600668712448037,
+      "mean_valid_macro_f1": 0.8161497557904547,
+      "mean_valid_roc_auc": 0.8628522139160438,
+      "mean_test_macro_f1": 0.8161497557904547,
+      "mean_test_roc_auc": 0.8628522139160438
+    }
+  },
+  "feature_module": "pgp_broccatelli_rule_features",
+  "created_at": "2026-04-02T03:32:38",
+  "updated_at": "2026-04-02T04:12:11"
+}

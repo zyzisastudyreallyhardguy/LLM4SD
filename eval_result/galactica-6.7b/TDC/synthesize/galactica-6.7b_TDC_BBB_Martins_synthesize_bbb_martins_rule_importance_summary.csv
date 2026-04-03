@@ -1,0 +1,86 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,mean_importance,std_importance,rank
+tpsa,Topological polar surface area.,bbb_martins,TDC,BBB_Martins,synthesize,0.06251920549880265,0.00596235967972588,1
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site.,bbb_martins,TDC,BBB_Martins,synthesize,0.049854642972297344,0.008578514964814024,2
+heteroatom_count,Total heteroatom count.,bbb_martins,TDC,BBB_Martins,synthesize,0.04586250697083437,0.005321837967077598,3
+oxygen_nitrogen_count,Count of O and N atoms.,bbb_martins,TDC,BBB_Martins,synthesize,0.04237762814083799,0.006820270047612826,4
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,bbb_martins,TDC,BBB_Martins,synthesize,0.04087707266664603,0.008255864252893068,5
+hbd,Hydrogen bond donor count.,bbb_martins,TDC,BBB_Martins,synthesize,0.039650456911985196,0.007049143299838131,6
+total_hbond_donors_acceptors,HBD + HBA total.,bbb_martins,TDC,BBB_Martins,synthesize,0.03696610299598862,0.0034879388391417633,7
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,bbb_martins,TDC,BBB_Martins,synthesize,0.03589699491893923,0.004784116034831992,8
+hbd_lt_3,Rule flag: HBD < 3.,bbb_martins,TDC,BBB_Martins,synthesize,0.03466948617613266,0.0014784572752229253,9
+tpsa_lt_79,Rule flag: TPSA < 79.,bbb_martins,TDC,BBB_Martins,synthesize,0.027472301204569043,0.0061286376647664365,10
+charged_fraction_ph74,1 - neutral_fraction_ph74.,bbb_martins,TDC,BBB_Martins,synthesize,0.0245159942102888,0.0033859970651566383,11
+boiled_egg_bbb_likely,Rule flag: BOILED-Egg BBB likely region.,bbb_martins,TDC,BBB_Martins,synthesize,0.023278859049031743,0.0061740673962734464,12
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,bbb_martins,TDC,BBB_Martins,synthesize,0.021433820623366937,0.0017132024046641833,13
+min_estate_index,Minimum E-State index.,bbb_martins,TDC,BBB_Martins,synthesize,0.020176364108016747,0.003030182522154929,14
+logp,Wildman-Crippen logP.,bbb_martins,TDC,BBB_Martins,synthesize,0.019911597432667703,0.005165745629783784,15
+bcut2d_logphi,BCUT2D logP high.,bbb_martins,TDC,BBB_Martins,synthesize,0.019650026380595476,0.0020374336630824973,16
+oxygen_nitrogen_le_5,Rule flag: O + N <= 5.,bbb_martins,TDC,BBB_Martins,synthesize,0.018584501482092453,0.0043373505183609265,17
+bcut2d_chghi,BCUT2D charge high.,bbb_martins,TDC,BBB_Martins,synthesize,0.01777815385791813,0.002844774887211953,18
+logp_distance_to_3p4,Absolute distance from the heuristic logP target 3.4.,bbb_martins,TDC,BBB_Martins,synthesize,0.017354141882631853,0.0036939714536491862,19
+total_hbond_lt_8,Rule flag: HBD + HBA < 8.,bbb_martins,TDC,BBB_Martins,synthesize,0.017084815265347508,0.004859861118005732,20
+num_acidic_sites,Number of predicted acidic sites.,bbb_martins,TDC,BBB_Martins,synthesize,0.016800053850605172,0.007332102353213376,21
+tpsa_le_90,Rule flag: TPSA <= 90.,bbb_martins,TDC,BBB_Martins,synthesize,0.01634330195672957,0.005663609098301895,22
+bcut2d_chglo,BCUT2D charge low.,bbb_martins,TDC,BBB_Martins,synthesize,0.01632824051648745,0.0017111842640242059,23
+tpsa_lt_70,Rule flag: TPSA < 70.,bbb_martins,TDC,BBB_Martins,synthesize,0.013804741916484505,0.004525783259127725,24
+bcut2d_logplow,BCUT2D logP low.,bbb_martins,TDC,BBB_Martins,synthesize,0.013779570327367258,0.0013186561919262046,25
+bcut2d_mrlow,BCUT2D MR low.,bbb_martins,TDC,BBB_Martins,synthesize,0.013555774530758383,0.0016197689593109195,26
+bcut2d_mwlow,BCUT2D MW low.,bbb_martins,TDC,BBB_Martins,synthesize,0.01278020227394695,0.001896039078480618,27
+hba_lt_7,Rule flag: HBA < 7.,bbb_martins,TDC,BBB_Martins,synthesize,0.011795053545923523,0.006708187700056455,28
+aliphatic_ring_count,Aliphatic ring count.,bbb_martins,TDC,BBB_Martins,synthesize,0.01143078017579095,0.0015038113461808467,29
+chi3v,Valence chi connectivity index order 3.,bbb_martins,TDC,BBB_Martins,synthesize,0.009277625167675153,0.002114379354896087,30
+bcut2d_mwhi,BCUT2D MW high.,bbb_martins,TDC,BBB_Martins,synthesize,0.009275639583052492,0.0014155598200520016,31
+max_abs_estate_index,Maximum absolute E-State index.,bbb_martins,TDC,BBB_Martins,synthesize,0.009201337168629798,0.0012412936276813935,32
+hba,Hydrogen bond acceptor count.,bbb_martins,TDC,BBB_Martins,synthesize,0.009041149095210968,0.0027094650286510593,33
+max_estate_index,Maximum E-State index.,bbb_martins,TDC,BBB_Martins,synthesize,0.009031644838700711,0.0015127594356870724,34
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site.,bbb_martins,TDC,BBB_Martins,synthesize,0.008715270029458683,0.002306836120825399,35
+bcut2d_mrhi,BCUT2D MR high.,bbb_martins,TDC,BBB_Martins,synthesize,0.008459063293510963,0.0005387362561978219,36
+chi4v,Valence chi connectivity index order 4.,bbb_martins,TDC,BBB_Martins,synthesize,0.0084171506784134,0.00057633480231689,37
+cns_mpo_score,Approximate six-parameter CNS MPO score.,bbb_martins,TDC,BBB_Martins,synthesize,0.0079828595959577,0.0009974812818346471,38
+kappa1,First kappa shape index.,bbb_martins,TDC,BBB_Martins,synthesize,0.007953662491231766,0.0013629888654156845,39
+chi4n,Simple chi connectivity index order 4.,bbb_martins,TDC,BBB_Martins,synthesize,0.007617732094296415,0.001016888237026464,40
+kappa2,Second kappa shape index.,bbb_martins,TDC,BBB_Martins,synthesize,0.007525006999937111,0.0016913055735322808,41
+chi2n,Simple chi connectivity index order 2.,bbb_martins,TDC,BBB_Martins,synthesize,0.0071474096601678696,0.0012275371668795851,42
+balaban_j,Balaban J topological index.,bbb_martins,TDC,BBB_Martins,synthesize,0.00711481817662048,0.0005954965248247763,43
+chi3n,Simple chi connectivity index order 3.,bbb_martins,TDC,BBB_Martins,synthesize,0.007076923456972152,0.0011304007662749278,44
+molar_refractivity,Wildman-Crippen molar refractivity.,bbb_martins,TDC,BBB_Martins,synthesize,0.00694533499908776,0.0019328652073985152,45
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,bbb_martins,TDC,BBB_Martins,synthesize,0.006895194039022732,0.0030959428131366205,46
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,bbb_martins,TDC,BBB_Martins,synthesize,0.006840568483961211,0.0013592214893532743,47
+wiener_index,Wiener index from topological distances.,bbb_martins,TDC,BBB_Martins,synthesize,0.006815501730601166,0.0011200043977402747,48
+mol_weight,Molecular weight (Descriptors.MolWt).,bbb_martins,TDC,BBB_Martins,synthesize,0.006586109742629876,0.001927499339263366,49
+hbd_le_0p5,Rule flag: HBD <= 0.5.,bbb_martins,TDC,BBB_Martins,synthesize,0.006546804885321103,0.0008789123417356546,50
+eccentric_connectivity_index,Eccentric connectivity index.,bbb_martins,TDC,BBB_Martins,synthesize,0.006335093516983327,0.0011236411432374075,51
+chi2v,Valence chi connectivity index order 2.,bbb_martins,TDC,BBB_Martins,synthesize,0.006277197811134778,0.001598997107742761,52
+labute_asa,Labute approximate surface area.,bbb_martins,TDC,BBB_Martins,synthesize,0.005845653829369674,0.00048141572612680865,53
+chi0v,Valence chi connectivity index order 0.,bbb_martins,TDC,BBB_Martins,synthesize,0.005381181662052057,0.0011173718643721717,54
+chi1v,Valence chi connectivity index order 1.,bbb_martins,TDC,BBB_Martins,synthesize,0.00537608733874979,0.0012429281432262246,55
+fraction_csp3,Fraction of sp3 carbons.,bbb_martins,TDC,BBB_Martins,synthesize,0.005055233676136715,0.0006697256469578973,56
+chi1n,Simple chi connectivity index order 1.,bbb_martins,TDC,BBB_Martins,synthesize,0.005049170971295763,0.0005414985288265271,57
+chi0n,Simple chi connectivity index order 0.,bbb_martins,TDC,BBB_Martins,synthesize,0.004927549257534381,0.0004980626294901068,58
+fused_ring_count,Count of rings participating in fused ring systems.,bbb_martins,TDC,BBB_Martins,synthesize,0.00483004384606575,0.0008593094196157288,59
+rotatable_bonds,Rotatable bond count.,bbb_martins,TDC,BBB_Martins,synthesize,0.004740819304629175,0.000553467409320893,60
+num_basic_sites,Number of predicted basic sites.,bbb_martins,TDC,BBB_Martins,synthesize,0.004504934924898845,0.000942560761667301,61
+logp_le_3,Rule flag: logP <= 3.,bbb_martins,TDC,BBB_Martins,synthesize,0.00391686893938823,0.0010293973742576828,62
+min_abs_estate_index,Minimum absolute E-State index.,bbb_martins,TDC,BBB_Martins,synthesize,0.0037627192694704077,0.0004933370620268078,63
+heavy_atom_count,Heavy atom count.,bbb_martins,TDC,BBB_Martins,synthesize,0.0032536743891810648,0.0008482555656893524,64
+formal_charge,Formal charge from the input graph.,bbb_martins,TDC,BBB_Martins,synthesize,0.00311778291304769,0.0005890361146948999,65
+tpsa_40_90,Rule flag: 40 <= TPSA <= 90.,bbb_martins,TDC,BBB_Martins,synthesize,0.00269038109722956,0.0008651909060214336,66
+estimated_logd_0_3,Rule flag: 0 < estimated logD(7.4) < 3.,bbb_martins,TDC,BBB_Martins,synthesize,0.0025479544388711224,0.0005172034861861716,67
+passive_bbb_screen_pass,Combined passive BBB screen using MW/TPSA/logD/formal charge.,bbb_martins,TDC,BBB_Martins,synthesize,0.0022798535956586627,0.0015008456253413202,68
+ring_count,Total ring count.,bbb_martins,TDC,BBB_Martins,synthesize,0.002229791274132126,0.0005561429401761763,69
+rotatable_bonds_lt_8,Rule flag: rotatable bonds < 8.,bbb_martins,TDC,BBB_Martins,synthesize,0.0020528207730359264,0.0003085355629391261,70
+positive_formal_atom_count,Number of atoms with positive formal charge.,bbb_martins,TDC,BBB_Martins,synthesize,0.0015262369821549128,0.0003953492062686737,71
+rotatable_bonds_le_5,Rule flag: rotatable bonds <= 5.,bbb_martins,TDC,BBB_Martins,synthesize,0.0012666854463711157,0.00025256562903511073,72
+estimated_logd_le_3,Rule flag: estimated logD(7.4) <= 3.,bbb_martins,TDC,BBB_Martins,synthesize,0.0011478395880477465,0.0002797988815180316,73
+mw_le_450,Rule flag: MW <= 450.,bbb_martins,TDC,BBB_Martins,synthesize,0.0011094300996324269,0.0007905862484066475,74
+aromatic_ring_count,Aromatic ring count.,bbb_martins,TDC,BBB_Martins,synthesize,0.0009120835871305707,0.000547068032192969,75
+cns_mpo_ge_4,Rule flag: CNS MPO score >= 4.,bbb_martins,TDC,BBB_Martins,synthesize,0.000791315455457944,0.0005819850193049007,76
+mw_le_360,Rule flag: MW <= 360.,bbb_martins,TDC,BBB_Martins,synthesize,0.0007121793054760058,0.0004389490811316162,77
+logp_lt_5,Rule flag: logP < 5.,bbb_martins,TDC,BBB_Martins,synthesize,0.0003794573203196013,0.00010220156611275173,78
+mw_lt_400,Rule flag: MW < 400.,bbb_martins,TDC,BBB_Martins,synthesize,0.0003330667112642023,0.0005823515361543085,79
+mw_between_400_600,Rule flag: 400 <= MW <= 600.,bbb_martins,TDC,BBB_Martins,synthesize,0.000312490123315763,0.0002664396983857531,80
+logp_in_1p5_2p7,Rule flag: 1.5 <= logP <= 2.7.,bbb_martins,TDC,BBB_Martins,synthesize,0.00014095304987630578,0.0001455094322023969,81
+formal_charge_zero_or_plus_one,"Rule flag: formal charge in {0, +1}.",bbb_martins,TDC,BBB_Martins,synthesize,0.00010356542110180325,3.713765461419519e-05,82
+negative_formal_atom_count,Number of atoms with negative formal charge.,bbb_martins,TDC,BBB_Martins,synthesize,9.068602744285308e-05,9.248784710014383e-05,83
+formal_charge_abs_le_1,Rule flag: abs(formal charge) <= 1.,bbb_martins,TDC,BBB_Martins,synthesize,0.0,0.0,84
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,bbb_martins,TDC,BBB_Martins,synthesize,0.0,0.0,85

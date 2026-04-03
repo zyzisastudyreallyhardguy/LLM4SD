@@ -1,0 +1,336 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,seed,importance
+fraction_csp3,Fraction of sp3 carbons.,dili_feedback_v001,TDC,DILI,synthesize,0,0.3049245164319404
+heteroatom_count,Total heteroatom count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.16649117664786586
+aromatic_ring_count,Aromatic ring count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.10797709295478862
+tpsa,Topological polar surface area.,dili_feedback_v001,TDC,DILI,synthesize,0,0.08019914343656122
+heteroatom_fraction,Heteroatom count normalized by heavy atom count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0756114928799865
+ring_count,Total ring count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.04451118465894931
+logp,Wildman-Crippen logP.,dili_feedback_v001,TDC,DILI,synthesize,0,0.041477404480676223
+mol_weight,Molecular weight (Descriptors.MolWt).,dili_feedback_v001,TDC,DILI,synthesize,0,0.02458170751028162
+molar_refractivity,Wildman-Crippen molar refractivity.,dili_feedback_v001,TDC,DILI,synthesize,0,0.022118917761874315
+rotatable_bonds,Rotatable bond count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.01989568193880068
+reactive_metabolite_alert_count,Number of distinct reactive-metabolite-oriented alert families matched.,dili_feedback_v001,TDC,DILI,synthesize,0,0.017098011923729187
+aromatic_ring_density,Aromatic ring count normalized by total ring count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.016406982145235633
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,dili_feedback_v001,TDC,DILI,synthesize,0,0.014955990135390408
+hbd,Hydrogen bond donor count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.014575487952515839
+hba,Hydrogen bond acceptor count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.01353747375407683
+structural_alert_count,Number of high-confidence DILI structural alert families matched.,dili_feedback_v001,TDC,DILI,synthesize,0,0.011604848297305962
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,dili_feedback_v001,TDC,DILI,synthesize,0,0.010441372961797308
+heavy_atom_count,Heavy atom count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.005314916006427635
+aliphatic_ring_count,Aliphatic ring count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0031630382572627857
+halogen_atom_count,Total halogen atom count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0023639827828028834
+halogenated_aromatic_ring_present,1 if any aromatic ring bears a halogen substituent.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0009691240807807779
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0007337221534272916
+aromatic_primary_amine_present,1 if an aromatic primary amine is present.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0004195975402313037
+pains_alert_present,1 if any RDKit PAINS alert was matched.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0003212347869813759
+very_high_lipophilicity_flag,1 if logP >= 5.,dili_feedback_v001,TDC,DILI,synthesize,0,0.00023856528078274836
+multiple_rotatable_bonds_flag,1 if rotatable bonds >= 8.,dili_feedback_v001,TDC,DILI,synthesize,0,4.4704897696877504e-05
+high_lipophilicity_flag,1 if logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,0,2.262834183046571e-05
+acyl_halide_count,Count of acyl halide alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+aminophenol_ring_count,Count of aromatic rings with ortho/para phenol plus primary arylamine alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+anhydride_count,Count of acid anhydride alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+aromatic_primary_amine_count,Count of primary aniline-like amines attached to aromatic rings.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+bromine_atom_count,Bromine atom count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+chlorine_atom_count,Chlorine atom count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+epoxide_present,1 if an epoxide ring is present.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+fluorine_atom_count,Fluorine atom count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+formal_charge,Formal charge from the input graph.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+furan_present,1 if a furan ring is present.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+furan_ring_count,Count of aromatic five-membered rings containing one oxygen.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+hydrazide_alert_count,Count of hydrazide alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+hydrazine_alert_count,Count of hydrazine-like N-N alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+hydrazine_or_hydrazide_present,1 if hydrazine or hydrazide chemistry is present.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic OH substituents.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+iodine_atom_count,Iodine atom count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+isocyanate_count,Count of isocyanate alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+isothiocyanate_count,Count of isothiocyanate alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+large_lipophilic_molecule_flag,1 if molecular weight > 500 and logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+large_molecular_weight_flag,1 if molecular weight > 500.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+lipophilic_structural_alert_flag,1 if logP >= 3 and at least one reactive alert family is present.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl is present.",dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+nitro_group_count,Count of nitro groups.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+nitroaromatic_present,1 if a nitro group is attached to an aromatic atom.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+pains_alert_count,Count of matched RDKit PAINS alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+polyhalogenated_aromatic_ring_present,1 if any aromatic ring bears two or more halogen substituents.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+polyhalogenated_lipophilic_alert_flag,1 if an aromatic ring is polyhalogenated and logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+quinone_forming_phenol_alert_count,Count of quinone-forming phenol motif alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+quinone_forming_phenol_present,1 if a quinone-forming phenol alert is present.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+radical_electrons,Total radical electron count.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+reactive_alert_burden_ge_2,1 if two or more reactive alert families are present.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+strong_electrophile_count,Count of strong electrophilic or acylating alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+strong_electrophile_present,1 if any strong electrophilic or acylating alert is present.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+thiophene_present,1 if a thiophene ring is present.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+thiophene_ring_count,Count of aromatic five-membered rings containing one sulfur.,dili_feedback_v001,TDC,DILI,synthesize,0,0.0
+fraction_csp3,Fraction of sp3 carbons.,dili_feedback_v001,TDC,DILI,synthesize,1,0.32427782669672545
+heteroatom_count,Total heteroatom count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.17764752982953763
+aromatic_ring_count,Aromatic ring count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.08621679504285636
+tpsa,Topological polar surface area.,dili_feedback_v001,TDC,DILI,synthesize,1,0.07982321356535771
+heteroatom_fraction,Heteroatom count normalized by heavy atom count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.06299450511807404
+logp,Wildman-Crippen logP.,dili_feedback_v001,TDC,DILI,synthesize,1,0.04883800433059708
+ring_count,Total ring count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.04088364084669166
+mol_weight,Molecular weight (Descriptors.MolWt).,dili_feedback_v001,TDC,DILI,synthesize,1,0.024623108994509625
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,dili_feedback_v001,TDC,DILI,synthesize,1,0.022319712356066345
+molar_refractivity,Wildman-Crippen molar refractivity.,dili_feedback_v001,TDC,DILI,synthesize,1,0.02201844161982368
+aromatic_ring_density,Aromatic ring count normalized by total ring count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.018898158543385443
+rotatable_bonds,Rotatable bond count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.017886556722880663
+hbd,Hydrogen bond donor count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.012268766751858501
+structural_alert_count,Number of high-confidence DILI structural alert families matched.,dili_feedback_v001,TDC,DILI,synthesize,1,0.012088947732624677
+hba,Hydrogen bond acceptor count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.012053006956222398
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,dili_feedback_v001,TDC,DILI,synthesize,1,0.011379415467403642
+reactive_metabolite_alert_count,Number of distinct reactive-metabolite-oriented alert families matched.,dili_feedback_v001,TDC,DILI,synthesize,1,0.010901093136074111
+heavy_atom_count,Heavy atom count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.005085230746325798
+aliphatic_ring_count,Aliphatic ring count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0047710977007897025
+halogen_atom_count,Total halogen atom count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.002294517077473068
+halogenated_aromatic_ring_present,1 if any aromatic ring bears a halogen substituent.,dili_feedback_v001,TDC,DILI,synthesize,1,0.000991304494366386
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0006418779127402746
+high_lipophilicity_flag,1 if logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0004317856004379789
+multiple_rotatable_bonds_flag,1 if rotatable bonds >= 8.,dili_feedback_v001,TDC,DILI,synthesize,1,0.00029091488303254815
+large_molecular_weight_flag,1 if molecular weight > 500.,dili_feedback_v001,TDC,DILI,synthesize,1,0.00019989925532648653
+very_high_lipophilicity_flag,1 if logP >= 5.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0001691520912070017
+aromatic_primary_amine_present,1 if an aromatic primary amine is present.,dili_feedback_v001,TDC,DILI,synthesize,1,5.496527611821081e-06
+acyl_halide_count,Count of acyl halide alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+aminophenol_ring_count,Count of aromatic rings with ortho/para phenol plus primary arylamine alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+anhydride_count,Count of acid anhydride alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+aromatic_primary_amine_count,Count of primary aniline-like amines attached to aromatic rings.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+bromine_atom_count,Bromine atom count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+chlorine_atom_count,Chlorine atom count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+epoxide_present,1 if an epoxide ring is present.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+fluorine_atom_count,Fluorine atom count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+formal_charge,Formal charge from the input graph.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+furan_present,1 if a furan ring is present.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+furan_ring_count,Count of aromatic five-membered rings containing one oxygen.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+hydrazide_alert_count,Count of hydrazide alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+hydrazine_alert_count,Count of hydrazine-like N-N alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+hydrazine_or_hydrazide_present,1 if hydrazine or hydrazide chemistry is present.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic OH substituents.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+iodine_atom_count,Iodine atom count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+isocyanate_count,Count of isocyanate alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+isothiocyanate_count,Count of isothiocyanate alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+large_lipophilic_molecule_flag,1 if molecular weight > 500 and logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+lipophilic_structural_alert_flag,1 if logP >= 3 and at least one reactive alert family is present.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl is present.",dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+nitro_group_count,Count of nitro groups.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+nitroaromatic_present,1 if a nitro group is attached to an aromatic atom.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+pains_alert_count,Count of matched RDKit PAINS alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+pains_alert_present,1 if any RDKit PAINS alert was matched.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+polyhalogenated_aromatic_ring_present,1 if any aromatic ring bears two or more halogen substituents.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+polyhalogenated_lipophilic_alert_flag,1 if an aromatic ring is polyhalogenated and logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+quinone_forming_phenol_alert_count,Count of quinone-forming phenol motif alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+quinone_forming_phenol_present,1 if a quinone-forming phenol alert is present.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+radical_electrons,Total radical electron count.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+reactive_alert_burden_ge_2,1 if two or more reactive alert families are present.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+strong_electrophile_count,Count of strong electrophilic or acylating alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+strong_electrophile_present,1 if any strong electrophilic or acylating alert is present.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+thiophene_present,1 if a thiophene ring is present.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+thiophene_ring_count,Count of aromatic five-membered rings containing one sulfur.,dili_feedback_v001,TDC,DILI,synthesize,1,0.0
+fraction_csp3,Fraction of sp3 carbons.,dili_feedback_v001,TDC,DILI,synthesize,2,0.290355158202043
+heteroatom_count,Total heteroatom count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.15922861186729007
+aromatic_ring_count,Aromatic ring count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.12037380967246714
+tpsa,Topological polar surface area.,dili_feedback_v001,TDC,DILI,synthesize,2,0.09126506938127356
+heteroatom_fraction,Heteroatom count normalized by heavy atom count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.07276034289981151
+ring_count,Total ring count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.04246932892575288
+logp,Wildman-Crippen logP.,dili_feedback_v001,TDC,DILI,synthesize,2,0.040610393911838516
+molar_refractivity,Wildman-Crippen molar refractivity.,dili_feedback_v001,TDC,DILI,synthesize,2,0.02394038429561873
+rotatable_bonds,Rotatable bond count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.022281942488526857
+mol_weight,Molecular weight (Descriptors.MolWt).,dili_feedback_v001,TDC,DILI,synthesize,2,0.02067018293367246
+aromatic_ring_density,Aromatic ring count normalized by total ring count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.020099443500446245
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,dili_feedback_v001,TDC,DILI,synthesize,2,0.01810606660253594
+reactive_metabolite_alert_count,Number of distinct reactive-metabolite-oriented alert families matched.,dili_feedback_v001,TDC,DILI,synthesize,2,0.01581995380845613
+structural_alert_count,Number of high-confidence DILI structural alert families matched.,dili_feedback_v001,TDC,DILI,synthesize,2,0.014342327863043949
+hbd,Hydrogen bond donor count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.012413585909509797
+hba,Hydrogen bond acceptor count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.012369336544589072
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,dili_feedback_v001,TDC,DILI,synthesize,2,0.01172620007531051
+heavy_atom_count,Heavy atom count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.003915441484492171
+aliphatic_ring_count,Aliphatic ring count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.003276759969251406
+halogen_atom_count,Total halogen atom count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0014603965319757684
+halogenated_aromatic_ring_present,1 if any aromatic ring bears a halogen substituent.,dili_feedback_v001,TDC,DILI,synthesize,2,0.000802998756200019
+aromatic_primary_amine_count,Count of primary aniline-like amines attached to aromatic rings.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0005273991698368972
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0005237820290753025
+multiple_rotatable_bonds_flag,1 if rotatable bonds >= 8.,dili_feedback_v001,TDC,DILI,synthesize,2,0.00028297771395790675
+chlorine_atom_count,Chlorine atom count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.00025383065484875283
+large_molecular_weight_flag,1 if molecular weight > 500.,dili_feedback_v001,TDC,DILI,synthesize,2,6.538195771214021e-05
+high_lipophilicity_flag,1 if logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,2,5.88928504632728e-05
+acyl_halide_count,Count of acyl halide alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+aminophenol_ring_count,Count of aromatic rings with ortho/para phenol plus primary arylamine alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+anhydride_count,Count of acid anhydride alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+aromatic_primary_amine_present,1 if an aromatic primary amine is present.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+bromine_atom_count,Bromine atom count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+epoxide_present,1 if an epoxide ring is present.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+fluorine_atom_count,Fluorine atom count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+formal_charge,Formal charge from the input graph.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+furan_present,1 if a furan ring is present.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+furan_ring_count,Count of aromatic five-membered rings containing one oxygen.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+hydrazide_alert_count,Count of hydrazide alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+hydrazine_alert_count,Count of hydrazine-like N-N alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+hydrazine_or_hydrazide_present,1 if hydrazine or hydrazide chemistry is present.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic OH substituents.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+iodine_atom_count,Iodine atom count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+isocyanate_count,Count of isocyanate alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+isothiocyanate_count,Count of isothiocyanate alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+large_lipophilic_molecule_flag,1 if molecular weight > 500 and logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+lipophilic_structural_alert_flag,1 if logP >= 3 and at least one reactive alert family is present.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl is present.",dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+nitro_group_count,Count of nitro groups.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+nitroaromatic_present,1 if a nitro group is attached to an aromatic atom.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+pains_alert_count,Count of matched RDKit PAINS alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+pains_alert_present,1 if any RDKit PAINS alert was matched.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+polyhalogenated_aromatic_ring_present,1 if any aromatic ring bears two or more halogen substituents.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+polyhalogenated_lipophilic_alert_flag,1 if an aromatic ring is polyhalogenated and logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+quinone_forming_phenol_alert_count,Count of quinone-forming phenol motif alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+quinone_forming_phenol_present,1 if a quinone-forming phenol alert is present.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+radical_electrons,Total radical electron count.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+reactive_alert_burden_ge_2,1 if two or more reactive alert families are present.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+strong_electrophile_count,Count of strong electrophilic or acylating alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+strong_electrophile_present,1 if any strong electrophilic or acylating alert is present.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+thiophene_present,1 if a thiophene ring is present.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+thiophene_ring_count,Count of aromatic five-membered rings containing one sulfur.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+very_high_lipophilicity_flag,1 if logP >= 5.,dili_feedback_v001,TDC,DILI,synthesize,2,0.0
+fraction_csp3,Fraction of sp3 carbons.,dili_feedback_v001,TDC,DILI,synthesize,3,0.29767920892956706
+heteroatom_count,Total heteroatom count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.17737881709967634
+aromatic_ring_count,Aromatic ring count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.10649068981541233
+tpsa,Topological polar surface area.,dili_feedback_v001,TDC,DILI,synthesize,3,0.07939568557546892
+heteroatom_fraction,Heteroatom count normalized by heavy atom count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.068608192905455
+logp,Wildman-Crippen logP.,dili_feedback_v001,TDC,DILI,synthesize,3,0.03882298310623278
+ring_count,Total ring count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.03675931910239492
+molar_refractivity,Wildman-Crippen molar refractivity.,dili_feedback_v001,TDC,DILI,synthesize,3,0.028777751021910512
+rotatable_bonds,Rotatable bond count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.022717851158021718
+aromatic_ring_density,Aromatic ring count normalized by total ring count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.02137369330106343
+mol_weight,Molecular weight (Descriptors.MolWt).,dili_feedback_v001,TDC,DILI,synthesize,3,0.020965581211031575
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,dili_feedback_v001,TDC,DILI,synthesize,3,0.017499804558145034
+hba,Hydrogen bond acceptor count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.01717337952599081
+structural_alert_count,Number of high-confidence DILI structural alert families matched.,dili_feedback_v001,TDC,DILI,synthesize,3,0.017020713445026734
+reactive_metabolite_alert_count,Number of distinct reactive-metabolite-oriented alert families matched.,dili_feedback_v001,TDC,DILI,synthesize,3,0.013004102673329273
+hbd,Hydrogen bond donor count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.012380764443565733
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0123774140829278
+heavy_atom_count,Heavy atom count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0054475658982619584
+halogen_atom_count,Total halogen atom count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0024996217478743966
+aliphatic_ring_count,Aliphatic ring count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.002341635125364615
+aromatic_primary_amine_present,1 if an aromatic primary amine is present.,dili_feedback_v001,TDC,DILI,synthesize,3,0.000520019740420533
+halogenated_aromatic_ring_present,1 if any aromatic ring bears a halogen substituent.,dili_feedback_v001,TDC,DILI,synthesize,3,0.00032741896330074093
+pains_alert_present,1 if any RDKit PAINS alert was matched.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0002950567994670635
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,dili_feedback_v001,TDC,DILI,synthesize,3,0.00012080184389565753
+fluorine_atom_count,Fluorine atom count.,dili_feedback_v001,TDC,DILI,synthesize,3,1.7569342807223313e-05
+high_lipophilicity_flag,1 if logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,3,4.358583387960077e-06
+acyl_halide_count,Count of acyl halide alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+aminophenol_ring_count,Count of aromatic rings with ortho/para phenol plus primary arylamine alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+anhydride_count,Count of acid anhydride alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+aromatic_primary_amine_count,Count of primary aniline-like amines attached to aromatic rings.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+bromine_atom_count,Bromine atom count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+chlorine_atom_count,Chlorine atom count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+epoxide_present,1 if an epoxide ring is present.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+formal_charge,Formal charge from the input graph.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+furan_present,1 if a furan ring is present.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+furan_ring_count,Count of aromatic five-membered rings containing one oxygen.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+hydrazide_alert_count,Count of hydrazide alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+hydrazine_alert_count,Count of hydrazine-like N-N alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+hydrazine_or_hydrazide_present,1 if hydrazine or hydrazide chemistry is present.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic OH substituents.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+iodine_atom_count,Iodine atom count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+isocyanate_count,Count of isocyanate alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+isothiocyanate_count,Count of isothiocyanate alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+large_lipophilic_molecule_flag,1 if molecular weight > 500 and logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+large_molecular_weight_flag,1 if molecular weight > 500.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+lipophilic_structural_alert_flag,1 if logP >= 3 and at least one reactive alert family is present.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl is present.",dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+multiple_rotatable_bonds_flag,1 if rotatable bonds >= 8.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+nitro_group_count,Count of nitro groups.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+nitroaromatic_present,1 if a nitro group is attached to an aromatic atom.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+pains_alert_count,Count of matched RDKit PAINS alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+polyhalogenated_aromatic_ring_present,1 if any aromatic ring bears two or more halogen substituents.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+polyhalogenated_lipophilic_alert_flag,1 if an aromatic ring is polyhalogenated and logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+quinone_forming_phenol_alert_count,Count of quinone-forming phenol motif alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+quinone_forming_phenol_present,1 if a quinone-forming phenol alert is present.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+radical_electrons,Total radical electron count.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+reactive_alert_burden_ge_2,1 if two or more reactive alert families are present.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+strong_electrophile_count,Count of strong electrophilic or acylating alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+strong_electrophile_present,1 if any strong electrophilic or acylating alert is present.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+thiophene_present,1 if a thiophene ring is present.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+thiophene_ring_count,Count of aromatic five-membered rings containing one sulfur.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+very_high_lipophilicity_flag,1 if logP >= 5.,dili_feedback_v001,TDC,DILI,synthesize,3,0.0
+fraction_csp3,Fraction of sp3 carbons.,dili_feedback_v001,TDC,DILI,synthesize,4,0.29598995236461767
+heteroatom_count,Total heteroatom count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.17147731863641322
+aromatic_ring_count,Aromatic ring count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.11468240542941398
+tpsa,Topological polar surface area.,dili_feedback_v001,TDC,DILI,synthesize,4,0.07790044526635007
+heteroatom_fraction,Heteroatom count normalized by heavy atom count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.07545053275244962
+logp,Wildman-Crippen logP.,dili_feedback_v001,TDC,DILI,synthesize,4,0.03972138199809433
+ring_count,Total ring count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.03187054679558752
+mol_weight,Molecular weight (Descriptors.MolWt).,dili_feedback_v001,TDC,DILI,synthesize,4,0.026484732816869548
+molar_refractivity,Wildman-Crippen molar refractivity.,dili_feedback_v001,TDC,DILI,synthesize,4,0.026409165339765794
+rotatable_bonds,Rotatable bond count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.025215071621903527
+aromatic_ring_density,Aromatic ring count normalized by total ring count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.020179276672957037
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,dili_feedback_v001,TDC,DILI,synthesize,4,0.017319208234289733
+reactive_metabolite_alert_count,Number of distinct reactive-metabolite-oriented alert families matched.,dili_feedback_v001,TDC,DILI,synthesize,4,0.015812072696034633
+structural_alert_count,Number of high-confidence DILI structural alert families matched.,dili_feedback_v001,TDC,DILI,synthesize,4,0.012586718627954957
+hba,Hydrogen bond acceptor count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.011548796526331163
+hbd,Hydrogen bond donor count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.011041802635576725
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,dili_feedback_v001,TDC,DILI,synthesize,4,0.010504005613019198
+heavy_atom_count,Heavy atom count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0050636305949943216
+aliphatic_ring_count,Aliphatic ring count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.004738979394354493
+halogen_atom_count,Total halogen atom count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.002667296238094328
+aromatic_primary_amine_count,Count of primary aniline-like amines attached to aromatic rings.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0012006583499437392
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0009321462625019608
+halogenated_aromatic_ring_present,1 if any aromatic ring bears a halogen substituent.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0007359400772087502
+high_lipophilicity_flag,1 if logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,4,0.00024600646849147457
+large_molecular_weight_flag,1 if molecular weight > 500.,dili_feedback_v001,TDC,DILI,synthesize,4,0.00021438821459587247
+multiple_rotatable_bonds_flag,1 if rotatable bonds >= 8.,dili_feedback_v001,TDC,DILI,synthesize,4,7.520372186187086e-06
+fluorine_atom_count,Fluorine atom count.,dili_feedback_v001,TDC,DILI,synthesize,4,4.1992064601117235e-18
+acyl_halide_count,Count of acyl halide alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+aminophenol_ring_count,Count of aromatic rings with ortho/para phenol plus primary arylamine alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+anhydride_count,Count of acid anhydride alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+aromatic_primary_amine_present,1 if an aromatic primary amine is present.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+bromine_atom_count,Bromine atom count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+chlorine_atom_count,Chlorine atom count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+epoxide_present,1 if an epoxide ring is present.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+formal_charge,Formal charge from the input graph.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+furan_present,1 if a furan ring is present.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+furan_ring_count,Count of aromatic five-membered rings containing one oxygen.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+hydrazide_alert_count,Count of hydrazide alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+hydrazine_alert_count,Count of hydrazine-like N-N alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+hydrazine_or_hydrazide_present,1 if hydrazine or hydrazide chemistry is present.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic OH substituents.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+iodine_atom_count,Iodine atom count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+isocyanate_count,Count of isocyanate alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+isothiocyanate_count,Count of isothiocyanate alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+large_lipophilic_molecule_flag,1 if molecular weight > 500 and logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+lipophilic_structural_alert_flag,1 if logP >= 3 and at least one reactive alert family is present.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl is present.",dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+nitro_group_count,Count of nitro groups.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+nitroaromatic_present,1 if a nitro group is attached to an aromatic atom.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+pains_alert_count,Count of matched RDKit PAINS alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+pains_alert_present,1 if any RDKit PAINS alert was matched.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+polyhalogenated_aromatic_ring_present,1 if any aromatic ring bears two or more halogen substituents.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+polyhalogenated_lipophilic_alert_flag,1 if an aromatic ring is polyhalogenated and logP >= 3.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+quinone_forming_phenol_alert_count,Count of quinone-forming phenol motif alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+quinone_forming_phenol_present,1 if a quinone-forming phenol alert is present.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+radical_electrons,Total radical electron count.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+reactive_alert_burden_ge_2,1 if two or more reactive alert families are present.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+strong_electrophile_count,Count of strong electrophilic or acylating alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+strong_electrophile_present,1 if any strong electrophilic or acylating alert is present.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+thiophene_present,1 if a thiophene ring is present.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+thiophene_ring_count,Count of aromatic five-membered rings containing one sulfur.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0
+very_high_lipophilicity_flag,1 if logP >= 5.,dili_feedback_v001,TDC,DILI,synthesize,4,0.0

@@ -1,0 +1,32 @@
+{
+  "variant_backend": "cyp2d6_substrate_carbonmangels_feedback_v001",
+  "parent_backend": "cyp2d6_substrate_carbonmangels",
+  "base_backend": "cyp2d6_substrate_carbonmangels",
+  "subtask": "CYP2D6_Substrate_CarbonMangels",
+  "source_run_id": "cyp2d6_substrate_carbonmangels_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/CYP2D6_Substrate_CarbonMangels/cyp2d6_substrate_carbonmangels_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "cyp2d6_substrate_carbonmangels",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.8233249877720954,
+      "mean_train_roc_auc": 0.9364803887539048,
+      "mean_valid_macro_f1": 0.7872080165399493,
+      "mean_valid_roc_auc": 0.8208286674132138,
+      "mean_test_macro_f1": 0.7872080165399493,
+      "mean_test_roc_auc": 0.8208286674132138
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.8389267769816552,
+      "mean_train_roc_auc": 0.9495545528173087,
+      "mean_valid_macro_f1": 0.7920366146458584,
+      "mean_valid_roc_auc": 0.8201567749160134,
+      "mean_test_macro_f1": 0.7920366146458584,
+      "mean_test_roc_auc": 0.8201567749160134
+    }
+  },
+  "feature_module": "cyp2d6_substrate_carbonmangels_rule_features",
+  "created_at": "2026-04-02T03:28:32",
+  "updated_at": "2026-04-02T04:03:54"
+}

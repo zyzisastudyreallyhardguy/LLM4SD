@@ -1,0 +1,32 @@
+{
+  "variant_backend": "ames_feedback_v001",
+  "parent_backend": "ames",
+  "base_backend": "ames",
+  "subtask": "AMES",
+  "source_run_id": "ames_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/AMES/ames_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "ames",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.9050378379141119,
+      "mean_train_roc_auc": 0.97252878154003,
+      "mean_valid_macro_f1": 0.7629147401538426,
+      "mean_valid_roc_auc": 0.8381192373808407,
+      "mean_test_macro_f1": 0.7629147401538426,
+      "mean_test_roc_auc": 0.8381192373808407
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.9263433947788258,
+      "mean_train_roc_auc": 0.9790447232807227,
+      "mean_valid_macro_f1": 0.7594387356169445,
+      "mean_valid_roc_auc": 0.83318409126426,
+      "mean_test_macro_f1": 0.7594387356169445,
+      "mean_test_roc_auc": 0.83318409126426
+    }
+  },
+  "feature_module": "ames_rule_features",
+  "created_at": "2026-04-02T03:26:24",
+  "updated_at": "2026-04-02T03:55:04"
+}

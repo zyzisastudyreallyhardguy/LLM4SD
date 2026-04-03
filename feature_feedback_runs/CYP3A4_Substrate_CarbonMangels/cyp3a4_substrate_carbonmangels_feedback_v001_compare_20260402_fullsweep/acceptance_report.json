@@ -1,0 +1,38 @@
+{
+  "dataset": "TDC",
+  "subtask": "CYP3A4_Substrate_CarbonMangels",
+  "run_id": "cyp3a4_substrate_carbonmangels_feedback_v001_compare_20260402_fullsweep",
+  "baseline_backend": "cyp3a4_substrate_carbonmangels",
+  "candidate_backend": "cyp3a4_substrate_carbonmangels_feedback_v001",
+  "model_name": "galactica-6.7b",
+  "knowledge_type": "synthesize",
+  "num_samples": 50,
+  "baseline_tuned_params_path": "/data1/tianang/Projects/LLM4SD/eval_result/TDC_hyperparameter_search/CYP3A4_Substrate_CarbonMangels/CYP3A4_Substrate_CarbonMangels_cyp3a4_substrate_carbonmangels_best_params.json",
+  "candidate_tuned_params_path": "/data1/tianang/Projects/LLM4SD/eval_result/TDC_hyperparameter_search/CYP3A4_Substrate_CarbonMangels/CYP3A4_Substrate_CarbonMangels_cyp3a4_substrate_carbonmangels_feedback_v001_best_params.json",
+  "baseline_metrics_csv": "/data1/tianang/Projects/LLM4SD/eval_result/galactica-6.7b/TDC/synthesize/galactica-6.7b_TDC_CYP3A4_Substrate_CarbonMangels_synthesize_cyp3a4_substrate_carbonmangels_classification_metrics_per_seed.csv",
+  "candidate_metrics_csv": "/data1/tianang/Projects/LLM4SD/eval_result/galactica-6.7b/TDC/synthesize/galactica-6.7b_TDC_CYP3A4_Substrate_CarbonMangels_synthesize_cyp3a4_substrate_carbonmangels_feedback_v001_classification_metrics_per_seed.csv",
+  "baseline_summary": {
+    "mean_train_macro_f1": 0.781837341093128,
+    "mean_train_roc_auc": 0.8671899471191937,
+    "mean_valid_macro_f1": 0.7762640057378049,
+    "mean_valid_roc_auc": 0.8278388278388278,
+    "mean_test_macro_f1": 0.7762640057378049,
+    "mean_test_roc_auc": 0.8278388278388278
+  },
+  "candidate_summary": {
+    "mean_train_macro_f1": 0.8055042310945847,
+    "mean_train_roc_auc": 0.8864223462863672,
+    "mean_valid_macro_f1": 0.7817813145228202,
+    "mean_valid_roc_auc": 0.8606227106227106,
+    "mean_test_macro_f1": 0.7817813145228202,
+    "mean_test_roc_auc": 0.8606227106227106
+  },
+  "acceptance_checks": {
+    "train_macro_f1_improved": true,
+    "valid_macro_f1_improved": true,
+    "valid_roc_auc_not_decreased": true
+  },
+  "accepted": true,
+  "float_tolerance": 1e-06,
+  "created_at": "2026-04-02T04:08:27"
+}

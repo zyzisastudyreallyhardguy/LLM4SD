@@ -1,0 +1,55 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,mean_importance,std_importance,rank
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.1359050116364543,0.004248800611502082,1
+mol_weight,Molecular weight (Descriptors.MolWt).,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.12856072226174273,0.005189589842773095,2
+tpsa,Topological polar surface area.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.07262169750238619,0.003553856833781873,3
+logp,Wildman-Crippen logP.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0667119296250612,0.0030894163153483622,4
+fraction_csp3,Fraction of sp3 carbons.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.06238845512993048,0.0033253658417390503,5
+heavy_atom_count,Heavy atom count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.057292114025429365,0.0036351539131781554,6
+mpro_compactness_adjusted_design_score,Design-rule pass count normalized by a simple heavy-atom compactness penalty.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.04551991232142651,0.003159458725690089,7
+heteroatom_count,Heteroatom count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.04090090683473556,0.0036096567642704483,8
+rotatable_bonds,Rotatable bond count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.04022943946588615,0.0026524218730887847,9
+polar_amide_like_group_density,Polar amide-like group count normalized by heavy atom count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0362844773499553,0.0034165608728077813,10
+p2_hydrophobic_proxy_density,Hydrophobic P2 proxy score normalized by heavy atom count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.036207188291826786,0.003802325098098133,11
+total_hbond_donors_acceptors,HBD + HBA total.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.031313999669182815,0.0017062470367954696,12
+hba,Hydrogen bond acceptor count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.030994977684423296,0.001419249192307649,13
+hbd,Hydrogen bond donor count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.023163575762594178,0.0015879886438281002,14
+ring_count,Total ring count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.020326953583677042,0.0024018185887584834,15
+amide_bond_count,Amide-bond count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.017260734772834525,0.0006670992505030431,16
+polar_amide_like_group_count,"Sum of amide, carbamate, urea, and sulfonamide counts as a polar P3/P4 substituent proxy.",sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.016291996690165254,0.0017469159109507197,17
+aliphatic_ring_count,Aliphatic ring count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.015634601434912476,0.0010969290118201473,18
+aromatic_ring_count,Aromatic ring count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.01320729660472777,0.0007597091004987981,19
+mpro_design_rule_pass_count,Physicochemical pass count plus the four structural motif flags.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.01221078049647165,0.0012329620545857732,20
+mpro_structural_motif_count,"Count of conserved structural motif proxies among warhead, P1, P2, and P3/P4.",sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.010773266608126572,0.0009467242375980189,21
+branched_sp3_carbon_count,Count of non-ring sp3 carbons attached to at least two carbons.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.010611200051225617,0.0009000536473972808,22
+p2_hydrophobic_proxy_score,Count of satisfied hydrophobic P2 proxy conditions.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.010075439967374887,0.0006988295483837825,23
+sulfonamide_count,Sulfonamide count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.010035223168572601,0.0012925611139073259,24
+p3_p4_polar_substituent_present,1 if amide-like polar substituents suggest a P3/P4 hydrogen-bonding handle.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.009056536314916031,0.0010143699150708739,25
+p2_hydrophobic_sidechain_present,1 if hydrophobic branched/cyclic P2-sidechain proxies are present.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.008593698132269524,0.0015768692178093858,26
+primary_amide_count,Primary amide count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.005908813028506399,0.0008416413285093422,27
+fraction_csp3_ge_0p4,Rule flag: fractionCSP3 >= 0.4.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.004743397333354468,0.00068474188274585,28
+mpro_physchem_window_pass,1 if all physicochemical windows from the source response are satisfied.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.004638484654157419,0.000743188496974394,29
+mpro_physchem_rule_pass_count,Count of passed physicochemical rules derived from the source response.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.004578883411957409,0.0002517133428088805,30
+small_aliphatic_carbocycle_count,Count of non-aromatic carbocyclic rings of size 3-6 as a hydrophobic sidechain proxy.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.004084206965369009,0.00043900266078745516,31
+s1_hbond_proxy_present,1 if gamma-lactam or donor/acceptor-rich amide motifs suggest the conserved S1 H-bond pattern.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0033777488259972704,0.00045499254459145476,32
+urea_count,Urea count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0032651163019609608,0.0007511749640876822,33
+electrophilic_warhead_count,"Sum of nitrile, aldehyde, ketone, and Michael-acceptor motif counts as a warhead proxy.",sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0017997984109208915,0.00046891208409868194,34
+carbamate_count,Carbamate count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0015263305152938868,0.0002455732577372927,35
+has_electrophilic_warhead,1 if any electrophilic warhead proxy is present.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0015161569348611421,0.00020977683917766166,36
+nitrile_count,Nitrile count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0008169265423120331,0.0001257271410160717,37
+formal_charge,Formal charge from the input graph.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.000570894628011765,0.00011962473501401821,38
+gamma_lactam_count,Five-membered lactam count as a P1 glutamine-mimic proxy.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.00041059543937637267,4.897263308385668e-05,39
+p1_glutamine_mimic_present,1 if a five-membered lactam P1 glutamine-mimic proxy is present.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0003129838499460723,9.613986981822158e-05,40
+ketone_count,Ketone count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0002468813669736868,9.639214589977801e-05,41
+bridgehead_atom_count,Bridgehead atom count as a rigid bicyclic-sidechain proxy.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,1.6008088858936586e-05,1.7351026525558873e-05,42
+spiro_atom_count,Spiro atom count as an additional rigid-sidechain proxy.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,1.463831583345768e-05,9.523244442513824e-06,43
+aldehyde_count,Aldehyde count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,44
+aromatic_ring_count_le_3,Rule flag: aromatic ring count <= 3.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,45
+hba_le_10,Rule flag: HBA <= 10.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,46
+hbd_le_5,Rule flag: HBD <= 5.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,47
+lactam_count,Cyclic amide count.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,48
+logp_lt_5,Rule flag: logP < 5.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,49
+michael_acceptor_count,"Alpha,beta-unsaturated carbonyl count as a Michael-acceptor proxy.",sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,50
+mol_weight_le_500,Rule flag: molecular weight <= 500.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,51
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,52
+total_hbond_donors_acceptors_le_12,Rule flag: HBD + HBA <= 12.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,53
+tpsa_le_140,Rule flag: TPSA <= 140.,sarscov2_3clpro_diamond_feedback_v001,TDC,SARSCoV2_3CLPro_Diamond,synthesize,0.0,0.0,54

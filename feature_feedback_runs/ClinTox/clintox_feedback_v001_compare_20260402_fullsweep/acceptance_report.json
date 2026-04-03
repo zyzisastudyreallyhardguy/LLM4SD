@@ -1,0 +1,38 @@
+{
+  "dataset": "TDC",
+  "subtask": "ClinTox",
+  "run_id": "clintox_feedback_v001_compare_20260402_fullsweep",
+  "baseline_backend": "clintox",
+  "candidate_backend": "clintox_feedback_v001",
+  "model_name": "galactica-6.7b",
+  "knowledge_type": "synthesize",
+  "num_samples": 50,
+  "baseline_tuned_params_path": "/data1/tianang/Projects/LLM4SD/eval_result/TDC_hyperparameter_search/ClinTox/ClinTox_clintox_best_params.json",
+  "candidate_tuned_params_path": "/data1/tianang/Projects/LLM4SD/eval_result/TDC_hyperparameter_search/ClinTox/ClinTox_clintox_feedback_v001_best_params.json",
+  "baseline_metrics_csv": "/data1/tianang/Projects/LLM4SD/eval_result/galactica-6.7b/TDC/synthesize/galactica-6.7b_TDC_ClinTox_synthesize_clintox_classification_metrics_per_seed.csv",
+  "candidate_metrics_csv": "/data1/tianang/Projects/LLM4SD/eval_result/galactica-6.7b/TDC/synthesize/galactica-6.7b_TDC_ClinTox_synthesize_clintox_feedback_v001_classification_metrics_per_seed.csv",
+  "baseline_summary": {
+    "mean_train_macro_f1": 0.8712870292320358,
+    "mean_train_roc_auc": 0.9909474988733665,
+    "mean_valid_macro_f1": 0.697105954699303,
+    "mean_valid_roc_auc": 0.8611548556430446,
+    "mean_test_macro_f1": 0.697105954699303,
+    "mean_test_roc_auc": 0.8611548556430446
+  },
+  "candidate_summary": {
+    "mean_train_macro_f1": 0.8668555468035551,
+    "mean_train_roc_auc": 0.9912066246056781,
+    "mean_valid_macro_f1": 0.7036889667726267,
+    "mean_valid_roc_auc": 0.8440944881889763,
+    "mean_test_macro_f1": 0.7036889667726267,
+    "mean_test_roc_auc": 0.8440944881889763
+  },
+  "acceptance_checks": {
+    "train_macro_f1_improved": false,
+    "valid_macro_f1_improved": true,
+    "valid_roc_auc_not_decreased": false
+  },
+  "accepted": false,
+  "float_tolerance": 1e-06,
+  "created_at": "2026-04-02T03:58:06"
+}

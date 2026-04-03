@@ -25,19 +25,31 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import roc_auc_score, mean_absolute_error
+from feature_backends import load_feature_backend, prepare_feature_matrices
+from rule_importance import (
+    collect_feature_importance_rows,
+    extract_function_names,
+    write_rule_importance_outputs,
+)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', type=str, default='bbbp', help='dataset/task name')
 parser.add_argument('--subtask', type=str, default='', help='subtask of tox21/sider/qm9 dataset')
 parser.add_argument('--model', type=str, default='galactica-6.7b', help='LLM model')
 parser.add_argument('--knowledge_type', type=str, default='all', help='synthesize/inference/all')
+parser.add_argument('--feature_backend', type=str, default='generated_rules', help='feature backend name (generated_rules/bbb_martins)')
 parser.add_argument('--list_num', type=int, default=30, help='number of sample lists (30/50) for inference')
 parser.add_argument('--output_dir', type=str, default='eval_result', help='output folder')
 parser.add_argument('--code_gen_folder', type=str, default='eval_code_generation_repo')
 parser.add_argument('--api_key', type=str, default='', help='openai key')
 args = parser.parse_args()
 
-prompt = '''Question: Please generate the following rules to code like the following examples. You can define function name by yourself. Please ensure the code is executable! Each rule can have multiple functions! Don't make mistakes like ''rdkit.Chem.rdMolDescriptors' has no attribute 'CalXXX'. Don't skip rules! All functions have to return numbers and takes one argument mol!:
+prompt = '''Question: Please format the following rules to code like the following examples. You can define function name by yourself. Please ensure the code is executable! Each rule can have multiple functions! Don't make mistakes like ''rdkit.Chem.rdMolDescriptors' has no attribute 'CalXXX'. Don't skip rules! All functions have to return numbers and takes one argument mol! The code used to parse your generated functions into executable code is strict like this:
+
+pattern = r"(def [a-zA-Z_][a-zA-Z0-9_]*\(.+\):(?:\n(?:    .+\n)+)+)"
+matches = re.findall(pattern, generated_code, re.MULTILINE)
+
+Please follow the format strictly! Here are some examples:
 # Rule 1: Molecule should have a minimum of two hydrogen bond donors
 def rule55302_hb_donors1232143(mol):
     return rdMolDescriptors.CalcNumHBD(mol)
@@ -266,15 +278,47 @@ def dropna(X):
     return X
 
 
-def evaluation(generated_code, valid_function_names):
+def build_feature_backend(valid_function_names=None):
+    if args.feature_backend == 'generated_rules':
+        if valid_function_names is None:
+            raise ValueError("generated_rules backend requires valid_function_names")
+        return load_feature_backend(
+            args.feature_backend,
+            function_names=valid_function_names,
+            namespace=globals(),
+        )
+    return load_feature_backend(args.feature_backend)
+
+
+def get_result_prefix(subtask_name):
+    prefix = f'{args.model}_{args.dataset}{subtask_name}_{args.knowledge_type}'
+    if args.feature_backend != 'generated_rules':
+        prefix += f'_{args.feature_backend}'
+    return prefix
+
+
+def get_default_importance_source(feature_backend_name):
+    if feature_backend_name == 'generated_rules':
+        return args.knowledge_type
+    return feature_backend_name
+
+
+def get_feature_description_map(feature_backend, surviving_feature_names):
+    if hasattr(feature_backend, 'get_feature_descriptions'):
+        description_map = dict(feature_backend.get_feature_descriptions())
+        return {name: description_map.get(name, name) for name in surviving_feature_names}
+    return {name: name for name in surviving_feature_names}
+
+
+def evaluation(feature_backend, feature_source_map=None):
     smiles_list, y_train = load_data('train')
-    X_train = exec_code(smiles_list, valid_function_names)
+    X_train_df = feature_backend.featurize_smiles_list(smiles_list, on_error="nan")
 
     smiles_list, y_valid = load_data('valid')
-    X_valid = exec_code(smiles_list, valid_function_names)
+    X_valid_df = feature_backend.featurize_smiles_list(smiles_list, on_error="nan")
 
     smiles_list, y_test = load_data('test')
-    X_test = exec_code(smiles_list, valid_function_names)
+    X_test_df = feature_backend.featurize_smiles_list(smiles_list, on_error="nan")
     seeds = [0, 1, 2, 3, 4]
 
     if args.subtask != '':
@@ -290,23 +334,23 @@ def evaluation(generated_code, valid_function_names):
     if not os.path.exists(result_folder):
         os.makedirs(result_folder)
 
-    X_train = dropna(X_train)
-    X_valid = dropna(X_valid)
-    X_test = dropna(X_test)
+    scale_features = args.dataset in ['bbbp', 'clintox', 'hiv', 'bace', 'tox21', 'sider', 'qm9']
+    X_train, X_valid, X_test, surviving_feature_names = prepare_feature_matrices(
+        X_train_df,
+        X_valid_df,
+        X_test_df,
+        scale_features=scale_features,
+    )
+    print(f"Using feature backend: {feature_backend.name}")
+    print(f"Number of surviving features: {len(surviving_feature_names)}")
+    importance_records = []
+    default_importance_source = get_default_importance_source(feature_backend.name)
+    feature_description_map = get_feature_description_map(feature_backend, surviving_feature_names)
 
     if args.dataset in ['bbbp', 'clintox', 'hiv', 'bace', 'tox21', 'sider']:
 
         average_roc_auc_test = []
         average_roc_auc_valid = []
-
-        # Normalize scaler
-        scaler = StandardScaler()
-        X_valid = [sublist[:len(X_train[0])] for sublist in X_valid]
-        X_test = [sublist[:len(X_train[0])] for sublist in X_test]
-
-        X_train = scaler.fit_transform(X_train)
-        X_valid = scaler.transform(X_valid)
-        X_test = scaler.transform(X_test)
 
         for seed in seeds:
             # random forest
@@ -320,6 +364,19 @@ def evaluation(generated_code, valid_function_names):
             best_params['random_state'] = seed
             clf = RandomForestClassifier(**best_params)
             clf.fit(X_train, y_train)
+            importance_records.extend(
+                collect_feature_importance_rows(
+                    clf=clf,
+                    feature_names=surviving_feature_names,
+                    feature_descriptions=feature_description_map,
+                    dataset=args.dataset,
+                    subtask=args.subtask,
+                    knowledge_type=args.knowledge_type,
+                    seed=seed,
+                    default_source=default_importance_source,
+                    source_map=feature_source_map,
+                )
+            )
             y_valid_proba = clf.predict_proba(X_valid)[:, 1]
             y_test_proba = clf.predict_proba(X_test)[:, 1]
             average_roc_auc_test.append(roc_auc_score(y_test, y_test_proba))
@@ -333,7 +390,7 @@ def evaluation(generated_code, valid_function_names):
         print('===================================================')
 
         # store the results
-        file_name = f'{args.model}_{args.dataset}{subtask_name}_{args.knowledge_type}_rules_test_roc_auc.txt'
+        file_name = f'{get_result_prefix(subtask_name)}_rules_test_roc_auc.txt'
         file_path = os.path.join(result_folder, file_name)
         with open(file_path, 'w') as f:
             for item in average_roc_auc_test:
@@ -350,6 +407,19 @@ def evaluation(generated_code, valid_function_names):
             best_params['random_state'] = seed
             clf = RandomForestRegressor(**best_params)
             clf.fit(X_train, y_train)
+            importance_records.extend(
+                collect_feature_importance_rows(
+                    clf=clf,
+                    feature_names=surviving_feature_names,
+                    feature_descriptions=feature_description_map,
+                    dataset=args.dataset,
+                    subtask=args.subtask,
+                    knowledge_type=args.knowledge_type,
+                    seed=seed,
+                    default_source=default_importance_source,
+                    source_map=feature_source_map,
+                )
+            )
             y_valid_pred = clf.predict(X_valid)
             y_test_pred = clf.predict(X_test)
             # Compute the RMSE
@@ -365,7 +435,7 @@ def evaluation(generated_code, valid_function_names):
         print(f"Standard deviation of valid RMSE: {np.std(rmse_valid_list)}")
         print('=================================================')
         # store the results
-        file_name = f'{args.model}_{args.dataset}_{args.knowledge_type}_rules_test_rmse.txt'
+        file_name = f'{get_result_prefix(subtask_name)}_rules_test_rmse.txt'
         file_path = os.path.join(result_folder, file_name)
         with open(file_path, 'w') as f:
             for item in rmse_test_list:
@@ -375,20 +445,24 @@ def evaluation(generated_code, valid_function_names):
     elif args.dataset == 'qm9':
         mae_test_list = []
         mae_valid_list = []
-        scaler = StandardScaler()
-
-        np.nan_to_num(X_train, nan=0, posinf=0, neginf=0)
-        np.nan_to_num(X_valid, nan=0, posinf=0, neginf=0)
-        np.nan_to_num(X_test, nan=0, posinf=0, neginf=0)
-
-        X_train = scaler.fit_transform(X_train)
-        X_valid = scaler.transform(X_valid)
-        X_test = scaler.transform(X_test)
 
         for seed in seeds:
             # Normalize scaler
             clf = RandomForestRegressor(random_state=seed)
             clf.fit(X_train, y_train)
+            importance_records.extend(
+                collect_feature_importance_rows(
+                    clf=clf,
+                    feature_names=surviving_feature_names,
+                    feature_descriptions=feature_description_map,
+                    dataset=args.dataset,
+                    subtask=args.subtask,
+                    knowledge_type=args.knowledge_type,
+                    seed=seed,
+                    default_source=default_importance_source,
+                    source_map=feature_source_map,
+                )
+            )
             y_valid_pred = clf.predict(X_valid)
             y_test_pred = clf.predict(X_test)
 
@@ -404,7 +478,7 @@ def evaluation(generated_code, valid_function_names):
         print(f"Standard deviation of valid MAE: {np.std(mae_valid_list)}")
         print('=================================================')
         # store the results
-        file_name = f'{args.model}_{args.subtask}_{args.knowledge_type}_rules_test_mae.txt'
+        file_name = f'{get_result_prefix(subtask_name)}_rules_test_mae.txt'
         file_path = os.path.join(result_folder, file_name)
         with open(file_path, 'w') as f:
             for item in mae_test_list:
@@ -413,6 +487,16 @@ def evaluation(generated_code, valid_function_names):
             f.write(f"Standard deviation of test MAE: {np.std(mae_test_list)}")
     else:
         raise NotImplementedError(f"Dataset Name Error: {args.dataset}.")
+
+    per_seed_path, summary_path, summary_df = write_rule_importance_outputs(
+        records=importance_records,
+        output_dir=result_folder,
+        result_prefix=get_result_prefix(subtask_name),
+    )
+    print(f"Saved per-seed rule importance to {per_seed_path}")
+    print(f"Saved aggregated rule importance to {summary_path}")
+    print("Top 10 features by mean importance:")
+    print(summary_df.head(10).to_string(index=False))
 
 
 def reward_calculation(contents):
@@ -444,7 +528,9 @@ def reward_calculation(contents):
     code_repo_dir = get_code_repo()
     with open(code_repo_dir, 'r') as f:
         generated_code = f.read()
-    evaluation(generated_code, valid_function_names)
+    feature_backend = build_feature_backend(valid_function_names)
+    feature_source_map = {name: args.knowledge_type for name in valid_function_names}
+    evaluation(feature_backend, feature_source_map=feature_source_map)
     return generated_code
 
 
@@ -500,11 +586,14 @@ def get_synthesize_inference_code():
     with open(inference_filename, 'r') as f:
         inference_code = f.read()
     all_generated_code = synthesize_code + '\n' + inference_code
-    return all_generated_code
+    return synthesize_code, inference_code, all_generated_code
 
 
 if __name__ == '__main__':
-    if args.knowledge_type == 'synthesize':
+    if args.feature_backend != 'generated_rules':
+        feature_backend = build_feature_backend()
+        evaluation(feature_backend)
+    elif args.knowledge_type == 'synthesize':
         syn_file_path = get_synthesize_file_path()
         with open(syn_file_path, 'r') as f:
             content = f.read()
@@ -517,9 +606,12 @@ if __name__ == '__main__':
         contents = split_string_into_parts(content)
         reward_calculation(contents)
     elif args.knowledge_type == 'all':
-        generated_code = get_synthesize_inference_code()
+        synthesize_code, inference_code, generated_code = get_synthesize_inference_code()
         exec(generated_code, globals())
-        function_names = [line.split()[1].split('(')[0] for line in generated_code.split('\n') if line.startswith('def ')]
-        evaluation(generated_code, function_names)
+        function_names = extract_function_names(generated_code)
+        feature_source_map = {name: 'synthesize' for name in extract_function_names(synthesize_code)}
+        feature_source_map.update({name: 'inference' for name in extract_function_names(inference_code)})
+        feature_backend = build_feature_backend(function_names)
+        evaluation(feature_backend, feature_source_map=feature_source_map)
     else:
         raise NotImplementedError(f"knowledge_type error")

@@ -1,0 +1,53 @@
+# CYP2D6 Substrate Structure–Property Rules (Medicinal Chemistry Perspective)
+
+**Executive Summary:** CYP2D6 metabolizes ~25% of drugs, especially lipophilic CNS-active compounds. Typical CYP2D6 substrates are **lipophilic weak bases** with one protonatable (basic) nitrogen and **planar aromatic rings**. Structural models show a protonated amine (cation) 5–7 Å from the oxidation site interacting with active-site Glu216/Asp301 (ionic H-bonds). Substrates tend to have **higher lipophilicity** (mean logP ≈ 3.4) and **lower PSA** (mean ≈ 32 Å²) than non-substrates. They often contain one or more aromatic/heteroaromatic rings (frequently coplanar) and modest flexibility (rotatable bonds typically ≤10). Rule-based analyses also note that excessive polar functionality or steric bulk near the metabolism site disfavors CYP2D6 activity. Table 1 compares key properties of a representative CYP2D6 substrate (bufuralol) vs a non-substrate (diazepam). In summary, favorable CYP2D6 substrates have **basic N centers, moderate high logP, low PSA, flat aromatic scaffolds**, and metabolizable benzylic/allylic groups, while violating these (e.g. neutral compounds with high polarity) predicts non-substrate status.
+
+| Property | CYP2D6 *substrate* (bufuralol) | CYP2D6 *non-substrate* (diazepam) |
+|-------------------|-------------------------------|-----------------------------------|
+| MW (Da) | 261 | 284.7 |
+| LogP | 3.8 | 3.0 |
+| TPSA (Å²) | 45.4 | 32.7 |
+| H‑bond acceptors | 3 | 3 |
+| H‑bond donors | 2 | 0 |
+| Protonatable N | Yes (tertiary amine) | No (weak imine) |
+
+```mermaid
+graph LR
+  BasicN[Protonatable amine] -->|ion pair to| Glu216(Glu216/Asp301)
+  Aromatic[Planar aromatic ring(s)] --> CYP[CYP2D6 active site]
+  Lipophil[High lipophilicity (logP\u00a03)] --> CYP
+  LowPSA[Low polarity (TPSA\u00a040\u00c5\u00b2)] --> CYP
+  HBDHBA[H-bond donors/acceptors (modest)] --> CYP
+  Steric[Minimal steric bulk near site] --> CYP
+  Glu216 --> CYP
+  Glu216 --> CationInteraction(Cation-\u03c0 interactions)
+```
+
+**Table 1:** *Comparison of molecular properties for a CYP2D6 substrate vs a non-substrate. CYP2D6 substrates typically have a basic (protonatable) N, higher logP, and low TPSA.*
+
+## Rules for CYP2D6 Substrate Prediction
+
+1. **Check** that the molecule has at least one **protonatable (basic) nitrogen** (tertiary/secondary amine or heterocycle).
+2. **Calculate** the pKₐ of the most basic center; favourable substrates typically have **pKₐ ≳ 8–9** (protonated at pH 7.4).
+3. **Check** net molecular charge at pH 7.4: substrates often carry a **+1 (cationic)** charge due to the protonated amine.
+4. **Check** molecular **logP (cLogP)**; substrates generally have **moderate–high lipophilicity** (logP ≳ 2–3, typically ~3–4).
+5. **Calculate** logD₇.₄ (if available); substrate–like molecules often maintain similar lipophilicity in physiological buffer.
+6. **Calculate** topological polar surface area (TPSA); substrates tend to have **TPSA < ~50 Å²** (e.g. mean ~32 Å²).
+7. **Check** the number of **hydrogen-bond donors** (HBD); substrates typically have **≤5** donors (often <3).
+8. **Check** the number of **hydrogen-bond acceptors** (HBA); substrates often have **≤5** acceptors.
+9. **Calculate** the number of **rotatable bonds**; active substrates often have moderate flexibility (usually **≲10** rotatable bonds) to allow binding.
+10. **Calculate** the number of **rings** (especially aromatic rings); substrates often have ≥1 aromatic ring, and many have 1–3 rings.
+11. **Check** for **planar aromatic/heteroaromatic systems**; substrates frequently contain flat aromatic rings (often coplanar if multiple rings) that align with the active site.
+12. **Check** presence of **heterocycles** with basic nitrogen (e.g. pyridines, isoquinolines, piperidines); such scaffolds are common in CYP2D6 substrates.
+13. **Check** for **benzylic or allylic/alkoxy groups** (e.g. benzyl ethers, allyl amines); these “soft” spots are common sites for CYP2D6 metabolism.
+14. **Check** for **methoxy/alkoxy substituents** on aromatic rings; O-demethylation is a frequent CYP2D6 reaction (indicative of substrate-like scaffold).
+15. **Check** the **molecular weight**; most substrates are in the **200–500 Da range** (typically 250–350 Da).
+16. **Calculate** molecular **molar volume or 3D volume**; substrates often fall in an intermediate volume range (cluster around ~150–300 cm³).
+17. **Check** steric hindrance near predicted oxidation sites; **minimal bulky substituents** (e.g. small alkyl near benzylic C) favor metabolism.
+18. **Check** overall **3D shape**: substrates are often elongated/linear or planar (low 3D complexity) rather than highly globular.
+19. **Check** consistency with known **CYP2D6 pharmacophore**: typically a cationic center separated (~5–7 Å) from a hydrophobic/aromatic region.
+20. **Check** for absence of strong **acidic groups** or high polarity that would preclude binding (high acidity or poly-oxygenation disfavours CYP2D6).
+
+Each rule above is derived from literature and database analyses of known CYP2D6 substrates. Where precise cutoffs are unclear, we recommend using these as guidelines and adjusting based on specific chemical context. Together, these structural and physicochemical filters help prioritize compounds **likely to be CYP2D6 substrates**.
+
+**Sources:** Key references include Zhou et al. (2009) (substrate characteristics), Paine et al. (2003) (active-site interactions), Chico et al. (2009) (property trends), and QSAR model descriptions. These and other primary studies informed the rules above; example data are drawn from PubChem/DrugBank entries (bufuralol, diazepam) and the CYP2D6 substrate database.

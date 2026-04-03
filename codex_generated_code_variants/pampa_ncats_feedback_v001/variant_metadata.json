@@ -1,0 +1,32 @@
+{
+  "variant_backend": "pampa_ncats_feedback_v001",
+  "parent_backend": "pampa_ncats",
+  "base_backend": "pampa_ncats",
+  "subtask": "PAMPA_NCATS",
+  "source_run_id": "pampa_ncats_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/PAMPA_NCATS/pampa_ncats_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "pampa_ncats",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.7416027658391917,
+      "mean_train_roc_auc": 0.953932851048043,
+      "mean_valid_macro_f1": 0.7275185599687135,
+      "mean_valid_roc_auc": 0.8053191489361702,
+      "mean_test_macro_f1": 0.7275185599687135,
+      "mean_test_roc_auc": 0.8053191489361702
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.7425354982589543,
+      "mean_train_roc_auc": 0.9542192543127435,
+      "mean_valid_macro_f1": 0.7275185599687135,
+      "mean_valid_roc_auc": 0.8048226950354611,
+      "mean_test_macro_f1": 0.7275185599687135,
+      "mean_test_roc_auc": 0.8048226950354611
+    }
+  },
+  "feature_module": "pampa_ncats_rule_features",
+  "created_at": "2026-04-02T03:30:35",
+  "updated_at": "2026-04-02T04:11:31"
+}

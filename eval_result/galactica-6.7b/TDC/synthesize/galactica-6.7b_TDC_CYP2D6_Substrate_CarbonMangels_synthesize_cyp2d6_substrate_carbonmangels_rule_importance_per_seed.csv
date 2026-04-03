@@ -1,0 +1,396 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,seed,importance
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0886126852308957
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.05670061000102405
+tpsa,Topological polar surface area.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.05628057756017977
+cyp2d6_primary_rule_pass_count,"Count of passed primary CYP2D6 heuristic checks across basicity, charge, lipophilicity, polarity, aromaticity, and soft-spot proxies.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.045148244081719996
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.042370300827069635
+alpha_heteroatom_ch_site_count,Count of carbons with at least one H and a directly adjacent N/O/P/S atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.030096107923239704
+oxidation_site_proxy_count,"Number of unique benzylic, allylic, or alpha-heteroatom carbon atoms.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0292914312201545
+planarity_proxy_score,Aromatic atom fraction minus fractionCSP3 as a simple flatness proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.028094268021222765
+charged_fraction_ph74,1 - neutral_fraction_ph74.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.027668259066447556
+mol_weight,Molecular weight (Descriptors.MolWt).,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.02694898082196351
+fraction_csp3,Fraction of sp3 carbons.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.024947156848329034
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.024143495766736366
+positive_charge_present_ph74,Rule flag: positive charge is expected at pH 7.4 from formal charge or dominant basic-site protonation.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.023750670204443606
+most_basic_pka_ge_8,Rule flag: most basic predicted pKa >= 8.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.02310352403828102
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.022108251908090112
+oxygen_nitrogen_count,Count of O and N atoms.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.021678413997039438
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.02118466381998577
+labute_asa,Labute approximate surface area as a stable size/volume proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.02001912829543091
+molar_refractivity,Wildman-Crippen molar refractivity.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.01991687514688052
+logp,Wildman-Crippen logP.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.01973637066901768
+high_polarity_or_acidic_penalty,"Heuristic penalty for high TPSA, excess heteroatom-driven polarity, or strong acidity.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.01951373194481927
+aromatic_atom_fraction,Fraction of heavy atoms that are aromatic.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.018334298646682803
+cyp2d6_substrate_heuristic_pass,"Composite heuristic screen for lipophilic weak-base, low-PSA, aromatic, non-acidic CYP2D6 substrate-like molecules.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.01815168192111899
+heavy_atom_count,Heavy atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.016904341815799896
+tertiary_amine_count,Count of tertiary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.016615264933024287
+cation_aromatic_pharmacophore_present,Heuristic flag: a likely cationic center co-occurs with aromaticity and a conservative 2D distance proxy to aromatic or oxidation regions.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.01617284711043719
+total_hbond_donors_acceptors,HBD + HBA total.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.016028494000880588
+heteroatom_count,Total heteroatom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.015923542674128995
+ring_to_rotatable_ratio,"Ring count divided by max(rotatable bonds, 1) as a semi-rigidity proxy.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.014902980016007981
+rotatable_bonds,Rotatable bond count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.014259373896659407
+acidic_group_absent,Rule flag: no strong acidic motif or dominant acidic-ionization signature is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.012578204247380693
+carbon_atom_count,Carbon atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.011730269106238582
+hba,Hydrogen bond acceptor count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.010416343391889855
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.010036111340593512
+most_basic_pka_ge_9,Rule flag: most basic predicted pKa >= 9.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.008547138114193428
+allylic_ch_site_count,Count of non-aromatic carbons with at least one H adjacent to an unsaturated carbon.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.008453000872257414
+aromatic_basic_heterocycle_count,Count of aromatic heterocycles containing at least one pyridine-like aromatic nitrogen.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.00812775061282089
+hbd,Hydrogen bond donor count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.007593386179338279
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.006945540783090903
+basic_ring_count,Count of rings containing at least one heuristic basic-center atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.006591954096094339
+fused_ring_count,Count of rings participating in fused ring systems.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.006474964293263985
+basic_center_count,Count of local amine-like or aromatic-basic nitrogen centers.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.006309538631252971
+tpsa_lt_50,Rule flag: TPSA < 50.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.006265578147196956
+ring_count,Total ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0059822951941104156
+aliphatic_ring_count,Aliphatic ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0058853352183502764
+heterocycle_ring_count,Count of rings containing at least one heteroatom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.005628659079958658
+benzylic_ch_site_count,Count of non-aromatic carbons with at least one H and a directly adjacent aromatic atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.00467632597504608
+spiro_atom_count,Spiro atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.003611425578685133
+aromatic_alkoxy_count,Count of aromatic alkoxy substituents using a local SMARTS proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0035510835376348455
+basic_ring_present,Rule flag: at least one ring contains a heuristic basic center.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.003433195987076057
+aromatic_ring_count,Aromatic ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0034305901405278093
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0032353724597882797
+aromatic_heterocycle_ring_count,Count of aromatic rings containing at least one heteroatom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0031445036920624103
+aromatic_alkoxy_present,Rule flag: at least one aromatic alkoxy motif is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0030019211510363465
+aromatic_planar_scaffold_present,Heuristic flag: at least one aromatic ring plus a non-sp3-biased flatness proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.002572225753326308
+estimated_logd_ge_1p5,Rule flag: estimated logD(7.4) >= 1.5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.002205537965877446
+mw_in_200_500,Rule flag: molecular weight lies between 200 and 500.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0020475369452622573
+hba_le_5,Rule flag: H-bond acceptor count <= 5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.001924974544367217
+carboxylic_acid_count,Count of carboxylic acid or carboxylate motifs.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0018598614267959874
+low_3d_complexity_proxy,Heuristic flag favoring relatively planar or elongated molecules: low sp3 content with little spiro or bridgehead complexity.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0017999906164254704
+aromatic_ring_count_in_1_3,Rule flag: aromatic ring count lies between 1 and 3.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0016770034497398472
+aromatic_methoxy_count,Count of aromatic methoxy substituents.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0016664984290658714
+logp_ge_3,Rule flag: logP >= 3.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0016420710446145895
+basic_center_present,Rule flag: at least one heuristic or predicted basic center is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0015009273628865114
+secondary_amine_count,Count of secondary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0014660488884615005
+bridgehead_atom_count,Bridgehead atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0014519696531609908
+acidic_group_family_count,Number of strong acidic motif families present among carboxylates and sulfonates.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0012823886635166667
+logp_ge_2,Rule flag: logP >= 2.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.00091826950805097
+aromatic_ring_count_ge_1,Rule flag: aromatic ring count >= 1.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0007094930448800134
+positive_formal_atom_count,Number of atoms with positive formal charge.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0003485500206309917
+primary_amine_count,Count of primary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0002468646977380521
+oxidation_site_present,"Rule flag: at least one benzylic, allylic, or alpha-heteroatom soft-spot proxy is present.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0002448465962275937
+rotatable_bonds_le_10,Rule flag: rotatable bond count <= 10.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.00016236154921260744
+negative_formal_atom_count,Number of atoms with negative formal charge.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,1.5519602160013016e-05
+formal_charge,Formal charge from the input graph.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0
+hbd_le_5,Rule flag: H-bond donor count <= 5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0
+quaternary_ammonium_count,Count of quaternary ammonium centers.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0
+sulfonic_acid_count,Count of sulfonic acid or sulfonate motifs.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,0,0.0
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.07421975966094922
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.06677944788862351
+cyp2d6_primary_rule_pass_count,"Count of passed primary CYP2D6 heuristic checks across basicity, charge, lipophilicity, polarity, aromaticity, and soft-spot proxies.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.05267158169326221
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.05229425045172571
+tpsa,Topological polar surface area.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.04363401699363521
+oxidation_site_proxy_count,"Number of unique benzylic, allylic, or alpha-heteroatom carbon atoms.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.03198457382967236
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.02937923713765505
+labute_asa,Labute approximate surface area as a stable size/volume proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.02767171758342139
+planarity_proxy_score,Aromatic atom fraction minus fractionCSP3 as a simple flatness proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.027190674668981694
+molar_refractivity,Wildman-Crippen molar refractivity.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.02687638235096362
+positive_charge_present_ph74,Rule flag: positive charge is expected at pH 7.4 from formal charge or dominant basic-site protonation.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.026202721814281217
+charged_fraction_ph74,1 - neutral_fraction_ph74.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.025109070256716975
+alpha_heteroatom_ch_site_count,Count of carbons with at least one H and a directly adjacent N/O/P/S atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.02426320801882104
+fraction_csp3,Fraction of sp3 carbons.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.02291391678752149
+most_basic_pka_ge_8,Rule flag: most basic predicted pKa >= 8.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.022634623247689247
+mol_weight,Molecular weight (Descriptors.MolWt).,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.02145717455815663
+oxygen_nitrogen_count,Count of O and N atoms.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.020718488129425814
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.02061702745061258
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.02028360942740434
+high_polarity_or_acidic_penalty,"Heuristic penalty for high TPSA, excess heteroatom-driven polarity, or strong acidity.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.019431693867444717
+aromatic_atom_fraction,Fraction of heavy atoms that are aromatic.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.019067625852358872
+logp,Wildman-Crippen logP.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.018818531761147138
+heteroatom_count,Total heteroatom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.017735134722349746
+rotatable_bonds,Rotatable bond count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.01742856120025803
+ring_to_rotatable_ratio,"Ring count divided by max(rotatable bonds, 1) as a semi-rigidity proxy.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.01735422915220811
+heavy_atom_count,Heavy atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.015740091702028093
+carbon_atom_count,Carbon atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.015590904001410026
+cation_aromatic_pharmacophore_present,Heuristic flag: a likely cationic center co-occurs with aromaticity and a conservative 2D distance proxy to aromatic or oxidation regions.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.015305738046956915
+total_hbond_donors_acceptors,HBD + HBA total.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.014878051692836063
+tertiary_amine_count,Count of tertiary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.014277374524714904
+most_basic_pka_ge_9,Rule flag: most basic predicted pKa >= 9.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.012311810116171155
+cyp2d6_substrate_heuristic_pass,"Composite heuristic screen for lipophilic weak-base, low-PSA, aromatic, non-acidic CYP2D6 substrate-like molecules.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.01202841133425791
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.010280307196861295
+acidic_group_absent,Rule flag: no strong acidic motif or dominant acidic-ionization signature is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.009282239390574407
+tpsa_lt_50,Rule flag: TPSA < 50.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.00754004237980012
+basic_ring_count,Count of rings containing at least one heuristic basic-center atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.007213997216922509
+hba,Hydrogen bond acceptor count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.007135108049717946
+hbd,Hydrogen bond donor count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.006728951661289782
+allylic_ch_site_count,Count of non-aromatic carbons with at least one H adjacent to an unsaturated carbon.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0067000498760539755
+heterocycle_ring_count,Count of rings containing at least one heteroatom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.005570165666231488
+aliphatic_ring_count,Aliphatic ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.005562675971443044
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.005562523502077861
+basic_center_count,Count of local amine-like or aromatic-basic nitrogen centers.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.005510587285594206
+ring_count,Total ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.005251641242174516
+aromatic_ring_count,Aromatic ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.004997201683036523
+aromatic_basic_heterocycle_count,Count of aromatic heterocycles containing at least one pyridine-like aromatic nitrogen.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.004663132356867571
+benzylic_ch_site_count,Count of non-aromatic carbons with at least one H and a directly adjacent aromatic atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.004598952388576817
+basic_center_present,Rule flag: at least one heuristic or predicted basic center is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.00451017412932805
+fused_ring_count,Count of rings participating in fused ring systems.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.00425036896859771
+aromatic_alkoxy_count,Count of aromatic alkoxy substituents using a local SMARTS proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.00403507679686502
+logp_ge_3,Rule flag: logP >= 3.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.00398296669771784
+aromatic_methoxy_count,Count of aromatic methoxy substituents.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.003749705002488147
+estimated_logd_ge_1p5,Rule flag: estimated logD(7.4) >= 1.5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.003324884576132999
+aromatic_alkoxy_present,Rule flag: at least one aromatic alkoxy motif is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.003322522813787065
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.003270179890597369
+basic_ring_present,Rule flag: at least one ring contains a heuristic basic center.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.003090871216773755
+spiro_atom_count,Spiro atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0029320675150669175
+mw_in_200_500,Rule flag: molecular weight lies between 200 and 500.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.002833395643577486
+aromatic_heterocycle_ring_count,Count of aromatic rings containing at least one heteroatom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.002460764809497434
+logp_ge_2,Rule flag: logP >= 2.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0021054149967370686
+aromatic_ring_count_in_1_3,Rule flag: aromatic ring count lies between 1 and 3.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0016977577955932575
+low_3d_complexity_proxy,Heuristic flag favoring relatively planar or elongated molecules: low sp3 content with little spiro or bridgehead complexity.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0016851640863472521
+aromatic_planar_scaffold_present,Heuristic flag: at least one aromatic ring plus a non-sp3-biased flatness proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0016576828439657573
+hba_le_5,Rule flag: H-bond acceptor count <= 5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.001293536264356247
+primary_amine_count,Count of primary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.001138341133613301
+secondary_amine_count,Count of secondary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.001037748012690575
+aromatic_ring_count_ge_1,Rule flag: aromatic ring count >= 1.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0009938069260255293
+bridgehead_atom_count,Bridgehead atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0008706045948793489
+positive_formal_atom_count,Number of atoms with positive formal charge.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0007035931113108335
+carboxylic_acid_count,Count of carboxylic acid or carboxylate motifs.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0006908278326623146
+acidic_group_family_count,Number of strong acidic motif families present among carboxylates and sulfonates.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.000441782222050797
+oxidation_site_present,"Rule flag: at least one benzylic, allylic, or alpha-heteroatom soft-spot proxy is present.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.00031353226335716
+rotatable_bonds_le_10,Rule flag: rotatable bond count <= 10.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,8.19708306028369e-05
+negative_formal_atom_count,Number of atoms with negative formal charge.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,5.804323449503891e-05
+formal_charge,Formal charge from the input graph.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0
+hbd_le_5,Rule flag: H-bond donor count <= 5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0
+quaternary_ammonium_count,Count of quaternary ammonium centers.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0
+sulfonic_acid_count,Count of sulfonic acid or sulfonate motifs.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,1,0.0
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.07931594758561018
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.06365152485978744
+cyp2d6_primary_rule_pass_count,"Count of passed primary CYP2D6 heuristic checks across basicity, charge, lipophilicity, polarity, aromaticity, and soft-spot proxies.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.04889080105322469
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.04720716661551651
+charged_fraction_ph74,1 - neutral_fraction_ph74.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.03370155541083871
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.03328976596748719
+tpsa,Topological polar surface area.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.03249435720942582
+labute_asa,Labute approximate surface area as a stable size/volume proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.03145897788008407
+positive_charge_present_ph74,Rule flag: positive charge is expected at pH 7.4 from formal charge or dominant basic-site protonation.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.027440949143794295
+oxidation_site_proxy_count,"Number of unique benzylic, allylic, or alpha-heteroatom carbon atoms.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.026659362803942037
+planarity_proxy_score,Aromatic atom fraction minus fractionCSP3 as a simple flatness proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.02615620074424886
+molar_refractivity,Wildman-Crippen molar refractivity.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.024584490369333828
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.02352904172490116
+alpha_heteroatom_ch_site_count,Count of carbons with at least one H and a directly adjacent N/O/P/S atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.023127446491178073
+tertiary_amine_count,Count of tertiary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.022686735721332573
+acidic_group_absent,Rule flag: no strong acidic motif or dominant acidic-ionization signature is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.022113128721002462
+high_polarity_or_acidic_penalty,"Heuristic penalty for high TPSA, excess heteroatom-driven polarity, or strong acidity.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.021541660449743948
+oxygen_nitrogen_count,Count of O and N atoms.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.02112089346660135
+fraction_csp3,Fraction of sp3 carbons.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.020320767367142983
+aromatic_atom_fraction,Fraction of heavy atoms that are aromatic.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.019709692870344606
+logp,Wildman-Crippen logP.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.01938391026127072
+carbon_atom_count,Carbon atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.01874932526905819
+mol_weight,Molecular weight (Descriptors.MolWt).,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.017750864384523415
+ring_to_rotatable_ratio,"Ring count divided by max(rotatable bonds, 1) as a semi-rigidity proxy.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.017564914390505743
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.01754984002302567
+cyp2d6_substrate_heuristic_pass,"Composite heuristic screen for lipophilic weak-base, low-PSA, aromatic, non-acidic CYP2D6 substrate-like molecules.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.017235348976031628
+most_basic_pka_ge_8,Rule flag: most basic predicted pKa >= 8.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.016430713313370277
+total_hbond_donors_acceptors,HBD + HBA total.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.014926792038929666
+heteroatom_count,Total heteroatom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.014605746836381394
+heavy_atom_count,Heavy atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.014241115942048785
+most_basic_pka_ge_9,Rule flag: most basic predicted pKa >= 9.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.012161764466807964
+tpsa_lt_50,Rule flag: TPSA < 50.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.011968869173897835
+cation_aromatic_pharmacophore_present,Heuristic flag: a likely cationic center co-occurs with aromaticity and a conservative 2D distance proxy to aromatic or oxidation regions.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.011364096792707152
+hba,Hydrogen bond acceptor count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.010780994504245967
+rotatable_bonds,Rotatable bond count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.010590187850891448
+basic_center_count,Count of local amine-like or aromatic-basic nitrogen centers.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.008017180833613169
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.007790821485235705
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.007538943082276722
+basic_ring_count,Count of rings containing at least one heuristic basic-center atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.007063280078013007
+aromatic_basic_heterocycle_count,Count of aromatic heterocycles containing at least one pyridine-like aromatic nitrogen.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.006137423732578691
+ring_count,Total ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.006089756301401785
+aromatic_ring_count,Aromatic ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.005735208119559267
+heterocycle_ring_count,Count of rings containing at least one heteroatom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0056056430601447455
+hbd,Hydrogen bond donor count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.005366254873073629
+aromatic_alkoxy_count,Count of aromatic alkoxy substituents using a local SMARTS proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.005286047128890481
+aliphatic_ring_count,Aliphatic ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.005224913668047533
+allylic_ch_site_count,Count of non-aromatic carbons with at least one H adjacent to an unsaturated carbon.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.004858397750011076
+aromatic_heterocycle_ring_count,Count of aromatic rings containing at least one heteroatom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.004585169677005026
+fused_ring_count,Count of rings participating in fused ring systems.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.004220103241334349
+aromatic_alkoxy_present,Rule flag: at least one aromatic alkoxy motif is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.00366711012888345
+aromatic_methoxy_count,Count of aromatic methoxy substituents.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.003397592848834379
+bridgehead_atom_count,Bridgehead atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.003279753110886597
+basic_center_present,Rule flag: at least one heuristic or predicted basic center is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0031124245599625094
+basic_ring_present,Rule flag: at least one ring contains a heuristic basic center.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.002977684449916755
+benzylic_ch_site_count,Count of non-aromatic carbons with at least one H and a directly adjacent aromatic atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0028354715015550696
+mw_in_200_500,Rule flag: molecular weight lies between 200 and 500.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0025873856093807756
+estimated_logd_ge_1p5,Rule flag: estimated logD(7.4) >= 1.5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.002145764242426547
+aromatic_planar_scaffold_present,Heuristic flag: at least one aromatic ring plus a non-sp3-biased flatness proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.002066853613617547
+low_3d_complexity_proxy,Heuristic flag favoring relatively planar or elongated molecules: low sp3 content with little spiro or bridgehead complexity.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.002032811298115997
+acidic_group_family_count,Number of strong acidic motif families present among carboxylates and sulfonates.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0019081151788737153
+spiro_atom_count,Spiro atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0017801531146625171
+logp_ge_3,Rule flag: logP >= 3.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.001554150696109837
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0014534619465661996
+positive_formal_atom_count,Number of atoms with positive formal charge.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0014172963045488653
+hba_le_5,Rule flag: H-bond acceptor count <= 5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0012809720603548656
+logp_ge_2,Rule flag: logP >= 2.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0011616374581265006
+aromatic_ring_count_ge_1,Rule flag: aromatic ring count >= 1.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0007657210804001496
+aromatic_ring_count_in_1_3,Rule flag: aromatic ring count lies between 1 and 3.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0006341797137920897
+primary_amine_count,Count of primary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0005929954350549262
+carboxylic_acid_count,Count of carboxylic acid or carboxylate motifs.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0005449781596809704
+secondary_amine_count,Count of secondary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.00047827077895438525
+oxidation_site_present,"Rule flag: at least one benzylic, allylic, or alpha-heteroatom soft-spot proxy is present.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.00033982422048495697
+rotatable_bonds_le_10,Rule flag: rotatable bond count <= 10.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,9.777623916361984e-05
+negative_formal_atom_count,Number of atoms with negative formal charge.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,6.35225392250727e-05
+formal_charge,Formal charge from the input graph.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0
+hbd_le_5,Rule flag: H-bond donor count <= 5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0
+quaternary_ammonium_count,Count of quaternary ammonium centers.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0
+sulfonic_acid_count,Count of sulfonic acid or sulfonate motifs.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,2,0.0
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.08172667409444856
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.059969227913861195
+tpsa,Topological polar surface area.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.05019743706799956
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.047632063015557814
+alpha_heteroatom_ch_site_count,Count of carbons with at least one H and a directly adjacent N/O/P/S atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.031704954333619216
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.030234468613551467
+cyp2d6_primary_rule_pass_count,"Count of passed primary CYP2D6 heuristic checks across basicity, charge, lipophilicity, polarity, aromaticity, and soft-spot proxies.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.029657211320909878
+planarity_proxy_score,Aromatic atom fraction minus fractionCSP3 as a simple flatness proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.028003703029569973
+charged_fraction_ph74,1 - neutral_fraction_ph74.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.02770061682017555
+oxidation_site_proxy_count,"Number of unique benzylic, allylic, or alpha-heteroatom carbon atoms.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.02726863332185839
+positive_charge_present_ph74,Rule flag: positive charge is expected at pH 7.4 from formal charge or dominant basic-site protonation.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.027042270351672476
+high_polarity_or_acidic_penalty,"Heuristic penalty for high TPSA, excess heteroatom-driven polarity, or strong acidity.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.025671326292380014
+oxygen_nitrogen_count,Count of O and N atoms.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.02432029009872389
+heteroatom_count,Total heteroatom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.024231360453224784
+cation_aromatic_pharmacophore_present,Heuristic flag: a likely cationic center co-occurs with aromaticity and a conservative 2D distance proxy to aromatic or oxidation regions.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.02391995396190905
+molar_refractivity,Wildman-Crippen molar refractivity.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.023299562247782846
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.023142083288814085
+logp,Wildman-Crippen logP.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.023130092440481274
+most_basic_pka_ge_8,Rule flag: most basic predicted pKa >= 8.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.022153040009849873
+labute_asa,Labute approximate surface area as a stable size/volume proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.02208836114115033
+fraction_csp3,Fraction of sp3 carbons.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.021344625251147043
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0198641603884903
+aromatic_atom_fraction,Fraction of heavy atoms that are aromatic.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.019499315551502486
+carbon_atom_count,Carbon atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.018847119276279214
+tertiary_amine_count,Count of tertiary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.018059615788919993
+mol_weight,Molecular weight (Descriptors.MolWt).,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.015696571278908267
+total_hbond_donors_acceptors,HBD + HBA total.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.015261400765903965
+ring_to_rotatable_ratio,"Ring count divided by max(rotatable bonds, 1) as a semi-rigidity proxy.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.014951016980909962
+rotatable_bonds,Rotatable bond count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.014504329361312962
+acidic_group_absent,Rule flag: no strong acidic motif or dominant acidic-ionization signature is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.013484096484178225
+heavy_atom_count,Heavy atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.012834741102185828
+cyp2d6_substrate_heuristic_pass,"Composite heuristic screen for lipophilic weak-base, low-PSA, aromatic, non-acidic CYP2D6 substrate-like molecules.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.010982070738063449
+hba,Hydrogen bond acceptor count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.010062363684956978
+tpsa_lt_50,Rule flag: TPSA < 50.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.007859030707797574
+basic_ring_count,Count of rings containing at least one heuristic basic-center atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.007528160834688476
+most_basic_pka_ge_9,Rule flag: most basic predicted pKa >= 9.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.007510086676373067
+aliphatic_ring_count,Aliphatic ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.006880501157627937
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.006561642407802063
+ring_count,Total ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.005864507074233575
+hbd,Hydrogen bond donor count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.005435896813847572
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.005224970824584643
+benzylic_ch_site_count,Count of non-aromatic carbons with at least one H and a directly adjacent aromatic atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.005216702838912512
+aromatic_ring_count,Aromatic ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.005205615092332812
+fused_ring_count,Count of rings participating in fused ring systems.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0050676597478987815
+allylic_ch_site_count,Count of non-aromatic carbons with at least one H adjacent to an unsaturated carbon.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.005065875711144129
+aromatic_basic_heterocycle_count,Count of aromatic heterocycles containing at least one pyridine-like aromatic nitrogen.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.004979423586785409
+heterocycle_ring_count,Count of rings containing at least one heteroatom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.004796395726153914
+aromatic_alkoxy_present,Rule flag: at least one aromatic alkoxy motif is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.004670292573225143
+basic_center_count,Count of local amine-like or aromatic-basic nitrogen centers.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.004248954890941746
+aromatic_heterocycle_ring_count,Count of aromatic rings containing at least one heteroatom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.003711769066847759
+aromatic_alkoxy_count,Count of aromatic alkoxy substituents using a local SMARTS proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.003600997602575946
+bridgehead_atom_count,Bridgehead atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.003482222264169025
+basic_center_present,Rule flag: at least one heuristic or predicted basic center is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.003256117738264091
+carboxylic_acid_count,Count of carboxylic acid or carboxylate motifs.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.003118876015780017
+basic_ring_present,Rule flag: at least one ring contains a heuristic basic center.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.003039658812041918
+secondary_amine_count,Count of secondary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.002978922301317095
+logp_ge_2,Rule flag: logP >= 2.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.002922374866670843
+spiro_atom_count,Spiro atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0027318786156659085
+low_3d_complexity_proxy,Heuristic flag favoring relatively planar or elongated molecules: low sp3 content with little spiro or bridgehead complexity.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.002572031646047036
+mw_in_200_500,Rule flag: molecular weight lies between 200 and 500.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0025146868550755953
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.002135935739946837
+aromatic_methoxy_count,Count of aromatic methoxy substituents.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0020733689394813147
+estimated_logd_ge_1p5,Rule flag: estimated logD(7.4) >= 1.5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0018655450400527568
+logp_ge_3,Rule flag: logP >= 3.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0017371631710077276
+aromatic_planar_scaffold_present,Heuristic flag: at least one aromatic ring plus a non-sp3-biased flatness proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0014103362030133337
+hba_le_5,Rule flag: H-bond acceptor count <= 5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0013583132282105393
+acidic_group_family_count,Number of strong acidic motif families present among carboxylates and sulfonates.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0013143560713970394
+oxidation_site_present,"Rule flag: at least one benzylic, allylic, or alpha-heteroatom soft-spot proxy is present.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0008112757832010162
+primary_amine_count,Count of primary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0007269603950877327
+aromatic_ring_count_ge_1,Rule flag: aromatic ring count >= 1.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0006163339900479586
+rotatable_bonds_le_10,Rule flag: rotatable bond count <= 10.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.00044464063893692144
+aromatic_ring_count_in_1_3,Rule flag: aromatic ring count lies between 1 and 3.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0004329826499878828
+negative_formal_atom_count,Number of atoms with negative formal charge.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0004095550268505346
+positive_formal_atom_count,Number of atoms with positive formal charge.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.00013322420367492478
+formal_charge,Formal charge from the input graph.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0
+hbd_le_5,Rule flag: H-bond donor count <= 5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0
+quaternary_ammonium_count,Count of quaternary ammonium centers.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0
+sulfonic_acid_count,Count of sulfonic acid or sulfonate motifs.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,3,0.0
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.08517783464815987
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.06191254114374349
+cyp2d6_primary_rule_pass_count,"Count of passed primary CYP2D6 heuristic checks across basicity, charge, lipophilicity, polarity, aromaticity, and soft-spot proxies.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.05609039918344089
+tpsa,Topological polar surface area.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.049634263950545314
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.04166694160258709
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.02957476274325136
+fraction_csp3,Fraction of sp3 carbons.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.027998119802914775
+oxidation_site_proxy_count,"Number of unique benzylic, allylic, or alpha-heteroatom carbon atoms.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.026110598731274432
+molar_refractivity,Wildman-Crippen molar refractivity.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.02600753274244962
+positive_charge_present_ph74,Rule flag: positive charge is expected at pH 7.4 from formal charge or dominant basic-site protonation.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.025914399256907177
+most_basic_pka_ge_8,Rule flag: most basic predicted pKa >= 8.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.024151676945826105
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.024117930650070805
+alpha_heteroatom_ch_site_count,Count of carbons with at least one H and a directly adjacent N/O/P/S atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.02376226527525933
+planarity_proxy_score,Aromatic atom fraction minus fractionCSP3 as a simple flatness proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.022739437496512877
+mol_weight,Molecular weight (Descriptors.MolWt).,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.022337383598731136
+heteroatom_count,Total heteroatom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.02088943826417271
+labute_asa,Labute approximate surface area as a stable size/volume proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.020555171438463825
+charged_fraction_ph74,1 - neutral_fraction_ph74.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.020375885170997976
+oxygen_nitrogen_count,Count of O and N atoms.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.020338721715196385
+logp,Wildman-Crippen logP.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.019271966826099246
+aromatic_atom_fraction,Fraction of heavy atoms that are aromatic.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.018056095300917945
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.01716309291325728
+tertiary_amine_count,Count of tertiary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.01687162059718087
+carbon_atom_count,Carbon atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.016370873482772788
+heavy_atom_count,Heavy atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.016359219903319306
+cation_aromatic_pharmacophore_present,Heuristic flag: a likely cationic center co-occurs with aromaticity and a conservative 2D distance proxy to aromatic or oxidation regions.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.014808039608368247
+rotatable_bonds,Rotatable bond count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.014691704590945966
+hba,Hydrogen bond acceptor count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.014653068945380654
+total_hbond_donors_acceptors,HBD + HBA total.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.014284022903677055
+acidic_group_absent,Rule flag: no strong acidic motif or dominant acidic-ionization signature is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.013890675658889167
+cyp2d6_substrate_heuristic_pass,"Composite heuristic screen for lipophilic weak-base, low-PSA, aromatic, non-acidic CYP2D6 substrate-like molecules.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.013835497265421558
+ring_to_rotatable_ratio,"Ring count divided by max(rotatable bonds, 1) as a semi-rigidity proxy.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.013115173625617739
+tpsa_lt_50,Rule flag: TPSA < 50.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.012474657065371502
+high_polarity_or_acidic_penalty,"Heuristic penalty for high TPSA, excess heteroatom-driven polarity, or strong acidity.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.01148352392085703
+most_basic_pka_ge_9,Rule flag: most basic predicted pKa >= 9.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.010319766254804937
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.009233453794959523
+hbd,Hydrogen bond donor count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.007528962546123037
+aromatic_basic_heterocycle_count,Count of aromatic heterocycles containing at least one pyridine-like aromatic nitrogen.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.007441962779376064
+fused_ring_count,Count of rings participating in fused ring systems.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.006735676406331247
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0065352560778436306
+aliphatic_ring_count,Aliphatic ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.006148350031086835
+basic_ring_count,Count of rings containing at least one heuristic basic-center atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.005774343234884699
+allylic_ch_site_count,Count of non-aromatic carbons with at least one H adjacent to an unsaturated carbon.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.005553478602942764
+basic_center_count,Count of local amine-like or aromatic-basic nitrogen centers.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0054372100891890915
+heterocycle_ring_count,Count of rings containing at least one heteroatom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0052481659448219645
+benzylic_ch_site_count,Count of non-aromatic carbons with at least one H and a directly adjacent aromatic atom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.004852576867131034
+aromatic_alkoxy_present,Rule flag: at least one aromatic alkoxy motif is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.004489922540795887
+aromatic_alkoxy_count,Count of aromatic alkoxy substituents using a local SMARTS proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.004460705591762782
+ring_count,Total ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.004446499163856769
+aromatic_ring_count,Aromatic ring count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0041993214875060796
+aromatic_methoxy_count,Count of aromatic methoxy substituents.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0036690986085524567
+aromatic_heterocycle_ring_count,Count of aromatic rings containing at least one heteroatom.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0035371421406768387
+spiro_atom_count,Spiro atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.003300171732582636
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0030957466542044236
+basic_center_present,Rule flag: at least one heuristic or predicted basic center is present.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.002919641047138103
+logp_ge_3,Rule flag: logP >= 3.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0028648033852985326
+estimated_logd_ge_1p5,Rule flag: estimated logD(7.4) >= 1.5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.002422780050902523
+basic_ring_present,Rule flag: at least one ring contains a heuristic basic center.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0024038120329629474
+mw_in_200_500,Rule flag: molecular weight lies between 200 and 500.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0023719126316512815
+secondary_amine_count,Count of secondary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0022219211148484285
+aromatic_planar_scaffold_present,Heuristic flag: at least one aromatic ring plus a non-sp3-biased flatness proxy.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0019346390757015313
+logp_ge_2,Rule flag: logP >= 2.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.00192061137155713
+low_3d_complexity_proxy,Heuristic flag favoring relatively planar or elongated molecules: low sp3 content with little spiro or bridgehead complexity.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0018805649217382993
+aromatic_ring_count_in_1_3,Rule flag: aromatic ring count lies between 1 and 3.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0018238107548054258
+bridgehead_atom_count,Bridgehead atom count.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0016146001546875738
+negative_formal_atom_count,Number of atoms with negative formal charge.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0015615997205354565
+carboxylic_acid_count,Count of carboxylic acid or carboxylate motifs.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0014765952232641973
+primary_amine_count,Count of primary amine motifs excluding amide-like nitrogens.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0011202432023691385
+aromatic_ring_count_ge_1,Rule flag: aromatic ring count >= 1.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0010861984464548232
+acidic_group_family_count,Number of strong acidic motif families present among carboxylates and sulfonates.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0005177480675436471
+oxidation_site_present,"Rule flag: at least one benzylic, allylic, or alpha-heteroatom soft-spot proxy is present.",cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.00042829123301249506
+positive_formal_atom_count,Number of atoms with positive formal charge.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0003741731158277757
+hba_le_5,Rule flag: H-bond acceptor count <= 5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.00028792905389977795
+rotatable_bonds_le_10,Rule flag: rotatable bond count <= 10.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,7.06059527492517e-05
+hbd_le_5,Rule flag: H-bond donor count <= 5.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,5.171925037507975e-06
+formal_charge,Formal charge from the input graph.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0
+quaternary_ammonium_count,Count of quaternary ammonium centers.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0
+sulfonic_acid_count,Count of sulfonic acid or sulfonate motifs.,cyp2d6_substrate_carbonmangels,TDC,CYP2D6_Substrate_CarbonMangels,synthesize,4,0.0

@@ -1,0 +1,61 @@
+# Structural and Physicochemical Oral Bioavailability Rules
+
+**Executive Summary:** Oral bioavailability is governed by multiple molecular property thresholds. Key filters include Lipinski’s Rule of 5 (MW≤500, logP≤5, HBD≤5, HBA≤10), Veber’s rules (rotatable bonds≤10, TPSA≤140 Å²), and Egan’s filter (logP≤5.88, TPSA≤131.6 Å²). Additional drug‐likeness filters include Ghose (160<MW<480; −0.4<logP<5.6; atoms 20–70; MR 40–130), Oprea lead-like (HBD<2; 2≤HBA≤10; rotatable bonds<8; rings 1–4), the Rule-of-3 for fragments (MW≤300; logP≤3; HBD≤3; HBA≤3), Muegge’s criteria (200≤MW≤600; −2≤logP≤5; TPSA≤150; HBD≤5; HBA≤10; rotable bonds≤15; rings≤7), and the Pfizer “3/75” guideline (avoid logP>3 with TPSA<75 Å²). Empirical observations favor ≤3 aromatic rings, higher 3D saturation (fraction sp³ ≈0.4–0.5), and at least one stereocenter. Intramolecular H-bonds that mask polar groups can further improve permeability. The following list consolidates these concise rules (≤20 words each), followed by a comparative table.
+
+1. **Lipinski Rule-of-5:** MW ≤500, logP ≤5, H-bond donors ≤5, H-bond acceptors ≤10.
+2. **Veber Rule:** Rotatable bonds ≤10 and TPSA ≤140 Å².
+3. **Egan Filter:** logP ≤5.88 and TPSA ≤131.6 Å².
+4. **Ghose Filter:** 160<MW<480, −0.4<logP<5.6, 20<atom count<70, MR 40–130.
+5. **Oprea Lead-Likeness:** HBD <2; 2≤HBA≤10; 2<rotatable bonds<8; 1≤ring count≤4.
+6. **Rule-of-3:** MW ≤300, logP ≤3, HBD ≤3, HBA ≤3.
+7. **Muegge Filter:** 200≤MW≤600; −2≤logP≤5; TPSA≤150 Å²; HBD≤5; HBA≤10; rot bonds≤15; rings≤7.
+8. **Pfizer 3/75:** Avoid logP>3 *and* TPSA<75 Å² (target logP≤3 or TPSA≥75).
+9. **Aromatic Rings:** ≤3 aromatic rings in the molecule.
+10. **Saturation (Fsp³):** Fraction sp³ (saturated carbons) ≳0.4 (marketed drugs ≈0.47 vs. hits ≈0.33).
+11. **Chirality:** ≥1 stereocenter correlates with clinical success.
+12. **Intramolecular H-bonding:** Favor IHB formation to mask polar groups (improves permeability).
+13. **pKa Range:** Ionizable groups with moderately extreme pKa (roughly 2–12); *threshold unspecified*.
+14. **Salt Formability:** Presence of ionizable center (acid/base) allows salt formation; *no strict threshold*.
+15. **Crystal Packing:** High aromaticity/planarity increases crystallinity risk; *avoid excessive planar aromatic surface*.
+
+| **Rule** | **Threshold(s)** | **Source(s)** | **Applicability** |
+|----------------------|--------------------------------------------------------------------------|--------------------------|-------------------------------|
+| Lipinski’s Rule of 5 | MW ≤500 Da; logP ≤5; HBD ≤5; HBA ≤10 | | Small-molecule oral drugs |
+| Veber | Rotatable bonds ≤10; TPSA ≤140 Å² | | Oral bioavailability |
+| Egan | logP ≤5.88; TPSA ≤131.6 Å² | | GI absorption prediction |
+| Ghose Filter | 160<MW<480; −0.4<logP<5.6; 20<atom count<70; MR 40–130 | | Drug-like chemical space |
+| Oprea Lead-like | HBD<2; 2≤HBA≤10; rotatable bonds<8; ring count 1–4 | | Lead candidates (fragment hit)|
+| Rule-of-3 (Congreve)| MW ≤300; logP ≤3; HBD ≤3; HBA ≤3 | | Fragment/lead-like design |
+| Muegge Filter | 200≤MW≤600; −2≤logP≤5; TPSA≤150 Å²; HBD≤5; HBA≤10; rot≤15; rings≤7 | | General drug-like compounds |
+| Pfizer “3/75” | Avoid (logP>3 *and* TPSA<75 Å²) | | Reduce toxicity risk |
+| Aromatic Rings | Aromatic ring count ≤3 | | Developability, solubility |
+| Fsp³ (saturation) | Fsp³ (fraction of sp³ carbons) ≳0.4 | | 3D complexity for success |
+| Chiral Centers | ≥1 stereocenter | | Increases target selectivity |
+| IHB (intramol. HB) | Favor internal H-bonds between donor/acceptor | | Masks polarity, boosts Pm |
+| pKa Range | (Acidic pKa~2–6; Basic pKa~8–12) *threshold unspecified* | (not standardized) | Enables ionization/salts |
+| Salt Formability | Presence of ionizable group (acid or base) for salt formation | (general practice) | Solubility enhancement |
+| Crystal Packing | Avoid extended π-stacking (limit planar aromatic surface area) | (empirical) | Improves solubility |
+
+```mermaid
+timeline
+    1997 : Lipinski Rule-of-5
+    1999 : Ghose drug-like filter
+    2000 : Egan logP/PSA filter
+    2002 : Veber rotatable bonds/PSA rules
+    2003 : Congreve Rule-of-3 : Pfizer 3/75 criterion
+    2006 : Muegge drug-like criteria
+    2009 : Lovering Fsp³ (saturation)
+    2011 : Concept of intramolecular H-bonding in bRo5
+```
+*Figure: Timeline of key oral bioavailability rules development.*
+
+The bar chart below compares “rule strictness” measured by the number of numeric criteria each rule imposes.
+
+```mermaid
+xychart
+    title "Rule Strictness (Number of Criteria)"
+    x-axis "Rule" ["Lipinski","Veber","Egan","Ghose","Oprea","Rule-of-3","Pfizer 3/75","Muegge"]
+    y-axis "Criteria Count" 0 --> 7
+    bar [4,2,2,4,4,4,2,7]
+```
+*Figure: Comparison of rule strictness (each rule’s number of threshold criteria).*

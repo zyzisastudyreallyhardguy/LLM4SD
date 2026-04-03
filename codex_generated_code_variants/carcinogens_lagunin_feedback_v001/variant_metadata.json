@@ -1,0 +1,32 @@
+{
+  "variant_backend": "carcinogens_lagunin_feedback_v001",
+  "parent_backend": "carcinogens_lagunin",
+  "base_backend": "carcinogens_lagunin",
+  "subtask": "Carcinogens_Lagunin",
+  "source_run_id": "carcinogens_lagunin_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/Carcinogens_Lagunin/carcinogens_lagunin_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "carcinogens_lagunin",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.9370129870129873,
+      "mean_train_roc_auc": 0.9974434005852457,
+      "mean_valid_macro_f1": 0.8541666666666667,
+      "mean_valid_roc_auc": 0.8,
+      "mean_test_macro_f1": 0.8541666666666667,
+      "mean_test_roc_auc": 0.8
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.825813251277917,
+      "mean_train_roc_auc": 0.9604805174803636,
+      "mean_valid_macro_f1": 0.8541666666666667,
+      "mean_valid_roc_auc": 0.7930434782608694,
+      "mean_test_macro_f1": 0.8541666666666667,
+      "mean_test_roc_auc": 0.7930434782608694
+    }
+  },
+  "feature_module": "carcinogens_lagunin_rule_features",
+  "created_at": "2026-04-02T03:28:42",
+  "updated_at": "2026-04-02T04:06:43"
+}

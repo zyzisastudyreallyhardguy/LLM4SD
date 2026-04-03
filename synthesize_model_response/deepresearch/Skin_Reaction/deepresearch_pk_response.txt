@@ -1,0 +1,94 @@
+# Skin Sensitization Risk: Key Structural and Physicochemical Rules
+
+**Executive Summary:** Skin sensitization (allergic contact dermatitis) is initiated by covalent binding of electrophilic chemicals to skin proteins. Mechanism-based analyses (e.g. OECD AOP, DPRA) emphasize known reactive moieties (Michael acceptors, alkylating groups, etc.). Alerts used in in silico tools (Toxtree, OECD Toolbox) cover SNAr/SN2 electrophiles, Michael addition, Schiff-base (aldehydes/ketones), and acyl-transfer agents. Primary literature and reviews highlight that additional groups (e.g. free thiols, quinones, nitroso-precursors) also sensitize. Physicochemical factors (size, lipophilicity, polarity, volatility, ionization) affect skin absorption. Below is a set of concise numbered rules (≤20 words each) for predicting skin reaction risk from structure and properties, followed by a summary table and decision flowchart. Key rules are drawn from OECD guidelines and toxicology literature.
+
+## Structural Alert and Physicochemical Rules
+
+1. **Michael acceptors:** α,β-Unsaturated carbonyls (enones, acrylates) are strong protein-reactive sensitizers.
+2. **Epoxides/Aziridines:** Small strained rings (oxiranes, aziridines) alkylate cysteine/lysine and sensitize.
+3. **Schiff-base formers:** Aldehydes or α,β-unsaturated ketones form imines with Lys side-chains (haptens).
+4. **Aromatic SNAr electrophiles:** Halogenated aromatics (especially with EWG neighbors) undergo nucleophilic aromatic substitution; classic alerts (e.g. TNT, chloronitrobenzenes).
+5. **Alkylating/SN2 reagents:** Alkyl halides, sulfonates or similar leaving groups react via SN2 with thiols, sensitizing.
+6. **Acylating agents:** Acid halides, anhydrides and acyl imidazoles can acylate proteins (amide formation).
+7. **Aromatic amines (anilines):** Primary/secondary aromatic amines form nitrenium/quinone-imine metabolites; many are sensitizers.
+8. **Aromatic nitro compounds:** Nitrobenzenes (and nitroalkanes) can be bio-reduced to nitroso/hydroxylamine (reactive intermediates).
+9. **Quinones/quinone-imines:** Conjugated diones (benzoquinones, naphthoquinones) are highly electrophilic; potent natural allergens.
+10. **Thiol/disulfide:** Free thiol or disulfide groups readily form mixed disulfides or oxidize; often allergenic.
+11. **Hydrazines/hydrazides:** –NH–NH₂ or –CO–NH–NH₂ motifs (including isoniazid-like) tend to cause skin allergy (via radical formation or acylation).
+12. **Polycyclic aromatics (PAHs):** Planar polyaromatic structures (e.g. anthracene, phenanthrene) often photoreactive; cause phototoxic or allergic reactions (UV-mediated).
+13. **Leaving-group presence:** Any good leaving group (halogen, sulfonate) on an aromatic or alkyl chain raises covalent-binding potential (SNAr/SN2).
+14. **High electrophilicity:** Molecules with highly electron-deficient centers (multiple EWGs) are more likely to haptenate proteins.
+15. **Stereochemistry:** Chiral centers may influence binding affinity, but racemates or stereochemical complexity have no simple rule (consider 3D fit). *(Open-ended)*
+16. **Salt/ionizable forms:** Charged species (salts, quaternary amines) have low skin permeation; neutral parent more relevant for sensitization risk.
+17. **Molecular weight:** No strict cutoff for MW; most sensitizers are <500 Da, but larger compounds (e.g. allergens in cosmetics) can sensitize.
+18. **Lipophilicity (logP):** Moderate lipophilicity (logP ~1–4) favors skin penetration. Very hydrophilic (logP ≤0) can still sensitize.
+19. **Polarity/H-bonding:** High TPSA (>140 Å²) or >5 donors/10 acceptors usually reduces skin uptake (lower sensitization risk).
+20. **Skin permeability:** High predicted skin permeability (Kₚ) increases sensitization potential (facilitates protein exposure).
+21. **Volatility:** High volatility (low boiling point) reduces contact time on skin; very volatile compounds are less likely sensitzers.
+22. **Photoreactivity:** Conjugated unsaturated/aromatic chromophores (benzophenones, fluorenones) can cause photo-sensitization under UV exposure.
+23. **Metabolic activation:** Functionalities known as pre-/pro-haptens (terpenes, phenols) that auto-oxidize or metabolize to reactive species should be considered possible sensitizers.
+24. **Covalent binding propensity:** Overall high reactivity (e.g. presence of multiple electrophilic sites) raises hazard; inert moieties (halogen only without activation) lower risk.
+25. **GHS category triggers:** Presence of known structural alerts typically indicates classification as Skin Sensitizer 1; absence suggests no classification unless other data.
+
+*Rules marked open-ended are noted where sensitivity may vary. Rules are based on OECD QSAR Toolbox mechanisms, OECD TG guidance, and toxicology literature.*
+
+## Rule Summary Table
+
+| Rule | Structural Alert Examples | Rationale Keywords |
+|------|---------------------------------------------|------------------------------------|
+| 1 | α,β-Unsaturated carbonyls (enones, acrylates)| **Electrophile**, Michael acceptor, hapten |
+| 2 | Epoxide rings (oxiranes, aziridines) | **SN2 electrophile**, strained ring, protein alkylation |
+| 3 | Aldehydes/α,β-unsat. ketones (cinnamaldehyde)| **Schiff-base**, Lys imine, reactive carbonyl |
+| 4 | Halogenated aromatic (e.g. TNT, dinitrobenzene) | **SNAr**, leaving group, electron-poor ring |
+| 5 | Alkyl halides/sulfonates (e.g. benzyl chloride)| **SN2**, alkylator, thiol reactivity |
+| 6 | Acyl chlorides/anhydrides (e.g. acetyl chloride)| **Acylation**, amide formation |
+| 7 | Anilines (e.g. 4-chloroaniline, p-phenylenediamine) | **Aromatic amine**, nitrenium ion, quinone-imine |
+| 8 | Nitroarenes (e.g. nitrobenzene, dinitrotoluene) | **Pre-hapten**, nitroso/hydroxylamine |
+| 9 | Quinones (p-benzoquinone, naphthoquinone) | **Electrophile**, ortho/para, plant allergen |
+| 10 | Thiols/disulfides (e.g. cysteamine, 4-tert-butylthiophenol) | **Thiol**, disulfide exchange, strong hapten |
+| 11 | Hydrazines (e.g. phenylhydrazine), Hydrazides | **Free radical**, diazonium, acyl hydrazide |
+| 12 | Polycyclic aromatics (e.g. anthracene, benzo[a]pyrene) | **Phototoxic**, UV-absorbing |
+| 13 | Any strong leaving group on ring or chain | **Leaving group**, SNAr/SN2 potential |
+| 14 | Highly electron-poor centers (e.g. vinyl sulfones) | **Polarity**, multiple EWG, reactive site |
+| 15 | Chiral centers (e.g. menthol) | **Stereochemistry**, enantiospecificity (open) |
+| 16 | Ionic salts (e.g. hydrochloride forms) | **Ionization**, low permeability |
+| 17 | MW > 500 (e.g. large polymers) | **Size**, but exceptions exist |
+| 18 | Extreme logP (≤0 or ≥5) | **Lipophilicity**, affects penetration |
+| 19 | High TPSA (>140 Å², >5 donors) | **Polarity**, poor uptake |
+| 20 | ↑ Skin permeability (high Kₚ) | **Permeability**, exposure potential |
+| 21 | Low boiling/melting point (high volatility) | **Volatility**, reduced contact |
+| 22 | Conjugated chromophores (benzophenones, etc.)| **Photoreactivity**, ROS generation |
+| 23 | Pre-/pro-hapten motifs (limonene, olefins) | **Bioactivation**, metabolite sensitization |
+| 24 | Multi-hapten moieties (polyelectrophile) | **Covalent binding**, additive effect |
+| 25 | Presence of any known alert above | **Sensitizer**, likely Category 1 |
+
+*Example structures are illustrative; rationale keywords summarize the mechanistic basis.*
+
+## Decision Flowchart
+
+```mermaid
+flowchart TD
+  A[Molecule] --> B{Electrophilic<br/>Reactivity?}
+  B -- Yes --> C[**Likely Sensitizer**<br/>(Electrophilic alert present)]
+  B -- No --> D{Pre-/Prohapten<br/>Motif?}
+  D -- Yes --> E[**Possible Sensitizer**<br/>(Activation likely)]
+  D -- No --> F[Non-electrophilic?]
+  F -- Yes --> G[Check Other Hazards]
+  G --> H{Other mechanistic alert?}
+  H -- Yes --> C
+  H -- No --> I{Physicochemical<br/>criteria met?}
+  I -- Yes --> J[Lower risk<sup>±</sup>]
+  I -- No --> J
+  C --> K(End)
+  E --> K
+  J --> K
+  style C fill:#fee,stroke:#a00,stroke-width:2px
+  style E fill:#fee,stroke:#a00,stroke-width:2px
+  style J fill:#efe,stroke:#2a2,stroke-width:2px
+  note over C,E,Guidance Alert: Electrophilic alerts dominate decision
+```
+
+**Flowchart Legend:** Begin by checking for protein-reactive electrophiles (Michael acceptors, halides, epoxides, etc.). If present, classify as potential sensitizer. If absent, evaluate prehaptens or other alerts (photoreactive chromophores, allylic groups, etc.) that require activation. If still none, then assess physicochemical favorability (adequate lipophilicity, small size) – highly polar, large, or very volatile compounds are less likely sensitizers. This decision logic follows OECD/TG guidance (covalent binding as the molecular initiating event) and well-established SAR factors.
+
+**References:** Rules and rationale are supported by primary literature and authoritative sources on skin sensitization mechanisms.
+

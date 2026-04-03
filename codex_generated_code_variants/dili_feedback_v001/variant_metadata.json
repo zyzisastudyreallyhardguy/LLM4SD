@@ -1,0 +1,32 @@
+{
+  "variant_backend": "dili_feedback_v001",
+  "parent_backend": "dili",
+  "base_backend": "dili",
+  "subtask": "DILI",
+  "source_run_id": "dili_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/DILI/dili_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "dili",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.8474802607744394,
+      "mean_train_roc_auc": 0.9533945221445222,
+      "mean_valid_macro_f1": 0.8265303705741015,
+      "mean_valid_roc_auc": 0.8658823529411765,
+      "mean_test_macro_f1": 0.8265303705741015,
+      "mean_test_roc_auc": 0.8658823529411765
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.8465045562250697,
+      "mean_train_roc_auc": 0.9422712703962703,
+      "mean_valid_macro_f1": 0.840677966101695,
+      "mean_valid_roc_auc": 0.8941176470588236,
+      "mean_test_macro_f1": 0.840677966101695,
+      "mean_test_roc_auc": 0.8941176470588236
+    }
+  },
+  "feature_module": "dili_rule_features",
+  "created_at": "2026-04-02T03:28:54",
+  "updated_at": "2026-04-02T03:42:33"
+}

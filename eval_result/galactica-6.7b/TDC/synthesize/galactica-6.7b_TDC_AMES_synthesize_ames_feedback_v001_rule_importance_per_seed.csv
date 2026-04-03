@@ -1,0 +1,276 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,seed,importance
+logp,Wildman-Crippen logP kept as a continuous Ames-related descriptor.,ames_feedback_v001,TDC,AMES,synthesize,0,0.05315408565864653
+fraction_csp3,Fraction of sp3 carbons.,ames_feedback_v001,TDC,AMES,synthesize,0,0.052132226933612885
+tpsa,Topological polar surface area.,ames_feedback_v001,TDC,AMES,synthesize,0,0.04791357293937151
+molar_refractivity,Wildman-Crippen molar refractivity.,ames_feedback_v001,TDC,AMES,synthesize,0,0.04700976583278471
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,ames_feedback_v001,TDC,AMES,synthesize,0,0.04555081713330004
+mol_weight,Molecular weight (Descriptors.MolWt).,ames_feedback_v001,TDC,AMES,synthesize,0,0.04450118012925401
+ames_alert_family_count,"Count of direct DeepResearch Ames structural alert families matched, with polycyclic scaffold-only signals tracked separately.",ames_feedback_v001,TDC,AMES,synthesize,0,0.042215857034757165
+ames_structural_alert_present,1 if any direct DeepResearch Ames structural alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.03831503064382186
+carbon_atom_count,Total carbon atom count.,ames_feedback_v001,TDC,AMES,synthesize,0,0.0381686490395286
+aromatic_ring_count,Aromatic ring count.,ames_feedback_v001,TDC,AMES,synthesize,0,0.03117173320486675
+heavy_atom_count,Heavy atom count.,ames_feedback_v001,TDC,AMES,synthesize,0,0.031145485162594893
+max_fused_aromatic_system_size,Largest fused aromatic system size measured in aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,0,0.03099387066040001
+heteroatom_count,Total heteroatom count.,ames_feedback_v001,TDC,AMES,synthesize,0,0.02996978677620864
+ring_count,Total ring count.,ames_feedback_v001,TDC,AMES,synthesize,0,0.029568113680969562
+rotatable_bonds,Rotatable bond count.,ames_feedback_v001,TDC,AMES,synthesize,0,0.029122812767547815
+polycyclic_alert_present,1 if a PAH or hetero-PAH alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.028474128752471645
+oxygen_nitrogen_count,Count of O and N atoms.,ames_feedback_v001,TDC,AMES,synthesize,0,0.027448520932306285
+total_hbond_donors_acceptors,HBD + HBA total.,ames_feedback_v001,TDC,AMES,synthesize,0,0.025376035813144477
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,ames_feedback_v001,TDC,AMES,synthesize,0,0.02459395816820123
+halogen_atom_count,Total halogen atom count.,ames_feedback_v001,TDC,AMES,synthesize,0,0.023354161260762778
+hba,Hydrogen bond acceptor count.,ames_feedback_v001,TDC,AMES,synthesize,0,0.022940810621805315
+negative_formal_atom_count,Number of atoms with negative formal charge.,ames_feedback_v001,TDC,AMES,synthesize,0,0.02236837958533377
+hbd,Hydrogen bond donor count.,ames_feedback_v001,TDC,AMES,synthesize,0,0.022280042849281704
+aromatic_alert_family_count,"Count of direct aromatic Ames alert families matched, excluding generic polycyclic scaffold-only signals.",ames_feedback_v001,TDC,AMES,synthesize,0,0.016385143113285015
+positive_formal_atom_count,Number of atoms with positive formal charge.,ames_feedback_v001,TDC,AMES,synthesize,0,0.015418340770259822
+aliphatic_ring_count,Aliphatic ring count.,ames_feedback_v001,TDC,AMES,synthesize,0,0.01474409347691502
+reactive_alert_family_count,Count of reactive Ames alert families matched.,ames_feedback_v001,TDC,AMES,synthesize,0,0.014727736177185652
+aromatic_nitro_count,Count of aromatic nitro alerts (Ar-NO2).,ames_feedback_v001,TDC,AMES,synthesize,0,0.014290060995389084
+aromatic_nitro_present,1 if an aromatic nitro alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.01281272942847939
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,ames_feedback_v001,TDC,AMES,synthesize,0,0.012526051445300453
+pah_system_count,Count of fused aromatic hydrocarbon systems with at least three aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,0,0.012453853643039433
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",ames_feedback_v001,TDC,AMES,synthesize,0,0.010948454642022959
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",ames_feedback_v001,TDC,AMES,synthesize,0,0.010546527657114587
+pah_present,1 if a 3+ fused-ring polycyclic aromatic hydrocarbon alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.009466774321107081
+n_nitroso_count,Count of conservative N-nitroso alerts (R2N-N=O).,ames_feedback_v001,TDC,AMES,synthesize,0,0.007804895507414503
+aromatic_n_heterocycle_ring_count,Count of aromatic rings containing at least one nitrogen atom.,ames_feedback_v001,TDC,AMES,synthesize,0,0.007800295627164491
+n_nitroso_present,1 if an N-nitroso alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.007560542316422601
+alkyl_halide_present,1 if an alkyl halide alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.006339632624183135
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,ames_feedback_v001,TDC,AMES,synthesize,0,0.005804663436308898
+aromatic_amine_present,1 if a primary or secondary aromatic amine alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.004510703960587023
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,ames_feedback_v001,TDC,AMES,synthesize,0,0.00438056902467538
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,ames_feedback_v001,TDC,AMES,synthesize,0,0.003919268604298007
+hetero_pah_present,1 if a 3+ fused-ring hetero-polyaromatic alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.003780562706103808
+quinone_present,1 if a quinone-like alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.003396547348402808
+epoxide_present,1 if an epoxide alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.0031952347770586743
+hetero_pah_system_count,Count of fused aromatic heteroatom-containing systems with at least three aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,0,0.003007833899264902
+azo_linkage_count,Count of azo linkage alerts (R-N=N-R).,ames_feedback_v001,TDC,AMES,synthesize,0,0.0016773778208659914
+formal_charge,Formal charge from the input graph.,ames_feedback_v001,TDC,AMES,synthesize,0,0.0016674861174196583
+azo_linkage_present,1 if an azo linkage alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.0012405500695217794
+alkyl_oxy_nitrogen_ester_present,1 if an alkyl O-N ester alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.00047002483400063373
+alkyl_oxy_nitrogen_ester_count,Count of conservative alkyl O-N ester alerts covering alkyl nitrite or nitrate-like motifs.,ames_feedback_v001,TDC,AMES,synthesize,0,0.00044640937655117494
+hydrazine_present,1 if a hydrazine-like alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.00032369602244174285
+hydrazine_count,Count of hydrazine-like single-bonded N-N alerts with hydrogens.,ames_feedback_v001,TDC,AMES,synthesize,0,0.00030845323345430605
+isocyanate_present,1 if an isocyanate alert is present.,ames_feedback_v001,TDC,AMES,synthesize,0,0.00015254168498347585
+isocyanate_count,Count of isocyanate alerts (R-N=C=O).,ames_feedback_v001,TDC,AMES,synthesize,0,0.0001239197578060711
+logp,Wildman-Crippen logP kept as a continuous Ames-related descriptor.,ames_feedback_v001,TDC,AMES,synthesize,1,0.05312638892157578
+fraction_csp3,Fraction of sp3 carbons.,ames_feedback_v001,TDC,AMES,synthesize,1,0.052114329925842445
+tpsa,Topological polar surface area.,ames_feedback_v001,TDC,AMES,synthesize,1,0.04796875163039918
+molar_refractivity,Wildman-Crippen molar refractivity.,ames_feedback_v001,TDC,AMES,synthesize,1,0.04669474949569458
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,ames_feedback_v001,TDC,AMES,synthesize,1,0.04532333484658256
+ames_alert_family_count,"Count of direct DeepResearch Ames structural alert families matched, with polycyclic scaffold-only signals tracked separately.",ames_feedback_v001,TDC,AMES,synthesize,1,0.04499631048982099
+mol_weight,Molecular weight (Descriptors.MolWt).,ames_feedback_v001,TDC,AMES,synthesize,1,0.04497682617166741
+carbon_atom_count,Total carbon atom count.,ames_feedback_v001,TDC,AMES,synthesize,1,0.03748498497791675
+ames_structural_alert_present,1 if any direct DeepResearch Ames structural alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.035129128880001886
+aromatic_ring_count,Aromatic ring count.,ames_feedback_v001,TDC,AMES,synthesize,1,0.033474826509681414
+max_fused_aromatic_system_size,Largest fused aromatic system size measured in aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,1,0.03288286295516869
+ring_count,Total ring count.,ames_feedback_v001,TDC,AMES,synthesize,1,0.03207863070891986
+heavy_atom_count,Heavy atom count.,ames_feedback_v001,TDC,AMES,synthesize,1,0.03092301597385161
+heteroatom_count,Total heteroatom count.,ames_feedback_v001,TDC,AMES,synthesize,1,0.029696071638178327
+rotatable_bonds,Rotatable bond count.,ames_feedback_v001,TDC,AMES,synthesize,1,0.028807832116271272
+oxygen_nitrogen_count,Count of O and N atoms.,ames_feedback_v001,TDC,AMES,synthesize,1,0.027979827525743167
+total_hbond_donors_acceptors,HBD + HBA total.,ames_feedback_v001,TDC,AMES,synthesize,1,0.026245846023608913
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,ames_feedback_v001,TDC,AMES,synthesize,1,0.025483645513035058
+polycyclic_alert_present,1 if a PAH or hetero-PAH alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.02446706616744729
+hba,Hydrogen bond acceptor count.,ames_feedback_v001,TDC,AMES,synthesize,1,0.0237718212833743
+negative_formal_atom_count,Number of atoms with negative formal charge.,ames_feedback_v001,TDC,AMES,synthesize,1,0.022372110098347896
+halogen_atom_count,Total halogen atom count.,ames_feedback_v001,TDC,AMES,synthesize,1,0.022274693606222647
+hbd,Hydrogen bond donor count.,ames_feedback_v001,TDC,AMES,synthesize,1,0.021953143377680444
+positive_formal_atom_count,Number of atoms with positive formal charge.,ames_feedback_v001,TDC,AMES,synthesize,1,0.016663163129797123
+aromatic_alert_family_count,"Count of direct aromatic Ames alert families matched, excluding generic polycyclic scaffold-only signals.",ames_feedback_v001,TDC,AMES,synthesize,1,0.014691137902081805
+aliphatic_ring_count,Aliphatic ring count.,ames_feedback_v001,TDC,AMES,synthesize,1,0.014632343175181316
+reactive_alert_family_count,Count of reactive Ames alert families matched.,ames_feedback_v001,TDC,AMES,synthesize,1,0.013415288140705339
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,ames_feedback_v001,TDC,AMES,synthesize,1,0.013210823908076893
+aromatic_nitro_count,Count of aromatic nitro alerts (Ar-NO2).,ames_feedback_v001,TDC,AMES,synthesize,1,0.0131085407423679
+aromatic_nitro_present,1 if an aromatic nitro alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.012295299362823447
+pah_system_count,Count of fused aromatic hydrocarbon systems with at least three aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,1,0.01183507968521332
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",ames_feedback_v001,TDC,AMES,synthesize,1,0.011425772639643493
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",ames_feedback_v001,TDC,AMES,synthesize,1,0.00926299664687707
+n_nitroso_present,1 if an N-nitroso alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.008841845030627888
+pah_present,1 if a 3+ fused-ring polycyclic aromatic hydrocarbon alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.00879603693773581
+n_nitroso_count,Count of conservative N-nitroso alerts (R2N-N=O).,ames_feedback_v001,TDC,AMES,synthesize,1,0.008245135859660614
+aromatic_n_heterocycle_ring_count,Count of aromatic rings containing at least one nitrogen atom.,ames_feedback_v001,TDC,AMES,synthesize,1,0.007467536098709767
+alkyl_halide_present,1 if an alkyl halide alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.0069237645836080055
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,ames_feedback_v001,TDC,AMES,synthesize,1,0.00591166433368274
+aromatic_amine_present,1 if a primary or secondary aromatic amine alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.004532337556728863
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,ames_feedback_v001,TDC,AMES,synthesize,1,0.004157070017248905
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,ames_feedback_v001,TDC,AMES,synthesize,1,0.003998732558889102
+hetero_pah_present,1 if a 3+ fused-ring hetero-polyaromatic alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.0038059616564776713
+quinone_present,1 if a quinone-like alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.0036407046186312446
+epoxide_present,1 if an epoxide alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.003640133335423438
+hetero_pah_system_count,Count of fused aromatic heteroatom-containing systems with at least three aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,1,0.0024952383689213313
+formal_charge,Formal charge from the input graph.,ames_feedback_v001,TDC,AMES,synthesize,1,0.00159124276870365
+azo_linkage_count,Count of azo linkage alerts (R-N=N-R).,ames_feedback_v001,TDC,AMES,synthesize,1,0.001576913455240673
+azo_linkage_present,1 if an azo linkage alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.0015313915590490763
+alkyl_oxy_nitrogen_ester_present,1 if an alkyl O-N ester alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.0005893452099578688
+alkyl_oxy_nitrogen_ester_count,Count of conservative alkyl O-N ester alerts covering alkyl nitrite or nitrate-like motifs.,ames_feedback_v001,TDC,AMES,synthesize,1,0.0005135126864186354
+hydrazine_count,Count of hydrazine-like single-bonded N-N alerts with hydrogens.,ames_feedback_v001,TDC,AMES,synthesize,1,0.0003559770349438816
+hydrazine_present,1 if a hydrazine-like alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.0003476361800863983
+isocyanate_count,Count of isocyanate alerts (R-N=C=O).,ames_feedback_v001,TDC,AMES,synthesize,1,0.00014142800081853605
+isocyanate_present,1 if an isocyanate alert is present.,ames_feedback_v001,TDC,AMES,synthesize,1,0.00012974797863587797
+logp,Wildman-Crippen logP kept as a continuous Ames-related descriptor.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0533400840218968
+fraction_csp3,Fraction of sp3 carbons.,ames_feedback_v001,TDC,AMES,synthesize,2,0.05031076479077188
+tpsa,Topological polar surface area.,ames_feedback_v001,TDC,AMES,synthesize,2,0.04832441643618694
+molar_refractivity,Wildman-Crippen molar refractivity.,ames_feedback_v001,TDC,AMES,synthesize,2,0.04643519410832861
+mol_weight,Molecular weight (Descriptors.MolWt).,ames_feedback_v001,TDC,AMES,synthesize,2,0.04508661782344617
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,ames_feedback_v001,TDC,AMES,synthesize,2,0.044685338272979484
+ames_alert_family_count,"Count of direct DeepResearch Ames structural alert families matched, with polycyclic scaffold-only signals tracked separately.",ames_feedback_v001,TDC,AMES,synthesize,2,0.04058162646021129
+carbon_atom_count,Total carbon atom count.,ames_feedback_v001,TDC,AMES,synthesize,2,0.03650418239958708
+ames_structural_alert_present,1 if any direct DeepResearch Ames structural alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.035647301061860454
+aromatic_ring_count,Aromatic ring count.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0348419635556523
+max_fused_aromatic_system_size,Largest fused aromatic system size measured in aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,2,0.03428811375005405
+heavy_atom_count,Heavy atom count.,ames_feedback_v001,TDC,AMES,synthesize,2,0.031635513494192524
+ring_count,Total ring count.,ames_feedback_v001,TDC,AMES,synthesize,2,0.03060833287878906
+rotatable_bonds,Rotatable bond count.,ames_feedback_v001,TDC,AMES,synthesize,2,0.02954358432172415
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,ames_feedback_v001,TDC,AMES,synthesize,2,0.029225285280452137
+heteroatom_count,Total heteroatom count.,ames_feedback_v001,TDC,AMES,synthesize,2,0.028137765888135914
+oxygen_nitrogen_count,Count of O and N atoms.,ames_feedback_v001,TDC,AMES,synthesize,2,0.02736959143840868
+total_hbond_donors_acceptors,HBD + HBA total.,ames_feedback_v001,TDC,AMES,synthesize,2,0.025137204231228
+hba,Hydrogen bond acceptor count.,ames_feedback_v001,TDC,AMES,synthesize,2,0.02463383933364365
+negative_formal_atom_count,Number of atoms with negative formal charge.,ames_feedback_v001,TDC,AMES,synthesize,2,0.02415758174370998
+polycyclic_alert_present,1 if a PAH or hetero-PAH alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.02331214379564669
+halogen_atom_count,Total halogen atom count.,ames_feedback_v001,TDC,AMES,synthesize,2,0.022586280915820753
+hbd,Hydrogen bond donor count.,ames_feedback_v001,TDC,AMES,synthesize,2,0.02196306248373334
+aromatic_alert_family_count,"Count of direct aromatic Ames alert families matched, excluding generic polycyclic scaffold-only signals.",ames_feedback_v001,TDC,AMES,synthesize,2,0.017117634102835077
+positive_formal_atom_count,Number of atoms with positive formal charge.,ames_feedback_v001,TDC,AMES,synthesize,2,0.017015454642534115
+aliphatic_ring_count,Aliphatic ring count.,ames_feedback_v001,TDC,AMES,synthesize,2,0.014978446873216028
+reactive_alert_family_count,Count of reactive Ames alert families matched.,ames_feedback_v001,TDC,AMES,synthesize,2,0.014888025855301195
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,ames_feedback_v001,TDC,AMES,synthesize,2,0.013768137671953517
+aromatic_nitro_present,1 if an aromatic nitro alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.012270776983807803
+aromatic_nitro_count,Count of aromatic nitro alerts (Ar-NO2).,ames_feedback_v001,TDC,AMES,synthesize,2,0.012022346643885054
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",ames_feedback_v001,TDC,AMES,synthesize,2,0.01111443154578106
+pah_system_count,Count of fused aromatic hydrocarbon systems with at least three aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,2,0.009909692448057865
+pah_present,1 if a 3+ fused-ring polycyclic aromatic hydrocarbon alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.009843977715428245
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",ames_feedback_v001,TDC,AMES,synthesize,2,0.009054697349363166
+n_nitroso_count,Count of conservative N-nitroso alerts (R2N-N=O).,ames_feedback_v001,TDC,AMES,synthesize,2,0.008081924720068544
+n_nitroso_present,1 if an N-nitroso alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.007983874835461535
+aromatic_n_heterocycle_ring_count,Count of aromatic rings containing at least one nitrogen atom.,ames_feedback_v001,TDC,AMES,synthesize,2,0.007308899815419887
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,ames_feedback_v001,TDC,AMES,synthesize,2,0.006771284897631106
+alkyl_halide_present,1 if an alkyl halide alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0061354963404686505
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,ames_feedback_v001,TDC,AMES,synthesize,2,0.004444447070398701
+quinone_present,1 if a quinone-like alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.004379107251827098
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,ames_feedback_v001,TDC,AMES,synthesize,2,0.004142613870043607
+epoxide_present,1 if an epoxide alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0038425158736401697
+aromatic_amine_present,1 if a primary or secondary aromatic amine alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0036463459864418293
+hetero_pah_system_count,Count of fused aromatic heteroatom-containing systems with at least three aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0034513659228330626
+hetero_pah_present,1 if a 3+ fused-ring hetero-polyaromatic alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0025395074736320597
+formal_charge,Formal charge from the input graph.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0016356114669312336
+azo_linkage_present,1 if an azo linkage alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0016226205220674498
+azo_linkage_count,Count of azo linkage alerts (R-N=N-R).,ames_feedback_v001,TDC,AMES,synthesize,2,0.0015377028015807882
+alkyl_oxy_nitrogen_ester_count,Count of conservative alkyl O-N ester alerts covering alkyl nitrite or nitrate-like motifs.,ames_feedback_v001,TDC,AMES,synthesize,2,0.000573083295383832
+alkyl_oxy_nitrogen_ester_present,1 if an alkyl O-N ester alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0005054888444841496
+hydrazine_present,1 if a hydrazine-like alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.00042958391907552135
+hydrazine_count,Count of hydrazine-like single-bonded N-N alerts with hydrogens.,ames_feedback_v001,TDC,AMES,synthesize,2,0.0003811745702154129
+isocyanate_present,1 if an isocyanate alert is present.,ames_feedback_v001,TDC,AMES,synthesize,2,0.00012750062016138067
+isocyanate_count,Count of isocyanate alerts (R-N=C=O).,ames_feedback_v001,TDC,AMES,synthesize,2,0.00012043958361078779
+logp,Wildman-Crippen logP kept as a continuous Ames-related descriptor.,ames_feedback_v001,TDC,AMES,synthesize,3,0.05295920456698557
+fraction_csp3,Fraction of sp3 carbons.,ames_feedback_v001,TDC,AMES,synthesize,3,0.052613562452902475
+tpsa,Topological polar surface area.,ames_feedback_v001,TDC,AMES,synthesize,3,0.04854437135011201
+molar_refractivity,Wildman-Crippen molar refractivity.,ames_feedback_v001,TDC,AMES,synthesize,3,0.04622003361557068
+mol_weight,Molecular weight (Descriptors.MolWt).,ames_feedback_v001,TDC,AMES,synthesize,3,0.0453806960114808
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,ames_feedback_v001,TDC,AMES,synthesize,3,0.044828481015765025
+ames_alert_family_count,"Count of direct DeepResearch Ames structural alert families matched, with polycyclic scaffold-only signals tracked separately.",ames_feedback_v001,TDC,AMES,synthesize,3,0.039586922874158215
+ames_structural_alert_present,1 if any direct DeepResearch Ames structural alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.03911300427732254
+carbon_atom_count,Total carbon atom count.,ames_feedback_v001,TDC,AMES,synthesize,3,0.039018409726486875
+max_fused_aromatic_system_size,Largest fused aromatic system size measured in aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,3,0.032798681411190744
+aromatic_ring_count,Aromatic ring count.,ames_feedback_v001,TDC,AMES,synthesize,3,0.0316017677063116
+heavy_atom_count,Heavy atom count.,ames_feedback_v001,TDC,AMES,synthesize,3,0.031594271448756844
+ring_count,Total ring count.,ames_feedback_v001,TDC,AMES,synthesize,3,0.030501564511873608
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,ames_feedback_v001,TDC,AMES,synthesize,3,0.02967469332757741
+heteroatom_count,Total heteroatom count.,ames_feedback_v001,TDC,AMES,synthesize,3,0.02948845366268018
+rotatable_bonds,Rotatable bond count.,ames_feedback_v001,TDC,AMES,synthesize,3,0.02821578936329308
+oxygen_nitrogen_count,Count of O and N atoms.,ames_feedback_v001,TDC,AMES,synthesize,3,0.02711034653540235
+total_hbond_donors_acceptors,HBD + HBA total.,ames_feedback_v001,TDC,AMES,synthesize,3,0.02576498786838812
+hba,Hydrogen bond acceptor count.,ames_feedback_v001,TDC,AMES,synthesize,3,0.02392810714468494
+polycyclic_alert_present,1 if a PAH or hetero-PAH alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.02296541758073359
+halogen_atom_count,Total halogen atom count.,ames_feedback_v001,TDC,AMES,synthesize,3,0.02248757780466455
+hbd,Hydrogen bond donor count.,ames_feedback_v001,TDC,AMES,synthesize,3,0.02226533055420826
+negative_formal_atom_count,Number of atoms with negative formal charge.,ames_feedback_v001,TDC,AMES,synthesize,3,0.020145490348513772
+aromatic_alert_family_count,"Count of direct aromatic Ames alert families matched, excluding generic polycyclic scaffold-only signals.",ames_feedback_v001,TDC,AMES,synthesize,3,0.017715431775664106
+aliphatic_ring_count,Aliphatic ring count.,ames_feedback_v001,TDC,AMES,synthesize,3,0.015590321049171274
+positive_formal_atom_count,Number of atoms with positive formal charge.,ames_feedback_v001,TDC,AMES,synthesize,3,0.015118441860715068
+aromatic_nitro_present,1 if an aromatic nitro alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.014389648779651914
+aromatic_nitro_count,Count of aromatic nitro alerts (Ar-NO2).,ames_feedback_v001,TDC,AMES,synthesize,3,0.014184070465013379
+reactive_alert_family_count,Count of reactive Ames alert families matched.,ames_feedback_v001,TDC,AMES,synthesize,3,0.013860807883997427
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,ames_feedback_v001,TDC,AMES,synthesize,3,0.012713068117936094
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",ames_feedback_v001,TDC,AMES,synthesize,3,0.010728847226869691
+pah_present,1 if a 3+ fused-ring polycyclic aromatic hydrocarbon alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.01039270512536947
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",ames_feedback_v001,TDC,AMES,synthesize,3,0.010040142126123449
+n_nitroso_present,1 if an N-nitroso alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.008390324144192442
+pah_system_count,Count of fused aromatic hydrocarbon systems with at least three aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,3,0.008175856128415551
+n_nitroso_count,Count of conservative N-nitroso alerts (R2N-N=O).,ames_feedback_v001,TDC,AMES,synthesize,3,0.008016688720962041
+aromatic_n_heterocycle_ring_count,Count of aromatic rings containing at least one nitrogen atom.,ames_feedback_v001,TDC,AMES,synthesize,3,0.007865627304323924
+alkyl_halide_present,1 if an alkyl halide alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.007017125176321095
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,ames_feedback_v001,TDC,AMES,synthesize,3,0.005341368507464285
+epoxide_present,1 if an epoxide alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.00450150749012159
+aromatic_amine_present,1 if a primary or secondary aromatic amine alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.004356348248007755
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,ames_feedback_v001,TDC,AMES,synthesize,3,0.004055454413912344
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,ames_feedback_v001,TDC,AMES,synthesize,3,0.003819013282689089
+quinone_present,1 if a quinone-like alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.003714568680985254
+hetero_pah_present,1 if a 3+ fused-ring hetero-polyaromatic alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.0034617143863540987
+hetero_pah_system_count,Count of fused aromatic heteroatom-containing systems with at least three aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,3,0.0032156788741243125
+formal_charge,Formal charge from the input graph.,ames_feedback_v001,TDC,AMES,synthesize,3,0.0016871609065161317
+azo_linkage_count,Count of azo linkage alerts (R-N=N-R).,ames_feedback_v001,TDC,AMES,synthesize,3,0.0014766505005886993
+azo_linkage_present,1 if an azo linkage alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.0013319278629678674
+alkyl_oxy_nitrogen_ester_count,Count of conservative alkyl O-N ester alerts covering alkyl nitrite or nitrate-like motifs.,ames_feedback_v001,TDC,AMES,synthesize,3,0.0005984702095895036
+alkyl_oxy_nitrogen_ester_present,1 if an alkyl O-N ester alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.0005154867174691803
+hydrazine_present,1 if a hydrazine-like alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.0003660463248909404
+hydrazine_count,Count of hydrazine-like single-bonded N-N alerts with hydrogens.,ames_feedback_v001,TDC,AMES,synthesize,3,0.00029795205939050237
+isocyanate_count,Count of isocyanate alerts (R-N=C=O).,ames_feedback_v001,TDC,AMES,synthesize,3,0.00013415467339376747
+isocyanate_present,1 if an isocyanate alert is present.,ames_feedback_v001,TDC,AMES,synthesize,3,0.00012022581774449172
+logp,Wildman-Crippen logP kept as a continuous Ames-related descriptor.,ames_feedback_v001,TDC,AMES,synthesize,4,0.052674524501896636
+fraction_csp3,Fraction of sp3 carbons.,ames_feedback_v001,TDC,AMES,synthesize,4,0.051405665464429845
+tpsa,Topological polar surface area.,ames_feedback_v001,TDC,AMES,synthesize,4,0.04846991275300179
+ames_alert_family_count,"Count of direct DeepResearch Ames structural alert families matched, with polycyclic scaffold-only signals tracked separately.",ames_feedback_v001,TDC,AMES,synthesize,4,0.046341687973780694
+molar_refractivity,Wildman-Crippen molar refractivity.,ames_feedback_v001,TDC,AMES,synthesize,4,0.04599496246463686
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,ames_feedback_v001,TDC,AMES,synthesize,4,0.04471187501502949
+mol_weight,Molecular weight (Descriptors.MolWt).,ames_feedback_v001,TDC,AMES,synthesize,4,0.044190413545163745
+ames_structural_alert_present,1 if any direct DeepResearch Ames structural alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.037635328203335185
+carbon_atom_count,Total carbon atom count.,ames_feedback_v001,TDC,AMES,synthesize,4,0.037233964773327806
+max_fused_aromatic_system_size,Largest fused aromatic system size measured in aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,4,0.03481098027189142
+aromatic_ring_count,Aromatic ring count.,ames_feedback_v001,TDC,AMES,synthesize,4,0.032105455962170015
+heavy_atom_count,Heavy atom count.,ames_feedback_v001,TDC,AMES,synthesize,4,0.031020521199896345
+ring_count,Total ring count.,ames_feedback_v001,TDC,AMES,synthesize,4,0.03054533965503148
+heteroatom_count,Total heteroatom count.,ames_feedback_v001,TDC,AMES,synthesize,4,0.029870662386324937
+rotatable_bonds,Rotatable bond count.,ames_feedback_v001,TDC,AMES,synthesize,4,0.029095296387202783
+oxygen_nitrogen_count,Count of O and N atoms.,ames_feedback_v001,TDC,AMES,synthesize,4,0.02805128112648102
+polycyclic_alert_present,1 if a PAH or hetero-PAH alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.026058768873807373
+total_hbond_donors_acceptors,HBD + HBA total.,ames_feedback_v001,TDC,AMES,synthesize,4,0.025963355117849033
+hba,Hydrogen bond acceptor count.,ames_feedback_v001,TDC,AMES,synthesize,4,0.024368919266018533
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,ames_feedback_v001,TDC,AMES,synthesize,4,0.02435470283921758
+halogen_atom_count,Total halogen atom count.,ames_feedback_v001,TDC,AMES,synthesize,4,0.023241812095049712
+negative_formal_atom_count,Number of atoms with negative formal charge.,ames_feedback_v001,TDC,AMES,synthesize,4,0.02263888832138259
+hbd,Hydrogen bond donor count.,ames_feedback_v001,TDC,AMES,synthesize,4,0.022277098699739654
+positive_formal_atom_count,Number of atoms with positive formal charge.,ames_feedback_v001,TDC,AMES,synthesize,4,0.01597189215488582
+aliphatic_ring_count,Aliphatic ring count.,ames_feedback_v001,TDC,AMES,synthesize,4,0.015265260903297502
+reactive_alert_family_count,Count of reactive Ames alert families matched.,ames_feedback_v001,TDC,AMES,synthesize,4,0.014411486962760763
+aromatic_alert_family_count,"Count of direct aromatic Ames alert families matched, excluding generic polycyclic scaffold-only signals.",ames_feedback_v001,TDC,AMES,synthesize,4,0.014039985299881506
+aromatic_nitro_count,Count of aromatic nitro alerts (Ar-NO2).,ames_feedback_v001,TDC,AMES,synthesize,4,0.012619207422141291
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,ames_feedback_v001,TDC,AMES,synthesize,4,0.012340253874047774
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",ames_feedback_v001,TDC,AMES,synthesize,4,0.011608226143297071
+pah_present,1 if a 3+ fused-ring polycyclic aromatic hydrocarbon alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.011549334259799907
+aromatic_nitro_present,1 if an aromatic nitro alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.011538381654138587
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",ames_feedback_v001,TDC,AMES,synthesize,4,0.01033946002213714
+pah_system_count,Count of fused aromatic hydrocarbon systems with at least three aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,4,0.01021699041761398
+n_nitroso_count,Count of conservative N-nitroso alerts (R2N-N=O).,ames_feedback_v001,TDC,AMES,synthesize,4,0.007734145159600901
+aromatic_n_heterocycle_ring_count,Count of aromatic rings containing at least one nitrogen atom.,ames_feedback_v001,TDC,AMES,synthesize,4,0.007492835818985525
+n_nitroso_present,1 if an N-nitroso alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.007461983993353978
+alkyl_halide_present,1 if an alkyl halide alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.006580135231648744
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,ames_feedback_v001,TDC,AMES,synthesize,4,0.0051481030905913315
+aromatic_amine_present,1 if a primary or secondary aromatic amine alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.004759462610777846
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,ames_feedback_v001,TDC,AMES,synthesize,4,0.004253338190292911
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,ames_feedback_v001,TDC,AMES,synthesize,4,0.0041873370201207455
+quinone_present,1 if a quinone-like alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.0039472433614772765
+epoxide_present,1 if an epoxide alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.0032183427899874586
+hetero_pah_present,1 if a 3+ fused-ring hetero-polyaromatic alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.002917101957428378
+hetero_pah_system_count,Count of fused aromatic heteroatom-containing systems with at least three aromatic rings.,ames_feedback_v001,TDC,AMES,synthesize,4,0.0027543425979981617
+azo_linkage_count,Count of azo linkage alerts (R-N=N-R).,ames_feedback_v001,TDC,AMES,synthesize,4,0.0016593616098650036
+formal_charge,Formal charge from the input graph.,ames_feedback_v001,TDC,AMES,synthesize,4,0.0015107399812050084
+azo_linkage_present,1 if an azo linkage alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.0014600370083216064
+alkyl_oxy_nitrogen_ester_count,Count of conservative alkyl O-N ester alerts covering alkyl nitrite or nitrate-like motifs.,ames_feedback_v001,TDC,AMES,synthesize,4,0.0005351193186445656
+alkyl_oxy_nitrogen_ester_present,1 if an alkyl O-N ester alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.0005274297896888155
+hydrazine_present,1 if a hydrazine-like alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.0003136945163044012
+hydrazine_count,Count of hydrazine-like single-bonded N-N alerts with hydrogens.,ames_feedback_v001,TDC,AMES,synthesize,4,0.00030826683929764025
+isocyanate_count,Count of isocyanate alerts (R-N=C=O).,ames_feedback_v001,TDC,AMES,synthesize,4,0.00015202848345037862
+isocyanate_present,1 if an isocyanate alert is present.,ames_feedback_v001,TDC,AMES,synthesize,4,0.00011705462029355471

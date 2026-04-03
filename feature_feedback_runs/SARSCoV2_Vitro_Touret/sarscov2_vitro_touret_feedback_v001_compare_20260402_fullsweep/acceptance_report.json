@@ -1,0 +1,38 @@
+{
+  "dataset": "TDC",
+  "subtask": "SARSCoV2_Vitro_Touret",
+  "run_id": "sarscov2_vitro_touret_feedback_v001_compare_20260402_fullsweep",
+  "baseline_backend": "sarscov2_vitro_touret",
+  "candidate_backend": "sarscov2_vitro_touret_feedback_v001",
+  "model_name": "galactica-6.7b",
+  "knowledge_type": "synthesize",
+  "num_samples": 50,
+  "baseline_tuned_params_path": "/data1/tianang/Projects/LLM4SD/eval_result/TDC_hyperparameter_search/SARSCoV2_Vitro_Touret/SARSCoV2_Vitro_Touret_sarscov2_vitro_touret_best_params.json",
+  "candidate_tuned_params_path": "/data1/tianang/Projects/LLM4SD/eval_result/TDC_hyperparameter_search/SARSCoV2_Vitro_Touret/SARSCoV2_Vitro_Touret_sarscov2_vitro_touret_feedback_v001_best_params.json",
+  "baseline_metrics_csv": "/data1/tianang/Projects/LLM4SD/eval_result/galactica-6.7b/TDC/synthesize/galactica-6.7b_TDC_SARSCoV2_Vitro_Touret_synthesize_sarscov2_vitro_touret_classification_metrics_per_seed.csv",
+  "candidate_metrics_csv": "/data1/tianang/Projects/LLM4SD/eval_result/galactica-6.7b/TDC/synthesize/galactica-6.7b_TDC_SARSCoV2_Vitro_Touret_synthesize_sarscov2_vitro_touret_feedback_v001_classification_metrics_per_seed.csv",
+  "baseline_summary": {
+    "mean_train_macro_f1": 0.6140872619215634,
+    "mean_train_roc_auc": 0.8860900658500318,
+    "mean_valid_macro_f1": 0.6607773001205169,
+    "mean_valid_roc_auc": 0.7865808823529412,
+    "mean_test_macro_f1": 0.6607773001205169,
+    "mean_test_roc_auc": 0.7865808823529412
+  },
+  "candidate_summary": {
+    "mean_train_macro_f1": 0.6794185820451403,
+    "mean_train_roc_auc": 0.974279544006231,
+    "mean_valid_macro_f1": 0.6404125530386199,
+    "mean_valid_roc_auc": 0.7697916666666667,
+    "mean_test_macro_f1": 0.6404125530386199,
+    "mean_test_roc_auc": 0.7697916666666667
+  },
+  "acceptance_checks": {
+    "train_macro_f1_improved": true,
+    "valid_macro_f1_improved": false,
+    "valid_roc_auc_not_decreased": false
+  },
+  "accepted": false,
+  "float_tolerance": 1e-06,
+  "created_at": "2026-04-02T04:15:39"
+}

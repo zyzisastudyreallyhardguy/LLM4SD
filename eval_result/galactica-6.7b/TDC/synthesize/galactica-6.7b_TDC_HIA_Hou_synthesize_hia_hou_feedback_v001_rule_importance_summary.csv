@@ -1,0 +1,70 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,mean_importance,std_importance,rank
+tpsa,Topological polar surface area.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.09332446621254212,0.025358560728425853,1
+egan_pass,Composite Egan pass flag.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.054277331372079796,0.011797096144642805,2
+hia_primary_rule_pass_count,"Count of passed HIA composite rules among Lipinski, Veber, Egan, Palm static, Ghose, and Veber alternative.",hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.04735775090794038,0.016636515774571665,3
+lipinski_violation_count,Number of Lipinski cutoffs violated among MW/logP/HBD/HBA.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.036761376912545676,0.0110312377452813,4
+estimated_logd_ph65,Estimated logD at pH 6.5 from logP and neutral fraction.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.03207686260831151,0.007926044539418536,5
+tpsa_le_131p6,Rule flag: TPSA <= 131.6.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.03196821632153767,0.006534774114208913,6
+neutral_fraction_ph65,Estimated neutral fraction at pH 6.5.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.03183670401438081,0.00446304957204223,7
+tpsa_le_140,Rule flag: TPSA <= 140.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.030982645783630393,0.004652344297924603,8
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.02908734130505685,0.0035687823099170056,9
+veber_pass,Composite Veber pass flag.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.027791686047190383,0.008121743539838105,10
+charged_fraction_ph65,1 - neutral_fraction_ph65.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.027625001537343145,0.010894558363059859,11
+total_hbond_donors_acceptors,HBD + HBA total.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.026093398478607126,0.006891681605061075,12
+net_charge_proxy_ph65,Base protonation minus acid deprotonation proxy at pH 6.5.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.02517098205434253,0.004253126710202987,13
+mol_weight,Molecular weight (Descriptors.MolWt).,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.024802100648732155,0.007070469017585049,14
+total_hbond_donors_acceptors_le_12,Rule flag: HBD + HBA <= 12.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.024556374458035088,0.008848646097510782,15
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.024430524780160123,0.0063128754776062565,16
+intramolecular_hbond_pair_count,Count of donor-acceptor atom pairs 4-8 bonds apart as a proxy for intramolecular H-bond potential.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.023731201430062805,0.0068593549843294355,17
+mean_neutral_fraction_intestinal_ph,"Mean estimated neutral fraction across pH 6.5, 7.4, and 8.0.",hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.022910289904583856,0.007723696458920044,18
+estimated_logd_ph80,Estimated logD at pH 8.0 from logP and neutral fraction.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.020527248981054007,0.006500640694226623,19
+min_neutral_fraction_intestinal_ph,"Minimum estimated neutral fraction across pH 6.5, 7.4, and 8.0.",hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.01909760686041043,0.004749991768596026,20
+base_protonated_fraction_ph80,Estimated protonated fraction for the dominant basic site at pH 8.0.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.018733925296139976,0.0019857540006451694,21
+molar_refractivity,Wildman-Crippen molar refractivity.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.01857674168094949,0.0029194375782016003,22
+hbd,Hydrogen bond donor count.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.01849143892139788,0.005530815189134897,23
+charged_fraction_ph74,1 - neutral_fraction_ph74.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.018418172606681153,0.00590789873926182,24
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.017798995330230643,0.007310445446265699,25
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.017676257937309318,0.0031471352221753486,26
+total_atom_count,Total atom count after adding explicit hydrogens as a Ghose-style atom-count proxy.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.017555152032160945,0.007627231616345626,27
+mw_le_500,Rule flag: MW <= 500.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.015768799798638967,0.008849980675526095,28
+acid_deprotonated_fraction_ph80,Estimated deprotonated fraction for the dominant acidic site at pH 8.0.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.015099707717288524,0.004151221309758337,29
+most_basic_pka,Most basic predicted pKa from the MolGpKa helper.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.015020768577007324,0.0024835196538887496,30
+neutral_fraction_ph80,Estimated neutral fraction at pH 8.0.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.013774714728452236,0.0029077796843574566,31
+charged_fraction_ph80,1 - neutral_fraction_ph80.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.013124415690349995,0.0018479620797392442,32
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.013088647039835366,0.0023172052448989238,33
+hba,Hydrogen bond acceptor count.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.01307574590504102,0.006889003395152613,34
+base_protonated_fraction_ph65,Estimated protonated fraction for the dominant basic site at pH 6.5.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.012702655728552175,0.00452568109458561,35
+net_charge_proxy_ph80,Base protonation minus acid deprotonation proxy at pH 8.0.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.012362927781825473,0.0028131124073539036,36
+most_acidic_pka,Most acidic predicted pKa from the MolGpKa helper.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.011410177593838123,0.00446617083710035,37
+acid_deprotonated_fraction_ph65,Estimated deprotonated fraction for the dominant acidic site at pH 6.5.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.010246854704846358,0.0033506392154083998,38
+lipinski_pass,Composite Lipinski Rule-of-5 pass flag.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.010245691454937509,0.0056184766930133375,39
+veber_alt_pass,Veber alternative pass flag using HBD + HBA <= 12.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.008489901076277824,0.0025023604798031602,40
+logp,Wildman-Crippen logP.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.006938552930447657,0.0015319617868261469,41
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.005785254405195635,0.0014122143404082794,42
+hbd_le_5,Rule flag: HBD <= 5.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.005344073454705685,0.004054625690461136,43
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.005311959493543979,0.0009478752049303758,44
+hba_le_10,Rule flag: HBA <= 10.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.003554892288061909,0.003522849459453855,45
+ghose_mr_in_40_130,Rule flag: 40 < molar refractivity < 130.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0030368728075075326,0.0014844310529998953,46
+intramolecular_hbond_potential_present,1 if the intramolecular H-bond proxy count is non-zero.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0030352900587442763,0.002689982136629126,47
+most_basic_pka_present,1 if at least one basic pKa site was predicted.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0028472950927053626,0.0007874966496996612,48
+rotatable_bonds,Rotatable bond count.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0026583169579723403,0.0009123318568921586,49
+ring_count,Total ring count.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0019999368065971254,0.0017017254058240073,50
+unionized_ph65_ge_0p5,Heuristic flag: estimated neutral fraction >= 0.5 at pH 6.5 as a 'predominantly unionized' proxy.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0016686473496772777,0.0013423922839692127,51
+aromatic_ring_count,Aromatic ring count as a continuous proxy for lower aromatic burden.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.001432021378380163,0.0009397602965961474,52
+ghose_logp_in_neg0p4_5p6,Rule flag: -0.4 < logP < 5.6.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.001372403288435644,0.0013350513043440709,53
+unionized_across_intestinal_ph,"Heuristic flag: estimated neutral fraction >= 0.5 across pH 6.5, 7.4, and 8.0.",hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0009514168236089201,0.000587977709293811,54
+ghose_pass,Composite Ghose filter pass flag.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0008982114796842938,0.0011732540676659552,55
+logp_le_5p88,Rule flag: logP <= 5.88.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0008660394635552052,0.000499526373593176,56
+ghose_mw_in_160_480,Rule flag: 160 < MW < 480.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0008074232731242732,0.000736808584089117,57
+logp_ge_neg0p4,Rule flag: logP >= -0.4.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0007571728691034285,0.0013450471673068264,58
+unionized_ph74_ge_0p5,Heuristic flag: estimated neutral fraction >= 0.5 at pH 7.4 as a 'predominantly unionized' proxy.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0007074984044916466,0.0007223885494663946,59
+hia_strict_absorption_screen,"Combined heuristic screen requiring Lipinski, Veber, Egan, Palm static, and Veber alternative passes.",hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0006897002694669267,0.0004594419076921032,60
+ghose_atom_count_in_20_70,Rule flag: 20 < atom count < 70.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0006483797381997284,0.0007439952350835448,61
+logp_le_5p6,Rule flag: logP <= 5.6.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0005228545216984419,0.0007398870846580098,62
+palm_static_pass,Static Palm-style pass flag using TPSA <= 63.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0005035357205938018,0.0005189649083697474,63
+tpsa_le_63,Rule flag: TPSA <= 63.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0004989628211929138,0.00037038493988392803,64
+most_acidic_pka_present,1 if at least one acidic pKa site was predicted.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0004955227802953826,0.0006033326995974896,65
+unionized_ph80_ge_0p5,Heuristic flag: estimated neutral fraction >= 0.5 at pH 8.0 as a 'predominantly unionized' proxy.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0002682371748374684,0.0003680410163906875,66
+logp_le_5,Rule flag: logP <= 5.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.00018679447796514462,0.00025580827022705596,67
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.00014193164990073298,0.0003173688173367402,68
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,hia_hou_feedback_v001,TDC,HIA_Hou,synthesize,0.0,0.0,69

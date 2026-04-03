@@ -1,0 +1,16 @@
+dataset: TDC
+subtask: CYP2D6_Substrate_CarbonMangels
+model: galactica-6.7b
+knowledge_type: synthesize
+feature_backend: cyp2d6_substrate_carbonmangels
+eval_split: train
+num_bundles: 1
+
+seed=1	roc_auc=0.9992132361448571	macro_f1=0.9494186046511628	accuracy=0.9612068965517241	bundle=checkpoints/forest/TDC__CYP2D6_Substrate_CarbonMangels/galactica-6.7b__cyp2d6_substrate_carbonmangels__synthesize__seed_1.joblib
+
+average_train_roc_auc: 0.9992132361448571
+std_train_roc_auc: 0.0
+average_train_macro_f1: 0.9494186046511628
+std_train_macro_f1: 0.0
+average_train_accuracy: 0.9612068965517241
+std_train_accuracy: 0.0

@@ -1,0 +1,32 @@
+{
+  "variant_backend": "hia_hou_feedback_v001",
+  "parent_backend": "hia_hou",
+  "base_backend": "hia_hou",
+  "subtask": "HIA_Hou",
+  "source_run_id": "hia_hou_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/HIA_Hou/hia_hou_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "hia_hou",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.7516042244798682,
+      "mean_train_roc_auc": 0.9676136363636365,
+      "mean_valid_macro_f1": 0.8697638994668697,
+      "mean_valid_roc_auc": 0.9617142857142857,
+      "mean_test_macro_f1": 0.8697638994668697,
+      "mean_test_roc_auc": 0.9617142857142857
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.7656392647619954,
+      "mean_train_roc_auc": 0.9637058080808082,
+      "mean_valid_macro_f1": 0.8697638994668697,
+      "mean_valid_roc_auc": 0.9565714285714286,
+      "mean_test_macro_f1": 0.8697638994668697,
+      "mean_test_roc_auc": 0.9565714285714286
+    }
+  },
+  "feature_module": "hia_hou_rule_features",
+  "created_at": "2026-04-02T03:30:29",
+  "updated_at": "2026-04-02T03:46:57"
+}

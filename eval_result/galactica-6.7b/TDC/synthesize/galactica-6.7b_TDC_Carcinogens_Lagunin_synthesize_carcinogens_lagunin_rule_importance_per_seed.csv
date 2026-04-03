@@ -1,0 +1,406 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,seed,importance
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0970778571510213
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0886907316384149
+charged_fraction_ph74,1 - neutral_fraction_ph74.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.08565554593052345
+mol_weight,Molecular weight (Descriptors.MolWt).,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.057494396879916476
+heavy_atom_count,Heavy atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.05730315805354486
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0486857831973147
+aliphatic_ring_count,Aliphatic ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.03735333982940711
+fraction_csp3,Fraction of sp3 carbons.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.037095247369054084
+ring_count,Total ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.03384747876407621
+molar_refractivity,Wildman-Crippen molar refractivity.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.029399606513939178
+carbon_atom_count,Total carbon atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.029294617134295525
+aromatic_ring_count,Aromatic ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.028802491247886475
+azo_linkage_present,1 if an azo linkage alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.02789788001252052
+logp,Wildman-Crippen logP.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.02644814009098828
+azo_linkage_count,Count of azo linkage alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.026209511468645398
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.024482878018722398
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.02063878507948939
+heteroatom_count,Total heteroatom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.01840004128351219
+rotatable_bonds,Rotatable bond count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.016379989249834567
+tpsa,Topological polar surface area.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.015325853890606075
+alkylating_group_present,1 if an alkyl halide or alkyl sulfate/sulfonate alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.015005878916308583
+hba,Hydrogen bond acceptor count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.014241184311154622
+metabolic_stability_proxy,"Heuristic persistent-scaffold flag based on ring burden, halogens, and lipophilicity.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.013998188079724713
+oxygen_nitrogen_count,Count of O and N atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.013244717103713355
+nitroso_group_count,Count of nitroso groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.012806144172581559
+hbd,Hydrogen bond donor count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.012038436715934017
+total_hbond_donors_acceptors,HBD + HBA total.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.010289415339761281
+high_logp_flag,Heuristic flag: logP >= 5.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.009148723239579274
+genotoxic_alert_count,Count of distinct carcinogenicity alert families matched.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.009023831094118376
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.008703359296727874
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0057970081154937285
+positive_formal_atom_count,Number of atoms with positive formal charge.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.005523481536231904
+aromatic_n_heterocycle_ring_count,Count of aromatic rings containing at least one nitrogen atom.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0053114492015646116
+max_fused_aromatic_system_size,Largest fused aromatic ring-system size measured in aromatic rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.005038252521989215
+high_aromatic_ring_burden_flag,Heuristic flag: aromatic ring count >= 3.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0048565061936712865
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.004655440793742832
+negative_formal_atom_count,Number of atoms with negative formal charge.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.004376773867785202
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.003858654806251533
+electrophilic_alert_family_count,Count of distinct electrophilic or alkylating alert families.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.003678684378825022
+cyp_bioactivation_proxy,1 if an aromatic nitrogen heterocycle proxy for CYP bioactivation is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0033299121595982487
+halogen_atom_count,Total halogen atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.003085325262229801
+planar_aromatic_proxy,2D proxy for a flat multi-aromatic pi system with intercalation potential.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.003068217286358929
+genotoxic_alert_present,1 if any major structural carcinogenicity alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0027904857765151127
+low_hbond_balance_flag,Heuristic flag: HBD + HBA <= 5.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.002707234626451158
+low_tpsa_flag,Heuristic flag: TPSA < 60.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0022411908667248734
+dna_binding_propensity_flag,1 if a PAH or planar multi-aromatic DNA-binding proxy is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0022241950637475667
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0018615284513973393
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0017807759177317368
+polyhalogenated_aromatic_present,1 if a polyhalogenated aromatic ring alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0012745519204462098
+aromatic_amine_present,1 if a primary or secondary aromatic amine is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0012287257270637876
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0012134441466875503
+aromatic_linker_count,Count of non-ring bonds directly connecting two aromatic atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0010767662305855635
+polyhalogenated_aromatic_ring_count,Count of aromatic rings bearing two or more halogen substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0010739548275545182
+chlorine_atom_count,Chlorine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0009089407550292044
+very_large_molecular_weight_flag,Heuristic flag: molecular weight > 500.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0007018030420111565
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0006063307024566578
+aromatic_nitro_or_nitroso_present,1 if a nitro or nitroso group is attached to an aromatic atom.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0003330806748616275
+redox_cycling_alert_count,"Count of catechol, hydroquinone, and quinone ring alerts.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.00014331549025292285
+nitro_group_count,Count of nitro groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0001377613844050857
+redox_cycling_present,1 if any redox-cycling alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,7.735297023925497e-05
+catechol_ring_count,Count of aromatic rings with adjacent phenolic substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,5.5644228779587144e-05
+aldehyde_count,Count of aldehyde groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+aldehyde_present,1 if an aldehyde alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+alkyl_sulfate_or_sulfonate_count,Count of alkyl sulfate or sulfonate ester alkylator proxies.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+aziridine_present,1 if an aziridine ring is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+bromine_atom_count,Bromine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+epoxide_present,1 if an epoxide ring is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+fluorine_atom_count,Fluorine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+formal_charge,Formal charge from the input graph.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+iodine_atom_count,Iodine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+mustard_present,1 if an N- or S-mustard motif is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+n_mustard_count,Count of nitrogen mustard motif alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+pah_present,1 if a polycyclic aromatic hydrocarbon alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+pah_system_count,Count of fused aromatic hydrocarbon systems with at least three aromatic rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+quinone_present,1 if a quinone-like ring alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+s_mustard_count,Count of sulfur mustard motif alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,0,0.0
+charged_fraction_ph74,1 - neutral_fraction_ph74.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.09080816414586526
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.07945151916609422
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.07798619193992345
+mol_weight,Molecular weight (Descriptors.MolWt).,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.05548899815541877
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.05461036884596072
+heavy_atom_count,Heavy atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.04931744931299507
+aromatic_ring_count,Aromatic ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0443948294925855
+molar_refractivity,Wildman-Crippen molar refractivity.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.03733915365395916
+aliphatic_ring_count,Aliphatic ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.03716633887649773
+ring_count,Total ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.03593115371777234
+fraction_csp3,Fraction of sp3 carbons.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.03190052167132347
+azo_linkage_count,Count of azo linkage alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.030100069211943463
+carbon_atom_count,Total carbon atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.028796347339831375
+logp,Wildman-Crippen logP.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.027933597178031965
+azo_linkage_present,1 if an azo linkage alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.026807811580209756
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.026289570918899358
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.02356089488490328
+heteroatom_count,Total heteroatom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.01936562833751971
+tpsa,Topological polar surface area.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.019134010812945437
+oxygen_nitrogen_count,Count of O and N atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.01631423484735662
+rotatable_bonds,Rotatable bond count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.015905724363401774
+alkylating_group_present,1 if an alkyl halide or alkyl sulfate/sulfonate alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.014010344238190215
+metabolic_stability_proxy,"Heuristic persistent-scaffold flag based on ring burden, halogens, and lipophilicity.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.013169101425432785
+nitroso_group_count,Count of nitroso groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.012789204252683945
+hba,Hydrogen bond acceptor count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.01241422372722956
+total_hbond_donors_acceptors,HBD + HBA total.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.008893016623042744
+high_logp_flag,Heuristic flag: logP >= 5.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.008508250618889617
+high_aromatic_ring_burden_flag,Heuristic flag: aromatic ring count >= 3.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.008381573125648557
+hbd,Hydrogen bond donor count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.007958671548871036
+max_fused_aromatic_system_size,Largest fused aromatic ring-system size measured in aromatic rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.006908097539321661
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.006583134091623832
+positive_formal_atom_count,Number of atoms with positive formal charge.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.006151663311508359
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.005917304896058788
+aromatic_n_heterocycle_ring_count,Count of aromatic rings containing at least one nitrogen atom.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.005143727894537126
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.004785609242589081
+genotoxic_alert_count,Count of distinct carcinogenicity alert families matched.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.004621187011706462
+negative_formal_atom_count,Number of atoms with negative formal charge.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.003958276669949532
+cyp_bioactivation_proxy,1 if an aromatic nitrogen heterocycle proxy for CYP bioactivation is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0035657065902708457
+genotoxic_alert_present,1 if any major structural carcinogenicity alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0031587940729053254
+low_tpsa_flag,Heuristic flag: TPSA < 60.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.003126041222896431
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0029225405046776564
+electrophilic_alert_family_count,Count of distinct electrophilic or alkylating alert families.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0028693909357403622
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.00261996254473065
+halogen_atom_count,Total halogen atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0025486271032400683
+dna_binding_propensity_flag,1 if a PAH or planar multi-aromatic DNA-binding proxy is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.002531425431463423
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0024479426459488845
+aromatic_linker_count,Count of non-ring bonds directly connecting two aromatic atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0022786846179862256
+planar_aromatic_proxy,2D proxy for a flat multi-aromatic pi system with intercalation potential.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0019904867870343557
+chlorine_atom_count,Chlorine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0019863611242163302
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.001958810321421701
+polyhalogenated_aromatic_present,1 if a polyhalogenated aromatic ring alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0016622572747682456
+low_hbond_balance_flag,Heuristic flag: HBD + HBA <= 5.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.001183092563535289
+very_large_molecular_weight_flag,Heuristic flag: molecular weight > 500.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.001142154342062914
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.001084241828356721
+aromatic_amine_present,1 if a primary or secondary aromatic amine is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0008338547644118142
+polyhalogenated_aromatic_ring_count,Count of aromatic rings bearing two or more halogen substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0006105076122162284
+nitro_group_count,Count of nitro groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.00022374674164860997
+redox_cycling_alert_count,"Count of catechol, hydroquinone, and quinone ring alerts.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.00018317716097134451
+redox_cycling_present,1 if any redox-cycling alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.00011162531951703951
+catechol_ring_count,Count of aromatic rings with adjacent phenolic substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.00011068895791119762
+aromatic_nitro_or_nitroso_present,1 if a nitro or nitroso group is attached to an aromatic atom.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,5.391486134663042e-05
+aldehyde_count,Count of aldehyde groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+aldehyde_present,1 if an aldehyde alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+alkyl_sulfate_or_sulfonate_count,Count of alkyl sulfate or sulfonate ester alkylator proxies.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+aziridine_present,1 if an aziridine ring is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+bromine_atom_count,Bromine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+epoxide_present,1 if an epoxide ring is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+fluorine_atom_count,Fluorine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+formal_charge,Formal charge from the input graph.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+iodine_atom_count,Iodine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+mustard_present,1 if an N- or S-mustard motif is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+n_mustard_count,Count of nitrogen mustard motif alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+pah_present,1 if a polycyclic aromatic hydrocarbon alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+pah_system_count,Count of fused aromatic hydrocarbon systems with at least three aromatic rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+quinone_present,1 if a quinone-like ring alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+s_mustard_count,Count of sulfur mustard motif alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,1,0.0
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.09152692944100511
+charged_fraction_ph74,1 - neutral_fraction_ph74.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.08506904262689594
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.08319953796785358
+mol_weight,Molecular weight (Descriptors.MolWt).,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.06213621973533946
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0527338956484115
+heavy_atom_count,Heavy atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.04425818769514439
+fraction_csp3,Fraction of sp3 carbons.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.04264817129173786
+molar_refractivity,Wildman-Crippen molar refractivity.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.04134285929284265
+aliphatic_ring_count,Aliphatic ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.039639925632083184
+ring_count,Total ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.034586116465163644
+aromatic_ring_count,Aromatic ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.03180240105478449
+logp,Wildman-Crippen logP.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.030763674543098352
+carbon_atom_count,Total carbon atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.028706177972600982
+azo_linkage_present,1 if an azo linkage alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.024390726414246406
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.022923417086621736
+azo_linkage_count,Count of azo linkage alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.02226489904272066
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.019662418163060726
+rotatable_bonds,Rotatable bond count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.018009089278747815
+oxygen_nitrogen_count,Count of O and N atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.01783951245835527
+tpsa,Topological polar surface area.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.017131674226938193
+alkylating_group_present,1 if an alkyl halide or alkyl sulfate/sulfonate alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.014754110348615802
+metabolic_stability_proxy,"Heuristic persistent-scaffold flag based on ring burden, halogens, and lipophilicity.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.014472968724255294
+heteroatom_count,Total heteroatom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.013904029896388883
+hba,Hydrogen bond acceptor count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.013096973922076718
+total_hbond_donors_acceptors,HBD + HBA total.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.012286536145870457
+nitroso_group_count,Count of nitroso groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.012024300582065184
+high_aromatic_ring_burden_flag,Heuristic flag: aromatic ring count >= 3.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.011750804218189134
+hbd,Hydrogen bond donor count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.00954679788328305
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.00902914522744419
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.006548150065388281
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.005616971186361014
+genotoxic_alert_count,Count of distinct carcinogenicity alert families matched.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.005171292983461179
+high_logp_flag,Heuristic flag: logP >= 5.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.004669378277223419
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.004403654502623925
+halogen_atom_count,Total halogen atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.004140823245241984
+aromatic_n_heterocycle_ring_count,Count of aromatic rings containing at least one nitrogen atom.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.004063708563378384
+cyp_bioactivation_proxy,1 if an aromatic nitrogen heterocycle proxy for CYP bioactivation is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0036255648992885342
+max_fused_aromatic_system_size,Largest fused aromatic ring-system size measured in aromatic rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0036017321205194324
+chlorine_atom_count,Chlorine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0030969278779511334
+very_large_molecular_weight_flag,Heuristic flag: molecular weight > 500.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0030529680036035334
+low_tpsa_flag,Heuristic flag: TPSA < 60.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0029728139531518994
+positive_formal_atom_count,Number of atoms with positive formal charge.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.002756542470757688
+negative_formal_atom_count,Number of atoms with negative formal charge.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.002706100451147859
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.002154025872936855
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0020938386016512273
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0019582954316022896
+electrophilic_alert_family_count,Count of distinct electrophilic or alkylating alert families.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0019416594391063807
+dna_binding_propensity_flag,1 if a PAH or planar multi-aromatic DNA-binding proxy is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.00191854576730096
+genotoxic_alert_present,1 if any major structural carcinogenicity alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0018700412946112868
+planar_aromatic_proxy,2D proxy for a flat multi-aromatic pi system with intercalation potential.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0018068777909416398
+aromatic_linker_count,Count of non-ring bonds directly connecting two aromatic atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.001768751228287824
+polyhalogenated_aromatic_ring_count,Count of aromatic rings bearing two or more halogen substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0014209463259483818
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0012749107401767044
+low_hbond_balance_flag,Heuristic flag: HBD + HBA <= 5.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0012213422091782694
+aromatic_amine_present,1 if a primary or secondary aromatic amine is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0009587246369921259
+polyhalogenated_aromatic_present,1 if a polyhalogenated aromatic ring alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0008898837349074578
+nitro_group_count,Count of nitro groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0003310578733585095
+aromatic_nitro_or_nitroso_present,1 if a nitro or nitroso group is attached to an aromatic atom.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.00024309808678441678
+redox_cycling_alert_count,"Count of catechol, hydroquinone, and quinone ring alerts.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.00013715210498155552
+redox_cycling_present,1 if any redox-cycling alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,6.0454956133432635e-05
+catechol_ring_count,Count of aromatic rings with adjacent phenolic substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,2.3222319161904102e-05
+aldehyde_count,Count of aldehyde groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+aldehyde_present,1 if an aldehyde alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+alkyl_sulfate_or_sulfonate_count,Count of alkyl sulfate or sulfonate ester alkylator proxies.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+aziridine_present,1 if an aziridine ring is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+bromine_atom_count,Bromine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+epoxide_present,1 if an epoxide ring is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+fluorine_atom_count,Fluorine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+formal_charge,Formal charge from the input graph.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+iodine_atom_count,Iodine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+mustard_present,1 if an N- or S-mustard motif is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+n_mustard_count,Count of nitrogen mustard motif alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+pah_present,1 if a polycyclic aromatic hydrocarbon alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+pah_system_count,Count of fused aromatic hydrocarbon systems with at least three aromatic rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+quinone_present,1 if a quinone-like ring alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+s_mustard_count,Count of sulfur mustard motif alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,2,0.0
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.10618866355148143
+charged_fraction_ph74,1 - neutral_fraction_ph74.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.08413121011855623
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.06583705531928677
+mol_weight,Molecular weight (Descriptors.MolWt).,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.05937753151061506
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.05921579510699846
+heavy_atom_count,Heavy atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.05679191362157808
+aliphatic_ring_count,Aliphatic ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.04116970995082732
+azo_linkage_present,1 if an azo linkage alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0359329487934501
+fraction_csp3,Fraction of sp3 carbons.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.035879492768064146
+ring_count,Total ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0340572799393818
+logp,Wildman-Crippen logP.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.03328438186287524
+molar_refractivity,Wildman-Crippen molar refractivity.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.03046772870615878
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.029375437111317283
+aromatic_ring_count,Aromatic ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.02931805912774414
+carbon_atom_count,Total carbon atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.028750246901035403
+azo_linkage_count,Count of azo linkage alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.024998187074141157
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.019829084430075666
+tpsa,Topological polar surface area.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.016233951648616796
+metabolic_stability_proxy,"Heuristic persistent-scaffold flag based on ring burden, halogens, and lipophilicity.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.015267508977609572
+alkylating_group_present,1 if an alkyl halide or alkyl sulfate/sulfonate alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.014195867882692094
+rotatable_bonds,Rotatable bond count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.013558127144546296
+total_hbond_donors_acceptors,HBD + HBA total.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.013390401674393008
+heteroatom_count,Total heteroatom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.011257478980038654
+hbd,Hydrogen bond donor count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.011132116375565694
+oxygen_nitrogen_count,Count of O and N atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.010969551022048123
+hba,Hydrogen bond acceptor count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.010371369240363375
+high_aromatic_ring_burden_flag,Heuristic flag: aromatic ring count >= 3.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.010122097482580245
+nitroso_group_count,Count of nitroso groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.009572082286527384
+genotoxic_alert_count,Count of distinct carcinogenicity alert families matched.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.008317082319625775
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.006376639753570884
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.006232855168839491
+max_fused_aromatic_system_size,Largest fused aromatic ring-system size measured in aromatic rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.004857873382328269
+halogen_atom_count,Total halogen atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.004712273271822686
+negative_formal_atom_count,Number of atoms with negative formal charge.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.004599616756416325
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.004426520399913867
+aromatic_n_heterocycle_ring_count,Count of aromatic rings containing at least one nitrogen atom.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.004353598804158428
+electrophilic_alert_family_count,Count of distinct electrophilic or alkylating alert families.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.004275440559954938
+positive_formal_atom_count,Number of atoms with positive formal charge.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0039707565579547195
+planar_aromatic_proxy,2D proxy for a flat multi-aromatic pi system with intercalation potential.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.00325186893776099
+low_hbond_balance_flag,Heuristic flag: HBD + HBA <= 5.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.002959990178409847
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.002946330584219478
+very_large_molecular_weight_flag,Heuristic flag: molecular weight > 500.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.002799554291303232
+cyp_bioactivation_proxy,1 if an aromatic nitrogen heterocycle proxy for CYP bioactivation is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0027312306161902176
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0026071211099922696
+high_logp_flag,Heuristic flag: logP >= 5.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0025803139026665295
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0024436421742298274
+low_tpsa_flag,Heuristic flag: TPSA < 60.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.002246524818469735
+chlorine_atom_count,Chlorine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0021648774049085997
+genotoxic_alert_present,1 if any major structural carcinogenicity alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0016745684299185033
+aromatic_linker_count,Count of non-ring bonds directly connecting two aromatic atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0015364346655839126
+dna_binding_propensity_flag,1 if a PAH or planar multi-aromatic DNA-binding proxy is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0013469735716812928
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0013234915476424446
+polyhalogenated_aromatic_present,1 if a polyhalogenated aromatic ring alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0013188361342261615
+polyhalogenated_aromatic_ring_count,Count of aromatic rings bearing two or more halogen substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.000916413922050997
+aromatic_amine_present,1 if a primary or secondary aromatic amine is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0009123381789626863
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0005093528026088919
+aromatic_nitro_or_nitroso_present,1 if a nitro or nitroso group is attached to an aromatic atom.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0003888216795370603
+nitro_group_count,Count of nitro groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.00020095975488537216
+catechol_ring_count,Count of aromatic rings with adjacent phenolic substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0001229228541668606
+redox_cycling_alert_count,"Count of catechol, hydroquinone, and quinone ring alerts.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.00011158063233882622
+redox_cycling_present,1 if any redox-cycling alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,5.981136943955088e-05
+fluorine_atom_count,Fluorine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,4.810485565305025e-05
+aldehyde_count,Count of aldehyde groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+aldehyde_present,1 if an aldehyde alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+alkyl_sulfate_or_sulfonate_count,Count of alkyl sulfate or sulfonate ester alkylator proxies.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+aziridine_present,1 if an aziridine ring is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+bromine_atom_count,Bromine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+epoxide_present,1 if an epoxide ring is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+formal_charge,Formal charge from the input graph.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+iodine_atom_count,Iodine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+mustard_present,1 if an N- or S-mustard motif is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+n_mustard_count,Count of nitrogen mustard motif alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+pah_present,1 if a polycyclic aromatic hydrocarbon alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+pah_system_count,Count of fused aromatic hydrocarbon systems with at least three aromatic rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+quinone_present,1 if a quinone-like ring alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+s_mustard_count,Count of sulfur mustard motif alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,3,0.0
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.10074379923414829
+charged_fraction_ph74,1 - neutral_fraction_ph74.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.07684623215067266
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.07672488561024993
+mol_weight,Molecular weight (Descriptors.MolWt).,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.06659366951724463
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.04885282441153658
+heavy_atom_count,Heavy atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0458791797948539
+azo_linkage_present,1 if an azo linkage alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0439716743276469
+fraction_csp3,Fraction of sp3 carbons.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.03733461052486516
+azo_linkage_count,Count of azo linkage alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.03612056590342967
+logp,Wildman-Crippen logP.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.03543562174677734
+ring_count,Total ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.03500491934836729
+aliphatic_ring_count,Aliphatic ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.03473156800064533
+molar_refractivity,Wildman-Crippen molar refractivity.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.03451190911076197
+aromatic_ring_count,Aromatic ring count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.03246511697837236
+carbon_atom_count,Total carbon atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.02667958570204638
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.024368928893653396
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.01971353533802159
+heteroatom_count,Total heteroatom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.01925210252376697
+rotatable_bonds,Rotatable bond count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.016542467105379856
+oxygen_nitrogen_count,Count of O and N atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.01621188825874028
+tpsa,Topological polar surface area.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.015897058379936543
+total_hbond_donors_acceptors,HBD + HBA total.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.014538366779982456
+nitroso_group_count,Count of nitroso groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.01289907619113955
+hba,Hydrogen bond acceptor count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.010849514697010867
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.00888796550803074
+alkylating_group_present,1 if an alkyl halide or alkyl sulfate/sulfonate alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.008834860144411398
+hbd,Hydrogen bond donor count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.007395074653155847
+alkyl_halide_count,Count of non-aromatic sp3 carbon-halogen alkylating motifs.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.00614368922071939
+genotoxic_alert_count,Count of distinct carcinogenicity alert families matched.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.006138171860411972
+high_aromatic_ring_burden_flag,Heuristic flag: aromatic ring count >= 3.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.005762202143982046
+metabolic_stability_proxy,"Heuristic persistent-scaffold flag based on ring burden, halogens, and lipophilicity.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.005516459705304581
+max_fused_aromatic_system_size,Largest fused aromatic ring-system size measured in aromatic rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0054068083438671
+aromatic_n_heterocycle_ring_count,Count of aromatic rings containing at least one nitrogen atom.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.005194493864624561
+cyp_bioactivation_proxy,1 if an aromatic nitrogen heterocycle proxy for CYP bioactivation is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.004849743268508909
+halogen_atom_count,Total halogen atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.004471786535055741
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0038948724027596843
+high_logp_flag,Heuristic flag: logP >= 5.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0037729443601662925
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0037518658478757983
+dna_binding_propensity_flag,1 if a PAH or planar multi-aromatic DNA-binding proxy is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.003639520428289055
+genotoxic_alert_present,1 if any major structural carcinogenicity alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0033568387104569875
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.003148563414659881
+michael_acceptor_present,"1 if an alpha,beta-unsaturated carbonyl alert is present.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.003133357827045416
+electrophilic_alert_family_count,Count of distinct electrophilic or alkylating alert families.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0026711076831868147
+positive_formal_atom_count,Number of atoms with positive formal charge.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0026486642478513135
+low_tpsa_flag,Heuristic flag: TPSA < 60.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0024755394859424023
+negative_formal_atom_count,Number of atoms with negative formal charge.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0023420034388759938
+chlorine_atom_count,Chlorine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.001819731670355541
+low_hbond_balance_flag,Heuristic flag: HBD + HBA <= 5.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0017974574396113743
+planar_aromatic_proxy,2D proxy for a flat multi-aromatic pi system with intercalation potential.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0017649271686851623
+aromatic_halogen_count,Number of halogens directly attached to aromatic atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0017496802604208728
+aromatic_amine_count,Count of primary or secondary aromatic amine nitrogens.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0016354077159392365
+aromatic_amine_present,1 if a primary or secondary aromatic amine is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0015528765069374082
+polyhalogenated_aromatic_present,1 if a polyhalogenated aromatic ring alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0011440481065678367
+aromatic_linker_count,Count of non-ring bonds directly connecting two aromatic atoms.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0009091589187283525
+polyhalogenated_aromatic_ring_count,Count of aromatic rings bearing two or more halogen substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0005974771570413065
+aromatic_nitro_or_nitroso_present,1 if a nitro or nitroso group is attached to an aromatic atom.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0005150456541428301
+very_large_molecular_weight_flag,Heuristic flag: molecular weight > 500.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.00031071102643532943
+fluorine_atom_count,Fluorine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.00025269385984599265
+catechol_ring_count,Count of aromatic rings with adjacent phenolic substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.00015653919997125527
+nitro_group_count,Count of nitro groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,6.951168708925876e-05
+redox_cycling_present,1 if any redox-cycling alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,4.2458826712454826e-05
+aldehyde_present,1 if an aldehyde alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,3.948868657504199e-05
+redox_cycling_alert_count,"Count of catechol, hydroquinone, and quinone ring alerts.",carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,3.7152490508720426e-05
+aldehyde_count,Count of aldehyde groups.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+alkyl_sulfate_or_sulfonate_count,Count of alkyl sulfate or sulfonate ester alkylator proxies.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+aziridine_present,1 if an aziridine ring is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+bromine_atom_count,Bromine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+epoxide_present,1 if an epoxide ring is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+formal_charge,Formal charge from the input graph.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+hydroquinone_ring_count,Count of aromatic rings with para phenolic substituents.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+iodine_atom_count,Iodine atom count.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+mustard_present,1 if an N- or S-mustard motif is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+n_mustard_count,Count of nitrogen mustard motif alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+pah_present,1 if a polycyclic aromatic hydrocarbon alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+pah_system_count,Count of fused aromatic hydrocarbon systems with at least three aromatic rings.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+quinone_present,1 if a quinone-like ring alert is present.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+quinone_ring_count,Count of ortho- or para-quinone ring alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0
+s_mustard_count,Count of sulfur mustard motif alerts.,carcinogens_lagunin,TDC,Carcinogens_Lagunin,synthesize,4,0.0

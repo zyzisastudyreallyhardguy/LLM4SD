@@ -1,0 +1,144 @@
+# Predicting Blood–Brain Barrier Permeability: Concise Calculation Rules and Descriptor Cutoffs
+
+## Executive summary
+
+Blood–brain barrier permeability (BBBP) for **small molecules** is most consistently associated with the coupled balance of **lipophilicity vs. polarity** (logP/logD vs. PSA/TPSA), **molecular size/shape** (MW, volume, surface area), **hydrogen-bonding capacity** (HBD/HBA, heteroatom counts, H-bond acidity/basicity), and **ionization/charge state** (pKa-driven microspecies at pH 7.4).
+
+In practice, BBBP prediction must also account for the **biochemical barrier**: efflux transporters—especially **P-glycoprotein (P-gp/ABCB1)** and **BCRP/ABCG2**—can negate otherwise favorable passive-diffusion properties. Binding (e.g., plasma protein binding and brain tissue binding) further decouples “permeability” from *effective* brain exposure.
+
+The table below compiles **widely cited heuristics** (e.g., marketed CNS property guidelines, CNS MPO, BOILED-Egg) and **commonly used model descriptors** (e.g., E-state/chi/kappa/BCUT, surface charge fractions, 3D polar surface/electrostatic descriptors, topochemical indices) used across BBB QSAR/ML and physicochemical-rule approaches. Numeric values are shown only where stable, explicitly reported cutoffs exist; otherwise “threshold unspecified.”
+
+## Evidence base and modeling endpoints
+
+BBBP is reported using several endpoints that are related but not interchangeable. **logBB** is defined as the logarithmic brain-to-blood concentration ratio, while **logPS** (permeability–surface area product) is derived from in situ perfusion and is often treated as more mechanistically aligned to barrier permeation (less confounded by systemic distribution) than logBB.
+
+Mechanistically, BBB selectivity reflects both a **physical barrier** (tight junctions restricting paracellular passage) and a **biochemical barrier** (metabolism and active transport/efflux). Passive diffusion is frequently treated as the major route for many small molecules, but active transport and efflux can dominate specific chemotypes.
+
+image_group{"layout":"carousel","aspect_ratio":"16:9","query":["blood brain barrier schematic tight junctions P-glycoprotein efflux transporter","BOILED-Egg model WLOGP TPSA BBB permeation plot","CNS multiparameter optimization ClogP TPSA plot"],"num_per_query":1}
+
+## Rule table: concise calculation rules and rationales
+
+| Rule | Rationale |
+|---|---|
+| Calculate logBB = log10(Cbrain/Cblood). | Standard BBB distribution endpoint definition. |
+| Calculate logPS; classify CNSp+ if ≥−2 and CNSp− if ≤−3. | Example logPS cutoffs used for modeling. |
+| Calculate CNS MPO score; prioritize ≥4/6. | Higher score correlates with permeability and low efflux. |
+| Calculate cLogP; prefer ≤3; avoid >5 (CNS MPO). | MPO desirability penalizes high lipophilicity. |
+| Calculate cLogD7.4; prefer ≤2; avoid >4 (CNS MPO). | Lipophilicity at pH 7.4 drives CNS MPO alignment. |
+| Calculate MW; prefer ≤360; avoid >500 (CNS MPO). | Size penalized in CNS MPO desirability. |
+| Calculate TPSA; prefer 40–90 Å²; avoid >120 Å² (CNS MPO). | MPO uses TPSA hump-shaped desirability. |
+| Calculate HBD; prefer ≤0.5; avoid >3.5 (CNS MPO). | MPO penalizes H-bond donation strongly. |
+| Calculate most basic pKa; prefer ≤8; avoid >10 (CNS MPO). | Higher basicity penalized in CNS MPO. |
+| Calculate MW; prefer ≤450 Da for CNS penetration. | CNS drugs skew smaller than non-CNS drugs. |
+| Calculate MW; consider <400 Da as classic permeability regime. | Brain capillary permeability relationships reported for MW<400. |
+| Calculate MW; consider 400–600 Da upper range for passive diffusion. | Passive lipid-mediated BBB transport reviewed in this range. |
+| Calculate cLogP; keep <5 (CNS guideline). | “Successful CNS drug” attribute list includes cLogP<5. |
+| Calculate logP; target 1.5–2.7 for optimal CNS penetration. | Reported optimal logP range from CNS analyses. |
+| Calculate logD; prefer 0<logD<3. | logD window reported for permeability and CNS hints. |
+| Calculate octanol/water logP; aim close to 3.4 (rule-of-thumb). | Reported heuristic for passive BBB diffusion potential. |
+| Calculate PSA; prefer <60–70 Å². | Common CNS penetration guideline for low polarity. |
+| Calculate PSA; avoid >90 Å². | PSA ≈90 Å² cited as approximate upper CNS limit. |
+| Calculate polar surface area; prefer <70 Å² (rule-of-thumb). | Low polar surface cited for passive BBB diffusion. |
+| Calculate BOILED-Egg PSA and WLOGP; BBB likely if PSA<79 and logP 0.4–6.0. | BOILED-Egg BBB ellipse derived from curated human data. |
+| Calculate WLOGP and TPSA; BBB likely if inside BOILED-Egg yolk. | Graphical classifier uses WLOGP vs TPSA space. |
+| Calculate HBD; keep <3. | Widely quoted CNS penetration guideline. |
+| Calculate HBA; keep <7. | Widely quoted CNS penetration guideline. |
+| Calculate total H-bonds; keep <8. | Combined H-bonding capacity guideline for CNS drugs. |
+| Calculate heteroatom count (O+N); keep ≤5. | O+N correlated to PSA and CNS penetration limits. |
+| Calculate rotatable bonds; keep <8. | Lower flexibility is a common CNS attribute. |
+| Calculate rotatable bonds; keep ≤5 for many CNS drugs. | Many centrally acting drugs reported with RB≤5. |
+| Calculate molecular flexibility metric; threshold unspecified. | Flexibility reported to influence BBB permeability. |
+| Calculate ring count; threshold unspecified. | Rings modulate flexibility and conformational range. |
+| Calculate aromatic ring count; threshold unspecified. | Aromaticity is frequently tracked in CNS property analyses. |
+| Calculate fused ring count; threshold unspecified. | Fused rings increase rigidity and 3D shape constraints. |
+| Calculate fraction sp3; threshold unspecified. | Saturation affects 3D shape and polarity presentation. |
+| Calculate pKa (acidic and basic); avoid strong acids; threshold unspecified. | Strong acids cited as difficult for CNS penetration. |
+| Calculate pKa; keep within 4–10 (reported limit). | pKa limits for BBB penetration estimated in CNS studies. |
+| Calculate pKa; prefer neutral/basic 7.5–10.5; avoid acids. | Classic CNS guideline emphasizes weak bases; avoid acids. |
+| Calculate unionized fraction at pH 7.4; prefer high; threshold unspecified. | Neutral microspecies drives membrane partitioning. |
+| Calculate net charge at pH 7.4; minimize |charge|; threshold unspecified. | Charge and ionizable groups are predictive for logBB. |
+| Calculate number of positive ionizable groups; threshold unspecified. | Positive ionizable group count appears in BBB models. |
+| Calculate zwitterion fraction at pH 7.4; threshold unspecified. | Mixed charge microstates complicate partitioning and diffusion. |
+| Calculate pKa microstates and microspecies fractions; prioritize neutral microspecies at pH 7.4. | BBB models report pKa, charge, and ionizable groups as predictive. |
+| Calculate cLogD7.4 for each major microspecies; threshold unspecified. | logD encodes ionization-adjusted lipophilicity at pH 7.4. |
+| Calculate P-gp efflux ratio (BA/AB) in MDCK-MDR1; prefer ER≤2.5. | ER≤2.5 used to indicate low P-gp liability. |
+| Calculate P-gp substrate likelihood; threshold unspecified. | P-gp strongly modulates CNS exposure beyond passive rules. |
+| Calculate P-gp recognition motif count via HBA “electron donor” groups; threshold unspecified. | P-gp binding increases with number/strength of HBA groups. |
+| Calculate HBD/HBA strengths; threshold unspecified. | H-bond strength affects coupled permeability–P-gp processes. |
+| Calculate BCRP substrate likelihood; threshold unspecified. | BCRP is a prominent BBB efflux transporter. |
+| Calculate passive permeability Papp (MDCK); high if >10×10⁻⁶ cm/s. | CNS MPO analysis bins permeability using Papp thresholds. |
+| Calculate passive permeability; prefer >150 nm/s (selection criterion). | CNS vs non-CNS separation uses permeability criteria. |
+| Calculate plasma protein binding or fu,p; threshold unspecified. | Protein binding affects CNS exposure and interpretation of logBB. |
+| Calculate brain tissue binding or fu,brain; threshold unspecified. | Unbound brain fraction is central to CNS exposure. |
+| Calculate Kp,uu,brain; threshold unspecified. | Kp,uu,brain is key for unbound brain concentration estimation. |
+| Calculate Kp,uu,brain = Kp·fu,brain/fu,plasma; threshold unspecified. | Relates unbound partitioning to binding terms. |
+| Calculate solubility (logS/cLogS); threshold unspecified. | Solubility must be optimized alongside CNS potency/PK. |
+| Calculate kinetic aqueous solubility; threshold unspecified. | Solubility plus permeability used in screening cascades. |
+| Calculate molar refractivity; threshold unspecified. | Refraction/polarizability cited as BBB-influencing features. |
+| Calculate polarizability (α); threshold unspecified. | Polarizability appears explicitly in logBB models. |
+| Calculate molecular volume; threshold unspecified. | Volume is used with PSA in simple logBB models. |
+| Calculate van der Waals surface area; threshold unspecified. | Surface area appears in BBB QSPR/QSAR descriptor sets. |
+| Calculate cross-sectional area (CSA) perpendicular to amphiphilic axis; threshold unspecified. | CSA proposed as mechanistic membrane-insertion proxy. |
+| Calculate amphiphilic axis and CSA; threshold unspecified. | Amphiphilicity/CSA descriptors used in BBB modeling attempts. |
+| Calculate surface activity parameters (Kaw, CMCD, AD); threshold unspecified. | Surface activity parameters linked to passive BBB diffusion. |
+| Calculate 2D PSA, TPSA, and 3D polar surface area; threshold unspecified. | Multiple polar surface descriptors correlate with logBB. |
+| Calculate 3D electrostatic potential descriptors; threshold unspecified. | 3D ESP descriptors used to predict logBB (AlphaQ). |
+| Calculate intramolecular H-bond count (IMHB); threshold unspecified. | IMHB can mask polarity and improve permeation. |
+| Calculate exposed polar surface area after IMHB formation; threshold unspecified. | Effective polarity, not raw TPSA, governs desolvation cost. |
+| Calculate hydrogen-bond acidity/basicity (Abraham-type); threshold unspecified. | H-bond acidity/basicity cited among BBB-relevant features. |
+| Calculate surface-charge fraction fPSA3; threshold unspecified. | Charge-weighted surface fraction used in decision trees. |
+| Calculate HBA count; threshold unspecified. | HBA appears as decision-tree splitting criterion. |
+| Calculate aLogP (Ghose–Crippen); threshold unspecified. | Lipophilicity is the most frequent BBB descriptor. |
+| Calculate BCUT/BCUTS (Burden eigenvalue descriptor); threshold unspecified. | BCUT-type eigenvalue descriptors used in BBB trees. |
+| Calculate Balaban index; threshold unspecified. | Balaban index reported in logBB QSAR models. |
+| Calculate Wiener topochemical index; threshold unspecified. | Wiener-type indices investigated for BBB permeability. |
+| Calculate eccentric connectivity index; threshold unspecified. | Eccentric connectivity index used in BBB topochemical models. |
+| Calculate molecular connectivity topochemical index; threshold unspecified. | Connectivity indices used to relate topology to BBB permeation. |
+| Calculate κ (kappa) shape index (order 1); threshold unspecified. | Kappa indices appear in BBB permeation QSAR models. |
+| Calculate molecular connectivity χ index; threshold unspecified. | χ indices used in E-state/logBB modeling. |
+| Calculate difference χ indices; threshold unspecified. | Difference χ indices used in BBB partitioning models. |
+| Calculate E-state indices for HBD and aromatic CH; threshold unspecified. | E-state + χ indices used in validated logBB models. |
+| Calculate atomic-type E-state index (e.g., SsssN); threshold unspecified. | Atomic E-state indices selected in BBB QSAR models. |
+| Calculate AI atomic-level topological descriptors; threshold unspecified. | AI topological descriptors used in BBB QSAR models. |
+| Calculate “shape signatures” descriptors; threshold unspecified. | Shape signatures reported useful for BBB classification. |
+| Calculate fragment/substructure alerts for BBB models; threshold unspecified. | Substructure mining used to identify predictive motifs. |
+| Calculate fingerprint similarity to BBB+ reference set; threshold unspecified. | Many BBB classifiers use structural descriptors/fingerprints. |
+| Calculate geometric/connectivity descriptors; threshold unspecified. | Geometry/connectivity linked to active transport component. |
+| Calculate membrane–water complex interaction strength; threshold unspecified. | MI-QSAR terms reported alongside PSA/logP in logBB QSAR. |
+| Calculate structural “changeability” metric; threshold unspecified. | Structural changeability appears in membrane-interaction BBB QSAR. |
+| Calculate chromatographic lipophilicity (e.g., logkw, IAM); threshold unspecified. | Lipophilicity descriptors correlate with logBB in models. |
+
+## Sequential application of top five rules
+
+The flow below is a conservative, passive-diffusion-first workflow aligned with the most reused filters: **size**, **polarity**, **ionization-adjusted lipophilicity**, **charge state**, and **efflux liability**. These specific properties appear repeatedly in marketed-CNS analyses, CNS MPO, BOILED-Egg, and BBB decision-tree/QSAR studies.
+
+```mermaid
+flowchart TD
+  A[Start] --> B[Calculate MW]
+  B -->|MW <= 450 Da| C[Calculate TPSA/PSA]
+  B -->|MW > 450 Da| X[Predict low passive BBBP]
+
+  C -->|TPSA <= 90 & PSA <= 90| D[Calculate cLogD7.4]
+  C -->|TPSA/PSA above cutoffs| X
+
+  D -->|cLogD7.4 <= 3| E[Calculate charge at pH 7.4]
+  D -->|cLogD7.4 outside range| X
+
+  E -->|net charge 0 or +1| F[Calculate P-gp efflux ratio ER]
+  E -->|multiple charges| X
+
+  F -->|ER <= 2.5| G[Predict higher BBBP likelihood]
+  F -->|ER > 2.5| X
+```
+
+## Notes on scope, applicability domain, and caveats
+
+These rules are primarily suited to **small-molecule passive BBB permeation** screening; they are less reliable when **active uptake** dominates (carrier-mediated influx) or when permeability is **efflux-limited** by transporters. BBB modeling papers and reviews repeatedly emphasize that “simple” physicochemical rules capture only part of the in vivo complexity.
+
+Endpoints matter: logBB can be confounded by systemic distribution and binding, whereas logPS aims to isolate permeability; both still conflate passive diffusion with unidentified transport components in many datasets.
+
+Finally, many “descriptor” rules (topological indices, E-state, BCUT, shape/3D descriptors) are **model-dependent**: their interpretability and thresholds can shift with descriptor definitions, software implementations, curation of charge/tautomer states, and the experimental assay behind the dependent variable.
+
+## Key sources used
+
+The most load-bearing, primary/review sources underlying the rule list include: the **CNS property guideline synthesis** of Pajouhesh & Lenz; the **CNS MPO** framework developed using marketed CNS drugs and entity["company","Pfizer","pharma company"] candidates; the **BOILED-Egg** PSA–lipophilicity ellipse classifier; decision-tree and random-forest analyses emphasizing **aLogP/PSA/charge/connectivity**; and primary QSAR papers featuring **topochemical indices** (Balaban, Wiener, kappa/chi/E-state) as BBB predictors. 

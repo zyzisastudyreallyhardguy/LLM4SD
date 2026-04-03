@@ -1,0 +1,38 @@
+{
+  "dataset": "TDC",
+  "subtask": "SARSCoV2_3CLPro_Diamond",
+  "run_id": "sarscov2_3clpro_diamond_feedback_v001_compare_20260402_fullsweep",
+  "baseline_backend": "sarscov2_3clpro_diamond",
+  "candidate_backend": "sarscov2_3clpro_diamond_feedback_v001",
+  "model_name": "galactica-6.7b",
+  "knowledge_type": "synthesize",
+  "num_samples": 50,
+  "baseline_tuned_params_path": "/data1/tianang/Projects/LLM4SD/eval_result/TDC_hyperparameter_search/SARSCoV2_3CLPro_Diamond/SARSCoV2_3CLPro_Diamond_sarscov2_3clpro_diamond_best_params.json",
+  "candidate_tuned_params_path": "/data1/tianang/Projects/LLM4SD/eval_result/TDC_hyperparameter_search/SARSCoV2_3CLPro_Diamond/SARSCoV2_3CLPro_Diamond_sarscov2_3clpro_diamond_feedback_v001_best_params.json",
+  "baseline_metrics_csv": "/data1/tianang/Projects/LLM4SD/eval_result/galactica-6.7b/TDC/synthesize/galactica-6.7b_TDC_SARSCoV2_3CLPro_Diamond_synthesize_sarscov2_3clpro_diamond_classification_metrics_per_seed.csv",
+  "candidate_metrics_csv": "/data1/tianang/Projects/LLM4SD/eval_result/galactica-6.7b/TDC/synthesize/galactica-6.7b_TDC_SARSCoV2_3CLPro_Diamond_synthesize_sarscov2_3clpro_diamond_feedback_v001_classification_metrics_per_seed.csv",
+  "baseline_summary": {
+    "mean_train_macro_f1": 0.7711347184396479,
+    "mean_train_roc_auc": 0.959648806519074,
+    "mean_valid_macro_f1": 0.6164934629567549,
+    "mean_valid_roc_auc": 0.64203125,
+    "mean_test_macro_f1": 0.6164934629567549,
+    "mean_test_roc_auc": 0.64203125
+  },
+  "candidate_summary": {
+    "mean_train_macro_f1": 0.9838199054626455,
+    "mean_train_roc_auc": 0.9998377442849933,
+    "mean_valid_macro_f1": 0.6205404532602896,
+    "mean_valid_roc_auc": 0.59140625,
+    "mean_test_macro_f1": 0.6205404532602896,
+    "mean_test_roc_auc": 0.59140625
+  },
+  "acceptance_checks": {
+    "train_macro_f1_improved": true,
+    "valid_macro_f1_improved": true,
+    "valid_roc_auc_not_decreased": false
+  },
+  "accepted": false,
+  "float_tolerance": 1e-06,
+  "created_at": "2026-04-02T04:09:22"
+}

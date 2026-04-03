@@ -1,0 +1,401 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,seed,importance
+molar_refractivity,Wildman-Crippen molar refractivity.,herg_feedback_v001,TDC,hERG,synthesize,0,0.06994207925015888
+carbon_atom_count,Carbon atom count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.06584400688640493
+logp,Wildman-Crippen logP.,herg_feedback_v001,TDC,hERG,synthesize,0,0.06357831451497949
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,herg_feedback_v001,TDC,hERG,synthesize,0,0.05359291189195725
+heavy_atom_count,Heavy atom count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.05074730426799291
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,herg_feedback_v001,TDC,hERG,synthesize,0,0.049191362904950894
+combined_logp_pka_sq,Combined hERG heuristic metric: logP^2 + pKa^2.,herg_feedback_v001,TDC,hERG,synthesize,0,0.048654262524094036
+mol_weight,Molecular weight (Descriptors.MolWt).,herg_feedback_v001,TDC,hERG,synthesize,0,0.04853403916374885
+most_basic_pka,Most basic predicted pKa from the MolGpKa helper.,herg_feedback_v001,TDC,hERG,synthesize,0,0.03483965861193146
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,herg_feedback_v001,TDC,hERG,synthesize,0,0.03428931001736227
+charged_fraction_ph74,1 - neutral_fraction_ph74.,herg_feedback_v001,TDC,hERG,synthesize,0,0.03384420243778094
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,herg_feedback_v001,TDC,hERG,synthesize,0,0.03291258687030845
+tpsa,Topological polar surface area.,herg_feedback_v001,TDC,hERG,synthesize,0,0.03289953291192629
+aromatic_atom_fraction,Fraction of heavy atoms that are aromatic.,herg_feedback_v001,TDC,hERG,synthesize,0,0.028522751548343547
+aromatic_ring_count,Aromatic ring count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.02680761423584958
+rotatable_bonds,Rotatable bond count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.023663809845021613
+fraction_csp3,Fraction of sp3 carbons.,herg_feedback_v001,TDC,hERG,synthesize,0,0.02358223555702158
+ring_count,Total ring count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.018368370886793595
+hbd,Hydrogen bond donor count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.015442105687277573
+oxygen_nitrogen_count,Count of O and N atoms.,herg_feedback_v001,TDC,hERG,synthesize,0,0.01403680233529247
+hba,Hydrogen bond acceptor count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.014031566063786942
+total_hbond_donors_acceptors,HBD + HBA total.,herg_feedback_v001,TDC,hERG,synthesize,0,0.012954924672567336
+property_window_violation_count,Count of violated core hERG-mitigation property windows.,herg_feedback_v001,TDC,hERG,synthesize,0,0.011567771638223489
+heteroatom_count,Total heteroatom count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.011464481290817835
+herg_risk_alert_count,Count of matched discrete hERG-risk alert families.,herg_feedback_v001,TDC,hERG,synthesize,0,0.011119436659663723
+aliphatic_ring_count,Aliphatic ring count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.010990713244596917
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,herg_feedback_v001,TDC,hERG,synthesize,0,0.01025476819851304
+negative_formal_atom_count,Number of atoms with negative formal charge.,herg_feedback_v001,TDC,hERG,synthesize,0,0.009301875902298449
+formal_charge,Formal charge from the input graph.,herg_feedback_v001,TDC,hERG,synthesize,0,0.008901487365817126
+basic_center_count,Count of amine-like or aromatic-basic nitrogen centers from local SMARTS heuristics.,herg_feedback_v001,TDC,hERG,synthesize,0,0.008006435670987848
+min_basic_center_distance,Minimum graph distance between two basic-center atoms.,herg_feedback_v001,TDC,hERG,synthesize,0,0.007586725323634983
+fused_ring_count,Count of rings participating in fused ring systems.,herg_feedback_v001,TDC,hERG,synthesize,0,0.006853492259332949
+halogen_count,Total halogen atom count (F/Cl/Br/I).,herg_feedback_v001,TDC,hERG,synthesize,0,0.006671118743326346
+min_basic_to_aromatic_distance,Minimum graph distance from a basic-center atom to a different aromatic atom.,herg_feedback_v001,TDC,hERG,synthesize,0,0.006597946052782119
+fluorine_count,Fluorine atom count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.006137616896826046
+hbd_ge_2,Rule flag: H-bond donor count >= 2.,herg_feedback_v001,TDC,hERG,synthesize,0,0.005624516602285812
+rotatable_bonds_gt_5,Rule flag: rotatable bond count > 5.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0053305269420828305
+chlorine_count,Chlorine atom count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.00471483703819732
+tertiary_amine_count,Count of tertiary amine motifs excluding amide-like nitrogens.,herg_feedback_v001,TDC,hERG,synthesize,0,0.004481608391137255
+positive_charge_present_ph74,Rule flag: positive charge is expected at pH 7.4 from formal charge or dominant basic-site protonation.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0044748933745768285
+positive_formal_atom_count,Number of atoms with positive formal charge.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0040128833901234675
+basic_heterocycle_count,Count of aromatic heterocycles containing at least one pyridine-like aromatic nitrogen.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0037819768260157235
+tpsa_gt_75,Rule flag: TPSA > 75.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0037094784398443714
+hba_ge_5,Rule flag: H-bond acceptor count >= 5.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0034339618904149706
+estimated_logd_lt_3,Rule flag: estimated logD(7.4) < 3.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0031158459897165313
+mw_le_500,Rule flag: molecular weight <= 500.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0030720626226800637
+tertiary_amine_present,Rule flag: at least one tertiary amine motif is present.,herg_feedback_v001,TDC,hERG,synthesize,0,0.003013045497315499
+structural_alert_count,Number of distinct hERG-oriented structural alert families matched.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0029596337306669676
+logp_lt_4,Rule flag: logP < 4.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0024758451327634755
+most_basic_pka_le_8,Rule flag: most basic predicted pKa <= 8.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0024524167366251986
+multiple_halogens_present,Rule flag: at least two F/Cl/Br/I atoms are present.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0024430614099624727
+phenyl_piperazine_count,Count of conservative phenyl-piperazine alert motifs.,herg_feedback_v001,TDC,hERG,synthesize,0,0.002296503803806878
+low_planarity_proxy,"Heuristic flag favoring less planar structures: fraction_csp3 >= 0.3, no fused aromatic rings, and <=3 aromatic rings.",herg_feedback_v001,TDC,hERG,synthesize,0,0.002075722225011707
+long_basic_to_aromatic_distance_present,Heuristic flag: the nearest basic-center to aromatic-atom distance is greater than five graph bonds.,herg_feedback_v001,TDC,hERG,synthesize,0,0.002072124311609956
+cation_pi_proxy_present,Heuristic flag: a basic center lies within four graph bonds of a different aromatic atom.,herg_feedback_v001,TDC,hERG,synthesize,0,0.001993397297365623
+num_basic_sites_le_2,Rule flag: predicted basic-site count <= 2.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0019495194825807644
+basic_center_count_le_2,Rule flag: heuristic basic-center count <= 2.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0017457189562288154
+basic_heterocycle_present,Rule flag: at least one aromatic basic heterocycle is present.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0017076119593248138
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0016495436807120272
+fused_bicyclic_aromatic_absent,Rule flag: no fused aromatic ring system is present.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0016444368209518473
+short_basic_center_distance_present,Heuristic flag: two basic centers are separated by six or fewer graph bonds.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0014190888499978711
+phenyl_piperazine_present,Rule flag: at least one phenyl-piperazine alert is present.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0013359764336494024
+combined_logp_pka_sq_lt_110,Rule flag: logP^2 + pKa^2 < 110.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0013288339286460862
+herg_structural_alert_present,Composite flag: at least one explicit hERG-oriented structural alert family is present.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0013285603845610667
+aromatic_ring_count_le_3,Rule flag: aromatic ring count <= 3.,herg_feedback_v001,TDC,hERG,synthesize,0,0.001276886976116961
+quinoline_isoquinoline_like_count,Count of fused bicyclic aza-aromatic systems with one ring nitrogen and two fused aromatic rings.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0011435499813315642
+quinoline_isoquinoline_like_present,Rule flag: at least one quinoline/isoquinoline-like fused aza-aromatic system is present.,herg_feedback_v001,TDC,hERG,synthesize,0,0.001036245128249516
+formal_charge_abs_le_1,Rule flag: absolute formal charge <= 1.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0008143076533250183
+methanesulfonamide_present,Rule flag: at least one methanesulfonamide motif is present.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0007472220343214116
+methanesulfonamide_count,Count of methanesulfonamide motifs.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0006170908901449391
+thiazole_count,Count of aromatic 5-membered rings containing both S and a pyridine-like aromatic N.,herg_feedback_v001,TDC,hERG,synthesize,0,0.00022357862143592512
+thiazole_present,Rule flag: at least one thiazole-like aromatic ring is present.,herg_feedback_v001,TDC,hERG,synthesize,0,0.00018598970733538914
+bromine_count,Bromine atom count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.00018477527292277095
+quaternary_ammonium_present,Rule flag: at least one quaternary ammonium center is present.,herg_feedback_v001,TDC,hERG,synthesize,0,0.00016680358572875162
+quaternary_ammonium_count,Count of quaternary ammonium centers.,herg_feedback_v001,TDC,hERG,synthesize,0,8.368258457594088e-05
+herg_property_window_pass,Composite flag: all core hERG-mitigation property windows are satisfied.,herg_feedback_v001,TDC,hERG,synthesize,0,7.483241121075664e-05
+aryl_guanidine_present,Rule flag: at least one aryl-guanidine alert is present.,herg_feedback_v001,TDC,hERG,synthesize,0,4.874209572386968e-05
+aryl_guanidine_count,Count of aryl-guanidine alert motifs.,herg_feedback_v001,TDC,hERG,synthesize,0,1.9038576349950624e-05
+iodine_count,Iodine atom count.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,herg_feedback_v001,TDC,hERG,synthesize,0,0.0
+molar_refractivity,Wildman-Crippen molar refractivity.,herg_feedback_v001,TDC,hERG,synthesize,1,0.07582439143215988
+carbon_atom_count,Carbon atom count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.05665636829903576
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,herg_feedback_v001,TDC,hERG,synthesize,1,0.05537858456198387
+heavy_atom_count,Heavy atom count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.05317854104877605
+logp,Wildman-Crippen logP.,herg_feedback_v001,TDC,hERG,synthesize,1,0.051552746232606826
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,herg_feedback_v001,TDC,hERG,synthesize,1,0.04842604213309735
+mol_weight,Molecular weight (Descriptors.MolWt).,herg_feedback_v001,TDC,hERG,synthesize,1,0.046952671405720854
+combined_logp_pka_sq,Combined hERG heuristic metric: logP^2 + pKa^2.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0450369819067948
+charged_fraction_ph74,1 - neutral_fraction_ph74.,herg_feedback_v001,TDC,hERG,synthesize,1,0.03735907658643084
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,herg_feedback_v001,TDC,hERG,synthesize,1,0.03704062178345047
+tpsa,Topological polar surface area.,herg_feedback_v001,TDC,hERG,synthesize,1,0.035752112182010964
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0325595670881872
+most_basic_pka,Most basic predicted pKa from the MolGpKa helper.,herg_feedback_v001,TDC,hERG,synthesize,1,0.030099868755217293
+aromatic_atom_fraction,Fraction of heavy atoms that are aromatic.,herg_feedback_v001,TDC,hERG,synthesize,1,0.028235459610765717
+aromatic_ring_count,Aromatic ring count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.02821100570194456
+rotatable_bonds,Rotatable bond count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.026230368334358788
+fraction_csp3,Fraction of sp3 carbons.,herg_feedback_v001,TDC,hERG,synthesize,1,0.025360029273663938
+ring_count,Total ring count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0220758704316385
+hbd,Hydrogen bond donor count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.015659939932740456
+hba,Hydrogen bond acceptor count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.014192393664120406
+oxygen_nitrogen_count,Count of O and N atoms.,herg_feedback_v001,TDC,hERG,synthesize,1,0.013898223207795737
+total_hbond_donors_acceptors,HBD + HBA total.,herg_feedback_v001,TDC,hERG,synthesize,1,0.013573064093231075
+property_window_violation_count,Count of violated core hERG-mitigation property windows.,herg_feedback_v001,TDC,hERG,synthesize,1,0.01199397076543305
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,herg_feedback_v001,TDC,hERG,synthesize,1,0.011554833398437138
+herg_risk_alert_count,Count of matched discrete hERG-risk alert families.,herg_feedback_v001,TDC,hERG,synthesize,1,0.011430395363769276
+heteroatom_count,Total heteroatom count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.010938829131361943
+aliphatic_ring_count,Aliphatic ring count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.01055605745580133
+negative_formal_atom_count,Number of atoms with negative formal charge.,herg_feedback_v001,TDC,hERG,synthesize,1,0.01012594184747627
+formal_charge,Formal charge from the input graph.,herg_feedback_v001,TDC,hERG,synthesize,1,0.009168245952034259
+basic_center_count,Count of amine-like or aromatic-basic nitrogen centers from local SMARTS heuristics.,herg_feedback_v001,TDC,hERG,synthesize,1,0.008237192735360414
+min_basic_center_distance,Minimum graph distance between two basic-center atoms.,herg_feedback_v001,TDC,hERG,synthesize,1,0.00787447313977806
+min_basic_to_aromatic_distance,Minimum graph distance from a basic-center atom to a different aromatic atom.,herg_feedback_v001,TDC,hERG,synthesize,1,0.007567786653288673
+fused_ring_count,Count of rings participating in fused ring systems.,herg_feedback_v001,TDC,hERG,synthesize,1,0.006941408843787534
+halogen_count,Total halogen atom count (F/Cl/Br/I).,herg_feedback_v001,TDC,hERG,synthesize,1,0.006550581004596537
+fluorine_count,Fluorine atom count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.005929111781217331
+hbd_ge_2,Rule flag: H-bond donor count >= 2.,herg_feedback_v001,TDC,hERG,synthesize,1,0.00525629021831956
+positive_charge_present_ph74,Rule flag: positive charge is expected at pH 7.4 from formal charge or dominant basic-site protonation.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0052394547853472015
+rotatable_bonds_gt_5,Rule flag: rotatable bond count > 5.,herg_feedback_v001,TDC,hERG,synthesize,1,0.00496850286229315
+tertiary_amine_count,Count of tertiary amine motifs excluding amide-like nitrogens.,herg_feedback_v001,TDC,hERG,synthesize,1,0.004541194083897463
+tpsa_gt_75,Rule flag: TPSA > 75.,herg_feedback_v001,TDC,hERG,synthesize,1,0.004518879046756634
+chlorine_count,Chlorine atom count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.004410066130190162
+basic_heterocycle_count,Count of aromatic heterocycles containing at least one pyridine-like aromatic nitrogen.,herg_feedback_v001,TDC,hERG,synthesize,1,0.004040833194026634
+positive_formal_atom_count,Number of atoms with positive formal charge.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0034450870072857743
+tertiary_amine_present,Rule flag: at least one tertiary amine motif is present.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0028495698104216106
+mw_le_500,Rule flag: molecular weight <= 500.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0027944647574337594
+structural_alert_count,Number of distinct hERG-oriented structural alert families matched.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0027206365415292136
+hba_ge_5,Rule flag: H-bond acceptor count >= 5.,herg_feedback_v001,TDC,hERG,synthesize,1,0.002668965687936198
+most_basic_pka_le_8,Rule flag: most basic predicted pKa <= 8.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0025406059898880587
+estimated_logd_lt_3,Rule flag: estimated logD(7.4) < 3.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0024490879604619005
+cation_pi_proxy_present,Heuristic flag: a basic center lies within four graph bonds of a different aromatic atom.,herg_feedback_v001,TDC,hERG,synthesize,1,0.00238857855381318
+phenyl_piperazine_count,Count of conservative phenyl-piperazine alert motifs.,herg_feedback_v001,TDC,hERG,synthesize,1,0.002386077378082592
+multiple_halogens_present,Rule flag: at least two F/Cl/Br/I atoms are present.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0023102890092392856
+logp_lt_4,Rule flag: logP < 4.,herg_feedback_v001,TDC,hERG,synthesize,1,0.002230327109500481
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,herg_feedback_v001,TDC,hERG,synthesize,1,0.002206352436139827
+basic_heterocycle_present,Rule flag: at least one aromatic basic heterocycle is present.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0019911815191823146
+phenyl_piperazine_present,Rule flag: at least one phenyl-piperazine alert is present.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0019620101619232787
+long_basic_to_aromatic_distance_present,Heuristic flag: the nearest basic-center to aromatic-atom distance is greater than five graph bonds.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0019523783738344682
+fused_bicyclic_aromatic_absent,Rule flag: no fused aromatic ring system is present.,herg_feedback_v001,TDC,hERG,synthesize,1,0.001927519256611202
+num_basic_sites_le_2,Rule flag: predicted basic-site count <= 2.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0018334014839681452
+basic_center_count_le_2,Rule flag: heuristic basic-center count <= 2.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0017220483746312018
+aromatic_ring_count_le_3,Rule flag: aromatic ring count <= 3.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0017048720892909614
+low_planarity_proxy,"Heuristic flag favoring less planar structures: fraction_csp3 >= 0.3, no fused aromatic rings, and <=3 aromatic rings.",herg_feedback_v001,TDC,hERG,synthesize,1,0.001644967889328181
+short_basic_center_distance_present,Heuristic flag: two basic centers are separated by six or fewer graph bonds.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0013776087606425947
+quinoline_isoquinoline_like_count,Count of fused bicyclic aza-aromatic systems with one ring nitrogen and two fused aromatic rings.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0013345939390797539
+herg_structural_alert_present,Composite flag: at least one explicit hERG-oriented structural alert family is present.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0013259422506163698
+combined_logp_pka_sq_lt_110,Rule flag: logP^2 + pKa^2 < 110.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0011208914409833828
+quinoline_isoquinoline_like_present,Rule flag: at least one quinoline/isoquinoline-like fused aza-aromatic system is present.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0009816350206428123
+formal_charge_abs_le_1,Rule flag: absolute formal charge <= 1.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0009051393473626666
+methanesulfonamide_count,Count of methanesulfonamide motifs.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0005744316732457005
+methanesulfonamide_present,Rule flag: at least one methanesulfonamide motif is present.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0005682226540359109
+quaternary_ammonium_present,Rule flag: at least one quaternary ammonium center is present.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0002572323897193155
+quaternary_ammonium_count,Count of quaternary ammonium centers.,herg_feedback_v001,TDC,hERG,synthesize,1,0.00012920683538878545
+bromine_count,Bromine atom count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.00012427149044054862
+herg_property_window_pass,Composite flag: all core hERG-mitigation property windows are satisfied.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0001227806490570566
+thiazole_count,Count of aromatic 5-membered rings containing both S and a pyridine-like aromatic N.,herg_feedback_v001,TDC,hERG,synthesize,1,0.00011602871348859447
+thiazole_present,Rule flag: at least one thiazole-like aromatic ring is present.,herg_feedback_v001,TDC,hERG,synthesize,1,0.00011209497894131161
+aryl_guanidine_present,Rule flag: at least one aryl-guanidine alert is present.,herg_feedback_v001,TDC,hERG,synthesize,1,7.951135389033768e-05
+aryl_guanidine_count,Count of aryl-guanidine alert motifs.,herg_feedback_v001,TDC,hERG,synthesize,1,4.401105305929544e-05
+iodine_count,Iodine atom count.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,herg_feedback_v001,TDC,hERG,synthesize,1,0.0
+molar_refractivity,Wildman-Crippen molar refractivity.,herg_feedback_v001,TDC,hERG,synthesize,2,0.07371143553346848
+carbon_atom_count,Carbon atom count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.06046887680750813
+logp,Wildman-Crippen logP.,herg_feedback_v001,TDC,hERG,synthesize,2,0.055815300637991866
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,herg_feedback_v001,TDC,hERG,synthesize,2,0.05565651349461564
+mol_weight,Molecular weight (Descriptors.MolWt).,herg_feedback_v001,TDC,hERG,synthesize,2,0.05000985091974307
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,herg_feedback_v001,TDC,hERG,synthesize,2,0.04874540226942516
+heavy_atom_count,Heavy atom count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.04695946983361823
+combined_logp_pka_sq,Combined hERG heuristic metric: logP^2 + pKa^2.,herg_feedback_v001,TDC,hERG,synthesize,2,0.04591746549331579
+tpsa,Topological polar surface area.,herg_feedback_v001,TDC,hERG,synthesize,2,0.03600582026890384
+charged_fraction_ph74,1 - neutral_fraction_ph74.,herg_feedback_v001,TDC,hERG,synthesize,2,0.03529108378393387
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,herg_feedback_v001,TDC,hERG,synthesize,2,0.034615516096514656
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,herg_feedback_v001,TDC,hERG,synthesize,2,0.03407197675934498
+most_basic_pka,Most basic predicted pKa from the MolGpKa helper.,herg_feedback_v001,TDC,hERG,synthesize,2,0.03319248535100247
+aromatic_ring_count,Aromatic ring count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.028651435514258455
+aromatic_atom_fraction,Fraction of heavy atoms that are aromatic.,herg_feedback_v001,TDC,hERG,synthesize,2,0.028347757348288764
+rotatable_bonds,Rotatable bond count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.025336954810477423
+fraction_csp3,Fraction of sp3 carbons.,herg_feedback_v001,TDC,hERG,synthesize,2,0.024127976929549485
+ring_count,Total ring count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.020944811915591853
+hba,Hydrogen bond acceptor count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.015103881535723342
+hbd,Hydrogen bond donor count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.014668558447237865
+total_hbond_donors_acceptors,HBD + HBA total.,herg_feedback_v001,TDC,hERG,synthesize,2,0.01414844379556895
+property_window_violation_count,Count of violated core hERG-mitigation property windows.,herg_feedback_v001,TDC,hERG,synthesize,2,0.013801613075650414
+oxygen_nitrogen_count,Count of O and N atoms.,herg_feedback_v001,TDC,hERG,synthesize,2,0.012550957973937526
+heteroatom_count,Total heteroatom count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.011580341929497168
+aliphatic_ring_count,Aliphatic ring count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.011260045540421183
+herg_risk_alert_count,Count of matched discrete hERG-risk alert families.,herg_feedback_v001,TDC,hERG,synthesize,2,0.010861662421308123
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,herg_feedback_v001,TDC,hERG,synthesize,2,0.010398436255428422
+formal_charge,Formal charge from the input graph.,herg_feedback_v001,TDC,hERG,synthesize,2,0.009091050989271196
+negative_formal_atom_count,Number of atoms with negative formal charge.,herg_feedback_v001,TDC,hERG,synthesize,2,0.008702999876540987
+basic_center_count,Count of amine-like or aromatic-basic nitrogen centers from local SMARTS heuristics.,herg_feedback_v001,TDC,hERG,synthesize,2,0.008076363990897378
+min_basic_center_distance,Minimum graph distance between two basic-center atoms.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0075134605480004345
+min_basic_to_aromatic_distance,Minimum graph distance from a basic-center atom to a different aromatic atom.,herg_feedback_v001,TDC,hERG,synthesize,2,0.007108035243307978
+fused_ring_count,Count of rings participating in fused ring systems.,herg_feedback_v001,TDC,hERG,synthesize,2,0.007065539550045525
+fluorine_count,Fluorine atom count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.005914053602487084
+halogen_count,Total halogen atom count (F/Cl/Br/I).,herg_feedback_v001,TDC,hERG,synthesize,2,0.005740198133709813
+positive_charge_present_ph74,Rule flag: positive charge is expected at pH 7.4 from formal charge or dominant basic-site protonation.,herg_feedback_v001,TDC,hERG,synthesize,2,0.005421120377995862
+hbd_ge_2,Rule flag: H-bond donor count >= 2.,herg_feedback_v001,TDC,hERG,synthesize,2,0.005357377359172217
+rotatable_bonds_gt_5,Rule flag: rotatable bond count > 5.,herg_feedback_v001,TDC,hERG,synthesize,2,0.004908727711860704
+chlorine_count,Chlorine atom count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.004770602115476418
+tertiary_amine_count,Count of tertiary amine motifs excluding amide-like nitrogens.,herg_feedback_v001,TDC,hERG,synthesize,2,0.004715139439059778
+positive_formal_atom_count,Number of atoms with positive formal charge.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0036970175363828677
+tpsa_gt_75,Rule flag: TPSA > 75.,herg_feedback_v001,TDC,hERG,synthesize,2,0.00363944447857515
+basic_heterocycle_count,Count of aromatic heterocycles containing at least one pyridine-like aromatic nitrogen.,herg_feedback_v001,TDC,hERG,synthesize,2,0.003630245588518125
+estimated_logd_lt_3,Rule flag: estimated logD(7.4) < 3.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0031954580911960806
+hba_ge_5,Rule flag: H-bond acceptor count >= 5.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0031857048971032894
+structural_alert_count,Number of distinct hERG-oriented structural alert families matched.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0030358956105773762
+tertiary_amine_present,Rule flag: at least one tertiary amine motif is present.,herg_feedback_v001,TDC,hERG,synthesize,2,0.00299472902767275
+cation_pi_proxy_present,Heuristic flag: a basic center lies within four graph bonds of a different aromatic atom.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0029415787668658827
+mw_le_500,Rule flag: molecular weight <= 500.,herg_feedback_v001,TDC,hERG,synthesize,2,0.002874360246435789
+most_basic_pka_le_8,Rule flag: most basic predicted pKa <= 8.,herg_feedback_v001,TDC,hERG,synthesize,2,0.002450570811575993
+multiple_halogens_present,Rule flag: at least two F/Cl/Br/I atoms are present.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0024166159411187363
+phenyl_piperazine_count,Count of conservative phenyl-piperazine alert motifs.,herg_feedback_v001,TDC,hERG,synthesize,2,0.002382967933583427
+logp_lt_4,Rule flag: logP < 4.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0023145309337929357
+basic_heterocycle_present,Rule flag: at least one aromatic basic heterocycle is present.,herg_feedback_v001,TDC,hERG,synthesize,2,0.001993029841202442
+low_planarity_proxy,"Heuristic flag favoring less planar structures: fraction_csp3 >= 0.3, no fused aromatic rings, and <=3 aromatic rings.",herg_feedback_v001,TDC,hERG,synthesize,2,0.0018969236466255454
+fused_bicyclic_aromatic_absent,Rule flag: no fused aromatic ring system is present.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0018467453604953722
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0017073214209520735
+long_basic_to_aromatic_distance_present,Heuristic flag: the nearest basic-center to aromatic-atom distance is greater than five graph bonds.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0016665781526262714
+basic_center_count_le_2,Rule flag: heuristic basic-center count <= 2.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0015770562538326835
+num_basic_sites_le_2,Rule flag: predicted basic-site count <= 2.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0015585823443183997
+herg_structural_alert_present,Composite flag: at least one explicit hERG-oriented structural alert family is present.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0015329605142533553
+combined_logp_pka_sq_lt_110,Rule flag: logP^2 + pKa^2 < 110.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0013855634463147972
+quinoline_isoquinoline_like_count,Count of fused bicyclic aza-aromatic systems with one ring nitrogen and two fused aromatic rings.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0013280265229580876
+short_basic_center_distance_present,Heuristic flag: two basic centers are separated by six or fewer graph bonds.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0012872053600752546
+phenyl_piperazine_present,Rule flag: at least one phenyl-piperazine alert is present.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0012798175382320305
+aromatic_ring_count_le_3,Rule flag: aromatic ring count <= 3.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0012279148604474165
+quinoline_isoquinoline_like_present,Rule flag: at least one quinoline/isoquinoline-like fused aza-aromatic system is present.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0011203881240577011
+methanesulfonamide_count,Count of methanesulfonamide motifs.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0008664136334469164
+formal_charge_abs_le_1,Rule flag: absolute formal charge <= 1.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0007340427171627826
+methanesulfonamide_present,Rule flag: at least one methanesulfonamide motif is present.,herg_feedback_v001,TDC,hERG,synthesize,2,0.000573689828549045
+thiazole_count,Count of aromatic 5-membered rings containing both S and a pyridine-like aromatic N.,herg_feedback_v001,TDC,hERG,synthesize,2,0.00023895661141752172
+bromine_count,Bromine atom count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.00020834216006606525
+quaternary_ammonium_present,Rule flag: at least one quaternary ammonium center is present.,herg_feedback_v001,TDC,hERG,synthesize,2,0.00018273726560566743
+quaternary_ammonium_count,Count of quaternary ammonium centers.,herg_feedback_v001,TDC,hERG,synthesize,2,0.00012194302513270268
+thiazole_present,Rule flag: at least one thiazole-like aromatic ring is present.,herg_feedback_v001,TDC,hERG,synthesize,2,9.754649057939512e-05
+herg_property_window_pass,Composite flag: all core hERG-mitigation property windows are satisfied.,herg_feedback_v001,TDC,hERG,synthesize,2,6.778951978528355e-05
+aryl_guanidine_present,Rule flag: at least one aryl-guanidine alert is present.,herg_feedback_v001,TDC,hERG,synthesize,2,6.642138319556428e-05
+aryl_guanidine_count,Count of aryl-guanidine alert motifs.,herg_feedback_v001,TDC,hERG,synthesize,2,4.6140435118716335e-05
+iodine_count,Iodine atom count.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,herg_feedback_v001,TDC,hERG,synthesize,2,0.0
+molar_refractivity,Wildman-Crippen molar refractivity.,herg_feedback_v001,TDC,hERG,synthesize,3,0.07487975388152432
+carbon_atom_count,Carbon atom count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.05980709918912468
+logp,Wildman-Crippen logP.,herg_feedback_v001,TDC,hERG,synthesize,3,0.05557082612901171
+heavy_atom_count,Heavy atom count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.05278855071834586
+mol_weight,Molecular weight (Descriptors.MolWt).,herg_feedback_v001,TDC,hERG,synthesize,3,0.051299024177976174
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0507436264099526
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,herg_feedback_v001,TDC,hERG,synthesize,3,0.04789410809893909
+combined_logp_pka_sq,Combined hERG heuristic metric: logP^2 + pKa^2.,herg_feedback_v001,TDC,hERG,synthesize,3,0.047329309273221126
+most_basic_pka,Most basic predicted pKa from the MolGpKa helper.,herg_feedback_v001,TDC,hERG,synthesize,3,0.03651935258863199
+charged_fraction_ph74,1 - neutral_fraction_ph74.,herg_feedback_v001,TDC,hERG,synthesize,3,0.03409915009946647
+tpsa,Topological polar surface area.,herg_feedback_v001,TDC,hERG,synthesize,3,0.033007098202724044
+aromatic_atom_fraction,Fraction of heavy atoms that are aromatic.,herg_feedback_v001,TDC,hERG,synthesize,3,0.03196069673662465
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,herg_feedback_v001,TDC,hERG,synthesize,3,0.03153681955949344
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,herg_feedback_v001,TDC,hERG,synthesize,3,0.030997982195938453
+aromatic_ring_count,Aromatic ring count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.03085340043289073
+fraction_csp3,Fraction of sp3 carbons.,herg_feedback_v001,TDC,hERG,synthesize,3,0.025818648453023046
+rotatable_bonds,Rotatable bond count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.023580919426401652
+ring_count,Total ring count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.018598018442826856
+hba,Hydrogen bond acceptor count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.014670829177745369
+total_hbond_donors_acceptors,HBD + HBA total.,herg_feedback_v001,TDC,hERG,synthesize,3,0.01445492038476101
+hbd,Hydrogen bond donor count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.014344895339968
+oxygen_nitrogen_count,Count of O and N atoms.,herg_feedback_v001,TDC,hERG,synthesize,3,0.013060377191051015
+property_window_violation_count,Count of violated core hERG-mitigation property windows.,herg_feedback_v001,TDC,hERG,synthesize,3,0.012712599470440117
+herg_risk_alert_count,Count of matched discrete hERG-risk alert families.,herg_feedback_v001,TDC,hERG,synthesize,3,0.011274271476730944
+heteroatom_count,Total heteroatom count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.011191562726186117
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,herg_feedback_v001,TDC,hERG,synthesize,3,0.010444131631411252
+aliphatic_ring_count,Aliphatic ring count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.010061441948754522
+negative_formal_atom_count,Number of atoms with negative formal charge.,herg_feedback_v001,TDC,hERG,synthesize,3,0.00899063134219463
+basic_center_count,Count of amine-like or aromatic-basic nitrogen centers from local SMARTS heuristics.,herg_feedback_v001,TDC,hERG,synthesize,3,0.008279892687363543
+formal_charge,Formal charge from the input graph.,herg_feedback_v001,TDC,hERG,synthesize,3,0.008214968287187272
+fused_ring_count,Count of rings participating in fused ring systems.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0072562013787163095
+min_basic_to_aromatic_distance,Minimum graph distance from a basic-center atom to a different aromatic atom.,herg_feedback_v001,TDC,hERG,synthesize,3,0.007051256330011655
+halogen_count,Total halogen atom count (F/Cl/Br/I).,herg_feedback_v001,TDC,hERG,synthesize,3,0.006699170728150135
+min_basic_center_distance,Minimum graph distance between two basic-center atoms.,herg_feedback_v001,TDC,hERG,synthesize,3,0.006326738548528854
+fluorine_count,Fluorine atom count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.006080170539321395
+positive_charge_present_ph74,Rule flag: positive charge is expected at pH 7.4 from formal charge or dominant basic-site protonation.,herg_feedback_v001,TDC,hERG,synthesize,3,0.005938885951662983
+hbd_ge_2,Rule flag: H-bond donor count >= 2.,herg_feedback_v001,TDC,hERG,synthesize,3,0.005929007114573344
+tpsa_gt_75,Rule flag: TPSA > 75.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0049094245974322425
+tertiary_amine_count,Count of tertiary amine motifs excluding amide-like nitrogens.,herg_feedback_v001,TDC,hERG,synthesize,3,0.004724290763133858
+chlorine_count,Chlorine atom count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.004618564058676895
+rotatable_bonds_gt_5,Rule flag: rotatable bond count > 5.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0046155136255856865
+structural_alert_count,Number of distinct hERG-oriented structural alert families matched.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0036510062589660804
+hba_ge_5,Rule flag: H-bond acceptor count >= 5.,herg_feedback_v001,TDC,hERG,synthesize,3,0.003632264549857879
+basic_heterocycle_count,Count of aromatic heterocycles containing at least one pyridine-like aromatic nitrogen.,herg_feedback_v001,TDC,hERG,synthesize,3,0.003615206343893123
+tertiary_amine_present,Rule flag: at least one tertiary amine motif is present.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0032243541728523995
+positive_formal_atom_count,Number of atoms with positive formal charge.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0030709916056640787
+logp_lt_4,Rule flag: logP < 4.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0028957719933526997
+mw_le_500,Rule flag: molecular weight <= 500.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0026268010098903613
+estimated_logd_lt_3,Rule flag: estimated logD(7.4) < 3.,herg_feedback_v001,TDC,hERG,synthesize,3,0.002454174871442519
+multiple_halogens_present,Rule flag: at least two F/Cl/Br/I atoms are present.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0024230274269572576
+cation_pi_proxy_present,Heuristic flag: a basic center lies within four graph bonds of a different aromatic atom.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0023889841593853754
+phenyl_piperazine_count,Count of conservative phenyl-piperazine alert motifs.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0023768719431044847
+most_basic_pka_le_8,Rule flag: most basic predicted pKa <= 8.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0022980980398769587
+long_basic_to_aromatic_distance_present,Heuristic flag: the nearest basic-center to aromatic-atom distance is greater than five graph bonds.,herg_feedback_v001,TDC,hERG,synthesize,3,0.002176035847665936
+num_basic_sites_le_2,Rule flag: predicted basic-site count <= 2.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0020432675682160784
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,herg_feedback_v001,TDC,hERG,synthesize,3,0.002004504746965229
+low_planarity_proxy,"Heuristic flag favoring less planar structures: fraction_csp3 >= 0.3, no fused aromatic rings, and <=3 aromatic rings.",herg_feedback_v001,TDC,hERG,synthesize,3,0.001953410383171958
+basic_heterocycle_present,Rule flag: at least one aromatic basic heterocycle is present.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0018341174389594232
+basic_center_count_le_2,Rule flag: heuristic basic-center count <= 2.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0017135911070549534
+aromatic_ring_count_le_3,Rule flag: aromatic ring count <= 3.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0016986825101067322
+phenyl_piperazine_present,Rule flag: at least one phenyl-piperazine alert is present.,herg_feedback_v001,TDC,hERG,synthesize,3,0.001677625132933575
+fused_bicyclic_aromatic_absent,Rule flag: no fused aromatic ring system is present.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0016440340870722383
+quinoline_isoquinoline_like_count,Count of fused bicyclic aza-aromatic systems with one ring nitrogen and two fused aromatic rings.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0013466196989118753
+quinoline_isoquinoline_like_present,Rule flag: at least one quinoline/isoquinoline-like fused aza-aromatic system is present.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0013154478613381887
+combined_logp_pka_sq_lt_110,Rule flag: logP^2 + pKa^2 < 110.,herg_feedback_v001,TDC,hERG,synthesize,3,0.001267113896911716
+herg_structural_alert_present,Composite flag: at least one explicit hERG-oriented structural alert family is present.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0011490596271122862
+short_basic_center_distance_present,Heuristic flag: two basic centers are separated by six or fewer graph bonds.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0010703617978990601
+formal_charge_abs_le_1,Rule flag: absolute formal charge <= 1.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0008583415141046863
+methanesulfonamide_present,Rule flag: at least one methanesulfonamide motif is present.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0008201083123840731
+methanesulfonamide_count,Count of methanesulfonamide motifs.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0007946320230058232
+thiazole_present,Rule flag: at least one thiazole-like aromatic ring is present.,herg_feedback_v001,TDC,hERG,synthesize,3,0.000196003553760469
+bromine_count,Bromine atom count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.00017777102126014053
+thiazole_count,Count of aromatic 5-membered rings containing both S and a pyridine-like aromatic N.,herg_feedback_v001,TDC,hERG,synthesize,3,0.00017392725161573618
+quaternary_ammonium_count,Count of quaternary ammonium centers.,herg_feedback_v001,TDC,hERG,synthesize,3,8.22478402971127e-05
+quaternary_ammonium_present,Rule flag: at least one quaternary ammonium center is present.,herg_feedback_v001,TDC,hERG,synthesize,3,6.603188029804987e-05
+herg_property_window_pass,Composite flag: all core hERG-mitigation property windows are satisfied.,herg_feedback_v001,TDC,hERG,synthesize,3,5.536423213036417e-05
+aryl_guanidine_present,Rule flag: at least one aryl-guanidine alert is present.,herg_feedback_v001,TDC,hERG,synthesize,3,5.294933623735441e-05
+aryl_guanidine_count,Count of aryl-guanidine alert motifs.,herg_feedback_v001,TDC,hERG,synthesize,3,3.7069639639703624e-05
+iodine_count,Iodine atom count.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,herg_feedback_v001,TDC,hERG,synthesize,3,0.0
+molar_refractivity,Wildman-Crippen molar refractivity.,herg_feedback_v001,TDC,hERG,synthesize,4,0.07617268530902843
+carbon_atom_count,Carbon atom count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.06660972071241154
+heavy_atom_count,Heavy atom count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.05310178956548562
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0526350517519596
+logp,Wildman-Crippen logP.,herg_feedback_v001,TDC,hERG,synthesize,4,0.05260802745228477
+mol_weight,Molecular weight (Descriptors.MolWt).,herg_feedback_v001,TDC,hERG,synthesize,4,0.052438734184213055
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,herg_feedback_v001,TDC,hERG,synthesize,4,0.049249679408724684
+combined_logp_pka_sq,Combined hERG heuristic metric: logP^2 + pKa^2.,herg_feedback_v001,TDC,hERG,synthesize,4,0.04826947659780854
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,herg_feedback_v001,TDC,hERG,synthesize,4,0.035449076289618776
+most_basic_pka,Most basic predicted pKa from the MolGpKa helper.,herg_feedback_v001,TDC,hERG,synthesize,4,0.03495354708678915
+tpsa,Topological polar surface area.,herg_feedback_v001,TDC,hERG,synthesize,4,0.03457580628858305
+charged_fraction_ph74,1 - neutral_fraction_ph74.,herg_feedback_v001,TDC,hERG,synthesize,4,0.03456515139595108
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,herg_feedback_v001,TDC,hERG,synthesize,4,0.03366549225066541
+aromatic_atom_fraction,Fraction of heavy atoms that are aromatic.,herg_feedback_v001,TDC,hERG,synthesize,4,0.02853575206573991
+aromatic_ring_count,Aromatic ring count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.02620311531645257
+fraction_csp3,Fraction of sp3 carbons.,herg_feedback_v001,TDC,hERG,synthesize,4,0.024282975760195735
+rotatable_bonds,Rotatable bond count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.020858999971616568
+ring_count,Total ring count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.016370678759591816
+total_hbond_donors_acceptors,HBD + HBA total.,herg_feedback_v001,TDC,hERG,synthesize,4,0.015271086590374147
+hbd,Hydrogen bond donor count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.01498113711241012
+hba,Hydrogen bond acceptor count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.014197956475849198
+oxygen_nitrogen_count,Count of O and N atoms.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0132133375177897
+property_window_violation_count,Count of violated core hERG-mitigation property windows.,herg_feedback_v001,TDC,hERG,synthesize,4,0.012969490547544918
+heteroatom_count,Total heteroatom count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.011449871692840117
+aliphatic_ring_count,Aliphatic ring count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.010937586867960373
+negative_formal_atom_count,Number of atoms with negative formal charge.,herg_feedback_v001,TDC,hERG,synthesize,4,0.010103236096134215
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,herg_feedback_v001,TDC,hERG,synthesize,4,0.010012970099255156
+herg_risk_alert_count,Count of matched discrete hERG-risk alert families.,herg_feedback_v001,TDC,hERG,synthesize,4,0.01000738478473554
+formal_charge,Formal charge from the input graph.,herg_feedback_v001,TDC,hERG,synthesize,4,0.00753139430365544
+min_basic_to_aromatic_distance,Minimum graph distance from a basic-center atom to a different aromatic atom.,herg_feedback_v001,TDC,hERG,synthesize,4,0.007387484319541369
+basic_center_count,Count of amine-like or aromatic-basic nitrogen centers from local SMARTS heuristics.,herg_feedback_v001,TDC,hERG,synthesize,4,0.007315071962488094
+min_basic_center_distance,Minimum graph distance between two basic-center atoms.,herg_feedback_v001,TDC,hERG,synthesize,4,0.006872723899634636
+halogen_count,Total halogen atom count (F/Cl/Br/I).,herg_feedback_v001,TDC,hERG,synthesize,4,0.006695924930043982
+fused_ring_count,Count of rings participating in fused ring systems.,herg_feedback_v001,TDC,hERG,synthesize,4,0.006428375883612108
+fluorine_count,Fluorine atom count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.005407737333017956
+rotatable_bonds_gt_5,Rule flag: rotatable bond count > 5.,herg_feedback_v001,TDC,hERG,synthesize,4,0.005051304730084466
+hbd_ge_2,Rule flag: H-bond donor count >= 2.,herg_feedback_v001,TDC,hERG,synthesize,4,0.004813719725238844
+tertiary_amine_count,Count of tertiary amine motifs excluding amide-like nitrogens.,herg_feedback_v001,TDC,hERG,synthesize,4,0.004475472298144328
+positive_charge_present_ph74,Rule flag: positive charge is expected at pH 7.4 from formal charge or dominant basic-site protonation.,herg_feedback_v001,TDC,hERG,synthesize,4,0.004421916215324711
+chlorine_count,Chlorine atom count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.004253810740337315
+positive_formal_atom_count,Number of atoms with positive formal charge.,herg_feedback_v001,TDC,hERG,synthesize,4,0.004131299714340123
+tpsa_gt_75,Rule flag: TPSA > 75.,herg_feedback_v001,TDC,hERG,synthesize,4,0.004085764387053965
+basic_heterocycle_count,Count of aromatic heterocycles containing at least one pyridine-like aromatic nitrogen.,herg_feedback_v001,TDC,hERG,synthesize,4,0.003911333322752506
+tertiary_amine_present,Rule flag: at least one tertiary amine motif is present.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0036953252646937727
+mw_le_500,Rule flag: molecular weight <= 500.,herg_feedback_v001,TDC,hERG,synthesize,4,0.003547740262314192
+structural_alert_count,Number of distinct hERG-oriented structural alert families matched.,herg_feedback_v001,TDC,hERG,synthesize,4,0.003425302869286499
+logp_lt_4,Rule flag: logP < 4.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0030450918777055478
+estimated_logd_lt_3,Rule flag: estimated logD(7.4) < 3.,herg_feedback_v001,TDC,hERG,synthesize,4,0.00269975650883185
+cation_pi_proxy_present,Heuristic flag: a basic center lies within four graph bonds of a different aromatic atom.,herg_feedback_v001,TDC,hERG,synthesize,4,0.002661097510078397
+hba_ge_5,Rule flag: H-bond acceptor count >= 5.,herg_feedback_v001,TDC,hERG,synthesize,4,0.002512130229571447
+phenyl_piperazine_count,Count of conservative phenyl-piperazine alert motifs.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0024755208043660435
+multiple_halogens_present,Rule flag: at least two F/Cl/Br/I atoms are present.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0022497803531143687
+num_basic_sites_le_2,Rule flag: predicted basic-site count <= 2.,herg_feedback_v001,TDC,hERG,synthesize,4,0.002014563374737885
+fused_aromatic_ring_count,Count of aromatic rings participating in fused aromatic systems.,herg_feedback_v001,TDC,hERG,synthesize,4,0.001993794409995182
+low_planarity_proxy,"Heuristic flag favoring less planar structures: fraction_csp3 >= 0.3, no fused aromatic rings, and <=3 aromatic rings.",herg_feedback_v001,TDC,hERG,synthesize,4,0.0019172542916399752
+most_basic_pka_le_8,Rule flag: most basic predicted pKa <= 8.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0019079183591854871
+long_basic_to_aromatic_distance_present,Heuristic flag: the nearest basic-center to aromatic-atom distance is greater than five graph bonds.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0019076226362918281
+basic_center_count_le_2,Rule flag: heuristic basic-center count <= 2.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0018468165669104112
+fused_bicyclic_aromatic_absent,Rule flag: no fused aromatic ring system is present.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0018188184453463124
+basic_heterocycle_present,Rule flag: at least one aromatic basic heterocycle is present.,herg_feedback_v001,TDC,hERG,synthesize,4,0.001769530519734281
+aromatic_ring_count_le_3,Rule flag: aromatic ring count <= 3.,herg_feedback_v001,TDC,hERG,synthesize,4,0.001550328285633487
+phenyl_piperazine_present,Rule flag: at least one phenyl-piperazine alert is present.,herg_feedback_v001,TDC,hERG,synthesize,4,0.001487544015632515
+combined_logp_pka_sq_lt_110,Rule flag: logP^2 + pKa^2 < 110.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0013864060900899064
+herg_structural_alert_present,Composite flag: at least one explicit hERG-oriented structural alert family is present.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0011267955584749192
+quinoline_isoquinoline_like_present,Rule flag: at least one quinoline/isoquinoline-like fused aza-aromatic system is present.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0011178522285563528
+quinoline_isoquinoline_like_count,Count of fused bicyclic aza-aromatic systems with one ring nitrogen and two fused aromatic rings.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0010697139298084673
+formal_charge_abs_le_1,Rule flag: absolute formal charge <= 1.,herg_feedback_v001,TDC,hERG,synthesize,4,0.001035260732367191
+short_basic_center_distance_present,Heuristic flag: two basic centers are separated by six or fewer graph bonds.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0010147417032439188
+methanesulfonamide_present,Rule flag: at least one methanesulfonamide motif is present.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0007020334118033936
+methanesulfonamide_count,Count of methanesulfonamide motifs.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0006370872201798947
+bromine_count,Bromine atom count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.00021565553527025437
+quaternary_ammonium_present,Rule flag: at least one quaternary ammonium center is present.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0001811764503000661
+quaternary_ammonium_count,Count of quaternary ammonium centers.,herg_feedback_v001,TDC,hERG,synthesize,4,0.00015484718260388994
+thiazole_present,Rule flag: at least one thiazole-like aromatic ring is present.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0001336654361166644
+thiazole_count,Count of aromatic 5-membered rings containing both S and a pyridine-like aromatic N.,herg_feedback_v001,TDC,hERG,synthesize,4,0.00012754594772280015
+aryl_guanidine_present,Rule flag: at least one aryl-guanidine alert is present.,herg_feedback_v001,TDC,hERG,synthesize,4,4.0831602258403903e-05
+aryl_guanidine_count,Count of aryl-guanidine alert motifs.,herg_feedback_v001,TDC,hERG,synthesize,4,2.881762629752411e-05
+herg_property_window_pass,Composite flag: all core hERG-mitigation property windows are satisfied.,herg_feedback_v001,TDC,hERG,synthesize,4,2.8481042553220225e-05
+iodine_count,Iodine atom count.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,herg_feedback_v001,TDC,hERG,synthesize,4,0.0

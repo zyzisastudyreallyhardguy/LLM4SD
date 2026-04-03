@@ -1,0 +1,286 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,seed,importance
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.2663321630170362
+tpsa,Topological polar surface area.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.08444442507564646
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.08033993313478485
+logp,Wildman-Crippen logP.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.053746428876323325
+kappa3,Third kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.044965920233379364
+mol_weight,Molecular weight (Descriptors.MolWt).,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.04031631232572634
+balaban_j,Balaban J topological index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.035927215290234925
+fraction_csp3,Fraction of sp3 carbons as a compactness proxy.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.03296590213620687
+labute_asa_per_heavy_atom,Labute ASA divided by heavy-atom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.031083339757685024
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.02989904105219031
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.029659246353230567
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.027626007950960832
+charged_fraction_ph74,1 - neutral_fraction_ph74.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.024765392421633548
+hbd,Hydrogen bond donor count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.02395247042101358
+aromatic_heavy_atom_fraction,Aromatic atom fraction among heavy atoms.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.023590186318569364
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.022596372267758475
+molar_refractivity,Wildman-Crippen molar refractivity.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.021981416561286878
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.020917885751098226
+labute_asa,Labute approximate surface area as a local surface-area proxy.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.011022679067854688
+kappa2,Second kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.009929586537537755
+intramolecular_hbond_pair_count,Count of donor-acceptor atom pairs 4-8 bonds apart as a proxy for intramolecular H-bond potential.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.009731236739729148
+ring_count,Total ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.009530778739070657
+kappa1,First kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.00940084627692249
+aromatic_ring_count,Aromatic ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.00896130937179511
+heteroatom_count,Total heteroatom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.007637470554684619
+rotatable_bonds,Rotatable bond count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.007071260860234201
+formal_charge,Formal charge from the input graph.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.006269440083569804
+total_hbond_donors_acceptors,HBD + HBA total.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.004594842706949658
+hba,Hydrogen bond acceptor count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.004013125448651495
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.00349584935708608
+positive_formal_atom_count,Number of atoms with positive formal charge.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0020403220560856797
+heavy_atom_count,Heavy atom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0019601042704297
+negative_formal_atom_count,Number of atoms with negative formal charge.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0015809878300437669
+formal_charge_zero,Rule flag: formal charge == 0.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.001136921970032124
+aliphatic_ring_count,Aliphatic ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0010393357856350342
+abs_formal_charge,Absolute formal charge magnitude.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0010357569794282914
+tpsa_le_120,Rule flag: TPSA <= 120.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0010042835799406965
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0006568156858605191
+estimated_logd_between_neg0p5_4p5,Rule flag: -0.5 <= estimated logD(7.4) <= 4.5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0006069017727953467
+hba_le_10,Rule flag: HBA <= 10.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0004990770342741977
+passive_permeability_screen_pass,Composite flag combining the main PAMPA_NCATS heuristic windows and avoiding strong-acid motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0004517738042166541
+tpsa_lt_60,Rule flag: TPSA < 60.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.00034027848208030077
+acidic_group_count,Total acidic-group count from carboxylate/sulfonate/phosphonate motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0002517917234133313
+acidic_group_count_eq_0,Rule flag: no acidic-group motif is present.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.00024394300165049817
+total_hbond_donors_acceptors_le_12,Rule flag: HBD + HBA <= 12.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.00010732571981832629
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,8.088453864419601e-05
+neutral_fraction_ge_0p5,Rule flag: estimated neutral fraction at pH 7.4 >= 0.5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,7.532408204522803e-05
+intramolecular_hbond_potential_present,1 if the intramolecular H-bond proxy count is non-zero.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,6.0553918895185875e-05
+logp_le_5,Rule flag: logP <= 5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,5.131011611867483e-05
+carboxylic_acid_count,Count of carboxylic acid or carboxylate groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,8.222959741277769e-06
+hbd_le_5,Rule flag: HBD <= 5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0
+mw_le_500,Rule flag: molecular weight <= 500.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0
+phosphonic_acid_count,Count of phosphonic/phosphonate-like acidic groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0
+strong_acidic_group_count,Count of strong-acid-like sulfonate/phosphonate motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0
+strong_acidic_group_count_eq_0,Rule flag: no strong-acid-like motif is present.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0
+sulfonic_acid_count,Count of sulfonic acid or sulfonate groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,0,0.0
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.2599661081974184
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.08833777139705412
+tpsa,Topological polar surface area.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.07830453101306478
+logp,Wildman-Crippen logP.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.055595218091506186
+kappa3,Third kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.04614899121904741
+balaban_j,Balaban J topological index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.03884687483779308
+mol_weight,Molecular weight (Descriptors.MolWt).,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.03622743376879961
+labute_asa_per_heavy_atom,Labute ASA divided by heavy-atom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.034187513778774804
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.03405466155005032
+fraction_csp3,Fraction of sp3 carbons as a compactness proxy.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.02931796769101531
+hbd,Hydrogen bond donor count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.027817269876892276
+charged_fraction_ph74,1 - neutral_fraction_ph74.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.026926011817265266
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.026433938807213776
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.023247991491872556
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0228779957562635
+aromatic_heavy_atom_fraction,Aromatic atom fraction among heavy atoms.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.022638331056998907
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.02131884817526662
+molar_refractivity,Wildman-Crippen molar refractivity.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.020267392622316995
+kappa2,Second kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.011674456947673911
+labute_asa,Labute approximate surface area as a local surface-area proxy.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.011402764191907748
+kappa1,First kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.010489519807799984
+intramolecular_hbond_pair_count,Count of donor-acceptor atom pairs 4-8 bonds apart as a proxy for intramolecular H-bond potential.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.010360891746173983
+ring_count,Total ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.00953423057800153
+aromatic_ring_count,Aromatic ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.007888908630696745
+heteroatom_count,Total heteroatom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.007525738804475254
+formal_charge,Formal charge from the input graph.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0071547123668870395
+rotatable_bonds,Rotatable bond count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.006646703581656843
+total_hbond_donors_acceptors,HBD + HBA total.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.005116176842790948
+hba,Hydrogen bond acceptor count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.00399615493725491
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.003253454890363879
+heavy_atom_count,Heavy atom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0022015613397908798
+abs_formal_charge,Absolute formal charge magnitude.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.001915520540062964
+aliphatic_ring_count,Aliphatic ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0014713187840856676
+negative_formal_atom_count,Number of atoms with negative formal charge.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.001280551365042846
+positive_formal_atom_count,Number of atoms with positive formal charge.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0011729380842126342
+formal_charge_zero,Rule flag: formal charge == 0.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.001109253781358822
+acidic_group_count,Total acidic-group count from carboxylate/sulfonate/phosphonate motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.00083911300838144
+tpsa_le_120,Rule flag: TPSA <= 120.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.000613983053582032
+passive_permeability_screen_pass,Composite flag combining the main PAMPA_NCATS heuristic windows and avoiding strong-acid motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0004381435300449169
+acidic_group_count_eq_0,Rule flag: no acidic-group motif is present.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0003608211572295504
+estimated_logd_between_neg0p5_4p5,Rule flag: -0.5 <= estimated logD(7.4) <= 4.5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.00029241407587248045
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.00021290607722090457
+hba_le_10,Rule flag: HBA <= 10.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.00012460936903949327
+total_hbond_donors_acceptors_le_12,Rule flag: HBD + HBA <= 12.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.00011528858271787094
+neutral_fraction_ge_0p5,Rule flag: estimated neutral fraction at pH 7.4 >= 0.5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,9.952542369867069e-05
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,8.588742740703103e-05
+carboxylic_acid_count,Count of carboxylic acid or carboxylate groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,4.937376913123167e-05
+logp_le_5,Rule flag: logP <= 5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,3.1880690139916806e-05
+hbd_le_5,Rule flag: HBD <= 5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,2.6345466684018405e-05
+intramolecular_hbond_potential_present,1 if the intramolecular H-bond proxy count is non-zero.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0
+mw_le_500,Rule flag: molecular weight <= 500.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0
+phosphonic_acid_count,Count of phosphonic/phosphonate-like acidic groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0
+strong_acidic_group_count,Count of strong-acid-like sulfonate/phosphonate motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0
+strong_acidic_group_count_eq_0,Rule flag: no strong-acid-like motif is present.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0
+sulfonic_acid_count,Count of sulfonic acid or sulfonate groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0
+tpsa_lt_60,Rule flag: TPSA < 60.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,1,0.0
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.2528390156385721
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0901623227854913
+tpsa,Topological polar surface area.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0841435664371815
+logp,Wildman-Crippen logP.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.05609666509805212
+kappa3,Third kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.04378105413352897
+balaban_j,Balaban J topological index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.037907994651081765
+mol_weight,Molecular weight (Descriptors.MolWt).,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.03443367825705794
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.03345876053960954
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.03210427239661083
+fraction_csp3,Fraction of sp3 carbons as a compactness proxy.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.030437878544950638
+labute_asa_per_heavy_atom,Labute ASA divided by heavy-atom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.030111775330457
+charged_fraction_ph74,1 - neutral_fraction_ph74.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.026667776636880646
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.02622275100489369
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.024674633197589797
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.023311466425820007
+aromatic_heavy_atom_fraction,Aromatic atom fraction among heavy atoms.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0232015266590143
+molar_refractivity,Wildman-Crippen molar refractivity.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.022676635668228008
+hbd,Hydrogen bond donor count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.022515589027718098
+labute_asa,Labute approximate surface area as a local surface-area proxy.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.012698508425130551
+kappa2,Second kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.011781166669105654
+kappa1,First kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.009752037609511316
+ring_count,Total ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.00909080609910412
+intramolecular_hbond_pair_count,Count of donor-acceptor atom pairs 4-8 bonds apart as a proxy for intramolecular H-bond potential.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.008565454378203361
+aromatic_ring_count,Aromatic ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.007519674110395241
+heteroatom_count,Total heteroatom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.006981659454742282
+formal_charge,Formal charge from the input graph.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0066038619879192715
+rotatable_bonds,Rotatable bond count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.006178703107842411
+total_hbond_donors_acceptors,HBD + HBA total.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.005723888541330848
+hba,Hydrogen bond acceptor count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.003483081754824368
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.003146687247498062
+heavy_atom_count,Heavy atom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0021089762604128903
+aliphatic_ring_count,Aliphatic ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.001948148325081914
+formal_charge_zero,Rule flag: formal charge == 0.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.001484804805371806
+positive_formal_atom_count,Number of atoms with positive formal charge.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0014405615458288018
+abs_formal_charge,Absolute formal charge magnitude.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0013422661629585108
+passive_permeability_screen_pass,Composite flag combining the main PAMPA_NCATS heuristic windows and avoiding strong-acid motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.001042179951882242
+negative_formal_atom_count,Number of atoms with negative formal charge.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.000968907055922366
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0008207811911650623
+estimated_logd_between_neg0p5_4p5,Rule flag: -0.5 <= estimated logD(7.4) <= 4.5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0007053135715172508
+tpsa_le_120,Rule flag: TPSA <= 120.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.000560150159868007
+acidic_group_count,Total acidic-group count from carboxylate/sulfonate/phosphonate motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0005399627747404441
+carboxylic_acid_count,Count of carboxylic acid or carboxylate groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0002014961218875436
+total_hbond_donors_acceptors_le_12,Rule flag: HBD + HBA <= 12.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.00017482580328385638
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.00010186122762832687
+acidic_group_count_eq_0,Rule flag: no acidic-group motif is present.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,9.425478955816945e-05
+neutral_fraction_ge_0p5,Rule flag: estimated neutral fraction at pH 7.4 >= 0.5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,9.182374395153679e-05
+hba_le_10,Rule flag: HBA <= 10.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,4.4229791912289785e-05
+hbd_le_5,Rule flag: HBD <= 5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,2.6065887817347527e-05
+logp_le_5,Rule flag: logP <= 5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,1.853715893457451e-05
+tpsa_lt_60,Rule flag: TPSA < 60.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,1.196185193140804e-05
+intramolecular_hbond_potential_present,1 if the intramolecular H-bond proxy count is non-zero.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0
+mw_le_500,Rule flag: molecular weight <= 500.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0
+phosphonic_acid_count,Count of phosphonic/phosphonate-like acidic groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0
+strong_acidic_group_count,Count of strong-acid-like sulfonate/phosphonate motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0
+strong_acidic_group_count_eq_0,Rule flag: no strong-acid-like motif is present.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0
+sulfonic_acid_count,Count of sulfonic acid or sulfonate groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,2,0.0
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.24477170658584252
+tpsa,Topological polar surface area.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.08722314850408958
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.08054375184042672
+logp,Wildman-Crippen logP.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.06061827761402537
+kappa3,Third kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.04783695123330424
+balaban_j,Balaban J topological index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.037478983020859634
+mol_weight,Molecular weight (Descriptors.MolWt).,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.03704640657325899
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.032771782121722465
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.032372886811211546
+charged_fraction_ph74,1 - neutral_fraction_ph74.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0318070856822509
+labute_asa_per_heavy_atom,Labute ASA divided by heavy-atom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.03114443225216314
+fraction_csp3,Fraction of sp3 carbons as a compactness proxy.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0305938216998079
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.02524003316420633
+hbd,Hydrogen bond donor count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.024718045694613396
+aromatic_heavy_atom_fraction,Aromatic atom fraction among heavy atoms.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.02413896001653575
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.022435148183192227
+molar_refractivity,Wildman-Crippen molar refractivity.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.02214911558362386
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.02021381152181204
+labute_asa,Labute approximate surface area as a local surface-area proxy.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.011908962364582151
+kappa2,Second kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.01096434625998761
+kappa1,First kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.01009887395448592
+intramolecular_hbond_pair_count,Count of donor-acceptor atom pairs 4-8 bonds apart as a proxy for intramolecular H-bond potential.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.009435030642047496
+ring_count,Total ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.008836698761591858
+heteroatom_count,Total heteroatom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.00789826063151838
+aromatic_ring_count,Aromatic ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.007879255301993847
+rotatable_bonds,Rotatable bond count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.007292890902698038
+formal_charge,Formal charge from the input graph.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.006179513328041665
+hba,Hydrogen bond acceptor count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.00467161677497678
+total_hbond_donors_acceptors,HBD + HBA total.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.004445130597946754
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0042753674184416906
+heavy_atom_count,Heavy atom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.002776675221888724
+aliphatic_ring_count,Aliphatic ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0017341874391952632
+positive_formal_atom_count,Number of atoms with positive formal charge.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0016941580032963986
+abs_formal_charge,Absolute formal charge magnitude.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.001324595851746268
+negative_formal_atom_count,Number of atoms with negative formal charge.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0011352502319273404
+formal_charge_zero,Rule flag: formal charge == 0.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0010151706673977349
+carboxylic_acid_count,Count of carboxylic acid or carboxylate groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0005996558021169227
+estimated_logd_between_neg0p5_4p5,Rule flag: -0.5 <= estimated logD(7.4) <= 4.5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0005571614861809192
+passive_permeability_screen_pass,Composite flag combining the main PAMPA_NCATS heuristic windows and avoiding strong-acid motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.00048577598885576727
+tpsa_le_120,Rule flag: TPSA <= 120.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0004845720842008656
+acidic_group_count_eq_0,Rule flag: no acidic-group motif is present.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0003920654090999013
+tpsa_lt_60,Rule flag: TPSA < 60.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.00033099534550123065
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.00020828961376563091
+acidic_group_count,Total acidic-group count from carboxylate/sulfonate/phosphonate motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.00011377357709352319
+intramolecular_hbond_potential_present,1 if the intramolecular H-bond proxy count is non-zero.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,5.5022365665311916e-05
+logp_le_5,Rule flag: logP <= 5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,4.664818508877726e-05
+hbd_le_5,Rule flag: HBD <= 5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,4.2345343263703895e-05
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,1.3362342456913521e-05
+hba_le_10,Rule flag: HBA <= 10.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0
+mw_le_500,Rule flag: molecular weight <= 500.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0
+neutral_fraction_ge_0p5,Rule flag: estimated neutral fraction at pH 7.4 >= 0.5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0
+phosphonic_acid_count,Count of phosphonic/phosphonate-like acidic groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0
+strong_acidic_group_count,Count of strong-acid-like sulfonate/phosphonate motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0
+strong_acidic_group_count_eq_0,Rule flag: no strong-acid-like motif is present.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0
+sulfonic_acid_count,Count of sulfonic acid or sulfonate groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0
+total_hbond_donors_acceptors_le_12,Rule flag: HBD + HBA <= 12.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,3,0.0
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.2514667432271692
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.08882487041270126
+tpsa,Topological polar surface area.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.08079617337646623
+logp,Wildman-Crippen logP.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.060806107566050024
+kappa3,Third kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0428367908641162
+mol_weight,Molecular weight (Descriptors.MolWt).,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.038444745181900254
+balaban_j,Balaban J topological index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.03744414881055366
+labute_asa_per_heavy_atom,Labute ASA divided by heavy-atom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.03344857682991289
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.032861072496876136
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.031089819944029838
+fraction_csp3,Fraction of sp3 carbons as a compactness proxy.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.030121474307952933
+hbd,Hydrogen bond donor count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.027626989873515917
+charged_fraction_ph74,1 - neutral_fraction_ph74.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.026189916790305405
+aromatic_heavy_atom_fraction,Aromatic atom fraction among heavy atoms.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.02433004532212697
+num_acidic_sites,Number of predicted acidic sites from the MolGpKa helper.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.023505314941244543
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site at pH 7.4.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.021911211411271163
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.021067204807265063
+molar_refractivity,Wildman-Crippen molar refractivity.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.01975565857648012
+labute_asa,Labute approximate surface area as a local surface-area proxy.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.014017198095656686
+intramolecular_hbond_pair_count,Count of donor-acceptor atom pairs 4-8 bonds apart as a proxy for intramolecular H-bond potential.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.010457897231206754
+kappa2,Second kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.009345272879449818
+heteroatom_count,Total heteroatom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.009264673155437783
+kappa1,First kappa shape index.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.009165058210154536
+aromatic_ring_count,Aromatic ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.008289452948416933
+ring_count,Total ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.008140569808232405
+formal_charge,Formal charge from the input graph.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.006661042796624371
+rotatable_bonds,Rotatable bond count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.006426432124140744
+hba,Hydrogen bond acceptor count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.004477122404486513
+total_hbond_donors_acceptors,HBD + HBA total.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.004255630626662147
+num_basic_sites,Number of predicted basic sites from the MolGpKa helper.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.003603108201384749
+heavy_atom_count,Heavy atom count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0021396072699805904
+positive_formal_atom_count,Number of atoms with positive formal charge.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0017191757980834091
+aliphatic_ring_count,Aliphatic ring count.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.001354403547697441
+formal_charge_zero,Rule flag: formal charge == 0.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0012657367229009543
+negative_formal_atom_count,Number of atoms with negative formal charge.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0012501685554176902
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0011470408345573711
+passive_permeability_screen_pass,Composite flag combining the main PAMPA_NCATS heuristic windows and avoiding strong-acid motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0009510701718232162
+abs_formal_charge,Absolute formal charge magnitude.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.00092559234301106
+estimated_logd_between_neg0p5_4p5,Rule flag: -0.5 <= estimated logD(7.4) <= 4.5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0009223498125388507
+tpsa_le_120,Rule flag: TPSA <= 120.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0006470639695788278
+carboxylic_acid_count,Count of carboxylic acid or carboxylate groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.00035937841321039286
+acidic_group_count,Total acidic-group count from carboxylate/sulfonate/phosphonate motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.00014765777390748
+total_hbond_donors_acceptors_le_12,Rule flag: HBD + HBA <= 12.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.00014172387484854215
+acidic_group_count_eq_0,Rule flag: no acidic-group motif is present.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0001293603842554921
+hba_le_10,Rule flag: HBA <= 10.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.00011360111758949452
+neutral_fraction_ge_0p5,Rule flag: estimated neutral fraction at pH 7.4 >= 0.5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,9.695263140392474e-05
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,2.9322200339292564e-05
+mw_le_500,Rule flag: molecular weight <= 500.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,2.435654883230641e-05
+intramolecular_hbond_potential_present,1 if the intramolecular H-bond proxy count is non-zero.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,5.114808232598032e-06
+hbd_le_5,Rule flag: HBD <= 5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0
+logp_le_5,Rule flag: logP <= 5.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0
+phosphonic_acid_count,Count of phosphonic/phosphonate-like acidic groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0
+strong_acidic_group_count,Count of strong-acid-like sulfonate/phosphonate motifs.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0
+strong_acidic_group_count_eq_0,Rule flag: no strong-acid-like motif is present.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0
+sulfonic_acid_count,Count of sulfonic acid or sulfonate groups.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0
+tpsa_lt_60,Rule flag: TPSA < 60.,pampa_ncats,TDC,PAMPA_NCATS,synthesize,4,0.0

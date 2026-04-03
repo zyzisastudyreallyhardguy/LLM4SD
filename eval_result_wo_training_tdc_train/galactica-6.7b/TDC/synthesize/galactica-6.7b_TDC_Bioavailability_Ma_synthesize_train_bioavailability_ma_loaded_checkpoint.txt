@@ -1,0 +1,16 @@
+dataset: TDC
+subtask: Bioavailability_Ma
+model: galactica-6.7b
+knowledge_type: synthesize
+feature_backend: bioavailability_ma
+eval_split: train
+num_bundles: 1
+
+seed=1	roc_auc=0.9982390429338104	macro_f1=0.9577060775727472	accuracy=0.9709821428571429	bundle=checkpoints/forest/TDC__Bioavailability_Ma/galactica-6.7b__bioavailability_ma__synthesize__seed_1.joblib
+
+average_train_roc_auc: 0.9982390429338104
+std_train_roc_auc: 0.0
+average_train_macro_f1: 0.9577060775727472
+std_train_macro_f1: 0.0
+average_train_accuracy: 0.9709821428571429
+std_train_accuracy: 0.0

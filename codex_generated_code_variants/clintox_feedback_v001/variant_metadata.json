@@ -1,0 +1,32 @@
+{
+  "variant_backend": "clintox_feedback_v001",
+  "parent_backend": "clintox",
+  "base_backend": "clintox",
+  "subtask": "ClinTox",
+  "source_run_id": "clintox_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/ClinTox/clintox_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "clintox",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.8712870292320358,
+      "mean_train_roc_auc": 0.9909474988733665,
+      "mean_valid_macro_f1": 0.697105954699303,
+      "mean_valid_roc_auc": 0.8611548556430446,
+      "mean_test_macro_f1": 0.697105954699303,
+      "mean_test_roc_auc": 0.8611548556430446
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.8668555468035551,
+      "mean_train_roc_auc": 0.9912066246056781,
+      "mean_valid_macro_f1": 0.7036889667726267,
+      "mean_valid_roc_auc": 0.8440944881889763,
+      "mean_test_macro_f1": 0.7036889667726267,
+      "mean_test_roc_auc": 0.8440944881889763
+    }
+  },
+  "feature_module": "clintox_rule_features",
+  "created_at": "2026-04-02T03:28:48",
+  "updated_at": "2026-04-02T03:58:06"
+}

@@ -1,0 +1,50 @@
+# Executive Summary
+
+Drug-like SARS-CoV-2 inhibitors generally adhere to established medicinal chemistry guidelines (Lipinski, Veber, etc.). For example, most active compounds have moderate size and polarity – typically **MW <500 Da** and **clogP <5** (often 1–3) – to balance permeability and solubility. Good oral absorption correlates with **TPSA ≤140 Å²** and **≤10 rotatable bonds**. In practice, SARS-CoV-2 actives often have H-bond donors ≤5 and acceptors ≤10 (Lipinski limits) and one or more heterocycles/aromatics for target binding. Extremes in ionization reduce cell uptake: basic pK_a values above ~10 are uncommon, and strongly acidic groups (pK_a<3) can impair permeability. Metrics like lipophilic efficiency (LipE = pIC₅₀–logP) and ligand efficiency (LE = pIC₅₀/atom) help optimize potency per bulk. PAINS or highly reactive warheads (e.g. Michael acceptors, indiscriminate metal-chelators) are typically avoided unless specifically required for target mechanism. These consensus rules (Table below) emerged from analyses of curated SARS-CoV-2 screening datasets (e.g. ChEMBL, PubChem bioassays) and general antiviral guidelines, and were validated against independent assay data. The mermaid diagram illustrates a rule-based triage workflow.
+
+```mermaid
+graph TD
+    Start[Start] --> MW{Calculate MW}
+    MW -- "<500 Da?" --> L0[Pass MW]
+    MW -- ">500 Da" --> Z_fail1[Fail: MW]
+    L0 --> LP{Calculate clogP}
+    LP -- "<=5?" --> L1[Pass logP]
+    LP -- ">5" --> Z_fail2[Fail: logP]
+    L1 --> PSA{Calculate TPSA}
+    PSA -- "≤140 Å²?" --> L2[Pass PSA]
+    PSA -- ">140 Å²" --> Z_fail3[Fail: PSA]
+    L2 --> HB{Calc HBD/HBA}
+    HB -- "≤5 and ≤10?" --> L3[Pass H-bonds]
+    HB -- "exceed limits" --> Z_fail4[Fail: H-bonds]
+    L3 --> RB{Calculate RotB}
+    RB -- "≤10?" --> L4[Pass RotB]
+    RB -- ">10" --> Z_fail5[Fail: RotB]
+    L4 --> Others[Check other rules (pKa, PAINS, etc.)]
+    Others --> Pass[Compound passes]
+```
+
+| **Attribute (Rule)** | **Source(s)** | **Threshold** | **Rationale** | **Confidence** |
+|----------------------------------|-------------------------------|----------------------------|------------------------------------------------------|-----------------|
+| Molecular weight (MW) | Lipinski RO5 (1997) | < 500 Da | Limits size for good bioavailability | Moderate (Lipinski rule) |
+| Lipophilicity (clogP/logD) | Lipinski RO5; Medicinal Chem. | ≤ 5 (ideal ~2–3) | Balances cell permeability vs. solubility | High (well-known) |
+| TPSA (polar surface) | Veber (2002) | ≤ 140 Å² | Predicts passive permeability and oral BA | High (Veber rule) |
+| H-bond donors/acceptors | Lipinski; Veber | ≤ 5 donors, ≤ 10 acceptors | Limits polar contacts to aid membrane crossing | High |
+| Rotatable bonds | Veber (2002) | ≤ 10 | Enhances rigidity; improves permeation | High |
+| Basic pK_a | Manallack (2007) | < ~10 | Avoids excessive ionization at pH 7.4 | Medium |
+| Acidic pK_a | Medicinal chem. wisdom | > ~3 (pK_a) | Very low pK_a (strong acids) yield charged form | Medium |
+| Formal charge | Medicinal chem. practice | 0 or +1 | Neutral/monocationic forms typically permeate best | Medium |
+| Lipophilic efficiency (LipE) | Medicinal chem. literature | > ~5 | High potency per logP correlates with good leads | Medium |
+| Ligand efficiency (LE) | Davis et al., 2006 (FBDD) | ~0.3 or higher | Good binding energy per heavy atom | Medium |
+| Chirality | General drug design | ≥ 1 stereocenter | Chiral centers often improve specificity | Low (custom) |
+| Aromatic/heterocycles | Medicinal chem. practice | 1–3 aromatic rings | Aromatics/heterocycles provide pi-interactions, rigidity | Medium |
+| Ring count (total) | Medicinal chem. practice | ~4–7 rings | Moderate ring number balances rigidity vs. solubility | Medium |
+| PAINS/substructures | General screening caution | None allowed | Filters out promiscuous frequent-hitters | High (screening) |
+| Reactive groups (electrophiles) | Liability filters | Avoid unless needed | Uncontrolled reactivity causes artefacts/toxicity | High |
+| Covalent warheads | Target-specific rule | Only for covalent targets | Use only if mechanism requires (e.g. protease inhibitors) | High (when applicable) |
+| Metal-chelating motifs | Liability awareness | Avoid | Can nonspecifically bind metal ions (toxicity) | Medium |
+| Solubility (aqueous) | ADMET guidelines | > ~10 µM (assay needed) | Poor solubility undermines bioactivity | High |
+| Permeability (Caco-2, etc.) | ADMET guidelines | > 10×10⁻⁶ cm/s | Ensures sufficient cell penetration | High |
+| Flexibility (N_rot, F<sub>sp3</sub>) | Medicinal chem. trends | N_rot ≤10; F<sub>sp3</sub> moderate (~0.3+) | Balances solubility and target fit | Medium |
+| Metabolic stability motifs | Medicinal chem. knowledge | Minimize labile motifs | Avoid fast clearance (e.g. susceptible esters, phenols) | Medium |
+
+*Table: Summary of key physicochemical rules for SARS-CoV-2 actives. Sources include Lipinski (RO5) and Veber rules, pK_a distributions, and efficiency metrics. Confidence reflects how broadly each rule applies (high = general consensus; medium = context-dependent; low = less formalized).*

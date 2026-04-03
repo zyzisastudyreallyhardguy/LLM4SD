@@ -1,0 +1,87 @@
+# Executive Summary
+P-glycoprotein (P-gp) inhibition correlates with large, hydrophobic, and polyfunctional molecules. Inhibitors tend to exceed typical “druglike” limits (high molecular weight, lipophilicity) and often feature multiple aromatic and basic centers. Conversely, small, highly polar or flexible compounds with many H-bond donors are unlikely to inhibit P-gp. Below are succinct structural/physicochemical rules (positive or negative) for predicting P-gp inhibition, distilled from experimental and computational studies.
+
+## Key Rules for P-gp Inhibition
+1. **High Molecular Weight** (MW > 500) – increases likelihood.
+2. **Moderate MW Threshold** (MW ≥ 300) – tends to favor inhibition.
+3. **Low MW** (MW < 300) – decreases likelihood.
+4. **High Lipophilicity** (cLogP ≥ 3) – increases likelihood.
+5. **Low Lipophilicity** (cLogP ≤ 3) – decreases likelihood.
+6. **High Polar Surface Area** (TPSA > 75 Å²) – increases P-gp engagement.
+7. **Low Polar Surface Area** (TPSA ≤ 75 Å²) – decreases engagement.
+8. **H-Bond Acceptors ≥ 3** – increases likelihood.
+9. **H-Bond Acceptors ≤ 2** – decreases likelihood.
+10. **H-Bond Donors ≤ 3** – increases likelihood (fewer donors).
+11. **H-Bond Donors ≥ 4** – decreases likelihood.
+12. **Polar Heteroatoms (N+O ≥ 4)** – increases likelihood.
+13. **Polar Heteroatoms (N+O ≤ 3)** – decreases likelihood.
+14. **Basic (Cationic) Center** (e.g. tertiary amine, base pKa > ~8) – increases likelihood.
+15. **Weak Base** (base pKa < 8) – decreases likelihood.
+16. **Aromatic Rings (≥2, planar)** – increases likelihood.
+17. **Aromatic Linkers (vs aliphatic)** – increases likelihood.
+18. **Bulky Hydrophobic Moieties** (e.g. adamantane or long alkyl/aromatic groups) – increases likelihood.
+
+### Evidence and Thresholds Table
+
+| Rule # | Rule (≤20 words) | Direction | Threshold/Example | Evidence Strength | Key References |
+|:------:|:-------------------------------------------------|:-----------|:------------------------|:------------------|:----------------------|
+| 1 | Molecular weight > 500 | **Increase** | MW > 500 g/mol | High | |
+| 2 | Molecular weight ≥ 300 | **Increase** | MW ≥ 300 g/mol | Medium | |
+| 3 | Molecular weight < 300 | **Decrease** | MW < 300 g/mol | Medium | |
+| 4 | cLogP ≥ 3 (high lipophilicity) | **Increase** | cLogP ≥ 3 | Medium | |
+| 5 | cLogP ≤ 3 (low lipophilicity) | **Decrease** | cLogP ≤ 3 | Medium | |
+| 6 | Topological PSA > 75 Å² | **Increase** | TPSA > 75 Å² | Medium | |
+| 7 | Topological PSA ≤ 75 Å² | **Decrease** | TPSA ≤ 75 Å² | Medium | |
+| 8 | H-bond acceptors ≥ 3 | **Increase** | HBA count ≥ 3 | Medium | |
+| 9 | H-bond acceptors ≤ 2 | **Decrease** | HBA count ≤ 2 | Medium | |
+| 10 | H-bond donors ≤ 3 | **Increase** | HBD count ≤ 3 | Medium | |
+| 11 | H-bond donors ≥ 4 | **Decrease** | HBD count ≥ 4 | Medium | |
+| 12 | N+O atoms ≥ 4 | **Increase** | (N + O) ≥ 4 | Medium | |
+| 13 | N+O atoms ≤ 3 | **Decrease** | (N + O) ≤ 3 | Medium | |
+| 14 | Basic (cationic) center present (tertiary N) | **Increase** | e.g. tertiary amine (pKa > ~8) | High | |
+| 15 | Base pKa < 8 | **Decrease** | weak base | Low | |
+| 16 | ≥ 2 planar aromatic rings | **Increase** | e.g. polyaromatics | High | |
+| 17 | Aromatic linker (vs saturated alkyl) | **Increase** | e.g. phenyl vs alkyl | Medium | |
+| 18 | Bulky hydrophobic moiety (e.g. adamantane) | **Increase** | e.g. adamantane group | Medium | |
+
+
+
+**Mermaid Flowchart of Rule Application:** The diagram below outlines a decision flow for classifying a compound’s P-gp inhibition likelihood based on key rules (lipophilicity, molecular weight, H-bond donors/acceptors, aromatic rings, etc.). For example, a molecule with high lipophilicity and MW typically proceeds toward “High inhibition likelihood”, whereas falling below key thresholds leads toward “Lower inhibition likelihood”.
+
+```mermaid
+flowchart LR
+    A[Start] --> B{Lipophilicity (cLogP ≥ 3)?}
+    B -- Yes --> C{Molecular weight (≥ 300)?}
+    B -- No --> D[Lower inhibition likelihood]
+    C -- Yes --> E{H-bond donors (≤ 3)?}
+    C -- No --> D
+    E -- Yes --> F{H-bond acceptors (≥ 3)?}
+    E -- No --> D
+    F -- Yes --> G[High inhibition likelihood]
+    F -- No --> H{≥2 aromatic rings + basic N?}
+    H -- Yes --> G
+    H -- No --> D
+```
+
+
+
+**Evidence Strength Summary:** The bar chart below summarizes how many rules are supported by high, medium, or low evidence (e.g. “High” rules have multiple independent confirmations). High-evidence rules include large MW, multiple aromatic rings, and cationic centers, whereas weaker rules (e.g. base pKa) have fewer supporting data.
+
+```plaintext
+Evidence Strength ■■■ High (3)
+                   ■■■■■■■■■■■■■ Medium (13)
+                   ■ Low (1)
+```
+
+```plaintext
++-------------------+
+| P-gp Inhibition |
+| Evidence Counts |
++-------------------+
+| High | ███ | 3
+| Medium | █████████████ | 13
+| Low | █ | 1
++-------------------+
+```
+
+**Sources:** Rules are drawn from primary studies, reviews, and transporter databases. The evidence strength categorization reflects consistency and experimental support across these sources. Each rule line in the table above cites key references that explicitly support the structural or physicochemical threshold.

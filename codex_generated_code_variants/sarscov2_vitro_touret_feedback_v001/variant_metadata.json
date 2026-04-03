@@ -1,0 +1,32 @@
+{
+  "variant_backend": "sarscov2_vitro_touret_feedback_v001",
+  "parent_backend": "sarscov2_vitro_touret",
+  "base_backend": "sarscov2_vitro_touret",
+  "subtask": "SARSCoV2_Vitro_Touret",
+  "source_run_id": "sarscov2_vitro_touret_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/SARSCoV2_Vitro_Touret/sarscov2_vitro_touret_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "sarscov2_vitro_touret",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.6140872619215634,
+      "mean_train_roc_auc": 0.8860900658500318,
+      "mean_valid_macro_f1": 0.6607773001205169,
+      "mean_valid_roc_auc": 0.7865808823529412,
+      "mean_test_macro_f1": 0.6607773001205169,
+      "mean_test_roc_auc": 0.7865808823529412
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.6794185820451403,
+      "mean_train_roc_auc": 0.974279544006231,
+      "mean_valid_macro_f1": 0.6404125530386199,
+      "mean_valid_roc_auc": 0.7697916666666667,
+      "mean_test_macro_f1": 0.6404125530386199,
+      "mean_test_roc_auc": 0.7697916666666667
+    }
+  },
+  "feature_module": "sarscov2_vitro_touret_rule_features",
+  "created_at": "2026-04-02T03:32:50",
+  "updated_at": "2026-04-02T04:15:39"
+}

@@ -1,0 +1,32 @@
+{
+  "variant_backend": "sarscov2_3clpro_diamond_feedback_v001",
+  "parent_backend": "sarscov2_3clpro_diamond",
+  "base_backend": "sarscov2_3clpro_diamond",
+  "subtask": "SARSCoV2_3CLPro_Diamond",
+  "source_run_id": "sarscov2_3clpro_diamond_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/SARSCoV2_3CLPro_Diamond/sarscov2_3clpro_diamond_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "sarscov2_3clpro_diamond",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.7711347184396479,
+      "mean_train_roc_auc": 0.959648806519074,
+      "mean_valid_macro_f1": 0.6164934629567549,
+      "mean_valid_roc_auc": 0.64203125,
+      "mean_test_macro_f1": 0.6164934629567549,
+      "mean_test_roc_auc": 0.64203125
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.9838199054626455,
+      "mean_train_roc_auc": 0.9998377442849933,
+      "mean_valid_macro_f1": 0.6205404532602896,
+      "mean_valid_roc_auc": 0.59140625,
+      "mean_test_macro_f1": 0.6205404532602896,
+      "mean_test_roc_auc": 0.59140625
+    }
+  },
+  "feature_module": "sarscov2_3clpro_diamond_rule_features",
+  "created_at": "2026-04-02T03:32:44",
+  "updated_at": "2026-04-02T04:09:22"
+}

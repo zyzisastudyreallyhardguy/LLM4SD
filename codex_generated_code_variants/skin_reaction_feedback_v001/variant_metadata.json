@@ -1,0 +1,32 @@
+{
+  "variant_backend": "skin_reaction_feedback_v001",
+  "parent_backend": "skin_reaction",
+  "base_backend": "skin_reaction",
+  "subtask": "Skin_Reaction",
+  "source_run_id": "skin_reaction_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/Skin_Reaction/skin_reaction_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "skin_reaction",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.8124368333619977,
+      "mean_train_roc_auc": 0.9459676908457396,
+      "mean_valid_macro_f1": 0.7022336149313837,
+      "mean_valid_roc_auc": 0.7050505050505051,
+      "mean_test_macro_f1": 0.7022336149313837,
+      "mean_test_roc_auc": 0.7050505050505051
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.8100454771784632,
+      "mean_train_roc_auc": 0.9449540703199238,
+      "mean_valid_macro_f1": 0.7022336149313837,
+      "mean_valid_roc_auc": 0.7159090909090909,
+      "mean_test_macro_f1": 0.7022336149313837,
+      "mean_test_roc_auc": 0.7159090909090909
+    }
+  },
+  "feature_module": "skin_reaction_rule_features",
+  "created_at": "2026-04-02T03:32:55",
+  "updated_at": "2026-04-02T04:11:32"
+}

@@ -1,0 +1,14 @@
+dataset: TDC
+subtask: DILI
+model: galactica-6.7b
+knowledge_type: synthesize
+feature_backend: dili
+eval_split: valid
+num_bundles: 1
+
+seed=0	roc_auc=0.8568627450980391	macro_f1=0.8199233716475096	bundle=checkpoints/forest/TDC__DILI/galactica-6.7b__dili__synthesize__seed_0.joblib
+
+average_valid_roc_auc: 0.8568627450980391
+std_valid_roc_auc: 0.0
+average_valid_macro_f1: 0.8199233716475096
+std_valid_macro_f1: 0.0

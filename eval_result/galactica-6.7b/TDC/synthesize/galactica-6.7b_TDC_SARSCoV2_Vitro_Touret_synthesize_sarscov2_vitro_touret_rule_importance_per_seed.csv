@@ -1,0 +1,421 @@
+rule_name,rule_description,source,dataset,subtask,knowledge_type,seed,importance
+logp,Wildman-Crippen logP.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.06864376648862724
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.062084857615931306
+fraction_csp3,Fraction of sp3 carbons.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.062026929983039485
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.05994850712998157
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.05300156360967733
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.05164713099461503
+charged_fraction_ph74,1 - neutral_fraction_ph74.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0499962246875543
+tpsa,Topological polar surface area.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.03730969423974234
+heteroatom_count,Total heteroatom count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.03578073840073369
+mol_weight,Molecular weight (Descriptors.MolWt).,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0353494329158907
+rotatable_bonds,Rotatable bond count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.03319479125964949
+heavy_atom_count,Heavy atom count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.032726773563295876
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.03141540245418215
+estimated_logd_in_1_3,Rule flag: 1 <= estimated logD(7.4) <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0254614452199695
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.022147909600494942
+num_acidic_sites,Number of predicted acidic sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.020577831249756876
+hba,Hydrogen bond acceptor count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.020255233020489836
+positive_formal_atom_count,Number of atoms with positive formal charge.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.01882600870852459
+hbd,Hydrogen bond donor count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.01726233098455239
+stereocenter_count,Count of assigned or potential tetrahedral stereocenters.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.015332740392261124
+num_basic_sites,Number of predicted basic sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.015286741129754701
+aliphatic_ring_count,Aliphatic ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.015157282757503053
+ring_count,Total ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.01490437803203268
+aromatic_ring_count,Aromatic ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.011673143086777608
+total_hbond_donors_acceptors,HBD + HBA total.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.011551143735520839
+aromatic_or_heterocycle_present,1 if at least one aromatic ring or heterocycle ring is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.011521107040862098
+abs_formal_charge,Absolute formal charge magnitude.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.00984103256432529
+formal_charge,Formal charge from the input graph.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.008227462686781513
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.008110990563154716
+aromatic_heterocycle_ring_count,Count of aromatic rings containing at least one heteroatom.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.007668265882216915
+metabolic_lability_alert_present,1 if a simple metabolic-lability motif is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0071648458556503635
+stereocenter_count_ge_1,Rule flag: at least one stereocenter is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.007013455041931512
+fraction_csp3_ge_0p3,Rule flag: fractionCSP3 >= 0.3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.006958683589650495
+ring_count_4_7,Rule flag: 4 <= total ring count <= 7.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.006843189731550486
+sarscov2_vitro_design_rule_pass_count,"Count of passed physicochemical, scaffold, saturation, and liability heuristics distilled from the source response.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0066736939169586085
+heterocycle_ring_count,Count of rings containing at least one heteroatom.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.006453412628084505
+mol_weight_lt_500,Rule flag: molecular weight < 500.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.005469650584773117
+druglike_physchem_pass_count,Count of passed MW/logP/TPSA/HBD/HBA/rotatable-bond rules.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.005077391954047642
+aromatic_ring_count_ge_1,Rule flag: aromatic ring count >= 1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.005077139261357794
+metabolic_lability_alert_count,Combined count of simple metabolic-lability motifs such as esters and phenols.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.004904704440646739
+liability_alert_absent_pass,"1 if PAINS, reactive-electrophile, and metal-chelator alerts are all absent.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0040472928467600745
+aromatic_ring_count_1_3,Rule flag: 1 <= aromatic ring count <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.003950286441814287
+negative_formal_atom_count,Number of atoms with negative formal charge.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0037737273394805315
+reactive_alert_site_count,Combined count of electrophilic or covalent-liability alert sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0036866159098108316
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0034082090860201187
+tpsa_le_140,Rule flag: TPSA <= 140.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0033815856871193695
+druglike_physchem_window_pass,1 if all six main drug-like physicochemical rules pass.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.003164483301896801
+hbd_le_5,Rule flag: HBD <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0031333292192469264
+acidic_ionization_ok,Rule flag: no acidic site is predicted or the most acidic pKa is > 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0030726368829274596
+ionizable_center_present,1 if at least one acidic or basic site is predicted.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0028973176493711024
+reactive_alert_absent,Rule flag: no reactive electrophile alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0028379936759555936
+ionization_window_pass,1 if charge and pKa-derived ionization heuristics all pass.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0027773625074561516
+logp_le_5,Rule flag: logP <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0026808650826944664
+basic_ionization_ok,Rule flag: no basic site is predicted or the most basic pKa is < 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.002625285082624591
+estimated_logd_le_5,Rule flag: estimated logD(7.4) <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0025547152329634475
+formal_charge_zero_or_plus_one,Rule flag: formal charge is 0 or +1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0023542498076988437
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.002341391378682057
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0022692071394538756
+metabolic_lability_alert_absent,Rule flag: no simple metabolic-lability motif is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.002095096047350525
+pains_alert_count,Count of matched RDKit PAINS alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.002068222711547655
+alkyl_halide_count,Count of sp3 carbon-halogen SN2 alkylation alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0016368959548325873
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0015964745389316093
+beta_dicarbonyl_count,"Count of 1,3-dicarbonyl metal-chelation proxy motifs.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.001413166012320515
+logp_in_1_3,Rule flag: 1 <= logP <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0011236977317042984
+formal_charge_abs_le_1,Rule flag: abs(formal charge) <= 1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.001060322072652301
+metal_chelator_alert_present,1 if any common metal-chelator alert is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.001012372384160066
+ester_count,Count of ester motifs.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0008816437976069036
+metal_chelator_alert_count,Combined count of common metal-chelation liability motifs.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0008739110910318066
+metal_chelator_alert_absent,Rule flag: no common metal-chelator alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0008285201752845436
+reactive_alert_present,1 if any reactive electrophile alert is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.00048522554840243294
+pains_alert_present,1 if any RDKit PAINS alert was matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.00036815626566606306
+pains_alert_absent,Rule flag: no RDKit PAINS alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.00035722539031015894
+hba_le_10,Rule flag: HBA <= 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0003548979934303244
+aldehyde_count,Count of aldehyde alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.00032059101024123696
+acyl_halide_count,Count of acyl halide alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0
+anhydride_count,Count of acid anhydride alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0
+hydroxamate_count,Count of hydroxamate metal-chelation alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0
+isocyanate_count,Count of isocyanate alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0
+isothiocyanate_count,Count of isothiocyanate alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,0,0.0
+logp,Wildman-Crippen logP.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.06867246692771073
+charged_fraction_ph74,1 - neutral_fraction_ph74.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.06566613827522953
+fraction_csp3,Fraction of sp3 carbons.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.05804437461641629
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0576324371722117
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.05084642302402196
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.047316781479453215
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.04454878215389778
+heteroatom_count,Total heteroatom count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.044169329671243276
+tpsa,Topological polar surface area.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.04271205445479148
+mol_weight,Molecular weight (Descriptors.MolWt).,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.036819505692445034
+heavy_atom_count,Heavy atom count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.034830906760662986
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.031370561506771255
+rotatable_bonds,Rotatable bond count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.030333255029020383
+total_hbond_donors_acceptors,HBD + HBA total.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.025718434351273873
+num_acidic_sites,Number of predicted acidic sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.024740716165884278
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.02057540608554244
+hba,Hydrogen bond acceptor count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.01869014409704621
+aliphatic_ring_count,Aliphatic ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.018318339472349593
+stereocenter_count,Count of assigned or potential tetrahedral stereocenters.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.017820076126513373
+positive_formal_atom_count,Number of atoms with positive formal charge.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.017021752322534285
+num_basic_sites,Number of predicted basic sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.014730122172341183
+estimated_logd_in_1_3,Rule flag: 1 <= estimated logD(7.4) <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.014664987522952857
+ring_count_4_7,Rule flag: 4 <= total ring count <= 7.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.01333159948169046
+fraction_csp3_ge_0p3,Rule flag: fractionCSP3 >= 0.3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.013311842257748008
+hbd,Hydrogen bond donor count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.012226755944551042
+aromatic_or_heterocycle_present,1 if at least one aromatic ring or heterocycle ring is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.011114456313606571
+ring_count,Total ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.01108783824743804
+aromatic_ring_count,Aromatic ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.009535195788521656
+sarscov2_vitro_design_rule_pass_count,"Count of passed physicochemical, scaffold, saturation, and liability heuristics distilled from the source response.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.009193315308745773
+stereocenter_count_ge_1,Rule flag: at least one stereocenter is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.008522951629069011
+metabolic_lability_alert_count,Combined count of simple metabolic-lability motifs such as esters and phenols.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.008101748168561436
+abs_formal_charge,Absolute formal charge magnitude.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.008100716479074309
+metabolic_lability_alert_absent,Rule flag: no simple metabolic-lability motif is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.007170529154955282
+logp_le_5,Rule flag: logP <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.00711295101829877
+aromatic_ring_count_1_3,Rule flag: 1 <= aromatic ring count <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.006000603666465738
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.005698421624582192
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.005479739761459576
+negative_formal_atom_count,Number of atoms with negative formal charge.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.005359242369677133
+aromatic_heterocycle_ring_count,Count of aromatic rings containing at least one heteroatom.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.005291957499208946
+metabolic_lability_alert_present,1 if a simple metabolic-lability motif is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.004758454149415701
+formal_charge,Formal charge from the input graph.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.004549183677762658
+druglike_physchem_pass_count,Count of passed MW/logP/TPSA/HBD/HBA/rotatable-bond rules.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.004409010838946173
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.003984672393704919
+logp_in_1_3,Rule flag: 1 <= logP <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0037768742134907975
+heterocycle_ring_count,Count of rings containing at least one heteroatom.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0034928456159504227
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.003403583061721752
+hbd_le_5,Rule flag: HBD <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0032487982173754885
+ionization_window_pass,1 if charge and pKa-derived ionization heuristics all pass.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0032079381569323877
+estimated_logd_le_5,Rule flag: estimated logD(7.4) <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.003128784448287718
+druglike_physchem_window_pass,1 if all six main drug-like physicochemical rules pass.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0024993884016065887
+metal_chelator_alert_present,1 if any common metal-chelator alert is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0020604901348074854
+formal_charge_zero_or_plus_one,Rule flag: formal charge is 0 or +1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.001987185196557613
+pains_alert_absent,Rule flag: no RDKit PAINS alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0018389421494209052
+ionizable_center_present,1 if at least one acidic or basic site is predicted.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0016746501281609855
+reactive_alert_present,1 if any reactive electrophile alert is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0016207547355841197
+basic_ionization_ok,Rule flag: no basic site is predicted or the most basic pKa is < 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.00157844735410266
+aldehyde_count,Count of aldehyde alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0015548987192816044
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0014458258237253613
+mol_weight_lt_500,Rule flag: molecular weight < 500.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.001441339502975581
+pains_alert_present,1 if any RDKit PAINS alert was matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.001437238640764423
+aromatic_ring_count_ge_1,Rule flag: aromatic ring count >= 1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0014268799100477056
+liability_alert_absent_pass,"1 if PAINS, reactive-electrophile, and metal-chelator alerts are all absent.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0013981647701815539
+metal_chelator_alert_absent,Rule flag: no common metal-chelator alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0011995697728902702
+alkyl_halide_count,Count of sp3 carbon-halogen SN2 alkylation alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.001139956512342903
+ester_count,Count of ester motifs.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0011230354895527055
+reactive_alert_site_count,Combined count of electrophilic or covalent-liability alert sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0009610553907142742
+reactive_alert_absent,Rule flag: no reactive electrophile alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0008569632732082339
+acidic_ionization_ok,Rule flag: no acidic site is predicted or the most acidic pKa is > 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0006963659600542903
+tpsa_le_140,Rule flag: TPSA <= 140.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0006760859014904369
+hba_le_10,Rule flag: HBA <= 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0005595268324745279
+pains_alert_count,Count of matched RDKit PAINS alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.000387882869474631
+beta_dicarbonyl_count,"Count of 1,3-dicarbonyl metal-chelation proxy motifs.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.00036909364430437144
+formal_charge_abs_le_1,Rule flag: abs(formal charge) <= 1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.00014979237556514413
+metal_chelator_alert_count,Combined count of common metal-chelation liability motifs.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,7.346194315598146e-05
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,2.6964605889310246e-18
+acyl_halide_count,Count of acyl halide alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0
+anhydride_count,Count of acid anhydride alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0
+hydroxamate_count,Count of hydroxamate metal-chelation alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0
+isocyanate_count,Count of isocyanate alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0
+isothiocyanate_count,Count of isothiocyanate alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,1,0.0
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0696001011186068
+logp,Wildman-Crippen logP.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.05831060937780954
+charged_fraction_ph74,1 - neutral_fraction_ph74.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.05753396102211289
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.054516800184840196
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.05169116435582637
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.05051337554569206
+mol_weight,Molecular weight (Descriptors.MolWt).,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.046251039595922076
+fraction_csp3,Fraction of sp3 carbons.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0433074925930399
+tpsa,Topological polar surface area.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.04064635674909939
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.03996157609631609
+rotatable_bonds,Rotatable bond count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.03591068386066791
+heteroatom_count,Total heteroatom count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.03349948434986744
+heavy_atom_count,Heavy atom count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.027106294539216032
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.026021609869952753
+stereocenter_count,Count of assigned or potential tetrahedral stereocenters.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.025048001120923827
+estimated_logd_in_1_3,Rule flag: 1 <= estimated logD(7.4) <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.022344986895972408
+num_acidic_sites,Number of predicted acidic sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.020479985206144344
+num_basic_sites,Number of predicted basic sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.017250005083846453
+hba,Hydrogen bond acceptor count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.016767695217900926
+ring_count,Total ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.01617723386988764
+total_hbond_donors_acceptors,HBD + HBA total.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.015169155523016412
+positive_formal_atom_count,Number of atoms with positive formal charge.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.014852093116478124
+aromatic_heterocycle_ring_count,Count of aromatic rings containing at least one heteroatom.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.014326357088910321
+fraction_csp3_ge_0p3,Rule flag: fractionCSP3 >= 0.3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.01345439751946834
+aliphatic_ring_count,Aliphatic ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.012202432715181009
+sarscov2_vitro_design_rule_pass_count,"Count of passed physicochemical, scaffold, saturation, and liability heuristics distilled from the source response.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.011770292999140642
+metabolic_lability_alert_count,Combined count of simple metabolic-lability motifs such as esters and phenols.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.010025043499349883
+hbd,Hydrogen bond donor count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.009470518192717057
+aromatic_or_heterocycle_present,1 if at least one aromatic ring or heterocycle ring is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.008646848598400942
+stereocenter_count_ge_1,Rule flag: at least one stereocenter is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.008145855822192412
+metabolic_lability_alert_present,1 if a simple metabolic-lability motif is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.00728789814576309
+heterocycle_ring_count,Count of rings containing at least one heteroatom.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.006893027310882497
+aromatic_ring_count,Aromatic ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.006608514663711536
+negative_formal_atom_count,Number of atoms with negative formal charge.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.006487141733472008
+formal_charge,Formal charge from the input graph.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.006486332560657136
+ring_count_4_7,Rule flag: 4 <= total ring count <= 7.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.006332570571191305
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.00616122954195997
+abs_formal_charge,Absolute formal charge magnitude.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0061155164993646725
+estimated_logd_le_5,Rule flag: estimated logD(7.4) <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.005856347047156177
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.005243721627341578
+aromatic_ring_count_ge_1,Rule flag: aromatic ring count >= 1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.004992193263246296
+druglike_physchem_pass_count,Count of passed MW/logP/TPSA/HBD/HBA/rotatable-bond rules.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.004084903573917295
+druglike_physchem_window_pass,1 if all six main drug-like physicochemical rules pass.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.003429866261283835
+ester_count,Count of ester motifs.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.003291063924707392
+aromatic_ring_count_1_3,Rule flag: 1 <= aromatic ring count <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.00318300023935342
+logp_le_5,Rule flag: logP <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.003094664031650726
+logp_in_1_3,Rule flag: 1 <= logP <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0030597683109694486
+pains_alert_absent,Rule flag: no RDKit PAINS alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0030168117325351618
+ionization_window_pass,1 if charge and pKa-derived ionization heuristics all pass.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0023918124413872524
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0023278178368607676
+hbd_le_5,Rule flag: HBD <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.002281786618290928
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0022778670341829675
+acidic_ionization_ok,Rule flag: no acidic site is predicted or the most acidic pKa is > 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0022455103698211173
+basic_ionization_ok,Rule flag: no basic site is predicted or the most basic pKa is < 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.002173115057188063
+aldehyde_count,Count of aldehyde alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.002012202670118021
+reactive_alert_site_count,Combined count of electrophilic or covalent-liability alert sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0019243908902863622
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0018611238676511245
+formal_charge_zero_or_plus_one,Rule flag: formal charge is 0 or +1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0018229762054104899
+tpsa_le_140,Rule flag: TPSA <= 140.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.001628779955961719
+ionizable_center_present,1 if at least one acidic or basic site is predicted.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0015947613891606545
+metabolic_lability_alert_absent,Rule flag: no simple metabolic-lability motif is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0015885204656623552
+mol_weight_lt_500,Rule flag: molecular weight < 500.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0015495581937774129
+reactive_alert_present,1 if any reactive electrophile alert is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.001409941075131364
+liability_alert_absent_pass,"1 if PAINS, reactive-electrophile, and metal-chelator alerts are all absent.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0013927787427555577
+pains_alert_present,1 if any RDKit PAINS alert was matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0013292518716807595
+alkyl_halide_count,Count of sp3 carbon-halogen SN2 alkylation alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.001279621186125454
+hba_le_10,Rule flag: HBA <= 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0012684223684782084
+pains_alert_count,Count of matched RDKit PAINS alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0009163443721551945
+formal_charge_abs_le_1,Rule flag: abs(formal charge) <= 1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.000852130190475507
+reactive_alert_absent,Rule flag: no reactive electrophile alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.00044808527765928904
+metal_chelator_alert_present,1 if any common metal-chelator alert is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0002868639269446209
+beta_dicarbonyl_count,"Count of 1,3-dicarbonyl metal-chelation proxy motifs.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.00028418599103976355
+metal_chelator_alert_count,Combined count of common metal-chelation liability motifs.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.00021199675683005763
+hydroxamate_count,Count of hydroxamate metal-chelation alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,1.4132477301270743e-05
+acyl_halide_count,Count of acyl halide alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0
+anhydride_count,Count of acid anhydride alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0
+isocyanate_count,Count of isocyanate alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0
+isothiocyanate_count,Count of isothiocyanate alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0
+metal_chelator_alert_absent,Rule flag: no common metal-chelator alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,2,0.0
+logp,Wildman-Crippen logP.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.07580261632879538
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0643870011349558
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.06082737461968993
+charged_fraction_ph74,1 - neutral_fraction_ph74.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.05615480660669043
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.04805250375912239
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.045986986157573406
+fraction_csp3,Fraction of sp3 carbons.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.04260018291070798
+mol_weight,Molecular weight (Descriptors.MolWt).,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.042493782182235436
+rotatable_bonds,Rotatable bond count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.04101582918229762
+tpsa,Topological polar surface area.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.039973866541591116
+heavy_atom_count,Heavy atom count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.035142234966906424
+heteroatom_count,Total heteroatom count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.03135673061525269
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.027566976191102977
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.021898556824548564
+stereocenter_count,Count of assigned or potential tetrahedral stereocenters.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.02159293924889866
+num_acidic_sites,Number of predicted acidic sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.01873120496588645
+aliphatic_ring_count,Aliphatic ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.01871363797391255
+estimated_logd_in_1_3,Rule flag: 1 <= estimated logD(7.4) <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.016450578425527454
+hba,Hydrogen bond acceptor count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.01640054182495773
+hbd,Hydrogen bond donor count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.016366147623075856
+ring_count,Total ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.016273310615779465
+positive_formal_atom_count,Number of atoms with positive formal charge.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.015816394220343075
+abs_formal_charge,Absolute formal charge magnitude.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.013316920602935687
+aromatic_ring_count,Aromatic ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.012867386660436053
+total_hbond_donors_acceptors,HBD + HBA total.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.012396895294343617
+num_basic_sites,Number of predicted basic sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.01123744773127959
+heterocycle_ring_count,Count of rings containing at least one heteroatom.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.010930588714566081
+sarscov2_vitro_design_rule_pass_count,"Count of passed physicochemical, scaffold, saturation, and liability heuristics distilled from the source response.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.010850970670858466
+metabolic_lability_alert_present,1 if a simple metabolic-lability motif is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.010701326892692382
+metabolic_lability_alert_count,Combined count of simple metabolic-lability motifs such as esters and phenols.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.009576038394385072
+ring_count_4_7,Rule flag: 4 <= total ring count <= 7.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.009253178476565985
+fraction_csp3_ge_0p3,Rule flag: fractionCSP3 >= 0.3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.008909684596148097
+stereocenter_count_ge_1,Rule flag: at least one stereocenter is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.008890421263823133
+aromatic_heterocycle_ring_count,Count of aromatic rings containing at least one heteroatom.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.008390087283100403
+formal_charge,Formal charge from the input graph.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.007247954668540839
+metabolic_lability_alert_absent,Rule flag: no simple metabolic-lability motif is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.005937158726806324
+hbd_le_5,Rule flag: HBD <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.005232877445209521
+druglike_physchem_pass_count,Count of passed MW/logP/TPSA/HBD/HBA/rotatable-bond rules.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.005160402896029171
+logp_in_1_3,Rule flag: 1 <= logP <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.004984142862365723
+reactive_alert_absent,Rule flag: no reactive electrophile alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.00483504473398766
+aromatic_or_heterocycle_present,1 if at least one aromatic ring or heterocycle ring is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.004404332582136409
+druglike_physchem_window_pass,1 if all six main drug-like physicochemical rules pass.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0042199426278259474
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.004204133159726983
+ester_count,Count of ester motifs.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0036834724288885433
+aromatic_ring_count_1_3,Rule flag: 1 <= aromatic ring count <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0032905392773846585
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0032142849560035996
+acidic_ionization_ok,Rule flag: no acidic site is predicted or the most acidic pKa is > 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.003015969266875382
+negative_formal_atom_count,Number of atoms with negative formal charge.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.002852449261126238
+basic_ionization_ok,Rule flag: no basic site is predicted or the most basic pKa is < 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0027925821871311617
+logp_le_5,Rule flag: logP <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.002680213493944297
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0024019709744446034
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0023802674857374964
+aromatic_ring_count_ge_1,Rule flag: aromatic ring count >= 1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.002344385791045801
+pains_alert_count,Count of matched RDKit PAINS alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0023252924190439914
+mol_weight_lt_500,Rule flag: molecular weight < 500.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0019396252837831597
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0018348203249737994
+reactive_alert_site_count,Combined count of electrophilic or covalent-liability alert sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0017814017308169958
+hba_le_10,Rule flag: HBA <= 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.001705062787179692
+liability_alert_absent_pass,"1 if PAINS, reactive-electrophile, and metal-chelator alerts are all absent.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0016995700262576463
+estimated_logd_le_5,Rule flag: estimated logD(7.4) <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0015728511993740562
+pains_alert_present,1 if any RDKit PAINS alert was matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0015515368049225922
+reactive_alert_present,1 if any reactive electrophile alert is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.001389702206641875
+ionization_window_pass,1 if charge and pKa-derived ionization heuristics all pass.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0013596174097800435
+formal_charge_zero_or_plus_one,Rule flag: formal charge is 0 or +1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.001269289662322295
+pains_alert_absent,Rule flag: no RDKit PAINS alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0011963096092326368
+metal_chelator_alert_present,1 if any common metal-chelator alert is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0010594025872050774
+aldehyde_count,Count of aldehyde alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0007948808353878265
+ionizable_center_present,1 if at least one acidic or basic site is predicted.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0007595863312817787
+tpsa_le_140,Rule flag: TPSA <= 140.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0006613902815629681
+beta_dicarbonyl_count,"Count of 1,3-dicarbonyl metal-chelation proxy motifs.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.000626408598917043
+metal_chelator_alert_count,Combined count of common metal-chelation liability motifs.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0003658841853071743
+metal_chelator_alert_absent,Rule flag: no common metal-chelator alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.00015841528665531891
+alkyl_halide_count,Count of sp3 carbon-halogen SN2 alkylation alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0001416781031577576
+acyl_halide_count,Count of acyl halide alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+anhydride_count,Count of acid anhydride alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+formal_charge_abs_le_1,Rule flag: abs(formal charge) <= 1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+hydroxamate_count,Count of hydroxamate metal-chelation alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+isocyanate_count,Count of isocyanate alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+isothiocyanate_count,Count of isothiocyanate alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,3,0.0
+logp,Wildman-Crippen logP.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.07216833439926178
+net_charge_proxy_ph74,Base protonation minus acid deprotonation proxy at pH 7.4.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.06149655814441331
+charged_fraction_ph74,1 - neutral_fraction_ph74.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.06011973120128923
+estimated_logd_ph74,Estimated logD at pH 7.4 from logP and neutral fraction.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.05489033959887545
+neutral_fraction_ph74,Estimated neutral fraction at pH 7.4.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.05372979109419381
+fraction_csp3,Fraction of sp3 carbons.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0495971943592523
+exact_mol_weight,Exact molecular weight (Descriptors.ExactMolWt).,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.04285965257842194
+rotatable_bonds,Rotatable bond count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.039949522495920015
+base_protonated_fraction_ph74,Estimated protonated fraction for the dominant basic site.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.03960283994813022
+heteroatom_count,Total heteroatom count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.03934163017409159
+tpsa,Topological polar surface area.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.03887643423015068
+heavy_atom_count,Heavy atom count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.034483997963389565
+mol_weight,Molecular weight (Descriptors.MolWt).,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.026251255530523633
+acid_deprotonated_fraction_ph74,Estimated deprotonated fraction for the dominant acidic site.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0260203228447961
+num_acidic_sites,Number of predicted acidic sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.02491715341698345
+stereocenter_count,Count of assigned or potential tetrahedral stereocenters.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.022020127745450445
+positive_formal_atom_count,Number of atoms with positive formal charge.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.019716451989352835
+total_hbond_donors_acceptors,HBD + HBA total.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.01939151316605504
+hba,Hydrogen bond acceptor count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.01566416355356949
+aliphatic_ring_count,Aliphatic ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.015176391905622382
+aromatic_ring_count,Aromatic ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.013779880922028722
+aromatic_heterocycle_ring_count,Count of aromatic rings containing at least one heteroatom.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.012473093153258914
+estimated_logd_in_1_3,Rule flag: 1 <= estimated logD(7.4) <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.012415644275913544
+fraction_csp3_ge_0p3,Rule flag: fractionCSP3 >= 0.3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.011425885153146981
+ring_count,Total ring count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.011425480469343354
+aromatic_or_heterocycle_present,1 if at least one aromatic ring or heterocycle ring is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.011112183439628515
+num_basic_sites,Number of predicted basic sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.010736745486463008
+metabolic_lability_alert_count,Combined count of simple metabolic-lability motifs such as esters and phenols.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.00967616692789149
+ring_count_4_7,Rule flag: 4 <= total ring count <= 7.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.00914811766779166
+sarscov2_vitro_design_rule_pass_count,"Count of passed physicochemical, scaffold, saturation, and liability heuristics distilled from the source response.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.00871535706630848
+formal_charge,Formal charge from the input graph.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.008680555366509657
+druglike_physchem_pass_count,Count of passed MW/logP/TPSA/HBD/HBA/rotatable-bond rules.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.008679948538100786
+abs_formal_charge,Absolute formal charge magnitude.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.008620871595665788
+hbd,Hydrogen bond donor count.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.007213847657816119
+ester_count,Count of ester motifs.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.006817822254186931
+negative_formal_atom_count,Number of atoms with negative formal charge.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.006365786838243277
+stereocenter_count_ge_1,Rule flag: at least one stereocenter is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0062880595831161555
+rotatable_bonds_le_10,Rule flag: rotatable bonds <= 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.00575737869386447
+phenol_count,Count of phenol or phenoxide substituents on aromatic rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.005574110038692888
+heterocycle_ring_count,Count of rings containing at least one heteroatom.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.004736655926362181
+metabolic_lability_alert_present,1 if a simple metabolic-lability motif is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.004689322398073086
+aromatic_ring_count_1_3,Rule flag: 1 <= aromatic ring count <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.004260812581941426
+hbd_le_5,Rule flag: HBD <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.004122760085891523
+tpsa_le_140,Rule flag: TPSA <= 140.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0040257284209583325
+hba_le_10,Rule flag: HBA <= 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0035537104359270443
+basic_ionization_ok,Rule flag: no basic site is predicted or the most basic pKa is < 10.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0029541112104683053
+reactive_alert_present,1 if any reactive electrophile alert is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0029515973733036695
+metabolic_lability_alert_absent,Rule flag: no simple metabolic-lability motif is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0027457668008096575
+acidic_ionization_ok,Rule flag: no acidic site is predicted or the most acidic pKa is > 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.002583688768824296
+has_amphoteric_sites,1 if both acidic and basic sites are predicted.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.00240640120615423
+liability_alert_absent_pass,"1 if PAINS, reactive-electrophile, and metal-chelator alerts are all absent.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0023605850579225167
+catechol_ring_count,Count of aromatic rings with adjacent phenolic OH substituents.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.002080899602877104
+formal_charge_zero_or_plus_one,Rule flag: formal charge is 0 or +1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.001948522313919228
+aromatic_ring_count_ge_1,Rule flag: aromatic ring count >= 1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0018229689867058816
+estimated_logd_le_5,Rule flag: estimated logD(7.4) <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0018003618320977155
+reactive_alert_absent,Rule flag: no reactive electrophile alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0017673095582385046
+pains_alert_count,Count of matched RDKit PAINS alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0017163537003022978
+ionizable_center_present,1 if at least one acidic or basic site is predicted.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0016233377388758946
+ionization_window_pass,1 if charge and pKa-derived ionization heuristics all pass.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0015985958774497409
+aldehyde_count,Count of aldehyde alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0015073956983109487
+reactive_alert_site_count,Combined count of electrophilic or covalent-liability alert sites.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.001223944926231522
+michael_acceptor_count,"Count of alpha,beta-unsaturated carbonyl alerts.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0011841136813236005
+pains_alert_absent,Rule flag: no RDKit PAINS alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0011809556483983643
+metal_chelator_alert_absent,Rule flag: no common metal-chelator alert is matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0011478470525496448
+pains_alert_present,1 if any RDKit PAINS alert was matched.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0011281119421085394
+alkyl_halide_count,Count of sp3 carbon-halogen SN2 alkylation alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0009322357145693203
+metal_chelator_alert_count,Combined count of common metal-chelation liability motifs.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0008436319801228157
+metal_chelator_alert_present,1 if any common metal-chelator alert is present.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0008362091897985474
+logp_le_5,Rule flag: logP <= 5.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0008289395609494101
+druglike_physchem_window_pass,1 if all six main drug-like physicochemical rules pass.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0007182952444440116
+logp_in_1_3,Rule flag: 1 <= logP <= 3.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0006407949606968646
+beta_dicarbonyl_count,"Count of 1,3-dicarbonyl metal-chelation proxy motifs.",sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.00045706018593857196
+formal_charge_abs_le_1,Rule flag: abs(formal charge) <= 1.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.00037102286649725544
+hydroxamate_count,Count of hydroxamate metal-chelation alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,6.96100032439834e-05
+acyl_halide_count,Count of acyl halide alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0
+anhydride_count,Count of acid anhydride alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0
+aziridine_ring_count,Count of aziridine-like three-membered N-containing rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0
+epoxide_ring_count,Count of epoxide-like three-membered O-containing rings.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0
+isocyanate_count,Count of isocyanate alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0
+isothiocyanate_count,Count of isothiocyanate alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0
+mol_weight_lt_500,Rule flag: molecular weight < 500.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0
+pains_filter_available,1 if RDKit PAINS filters were available during featurization.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0
+pka_features_available,1 if MolGpKa-derived pKa/logD features were computed.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0
+sulfonyl_halide_count,Count of sulfonyl halide alerts.,sarscov2_vitro_touret,TDC,SARSCoV2_Vitro_Touret,synthesize,4,0.0

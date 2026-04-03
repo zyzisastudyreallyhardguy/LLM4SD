@@ -10,421 +10,134 @@
         "warm_start": true,
         "max_features": "log2"
     },
-    "clintox": {
+    "CYP2C9_Substrate_CarbonMangels": {
         "n_estimators": 200,
-        "max_depth": 4,
-        "min_samples_split": 6,
-        "bootstrap": false,
-        "class_weight": "balanced",
-        "criterion": "gini",
-        "min_samples_leaf": 3,
-        "max_features": "sqrt",
-        "warm_start": true
-    },
-    "hiv": {
-        "n_estimators": 700,
-        "max_depth": null,
-        "min_samples_split": 100,
-        "bootstrap": true,
-        "class_weight": "balanced",
-        "criterion": "entropy",
-        "min_samples_leaf": 1,
-        "n_jobs": -1
-    },
-    "bace": {
-        "n_estimators": 500,
-        "max_depth": null,
-        "min_samples_split": 60,
-        "bootstrap": true,
-        "class_weight": null,
-        "criterion": "entropy",
-        "min_samples_leaf": 1,
-        "max_features": "log2",
-        "warm_start": true,
-        "ccp_alpha": 0.0
-    },
-    "esol": {
-        "n_estimators": 500,
-        "max_depth": null,
-        "criterion": "absolute_error",
-        "min_samples_leaf": 1,
-        "bootstrap": true,
-        "n_jobs": -1
-    },
-    "lipophilicity": {
-        "n_estimators": 600,
-        "max_depth": null,
-        "criterion": "squared_error",
-        "min_samples_leaf": 1,
-        "bootstrap": true,
-        "n_jobs": -1
-    },
-    "freesolv": {
-        "n_estimators": 100,
-        "max_depth": null,
-        "min_samples_split": 7,
+        "max_depth": 40,
+        "min_samples_split": 10,
         "min_samples_leaf": 2,
+        "bootstrap": true,
+        "criterion": "gini",
+        "max_features": "log2",
+        "class_weight": "balanced"
+    },
+    "CYP3A4_Substrate_CarbonMangels": {
+        "n_estimators": 200,
+        "max_depth": 10,
+        "min_samples_split": 2,
+        "min_samples_leaf": 10,
+        "bootstrap": true,
+        "criterion": "gini",
+        "max_features": "log2",
+        "class_weight": null
+    },
+    "CYP2D6_Substrate_CarbonMangels": {
+        "n_estimators": 200,
+        "max_depth": 8,
+        "min_samples_split": 20,
+        "min_samples_leaf": 3,
+        "bootstrap": true,
+        "criterion": "gini",
+        "max_features": "log2",
+        "class_weight": null
+    },
+    "ClinTox": {
+        "n_estimators": 200,
+        "max_depth": 10,
+        "min_samples_split": 2,
+        "min_samples_leaf": 10,
+        "bootstrap": true,
+        "criterion": "gini",
+        "max_features": null,
+        "class_weight": "balanced_subsample"
+    },
+    "SARSCoV2_3CLPro_Diamond": {
+        "n_estimators": 700,
+        "max_depth": 10,
+        "min_samples_split": 50,
+        "min_samples_leaf": 1,
+        "bootstrap": true,
+        "criterion": "entropy",
+        "max_features": "log2",
+        "class_weight": "balanced"
+    },
+    "HIA_Hou": {
+        "n_estimators": 200,
+        "max_depth": 10,
+        "min_samples_split": 2,
+        "min_samples_leaf": 10,
+        "bootstrap": true,
+        "criterion": "gini",
+        "max_features": "log2",
+        "class_weight": null
+    },
+    "AMES": {
+        "n_estimators": 200,
+        "max_depth": 40,
+        "min_samples_split": 5,
+        "min_samples_leaf": 3,
+        "bootstrap": true,
+        "criterion": "entropy",
+        "max_features": "log2",
+        "class_weight": "balanced"
+    },
+    "PAMPA_NCATS": {
+        "n_estimators": 400,
+        "max_depth": 40,
+        "min_samples_split": 50,
+        "min_samples_leaf": 1,
+        "bootstrap": true,
+        "criterion": "gini",
+        "max_features": null,
+        "class_weight": null
+    },
+    "DILI": {
+        "n_estimators": 100,
+        "max_depth": 8,
+        "min_samples_split": 20,
+        "min_samples_leaf": 4,
+        "bootstrap": true,
+        "criterion": "gini",
+        "max_features": null,
+        "class_weight": null
+    },
+    "BBB_Martins": {
+        "n_estimators": 150,
+        "max_depth": 40,
+        "min_samples_split": 100,
+        "min_samples_leaf": 5,
         "bootstrap": false,
-        "criterion": "friedman_mse", 
-        "max_features": 29,
-        "n_jobs": -1,
-        "max_leaf_nodes": 80,
-        "ccp_alpha": 0.002,
-        "warm_start": true
+        "criterion": "entropy",
+        "max_features": "log2",
+        "class_weight": "balanced"
     },
-    "tox21": {
-        "nr-ar": {
-            "n_estimators": 150,
-            "max_depth": 10,
-            "min_samples_leaf": 4,
-            "min_samples_split": 2,
-            "criterion": "gini",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "nr-ar-lbd": {
-            "n_estimators": 100,
-            "max_depth": null,
-            "min_samples_leaf": 1,
-            "min_samples_split": 10,
-            "criterion": "gini",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "nr-ahr": {
-            "n_estimators": 550,
-            "max_depth": 10,
-            "min_samples_leaf": 1,
-            "min_samples_split": 5,
-            "criterion": "entropy",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "nr-aromatase": {
-            "n_estimators": 100,
-            "max_depth": 20,
-            "min_samples_leaf": 4,
-            "min_samples_split": 10,
-            "criterion": "entropy",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "nr-er": {
-            "n_estimators": 150,
-            "max_depth": 10,
-            "min_samples_leaf": 2,
-            "min_samples_split": 10,
-            "criterion": "gini",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "nr-er-lbd": {
-            "n_estimators": 100,
-            "max_depth": 20,
-            "min_samples_leaf": 2,
-            "min_samples_split": 10,
-            "criterion": "entropy",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "nr-ppar-gamma": {
-            "n_estimators": 150,
-            "max_depth": null,
-            "min_samples_leaf": 2,
-            "min_samples_split": 10,
-            "criterion": "entropy",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "sr-are": {
-            "n_estimators": 150,
-            "max_depth": null,
-            "min_samples_leaf": 1,
-            "min_samples_split": 5,
-            "criterion": "gini",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "sr-atad5": {
-            "n_estimators": 100,
-            "max_depth": 20,
-            "min_samples_leaf": 2,
-            "min_samples_split": 5,
-            "criterion": "gini",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "sr-hse": {
-            "n_estimators": 100,
-            "max_depth": 20,
-            "min_samples_leaf": 1,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "sr-mmp": {
-            "n_estimators": 250,
-            "max_depth": null,
-            "min_samples_leaf": 4,
-            "min_samples_split": 10,
-            "criterion": "entropy",
-            "random_state": 1,
-            "n_jobs": -1
-        },
-        "sr-p53": {
-            "n_estimators": 250,
-            "max_depth": null,
-            "min_samples_leaf": 2,
-            "min_samples_split": 5,
-            "criterion": "entropy",
-            "random_state": 1,
-            "n_jobs": -1
-        }
+    "Pgp_Broccatelli": {
+        "n_estimators": 400,
+        "max_depth": 10,
+        "min_samples_split": 50,
+        "min_samples_leaf": 5,
+        "bootstrap": false,
+        "criterion": "entropy",
+        "max_features": "sqrt",
+        "class_weight": null
     },
-    "sider": {
-        "hepatobiliary disorders": {
-            "n_estimators": 250,
-            "max_depth": 10,
-            "min_samples_leaf": 1,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "metabolism and nutrition disorders": {
-            "n_estimators": 100,
-            "max_depth": null,
-            "min_samples_leaf": 4,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "product issues": {
-            "n_estimators": 150,
-            "max_depth": null,
-            "min_samples_leaf": 1,
-            "min_samples_split": 5,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "eye disorders": {
-            "n_estimators": 150,
-            "max_depth": 20,
-            "min_samples_leaf": 1,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "investigations": {
-            "n_estimators": 100,
-            "max_depth": 20,
-            "min_samples_leaf": 2,
-            "min_samples_split": 10,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "musculoskeletal and connective tissue disorders": {
-            "n_estimators": 100,
-            "max_depth": 20,
-            "min_samples_leaf": 2,
-            "min_samples_split": 10,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "gastrointestinal disorders": {
-            "n_estimators": 150,
-            "max_depth": null,
-            "min_samples_leaf": 2,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "social circumstances": {
-            "n_estimators": 100,
-            "max_depth": 10,
-            "min_samples_leaf": 4,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "immune system disorders": {
-            "n_estimators": 100,
-            "max_depth": 10,
-            "min_samples_leaf": 2,
-            "min_samples_split": 2,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "reproductive system and breast disorders": {
-            "n_estimators": 100,
-            "max_depth": 10,
-            "min_samples_leaf": 6,
-            "min_samples_split": 2,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "neoplasms benign, malignant and unspecified (incl cysts and polyps)": {
-            "n_estimators": 100,
-            "max_depth": 20,
-            "min_samples_leaf": 6,
-            "min_samples_split": 2,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "general disorders and administration site conditions": {
-            "n_estimators": 100,
-            "max_depth": 10,
-            "min_samples_leaf": 2,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "endocrine disorders": {
-            "n_estimators": 200,
-            "max_depth": 10,
-            "min_samples_leaf": 1,
-            "min_samples_split": 2,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "surgical and medical procedures": {
-            "n_estimators": 100,
-            "max_depth": 10,
-            "min_samples_leaf": 2,
-            "min_samples_split": 10,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "vascular disorders": {
-            "n_estimators": 450,
-            "max_depth": null,
-            "min_samples_leaf": 1,
-            "min_samples_split": 5,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "blood and lymphatic system disorders": {
-            "n_estimators": 300,
-            "max_depth": 10,
-            "min_samples_leaf": 2,
-            "min_samples_split": 10,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "skin and subcutaneous tissue disorders": {
-            "n_estimators": 150,
-            "max_depth": 20,
-            "min_samples_leaf": 1,
-            "min_samples_split": 5,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "congenital, familial and genetic disorders": {
-            "n_estimators": 100,
-            "max_depth": 20,
-            "min_samples_leaf": 4,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "infections and infestations": {
-            "n_estimators": 400,
-            "max_depth": null,
-            "min_samples_leaf": 2,
-            "min_samples_split": 5,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "respiratory, thoracic and mediastinal disorders": {
-            "n_estimators": 100,
-            "max_depth": 10,
-            "min_samples_leaf": 1,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "psychiatric disorders": {
-            "n_estimators": 100,
-            "max_depth": null,
-            "min_samples_leaf": 4,
-            "min_samples_split": 10,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "renal and urinary disorders": {
-            "n_estimators": 150,
-            "max_depth": 20,
-            "min_samples_leaf": 6,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "pregnancy, puerperium and perinatal conditions": {
-            "n_estimators": 450,
-            "max_depth": 10,
-            "min_samples_leaf": 4,
-            "min_samples_split": 10,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "ear and labyrinth disorders": {
-            "n_estimators": 100,
-            "max_depth": 10,
-            "min_samples_leaf": 1,
-            "min_samples_split": 10,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "cardiac disorders": {
-            "n_estimators": 400,
-            "max_depth": null,
-            "min_samples_leaf": 1,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "nervous system disorders": {
-            "n_estimators": 100,
-            "max_depth": 10,
-            "min_samples_leaf": 4,
-            "min_samples_split": 2,
-            "criterion": "entropy",
-            "random_state": 8,
-            "n_jobs": -1
-        },
-        "injury, poisoning and procedural complications": {
-            "n_estimators": 200,
-            "max_depth": 20,
-            "min_samples_leaf": 1,
-            "min_samples_split": 10,
-            "criterion": "gini",
-            "random_state": 8,
-            "n_jobs": -1
-        }
+    "Carcinogens_Lagunin": {
+        "n_estimators": 150,
+        "max_depth": null,
+        "min_samples_split": 10,
+        "min_samples_leaf": 3,
+        "bootstrap": false,
+        "criterion": "gini",
+        "max_features": "log2",
+        "class_weight": null
+    },
+    "Bioavailability_Ma": {
+        "n_estimators": 200,
+        "max_depth": 10,
+        "min_samples_split": 2,
+        "min_samples_leaf": 10,
+        "bootstrap": true,
+        "criterion": "gini",
+        "max_features": null,
+        "class_weight": "balanced_subsample"
     }
 }

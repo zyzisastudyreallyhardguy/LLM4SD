@@ -1,0 +1,16 @@
+dataset: TDC
+subtask: ClinTox
+model: deepresearch
+knowledge_type: synthesize
+feature_backend: clintox
+eval_split: train
+num_bundles: 1
+
+seed=0	roc_auc=0.9918037404236143	macro_f1=0.8712004935596485	accuracy=0.9662363455809335	bundle=checkpoints/forest/TDC__ClinTox/deepresearch__clintox__synthesize__seed_0.joblib
+
+average_train_roc_auc: 0.9918037404236143
+std_train_roc_auc: 0.0
+average_train_macro_f1: 0.8712004935596485
+std_train_macro_f1: 0.0
+average_train_accuracy: 0.9662363455809335
+std_train_accuracy: 0.0

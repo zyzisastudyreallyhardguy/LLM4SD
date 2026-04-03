@@ -1,0 +1,32 @@
+{
+  "variant_backend": "herg_feedback_v001",
+  "parent_backend": "herg",
+  "base_backend": "herg",
+  "subtask": "hERG",
+  "source_run_id": "herg_analyze_20260402_fullsweep",
+  "status": "rejected",
+  "acceptance_summary": {
+    "accepted": false,
+    "report_path": "/data1/tianang/Projects/LLM4SD/feature_feedback_runs/hERG/herg_feedback_v001_compare_20260402_fullsweep/acceptance_report.json",
+    "baseline_backend": "herg",
+    "baseline_summary": {
+      "mean_train_macro_f1": 0.8351575607849865,
+      "mean_train_roc_auc": 0.9121393169936859,
+      "mean_valid_macro_f1": 0.7988782595207293,
+      "mean_valid_roc_auc": 0.889025641025641,
+      "mean_test_macro_f1": 0.7988782595207293,
+      "mean_test_roc_auc": 0.889025641025641
+    },
+    "candidate_summary": {
+      "mean_train_macro_f1": 0.992370664191071,
+      "mean_train_roc_auc": 0.9999547378188156,
+      "mean_valid_macro_f1": 0.8072539395505037,
+      "mean_valid_roc_auc": 0.8623589743589744,
+      "mean_test_macro_f1": 0.8072539395505037,
+      "mean_test_roc_auc": 0.8623589743589744
+    }
+  },
+  "feature_module": "herg_rule_features",
+  "created_at": "2026-04-02T03:33:01",
+  "updated_at": "2026-04-02T04:18:11"
+}
